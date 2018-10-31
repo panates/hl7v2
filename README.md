@@ -1,9 +1,3 @@
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/3836517/32965280-1a2b63ce-cbe7-11e7-8ee1-ba47313503c5.png" width="500px" alt="SQB Logo"/>
-</p>
-
-<br>
   
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
@@ -32,25 +26,25 @@ $ npm install hl7-js --save
   
 ## Change log
 
-To see changelog click [here](https://github.com/panates/sqb/commits/master)
+To see changelog click [here](https://github.com/panates/hl7v2/commits/master)
 
   
 ### License
-SQB is available under [MIT](LICENSE) license.
+HL7v2 is available under [MIT](LICENSE) license.
 
-[npm-image]: https://img.shields.io/npm/v/sqb.svg
-[npm-url]: https://npmjs.org/package/sqb
-[travis-image]: https://img.shields.io/travis/panates/sqb/master.svg
-[travis-url]: https://travis-ci.org/panates/sqb
-[coveralls-image]: https://img.shields.io/coveralls/panates/sqb/master.svg
-[coveralls-url]: https://coveralls.io/r/panates/sqb
-[downloads-image]: https://img.shields.io/npm/dm/sqb.svg
-[downloads-url]: https://npmjs.org/package/sqb
-[gitter-image]: https://badges.gitter.im/panates/sqb.svg
-[gitter-url]: https://gitter.im/panates/sqb?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
-[dependencies-image]: https://david-dm.org/panates/sqb/status.svg
-[dependencies-url]:https://david-dm.org/panates/sqb
-[devdependencies-image]: https://david-dm.org/panates/sqb/dev-status.svg
-[devdependencies-url]:https://david-dm.org/panates/sqb?type=dev
-[quality-image]: http://npm.packagequality.com/shield/sqb.png
-[quality-url]: http://packagequality.com/#?package=sqb
+[npm-image]: https://img.shields.io/npm/v/hl7v2.svg
+[npm-url]: https://npmjs.org/package/hl7v2
+[travis-image]: https://img.shields.io/travis/panates/hl7v2/master.svg
+[travis-url]: https://travis-ci.org/panates/hl7v2
+[coveralls-image]: https://img.shields.io/coveralls/panates/hl7v2/master.svg
+[coveralls-url]: https://coveralls.io/r/panates/hl7v2
+[downloads-image]: https://img.shields.io/npm/dm/hl7v2.svg
+[downloads-url]: https://npmjs.org/package/hl7v2
+[gitter-image]: https://badges.gitter.im/panates/hl7v2.svg
+[gitter-url]: https://gitter.im/panates/hl7v2?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+[dependencies-image]: https://david-dm.org/panates/hl7v2/status.svg
+[dependencies-url]:https://david-dm.org/panates/hl7v2
+[devdependencies-image]: https://david-dm.org/panates/hl7v2/dev-status.svg
+[devdependencies-url]:https://david-dm.org/panates/hl7v2?type=dev
+[quality-image]: http://npm.packagequality.com/shield/hl7v2.png
+[quality-url]: http://packagequality.com/#?package=hl7v2
