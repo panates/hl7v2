@@ -28,7 +28,7 @@ describe('Init message', function() {
       assert.equal(msg.MSH.VersionId.value, version);
       assert.equal(msg.toHL7(), 'MSH|^~\\&||||||||||' + version + '\r');
     }
-  });
+  }).timeout(5000);
 
   it('should not change MSH version other than message version', function() {
     const msg = new HL7Message({version: '2.5'});
