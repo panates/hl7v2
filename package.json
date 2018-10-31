@@ -1,0 +1,55 @@
+{
+  "name": "hl7v2",
+  "description": "HL7 v2 parser, serializer, validator and tcp client/server for NodeJS",
+  "version": "0.0.1",
+  "author": "Panates Ltd.",
+  "contributors": [
+    "Eray Hanoglu <e.hanoglu@panates.com>"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/panates/hl7v2.git"
+  },
+  "keywords": [
+    "javascript",
+    "hl7",
+    "perser",
+    "serializer",
+    "server",
+    "client"
+  ],
+  "dependencies": {
+    "errorex": "^2.0.3",
+    "iconv-lite": "^0.4.24",
+    "is-typedarray": "^1.0.0",
+    "putil-callable": "^1.0.2",
+    "putil-waterfall": "^2.1.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.8.0",
+    "eslint-config-google": "^0.11.0",
+    "nyc": "^13.1.0",
+    "mocha": "^5.2.0"
+  },
+  "engines": {
+    "node": ">=6.0"
+  },
+  "directories": {
+    "lib": "./lib"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib/"
+  ],
+  "nyc": {
+    "temp-dir": "./coverage/.nyc_output"
+  },
+  "scripts": {
+    "test": "mocha --require ./test/support/env --reporter spec --bail --check-leaks test/",
+    "cover": "nyc --reporter html --reporter text npm run test",
+    "travis-cover": "nyc --reporter lcovonly npm run test"
+  }
+}

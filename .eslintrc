@@ -1,0 +1,39 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "eslint:recommended",
+    "google"
+  ],
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "rules": {
+    "no-console": 1,
+    "no-const-assign": 2,
+    "no-unused-vars": [
+      1,
+      {
+        "vars": "all",
+        "args": "none"
+      }
+    ],
+    "indent": [
+      0,
+      4
+    ],
+    "no-var": 1,
+    "prefer-const": 1,
+    "no-trailing-spaces": 0,
+    "spaced-comment": 0,
+    "max-len": 0,
+    "require-jsdoc": 0,
+    "comma-dangle": 0,
+    "padded-blocks": 0,
+    "arrow-parens": 0,
+    "curly": 0,
+    "prefer-rest-params": 0,
+    "prefer-spread": 0,
+    "space-before-function-paren": 0
+  }
+}
