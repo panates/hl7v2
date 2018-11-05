@@ -17,7 +17,7 @@ HL7 v2 parser, serializer, validator and tcp client/server for NodeJS
 ## Installation
 
 ```bash
-$ npm install hl7-js --save
+$ npm install hl7v2 --save
 ```
 
 ## Node Compatibility
