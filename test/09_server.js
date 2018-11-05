@@ -1,6 +1,8 @@
 /* eslint-disable */
 const assert = require('assert');
 const net = require('net');
+const fs = require('fs');
+const path = require('path');
 const {HL7Message, HL7Server, HL7Client} = require('../');
 const {VT, FS} = require('../lib/types');
 
@@ -19,12 +21,15 @@ OBX|3|CE|997232^RESULT 2^L||MR105|||||N|F|||19980729160500|BN
 NTE|1|L|ROUTINE RESPIRATORY FLORA
 `.replace(/\n/, '\r');
 
-describe('HL7SocketListener', function() {
+describe('HL7Server', function() {
 
   let server;
-
-  before(function() {
-  });
+  const tlsoptions = {
+    key: fs.readFileSync(path.resolve(__dirname, './support/private-key.pem')),
+    cert: fs.readFileSync(path.resolve(__dirname, './support/public-cert.pem')),
+    rejectUnauthorized: false,
+    port: 8081
+  };
 
   after(function() {
     server && server.close();
@@ -94,6 +99,37 @@ describe('HL7SocketListener', function() {
       client.connect(8080).then(() => {
         client.send(msg);
       });
+    }).catch((e) => done(e));
+  });
+
+  it('should receive hl7 messages - tsl', function(done) {
+    server = new HL7Server(tlsoptions);
+    server.listen(tlsoptions).then(() => {
+      const msg = HL7Message.parse(sampleMessage1);
+      let i = 0;
+
+      server.use('ORU^R01', (req) => {
+        i++;
+        try {
+          assert.equal(req.toHL7(), msg.toHL7());
+        } catch (e) {
+          done(e);
+        }
+      });
+
+      server.use((req) => {
+        i++;
+        try {
+          assert.equal(i, 2);
+          assert.equal(req.toHL7(), msg.toHL7());
+          server.close().then(() => done());
+        } catch (e) {
+          done(e);
+        }
+      });
+
+      const client = new HL7Client();
+      client.connect(tlsoptions).then(() => client.send(msg));
     }).catch((e) => done(e));
   });
 

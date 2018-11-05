@@ -1,7 +1,10 @@
 /* eslint-disable */
 const assert = require('assert');
 const {EventEmitter} = require('events');
+const fs = require('fs');
+const path = require('path');
 const net = require('net');
+const tls = require('tls');
 const {HL7Message, HL7Client} = require('../');
 const {VT, FS, CR} = require('../lib/types');
 
@@ -26,42 +29,89 @@ describe('HL7Client', function() {
 
   const ev = new EventEmitter();
   const sockets = new Set();
+  const tlssockets = new Set();
   let server;
+  let tlsserver;
   let client;
   let msg1;
+  let receivedData = [];
+  const tlsoptions = {
+    key: fs.readFileSync(path.resolve(__dirname, './support/private-key.pem')),
+    cert: fs.readFileSync(path.resolve(__dirname, './support/public-cert.pem')),
+    rejectUnauthorized: false,
+    port: 8081
+  };
 
   function listenerOnData() {
+    if (receivedData.length)
+      return Promise.resolve(receivedData.shift());
     return new Promise(resolve => {
-      ev.on('data', (data) => {
-        return resolve(data);
+      ev.once('data', () => {
+        return resolve(receivedData.shift());
       });
     });
   }
 
-  before(function() {
-    server = net.createServer(null, (socket) => {
+  before(function(done) {
+    msg1 = HL7Message.parse(sampleMessage1);
+
+    server = net.createServer();
+    server.on('connection', (socket) => {
       sockets.add(socket);
       socket.on('data', (data) => {
+        receivedData.push(data);
+        ev.emit('data');
         setTimeout(() => {
-          socket.write(VT + ack1 + FS + CR);
-        }, 5);
-        ev.emit('data', data);
+          if (!socket.destroyed)
+            socket.write(VT + ack1 + FS + CR);
+        }, 10);
       });
-      socket.on('close', () => {
-        sockets.delete(socket);
-      });
-      socket.on('error', () => {});
+      socket.on('close', () => sockets.delete(socket));
     });
+    server.on('listening', () => {
+      try {
+        tlsserver = tls.createServer({
+          key: fs.readFileSync(path.resolve(__dirname, './support/private-key.pem')),
+          cert: fs.readFileSync(path.resolve(__dirname, './support/public-cert.pem')),
+          rejectUnauthorized: false
+        });
+      } catch (e) {
+        return done(e);
+      }
+      tlsserver.on('secureConnection', (socket) => {
+        tlssockets.add(socket);
+        socket.on('data', (data) => {
+          receivedData.push(data);
+          ev.emit('data');
+          setTimeout(() => {
+            if (!socket.destroyed)
+              socket.write(VT + ack1 + FS + CR);
+          }, 10);
+        });
+        socket.on('close', () => {
+          socket.destroy();
+          tlssockets.delete(socket);
+        });
+      });
+      tlsserver.on('listening', () => done());
+      tlsserver.on('error', (e) => done(e));
+      tlsserver.listen(8081);
+    });
+    server.on('error', (e) => done(e));
     server.listen(8080);
-    msg1 = HL7Message.parse(sampleMessage1);
+
   });
 
-  after(function(done) {
+  after(function() {
     client && client.close();
     for (const socket of sockets.values()) {
       socket.destroy();
     }
-    server.close(() => done());
+    server.close();
+    for (const socket of tlssockets.values()) {
+      socket.destroy();
+    }
+    tlsserver.close();
   });
 
   it('should construct', function() {
@@ -75,7 +125,7 @@ describe('HL7Client', function() {
     const socket = new net.Socket({host: 'localhost', port: 8080});
     const client = new HL7Client(socket);
     assert(client instanceof HL7Client);
-    assert.equal(client._socket, socket);
+    assert.equal(client._extSocket, socket);
     assert.equal(client.connected, false);
     assert.equal(client.connecting, false);
   });
@@ -109,6 +159,28 @@ describe('HL7Client', function() {
     assert(0, 'Failed');
   });
 
+  it('should connect() validate argument', function(done) {
+    client = new HL7Client();
+    client.connect('sfdasf')
+        .then(() => done('Failed'))
+        .catch(e => {
+          if (e.message.includes('Invalid argument'))
+            return done();
+          done(e);
+        });
+  });
+
+  it('should validate port number', function(done) {
+    client = new HL7Client();
+    client.connect(66000)
+        .then(() => done('Failed'))
+        .catch(e => {
+          if (e.message.includes('You must provide a valid'))
+            return done();
+          done(e);
+        });
+  });
+
   it('should connect(port)', function() {
     client = new HL7Client();
     return client.connect(8080).then(() => client.close());
@@ -137,32 +209,37 @@ describe('HL7Client', function() {
         .then(() => client.close());
   });
 
-  it('should connect() validate argument', function(done) {
+  it('should connect to secure server', function() {
     client = new HL7Client();
-    client.connect('sfdasf')
-        .then(() => done('Failed'))
-        .catch(e => {
-          if (e.message.includes('Invalid argument'))
-            return done();
-          done(e);
-        });
-  });
-
-  it('should validate port number', function(done) {
-    client = new HL7Client();
-    client.connect(66000)
-        .then(() => done('Failed'))
-        .catch(e => {
-          if (e.message.includes('You must provide a valid'))
-            return done();
-          done(e);
-        });
+    return client.connect(tlsoptions)
+        .then(() => client.close());
   });
 
   it('should connect() return resolved promise if already connected', function() {
     client = new HL7Client();
-    return client.connect(8080).then(() =>
-        client.connect().then(() => client.close()));
+    return client.connect(8080)
+        .then(() => client.connect())
+        .then(() => client.close());
+  });
+
+  it('should connect(...args) return rejected promise if already connected', function(done) {
+    client = new HL7Client();
+    client.connect(8080)
+        .then(() =>
+            client.connect(8080)
+                .catch(e => {
+                  if (!e.message.includes('Already'))
+                    return done(e);
+                  client.close().then(() => done());
+                }));
+  });
+
+  it('can reconnect after close', function() {
+    client = new HL7Client();
+    return client.connect(8080)
+        .then(() => client.close())
+        .then(() => client.connect(8080))
+        .then(() => client.close());
   });
 
   it('should close() return resolved promise if already closed', function() {
@@ -223,6 +300,28 @@ describe('HL7Client', function() {
     });
   });
 
+  it('should send HL7Message to secure server', function() {
+    client = new HL7Client();
+    return client.connect(tlsoptions).then(() => {
+      return client.send(msg1).then(() => {
+        return listenerOnData().then(data => {
+          assert(data, VT + sampleMessage1 + FS + CR);
+          return client.close();
+        });
+      });
+    });
+  });
+
+  it('should send message and receive response from secure server', function() {
+    client = new HL7Client();
+    return client.connect(tlsoptions).then(() => {
+      return client.sendReceive(msg1).then(resp => {
+        assert.equal(resp.MSH.MessageControlId.value, msg1.MSH.MessageControlId.value);
+        return client.close();
+      });
+    });
+  });
+
   it('should send message and wait till given time', function(done) {
     client = new HL7Client();
     client.connect(8080).then(() => {
@@ -239,16 +338,22 @@ describe('HL7Client', function() {
   it('should use external socket instance', function(done) {
     const socket = new net.Socket();
     socket.connect(8080, 'localhost');
-    socket.on('connect', () => {
+    socket.once('connect', () => {
       client = new HL7Client(socket);
-      client.send(msg1).then(() => {
-        return listenerOnData().then(data => {
-          assert(data, VT + sampleMessage1 + FS + CR);
-          return client.close();
-        });
-      }).then(() => done()).catch(e => done(e));
+      client.close()
+          .then(() => client.connect(8080))
+          .then(() => client.close())
+          .then(() => done());
     });
 
+  });
+
+  it('can reconnect after close (external socket)', function() {
+    client = new HL7Client();
+    return client.connect(8080)
+        .then(() => client.close())
+        .then(() => client.connect(8080))
+        .then(() => client.close());
   });
 
   describe('events', function() {
@@ -277,7 +382,7 @@ describe('HL7Client', function() {
       client.on('error', (ignored) => {
         done();
       });
-      client.connect(8081).catch(() => {});
+      client.connect(8082).catch(() => {});
     });
 
     it('should emit "message"', function(done) {
