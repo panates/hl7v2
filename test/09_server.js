@@ -3,7 +3,7 @@ const assert = require('assert');
 const net = require('net');
 const fs = require('fs');
 const path = require('path');
-const {HL7Message, HL7Server, HL7Client} = require('../');
+const {HL7Message, HL7Server, HL7Client, createServer, connect} = require('../');
 const {VT, FS} = require('../lib/types');
 
 const sampleMessage1 = `MSH|^~\\&|LCS|LCA|LIS|TEST9999|19980731153200||ORU^R01|1234|P|2.2
@@ -42,6 +42,13 @@ describe('HL7Server', function() {
     assert.equal(server.sockets.size, 0);
   });
 
+  it('should construct with createServer()', function() {
+    server = createServer();
+    assert(server instanceof HL7Server);
+    assert.equal(server.listening, false);
+    assert.equal(server.sockets.size, 0);
+  });
+
   it('should construct with existing server', function() {
     const srv = new net.Server();
     server = new HL7Server(srv);
@@ -63,6 +70,15 @@ describe('HL7Server', function() {
           server.close().then(() => done());
         });
   });
+
+  it('should emit "connection" event', function(done) {
+    server = createServer(() => {
+      server.close().then(() => done());
+    });
+    server.listen(8080)
+        .then(() => connect(8080));
+  });
+
 
   it('should add middle-wares', function() {
     server = new HL7Server();

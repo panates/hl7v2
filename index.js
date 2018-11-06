@@ -31,5 +31,7 @@ module.exports = {
   hl7DecodeDate,
   hl7DecodeTime,
   hl7EncodeDate,
-  hl7EncodeDateTime
+  hl7EncodeDateTime,
+  createServer: HL7Server.createServer,
+  connect: HL7Client.connect
 };

@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const net = require('net');
 const tls = require('tls');
-const {HL7Message, HL7Client} = require('../');
+const {HL7Message, HL7Client, connect} = require('../');
 const {VT, FS, CR} = require('../lib/types');
 
 const sampleMessage1 = `MSH|^~\\&|LCS|LCA|LIS|TEST9999|19980731153200||ORU^R01|1234|P|2.5
@@ -234,6 +234,11 @@ describe('HL7Client', function() {
                 }));
   });
 
+  it('should connect static', function() {
+    return connect(8080).then(() => client.close());
+  });
+
+
   it('can reconnect after close', function() {
     client = new HL7Client();
     return client.connect(8080)
@@ -358,14 +363,16 @@ describe('HL7Client', function() {
 
   describe('events', function() {
 
-    it('should emit "connect"', function(done) {
-      client = new HL7Client();
-      client.on('connect', () => {
-        assert.equal(client.connected, true);
-        client.close();
-        done();
+    it('should emit "connect"', function() {
+      connect(8080, () => {
+        try {
+          assert.equal(this.connected, true);
+          this.close();
+          done();
+        } catch (e) {
+          return done(e);
+        }
       });
-      client.connect(8080);
     });
 
     it('should emit "close"', function(done) {
