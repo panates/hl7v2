@@ -79,7 +79,6 @@ describe('HL7Server', function() {
         .then(() => connect(8080));
   });
 
-
   it('should add middle-wares', function() {
     server = new HL7Server();
     server.use(() => {});
@@ -149,7 +148,29 @@ describe('HL7Server', function() {
     }).catch((e) => done(e));
   });
 
-  it('should send nak if widdle-ware matches', function(done) {
+  it('should receive hl7 messages and send response', function(done) {
+    server = new HL7Server();
+    server.listen(8080).then(() => {
+      const msg = HL7Message.parse(sampleMessage1);
+      server.use((req) => {
+        return req;
+      });
+
+      const client = new HL7Client();
+      client.connect(8080).then(() => {
+        client.sendReceive(msg).then(resp => {
+          try {
+            assert.equal(msg.toHL7(), resp.toHL7());
+            server.close().then(() => done());
+          } catch (e) {
+            done(e);
+          }
+        });
+      });
+    }).catch((e) => done(e));
+  });
+
+  it('should send nak if no middle-ware matches', function(done) {
     server = new HL7Server();
     server.listen(8080).then(() => {
       const msg = HL7Message.parse(sampleMessage1);
@@ -246,6 +267,72 @@ describe('HL7Server', function() {
         });
       });
     }).catch((e) => done(e));
+  });
+
+  it('should wait connections for shutdownWait time', function(done) {
+    this.slow(250);
+    const client = new HL7Client();
+    server = createServer({shutdownWait: 100});
+    server.use(() => {
+      const t1 = Date.now();
+      server.close().then(() => {
+        try {
+          assert(Date.now() - t1 > 100, 'Failed');
+          done();
+        } catch (e) {
+          done(e);
+        }
+      });
+    });
+
+    server.use(() => {
+      return new Promise((resolve => {
+        // Never resolve
+      }));
+    });
+    server.listen(8080).then(() => {
+      client.connect(8080).then(() => client.send(sampleMessage1));
+    }).catch(e => done(e));
+  });
+
+  it('should close before shutdownWait time if there is no message to response', function(done) {
+    this.slow(500);
+    const client = new HL7Client();
+    server = createServer({shutdownWait: 5000});
+    server.use(() => {
+      const t1 = Date.now();
+      server.close().then(() => {
+        try {
+          const n = Date.now() - t1;
+          assert(n > 50, 'Failed ' + n + '>50');
+          assert(n < 100, 'Failed ' + n + '<100');
+          done();
+        } catch (e) {
+          done(e);
+        }
+      });
+    });
+
+    server.use(() => {
+      return new Promise((resolve => {
+        setTimeout(() => {resolve();}, 50);
+      }));
+    });
+    server.listen(8080).then(() => {
+      client.connect(8080).then(() => client.send(sampleMessage1));
+    }).catch(e => done(e));
+  });
+
+  it('should emit "listenError"', function(done) {
+    server = createServer();
+    server.listen(8080)
+        .then(() => {
+          const server2 = createServer();
+          server2.on('listenError', () => {
+            server.close().then(() => done());
+          });
+          server2.listen(8080).catch(() => {});
+        });
   });
 
 });

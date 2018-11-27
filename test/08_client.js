@@ -159,6 +159,33 @@ describe('HL7Client', function() {
     assert(0, 'Failed');
   });
 
+  it('should set keep alive', function() {
+    const client = new HL7Client();
+    client.setKeepAlive(true);
+    assert.equal(client._keepAlive, 0);
+    client.setKeepAlive();
+    assert.equal(client._keepAlive, null);
+    client.setKeepAlive(true, 100);
+    assert.equal(client._keepAlive, 100);
+    return client.connect(8080).then(() => {
+      client.setKeepAlive(true, 200);
+      assert.equal(client._keepAlive, 200);
+      return client.close();
+    });
+  });
+
+  it('should setEncoding() validate argument', function() {
+    try {
+      const client = new HL7Client();
+      client.setEncoding('abcde');
+    } catch (e) {
+      if (e.message.includes('Unsupported encoding'))
+        return;
+      throw e;
+    }
+    assert(0, 'Failed');
+  });
+
   it('should connect() validate argument', function(done) {
     client = new HL7Client();
     client.connect('sfdasf')
