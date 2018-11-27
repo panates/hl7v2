@@ -5,6 +5,10 @@ const fs = require('fs');
 const path = require('path');
 const {HL7Message, HL7Server, HL7Client, createServer, connect} = require('../');
 const {VT, FS} = require('../lib/types');
+const {rejects, doesNotReject} = require('rejected-or-not');
+
+assert.rejects = assert.rejects || rejects;
+assert.doesNotReject = assert.doesNotReject || doesNotReject;
 
 const sampleMessage1 = `MSH|^~\\&|LCS|LCA|LIS|TEST9999|19980731153200||ORU^R01|1234|P|2.2
 PID|2|2161348462|20809880170|1614614|20809880170^TESTPAT||19760924000000|M|||^^^^00000-0000|||||||86427531^^^03|SSN# HERE
@@ -31,29 +35,29 @@ describe('HL7Server', function() {
     port: 8081
   };
 
-  after(function() {
-    server && server.close();
+  afterEach(function() {
+    return server && server.close();
   });
 
   it('should construct', function() {
     server = new HL7Server();
     assert(server instanceof HL7Server);
-    assert.equal(server.listening, false);
-    assert.equal(server.sockets.size, 0);
+    assert.strictEqual(server.listening, false);
+    assert.strictEqual(server.sockets.size, 0);
   });
 
   it('should construct with createServer()', function() {
     server = createServer();
     assert(server instanceof HL7Server);
-    assert.equal(server.listening, false);
-    assert.equal(server.sockets.size, 0);
+    assert.strictEqual(server.listening, false);
+    assert.strictEqual(server.sockets.size, 0);
   });
 
   it('should construct with existing server', function() {
     const srv = new net.Server();
     server = new HL7Server(srv);
     assert(server instanceof HL7Server);
-    assert.equal(server._server, srv);
+    assert.strictEqual(server._server, srv);
   });
 
   it('should listen than close', function() {
@@ -61,14 +65,12 @@ describe('HL7Server', function() {
     return server.listen(8080).then(() => server.close());
   });
 
-  it('should reject on listen errors', function(done) {
+  it('should reject on listen errors', function() {
     server = new HL7Server();
-    server.listen(8080)
-        .then(() => server.listen())
-        .then(() => done('Failed'))
-        .catch(ignored => {
-          server.close().then(() => done());
-        });
+    return assert.rejects(() =>
+        server.listen(8080)
+            .then(() => server.listen())
+    );
   });
 
   it('should emit "connection" event', function(done) {
@@ -93,7 +95,7 @@ describe('HL7Server', function() {
       server.use('ORU^R01', (req) => {
         i++;
         try {
-          assert.equal(req.toHL7(), msg.toHL7());
+          assert.strictEqual(req.toHL7(), msg.toHL7());
         } catch (e) {
           done(e);
         }
@@ -102,8 +104,8 @@ describe('HL7Server', function() {
       server.use((req) => {
         i++;
         try {
-          assert.equal(i, 2);
-          assert.equal(req.toHL7(), msg.toHL7());
+          assert.strictEqual(i, 2);
+          assert.strictEqual(req.toHL7(), msg.toHL7());
           server.close().then(() => done());
         } catch (e) {
           done(e);
@@ -126,7 +128,7 @@ describe('HL7Server', function() {
       server.use('ORU^R01', (req) => {
         i++;
         try {
-          assert.equal(req.toHL7(), msg.toHL7());
+          assert.strictEqual(req.toHL7(), msg.toHL7());
         } catch (e) {
           done(e);
         }
@@ -135,8 +137,8 @@ describe('HL7Server', function() {
       server.use((req) => {
         i++;
         try {
-          assert.equal(i, 2);
-          assert.equal(req.toHL7(), msg.toHL7());
+          assert.strictEqual(i, 2);
+          assert.strictEqual(req.toHL7(), msg.toHL7());
           server.close().then(() => done());
         } catch (e) {
           done(e);
@@ -160,7 +162,7 @@ describe('HL7Server', function() {
       client.connect(8080).then(() => {
         client.sendReceive(msg).then(resp => {
           try {
-            assert.equal(msg.toHL7(), resp.toHL7());
+            assert.strictEqual(msg.toHL7(), resp.toHL7());
             server.close().then(() => done());
           } catch (e) {
             done(e);
@@ -179,9 +181,9 @@ describe('HL7Server', function() {
       client.connect(8080).then(() => {
         client.sendReceive(msg).then(msg => {
           assert(msg);
-          assert.equal(msg.MSH.MessageType.value, 'ACK');
+          assert.strictEqual(msg.MSH.MessageType.value, 'ACK');
           const msa = msg.getSegment('MSA');
-          assert.equal(msa[1].value, 'AR');
+          assert.strictEqual(msa[1].value, 'AR');
           server.close().then(() => done());
         });
       });

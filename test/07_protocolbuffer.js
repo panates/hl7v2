@@ -9,22 +9,22 @@ describe('HL7ProtocolBuffer', function() {
     const p = new HL7ProtocolHandler();
     const buf = Buffer.from('MSH');
     p.write(buf);
-    assert.equal(p._buffers[0], buf);
-    assert.equal(p.length, 3);
+    assert.strictEqual(p._buffers[0], buf);
+    assert.strictEqual(p.length, 3);
   });
 
   it('should write(String)', function() {
     const p = new HL7ProtocolHandler();
     p.write('MSH');
     assert(p._buffers[0] instanceof Buffer);
-    assert.equal(p._buffers[0].toString(), 'MSH');
+    assert.strictEqual(p._buffers[0].toString(), 'MSH');
   });
 
   it('should write(Array<byte>)', function() {
     const p = new HL7ProtocolHandler();
     p.write(['M'.charCodeAt(0), 'S'.charCodeAt(0), 'H'.charCodeAt(0)]);
     assert(p._buffers[0] instanceof Buffer);
-    assert.equal(p._buffers[0].toString(), 'MSH');
+    assert.strictEqual(p._buffers[0].toString(), 'MSH');
   });
 
   let testNo = 1;
@@ -32,7 +32,7 @@ describe('HL7ProtocolBuffer', function() {
   it('Handle data block test-' + (testNo++), function(done) {
     const p = new HL7ProtocolHandler();
     p.on('block', (data) => {
-      assert.equal(data.toString(), VT + 'MSH|^~\\&||||||||||2.7.1' + FS + CR);
+      assert.strictEqual(data.toString(), VT + 'MSH|^~\\&||||||||||2.7.1' + FS + CR);
       done();
     });
     p.write(VT + 'MSH|^~\\&||||||||||2.7.1' + FS + CR);
@@ -41,19 +41,19 @@ describe('HL7ProtocolBuffer', function() {
   it('Handle data block test-' + (testNo++), function(done) {
     const p = new HL7ProtocolHandler();
     p.on('block', (data) => {
-      assert.equal(data.toString(), VT + 'MSH|^~\\&||||||||||2.7.1' + FS + CR);
+      assert.strictEqual(data.toString(), VT + 'MSH|^~\\&||||||||||2.7.1' + FS + CR);
       done();
     });
     p.write(VT + 'MSH|^~\\&||||||');
     p.write('||||2.7.1');
-    assert.equal(p.length, 24);
+    assert.strictEqual(p.length, 24);
     p.write(FS + CR);
   });
 
   it('Handle data block test-' + (testNo++), function(done) {
     const p = new HL7ProtocolHandler();
     p.on('block', (data) => {
-      assert.equal(data.toString(), VT + 'MSH|^~\\&||||||||||2.7.1' + FS);
+      assert.strictEqual(data.toString(), VT + 'MSH|^~\\&||||||||||2.7.1' + FS);
       done();
     });
     p.write(VT + 'MSH|^~\\&||||||');
@@ -66,10 +66,10 @@ describe('HL7ProtocolBuffer', function() {
     p.on('block', (data) => {
       k++;
       if (k === 1)
-        assert.equal(data.toString(),
+        assert.strictEqual(data.toString(),
             VT + 'MSH|^~\\&||||||||||2.7.1' + FS + CR);
       if (k === 2) {
-        assert.equal(data.toString(), VT + 'MSH|^~\\&||||||||||2.7.1' + FS);
+        assert.strictEqual(data.toString(), VT + 'MSH|^~\\&||||||||||2.7.1' + FS);
         done();
       }
     });
@@ -84,10 +84,10 @@ describe('HL7ProtocolBuffer', function() {
     p.on('block', (data) => {
       k++;
       if (k === 1)
-        assert.equal(data.toString(),
+        assert.strictEqual(data.toString(),
             VT + 'MSH|^~\\&||||||||||2.7.1' + FS);
       if (k === 2) {
-        assert.equal(data.toString(), VT + 'MSH|^~\\&||||||||||2.7.1' + FS + CR);
+        assert.strictEqual(data.toString(), VT + 'MSH|^~\\&||||||||||2.7.1' + FS + CR);
         done();
       }
     });
@@ -99,7 +99,7 @@ describe('HL7ProtocolBuffer', function() {
   it('Handle data block test-' + (testNo), function(done) {
     const p = new HL7ProtocolHandler();
     p.on('block', (data) => {
-      assert.equal(data.toString(), VT + 'MSH|^~\\&||||||||||2.7.1' + FS + CR);
+      assert.strictEqual(data.toString(), VT + 'MSH|^~\\&||||||||||2.7.1' + FS + CR);
       done();
     });
     p.write('MSH|^~\\&||||||||||2.7.1' + FS + CR);

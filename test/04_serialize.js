@@ -23,49 +23,49 @@ describe('Serialize message', function() {
     const msg = new HL7Message({version: '2.5'});
     const seg = msg.add('ARQ');
     seg.OccurrenceNumber.value = 1234;
-    assert.equal(seg.toHL7(), 'ARQ|||1234');
+    assert.strictEqual(seg.toHL7(), 'ARQ|||1234');
   });
 
   it('should serialize date', function() {
     const msg = new HL7Message({version: '2.5'});
     const seg = msg.add('AL1');
     seg.IdentificationDate.value = new Date(2001, 0, 12, 15, 30);
-    assert.equal(seg.toHL7(), 'AL1||||||20010112');
+    assert.strictEqual(seg.toHL7(), 'AL1||||||20010112');
   });
 
   it('should serialize date/time', function() {
     const msg = new HL7Message({version: '2.5'});
     const seg = msg.add('ABS');
     seg.DateTimeOfAttestation.value = new Date(2001, 0, 12, 15, 30);
-    assert.equal(seg.toHL7(), 'ABS||||20010112153000');
+    assert.strictEqual(seg.toHL7(), 'ABS||||20010112153000');
   });
 
   it('should escape non chars', function() {
     const msg = new HL7Message({version: '2.5'});
     const seg = msg.add('ADD');
     seg[1].value = '|^~\\&abc\x09\x10d';
-    assert.equal(seg.toHL7(), 'ADD|\\F\\\\S\\\\R\\\\E\\\\T\\abc\\X0910\\d');
+    assert.strictEqual(seg.toHL7(), 'ADD|\\F\\\\S\\\\R\\\\E\\\\T\\abc\\X0910\\d');
   });
 
   it('should escape buffer', function() {
     const msg = new HL7Message({version: '2.5'});
     const seg = msg.add('ADD');
     seg[1].value = Buffer.from([9, 10, 32]);
-    assert.equal(seg.toHL7(), 'ADD|\\X090a20\\');
+    assert.strictEqual(seg.toHL7(), 'ADD|\\X090a20\\');
   });
 
   it('should escape array', function() {
     const msg = new HL7Message({version: '2.5'});
     const seg = msg.add('ADD');
     seg[1].value = [9, 10, 32];
-    assert.equal(seg.toHL7(), 'ADD|\\X090a20\\');
+    assert.strictEqual(seg.toHL7(), 'ADD|\\X090a20\\');
   });
 
   it('should escape TypedArray', function() {
     const msg = new HL7Message({version: '2.5'});
     const seg = msg.add('ADD');
     seg[1].value = new Uint8Array([9, 10, 32]);
-    assert.equal(seg.toHL7(), 'ADD|\\X090a20\\');
+    assert.strictEqual(seg.toHL7(), 'ADD|\\X090a20\\');
   });
 
   it('should serialize repetitions', function() {
@@ -75,7 +75,7 @@ describe('Serialize message', function() {
     seg[1].add().value = '2';
     seg[1].add().value = '';
     seg[1].add().value = null;
-    assert.equal(seg.toHL7(), 'PID|1~2~~');
+    assert.strictEqual(seg.toHL7(), 'PID|1~2~~');
   });
 
   it('should serialize components', function() {
@@ -83,13 +83,13 @@ describe('Serialize message', function() {
     const seg = msg.add('MSH');
     seg.MessageType.value = '1';
     seg.MessageType[0].TriggerEvent.setValue('');
-    assert.equal(seg.toHL7(), 'MSH|^~\\&|||||||1^|||2.5');
+    assert.strictEqual(seg.toHL7(), 'MSH|^~\\&|||||||1^|||2.5');
   });
 
   it('should serialize complete message', function() {
     const msg = HL7Message.parse(sampleMessage1);
     const s = msg.toHL7().replace(/\r/g, '\n');
-    assert.equal(s, sampleMessage1);
+    assert.strictEqual(s, sampleMessage1);
   });
 
 });

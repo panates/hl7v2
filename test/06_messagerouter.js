@@ -16,19 +16,14 @@ describe('HL7MessageRouter', function() {
     router.use(() => {});
     router.use({messageType: 'ORU^R01'}, () => {});
     assert(router);
-    assert.equal(router._handlers.length, 3);
+    assert.strictEqual(router._handlers.length, 3);
   });
 
   it('should use() validate arguments', function() {
     const router = new HL7MessageRouter();
-    try {
+    assert.throws(() => {
       router.use(123);
-    } catch (e) {
-      if (e.message.includes('You must provide'))
-        return;
-      throw e;
-    }
-    assert(0, 'Failed');
+    }, /You must provide/);
   });
 
   it('should call handlers till get response message', function() {
@@ -44,7 +39,7 @@ describe('HL7MessageRouter', function() {
     router.use('ORU^R01', fn);
     const msg = HL7Message.parse('MSH|^~\\&|||||199807311532||ORU^R01|||2.5');
     return router(msg).then(() => {
-      assert.equal(k, 3);
+      assert.strictEqual(k, 3);
     });
   });
 
@@ -58,7 +53,7 @@ describe('HL7MessageRouter', function() {
     router.use('ORU^R01', fn);
     const msg = HL7Message.parse('MSH|^~\\&|||||199807311532||ORU^R01|||2.5');
     return router(msg).then(() => {
-      assert.equal(k, 2);
+      assert.strictEqual(k, 2);
     });
   });
 
@@ -72,7 +67,7 @@ describe('HL7MessageRouter', function() {
     router.use(['ORU^R03', 'ORU^R04'], fn);
     const msg = HL7Message.parse('MSH|^~\\&|||||199807311532||ORU^R01|||2.5');
     return router(msg).then(() => {
-      assert.equal(k, 3);
+      assert.strictEqual(k, 3);
     });
   });
 
@@ -86,7 +81,7 @@ describe('HL7MessageRouter', function() {
     router.use('ORU^R01', fn);
     const msg = HL7Message.parse('MSH|^~\\&|||||199807311532||ORU^R01|||2.5');
     return router(msg).then(() => {
-      assert.equal(k, 3);
+      assert.strictEqual(k, 3);
     });
   });
 
@@ -101,7 +96,7 @@ describe('HL7MessageRouter', function() {
     router.use('ORU^R01', fn);
     const msg = HL7Message.parse('MSH|^~\\&|||||199807311532||ORU^R01|||2.5');
     return router(msg).then(() => {
-      assert.equal(k, 4);
+      assert.strictEqual(k, 4);
     });
   });
 
@@ -120,7 +115,7 @@ describe('HL7MessageRouter', function() {
     router.use('ORU^R01', fn);
     const msg = HL7Message.parse('MSH|^~\\&|||||199807311532||ORU^R01|||2.5');
     return router(msg).then((resp) => {
-      assert.equal(resp, 1);
+      assert.strictEqual(resp, 1);
     });
   });
 

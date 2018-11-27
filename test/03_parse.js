@@ -23,23 +23,23 @@ describe('Parse HL7 message', function() {
   it('should parse HL7 strings', function() {
     const msg = HL7Message.parse('MSH|^~\\&|A');
     assert(msg.MSH);
-    assert.equal(msg.MSH.SendingApplication.value, 'A');
+    assert.strictEqual(msg.MSH.SendingApplication.value, 'A');
   });
 
   it('should parse sub components', function() {
     const msg = HL7Message.parse('MSH|^~\\&|A^B^C^D');
-    assert.equal(msg.MSH.SendingApplication.value, 'A');
-    assert.equal(msg.MSH.SendingApplication[0].value, 'A');
-    assert.equal(msg.MSH.SendingApplication[0][1].value, 'A');
-    assert.equal(msg.MSH.SendingApplication[0][2].value, 'B');
-    assert.equal(msg.MSH.SendingApplication[0][3].value, 'C');
-    assert.equal(msg.MSH.SendingApplication[0][4].value, 'D');
+    assert.strictEqual(msg.MSH.SendingApplication.value, 'A');
+    assert.strictEqual(msg.MSH.SendingApplication[0].value, 'A');
+    assert.strictEqual(msg.MSH.SendingApplication[0][1].value, 'A');
+    assert.strictEqual(msg.MSH.SendingApplication[0][2].value, 'B');
+    assert.strictEqual(msg.MSH.SendingApplication[0][3].value, 'C');
+    assert.strictEqual(msg.MSH.SendingApplication[0][4].value, 'D');
   });
 
   it('should parse number fields', function() {
     const msg = HL7Message.parse('MSH|^~\\&|||||199807311532|||||2.2|1234');
     assert(msg.MSH);
-    assert.equal(msg.MSH.SequenceNumber.value, 1234);
+    assert.strictEqual(msg.MSH.SequenceNumber.value, 1234);
   });
 
   it('should parse Date Time fields', function() {
@@ -65,8 +65,8 @@ describe('Parse HL7 message', function() {
   it('should parse escaped characters', function() {
     const msg = HL7Message.parse('MSH|^~\\&|\\F\\\\S\\\\R\\\\E\\\\T\\abcd\\U\\|\\c65\\\\M015f\\\\M0000\\||||||||2.2|1234');
     assert(msg.MSH);
-    assert.equal(msg.MSH.SendingApplication.value, '|^~\\&abcdU');
-    assert.equal(msg.MSH.SendingFacility.value,
+    assert.strictEqual(msg.MSH.SendingApplication.value, '|^~\\&abcdU');
+    assert.strictEqual(msg.MSH.SendingFacility.value,
         'e' + String.fromCharCode(0x15f) + String.fromCharCode(0));
 
   });
@@ -80,91 +80,91 @@ describe('Parse HL7 message', function() {
 
   it('should parse repeated values', function() {
     const msg = HL7Message.parse('MSH|^~\\&|A~B~C');
-    assert.equal(msg.MSH.SendingApplication.value, 'A');
-    assert.equal(msg.MSH.SendingApplication[0].value, 'A');
-    assert.equal(msg.MSH.SendingApplication[1].value, 'B');
-    assert.equal(msg.MSH.SendingApplication[2].value, 'C');
+    assert.strictEqual(msg.MSH.SendingApplication.value, 'A');
+    assert.strictEqual(msg.MSH.SendingApplication[0].value, 'A');
+    assert.strictEqual(msg.MSH.SendingApplication[1].value, 'B');
+    assert.strictEqual(msg.MSH.SendingApplication[2].value, 'C');
   });
 
   it('should get segments', function() {
     const msg = HL7Message.parse(sampleMessage1);
-    assert.equal(msg.segments[0].type, 'MSH');
-    assert.equal(msg.segments[1].type, 'PID');
-    assert.equal(msg.segments[2].type, 'ORC');
-    assert.equal(msg.segments[3].type, 'OBR');
-    assert.equal(msg.segments[4].type, 'OBX');
-    assert.equal(msg.segments[5].type, 'ORC');
-    assert.equal(msg.segments[5].index, 5);
-    assert.equal(msg.getSegment('OBR', 1)[1].value, 2);
+    assert.strictEqual(msg.segments[0].type, 'MSH');
+    assert.strictEqual(msg.segments[1].type, 'PID');
+    assert.strictEqual(msg.segments[2].type, 'ORC');
+    assert.strictEqual(msg.segments[3].type, 'OBR');
+    assert.strictEqual(msg.segments[4].type, 'OBX');
+    assert.strictEqual(msg.segments[5].type, 'ORC');
+    assert.strictEqual(msg.segments[5].index, 5);
+    assert.strictEqual(msg.getSegment('OBR', 1)[1].value, '2');
   });
 
   it('should init v2.1 fields', function() {
     const msg = HL7Message.parse('MSH|^~\\&||||||||||2.1');
     assert(msg.MSH);
-    assert.equal(msg.MSH.fields[msg.MSH.fields.length - 1].name,
+    assert.strictEqual(msg.MSH.fields[msg.MSH.fields.length - 1].name,
         'ContinuationPointer');
   });
 
   it('should init v2.2 fields', function() {
     const msg = HL7Message.parse('MSH|^~\\&||||||||||2.2');
     assert(msg.MSH);
-    assert.equal(msg.MSH.fields[msg.MSH.fields.length - 1].name,
+    assert.strictEqual(msg.MSH.fields[msg.MSH.fields.length - 1].name,
         'CountryCode');
   });
 
   it('should init v2.3 fields', function() {
     const msg = HL7Message.parse('MSH|^~\\&||||||||||2.3');
     assert(msg.MSH);
-    assert.equal(msg.MSH.fields[msg.MSH.fields.length - 1].name,
+    assert.strictEqual(msg.MSH.fields[msg.MSH.fields.length - 1].name,
         'PrincipalLanguageOfMessage');
   });
 
   it('should init v2.3.1 fields', function() {
     const msg = HL7Message.parse('MSH|^~\\&||||||||||2.3.1');
     assert(msg.MSH);
-    assert.equal(msg.MSH.fields[msg.MSH.fields.length - 1].name,
+    assert.strictEqual(msg.MSH.fields[msg.MSH.fields.length - 1].name,
         'AlternateCharacterSetHandlingScheme');
   });
 
   it('should init v2.4 fields', function() {
     const msg = HL7Message.parse('MSH|^~\\&||||||||||2.4');
     assert(msg.MSH);
-    assert.equal(msg.MSH.fields[msg.MSH.fields.length - 1].name,
+    assert.strictEqual(msg.MSH.fields[msg.MSH.fields.length - 1].name,
         'ConformanceStatementId');
   });
 
   it('should init v2.5 fields', function() {
     const msg = HL7Message.parse('MSH|^~\\&||||||||||2.5');
     assert(msg.MSH);
-    assert.equal(msg.MSH.fields[msg.MSH.fields.length - 1].name,
+    assert.strictEqual(msg.MSH.fields[msg.MSH.fields.length - 1].name,
         'MessageProfileIdentifier');
   });
 
   it('should init v2.5.1 fields', function() {
     const msg = HL7Message.parse('MSH|^~\\&||||||||||2.5.1');
     assert(msg.MSH);
-    assert.equal(msg.MSH.fields[msg.MSH.fields.length - 1].name,
+    assert.strictEqual(msg.MSH.fields[msg.MSH.fields.length - 1].name,
         'MessageProfileIdentifier');
   });
 
   it('should init v2.6 fields', function() {
     const msg = HL7Message.parse('MSH|^~\\&||||||||||2.6');
     assert(msg.MSH);
-    assert.equal(msg.MSH.fields[msg.MSH.fields.length - 1].name,
+    assert.strictEqual(msg.MSH.fields[msg.MSH.fields.length - 1].name,
         'ReceivingNetworkAddress');
   });
 
   it('should init v2.7 fields', function() {
     const msg = HL7Message.parse('MSH|^~\\&||||||||||2.7');
     assert(msg.MSH);
-    assert.equal(msg.MSH.fields[msg.MSH.fields.length - 1].name,
+    assert.strictEqual(msg.MSH.fields[msg.MSH.fields.length - 1].name,
         'ReceivingNetworkAddress');
   });
 
   it('should init v2.7.1 fields', function() {
     const msg = HL7Message.parse('MSH|^~\\&||||||||||2.7.1');
     assert(msg.MSH);
-    assert.equal(msg.MSH.fields[msg.MSH.fields.length - 1].name,
+    assert.strictEqual(msg.MSH.fields[msg.MSH.fields.length - 1].name,
         'ReceivingNetworkAddress');
   });
 
@@ -179,62 +179,54 @@ describe('Parse HL7 message', function() {
     let buf = Buffer.from(VT + 'MSH|^~\\\\&||||||||||2.5||||||UTF-8' + FS + CR);
     let msg = HL7Message.parse(buf);
     assert(msg.MSH);
-    assert.equal(msg.MSH.CharacterSet.value, 'UTF-8');
+    assert.strictEqual(msg.MSH.CharacterSet.value, 'UTF-8');
     buf = Buffer.from(VT + 'MSH|^~\\\\&||||||||||2.5||||||UTF-8|' + FS);
     msg = HL7Message.parse(buf);
     assert(msg.MSH);
-    assert.equal(msg.MSH.CharacterSet.value, 'UTF-8');
+    assert.strictEqual(msg.MSH.CharacterSet.value, 'UTF-8');
   });
 
   it('should message start with MSH segment', function() {
-    try {
+    assert.throws(() => {
       HL7Message.parse('PID|');
-    } catch (e) {
-      if (e.message.includes('Message must start with'))
-        return;
-      throw  e;
-    }
+    }, /Message must start with/);
   });
 
   it('should not parse unknown segments', function() {
-    try {
-      HL7Message.parse('MSH|^~\\&||||||||||2.7.1\r' +
-          'PDD|');
-    } catch (e) {
-      if (e.message.includes('Unknown HL7 segment'))
-        return;
-      throw  e;
-    }
+    assert.throws(() => {
+      HL7Message.parse('MSH|^~\\&||||||||||2.7.1\r' + 'PDD|');
+    }, /Unknown HL7 segment/);
   });
 
   it('should provide line# and segment type on parse error', function() {
-    try {
-      HL7Message.parse('MSH|^~\\&||||||||||2.5\r' +
-          'PDD|');
-    } catch (e) {
-      assert.equal(e.line, 2);
-      assert.equal(e.segmentId, 'PDD');
-    }
+    assert.throws(() => {
+      HL7Message.parse('MSH|^~\\&||||||||||2.5\r' + 'PDD|');
+    }, (e) => {
+      assert.strictEqual(e.line, 2);
+      assert.strictEqual(e.segmentId, 'PDD');
+      return true;
+    });
   });
 
   it('should provide sequence on parse error', function() {
-    try {
+    assert.throws(() => {
       HL7Message.parse('MSH|^~\\&||||||||||2.5\r' +
           'PID|1||||||ABCD');
-    } catch (e) {
-      assert.equal(e.line, 2);
-      assert.equal(e.segmentId, 'PID');
-      assert.equal(e.sequence, 1);
-      assert.equal(e.fieldPosition, 8);
-      assert.equal(e.repetition, 1);
-      assert.equal(e.component, 1);
-    }
+    }, (e) => {
+      assert.strictEqual(e.line, 2);
+      assert.strictEqual(e.segmentId, 'PID');
+      assert.strictEqual(e.sequence, '1');
+      assert.strictEqual(e.fieldPosition, 8);
+      assert.strictEqual(e.repetition, 1);
+      assert.strictEqual(e.component, 1);
+      return true;
+    });
   });
 
   it('should add fields if values exceeds dictionary fields', function() {
     const msg = HL7Message.parse('MSH|^~\\&||||||||||2.1||||||1234');
     assert(msg.MSH);
-    assert.equal(msg.MSH.CustomField18.value, 1234);
+    assert.strictEqual(msg.MSH.CustomField18.value, '1234');
   });
 
 });

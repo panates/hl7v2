@@ -7,6 +7,10 @@ const net = require('net');
 const tls = require('tls');
 const {HL7Message, HL7Client, connect} = require('../');
 const {VT, FS, CR} = require('../lib/types');
+const {rejects, doesNotReject} = require('rejected-or-not');
+
+assert.rejects = assert.rejects || rejects;
+assert.doesNotReject = assert.doesNotReject || doesNotReject;
 
 const sampleMessage1 = `MSH|^~\\&|LCS|LCA|LIS|TEST9999|19980731153200||ORU^R01|1234|P|2.5
 PID|2|2161348462|20809880170|1614614|20809880170^TESTPAT||19760924000000|M|||^^^^00000-0000|||||||86427531^^^03|SSN# HERE
@@ -103,166 +107,129 @@ describe('HL7Client', function() {
   });
 
   after(function() {
-    client && client.close();
+    return client && client.close();
+  });
+
+  after(function() {
     for (const socket of sockets.values()) {
       socket.destroy();
     }
-    server.close();
+    return server.close();
+  });
+
+  after(function() {
     for (const socket of tlssockets.values()) {
       socket.destroy();
     }
-    tlsserver.close();
+    return tlsserver.close();
   });
 
   it('should construct', function() {
     const client = new HL7Client();
     assert(client instanceof HL7Client);
-    assert.equal(client.connected, false);
-    assert.equal(client.connecting, false);
+    assert.strictEqual(client.connected, false);
+    assert.strictEqual(client.connecting, false);
   });
 
   it('should construct with existing socket', function() {
     const socket = new net.Socket({host: 'localhost', port: 8080});
     const client = new HL7Client(socket);
     assert(client instanceof HL7Client);
-    assert.equal(client._extSocket, socket);
-    assert.equal(client.connected, false);
-    assert.equal(client.connecting, false);
+    assert.strictEqual(client._extSocket, socket);
+    assert.strictEqual(client.connected, false);
+    assert.strictEqual(client.connecting, false);
   });
 
   it('should construct validate argument', function() {
-    try {
-      client = new HL7Client(1234);
-    } catch (e) {
-      if (e.message.includes('You can provide'))
-        return;
-      throw e;
-    }
-    assert(0, 'Failed');
+    assert.throws(() => {
+      new HL7Client(1234);
+    }, /You can provide/);
   });
 
   it('should set encoding', function() {
     const client = new HL7Client();
     client.setEncoding('win1254');
-    assert.equal(client.encoding, 'win1254');
+    assert.strictEqual(client.encoding, 'win1254');
   });
 
   it('should setEncoding() validate argument', function() {
-    try {
+    assert.throws(() => {
       const client = new HL7Client();
       client.setEncoding('abcde');
-    } catch (e) {
-      if (e.message.includes('Unsupported encoding'))
-        return;
-      throw e;
-    }
-    assert(0, 'Failed');
+    }, /Unsupported encoding/);
   });
 
   it('should set keep alive', function() {
     const client = new HL7Client();
     client.setKeepAlive(true);
-    assert.equal(client._keepAlive, 0);
+    assert.strictEqual(client._keepAlive, 0);
     client.setKeepAlive();
-    assert.equal(client._keepAlive, null);
+    assert.strictEqual(client._keepAlive, null);
     client.setKeepAlive(true, 100);
-    assert.equal(client._keepAlive, 100);
+    assert.strictEqual(client._keepAlive, 100);
     return client.connect(8080).then(() => {
       client.setKeepAlive(true, 200);
-      assert.equal(client._keepAlive, 200);
-      return client.close();
+      assert.strictEqual(client._keepAlive, 200);
     });
   });
 
-  it('should setEncoding() validate argument', function() {
-    try {
-      const client = new HL7Client();
-      client.setEncoding('abcde');
-    } catch (e) {
-      if (e.message.includes('Unsupported encoding'))
-        return;
-      throw e;
-    }
-    assert(0, 'Failed');
+  it('should connect() validate argument', function() {
+    client = new HL7Client();
+    return assert.rejects(() => client.connect('sfdasf'),
+        /Invalid argument/);
   });
 
-  it('should connect() validate argument', function(done) {
+  it('should validate port number', function() {
     client = new HL7Client();
-    client.connect('sfdasf')
-        .then(() => done('Failed'))
-        .catch(e => {
-          if (e.message.includes('Invalid argument'))
-            return done();
-          done(e);
-        });
-  });
-
-  it('should validate port number', function(done) {
-    client = new HL7Client();
-    client.connect(66000)
-        .then(() => done('Failed'))
-        .catch(e => {
-          if (e.message.includes('You must provide a valid'))
-            return done();
-          done(e);
-        });
+    return assert.rejects(() => client.connect(66000),
+        /You must provide a valid/);
   });
 
   it('should connect(port)', function() {
     client = new HL7Client();
-    return client.connect(8080).then(() => client.close());
+    return client.connect(8080);
   });
 
   it('should connect(port, host)', function() {
     client = new HL7Client();
-    return client.connect(8080, 'localhost').then(() => client.close());
+    return client.connect(8080, 'localhost');
   });
 
   it('should connect(port, host, options)', function() {
     client = new HL7Client();
-    return client.connect(8080, 'localhost', {timeout: 1000})
-        .then(() => client.close());
+    return client.connect(8080, 'localhost', {timeout: 1000});
   });
 
   it('should connect(port, options)', function() {
     client = new HL7Client();
-    return client.connect(8080, {host: 'localhost', timeout: 1000})
-        .then(() => client.close());
+    return client.connect(8080, {host: 'localhost', timeout: 1000});
   });
 
   it('should connect(options)', function() {
     client = new HL7Client();
-    return client.connect({port: 8080, host: 'localhost'})
-        .then(() => client.close());
+    return client.connect({port: 8080, host: 'localhost'});
   });
 
   it('should connect to secure server', function() {
     client = new HL7Client();
-    return client.connect(tlsoptions)
-        .then(() => client.close());
+    return client.connect(tlsoptions);
   });
 
   it('should connect() return resolved promise if already connected', function() {
     client = new HL7Client();
     return client.connect(8080)
-        .then(() => client.connect())
-        .then(() => client.close());
+        .then(() => client.connect());
   });
 
-  it('should connect(...args) return rejected promise if already connected', function(done) {
+  it('should connect(...args) return rejected promise if already connected', function() {
     client = new HL7Client();
-    client.connect(8080)
-        .then(() =>
-            client.connect(8080)
-                .catch(e => {
-                  if (!e.message.includes('Already'))
-                    return done(e);
-                  client.close().then(() => done());
-                }));
+    return client.connect(8080).then(() =>
+        assert.rejects(() => client.connect(8080), /Already/)
+    );
   });
 
   it('should connect static', function() {
-    return connect(8080).then(() => client.close());
+    return connect(8080);
   });
 
 
@@ -270,8 +237,7 @@ describe('HL7Client', function() {
     client = new HL7Client();
     return client.connect(8080)
         .then(() => client.close())
-        .then(() => client.connect(8080))
-        .then(() => client.close());
+        .then(() => client.connect(8080));
   });
 
   it('should close() return resolved promise if already closed', function() {
@@ -282,100 +248,86 @@ describe('HL7Client', function() {
 
   it('should connect() rejected promise after timeout', function() {
     client = new HL7Client();
-    return client.connect(8080).then(() => {
-      return client.connect().then(() => client.close());
-    });
+    return client.connect(8080).then(() =>
+        client.connect().then(() => client.close())
+    );
   });
 
-  it('should connect() return rejected promise after timeout', function(done) {
+  it('should connect() return rejected promise after timeout', function() {
     client = new HL7Client();
-    client.connect(8081, 'tempuri.org', {timeout: 1})
-        .then(() => done('Failed'))
-        .catch(e => {
-          if (e.message.includes('timeout'))
-            return done();
-          done(e);
-        });
+    return assert.rejects(() =>
+            client.connect(8081, 'tempuri.org', {timeout: 1}),
+        /timeout/);
   });
 
   it('should send HL7Message', function() {
     client = new HL7Client();
-    return client.connect(8080).then(() => {
-      return client.send(msg1).then(() => {
-        return listenerOnData().then(data => {
-          assert(data, VT + sampleMessage1 + FS + CR);
-          return client.close();
-        });
-      });
-    });
+    return client.connect(8080).then(() =>
+        client.send(msg1).then(() =>
+            listenerOnData().then(data => {
+              assert(data, VT + sampleMessage1 + FS + CR);
+            })
+        )
+    );
   });
 
   it('should send string hl7 message', function() {
     client = new HL7Client();
-    return client.connect(8080).then(() => {
-      return client.send(sampleMessage1).then(() => {
-        return listenerOnData().then(data => {
-          assert(data, VT + sampleMessage1 + FS + CR);
-          return client.close();
-        });
-      });
-    });
+    return client.connect(8080).then(() =>
+        client.send(sampleMessage1).then(() =>
+            listenerOnData().then(data => {
+              assert(data, VT + sampleMessage1 + FS + CR);
+            })
+        )
+    );
   });
 
   it('should send message and receive response', function() {
     client = new HL7Client();
-    return client.connect(8080).then(() => {
-      return client.sendReceive(msg1).then(resp => {
-        assert.equal(resp.MSH.MessageControlId.value, msg1.MSH.MessageControlId.value);
-        return client.close();
-      });
-    });
+    return client.connect(8080).then(() =>
+        client.sendReceive(msg1).then(resp => {
+          assert.strictEqual(resp.MSH.MessageControlId.value, msg1.MSH.MessageControlId.value);
+        })
+    );
   });
 
   it('should send HL7Message to secure server', function() {
     client = new HL7Client();
-    return client.connect(tlsoptions).then(() => {
-      return client.send(msg1).then(() => {
-        return listenerOnData().then(data => {
-          assert(data, VT + sampleMessage1 + FS + CR);
-          return client.close();
-        });
-      });
-    });
+    return client.connect(tlsoptions).then(() =>
+        client.send(msg1).then(() =>
+            listenerOnData().then(data => {
+              assert(data, VT + sampleMessage1 + FS + CR);
+            })
+        )
+    );
   });
 
   it('should send message and receive response from secure server', function() {
     client = new HL7Client();
-    return client.connect(tlsoptions).then(() => {
-      return client.sendReceive(msg1).then(resp => {
-        assert.equal(resp.MSH.MessageControlId.value, msg1.MSH.MessageControlId.value);
-        return client.close();
-      });
-    });
+    return client.connect(tlsoptions).then(() =>
+        client.sendReceive(msg1).then(resp => {
+          assert.strictEqual(resp.MSH.MessageControlId.value, msg1.MSH.MessageControlId.value);
+        })
+    );
   });
 
-  it('should send message and wait till given time', function(done) {
+  it('should send message and wait till given time', function() {
     client = new HL7Client();
-    client.connect(8080).then(() => {
-      return client.sendReceive(msg1, 1)
-          .then(() => done('Failed'))
-          .catch(e => {
-            if (e.message.includes('timed out'))
-              return done();
-            done(e);
-          });
-    });
+    return client.connect(8080).then(() =>
+        assert.rejects(() =>
+                client.sendReceive(msg1, 1),
+            /timed out/)
+    );
   });
 
-  it('should use external socket instance', function(done) {
+  it('should use external socket instance', function() {
     const socket = new net.Socket();
     socket.connect(8080, 'localhost');
-    socket.once('connect', () => {
+    return socket.once('connect', () => {
       client = new HL7Client(socket);
       client.close()
           .then(() => client.connect(8080))
-          .then(() => client.close())
-          .then(() => done());
+          .then(() => client.close());
     });
 
   });
@@ -384,29 +336,33 @@ describe('HL7Client', function() {
     client = new HL7Client();
     return client.connect(8080)
         .then(() => client.close())
-        .then(() => client.connect(8080))
-        .then(() => client.close());
+        .then(() => client.connect(8080));
   });
 
   describe('events', function() {
 
-    it('should emit "connect"', function() {
-      connect(8080, () => {
+    it('should emit "connect"', function(done) {
+      client = new HL7Client();
+      client.on('connect', () => {
         try {
-          assert.equal(this.connected, true);
-          this.close();
+          assert.strictEqual(client.connected, true);
           done();
         } catch (e) {
-          return done(e);
+          done(e);
         }
       });
+      client.connect(8080).then(() => client.close());
     });
 
     it('should emit "close"', function(done) {
       client = new HL7Client();
       client.on('close', () => {
-        assert.equal(client.connected, false);
-        done();
+        try {
+          assert.strictEqual(client.connected, false);
+          done();
+        } catch (e) {
+          done(e);
+        }
       });
       client.connect(8080).then(() => client.close());
     });
@@ -422,7 +378,7 @@ describe('HL7Client', function() {
     it('should emit "message"', function(done) {
       client = new HL7Client();
       client.on('message', (resp) => {
-        assert.equal(resp.MSH.MessageControlId.value, msg1.MSH.MessageControlId.value);
+        assert.strictEqual(resp.MSH.MessageControlId.value, msg1.MSH.MessageControlId.value);
         done();
       });
       client.connect(8080).then(() =>
