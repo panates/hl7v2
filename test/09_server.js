@@ -330,7 +330,9 @@ describe('HL7Server', function() {
     server.listen(8080)
         .then(() => {
           const server2 = createServer();
-          server2.on('listenError', () => {
+          server2.on('error', (e) => {
+            if (e.syscall !== 'listen')
+              return done(e);
             server.close().then(() => done());
           });
           server2.listen(8080).catch(() => {});
