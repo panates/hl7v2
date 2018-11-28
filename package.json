@@ -43,7 +43,8 @@
   "files": [
     "LICENSE",
     "README.md",
-    "lib/"
+    "lib/",
+    "index.js"
   ],
   "nyc": {
     "temp-dir": "./coverage/.nyc_output"
