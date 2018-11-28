@@ -29,8 +29,8 @@ describe('HL7Server', function() {
 
   let server;
   const tlsoptions = {
-    key: fs.readFileSync(path.resolve(__dirname, './support/private-key.pem')),
     cert: fs.readFileSync(path.resolve(__dirname, './support/public-cert.pem')),
+    key: fs.readFileSync(path.resolve(__dirname, './support/private-key.pem')),
     rejectUnauthorized: false,
     port: 8081
   };
