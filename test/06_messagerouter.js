@@ -1,13 +1,13 @@
 /* eslint-disable */
 const assert = require('assert');
 const {HL7Message} = require('../');
-const HL7MessageRouter = require('../lib/exchange/HL7MessageRouter');
+const {HL7MessageRouter, router} = require('../');
 
 describe('HL7MessageRouter', function() {
 
   it('should construct', function() {
-    const router = new HL7MessageRouter();
-    assert(router);
+    assert(new HL7MessageRouter());
+    assert(router());
   });
 
   it('should add route functions with use()', function() {
@@ -101,10 +101,10 @@ describe('HL7MessageRouter', function() {
   });
 
   it('should call default handler if no handler matches', function(done) {
-    const router = new HL7MessageRouter(()=>{
+    const router = new HL7MessageRouter(() => {
       done();
     });
-    router.use('ORU^R02', ()=>{});
+    router.use('ORU^R02', () => {});
     const msg = HL7Message.parse('MSH|^~\\&|||||199807311532||ORU^R01|||2.5');
     router(msg);
   });

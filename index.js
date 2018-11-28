@@ -9,6 +9,7 @@
 const HL7Message = require('./lib/HL7Message');
 const HL7Server = require('./lib/exchange/HL7Server');
 const HL7Client = require('./lib/exchange/HL7Client');
+const HL7MessageRouter = require('./lib/exchange/HL7MessageRouter');
 const {
   hl7Unescape,
   hl7Escape,
@@ -24,6 +25,7 @@ module.exports = {
   HL7Message,
   HL7Server,
   HL7Client,
+  HL7MessageRouter,
   hl7Unescape,
   hl7Escape,
   hl7Encode,
@@ -33,5 +35,6 @@ module.exports = {
   hl7EncodeDate,
   hl7EncodeDateTime,
   createServer: HL7Server.createServer,
-  connect: HL7Client.connect
+  connect: HL7Client.connect,
+  router: (handler) => new HL7MessageRouter(handler)
 };
