@@ -21,6 +21,7 @@ describe('Init message', function() {
   });
 
   it('should construct all versions', function() {
+    this.slow(500);
     for (const version of VERSIONS) {
       const msg = new HL7Message({version});
       msg.add('MSH');
@@ -28,7 +29,7 @@ describe('Init message', function() {
       assert.strictEqual(String(msg.MSH.VersionId.value), version);
       assert.strictEqual(msg.toHL7(), 'MSH|^~\\&||||||||||' + version + '\r');
     }
-  }).timeout(5000);
+  }).timeout(10000);
 
   it('should not change MSH version other than message version', function() {
     const msg = new HL7Message({version: '2.5'});

@@ -325,11 +325,10 @@ describe('HL7Client', function() {
     socket.connect(8080, 'localhost');
     return socket.once('connect', () => {
       client = new HL7Client(socket);
-      client.close()
+      return client.close()
           .then(() => client.connect(8080))
           .then(() => client.close());
     });
-
   });
 
   it('can reconnect after close (external socket)', function() {
