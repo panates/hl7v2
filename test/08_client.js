@@ -320,14 +320,16 @@ describe('HL7Client', function() {
     );
   });
 
-  it('should use external socket instance', function() {
+  it('should use external socket instance', function(done) {
     const socket = new net.Socket();
     socket.connect(8080, 'localhost');
-    return socket.once('connect', () => {
+    socket.once('connect', () => {
       client = new HL7Client(socket);
-      return client.close()
+      client.close()
           .then(() => client.connect(8080))
-          .then(() => client.close());
+          .then(() => client.close())
+          .then(() => done())
+          .catch((e => done(e)));
     });
   });
 
