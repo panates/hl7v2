@@ -20,7 +20,7 @@
     "client"
   ],
   "dependencies": {
-    "errorex": "^2.0.3",
+    "errorex": "^2.3.0",
     "iconv-lite": "^0.4.24",
     "is-typedarray": "^1.0.0",
     "putil-callable": "^1.0.2",
@@ -28,10 +28,10 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
-    "eslint": "^5.9.0",
-    "eslint-config-google": "^0.11.0",
-    "nyc": "^13.1.0",
-    "mocha": "^5.2.0",
+    "eslint": "^5.15.3",
+    "eslint-config-google": "^0.12.0",
+    "mocha": "^6.0.2",
+    "nyc": "^13.3.0",
     "rejected-or-not": "^1.0.1"
   },
   "engines": {
