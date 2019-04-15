@@ -24,6 +24,8 @@ NTE|3|L|BETA LACTAMASE POSITIVE
 OBX|3|CE|997232^RESULT 2^L||MR105|||||N|F|||19980729160500|BN
 NTE|1|L|ROUTINE RESPIRATORY FLORA
 `.replace(/\n/, '\r');
+const ack1 = `MSH|^~\\&|LCA|LCS|AcmeHIS|StJohn|19980731153200||ACK^O01|1235|P|2.2
+MSA|AA|1234`.replace(/\n/, '\r');
 
 describe('HL7Server', function() {
 
@@ -154,15 +156,14 @@ describe('HL7Server', function() {
     server = new HL7Server();
     server.listen(8080).then(() => {
       const msg = HL7Message.parse(sampleMessage1);
-      server.use((req) => {
-        return req;
-      });
+      const ack = HL7Message.parse(ack1);
+      server.use(() => ack);
 
       const client = new HL7Client();
       client.connect(8080).then(() => {
         client.sendReceive(msg).then(resp => {
           try {
-            assert.strictEqual(msg.toHL7(), resp.toHL7());
+            assert.strictEqual(ack.toHL7(), resp.toHL7());
             server.close().then(() => done());
           } catch (e) {
             done(e);
@@ -288,7 +289,7 @@ describe('HL7Server', function() {
     });
 
     server.use(() => {
-      return new Promise((resolve => {
+      return new Promise((() => {
         // Never resolve
       }));
     });

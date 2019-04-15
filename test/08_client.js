@@ -26,8 +26,8 @@ NTE|3|L|BETA LACTAMASE POSITIVE
 OBX|3|CE|997232^RESULT 2^L||MR105|||||N|F|||19980729160500|BN
 NTE|1|L|ROUTINE RESPIRATORY FLORA
 `.replace(/\n/, '\r');
-const ack1 = `MSH|^~\\&|LCA|LCS|AcmeHIS|StJohn|19980731153200||ACK^O01|1234|P|2.2
-MSA|AA|3629`.replace(/\n/, '\r');
+const ack1 = `MSH|^~\\&|LCA|LCS|AcmeHIS|StJohn|19980731153200||ACK^O01|1235|P|2.2
+MSA|AA|1234`.replace(/\n/, '\r');
 
 describe('HL7Client', function() {
 
@@ -286,7 +286,7 @@ describe('HL7Client', function() {
     client = new HL7Client();
     return client.connect(8080).then(() =>
         client.sendReceive(msg1).then(resp => {
-          assert.strictEqual(resp.MSH.MessageControlId.value, msg1.MSH.MessageControlId.value);
+          assert.strictEqual(resp.getSegment('MSA').MessageControlId.value, msg1.MSH.MessageControlId.value);
         })
     );
   });
@@ -306,7 +306,7 @@ describe('HL7Client', function() {
     client = new HL7Client();
     return client.connect(tlsoptions).then(() =>
         client.sendReceive(msg1).then(resp => {
-          assert.strictEqual(resp.MSH.MessageControlId.value, msg1.MSH.MessageControlId.value);
+          assert.strictEqual(resp.getSegment('MSA').MessageControlId.value, msg1.MSH.MessageControlId.value);
         })
     );
   });
@@ -379,7 +379,11 @@ describe('HL7Client', function() {
     it('should emit "message"', function(done) {
       client = new HL7Client();
       client.on('message', (resp) => {
-        assert.strictEqual(resp.MSH.MessageControlId.value, msg1.MSH.MessageControlId.value);
+        try {
+          assert.strictEqual(resp.getSegment('MSA').MessageControlId.value, msg1.MSH.MessageControlId.value);
+        } catch (e) {
+          return done(e);
+        }
         done();
       });
       client.connect(8080).then(() =>
