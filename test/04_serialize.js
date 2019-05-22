@@ -36,7 +36,7 @@ describe('Serialize message', function() {
   it('should serialize date/time', function() {
     const msg = new HL7Message({version: '2.5'});
     const seg = msg.add('ABS');
-    seg.DateTimeOfAttestation.value = new Date(2001, 0, 12, 15, 30);
+    seg.DateTimeOfAttestation.value = new Date('2001-01-12T15:30:00Z');
     assert.strictEqual(seg.toHL7(), 'ABS||||20010112153000');
   });
 

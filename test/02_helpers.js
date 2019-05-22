@@ -45,8 +45,8 @@ describe('Helpers', function() {
   });
 
   it('hl7Encode', function() {
-    assert.strictEqual(hl7Encode(new Date(2015, 1, 15, 11, 32, 23), 'DT'), '20150215');
-    assert.strictEqual(hl7Encode(new Date(2015, 1, 15, 11, 32, 23), 'DTM'), '20150215113223');
+    assert.strictEqual(hl7Encode(new Date('2015-01-15T11:32:23+0200'), 'DT'), '20150115');
+    assert.strictEqual(hl7Encode(new Date('2015-01-15T11:32:23+0200'), 'DTM'), '20150115093223');
     assert.strictEqual(hl7Encode(123, 'ST'), '123');
   });
 
@@ -57,12 +57,12 @@ describe('Helpers', function() {
 
   it('hl7EncodeDateTime', function() {
     assert.strictEqual(hl7EncodeDateTime(undefined), '');
-    assert.strictEqual(hl7EncodeDateTime(new Date(2015, 1, 15, 11, 32, 23)), '20150215113223');
+    assert.strictEqual(hl7EncodeDateTime(new Date('2015-01-15T11:32:23+0200')), '20150115093223');
   });
 
   it('hl7DecodeDate', function() {
     assert.strictEqual(hl7DecodeDate(undefined), null);
-    assert.deepStrictEqual(hl7DecodeDate('20150215113223'), new Date(2015, 1, 15, 11, 32, 23));
+    assert.deepStrictEqual(hl7DecodeDate('20150215113223'), new Date('2015-02-15T11:32:23Z'));
     assert.throws(() => {
       hl7DecodeDate('abcd');
     }, /Invalid date string/);
@@ -70,8 +70,8 @@ describe('Helpers', function() {
 
   it('hl7DecodeTime', function() {
     assert.strictEqual(hl7DecodeTime(undefined), null);
-    assert.deepStrictEqual(hl7DecodeTime('113223'), new Date(0, 0, 0, 11, 32, 23));
-    assert.deepStrictEqual(hl7DecodeTime('1132'), new Date(0, 0, 0, 11, 32, 0));
+    assert.deepStrictEqual(hl7DecodeTime('113223'), new Date('0000-01-01T11:32:23.000Z'));
+    assert.deepStrictEqual(hl7DecodeTime('1132'), new Date('0000-01-01T11:32:00.000Z'));
     assert.throws(() => {
       hl7DecodeTime('abcd');
     }, /Invalid time string/);

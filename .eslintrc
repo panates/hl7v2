@@ -34,6 +34,8 @@
     "curly": 0,
     "prefer-rest-params": 0,
     "prefer-spread": 0,
-    "space-before-function-paren": 0
+    "space-before-function-paren": 0,
+    "linebreak-style": 0,
+    "eol-last": 0
   }
 }

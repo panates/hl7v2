@@ -45,21 +45,40 @@ describe('Parse HL7 message', function() {
   it('should parse Date Time fields', function() {
     const msg = HL7Message.parse('MSH|^~\\&|||||199807311532|||||2.2');
     assert(msg.MSH);
-    assert.deepEqual(msg.MSH.DateTimeOfMessage.value, new Date(1998, 6, 31, 15, 32, 0));
+    assert.deepStrictEqual(msg.MSH.DateTimeOfMessage.value, new Date('1998-07-31T15:32:00.000Z'));
+  });
+
+  it('should parse Date Time fields with milliseconds', function() {
+    const msg = HL7Message.parse('MSH|^~\\&|||||199807311532.123|||||2.2');
+    assert(msg.MSH);
+    assert.deepStrictEqual(msg.MSH.DateTimeOfMessage.value, new Date('1998-07-31T15:32:00.123Z'));
+  });
+
+  it('should parse Date Time fields with timezone', function() {
+    const msg = HL7Message.parse('MSH|^~\\&|||||199807311532.123+0500|||||2.2');
+    assert(msg.MSH);
+    assert.deepStrictEqual(msg.MSH.DateTimeOfMessage.value, new Date('1998-07-31T15:32:00.123+0500'));
   });
 
   it('should parse Date fields', function() {
     const msg = HL7Message.parse('MSH|^~\\&||||||||||2.5\r' +
         'AL1|1|||||20151231');
     const seg = msg.getSegment('AL1');
-    assert.deepEqual(seg.IdentificationDate.value, new Date(2015, 11, 31));
+    assert.deepStrictEqual(seg.IdentificationDate.value, new Date('2015-12-31T00:00:00.000Z'));
   });
 
   it('should parse Time fields', function() {
     const msg = HL7Message.parse('MSH|^~\\&||||||||||2.5\r' +
         'TQ1||||134523');
     const seg = msg.getSegment('TQ1');
-    assert.deepEqual(seg.ExplicitTime.value, new Date(0, 0, 0, 13, 45, 23));
+    assert.deepStrictEqual(seg.ExplicitTime.value, new Date('0000-01-01T13:45:23.000Z'));
+  });
+
+  it('should parse Time fields', function() {
+    const msg = HL7Message.parse('MSH|^~\\&||||||||||2.5\r' +
+        'TQ1||||134523');
+    const seg = msg.getSegment('TQ1');
+    assert.deepStrictEqual(seg.ExplicitTime.value, new Date('0000-01-01T13:45:23.000Z'));
   });
 
   it('should parse escaped characters', function() {
@@ -75,7 +94,7 @@ describe('Parse HL7 message', function() {
     const msg = HL7Message.parse('MSH|^~\\&|\\x01020304\\');
     assert(msg.MSH);
     assert(msg.MSH.SendingApplication.value instanceof Buffer);
-    assert.deepEqual(msg.MSH.SendingApplication.value, Buffer.from('01020304', 'hex'));
+    assert.deepStrictEqual(msg.MSH.SendingApplication.value, Buffer.from('01020304', 'hex'));
   });
 
   it('should parse repeated values', function() {
