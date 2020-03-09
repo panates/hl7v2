@@ -21,17 +21,16 @@
   ],
   "dependencies": {
     "errorex": "^2.3.2",
-    "iconv-lite": "^0.5.0",
+    "iconv-lite": "^0.5.1",
     "is-typedarray": "^1.0.0",
     "putil-callable": "^1.0.2",
     "putil-waterfall": "^2.1.1"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.3",
-    "eslint": "^6.3.0",
+    "eslint": "^6.8.0",
     "eslint-config-google": "^0.14.0",
-    "mocha": "^6.2.0",
-    "nyc": "^14.1.1",
+    "mocha": "^7.1.0",
+    "nyc": "^15.0.0",
     "rejected-or-not": "^1.0.1"
   },
   "engines": {
