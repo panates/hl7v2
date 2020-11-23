@@ -36,6 +36,12 @@ describe('Parse HL7 message', function() {
     assert.strictEqual(msg.MSH.SendingApplication[0][4].value, 'D');
   });
 
+  it('should parse null fields', function() {
+    const msg = HL7Message.parse('MSH|^~\\&|||||199807311532|||||2.2|""');
+    assert(msg.MSH);
+    assert.strictEqual(msg.MSH.SequenceNumber.value, null);
+  });
+
   it('should parse number fields', function() {
     const msg = HL7Message.parse('MSH|^~\\&|||||199807311532|||||2.2|1234');
     assert(msg.MSH);
