@@ -106,4 +106,20 @@ describe('HL7ProtocolBuffer', function() {
     p.write(VT + 'MSH|^~\\&||||||||||2.7.1' + FS + CR);
   });
 
+  it('Should emit blocks as Buffer instances', function(done) {
+    const p = new HL7ProtocolHandler();
+    let tests;
+    p.on('block', (data) => {
+      assert(data instanceof Buffer);
+      assert.strictEqual(data.toString(), VT + 'MSH|^~\\&||||||||||2.7.1' + CR + FS);
+      if (tests === 0) done();
+    });
+
+    const msg = VT + 'MSH|^~\\&||||||||||2.7.1' + CR + FS;
+    tests = 3;
+    --tests, p.write(msg);
+    --tests, p.write(Buffer.from(msg));
+    --tests, p.write([...Buffer.from(msg)]);
+  })
+
 });
