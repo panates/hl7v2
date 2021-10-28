@@ -3,8 +3,9 @@ const assert = require('assert');
 const net = require('net');
 const fs = require('fs');
 const path = require('path');
+const iconv = require('iconv-lite');
 const {HL7Message, HL7Server, HL7Client, createServer, connect} = require('../');
-const {VT, FS} = require('../lib/types');
+const {xVT, VT, FS, xFS, xCR} = require('../lib/types');
 const {rejects, doesNotReject} = require('rejected-or-not');
 
 assert.rejects = assert.rejects || rejects;
@@ -230,6 +231,59 @@ describe('HL7Server', function() {
         send();
       });
     }).catch((e) => done(e));
+  });
+
+  it('should handle unknown segments gracefully', function(done) {
+    server = new HL7Server();
+    const client = new HL7Client();
+
+    let receivedParseErrorCount = 0;
+
+    client.sendRaw = (str) => {
+      return new Promise((resolve) => {
+        const buf = Buffer.from([xVT, ...iconv.encode(str, client.encoding || 'utf-8'), xFS, xCR]);
+
+        client._socket.write(buf, null, () => {
+          client._socket.end(() => resolve());
+        });
+      });
+    };
+
+    client.on('close', () => {
+      server.close().then(() => {
+        done(
+          receivedParseErrorCount === 1
+            ? undefined
+            : new Error("Did not receive parse error before closing")
+        );
+      });
+    });
+
+    server.on('error', (error) => {
+      if (error.message.includes('Invalid HL7 data received from')) {
+        receivedParseErrorCount += 1;
+        if (receivedParseErrorCount === 1) error.socket.destroy();
+      }
+    });
+
+    server.use(() => {
+      done(new Error("Server handler should not have been called"));
+    });
+
+    // construct the HL7 message with an unknown segment
+    let msg = HL7Message.parse(sampleMessage1).toHL7();
+
+    const lines = msg.split('\r');
+    lines[1] = ['UNKNOWN_AF73ASD', ...lines[1].split('|').slice(1)].join("|")
+
+    msg = lines.join('\r')
+
+    server
+      .listen(8080)
+      .then(() => client.connect(8080))
+      .then(() => client.sendRaw(msg))
+      .then(() => client.close())
+      .catch((e) => done(e));
   });
 
   it('should send nak if error in middle-wares', function(done) {
