@@ -1,7 +1,7 @@
 {
   "name": "hl7v2",
   "description": "HL7 v2 parser, serializer, validator and tcp client/server for NodeJS",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "author": "Panates Ltd.",
   "contributors": [
     "Eray Hanoglu <e.hanoglu@panates.com>"
