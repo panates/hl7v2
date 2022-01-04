@@ -15,7 +15,7 @@ NTE|2|L|HEAVY GROWTH
 NTE|3|L|BETA LACTAMASE POSITIVE
 OBX|3|CE|997232^RESULT 2^L||MR105|||||N|F|||19980729160500|BN
 NTE|1|L|ROUTINE RESPIRATORY FLORA
-`;
+`.replace(/\n|\r\n/g, '\r');
 
 describe('Serialize message', function() {
 
@@ -88,7 +88,7 @@ describe('Serialize message', function() {
 
   it('should serialize complete message', function() {
     const msg = HL7Message.parse(sampleMessage1);
-    const s = msg.toHL7().replace(/\r/g, '\n');
+    const s = msg.toHL7();
     assert.strictEqual(s, sampleMessage1);
   });
 
