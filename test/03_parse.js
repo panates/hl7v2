@@ -16,7 +16,14 @@ NTE|2|L|HEAVY GROWTH
 NTE|3|L|BETA LACTAMASE POSITIVE
 OBX|3|CE|997232^RESULT 2^L||MR105|||||N|F|||19980729160500|BN
 NTE|1|L|ROUTINE RESPIRATORY FLORA
-`;
+`.replace(/\n|\r\n/g, '\r');
+
+const lfMarker = '\xff';
+
+const sampleMessageWithLF = `MSH|^~\\&|LCS|LCA|LIS|TEST9999|19980731153200||ORU^R01|3629|P|2.2
+PID|2|2161348462|20809880170|1614614|20809880170^TESTPAT||19760924000000|M|||^^^^00000-0000|||555-666${lfMarker}x||||86427531^^^03|SSN# HERE
+`.replace(/\n|\r\n/g, '\r').replace(lfMarker, '\n');
+
 
 describe('Parse HL7 message', function() {
 
@@ -121,6 +128,13 @@ describe('Parse HL7 message', function() {
     assert.strictEqual(msg.segments[5].type, 'ORC');
     assert.strictEqual(msg.segments[5].index, 5);
     assert.strictEqual(msg.getSegment('OBR', 1)[1].value, '2');
+  });
+
+  it('should get segment with LF character in it', function() {
+    const msg = HL7Message.parse(sampleMessageWithLF);
+    assert.strictEqual(msg.segments[0].type, 'MSH');
+    assert.strictEqual(msg.segments[1].type, 'PID');
+    assert.strictEqual(msg.segments[1][14].value, '555-666\nx');
   });
 
   it('should init v2.1 fields', function() {
