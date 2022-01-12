@@ -279,7 +279,7 @@ describe('Parse HL7 message', function() {
 
 
   it('should parse custom segments', function() {
-    const messageString = sampleMessage1 + '\rZDS|1.2.345.67.8.9.12341234123412.345|1.2.345.67.8.9.12341234123412.345';
+    const messageString = sampleMessage1 + '\rZDS|1.2.345.67.8.9.12341234123412.345|1.2.345.67.8.9.12341234123412.345\r';
 
     const customDict = {
       segments: {
@@ -316,6 +316,6 @@ describe('Parse HL7 message', function() {
       }
     };
 
-    HL7Message.parse(messageString, { customDict })
+    HL7Message.parse(messageString, {customDict})
   })
 });

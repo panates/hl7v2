@@ -430,7 +430,7 @@ describe('HL7Client', function() {
     client = new HL7Client({customDict});
 
     const messageString = 'MSH|^~\\&||||||||||2.5\r' +
-      'ZDS|1.2.345.67.8.9.12341234123412.345|1.2.345.67.8.9.12341234123412.345'
+      'ZDS|1.2.345.67.8.9.12341234123412.345|1.2.345.67.8.9.12341234123412.345\r'
     const hl7Message = HL7Message.parse(messageString, {customDict});
 
     return client.connect(8080).then(() =>

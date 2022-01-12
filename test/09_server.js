@@ -469,11 +469,11 @@ describe('HL7Server', function() {
       }
     };
 
-    const messageString = sampleMessage1 + '\rZDS|1.2.345.67.8.9.12341234123412.345|1.2.345.67.8.9.12341234123412.345';
+    const messageString = sampleMessage1 + '\rZDS|1.2.345.67.8.9.12341234123412.345|1.2.345.67.8.9.12341234123412.345\r';
 
     server = new HL7Server({customDict});
     server.listen(8080).then(() => {
-      const msg = HL7Message.parse(messageString, { customDict });
+      const msg = HL7Message.parse(messageString, {customDict});
       let i = 0;
 
       server.use('ORU^R01', (req) => {
