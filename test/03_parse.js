@@ -277,4 +277,45 @@ describe('Parse HL7 message', function() {
     assert.strictEqual(msg.MSH.CustomField18.value, '1234');
   });
 
+
+  it('should parse custom segments', function() {
+    const messageString = sampleMessage1 + '\rZDS|1.2.345.67.8.9.12341234123412.345|1.2.345.67.8.9.12341234123412.345\r';
+
+    const customDict = {
+      segments: {
+        ZDS: {
+          desc: '',
+          fields: [
+            {
+              dt: 'RP',
+              desc: 'Study Instance UID',
+              opt: 'R',
+              rep: 1
+            },
+            {
+              dt: 'ST',
+              desc: 'pointer',
+              opt: 'R',
+              rep: 1
+            }
+          ]
+        }
+      },
+      fields: {
+        RP: {
+          desc: "Reference Pointer",
+          components: [
+            {
+              dt: 'ST',
+              desc: 'pointer',
+              opt: 'O',
+              rep: 1
+            }
+          ]
+        }
+      }
+    };
+
+    HL7Message.parse(messageString, {customDict})
+  })
 });
