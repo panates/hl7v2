@@ -26,6 +26,7 @@
     "padded-blocks": 0,
     "arrow-parens": 0,
     "curly": 0,
-    "prefer-rest-params": 0
+    "prefer-rest-params": 0,
+    "require-jsdoc": "off"
   }
 }

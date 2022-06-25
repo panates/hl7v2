@@ -6,10 +6,6 @@ const path = require('path');
 const iconv = require('iconv-lite');
 const {HL7Message, HL7Server, HL7Client, createServer, connect} = require('../');
 const {xVT, VT, FS, xFS, xCR} = require('../lib/types');
-const {rejects, doesNotReject} = require('rejected-or-not');
-
-assert.rejects = assert.rejects || rejects;
-assert.doesNotReject = assert.doesNotReject || doesNotReject;
 
 const sampleMessage1 = `MSH|^~\\&|LCS|LCA|LIS|TEST9999|19980731153200||ORU^R01|1234|P|2.2
 PID|2|2161348462|20809880170|1614614|20809880170^TESTPAT||19760924000000|M|||^^^^00000-0000|||||||86427531^^^03|SSN# HERE
