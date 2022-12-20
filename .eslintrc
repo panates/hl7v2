@@ -1,11 +1,22 @@
 {
+  "env": {
+    "node": true,
+    "es6": true
+  },
   "extends": [
     "eslint:recommended",
     "google"
   ],
-  "env": {
-    "es6": true,
-    "node": true
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "requireConfigFile": false,
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true,
+      "experimentalObjectRestSpread": true
+    }
   },
   "rules": {
     "no-console": 1,
@@ -27,6 +38,9 @@
     "arrow-parens": 0,
     "curly": 0,
     "prefer-rest-params": 0,
-    "require-jsdoc": "off"
+    "require-jsdoc": 0,
+    "quotes": 0,
+    "indent": 0,
+    "new-cap": 0
   }
 }
