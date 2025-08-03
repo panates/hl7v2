@@ -1,7 +1,7 @@
 {
   "name": "hl7v2",
   "description": "HL7 v2 parser, serializer, validator for NodeJS",
-  "version": "0.14.1",
+  "version": "1.0.0",
   "author": "Panates",
   "license": "MIT",
   "private": true,
