@@ -1,0 +1,5 @@
+{
+  "include": ["packages/*/src/**/*.ts"],
+  "reporter": ["text", "html", "lcov"],
+  "all": true
+}

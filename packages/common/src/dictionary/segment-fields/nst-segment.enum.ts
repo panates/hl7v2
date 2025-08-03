@@ -1,0 +1,17 @@
+export enum NSTSegment {
+  StatisticsAvailable = 1,
+  SourceIdentifier = 2,
+  SourceType = 3,
+  StatisticsStart = 4,
+  StatisticsEnd = 5,
+  ReceiveCharacterCount = 6,
+  SendCharacterCount = 7,
+  MessagesReceived = 8,
+  MessagesSent = 9,
+  ChecksumErrorsReceived = 10,
+  LengthErrorsReceived = 11,
+  OtherErrorsReceived = 12,
+  ConnectTimeouts = 13,
+  ReceiveTimeouts = 14,
+  ApplicationControlLevelErrors = 15,
+}

@@ -1,0 +1,9 @@
+export const FIELD_SEPARATOR = '|';
+export const COMPONENT_SEPARATOR = '^';
+export const REPETITION_SEPARATOR = '~';
+export const ESCAPE_CHARACTER = '\\';
+export const SUBCOMPONENT_SEPARATOR = '&';
+export const CR = '\x0D';
+export const LF = '\x0A';
+export const VT = '\x0B';
+export const FS = '\x1C';

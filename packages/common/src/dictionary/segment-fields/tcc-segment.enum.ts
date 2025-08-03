@@ -1,0 +1,16 @@
+export enum TCCSegment {
+  UniversalServiceIdentifier = 1,
+  EquipmentTestApplicationIdentifier = 2,
+  SpecimenSource = 3,
+  AutoDilutionFactorDefault = 4,
+  RerunDilutionFactorDefault = 5,
+  PreDilutionFactorDefault = 6,
+  EndogenousContentOfPreDilutionDiluent = 7,
+  InventoryLimitsWarningLevel = 8,
+  AutomaticRerunAllowed = 9,
+  AutomaticRepeatAllowed = 10,
+  AutomaticReflexAllowed = 11,
+  EquipmentDynamicRange = 12,
+  Units = 13,
+  ProcessingType = 14,
+}

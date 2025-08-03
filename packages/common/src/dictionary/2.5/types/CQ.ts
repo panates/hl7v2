@@ -1,0 +1,14 @@
+import { DeepPartial } from 'ts-gems';
+import { HL7DataTypeDefinition } from '../../../interfaces/index.js';
+
+export const CQ: DeepPartial<HL7DataTypeDefinition> = {
+  desc: 'Composite Quantity with Units',
+  fields: {
+    '1': {
+      len: 16,
+    },
+    '2': {
+      len: 483,
+    },
+  },
+};

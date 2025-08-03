@@ -1,0 +1,11 @@
+{
+  "extends": "@panates/tsconfig/build.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "sourceMap": false,
+    "paths": {
+      "hl7v2": ["./packages/common/build"],
+      "hl7v2-net": ["./packages/net/build"]
+    }
+  }
+}

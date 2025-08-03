@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig-base.json",
+  "compilerOptions": {
+    "types": ["node", "mocha"],
+    "baseUrl": ".",
+    "sourceMap": true,
+    "paths": {
+      "hl7v2": ["./packages/common", "./packages/common/src/index.js"],
+      "hl7v2-net": ["./packages/net", "./packages/net/src/index.js"]
+    }
+  }
+}

@@ -1,0 +1,16 @@
+export enum BPOSegment {
+  SetIDBPO = 1,
+  BPUniversalServiceIdentifier = 2,
+  BPProcessingRequirements = 3,
+  BPQuantity = 4,
+  BPAmount = 5,
+  BPUnits = 6,
+  BPIntendedUseDateTime = 7,
+  BPIntendedDispenseFromLocation = 8,
+  BPIntendedDispenseFromAddress = 9,
+  BPRequestedDispenseDateTime = 10,
+  BPRequestedDispenseToLocation = 11,
+  BPRequestedDispenseToAddress = 12,
+  BPIndicationForUse = 13,
+  BPInformedConsentIndicator = 14,
+}

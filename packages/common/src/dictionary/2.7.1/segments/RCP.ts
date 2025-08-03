@@ -1,0 +1,16 @@
+import { DeepPartial } from 'ts-gems';
+import { HL7SegmentDefinition } from '../../../interfaces/index.js';
+
+export const RCP: DeepPartial<HL7SegmentDefinition> = {
+  fields: {
+    '3': {
+      type: 'CNE',
+    },
+    '4': {
+      type: 'DTM',
+    },
+    '7': {
+      table: 391,
+    },
+  },
+};

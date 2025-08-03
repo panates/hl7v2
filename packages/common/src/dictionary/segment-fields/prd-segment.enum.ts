@@ -1,0 +1,16 @@
+export enum PRDSegment {
+  ProviderRole = 1,
+  ProviderName = 2,
+  ProviderAddress = 3,
+  ProviderLocation = 4,
+  ProviderCommunicationInformation = 5,
+  PreferredMethodOfContact = 6,
+  ProviderIdentifiers = 7,
+  EffectiveStartDateOfProviderRole = 8,
+  EffectiveEndDateOfProviderRole = 9,
+  ProviderOrganizationNameAndIdentifier = 10,
+  ProviderOrganizationAddress = 11,
+  ProviderOrganizationLocationInformation = 12,
+  ProviderOrganizationCommunicationInformation = 13,
+  ProviderOrganizationMethodOfContact = 14,
+}

@@ -1,0 +1,15 @@
+export enum ORGSegment {
+  SetIDORG = 1,
+  OrganizationUnitCode = 2,
+  OrganizationUnitTypeCode = 3,
+  PrimaryOrgUnitIndicator = 4,
+  PractitionerOrgUnitIdentifier = 5,
+  HealthCareProviderTypeCode = 6,
+  HealthCareProviderClassificationCode = 7,
+  HealthCareProviderAreaOfSpecializationCode = 8,
+  EffectiveDateRange = 9,
+  EmploymentStatusCode = 10,
+  BoardApprovalIndicator = 11,
+  PrimaryCarePhysicianIndicator = 12,
+  CostCenterCode = 13,
+}

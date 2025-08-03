@@ -1,0 +1,16 @@
+export enum TQ1Segment {
+  SetIDTQ1 = 1,
+  Quantity = 2,
+  RepeatPattern = 3,
+  ExplicitTime = 4,
+  RelativeTimeAndUnits = 5,
+  ServiceDuration = 6,
+  StartDateTime = 7,
+  EndDateTime = 8,
+  Priority = 9,
+  ConditionText = 10,
+  TextInstruction = 11,
+  Conjunction = 12,
+  OccurrenceDuration = 13,
+  TotalOccurrences = 14,
+}

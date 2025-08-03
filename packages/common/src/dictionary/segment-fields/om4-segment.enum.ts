@@ -1,0 +1,17 @@
+export enum OM4Segment {
+  SequenceNumberTestObservationMasterFile = 1,
+  DerivedSpecimen = 2,
+  ContainerDescription = 3,
+  ContainerVolume = 4,
+  ContainerUnits = 5,
+  Specimen = 6,
+  Additive = 7,
+  Preparation = 8,
+  SpecialHandlingRequirements = 9,
+  NormalCollectionVolume = 10,
+  MinimumCollectionVolume = 11,
+  SpecimenRequirements = 12,
+  SpecimenPriorities = 13,
+  SpecimenRetentionTime = 14,
+  SpecimenRetentionTime2 = 15,
+}

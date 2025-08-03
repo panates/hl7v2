@@ -1,0 +1,17 @@
+export enum XPNType {
+  FamilyName = 1,
+  GivenName = 2,
+  SecondAndFurtherGivenNamesOrInitialsThereof = 3,
+  Suffix = 4,
+  Prefix = 5,
+  Degree = 6,
+  NameTypeCode = 7,
+  NameRepresentationCode = 8,
+  NameContext = 9,
+  NameValidityRange = 10,
+  NameAssemblyOrder = 11,
+  EffectiveDate = 12,
+  ExpirationDate = 13,
+  ProfessionalSuffix = 14,
+  CalledBy = 15,
+}

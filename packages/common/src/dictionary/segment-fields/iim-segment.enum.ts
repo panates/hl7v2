@@ -1,0 +1,17 @@
+export enum IIMSegment {
+  PrimaryKeyValueIIM = 1,
+  ServiceItemCode = 2,
+  InventoryLotNumber = 3,
+  InventoryExpirationDate = 4,
+  InventoryManufacturerName = 5,
+  InventoryLocation = 6,
+  InventoryReceivedDate = 7,
+  InventoryReceivedQuantity = 8,
+  InventoryReceivedQuantityUnit = 9,
+  InventoryReceivedItemCost = 10,
+  InventoryOnHandDate = 11,
+  InventoryOnHandQuantity = 12,
+  InventoryOnHandQuantityUnit = 13,
+  ProcedureCode = 14,
+  ProcedureCodeModifier = 15,
+}

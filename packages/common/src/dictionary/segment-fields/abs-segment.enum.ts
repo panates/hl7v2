@@ -1,0 +1,16 @@
+export enum ABSSegment {
+  DischargeCareProvider = 1,
+  TransferMedicalServiceCode = 2,
+  SeverityOfIllnessCode = 3,
+  DateTimeOfAttestation = 4,
+  AttestedBy = 5,
+  TriageCode = 6,
+  AbstractCompletionDateTime = 7,
+  AbstractedBy = 8,
+  CaseCategoryCode = 9,
+  CaesarianSectionIndicator = 10,
+  GestationCategoryCode = 11,
+  GestationPeriodWeeks = 12,
+  NewbornCode = 13,
+  StillbornIndicator = 14,
+}

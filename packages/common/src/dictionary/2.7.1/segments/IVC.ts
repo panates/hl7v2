@@ -1,0 +1,186 @@
+import { DeepPartial } from 'ts-gems';
+import { HL7SegmentDefinition } from '../../../interfaces/index.js';
+
+export const IVC: DeepPartial<HL7SegmentDefinition> = {
+  fields: {
+    '1': {
+      type: 'EI',
+      desc: 'Provider Invoice Number',
+      opt: 'R',
+      rep: 1,
+    },
+    '2': {
+      type: 'EI',
+      desc: 'Payer Invoice Number',
+      opt: 'O',
+      rep: 1,
+    },
+    '3': {
+      type: 'EI',
+      desc: 'Contract/Agreement Number',
+      opt: 'O',
+      rep: 1,
+    },
+    '4': {
+      desc: 'Invoice Control',
+      opt: 'R',
+      rep: 1,
+      table: 553,
+    },
+    '5': {
+      desc: 'Invoice Reason',
+      opt: 'R',
+      rep: 1,
+      table: 554,
+    },
+    '6': {
+      desc: 'Invoice Type',
+      opt: 'R',
+      rep: 1,
+      table: 555,
+    },
+    '7': {
+      type: 'DTM',
+      desc: 'Invoice Date/Time',
+      opt: 'R',
+      rep: 1,
+    },
+    '8': {
+      type: 'CP',
+      desc: 'Invoice Amount',
+      opt: 'R',
+      rep: 1,
+    },
+    '9': {
+      type: 'ST',
+      desc: 'Payment Terms',
+      opt: 'O',
+      rep: 1,
+    },
+    '10': {
+      type: 'XON',
+      desc: 'Provider Organization',
+      opt: 'R',
+      rep: 1,
+    },
+    '11': {
+      type: 'XON',
+      desc: 'Payer Organization',
+      opt: 'R',
+      rep: 1,
+    },
+    '12': {
+      type: 'XCN',
+      desc: 'Attention',
+      opt: 'O',
+      rep: 1,
+    },
+    '13': {
+      type: 'ID',
+      desc: 'Last Invoice Indicator',
+      opt: 'O',
+      rep: 1,
+      len: 1,
+      table: 136,
+    },
+    '14': {
+      type: 'DTM',
+      desc: 'Invoice Booking Period',
+      opt: 'O',
+      rep: 1,
+    },
+    '15': {
+      type: 'ST',
+      desc: 'Origin',
+      opt: 'O',
+      rep: 1,
+    },
+    '16': {
+      type: 'CP',
+      desc: 'Invoice Fixed Amount',
+      opt: 'O',
+      rep: 1,
+    },
+    '17': {
+      type: 'CP',
+      desc: 'Special Costs',
+      opt: 'O',
+      rep: 1,
+    },
+    '18': {
+      type: 'CP',
+      desc: 'Amount for Doctors Treatment',
+      opt: 'O',
+      rep: 1,
+    },
+    '19': {
+      type: 'XCN',
+      desc: 'Responsible Physician',
+      opt: 'O',
+      rep: 1,
+    },
+    '20': {
+      type: 'CX',
+      desc: 'Cost Center',
+      opt: 'O',
+      rep: 1,
+    },
+    '21': {
+      type: 'CP',
+      desc: 'Invoice Prepaid Amount',
+      opt: 'O',
+      rep: 1,
+    },
+    '22': {
+      type: 'CP',
+      desc: 'Total Invoice Amount without Prepaid Amount',
+      opt: 'O',
+      rep: 1,
+    },
+    '23': {
+      type: 'CP',
+      desc: 'Total-Amount of VAT',
+      rep: 1,
+    },
+    '24': {
+      type: 'NM',
+      desc: 'VAT-Rates applied',
+      opt: 'O',
+      rep: 'infinite',
+    },
+    '25': {
+      desc: 'Benefit Group',
+      opt: 'R',
+      rep: 1,
+      table: 556,
+    },
+    '26': {
+      type: 'ST',
+      desc: 'Provider Tax ID',
+      opt: 'O',
+      rep: 1,
+    },
+    '27': {
+      type: 'ST',
+      desc: 'Payer Tax ID',
+      opt: 'O',
+      rep: 1,
+    },
+    '28': {
+      opt: 'O',
+      rep: 1,
+      table: 572,
+    },
+    '29': {
+      opt: 'O',
+      rep: 1,
+      table: 572,
+    },
+    '30': {
+      type: 'ST',
+      desc: 'Sales Tax ID',
+      opt: 'O',
+      rep: 1,
+    },
+  },
+};

@@ -1,0 +1,102 @@
+import { DeepPartial } from 'ts-gems';
+import { HL7SegmentDefinition } from '../../../interfaces/index.js';
+
+export const PES: DeepPartial<HL7SegmentDefinition> = {
+  desc: 'Product Experience Sender',
+  fields: {
+    '1': {
+      type: 'XON',
+      desc: 'Sender Organization Name',
+      opt: 'O',
+      rep: 1,
+      len: 80,
+    },
+    '2': {
+      type: 'XCN',
+      desc: 'Sender Individual Name',
+      opt: 'O',
+      rep: 'infinite',
+      len: 60,
+    },
+    '3': {
+      type: 'XAD',
+      desc: 'Sender Address',
+      opt: 'O',
+      rep: 'infinite',
+      len: 200,
+    },
+    '4': {
+      type: 'XTN',
+      desc: 'Sender Telephone',
+      opt: 'O',
+      rep: 'infinite',
+      len: 44,
+    },
+    '5': {
+      type: 'EI',
+      desc: 'Sender Event Identifier',
+      opt: 'O',
+      rep: 1,
+      len: 30,
+    },
+    '6': {
+      type: 'NM',
+      desc: 'Sender Sequence Number',
+      opt: 'O',
+      rep: 1,
+      len: 2,
+    },
+    '7': {
+      type: 'FT',
+      desc: 'Sender Event Description',
+      opt: 'O',
+      rep: 'infinite',
+      len: 600,
+    },
+    '8': {
+      type: 'FT',
+      desc: 'Sender Comment',
+      opt: 'O',
+      rep: 1,
+      len: 600,
+    },
+    '9': {
+      type: 'TS',
+      desc: 'Sender Aware Date/Time',
+      opt: 'O',
+      rep: 1,
+      len: 26,
+    },
+    '10': {
+      type: 'TS',
+      desc: 'Event Report Date',
+      opt: 'R',
+      rep: 1,
+      len: 26,
+    },
+    '11': {
+      type: 'ID',
+      desc: 'Event Report Timing/Type',
+      opt: 'O',
+      rep: 2,
+      len: 3,
+      table: 234,
+    },
+    '12': {
+      type: 'ID',
+      desc: 'Event Report Source',
+      opt: 'O',
+      rep: 1,
+      len: 1,
+      table: 235,
+    },
+    '13': {
+      type: 'ID',
+      desc: 'Event Reported To',
+      opt: 'O',
+      rep: 'infinite',
+      len: 1,
+      table: 236,
+    },
+  },
+};

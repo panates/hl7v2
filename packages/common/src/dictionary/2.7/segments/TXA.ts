@@ -1,0 +1,167 @@
+import { DeepPartial } from 'ts-gems';
+import { HL7SegmentDefinition } from '../../../interfaces/index.js';
+
+export const TXA: DeepPartial<HL7SegmentDefinition> = {
+  desc: 'Transcription Document Header',
+  fields: {
+    '1': {
+      type: 'SI',
+      desc: 'Set ID- TXA',
+      opt: 'R',
+      rep: 1,
+      len: 4,
+    },
+    '2': {
+      type: 'CWE',
+      desc: 'Document Type ',
+      opt: 'R',
+      rep: 1,
+      table: 270,
+    },
+    '3': {
+      type: 'ID',
+      desc: 'Document Content Presentation',
+      opt: 'C',
+      rep: 1,
+      table: 191,
+    },
+    '4': {
+      desc: 'Activity Date/Time',
+      opt: 'O',
+      rep: 1,
+    },
+    '5': {
+      type: 'XCN',
+      desc: 'Primary Activity Provider Code/Name',
+      opt: 'C',
+    },
+    '6': {
+      desc: 'Origination Date/Time',
+      opt: 'O',
+      rep: 1,
+    },
+    '7': {
+      desc: 'Transcription Date/Time',
+      opt: 'C',
+      rep: 1,
+    },
+    '8': {
+      desc: 'Edit Date/Time',
+      opt: 'O',
+      rep: 'infinite',
+    },
+    '9': {
+      type: 'XCN',
+      desc: 'Originator Code/Name',
+      opt: 'O',
+    },
+    '10': {
+      type: 'XCN',
+      desc: 'Assigned Document Authenticator',
+      opt: 'O',
+      rep: 'infinite',
+    },
+    '11': {
+      type: 'XCN',
+      desc: 'Transcriptionist Code/Name',
+      opt: 'C',
+    },
+    '12': {
+      type: 'EI',
+      desc: 'Unique Document Number',
+      opt: 'R',
+      rep: 1,
+    },
+    '13': {
+      type: 'EI',
+      desc: 'Parent Document Number',
+      opt: 'C',
+      rep: 1,
+    },
+    '14': {
+      type: 'EI',
+      desc: 'Placer Order Number',
+      opt: 'O',
+      rep: 'infinite',
+    },
+    '15': {
+      type: 'EI',
+      desc: 'Filler Order Number',
+      opt: 'O',
+      rep: 1,
+    },
+    '16': {
+      type: 'ST',
+      desc: 'Unique Document File Name',
+      opt: 'O',
+      rep: 1,
+    },
+    '17': {
+      type: 'ID',
+      desc: 'Document Completion Status',
+      opt: 'R',
+      len: 2,
+      table: 271,
+    },
+    '18': {
+      type: 'ID',
+      desc: 'Document Confidentiality Status',
+      opt: 'O',
+      rep: 1,
+      len: 1,
+      table: 272,
+    },
+    '19': {
+      type: 'ID',
+      desc: 'Document Availability Status',
+      opt: 'O',
+      rep: 1,
+      len: 2,
+      table: 273,
+    },
+    '20': {
+      type: 'ID',
+      desc: 'Document Storage Status',
+      opt: 'O',
+      rep: 1,
+      len: 2,
+      table: 275,
+    },
+    '21': {
+      type: 'ST',
+      desc: 'Document Change Reason',
+      opt: 'O',
+      rep: 1,
+    },
+    '22': {
+      type: 'PPN',
+      desc: 'Authentication Person, Time Stamp (set) ',
+      opt: 'C',
+      rep: 'infinite',
+    },
+    '23': {
+      type: 'XCN',
+      desc: 'Distributed Copies (Code and Name of Recipient(s) )',
+      opt: 'O',
+      rep: 'infinite',
+    },
+    '24': {
+      type: 'CWE',
+      desc: 'Folder Assignment',
+      opt: 'O',
+      rep: 'infinite',
+    },
+    '25': {
+      type: 'ST',
+      desc: 'Document Title',
+      opt: 'O',
+      rep: 'infinite',
+    },
+    '26': {
+      type: 'DTM',
+      desc: 'Agreed Due Date/Time   ',
+      opt: 'O',
+      rep: 1,
+    },
+  },
+};

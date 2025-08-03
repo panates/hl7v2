@@ -1,0 +1,17 @@
+export enum PRTSegment {
+  ParticipationInstanceID = 1,
+  ActionCode = 2,
+  ActionReason = 3,
+  Participation = 4,
+  ParticipationPerson = 5,
+  ParticipationPersonProviderType = 6,
+  ParticipantOrganizationUnitType = 7,
+  ParticipationOrganization = 8,
+  ParticipantLocation = 9,
+  ParticipationDevice = 10,
+  ParticipationBeginDateTime = 11,
+  ParticipationEndDateTime = 12,
+  ParticipationQualitativeDuration = 13,
+  ParticipationAddress = 14,
+  ParticipantTelecommunicationAddress = 15,
+}

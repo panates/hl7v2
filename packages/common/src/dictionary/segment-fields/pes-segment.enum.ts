@@ -1,0 +1,15 @@
+export enum PESSegment {
+  SenderOrganizationName = 1,
+  SenderIndividualName = 2,
+  SenderAddress = 3,
+  SenderTelephone = 4,
+  SenderEventIdentifier = 5,
+  SenderSequenceNumber = 6,
+  SenderEventDescription = 7,
+  SenderComment = 8,
+  SenderAwareDateTime = 9,
+  EventReportDate = 10,
+  EventReportTimingType = 11,
+  EventReportSource = 12,
+  EventReportedTo = 13,
+}

@@ -1,0 +1,91 @@
+import { HL7SegmentDefinition } from '../../../interfaces/index.js';
+
+export const BHS: HL7SegmentDefinition = {
+  desc: 'Batch header',
+  fields: {
+    '1': {
+      type: 'ST',
+      desc: 'Batch field separator',
+      opt: 'R',
+      rep: 1,
+      len: 1,
+    },
+    '2': {
+      type: 'ST',
+      desc: 'Batch encoding characters',
+      opt: 'R',
+      rep: 1,
+      len: 4,
+    },
+    '3': {
+      type: 'ST',
+      desc: 'Batch sending application',
+      opt: 'O',
+      rep: 1,
+      len: 15,
+    },
+    '4': {
+      type: 'ST',
+      desc: 'Batch sending facility',
+      opt: 'O',
+      rep: 1,
+      len: 20,
+    },
+    '5': {
+      type: 'ST',
+      desc: 'Batch receiving application',
+      opt: 'O',
+      rep: 1,
+      len: 15,
+    },
+    '6': {
+      type: 'ST',
+      desc: 'Batch receiving facility',
+      opt: 'O',
+      rep: 1,
+      len: 20,
+    },
+    '7': {
+      type: 'TS',
+      desc: 'Batch creation date/time',
+      opt: 'O',
+      rep: 1,
+      len: 19,
+    },
+    '8': {
+      type: 'ST',
+      desc: 'Batch security',
+      opt: 'O',
+      rep: 1,
+      len: 40,
+    },
+    '9': {
+      type: 'ST',
+      desc: 'Batch name/id/type',
+      opt: 'O',
+      rep: 1,
+      len: 20,
+    },
+    '10': {
+      type: 'ST',
+      desc: 'Batch comment',
+      opt: 'O',
+      rep: 1,
+      len: 80,
+    },
+    '11': {
+      type: 'ST',
+      desc: 'Batch control id',
+      opt: 'O',
+      rep: 1,
+      len: 20,
+    },
+    '12': {
+      type: 'ST',
+      desc: 'Reference batch control id',
+      opt: 'O',
+      rep: 1,
+      len: 20,
+    },
+  },
+};
