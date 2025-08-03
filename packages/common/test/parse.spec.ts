@@ -1,11 +1,11 @@
 import { expect } from 'expect';
 import iconv from 'iconv-lite';
-import { HL7Error } from '../src/index.js';
 import {
   AL1Segment,
   CR,
   dictionaries,
   FS,
+  HL7Error,
   HL7Message,
   HL7Version,
   MSHSegment,
