@@ -1,0 +1,9 @@
+command:
+  publish:
+    contents: build
+  version:
+    unified: true
+  run:
+    parallel: lint,clean,compile,format
+
+logLevel: info
