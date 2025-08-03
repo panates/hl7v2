@@ -1,0 +1,16 @@
+export enum FHSSegment {
+  FileFieldSeparator = 1,
+  FileEncodingCharacters = 2,
+  FileSendingApplication = 3,
+  FileSendingFacility = 4,
+  FileReceivingApplication = 5,
+  FileReceivingFacility = 6,
+  FileCreationDateTime = 7,
+  FileSecurity = 8,
+  FileNameID = 9,
+  FileHeaderComment = 10,
+  FileControlID = 11,
+  ReferenceFileControlID = 12,
+  FileSendingNetworkAddress = 13,
+  FileReceivingNetworkAddress = 14,
+}

@@ -1,0 +1,17 @@
+export enum ADJSegment {
+  ProviderAdjustmentNumber = 1,
+  PayerAdjustmentNumber = 2,
+  AdjustmentSequenceNumber = 3,
+  AdjustmentCategory = 4,
+  AdjustmentAmount = 5,
+  AdjustmentQuantity = 6,
+  AdjustmentReasonPA = 7,
+  AdjustmentDescription = 8,
+  OriginalValue = 9,
+  SubstituteValue = 10,
+  AdjustmentAction = 11,
+  ProviderAdjustmentNumberCrossReference = 12,
+  ProviderProductServiceLineItemNumberCrossReference = 13,
+  AdjustmentDate = 14,
+  ResponsibleOrganization = 15,
+}

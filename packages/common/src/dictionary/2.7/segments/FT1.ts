@@ -1,0 +1,233 @@
+import { DeepPartial } from 'ts-gems';
+import { HL7SegmentDefinition } from '../../../interfaces/index.js';
+
+export const FT1: DeepPartial<HL7SegmentDefinition> = {
+  desc: 'Financial Transaction',
+  fields: {
+    '1': {
+      type: 'SI',
+      desc: 'Set ID   FT1',
+      opt: 'O',
+      rep: 1,
+      len: 4,
+    },
+    '2': {
+      type: 'ST',
+      desc: 'Transaction ID ',
+      opt: 'O',
+      rep: 1,
+      len: 12,
+    },
+    '3': {
+      type: 'ST',
+      desc: 'Transaction Batch ID ',
+      opt: 'O',
+      rep: 1,
+    },
+    '4': {
+      desc: 'Transaction Date ',
+      opt: 'R',
+      rep: 1,
+    },
+    '5': {
+      desc: 'Transaction Posting Date ',
+      opt: 'O',
+      rep: 1,
+    },
+    '6': {
+      type: 'CWE',
+      desc: 'Transaction Type ',
+      opt: 'R',
+      rep: 1,
+      table: 17,
+    },
+    '7': {
+      desc: 'Transaction Code ',
+      opt: 'R',
+      rep: 1,
+      table: 132,
+    },
+    '8': {
+      type: 'ST',
+      desc: 'Transaction Description ',
+      opt: 'B',
+      rep: 1,
+    },
+    '9': {
+      type: 'ST',
+      desc: 'Transaction Description   Alt ',
+      opt: 'B',
+      rep: 1,
+    },
+    '10': {
+      type: 'NM',
+      desc: 'Transaction Quantity ',
+      opt: 'O',
+      rep: 1,
+    },
+    '11': {
+      type: 'CP',
+      desc: 'Transaction Amount   Extended ',
+      opt: 'O',
+      rep: 1,
+    },
+    '12': {
+      type: 'CP',
+      desc: 'Transaction Amount   Unit ',
+      opt: 'O',
+      rep: 1,
+    },
+    '13': {
+      desc: 'Department Code ',
+      opt: 'O',
+      rep: 1,
+      table: 49,
+    },
+    '14': {
+      desc: 'Health Plan ID ',
+      opt: 'O',
+      rep: 1,
+      table: 72,
+    },
+    '15': {
+      type: 'CP',
+      desc: 'Insurance Amount ',
+      opt: 'O',
+      rep: 1,
+    },
+    '16': {
+      type: 'PL',
+      desc: 'Assigned Patient Location ',
+      opt: 'O',
+      rep: 1,
+    },
+    '17': {
+      type: 'CWE',
+      desc: 'Fee Schedule ',
+      opt: 'O',
+      rep: 1,
+      table: 24,
+    },
+    '18': {
+      type: 'CWE',
+      desc: 'Patient Type ',
+      opt: 'O',
+      rep: 1,
+      table: 18,
+    },
+    '19': {
+      desc: 'Diagnosis Code - FT1 ',
+      opt: 'O',
+      table: 51,
+    },
+    '20': {
+      type: 'XCN',
+      desc: 'Performed By Code ',
+      opt: 'O',
+      table: 84,
+    },
+    '21': {
+      type: 'XCN',
+      desc: 'Ordered By Code ',
+      opt: 'O',
+    },
+    '22': {
+      desc: 'Unit Cost ',
+      opt: 'O',
+      rep: 1,
+    },
+    '23': {
+      type: 'EI',
+    },
+    '24': {
+      type: 'XCN',
+      desc: 'Entered By Code',
+      opt: 'O',
+    },
+    '25': {
+      desc: 'Procedure Code',
+      opt: 'O',
+      rep: 1,
+      table: 88,
+    },
+    '26': {
+      table: 340,
+    },
+    '28': {
+      desc: 'Medically Necessary Duplicate Procedure Reason',
+    },
+    '32': {
+      type: 'XON',
+      desc: 'Performing Facility',
+      opt: 'O',
+      rep: 'infinite',
+    },
+    '33': {
+      type: 'XON',
+      desc: 'Ordering Facility',
+      opt: 'O',
+      rep: 1,
+    },
+    '34': {
+      type: 'CWE',
+      desc: 'Item Number',
+      opt: 'O',
+      rep: 1,
+    },
+    '35': {
+      type: 'ST',
+      desc: 'Model Number',
+      opt: 'O',
+      rep: 1,
+    },
+    '36': {
+      type: 'CWE',
+      desc: 'Special Processing Code',
+      opt: 'O',
+      rep: 'infinite',
+    },
+    '37': {
+      type: 'CWE',
+      desc: 'Clinic Code',
+      opt: 'O',
+      rep: 1,
+    },
+    '38': {
+      type: 'CX',
+      desc: 'Referral Number',
+      opt: 'O',
+      rep: 1,
+    },
+    '39': {
+      type: 'CX',
+      desc: 'Authorization Number',
+      opt: 'O',
+      rep: 1,
+    },
+    '40': {
+      type: 'CWE',
+      desc: 'Service Provider Taxonomy Code',
+      opt: 'O',
+      rep: 1,
+    },
+    '41': {
+      type: 'CWE',
+      desc: 'Revenue Code',
+      opt: 'O',
+      rep: 1,
+      table: 456,
+    },
+    '42': {
+      type: 'ST',
+      desc: 'Prescription Number',
+      opt: 'O',
+      rep: 1,
+    },
+    '43': {
+      type: 'CQ',
+      desc: 'NDC Qty and UOM',
+      opt: 'O',
+      rep: 1,
+    },
+  },
+};

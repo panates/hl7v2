@@ -1,0 +1,16 @@
+export enum PSHSegment {
+  ReportType = 1,
+  ReportFormIdentifier = 2,
+  ReportDate = 3,
+  ReportIntervalStartDate = 4,
+  ReportIntervalEndDate = 5,
+  QuantityManufactured = 6,
+  QuantityDistributed = 7,
+  QuantityDistributedMethod = 8,
+  QuantityDistributedComment = 9,
+  QuantityInUse = 10,
+  QuantityInUseMethod = 11,
+  QuantityInUseComment = 12,
+  NumberOfProductExperienceReportsFiledByFacility = 13,
+  NumberOfProductExperienceReportsFiledByDistributor = 14,
+}

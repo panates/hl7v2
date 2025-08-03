@@ -1,41 +1,26 @@
-  
-[![NPM Version][npm-image]][npm-url]
-[![NPM Downloads][downloads-image]][downloads-url]
-[![Build Status][travis-image]][travis-url]
-[![Test Coverage][coveralls-image]][coveralls-url]
-
-[![Dependencies][dependencies-image]][dependencies-url]
-[![DevDependencies][devdependencies-image]][devdependencies-url]
-[![Package Quality][quality-image]][quality-url]
-
-
-## About
-
+# HL7v2
 HL7 v2 parser, serializer, validator and tcp client/server for NodeJS
 
+[![NPM Version][npm-image]][npm-url]
+[![NPM Downloads][downloads-image]][downloads-url]
+[![CI Tests][ci-test-image]][ci-test-url]
+[![Test Coverage][coveralls-image]][coveralls-url]
 
-## Installation
-
-```bash
-$ npm install hl7v2 --save
-```
+## Support
+You can report bugs and discuss features on the [GitHub issues](https://github.com/panates/hl7v2/issues) page
+When you open an issue please provide the version of the NodeJS.
 
 ## Node Compatibility
+- node >= 18.x
 
-  - node >= 6.x
-  
-## Change log
 
-To see changelog click [here](https://github.com/panates/hl7v2/commits/master)
-
-  
 ### License
 HL7v2 is available under [MIT](LICENSE) license.
 
 [npm-image]: https://img.shields.io/npm/v/hl7v2.svg
 [npm-url]: https://npmjs.org/package/hl7v2
-[travis-image]: https://img.shields.io/travis/panates/hl7v2/master.svg
-[travis-url]: https://travis-ci.org/panates/hl7v2
+[ci-test-image]: https://github.com/panates/hl7v2/actions/workflows/test.yml/badge.svg
+[ci-test-url]: https://github.com/panates/hl7v2/actions/workflows/test.yml
 [coveralls-image]: https://img.shields.io/coveralls/panates/hl7v2/master.svg
 [coveralls-url]: https://coveralls.io/r/panates/hl7v2
 [downloads-image]: https://img.shields.io/npm/dm/hl7v2.svg

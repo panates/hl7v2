@@ -1,0 +1,15 @@
+export enum CDMSegment {
+  PrimaryKeyValueCDM = 1,
+  ChargeCodeAlias = 2,
+  ChargeDescriptionShort = 3,
+  ChargeDescriptionLong = 4,
+  DescriptionOverrideIndicator = 5,
+  ExplodingCharges = 6,
+  ProcedureCode = 7,
+  ActiveInactiveFlag = 8,
+  InventoryNumber = 9,
+  ResourceLoad = 10,
+  ContractNumber = 11,
+  ContractOrganization = 12,
+  RoomFeeIndicator = 13,
+}

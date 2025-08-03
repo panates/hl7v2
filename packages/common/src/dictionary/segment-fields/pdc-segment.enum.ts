@@ -1,0 +1,17 @@
+export enum PDCSegment {
+  ManufacturerDistributor = 1,
+  Country = 2,
+  BrandName = 3,
+  DeviceFamilyName = 4,
+  GenericName = 5,
+  ModelIdentifier = 6,
+  CatalogueIdentifier = 7,
+  OtherIdentifier = 8,
+  ProductCode = 9,
+  MarketingBasis = 10,
+  MarketingApprovalID = 11,
+  LabeledShelfLife = 12,
+  ExpectedShelfLife = 13,
+  DateFirstMarketed = 14,
+  DateLastMarketed = 15,
+}

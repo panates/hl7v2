@@ -1,0 +1,16 @@
+export enum AIGSegment {
+  SetIDAIG = 1,
+  SegmentActionCode = 2,
+  ResourceID = 3,
+  ResourceType = 4,
+  ResourceGroup = 5,
+  ResourceQuantity = 6,
+  ResourceQuantityUnits = 7,
+  StartDateTime = 8,
+  StartDateTimeOffset = 9,
+  StartDateTimeOffsetUnits = 10,
+  Duration = 11,
+  DurationUnits = 12,
+  AllowSubstitutionCode = 13,
+  FillerStatusCode = 14,
+}

@@ -1,0 +1,85 @@
+{
+  "name": "hl7v2",
+  "description": "HL7 v2 parser, serializer, validator for NodeJS",
+  "version": "0.14.0",
+  "author": "Panates",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@jsopen/objects": "^1.6.3",
+    "iconv-lite": "^0.6.3",
+    "is-typedarray": "^1.0.0",
+    "node-events-async": "^1.2.0",
+    "ts-gems": "^3.11.3",
+    "tslib": "^2.8.1",
+    "valgen": "^5.17.1",
+    "uid": "^2.0.2"
+  },
+  "devDependencies": {
+    "expect": "^30.0.5"
+  },
+  "scripts": {
+    "compile": "tsc --noEmit",
+    "prebuild": "npm run lint && npm run clean",
+    "build": "npm run build:cjs && npm run build:esm",
+    "build:cjs": "tsc -b tsconfig-build-cjs.json && cp ../../support/package.cjs.json ./build/cjs/package.json",
+    "build:esm": "tsc -b tsconfig-build-esm.json && cp ../../support/package.esm.json ./build/esm/package.json",
+    "postbuild": "npm run postbuild:copy && node ../../support/postbuild.cjs",
+    "postbuild:copy": "cp README.md package.json ../../LICENSE ./build",
+    "lint": "eslint . --max-warnings=0",
+    "lint:fix": "eslint . --max-warnings=0 --fix",
+    "format": "prettier . --write --log-level=warn",
+    "check": "madge --circular src/**",
+    "test": "mocha",
+    "clean": "npm run clean:src && npm run clean:test && npm run clean:dist && npm run clean:cover",
+    "clean:src": "ts-cleanup -s src --all",
+    "clean:test": "ts-cleanup -s test --all",
+    "clean:dist": "rimraf ./build",
+    "clean:cover": "rimraf ../../coverage/common"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./types/index.d.ts",
+        "default": "./esm/index.js"
+      },
+      "require": {
+        "types": "./types/index.d.cts",
+        "default": "./cjs/index.js"
+      },
+      "default": "./esm/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
+  "types": "./types/index.d.ts",
+  "contributors": [
+    "Eray Hanoglu <e.hanoglu@panates.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/panates/hl7v2.git",
+    "directory": "packages/common"
+  },
+  "engines": {
+    "node": ">=18.0"
+  },
+  "files": [
+    "cjs/",
+    "esm/",
+    "types/",
+    "LICENSE",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "keywords": [
+    "hl7",
+    "perser",
+    "serializer"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

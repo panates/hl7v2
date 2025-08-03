@@ -1,56 +1,52 @@
 {
   "name": "hl7v2",
-  "description": "HL7 v2 parser, serializer, validator and tcp client/server for NodeJS",
-  "version": "0.14.0",
-  "author": "Panates Ltd.",
-  "contributors": [
-    "Eray Hanoglu <e.hanoglu@panates.com>"
-  ],
+  "private": true,
+  "version": "0.1.0",
   "license": "MIT",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/panates/hl7v2.git"
   },
-  "keywords": [
-    "javascript",
-    "hl7",
-    "perser",
-    "serializer",
-    "server",
-    "client"
+  "workspaces": [
+    "packages/*"
   ],
-  "dependencies": {
-    "errorex": "^2.3.2",
-    "iconv-lite": "^0.6.3",
-    "is-typedarray": "^1.0.0",
-    "putil-callable": "^1.1.1",
-    "putil-waterfall": "^2.1.1"
+  "scripts": {
+    "preclean": "rimraf build coverage",
+    "clean": "rman run clean",
+    "build": "rman build",
+    "test": "mocha",
+    "precover": "rimraf coverage",
+    "format": "prettier . --write --log-level=warn",
+    "precitest": "rimraf coverage reports",
+    "citest": "c8 mocha",
+    "qc": "rman run lint && rman run check",
+    "lint": "rman run lint",
+    "lint:fix": "rman run lint:fix",
+    "check": "rman run check"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.19.1",
-    "eslint": "^8.30.0",
-    "eslint-config-google": "^0.14.0",
-    "mocha": "^10.2.0",
-    "nyc": "^15.1.0"
-  },
-  "engines": {
-    "node": ">=14.0"
-  },
-  "directories": {
-    "lib": "./lib"
-  },
-  "files": [
-    "LICENSE",
-    "README.md",
-    "lib/",
-    "index.js"
-  ],
-  "nyc": {
-    "temp-dir": "./coverage/.nyc_output"
-  },
-  "scripts": {
-    "test": "mocha --require ./test/support/env --reporter spec --check-leaks test/",
-    "cover": "nyc --reporter html --reporter text npm run test",
-    "travis-cover": "nyc --reporter lcovonly npm run test"
+    "@panates/eslint-config": "^2.0.6",
+    "@panates/eslint-config-ts": "^2.0.6",
+    "@panates/tsconfig": "^2.0.6",
+    "@swc/core": "^1.13.3",
+    "@swc/helpers": "^0.5.17",
+    "@swc-node/register": "^1.10.10",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^24.1.0",
+    "@types/sinon": "^17.0.4",
+    "@types/supertest": "^6.0.3",
+    "c8": "^10.1.3",
+    "chalk": "^5.4.1",
+    "globals": "^16.3.0",
+    "madge": "^8.0.0",
+    "mocha": "11.7.1",
+    "npm-check-updates": "^18.0.2",
+    "prettier": "^3.6.2",
+    "putil-varhelpers": "^1.6.5",
+    "rimraf": "^6.0.1",
+    "ts-cleanup": "^1.3.0",
+    "tslib": "^2.8.1",
+    "typescript": "^5.8.3"
   }
 }

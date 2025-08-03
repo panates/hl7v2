@@ -1,0 +1,16 @@
+export enum GP2Segment {
+  RevenueCode = 1,
+  NumberOfServiceUnits = 2,
+  Charge = 3,
+  ReimbursementActionCode = 4,
+  DenialOrRejectionCode = 5,
+  OCEEditCode = 6,
+  AmbulatoryPaymentClassificationCode = 7,
+  ModifierEditCode = 8,
+  PaymentAdjustmentCode = 9,
+  PackagingStatusCode = 10,
+  ExpectedCMSPaymentAmount = 11,
+  ReimbursementTypeCode = 12,
+  CoPayAmount = 13,
+  PayRatePerServiceUnit = 14,
+}

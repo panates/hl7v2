@@ -1,0 +1,98 @@
+import { DeepPartial } from 'ts-gems';
+import { HL7SegmentDefinition } from '../../../interfaces/index.js';
+
+export const ORG: DeepPartial<HL7SegmentDefinition> = {
+  desc: 'Practitioner Organization Unit',
+  fields: {
+    '1': {
+      type: 'SI',
+      opt: 'R',
+      rep: 1,
+      len: 60,
+    },
+    '2': {
+      type: 'CE',
+      desc: 'Organization Unit Code',
+      opt: 'O',
+      rep: 1,
+      len: 250,
+      table: 405,
+    },
+    '3': {
+      type: 'CE',
+      opt: 'O',
+      rep: 1,
+      len: 250,
+      table: 474,
+    },
+    '4': {
+      type: 'ID',
+      desc: 'Primary Org Unit Indicator',
+      opt: 'O',
+      rep: 1,
+      len: 1,
+      table: 136,
+    },
+    '5': {
+      type: 'CX',
+      desc: 'Practitioner Org Unit Identifier',
+      opt: 'O',
+      rep: 1,
+      len: 60,
+    },
+    '6': {
+      type: 'CE',
+      desc: 'Health Care Provider Type Code',
+      opt: 'O',
+      rep: 1,
+      len: 250,
+      table: 452,
+    },
+    '7': {
+      type: 'CE',
+      desc: 'Health Care Provider Classification Code',
+      opt: 'O',
+      rep: 1,
+      len: 250,
+      table: 453,
+    },
+    '8': {
+      type: 'CE',
+      desc: 'Health Care Provider Area of Specialization Code',
+      opt: 'O',
+      rep: 1,
+      len: 250,
+      table: 454,
+    },
+    '9': {
+      type: 'DR',
+      desc: 'Effective Date Range',
+      opt: 'O',
+      rep: 1,
+      len: 52,
+    },
+    '10': {
+      type: 'CE',
+      desc: 'Employment Status Code',
+      opt: 'O',
+      rep: 1,
+      table: 66,
+    },
+    '11': {
+      type: 'ID',
+      desc: 'Board Approval Indicator',
+      opt: 'O',
+      rep: 1,
+      len: 1,
+      table: 136,
+    },
+    '12': {
+      type: 'ID',
+      desc: 'Primary Care Physician Indicator',
+      opt: 'O',
+      rep: 1,
+      len: 1,
+      table: 136,
+    },
+  },
+};

@@ -1,0 +1,16 @@
+export enum BHSSegment {
+  BatchFieldSeparator = 1,
+  BatchEncodingCharacters = 2,
+  BatchSendingApplication = 3,
+  BatchSendingFacility = 4,
+  BatchReceivingApplication = 5,
+  BatchReceivingFacility = 6,
+  BatchCreationDateTime = 7,
+  BatchSecurity = 8,
+  BatchNameIDType = 9,
+  BatchComment = 10,
+  BatchControlID = 11,
+  ReferenceBatchControlID = 12,
+  BatchSendingNetworkAddress = 13,
+  BatchReceivingNetworkAddress = 14,
+}

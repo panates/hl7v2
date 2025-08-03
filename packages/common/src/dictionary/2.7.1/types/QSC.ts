@@ -1,0 +1,19 @@
+import { DeepPartial } from 'ts-gems';
+import { HL7DataTypeDefinition } from '../../../interfaces/index.js';
+
+export const QSC: DeepPartial<HL7DataTypeDefinition> = {
+  fields: {
+    '1': {
+      desc: 'Segment Field Name',
+      opt: 'R',
+    },
+    '2': {
+      len: 2,
+      table: 209,
+    },
+    '4': {
+      len: 3,
+      table: 210,
+    },
+  },
+};

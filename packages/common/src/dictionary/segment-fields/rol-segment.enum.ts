@@ -1,0 +1,16 @@
+export enum ROLSegment {
+  RoleInstanceID = 1,
+  ActionCode = 2,
+  RoleROL = 3,
+  RolePerson = 4,
+  RoleBeginDateTime = 5,
+  RoleEndDateTime = 6,
+  RoleDuration = 7,
+  RoleActionReason = 8,
+  ProviderType = 9,
+  OrganizationUnitType = 10,
+  OfficeHomeAddressBirthplace = 11,
+  Phone = 12,
+  PersonSLocation = 13,
+  Organization = 14,
+}

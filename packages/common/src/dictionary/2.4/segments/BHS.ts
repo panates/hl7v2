@@ -1,0 +1,81 @@
+import { DeepPartial } from 'ts-gems';
+import { HL7SegmentDefinition } from '../../../interfaces/index.js';
+
+export const BHS: DeepPartial<HL7SegmentDefinition> = {
+  desc: 'Batch Header',
+  fields: {
+    '1': {
+      type: 'ST',
+      opt: 'R',
+      rep: 1,
+      len: 1,
+    },
+    '2': {
+      type: 'ST',
+      opt: 'R',
+      rep: 1,
+      len: 4,
+    },
+    '3': {
+      type: 'ST',
+      opt: 'O',
+      rep: 1,
+      len: 15,
+    },
+    '4': {
+      type: 'ST',
+      opt: 'O',
+      rep: 1,
+      len: 20,
+    },
+    '5': {
+      type: 'ST',
+      opt: 'O',
+      rep: 1,
+      len: 15,
+    },
+    '6': {
+      type: 'ST',
+      opt: 'O',
+      rep: 1,
+      len: 20,
+    },
+    '7': {
+      type: 'TS',
+      desc: 'Batch Creation Date/Time',
+      opt: 'O',
+      rep: 1,
+    },
+    '8': {
+      type: 'ST',
+      opt: 'O',
+      rep: 1,
+      len: 40,
+    },
+    '9': {
+      type: 'ST',
+      desc: 'Batch Name/ID/Type',
+      opt: 'O',
+      rep: 1,
+      len: 20,
+    },
+    '10': {
+      type: 'ST',
+      opt: 'O',
+      rep: 1,
+      len: 80,
+    },
+    '11': {
+      type: 'ST',
+      opt: 'O',
+      rep: 1,
+      len: 20,
+    },
+    '12': {
+      type: 'ST',
+      opt: 'O',
+      rep: 1,
+      len: 20,
+    },
+  },
+};
