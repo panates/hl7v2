@@ -4,7 +4,8 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "hl7v2": ["../common/src", "../common/src/index.js"]
+      "hl7v2": ["../hl7v2", "../hl7v2/src/index.js"],
+      "hl7v2-dictionary": ["../dictionary", "../dictionary/src/index.js"]
     }
   }
 }

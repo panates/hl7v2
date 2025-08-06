@@ -1,15 +1,13 @@
 import net from 'node:net';
-import * as process from 'node:process';
 import tls from 'node:tls';
-import { ERRSegment, HL7Message } from 'hl7v2';
+import { HL7Message } from 'hl7v2';
 import { AddressInfo, ListenOptions, Socket } from 'net';
 import { AsyncEventEmitter } from 'node-events-async';
+import { HL7RequestContext } from './h-l7-request-context.js';
 import { HL7ExchangeError } from './helpers/hl7-exchange-error.js';
-import { HL7Request } from './hl7-request.js';
-import { HL7Response } from './hl7-response.js';
 import { HL7Router } from './hl7-router.js';
 import { HL7Socket } from './hl7-socket.js';
-import { HL7ErrorMiddleware, HL7Middleware } from './types.js';
+import { HL7Middleware } from './types.js';
 
 export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
   protected _server: net.Server | tls.Server;
@@ -178,7 +176,7 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
     });
   }
 
-  use(handler: HL7Middleware | HL7ErrorMiddleware, priority = 0) {
+  use(handler: HL7Middleware, priority = 0) {
     this._router.use(handler, priority);
   }
 
@@ -228,45 +226,27 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
       this._sockets.delete(socket);
       this.emit('disconnect', socket);
     });
+    socket.on('error', error => this.emit('error', error, socket));
     this.emit('connection', socket);
   }
 
   protected _onMessage(socket: HL7Socket, message: HL7Message) {
-    const req = new HL7Request(socket, message);
-    const res = new HL7Response(req);
     const waitPromise = new Promise<void>(resolve => {
+      const context = new HL7RequestContext(socket, message);
       const timeoutTimer = setTimeout(() => {
         try {
           const error = new HL7ExchangeError('Response timeout');
-          const ack = req.message.createAck('AE', error);
-          res.send(ack);
+          const ack = context.request.createAck('AE', error);
+          context.end(ack);
         } finally {
           resolve();
         }
       }, this.responseTimeout || 30000).unref();
 
-      this._router.handle(undefined, req, res, error => {
+      this._router.handle(context, () => {
         clearTimeout(timeoutTimer);
-        try {
-          if (!res.finished) {
-            error =
-              error ||
-              new HL7ExchangeError('No middleware handled the request', {
-                request: req.message,
-              });
-            const ack = req.message.createAck('AE', error);
-            if ((process?.env.NODE_ENV || '').startsWith('dev')) {
-              const errSeg = ack.getSegment('ERR');
-              if (errSeg)
-                errSeg.field(ERRSegment.DiagnosticInformation).value =
-                  error.stack;
-            }
-            res.send(ack);
-          }
-          if (error) this.emit('error', error, socket);
-        } finally {
-          resolve();
-        }
+        if (context.error) this.emit('error', context.error, socket);
+        resolve();
       });
     });
     this._runningHandlers.add(waitPromise);

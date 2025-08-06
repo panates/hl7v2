@@ -16,7 +16,8 @@
     "uid": "^2.0.2"
   },
   "peerDependencies": {
-    "hl7v2": "^1.0.2"
+    "hl7v2": "^1.0.2",
+    "hl7v2-dictionary": "^1.0.2"
   },
   "devDependencies": {
     "expect": "^30.0.5"

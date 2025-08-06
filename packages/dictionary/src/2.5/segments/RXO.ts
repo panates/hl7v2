@@ -1,0 +1,151 @@
+import { DeepPartial } from 'ts-gems';
+import { HL7SegmentDefinition } from '../../types.js';
+
+export const RXO: DeepPartial<HL7SegmentDefinition> = {
+  fields: {
+    '1': {
+      type: 'CE',
+      desc: 'Requested Give Code',
+      opt: 'O',
+      rep: 1,
+    },
+    '2': {
+      type: 'NM',
+      desc: 'Requested Give Amount - Minimum',
+      opt: 'O',
+      rep: 1,
+      len: 20,
+    },
+    '3': {
+      type: 'NM',
+      desc: 'Requested Give Amount - Maximum',
+      opt: 'O',
+      rep: 1,
+      len: 20,
+    },
+    '4': {
+      type: 'CE',
+      desc: 'Requested Give Units',
+      opt: 'O',
+      rep: 1,
+    },
+    '5': {
+      type: 'CE',
+      desc: 'Requested Dosage Form',
+      opt: 'O',
+      rep: 1,
+    },
+    '6': {
+      type: 'CE',
+      opt: 'O',
+      rep: 'infinite',
+    },
+    '7': {
+      type: 'CE',
+      opt: 'O',
+      rep: 'infinite',
+    },
+    '8': {
+      type: 'LA1',
+      opt: 'O',
+      rep: 1,
+    },
+    '9': {
+      type: 'ID',
+      desc: 'Allow Substitutions',
+      opt: 'O',
+      rep: 1,
+      len: 1,
+      table: 161,
+    },
+    '10': {
+      type: 'CE',
+      desc: 'Requested Dispense Code',
+      opt: 'O',
+      rep: 1,
+    },
+    '11': {
+      type: 'NM',
+      desc: 'Requested Dispense Amount',
+      opt: 'O',
+      rep: 1,
+      len: 20,
+    },
+    '12': {
+      type: 'CE',
+      desc: 'Requested Dispense Units',
+      opt: 'O',
+      rep: 1,
+    },
+    '13': {
+      type: 'NM',
+      desc: 'Number Of Refills',
+      opt: 'O',
+      rep: 1,
+      len: 3,
+    },
+    '14': {
+      type: 'XCN',
+      opt: 'O',
+      rep: 'infinite',
+    },
+    '15': {
+      type: 'XCN',
+      opt: 'O',
+      rep: 'infinite',
+    },
+    '16': {
+      type: 'ID',
+      desc: 'Needs Human Review',
+      opt: 'O',
+      rep: 1,
+      len: 1,
+    },
+    '17': {
+      type: 'ST',
+      desc: 'Requested Give Per',
+      opt: 'O',
+      rep: 1,
+      len: 20,
+    },
+    '20': {
+      rep: 'infinite',
+    },
+    '23': {
+      type: 'CQ',
+      desc: 'Total Daily Dose',
+      opt: 'O',
+      rep: 1,
+      len: 10,
+    },
+    '25': {
+      type: 'NM',
+      desc: 'Requested Drug Strength Volume',
+      opt: 'O',
+      rep: 1,
+      len: 5,
+    },
+    '26': {
+      type: 'CWE',
+      desc: 'Requested Drug Strength Volume Units',
+      opt: 'O',
+      rep: 1,
+      len: 250,
+    },
+    '27': {
+      type: 'ID',
+      desc: 'Pharmacy Order Type',
+      opt: 'O',
+      rep: 1,
+      len: 1,
+      table: 480,
+    },
+    '28': {
+      type: 'NM',
+      desc: 'Dispensing Interval',
+      opt: 'O',
+      rep: 1,
+      len: 20,
+    },
+  },
+};

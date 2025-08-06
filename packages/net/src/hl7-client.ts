@@ -3,11 +3,10 @@ import { HL7Message } from 'hl7v2';
 import { TcpNetConnectOpts } from 'net';
 import { AsyncEventEmitter } from 'node-events-async';
 import { StrictOmit } from 'ts-gems';
-import { HL7Request } from './hl7-request.js';
-import { HL7Response } from './hl7-response.js';
+import { HL7RequestContext } from './h-l7-request-context.js';
 import { HL7Router } from './hl7-router.js';
 import { HL7Socket } from './hl7-socket.js';
-import { HL7ErrorMiddleware, HL7Middleware } from './types.js';
+import { HL7Middleware } from './types.js';
 
 export class Hl7Client extends AsyncEventEmitter {
   protected _router = new HL7Router();
@@ -115,15 +114,14 @@ export class Hl7Client extends AsyncEventEmitter {
     this._socket?.setKeepAlive(enable, initialDelay);
   }
 
-  use(handler: HL7Middleware | HL7ErrorMiddleware, priority = 0) {
+  use(handler: HL7Middleware, priority = 0) {
     this._router.use(handler, priority);
   }
 
   protected _onMessage(message: HL7Message) {
-    const req = new HL7Request(this._socket!, message);
-    const res = new HL7Response(req);
-    this._router.handle(undefined, req, res, error => {
-      if (error) this.emit('error', error);
+    const context = new HL7RequestContext(this._socket!, message);
+    this._router.handle(context, () => {
+      if (context.error) this.emit('error', context.error);
     });
   }
 }
