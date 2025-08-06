@@ -1,11 +1,6 @@
 import { expect } from 'expect';
 import { HL7Message } from 'hl7v2';
-import {
-  Hl7Client,
-  type HL7Request,
-  HL7Response,
-  HL7Server,
-} from '../src/index.js';
+import { Hl7Client, type HL7RequestContext, HL7Server } from '../src/index.js';
 
 describe('net:client', () => {
   let server: HL7Server | undefined;
@@ -30,7 +25,7 @@ describe('net:client', () => {
     expect(client.readyState).toStrictEqual('open');
   });
 
-  it('can reconnect after close', async () => {
+  it('Should reconnect after close', async () => {
     server = HL7Server.createServer();
     await server.listen(12345);
     client = new Hl7Client({ host: 'localhost', port: 12345 });
@@ -42,7 +37,7 @@ describe('net:client', () => {
     expect(client.connected).toBeTruthy();
   });
 
-  it('can receive messages from server', done => {
+  it('Should receive messages from server', done => {
     Promise.resolve().then(async () => {
       const clientMessages: HL7Message[] = [];
       // Server side
@@ -67,10 +62,10 @@ describe('net:client', () => {
       client = new Hl7Client({ host: 'localhost', port: 12345 });
 
       // Client side
-      client.use((req: HL7Request, res: HL7Response) => {
-        clientMessages.push(req.message);
-        const ack = req.message.createAck();
-        res.send(ack);
+      client.use((ctx: HL7RequestContext) => {
+        clientMessages.push(ctx.request);
+        const ack = ctx.request.createAck();
+        ctx.end(ack);
       });
       await client.connect();
     });

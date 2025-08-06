@@ -1,0 +1,38 @@
+import { DeepPartial } from 'ts-gems';
+import { HL7SegmentDefinition } from '../../types.js';
+
+export const DSP: DeepPartial<HL7SegmentDefinition> = {
+  desc: 'Display data segment',
+  fields: {
+    '1': {
+      type: 'SI',
+      opt: 'O',
+      rep: 1,
+      len: 4,
+    },
+    '2': {
+      type: 'SI',
+      opt: 'O',
+      rep: 1,
+      len: 4,
+    },
+    '3': {
+      type: 'TX',
+      opt: 'R',
+      rep: 1,
+      len: 300,
+    },
+    '4': {
+      type: 'ST',
+      opt: 'O',
+      rep: 1,
+      len: 2,
+    },
+    '5': {
+      type: 'TX',
+      opt: 'O',
+      rep: 1,
+      len: 20,
+    },
+  },
+};

@@ -1,11 +1,6 @@
 import { expect } from 'expect';
 import { HL7Message, MSASegment, MSHSegment } from 'hl7v2';
-import {
-  Hl7Client,
-  type HL7Request,
-  HL7Response,
-  HL7Server,
-} from '../src/index.js';
+import { Hl7Client, type HL7RequestContext, HL7Server } from '../src/index.js';
 
 describe('net:server', () => {
   let server: HL7Server | undefined;
@@ -32,11 +27,11 @@ describe('net:server', () => {
     server = HL7Server.createServer();
     await server.listen(12345);
     const messages: HL7Message[] = [];
-    server.use((req: HL7Request, res: HL7Response) => {
-      messages.push(req.message);
-      const ack = req.message.createAck();
+    server.use((ctx: HL7RequestContext) => {
+      messages.push(ctx.request);
+      const ack = ctx.request.createAck();
       messages.push(ack);
-      res.send(ack);
+      ctx.end(ack);
     });
     client = new Hl7Client({ host: 'localhost', port: 12345 });
     const msg = new HL7Message();

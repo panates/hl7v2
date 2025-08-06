@@ -4,10 +4,10 @@ import iconv from 'iconv-lite';
 import { Socket } from 'net';
 import { AsyncEventEmitter } from 'node-events-async';
 import { FrameStream } from './helpers/frame-stream.js';
-import { HL7ExchangeError } from './helpers/hl7-exchange-error.js';
 
 export class HL7Socket extends AsyncEventEmitter {
   readonly socket: Socket;
+  protected _messageHooks = new Set<(resp: HL7Message) => boolean>();
   protected _frameStream: FrameStream;
   protected _waitPromises = new Set<Promise<any>>();
   protected _options: HL7Socket.Options;
@@ -89,11 +89,12 @@ export class HL7Socket extends AsyncEventEmitter {
 
   sendMessage(message: HL7Message) {
     if (!this.connected) throw new Error('Socket is not connected');
+    if (!this.socket.writable) throw new Error('Socket is not writable');
 
-    let encoding = message.header.field(MSHSegment.CharacterSet).value;
+    let encoding = message.header.field(MSHSegment.CharacterSet).getValue();
     if (!encoding) {
       encoding = 'UTF-8';
-      message.header.field(MSHSegment.CharacterSet).value = encoding;
+      message.header.field(MSHSegment.CharacterSet).setValue(encoding);
     }
     const str = message.toHL7String();
     const buf = iconv.encode(str, encoding);
@@ -108,29 +109,15 @@ export class HL7Socket extends AsyncEventEmitter {
 
     const waitPromise = new Promise<HL7Message>((resolve, reject) => {
       let responseTimer: NodeJS.Timeout | undefined;
-      const onMessage = (resp: HL7Message) => {
-        const msgType2 = resp.header.field(MSHSegment.MessageType).value;
-        if (msgType2 !== 'ACK') return;
-
+      const messageHook = (resp: HL7Message): boolean => {
+        const msgType2 = resp.header.field(MSHSegment.MessageType).getValue();
+        if (msgType2 !== 'ACK') return false;
         const msa = resp.getSegment('MSA');
-        if (!msa) {
-          const err = new HL7ExchangeError(
-            `Invalid message returned from server. MSA segment not found.`,
-            {
-              response: message,
-              request: resp,
-              segmentType: 'MSA',
-              hl7ErrorCode: 100,
-            },
-          );
-          onError(err);
-          return;
-        }
-        const controlId2 = msa.field(MSASegment.MessageControlID).value;
-        if (controlId2 !== controlId) return;
-
+        const controlId2 = msa?.field(MSASegment.MessageControlID).getValue();
+        if (controlId2 !== controlId) return false;
         cleanup();
         resolve(resp);
+        return true;
       };
 
       const onError = (error: any) => {
@@ -140,13 +127,16 @@ export class HL7Socket extends AsyncEventEmitter {
 
       const cleanup = () => {
         clearTimeout(responseTimer);
-        this.removeListener('message', onMessage);
+        this._messageHooks.delete(messageHook);
         this.socket.removeListener('error', onError);
       };
 
-      const controlId = message.header.field(MSHSegment.MessageControlID).value;
+      const controlId = message.header
+        .field(MSHSegment.MessageControlID)
+        .getValue();
       this.socket.once('error', reject);
-      this.on('message', onMessage);
+      this._messageHooks.add(messageHook);
+      // this.on('message', messageHook);
       if (responseTimeout) {
         responseTimer = setTimeout(() => {
           onError(new Error('Response timeout'));
@@ -170,6 +160,9 @@ export class HL7Socket extends AsyncEventEmitter {
     try {
       const message = new HL7Message();
       message.parse(data);
+      for (const hook of this._messageHooks) {
+        if (hook(message)) break;
+      }
       this.emit('message', message);
     } catch (err: any) {
       this.emit('error', err);

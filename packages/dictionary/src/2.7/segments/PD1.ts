@@ -1,0 +1,143 @@
+import { DeepPartial } from 'ts-gems';
+import { HL7SegmentDefinition } from '../../types.js';
+
+export const PD1: DeepPartial<HL7SegmentDefinition> = {
+  fields: {
+    '1': {
+      type: 'CWE',
+      desc: 'Living Dependency',
+      opt: 'O',
+      table: 223,
+    },
+    '2': {
+      type: 'CWE',
+      desc: 'Living Arrangement',
+      opt: 'O',
+      rep: 1,
+      table: 220,
+    },
+    '3': {
+      type: 'XON',
+      desc: 'Patient Primary Facility',
+      opt: 'O',
+      rep: 'infinite',
+    },
+    '4': {
+      type: 'ST',
+      desc: 'Patient Primary Care Provider Name & ID No.',
+      opt: 'B',
+      rep: 1,
+    },
+    '5': {
+      type: 'CWE',
+      desc: 'Student Indicator',
+      opt: 'O',
+      rep: 1,
+      table: 231,
+    },
+    '6': {
+      type: 'CWE',
+      desc: 'Handicap',
+      opt: 'O',
+      rep: 1,
+    },
+    '7': {
+      type: 'CWE',
+      desc: 'Living Will Code',
+      opt: 'O',
+      rep: 1,
+      table: 315,
+    },
+    '8': {
+      type: 'CWE',
+      desc: 'Organ Donor Code',
+      opt: 'O',
+      rep: 1,
+      table: 316,
+    },
+    '9': {
+      type: 'ID',
+      desc: 'Separate Bill',
+      opt: 'O',
+      rep: 1,
+      table: 136,
+    },
+    '10': {
+      type: 'CX',
+      desc: 'Duplicate Patient',
+      opt: 'O',
+      rep: 'infinite',
+    },
+    '11': {
+      opt: 'O',
+      rep: 1,
+      table: 215,
+    },
+    '12': {
+      type: 'ID',
+      desc: 'Protection Indicator',
+      opt: 'O',
+      rep: 1,
+      len: 1,
+      table: 136,
+    },
+    '13': {
+      type: 'DT',
+      desc: 'Protection Indicator Effective Date',
+      opt: 'O',
+      rep: 1,
+    },
+    '14': {
+      type: 'XON',
+      desc: 'Place of Worship',
+      opt: 'O',
+      rep: 'infinite',
+    },
+    '15': {
+      desc: 'Advance Directive Code',
+      opt: 'C',
+      rep: 'infinite',
+      table: 435,
+    },
+    '16': {
+      type: 'CWE',
+      desc: 'Immunization Registry Status',
+      opt: 'O',
+      rep: 1,
+      table: 441,
+    },
+    '17': {
+      type: 'DT',
+      desc: 'Immunization Registry Status Effective Date',
+      opt: 'O',
+      rep: 1,
+    },
+    '18': {
+      type: 'DT',
+      desc: 'Publicity Code Effective Date',
+      opt: 'O',
+      rep: 1,
+    },
+    '19': {
+      type: 'CWE',
+      desc: 'Military Branch',
+      opt: 'O',
+      rep: 1,
+      table: 140,
+    },
+    '20': {
+      type: 'CWE',
+      desc: 'Military Rank/Grade',
+      opt: 'O',
+      rep: 1,
+      table: 141,
+    },
+    '21': {
+      type: 'CWE',
+      desc: 'Military Status',
+      opt: 'O',
+      rep: 1,
+      table: 142,
+    },
+  },
+};

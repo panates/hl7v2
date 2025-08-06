@@ -1,0 +1,43 @@
+import { DeepPartial } from 'ts-gems';
+import { HL7SegmentDefinition } from '../../types.js';
+
+export const PR1: DeepPartial<HL7SegmentDefinition> = {
+  desc: 'Procedures segment',
+  fields: {
+    '1': {
+      desc: 'Set ID - PR1',
+      rep: 1,
+    },
+    '2': {
+      opt: 'O',
+    },
+    '3': {
+      opt: 'R',
+    },
+    '5': {
+      opt: 'R',
+      len: 26,
+    },
+    '6': {
+      type: 'IS',
+      desc: 'Procedure Functional Type',
+    },
+    '12': {
+      desc: 'Procedure Practitioner',
+      rep: 'infinite',
+    },
+    '14': {
+      type: 'NM',
+      opt: 'O',
+      rep: 1,
+      len: 2,
+    },
+    '16': {
+      type: 'CE',
+      desc: 'Procedure Code Modifier',
+      opt: 'O',
+      rep: 'infinite',
+      len: 80,
+    },
+  },
+};

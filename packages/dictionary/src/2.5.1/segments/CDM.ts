@@ -1,0 +1,101 @@
+import { DeepPartial } from 'ts-gems';
+import { HL7SegmentDefinition } from '../../types.js';
+
+export const CDM: DeepPartial<HL7SegmentDefinition> = {
+  desc: 'Charge Description Master',
+  fields: {
+    '1': {
+      type: 'CE',
+      opt: 'R',
+      rep: 1,
+      len: 250,
+      table: 132,
+    },
+    '2': {
+      type: 'CE',
+      desc: 'Charge Code Alias',
+      opt: 'O',
+      rep: 'infinite',
+      len: 250,
+    },
+    '3': {
+      type: 'ST',
+      desc: 'Charge Description Short',
+      opt: 'R',
+      rep: 1,
+      len: 20,
+    },
+    '4': {
+      type: 'ST',
+      desc: 'Charge Description Long',
+      opt: 'O',
+      rep: 1,
+      len: 250,
+    },
+    '5': {
+      type: 'IS',
+      desc: 'Description Override Indicator',
+      opt: 'O',
+      rep: 1,
+      len: 1,
+      table: 268,
+    },
+    '6': {
+      type: 'CE',
+      desc: 'Exploding Charges',
+      opt: 'O',
+      rep: 'infinite',
+      len: 250,
+    },
+    '7': {
+      type: 'CE',
+      desc: 'Procedure Code',
+      opt: 'O',
+      len: 250,
+      table: 88,
+    },
+    '8': {
+      type: 'ID',
+      desc: 'Active/Inactive Flag',
+      opt: 'O',
+      rep: 1,
+      len: 1,
+      table: 183,
+    },
+    '9': {
+      type: 'CE',
+      desc: 'Inventory Number',
+      opt: 'O',
+      rep: 'infinite',
+      len: 250,
+      table: 463,
+    },
+    '10': {
+      type: 'NM',
+      desc: 'Resource Load',
+      opt: 'O',
+      rep: 1,
+      len: 12,
+    },
+    '11': {
+      desc: 'Contract Number',
+      opt: 'O',
+      rep: 'infinite',
+      len: 250,
+    },
+    '12': {
+      type: 'XON',
+      desc: 'Contract Organization',
+      opt: 'O',
+      len: 250,
+    },
+    '13': {
+      type: 'ID',
+      desc: 'Room Fee Indicator',
+      opt: 'O',
+      rep: 1,
+      len: 1,
+      table: 136,
+    },
+  },
+};

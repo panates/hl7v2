@@ -1,0 +1,15 @@
+import { DeepPartial } from 'ts-gems';
+import { HL7DataTypeDefinition } from '../../types.js';
+
+export const SCV: DeepPartial<HL7DataTypeDefinition> = {
+  fields: {
+    '1': {
+      type: 'CWE',
+      len: 20,
+      table: 294,
+    },
+    '2': {
+      len: 20,
+    },
+  },
+};
