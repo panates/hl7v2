@@ -1,5 +1,5 @@
 export enum CONSegment {
-  SetIDCON = 1,
+  SetID = 1,
   ConsentType = 2,
   ConsentFormIDAndVersion = 3,
   ConsentFormNumber = 4,

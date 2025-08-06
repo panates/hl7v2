@@ -1,5 +1,5 @@
 export enum NTESegment {
-  SetIDNTE = 1,
+  SetID = 1,
   SourceOfComment = 2,
   Comment = 3,
   CommentType = 4,

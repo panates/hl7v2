@@ -1,5 +1,5 @@
 export enum OBXSegment {
-  SetIDOBX = 1,
+  SetID = 1,
   ValueType = 2,
   ObservationIdentifier = 3,
   ObservationSubID = 4,

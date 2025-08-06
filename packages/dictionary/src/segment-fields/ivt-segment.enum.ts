@@ -1,5 +1,5 @@
 export enum IVTSegment {
-  SetIdIVT = 1,
+  SetID = 1,
   InventoryLocationIdentifier = 2,
   InventoryLocationName = 3,
   SourceLocationIdentifier = 4,

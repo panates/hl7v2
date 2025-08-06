@@ -1,5 +1,5 @@
 export enum AL1Segment {
-  SetIDAL1 = 1,
+  SetID = 1,
   AllergenTypeCode = 2,
   AllergenCodeMnemonicDescription = 3,
   AllergySeverityCode = 4,

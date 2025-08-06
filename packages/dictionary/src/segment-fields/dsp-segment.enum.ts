@@ -1,5 +1,5 @@
 export enum DSPSegment {
-  SetIDDSP = 1,
+  SetID = 1,
   DisplayLevel = 2,
   DataLine = 3,
   LogicalBreakPoint = 4,

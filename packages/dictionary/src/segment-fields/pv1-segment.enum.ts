@@ -1,5 +1,5 @@
 export enum PV1Segment {
-  SetIDPV1 = 1,
+  SetID = 1,
   PatientClass = 2,
   AssignedPatientLocation = 3,
   AdmissionType = 4,

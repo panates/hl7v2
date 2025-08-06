@@ -1,5 +1,5 @@
 export enum RELSegment {
-  SetIDREL = 1,
+  SetID = 1,
   RelationshipType = 2,
   ThisRelationshipInstanceIdentifier = 3,
   SourceInformationInstanceIdentifier = 4,

@@ -1,5 +1,5 @@
 export enum PR1Segment {
-  SetIDPR1 = 1,
+  SetID = 1,
   ProcedureCodingMethod = 2,
   ProcedureCode = 3,
   ProcedureDescription = 4,

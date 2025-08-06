@@ -1,5 +1,5 @@
 export enum AFFSegment {
-  SetIDAFF = 1,
+  SetID = 1,
   ProfessionalOrganization = 2,
   ProfessionalOrganizationAddress = 3,
   ProfessionalOrganizationAffiliationDateRange = 4,

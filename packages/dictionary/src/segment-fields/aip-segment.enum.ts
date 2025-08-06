@@ -1,5 +1,5 @@
 export enum AIPSegment {
-  SetIDAIP = 1,
+  SetID = 1,
   SegmentActionCode = 2,
   PersonnelResourceID = 3,
   ResourceType = 4,

@@ -1,5 +1,5 @@
 export enum EDUSegment {
-  SetIDEDU = 1,
+  SetID = 1,
   AcademicDegree = 2,
   AcademicDegreeProgramDateRange = 3,
   AcademicDegreeProgramParticipationDateRange = 4,

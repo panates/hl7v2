@@ -1,5 +1,5 @@
 export enum CM0Segment {
-  SetIDCM0 = 1,
+  SetID = 1,
   SponsorStudyID = 2,
   AlternateStudyID = 3,
   TitleOfStudy = 4,

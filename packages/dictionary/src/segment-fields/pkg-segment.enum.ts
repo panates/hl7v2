@@ -1,5 +1,5 @@
 export enum PKGSegment {
-  SetIdPKG = 1,
+  SetID = 1,
   PackagingUnits = 2,
   DefaultOrderUnitOfMeasureIndicator = 3,
   PackageQuantity = 4,

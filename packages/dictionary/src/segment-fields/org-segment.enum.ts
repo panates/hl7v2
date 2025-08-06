@@ -1,5 +1,5 @@
 export enum ORGSegment {
-  SetIDORG = 1,
+  SetID = 1,
   OrganizationUnitCode = 2,
   OrganizationUnitTypeCode = 3,
   PrimaryOrgUnitIndicator = 4,

@@ -1,5 +1,5 @@
 export enum AILSegment {
-  SetIDAIL = 1,
+  SetID = 1,
   SegmentActionCode = 2,
   LocationResourceID = 3,
   LocationTypeAIL = 4,

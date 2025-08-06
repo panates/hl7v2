@@ -1,5 +1,5 @@
 export enum BPXSegment {
-  SetIDBPX = 1,
+  SetID = 1,
   BPDispenseStatus = 2,
   BPStatus = 3,
   BPDateTimeOfStatus = 4,

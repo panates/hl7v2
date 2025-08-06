@@ -1,5 +1,5 @@
 export enum UB1Segment {
-  SetIDUB1 = 1,
+  SetID = 1,
   BloodDeductible = 2,
   BloodFurnishedPints = 3,
   BloodReplacedPints = 4,

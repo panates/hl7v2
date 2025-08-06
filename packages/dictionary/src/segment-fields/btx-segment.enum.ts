@@ -1,5 +1,5 @@
 export enum BTXSegment {
-  SetIDBTX = 1,
+  SetID = 1,
   BCDonationID = 2,
   BCComponent = 3,
   BCBloodGroup = 4,

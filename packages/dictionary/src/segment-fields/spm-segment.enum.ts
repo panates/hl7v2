@@ -1,5 +1,5 @@
 export enum SPMSegment {
-  SetIDSPM = 1,
+  SetID = 1,
   SpecimenID = 2,
   SpecimenParentIDs = 3,
   SpecimenType = 4,

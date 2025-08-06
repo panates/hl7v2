@@ -1,5 +1,5 @@
 export enum BPOSegment {
-  SetIDBPO = 1,
+  SetID = 1,
   BPUniversalServiceIdentifier = 2,
   BPProcessingRequirements = 3,
   BPQuantity = 4,

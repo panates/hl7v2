@@ -1,5 +1,5 @@
 export enum OBRSegment {
-  SetIDOBR = 1,
+  SetID = 1,
   PlacerOrderNumber = 2,
   FillerOrderNumber = 3,
   UniversalServiceIdentifier = 4,
