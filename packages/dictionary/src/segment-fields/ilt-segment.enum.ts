@@ -1,5 +1,5 @@
 export enum ILTSegment {
-  SetIdILT = 1,
+  SetID = 1,
   InventoryLotNumber = 2,
   InventoryExpirationDate = 3,
   InventoryReceivedDate = 4,

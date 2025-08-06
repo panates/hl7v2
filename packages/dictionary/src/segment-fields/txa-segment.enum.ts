@@ -1,5 +1,5 @@
 export enum TXASegment {
-  SetIDTXA = 1,
+  SetID = 1,
   DocumentType = 2,
   DocumentContentPresentation = 3,
   ActivityDateTime = 4,

@@ -1,5 +1,5 @@
 export enum AISSegment {
-  SetIDAIS = 1,
+  SetID = 1,
   SegmentActionCode = 2,
   UniversalServiceIdentifier = 3,
   StartDateTime = 4,

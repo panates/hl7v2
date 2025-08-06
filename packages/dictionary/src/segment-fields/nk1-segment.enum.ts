@@ -1,5 +1,5 @@
 export enum NK1Segment {
-  SetIDNK1 = 1,
+  SetID = 1,
   Name = 2,
   Relationship = 3,
   Address = 4,

@@ -1,5 +1,5 @@
 export enum FT1Segment {
-  SetIDFT1 = 1,
+  SetID = 1,
   TransactionID = 2,
   TransactionBatchID = 3,
   TransactionDate = 4,

@@ -1,5 +1,5 @@
 export enum TQ1Segment {
-  SetIDTQ1 = 1,
+  SetID = 1,
   Quantity = 2,
   RepeatPattern = 3,
   ExplicitTime = 4,

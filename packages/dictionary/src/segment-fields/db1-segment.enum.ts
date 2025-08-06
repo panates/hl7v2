@@ -1,5 +1,5 @@
 export enum DB1Segment {
-  SetIDDB1 = 1,
+  SetID = 1,
   DisabledPersonCode = 2,
   DisabledPersonIdentifier = 3,
   DisabilityIndicator = 4,

@@ -1,5 +1,5 @@
 export enum AIGSegment {
-  SetIDAIG = 1,
+  SetID = 1,
   SegmentActionCode = 2,
   ResourceID = 3,
   ResourceType = 4,

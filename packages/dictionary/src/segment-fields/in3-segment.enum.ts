@@ -1,5 +1,5 @@
 export enum IN3Segment {
-  SetIDIN3 = 1,
+  SetID = 1,
   CertificationNumber = 2,
   CertifiedBy = 3,
   CertificationRequired = 4,

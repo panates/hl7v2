@@ -1,5 +1,5 @@
 export enum TQ2Segment {
-  SetIDTQ2 = 1,
+  SetID = 1,
   SequenceResultsFlag = 2,
   RelatedPlacerNumber = 3,
   RelatedFillerNumber = 4,

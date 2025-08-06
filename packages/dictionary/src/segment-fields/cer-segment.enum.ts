@@ -1,5 +1,5 @@
 export enum CERSegment {
-  SetIDCER = 1,
+  SetID = 1,
   SerialNumber = 2,
   Version = 3,
   GrantingAuthority = 4,

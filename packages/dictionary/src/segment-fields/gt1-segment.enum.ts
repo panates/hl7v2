@@ -1,5 +1,5 @@
 export enum GT1Segment {
-  SetIDGT1 = 1,
+  SetID = 1,
   GuarantorNumber = 2,
   GuarantorName = 3,
   GuarantorSpouseName = 4,

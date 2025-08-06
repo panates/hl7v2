@@ -1,5 +1,5 @@
 export enum UB2Segment {
-  SetIDUB2 = 1,
+  SetID = 1,
   CoInsurance = 2,
   ConditionCode = 3,
   CoveredDays = 4,

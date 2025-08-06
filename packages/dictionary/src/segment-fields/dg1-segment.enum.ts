@@ -1,5 +1,5 @@
 export enum DG1Segment {
-  SetIDDG1 = 1,
+  SetID = 1,
   DiagnosisCodingMethod = 2,
   DiagnosisCodeDG1 = 3,
   DiagnosisDescription = 4,

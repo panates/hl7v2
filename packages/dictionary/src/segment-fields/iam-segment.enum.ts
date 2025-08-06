@@ -1,5 +1,5 @@
 export enum IAMSegment {
-  SetIDIAM = 1,
+  SetID = 1,
   AllergenTypeCode = 2,
   AllergenCodeMnemonicDescription = 3,
   AllergySeverityCode = 4,

@@ -10,5 +10,5 @@ export enum PRASegment {
   Institution = 9,
   DateLeftPractice = 10,
   GovernmentReimbursementBillingEligibility = 11,
-  SetIDPRA = 12,
+  SetID = 12,
 }

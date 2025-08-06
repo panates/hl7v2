@@ -1,5 +1,5 @@
 export enum PIDSegment {
-  SetIDPID = 1,
+  SetID = 1,
   PatientID = 2,
   PatientIdentifierList = 3,
   AlternatePatientIDPID = 4,

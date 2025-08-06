@@ -1,5 +1,5 @@
 export enum PACSegment {
-  SetIdPAC = 1,
+  SetID = 1,
   PackageID = 2,
   ParentPackageID = 3,
   PositionInParentPackage = 4,

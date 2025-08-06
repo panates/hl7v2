@@ -1,5 +1,5 @@
 export enum IN1Segment {
-  SetIDIN1 = 1,
+  SetID = 1,
   HealthPlanID = 2,
   InsuranceCompanyID = 3,
   InsuranceCompanyName = 4,
