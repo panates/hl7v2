@@ -37,7 +37,14 @@ export class HL7Socket extends AsyncEventEmitter {
     socket.on('close', () => {
       this.emit('close');
     });
-    frameStream.on('data', data => this._parseMessage(data));
+    frameStream.on('data', data => {
+      try {
+        const message = this._parseMessage(data);
+        this.emit('message', message);
+      } catch (err: any) {
+        this.emit('error', err);
+      }
+    });
   }
 
   get connected(): boolean {
@@ -101,6 +108,7 @@ export class HL7Socket extends AsyncEventEmitter {
     this.socket.write(VT);
     this.socket.write(buf);
     this.socket.end(FS + CR);
+    this.emit('send', message, this.socket);
   }
 
   async sendMessageWaitAck(message: HL7Message): Promise<HL7Message> {
@@ -156,17 +164,13 @@ export class HL7Socket extends AsyncEventEmitter {
     this.socket.setKeepAlive(enable, initialDelay);
   }
 
-  protected _parseMessage(data: Buffer) {
-    try {
-      const message = new HL7Message();
-      message.parse(data);
-      for (const hook of this._messageHooks) {
-        if (hook(message)) break;
-      }
-      this.emit('message', message);
-    } catch (err: any) {
-      this.emit('error', err);
+  protected _parseMessage(data: Buffer): HL7Message {
+    const message = new HL7Message();
+    message.parse(data);
+    for (const hook of this._messageHooks) {
+      if (hook(message)) break;
     }
+    return message;
   }
 }
 
@@ -184,7 +188,8 @@ export namespace HL7Socket {
         host: string,
       ) => void,
     ];
-    message: [message: HL7Message];
+    message: [message: HL7Message, socket: HL7Socket];
+    send: [message: HL7Message, socket: HL7Socket];
   }
 
   export interface Options {

@@ -99,7 +99,11 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
         this.emit('close');
       });
       socket.on('error', err => this.emit('error', err));
-      socket.on('message', message => this._onMessage(message));
+      socket.on('message', message => {
+        this.emit('message', message, socket);
+        this._onMessage(message);
+      });
+      socket.on('send', message => this.emit('send', message, socket));
 
       const onReady = () => {
         clearTimeout(timeoutTimer);
@@ -180,5 +184,5 @@ export namespace Hl7Client {
   export type TlsConnectOptions = StrictOmit<tls.ConnectionOptions, 'socket'> &
     CommonConnectOptions;
 
-  export interface Events extends StrictOmit<HL7Socket.Events, 'message'> {}
+  export interface Events extends HL7Socket.Events {}
 }

@@ -221,16 +221,20 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
       maxBufferSize: this.maxBufferPerSocket,
     });
     this._sockets.add(socket);
-    socket.on('message', message => this._onMessage(socket, message));
     socket.on('close', () => {
       this._sockets.delete(socket);
       this.emit('disconnect', socket);
     });
     socket.on('error', error => this.emit('error', error, socket));
+    socket.on('message', message => {
+      this.emit('message', message, socket);
+      this._onMessage(message, socket);
+    });
+    socket.on('send', message => this.emit('send', message, socket));
     this.emit('connection', socket);
   }
 
-  protected _onMessage(socket: HL7Socket, message: HL7Message) {
+  protected _onMessage(message: HL7Message, socket: HL7Socket) {
     const waitPromise = new Promise<void>(resolve => {
       const context = new HL7RequestContext(socket, message);
       const timeoutTimer = setTimeout(() => {
@@ -264,7 +268,8 @@ export namespace HL7Server {
     disconnect: [socket: HL7Socket];
     drop: [data?: net.DropArgument];
     error: [error: Error, HL7Socket | undefined];
-    message: [message: HL7Message];
+    message: [message: HL7Message, socket: HL7Socket];
+    send: [message: HL7Message, socket: HL7Socket];
   }
 
   export interface Options {
