@@ -12,14 +12,14 @@ describe('net:client', () => {
   });
 
   it('should construct', async () => {
-    client = new Hl7Client({ host: 'localhost', port: 12345 });
+    client = Hl7Client.createClient({ host: 'localhost', port: 12345 });
     expect(client).toBeDefined();
   });
 
   it('should connect', async () => {
     server = HL7Server.createServer();
     await server.listen(12345);
-    client = new Hl7Client({ host: 'localhost', port: 12345 });
+    client = Hl7Client.createClient({ host: 'localhost', port: 12345 });
     await client.connect();
     expect(client.connected).toBeTruthy();
     expect(client.readyState).toStrictEqual('open');
@@ -28,7 +28,7 @@ describe('net:client', () => {
   it('Should reconnect after close', async () => {
     server = HL7Server.createServer();
     await server.listen(12345);
-    client = new Hl7Client({ host: 'localhost', port: 12345 });
+    client = Hl7Client.createClient({ host: 'localhost', port: 12345 });
     await client.connect();
     expect(client.connected).toBeTruthy();
     await client.close();
@@ -59,7 +59,7 @@ describe('net:client', () => {
             .catch(done);
         }, 50);
       });
-      client = new Hl7Client({ host: 'localhost', port: 12345 });
+      client = Hl7Client.createClient({ host: 'localhost', port: 12345 });
 
       // Client side
       client.use((ctx: HL7RequestContext) => {

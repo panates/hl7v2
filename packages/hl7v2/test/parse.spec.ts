@@ -18,14 +18,14 @@ const sampleMessage1 =
 PID|2|2161348462|20809880170|1614614|20809880170^TESTPAT||19760924000000|M|||^^^^00000-0000|||||||86427531^^^03|SSN# HERE
 ORC|NW|8642753100012^LIS|20809880170^LCS||||||19980727000000|||HAVILAND
 OBR|1|8642753100012^LIS|20809880170^LCS|008342^UPPER RESPIRATORY CULTURE^L|||19980727175800||||||SS#634748641 CH14885 SRC:THROA SRC:PENI|19980727000000||||||20809880170||19980730041800||BN|F
-OBX|1|ST|008342^UPPER RESPIRATORY CULTURE^L||FINALREPORT|||||N|F|||19980729160500|BN
+OBX|1|ST|008342^UPPER RESPIRATORY CULTURE^L||FINALREPORT|||||N|F|||199807291605|BN
 ORC|NW|8642753100012^LIS|20809880170^LCS||||||19980727000000|||HAVILAND
-OBR|2|8642753100012^LIS|20809880170^LCS|997602^.^L|||19980727175800||||G|||19980727000000||||||20809880170||19980730041800|||F|997602|||008342
-OBX|2|CE|997231^RESULT 1^L||M415|||||N|F|||19980729160500|BN
+OBR|2|8642753100012^LIS|20809880170^LCS|997602^.^L|||199807271758||||G|||19980727||||||20809880170||19980730041800|||F|997602|||008342
+OBX|2|CE|997231^RESULT 1^L||M415|||||N|F|||199807291605|BN
 NTE|1|L|MORAXELLA (BRANHAMELLA) CATARRHALIS
 NTE|2|L|HEAVY GROWTH
 NTE|3|L|BETA LACTAMASE POSITIVE
-OBX|3|CE|997232^RESULT 2^L||MR105|||||N|F|||19980729160500|BN
+OBX|3|CE|997232^RESULT 2^L||MR105|||||N|F|||199807291605|BN
 NTE|1|L|ROUTINE RESPIRATORY FLORA
 `.replace(/\n|\r\n/g, '\r');
 
@@ -93,24 +93,24 @@ describe('hl7v2:parse', () => {
   });
 
   it('should parse Date Time fields', () => {
-    const msg = HL7Message.parse('MSH|^~\\&|||||199807311532|||||2.5');
+    const msg = HL7Message.parse('MSH|^~\\&|||||19980731153200|||||2.5');
     expect(
       msg.header.field(MSHSegment.DateTimeOfMessage).getValue(),
-    ).toStrictEqual('1998-07-31T15:32:00');
+    ).toStrictEqual('199807311532');
   });
 
   it('should parse Date Time fields with milliseconds', () => {
     const msg = HL7Message.parse('MSH|^~\\&|||||199807311532.123|||||2.2');
     expect(
       msg.header.field(MSHSegment.DateTimeOfMessage).getValue(),
-    ).toStrictEqual('1998-07-31T15:32:00.123');
+    ).toStrictEqual('19980731153200.123');
   });
 
   it('should parse Date Time fields with timezone', () => {
     const msg = HL7Message.parse('MSH|^~\\&|||||199807311532.123+0500|||||2.2');
     expect(
       msg.header.field(MSHSegment.DateTimeOfMessage).getValue(),
-    ).toStrictEqual('1998-07-31T15:32:00.123+05:00');
+    ).toStrictEqual('19980731153200.123+0500');
   });
 
   it('should parse Date fields', () => {
@@ -119,14 +119,14 @@ describe('hl7v2:parse', () => {
     );
     const seg = msg.getSegment('AL1')!;
     expect(seg?.field(AL1Segment.IdentificationDate).getValue()).toEqual(
-      '2015-12-31',
+      '20151231',
     );
   });
 
   it('should parse Time fields', () => {
     const msg = HL7Message.parse('MSH|^~\\&||||||||||2.5\r' + 'TQ1||||134523');
     const seg = msg.getSegment('TQ1');
-    expect(seg?.field(TQ1Segment.ExplicitTime).getValue()).toEqual('13:45:23');
+    expect(seg?.field(TQ1Segment.ExplicitTime).getValue()).toEqual('134523');
   });
 
   it('should parse escaped characters', () => {

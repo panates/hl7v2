@@ -1,18 +1,11 @@
 import { toInteger, toNumber } from 'valgen';
-import {
-  decodeHL7Date,
-  decodeHL7DateTime,
-  decodeHL7Time,
-  encodeHL7Date,
-  encodeHL7DateTime,
-  encodeHL7Time,
-} from '../hl7-date.util.js';
+import { toHL7Date, toHL7DateTime, toHL7Time } from '../hl7-date.util.js';
 import dict from './dictionary.js';
 
 dict.overwriteTypes({
   DT: {
-    decode: decodeHL7Date,
-    encode: encodeHL7Date,
+    decode: toHL7Date,
+    encode: toHL7Date,
   },
   NM: {
     decode: toNumber,
@@ -23,13 +16,13 @@ dict.overwriteTypes({
   TS: {
     fields: {
       '1': {
-        decode: decodeHL7DateTime,
-        encode: encodeHL7DateTime,
+        decode: toHL7DateTime,
+        encode: toHL7DateTime,
       },
     },
   },
   TM: {
-    decode: decodeHL7Time,
-    encode: encodeHL7Time,
+    decode: toHL7Time,
+    encode: toHL7Time,
   },
 });

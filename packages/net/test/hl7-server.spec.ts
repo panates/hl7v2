@@ -33,7 +33,7 @@ describe('net:server', () => {
       messages.push(ack);
       ctx.end(ack);
     });
-    client = new Hl7Client({ host: 'localhost', port: 12345 });
+    client = Hl7Client.createClient({ host: 'localhost', port: 12345 });
     const msg = new HL7Message();
     msg.header.field(MSHSegment.MessageType).fromHL7String('ORU^R01');
     msg.addSegment('PID');
@@ -54,7 +54,7 @@ describe('net:server', () => {
   it('should send nak if no middle-ware handles the message', async () => {
     server = HL7Server.createServer();
     await server.listen(12345);
-    client = new Hl7Client({ host: 'localhost', port: 12345 });
+    client = Hl7Client.createClient({ host: 'localhost', port: 12345 });
     const msg = new HL7Message();
     msg.header.field(MSHSegment.MessageType).fromHL7String('ORU^R01');
     msg.addSegment('PID');
@@ -74,7 +74,7 @@ describe('net:server', () => {
     server.use(() => {
       throw new Error('test error');
     });
-    client = new Hl7Client({ host: 'localhost', port: 12345 });
+    client = Hl7Client.createClient({ host: 'localhost', port: 12345 });
     const msg = new HL7Message();
     msg.header.field(MSHSegment.MessageType).fromHL7String('ORU^R01');
     msg.addSegment('PID');
@@ -93,7 +93,7 @@ describe('net:server', () => {
 
   it('should wait running handlers for shutdownWait time', function (done) {
     this.slow(500);
-    client = new Hl7Client({ host: 'localhost', port: 12345 });
+    client = Hl7Client.createClient({ host: 'localhost', port: 12345 });
     server = HL7Server.createServer();
     server.use(() => {
       const t1 = Date.now();
@@ -121,7 +121,7 @@ describe('net:server', () => {
   it('should close immediately if there is no message to response', function (done) {
     this.slow(500);
     this.timeout(10000);
-    client = new Hl7Client({ host: 'localhost', port: 12345 });
+    client = Hl7Client.createClient({ host: 'localhost', port: 12345 });
     server = HL7Server.createServer();
     client.connect().then(() => {
       const t1 = Date.now();

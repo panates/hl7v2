@@ -16,7 +16,7 @@ export interface HL7FieldDefinition {
   len?: number;
   table?: number;
   encode?: (v: any) => string;
-  decode?: (v: string) => any;
+  decode?: (v: any) => any;
 }
 
 export interface HL7DataTypeDefinition {
@@ -26,7 +26,7 @@ export interface HL7DataTypeDefinition {
     HL7FieldDefinition
   >;
   encode?: (v: any) => string;
-  decode?: (v: string) => any;
+  decode?: (v: any) => any;
 }
 
 export type HL7DatatypeOptional = 'R' | 'O' | 'S' | 'C' | 'B';

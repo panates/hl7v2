@@ -1,7 +1,7 @@
 import {
-  encodeHL7DateTime,
   HL7DataTypeDefinition,
   HL7FieldDefinition,
+  toHL7DateTime,
 } from 'hl7v2-dictionary';
 import { HL7Error } from './hl7-error.js';
 import type { HL7Field } from './hl7-field.js';
@@ -104,7 +104,8 @@ export class Hl7Component {
       this.subcomp(subComponent || 1)!.value = value;
       return this;
     }
-    this._data.value = value;
+    const decode = this.definition.decode || this.typeDef.decode;
+    this._data.value = decode && value != null ? decode(value) : value;
     return this;
   }
 
@@ -158,8 +159,7 @@ export class Hl7Component {
       const encode = this.definition.encode || this.typeDef.encode;
       if (encode) v = encode(v);
       else {
-        if (typeof v === 'object' && v instanceof Date)
-          v = encodeHL7DateTime(v);
+        if (typeof v === 'object' && v instanceof Date) v = toHL7DateTime(v);
       }
       str = hl7Escape(v, this.field.message);
     } else {

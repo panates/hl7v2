@@ -1,7 +1,7 @@
 import {
-  encodeHL7DateTime,
   HL7DataTypeDefinition,
   HL7FieldDefinition,
+  toHL7DateTime,
 } from 'hl7v2-dictionary';
 import type { Hl7Component } from './hl7-component.js';
 import { HL7Error } from './hl7-error.js';
@@ -15,7 +15,7 @@ export class Hl7SubComponent {
   declare protected _typeDef: HL7DataTypeDefinition;
   readonly component: Hl7Component;
   readonly position: number;
-  value?: any;
+  protected _value?: any;
 
   constructor(
     component: Hl7Component,
@@ -49,6 +49,15 @@ export class Hl7SubComponent {
 
   get typeDef(): HL7DataTypeDefinition {
     return this._typeDef;
+  }
+
+  get value(): any | undefined {
+    return this._value;
+  }
+
+  set value(value: any) {
+    const decode = this.definition.decode || this.typeDef.decode;
+    this._value = decode && value != null ? decode(value) : value;
   }
 
   fromHL7String(value: string) {
@@ -88,7 +97,7 @@ export class Hl7SubComponent {
     if (v === undefined) return '';
     if (encode) v = encode(v);
     else {
-      if (typeof v === 'object' && v instanceof Date) v = encodeHL7DateTime(v);
+      if (typeof v === 'object' && v instanceof Date) v = toHL7DateTime(v);
     }
     const str = hl7Escape(v, this.field.message);
     if (options?.serializeSubComponent)

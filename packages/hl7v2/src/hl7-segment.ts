@@ -52,6 +52,13 @@ export class HL7Segment {
     return (this._fields[position - 1] = new HL7Field(this, position, def));
   }
 
+  next(segmentType?: string): HL7Segment | undefined {
+    const index = this.index + 1;
+    const segment = this.message.segments[index];
+    if (segment && (!segmentType || segment.segmentType === segmentType))
+      return segment;
+  }
+
   toHL7String(options?: Hl7SegmentSerializeOptions) {
     const { fieldSeparator } = this.message;
     let out = this.segmentType + fieldSeparator;

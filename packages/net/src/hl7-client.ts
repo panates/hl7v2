@@ -1,6 +1,6 @@
 import net from 'node:net';
+import tls from 'node:tls';
 import { HL7Message } from 'hl7v2';
-import { TcpNetConnectOpts } from 'net';
 import { AsyncEventEmitter } from 'node-events-async';
 import { StrictOmit } from 'ts-gems';
 import { HL7RequestContext } from './h-l7-request-context.js';
@@ -8,12 +8,40 @@ import { HL7Router } from './hl7-router.js';
 import { HL7Socket } from './hl7-socket.js';
 import { HL7Middleware } from './types.js';
 
-export class Hl7Client extends AsyncEventEmitter {
+export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
   protected _router = new HL7Router();
   protected _socket?: HL7Socket;
-  protected _options: Hl7Client.ConnectOptions;
+  protected _tls?: boolean;
+  protected _options: Hl7Client.NetConnectOptions | Hl7Client.TlsConnectOptions;
 
-  constructor(options: Hl7Client.ConnectOptions) {
+  /**
+   * Creates an HL7 TCP client
+   * @static
+   */
+  static createClient(options: Hl7Client.NetConnectOptions): Hl7Client {
+    const client = new Hl7Client(options);
+    client._tls = false;
+    return client;
+  }
+
+  /**
+   * Creates a secure HL7 TCP client
+   * @static
+   */
+  static createTlsClient(options: Hl7Client.TlsConnectOptions): Hl7Client {
+    const client = new Hl7Client(options);
+    client._tls = true;
+    return client;
+  }
+
+  /**
+   *
+   * @constructor
+   * @protected
+   */
+  protected constructor(
+    options: Hl7Client.NetConnectOptions | Hl7Client.TlsConnectOptions,
+  ) {
     super();
     this._options = options;
   }
@@ -58,7 +86,9 @@ export class Hl7Client extends AsyncEventEmitter {
         return;
       }
       let timeoutTimer: NodeJS.Timeout | undefined;
-      const tcpSocket = net.connect(this._options);
+      const tcpSocket = this._tls
+        ? tls.connect(this._options as any)
+        : net.connect(this._options as any);
       const socket = (this._socket = new HL7Socket(tcpSocket, this._options));
 
       socket.on('connect', () => this.emit('connect'));
@@ -74,6 +104,12 @@ export class Hl7Client extends AsyncEventEmitter {
       const onReady = () => {
         clearTimeout(timeoutTimer);
         tcpSocket.removeListener('error', onError);
+        if (this._options.keepAlive) {
+          tcpSocket.setKeepAlive(
+            this._options.keepAlive,
+            this._options.keepAliveInitialDelay,
+          );
+        }
         resolve();
       };
       const onError = (error: any) => {
@@ -127,12 +163,22 @@ export class Hl7Client extends AsyncEventEmitter {
 }
 
 export namespace Hl7Client {
-  export interface ConnectOptions
-    extends StrictOmit<TcpNetConnectOpts, 'onread' | 'readable' | 'writable'>,
-      HL7Socket.Options {
+  interface CommonConnectOptions {
     connectTimeout?: number;
     maxBufferSize?: number;
+    responseTimeout?: number;
+    keepAlive?: boolean;
+    keepAliveInitialDelay?: number;
   }
+
+  export type NetConnectOptions = StrictOmit<
+    net.TcpNetConnectOpts,
+    'onread' | 'readable' | 'writable'
+  > &
+    CommonConnectOptions;
+
+  export type TlsConnectOptions = StrictOmit<tls.ConnectionOptions, 'socket'> &
+    CommonConnectOptions;
 
   export interface Events extends StrictOmit<HL7Socket.Events, 'message'> {}
 }
