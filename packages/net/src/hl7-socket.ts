@@ -71,6 +71,10 @@ export class HL7Socket extends AsyncEventEmitter {
     return this.socket.address();
   }
 
+  get writable() {
+    return this.connected && this.socket.writable;
+  }
+
   async close(waitRunningHandlers?: number): Promise<void> {
     if (this.closed) return;
     /** Stop receiving data */
@@ -95,20 +99,24 @@ export class HL7Socket extends AsyncEventEmitter {
   }
 
   sendMessage(message: HL7Message) {
-    if (!this.connected) throw new Error('Socket is not connected');
-    if (!this.socket.writable) throw new Error('Socket is not writable');
-
-    let encoding = message.header.field(MSHSegment.CharacterSet).getValue();
-    if (!encoding) {
-      encoding = 'UTF-8';
-      message.header.field(MSHSegment.CharacterSet).setValue(encoding);
+    try {
+      if (!this.connected) throw new Error('Socket is not connected');
+      if (!this.socket.writable) throw new Error('Socket is not writable');
+      let encoding = message.header.field(MSHSegment.CharacterSet).getValue();
+      if (!encoding) {
+        encoding = 'UTF-8';
+        message.header.field(MSHSegment.CharacterSet).setValue(encoding);
+      }
+      const str = message.toHL7String();
+      const buf = iconv.encode(str, encoding);
+      this.socket.write(VT);
+      this.socket.write(buf);
+      this.socket.end(FS + CR);
+      this.emit('send', message, this.socket);
+    } catch (err: any) {
+      this.emit('error', err);
+      throw err;
     }
-    const str = message.toHL7String();
-    const buf = iconv.encode(str, encoding);
-    this.socket.write(VT);
-    this.socket.write(buf);
-    this.socket.end(FS + CR);
-    this.emit('send', message, this.socket);
   }
 
   async sendMessageWaitAck(message: HL7Message): Promise<HL7Message> {

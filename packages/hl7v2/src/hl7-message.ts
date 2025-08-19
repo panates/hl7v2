@@ -82,9 +82,13 @@ export class HL7Message {
     msh.field(MSHSegment.CharacterSet).setValue('UTF-8');
   }
 
-  addSegment(segmentType: string): HL7Segment {
+  addSegment(segmentType: string, index?: number): HL7Segment {
     const segment = new HL7Segment(this, segmentType);
-    this.segments.push(segment);
+    if (index !== undefined && index < this.segments.length) {
+      this.segments.splice(index, 0, segment);
+    } else {
+      this.segments.push(segment);
+    }
     return segment;
   }
 
