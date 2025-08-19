@@ -5,7 +5,7 @@ import { Socket } from 'net';
 import { AsyncEventEmitter } from 'node-events-async';
 import { FrameStream } from './helpers/frame-stream.js';
 
-export class HL7Socket extends AsyncEventEmitter {
+export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
   readonly socket: Socket;
   protected _messageHooks = new Set<(resp: HL7Message) => boolean>();
   protected _frameStream: FrameStream;
@@ -32,7 +32,9 @@ export class HL7Socket extends AsyncEventEmitter {
     socket.pipe(frameStream);
     socket.on('connect', () => this.emit('connect'));
     socket.on('ready', () => this.emit('ready'));
-    socket.on('lookup', listener => this.emit('lookup', listener));
+    socket.on('lookup', (err, address, family, host) =>
+      this.emit('lookup', err, address, family, host),
+    );
     socket.on('timeout', () => socket.destroy());
     socket.on('close', () => {
       this.emit('close');
@@ -69,6 +71,11 @@ export class HL7Socket extends AsyncEventEmitter {
 
   address() {
     return this.socket.address();
+  }
+
+  uri() {
+    const address: any = this.socket.address();
+    return address.address + ':' + address.port;
   }
 
   get writable() {
@@ -112,7 +119,7 @@ export class HL7Socket extends AsyncEventEmitter {
       this.socket.write(VT);
       this.socket.write(buf);
       this.socket.end(FS + CR);
-      this.emit('send', message, this.socket);
+      this.emit('send', message);
     } catch (err: any) {
       this.emit('error', err);
       throw err;
@@ -189,15 +196,13 @@ export namespace HL7Socket {
     close: [];
     error: [error: Error];
     lookup: [
-      listener: (
-        err: Error,
-        address: string,
-        family: string | number,
-        host: string,
-      ) => void,
+      err: Error,
+      address: string,
+      family: string | number,
+      host: string,
     ];
-    message: [message: HL7Message, socket: HL7Socket];
-    send: [message: HL7Message, socket: HL7Socket];
+    message: [message: HL7Message];
+    send: [message: HL7Message];
   }
 
   export interface Options {
