@@ -1,6 +1,7 @@
 import net from 'node:net';
 import tls from 'node:tls';
 import { HL7Message } from 'hl7v2';
+import { AddressInfo } from 'net';
 import { AsyncEventEmitter } from 'node-events-async';
 import { StrictOmit } from 'ts-gems';
 import { HL7RequestContext } from './h-l7-request-context.js';
@@ -50,8 +51,28 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
     return this._socket?.connected ?? false;
   }
 
+  get closed(): boolean {
+    return this._socket?.closed ?? true;
+  }
+
   get readyState() {
     return this._socket?.readyState || 'closed';
+  }
+
+  get uri(): string {
+    return this._options.host + ':' + this._options.port;
+  }
+
+  address(): AddressInfo {
+    const out = this._socket?.address();
+    if (!(out as any)?.address) {
+      return {
+        address: this._options.host || '',
+        port: this._options.port || 0,
+        family: 'tcp',
+      } satisfies AddressInfo;
+    }
+    return out as AddressInfo;
   }
 
   get connectTimeout(): number | undefined {
@@ -93,17 +114,19 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
 
       socket.on('connect', () => this.emit('connect'));
       socket.on('ready', () => this.emit('ready'));
-      socket.on('lookup', listener => this.emit('lookup', listener));
+      socket.on('lookup', (err, address, family, host) =>
+        this.emit('lookup', err, address, family, host),
+      );
       socket.on('close', () => {
         this._socket = undefined;
         this.emit('close');
       });
       socket.on('error', err => this.emit('error', err));
       socket.on('message', message => {
-        this.emit('message', message, socket);
+        this.emit('message', message);
         this._onMessage(message);
       });
-      socket.on('send', message => this.emit('send', message, socket));
+      socket.on('send', message => this.emit('send', message));
 
       const onReady = () => {
         clearTimeout(timeoutTimer);
