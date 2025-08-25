@@ -69,7 +69,7 @@ export class HL7Router {
         if (ctx.finished) return;
         const error =
           ctx.error ||
-          new HL7ExchangeError('There is not handler to process this message', {
+          new HL7ExchangeError('There is no handler to process this message', {
             request: ctx.request,
           });
         const ack = ctx.request.createAck('AE', error);

@@ -118,7 +118,7 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
       const buf = iconv.encode(str, encoding);
       this.socket.write(VT);
       this.socket.write(buf);
-      this.socket.end(FS + CR);
+      this.socket.write(FS + CR);
       this.emit('send', message);
     } catch (err: any) {
       this.emit('error', err);
