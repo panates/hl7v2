@@ -153,7 +153,7 @@ export class HL7Message {
     /* Detect version and charset */
     const headerItems = headerStr.split(fieldSeparator);
     const version = headerItems[11];
-    const encoding = headerItems[17]?.split('^')[0];
+    const encoding = headerItems[17]?.split('^')[0] || 'UTF-8';
 
     let str = Buffer.isBuffer(input) ? iconv.decode(input, encoding) : input;
     if (str.startsWith(VT)) str = str.substring(1);
