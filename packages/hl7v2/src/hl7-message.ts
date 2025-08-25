@@ -1,3 +1,4 @@
+import process from 'node:process';
 import {
   AcknowledgmentCode,
   dictionaries as defaultDictionaries,
@@ -205,7 +206,7 @@ export class HL7Message {
 
   createAck(
     ackCode: AcknowledgmentCode = 'AA',
-    textMessage?: string | Error,
+    textMessage?: string,
   ): HL7Message {
     const out = new HL7Message(this.version);
     const msh = out.header;
@@ -230,48 +231,82 @@ export class HL7Message {
     msa
       .field(MSASegment.MessageControlID)
       .setValue(this.header.field(MSHSegment.MessageControlID).getValue());
-    if (textMessage) {
-      if (textMessage instanceof HL7Error) {
-        msa.field(MSASegment.TextMessage).setValue(textMessage.message);
-        const err = out.addSegment('ERR');
-        err
-          .field(ERRSegment.HL7ErrorCode)
-          .setValue(textMessage.hl7ErrorCode || 207);
-        err.field(ERRSegment.Severity).setValue(textMessage.severity);
-        err
-          .field(ERRSegment.ApplicationErrorCode)
-          .setValue(textMessage.appErrorCode);
-        const errLocation = err.field(ERRSegment.ErrorLocation);
-        errLocation.comp(ERLType.SegmentID).setValue(textMessage.segmentType);
-        errLocation
-          .comp(ERLType.SegmentSequence)
-          .setValue(textMessage.segmentSequence);
-        errLocation
-          .comp(ERLType.FieldPosition)
-          .setValue(textMessage.fieldPosition);
-        errLocation
-          .comp(ERLType.ComponentNumber)
-          .setValue(textMessage.componentPosition);
-        errLocation
-          .comp(ERLType.FieldRepetition)
-          .setValue(textMessage.repetitionIndex);
-        errLocation
-          .comp(ERLType.SubComponentNumber)
-          .setValue(textMessage.subComponentPosition);
-      } else if (textMessage instanceof Error) {
-        msa.field(MSASegment.TextMessage).setValue(textMessage.message);
-        const err = out.addSegment('ERR');
-        err.field(ERRSegment.HL7ErrorCode).setValue(207);
-        err.field(ERRSegment.Severity).setValue('E');
-        if ((textMessage as any).code)
-          err
-            .field(ERRSegment.ApplicationErrorCode)
-            .setValue(textMessage as any);
-      } else {
-        msa.field(MSASegment.TextMessage).setValue(textMessage);
-      }
+    if (textMessage) msa.field(MSASegment.TextMessage).setValue(textMessage);
+    return out;
+  }
+
+  createNak(errors: (Error | string)[]): HL7Message {
+    const out = new HL7Message(this.version);
+    const msh = out.header;
+    // Sending Application
+    msh
+      .field(MSHSegment.ReceivingApplication)
+      .setValue(msh.field(MSHSegment.SendingFacility).getValue());
+    msh
+      .field(MSHSegment.ReceivingFacility)
+      .setValue(this.header.field(MSHSegment.SendingFacility).getValue());
+    msh.field(MSHSegment.MessageType).setValue('ACK');
+    msh
+      .field(MSHSegment.MessageType)
+      .comp(2)
+      .setValue(this.header.field(MSHSegment.MessageType).getValue(2));
+    msh
+      .field(MSHSegment.MessageControlID)
+      .setValue(String(Date.now() + uid(5)));
+
+    const msaSegment = out.addSegment('MSA');
+    msaSegment.field(MSASegment.AcknowledgmentCode).setValue('AE');
+    msaSegment
+      .field(MSASegment.MessageControlID)
+      .setValue(this.header.field(MSHSegment.MessageControlID).getValue());
+    for (const error of errors) {
+      this.addError(error);
     }
     return out;
+  }
+
+  addError(error: Error | string) {
+    let msaSegment = this.getSegment('MSA');
+    if (!msaSegment) msaSegment = this.addSegment('MSA');
+    if (error instanceof Error) {
+      msaSegment.field(MSASegment.TextMessage).setValue(error.message);
+    } else msaSegment.field(MSASegment.TextMessage).setValue(String(error));
+
+    const errSegment = this.addSegment('ERR');
+    if (error instanceof HL7Error) {
+      errSegment
+        .field(ERRSegment.HL7ErrorCode)
+        .setValue(error.hl7ErrorCode || 207);
+      errSegment.field(ERRSegment.Severity).setValue(error.severity);
+      errSegment
+        .field(ERRSegment.ApplicationErrorCode)
+        .setValue(error.appErrorCode);
+      const errLocation = errSegment.field(ERRSegment.ErrorLocation);
+      errLocation.comp(ERLType.SegmentID).setValue(error.segmentType);
+      errLocation.comp(ERLType.SegmentSequence).setValue(error.segmentSequence);
+      errLocation.comp(ERLType.FieldPosition).setValue(error.fieldPosition);
+      errLocation
+        .comp(ERLType.ComponentNumber)
+        .setValue(error.componentPosition);
+      errLocation.comp(ERLType.FieldRepetition).setValue(error.repetitionIndex);
+      errLocation
+        .comp(ERLType.SubComponentNumber)
+        .setValue(error.subComponentPosition);
+      if ((process?.env.NODE_ENV || '').startsWith('dev')) {
+        errSegment
+          .field(ERRSegment.DiagnosticInformation)
+          .setValue(error.stack);
+      }
+    } else {
+      errSegment.field(ERRSegment.HL7ErrorCode).setValue(207);
+      errSegment.field(ERRSegment.Severity).setValue('E');
+      if (error instanceof Error) {
+        if ((error as any).code)
+          errSegment
+            .field(ERRSegment.ApplicationErrorCode)
+            .setValue((error as any).code);
+      }
+    }
   }
 
   /**

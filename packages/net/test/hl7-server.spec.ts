@@ -1,6 +1,6 @@
 import { expect } from 'expect';
 import { HL7Message, MSASegment, MSHSegment } from 'hl7v2';
-import { Hl7Client, type HL7RequestContext, HL7Server } from '../src/index.js';
+import { Hl7Client, HL7Server } from '../src/index.js';
 
 describe('net:server', () => {
   let server: HL7Server | undefined;
@@ -26,12 +26,11 @@ describe('net:server', () => {
   it('should receive hl7 messages', async () => {
     server = HL7Server.createServer();
     await server.listen(12345);
-    const messages: HL7Message[] = [];
-    server.use((ctx: HL7RequestContext) => {
-      messages.push(ctx.request);
-      const ack = ctx.request.createAck();
-      messages.push(ack);
-      ctx.end(ack);
+    let req: HL7Message | undefined;
+    let res: HL7Message | undefined;
+    server.use((_req, _res) => {
+      req = _req.message;
+      res = _res.message;
     });
     client = Hl7Client.createClient({ host: 'localhost', port: 12345 });
     const msg = new HL7Message();
@@ -40,18 +39,16 @@ describe('net:server', () => {
     const resp = await client.sendMessageWaitAck(msg);
     expect(resp).toBeDefined();
     expect(resp.messageType).toEqual('ACK^R01');
-    expect(messages.length).toEqual(2);
-    expect(msg.toHL7String()).toEqual(messages[0].toHL7String());
-    expect(resp.toHL7String()).toEqual(messages[1].toHL7String());
+    expect(req).toBeDefined();
+    expect(res).toBeDefined();
+    expect(msg.toHL7String()).toEqual(req!.toHL7String());
+    expect(resp.toHL7String()).toEqual(res!.toHL7String());
     expect(msg.controlId).toEqual(
-      messages[1]
-        .getSegment('MSA')
-        ?.field(MSASegment.MessageControlID)
-        .toHL7String(),
+      res!.getSegment('MSA')?.field(MSASegment.MessageControlID).toHL7String(),
     );
   });
 
-  it('should send nak if no middle-ware handles the message', async () => {
+  it('should send ack if no middle-ware handles the message', async () => {
     server = HL7Server.createServer();
     await server.listen(12345);
     client = Hl7Client.createClient({ host: 'localhost', port: 12345 });
@@ -65,7 +62,7 @@ describe('net:server', () => {
     expect(msa).toBeDefined();
     expect(
       msa?.field(MSASegment.AcknowledgmentCode).toHL7String(),
-    ).toStrictEqual('AE');
+    ).toStrictEqual('AA');
   });
 
   it('should send nak if error in middle-wares', async () => {
@@ -95,7 +92,8 @@ describe('net:server', () => {
     this.slow(500);
     client = Hl7Client.createClient({ host: 'localhost', port: 12345 });
     server = HL7Server.createServer();
-    server.use(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    server.use((req, res, next) => {
       const t1 = Date.now();
       setTimeout(() => {
         server!.close(100).then(() => {

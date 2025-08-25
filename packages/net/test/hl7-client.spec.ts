@@ -1,6 +1,6 @@
 import { expect } from 'expect';
 import { HL7Message } from 'hl7v2';
-import { Hl7Client, type HL7RequestContext, HL7Server } from '../src/index.js';
+import { Hl7Client, HL7Server } from '../src/index.js';
 
 describe('net:client', () => {
   let server: HL7Server | undefined;
@@ -62,10 +62,8 @@ describe('net:client', () => {
       client = Hl7Client.createClient({ host: 'localhost', port: 12345 });
 
       // Client side
-      client.use((ctx: HL7RequestContext) => {
-        clientMessages.push(ctx.request);
-        const ack = ctx.request.createAck();
-        ctx.end(ack);
+      client.use(req => {
+        clientMessages.push(req.message);
       });
       await client.connect();
     });
