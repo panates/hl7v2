@@ -1,8 +1,6 @@
-import process from 'node:process';
-import { ERRSegment } from 'hl7v2-dictionary';
-import type { HL7RequestContext } from './h-l7-request-context.js';
-import { HL7ExchangeError } from './helpers/hl7-exchange-error.js';
-import { HL7Middleware, NextFunction } from './types.js';
+import { HL7Request } from './hl7-request.js';
+import { HL7Response } from './hl7-response.js';
+import type { HL7Middleware, NextFunction } from './types.js';
 
 export class HL7Router {
   protected _handlerStack = new Map<number, (HL7Middleware | HL7Router)[]>();
@@ -19,40 +17,41 @@ export class HL7Router {
     this._needPrepare = true;
   }
 
-  handle(context: HL7RequestContext, callback: () => void) {
+  handle(req: HL7Request, res: HL7Response, callback: () => void) {
     this._prepareStack(true);
     let handlerIdx = -1;
     let callbackCalled = false;
     const doCallback = () => {
       if (callbackCalled) return;
       callbackCalled = true;
-      context.removeListener('finish', onFinish);
       callback();
     };
-    const onFinish = () => doCallback();
-    context.once('finish', onFinish);
-    const next: NextFunction = (err?: Error) => {
-      if (context.finished) return;
-      context.error = context.error || err;
+    const next: NextFunction = async () => {
       try {
         handlerIdx++;
         const handler = this._handlers[handlerIdx];
         if (handler) {
-          handler(context, next);
+          if (handler.length < 3) {
+            await (handler as any)(req, res);
+            next();
+            return;
+          }
+          handler(req, res, next);
           return;
         }
         doCallback();
+        return;
       } catch (e: any) {
-        next(e);
+        res.failed(e);
+        return next();
       }
     };
-    next();
+    return next();
   }
 
-  protected _prepareStack(final?: boolean) {
+  protected _prepareStack(root?: boolean) {
     if (!this._needPrepare) return;
     this._needPrepare = false;
-    this._handlers = [];
     Array.from(this._handlerStack.keys())
       .sort()
       .forEach(p => {
@@ -64,23 +63,11 @@ export class HL7Router {
           } else this._handlers.push(h);
         }
       });
-    if (final) {
-      const finalHandler: HL7Middleware = (ctx: HL7RequestContext) => {
-        if (ctx.finished) return;
-        const error =
-          ctx.error ||
-          new HL7ExchangeError('There is no handler to process this message', {
-            request: ctx.request,
-          });
-        const ack = ctx.request.createAck('AE', error);
-        if ((process?.env.NODE_ENV || '').startsWith('dev')) {
-          const errSeg = ack.getSegment('ERR');
-          if (errSeg)
-            errSeg
-              .field(ERRSegment.DiagnosticInformation)
-              .setValue(error.stack);
-        }
-        ctx.end(ack);
+
+    if (root) {
+      const finalHandler: HL7Middleware = (req, res) => {
+        if (res.finished) return;
+        req.socket.sendMessage(res.message);
       };
       this._handlers.push(finalHandler);
     }

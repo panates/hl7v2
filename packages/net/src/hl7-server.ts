@@ -1,10 +1,12 @@
 import net from 'node:net';
 import tls from 'node:tls';
-import { HL7Message } from 'hl7v2';
+import { HL7Message, MSHSegment } from 'hl7v2';
 import { AddressInfo, ListenOptions, Socket } from 'net';
 import { AsyncEventEmitter } from 'node-events-async';
-import { HL7RequestContext } from './h-l7-request-context.js';
+import { uid } from 'uid';
 import { HL7ExchangeError } from './helpers/hl7-exchange-error.js';
+import { HL7Request } from './hl7-request.js';
+import { HL7Response } from './hl7-response.js';
 import { HL7Router } from './hl7-router.js';
 import { HL7Socket } from './hl7-socket.js';
 import { HL7Middleware } from './types.js';
@@ -236,20 +238,22 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
 
   protected _onMessage(message: HL7Message, socket: HL7Socket) {
     const waitPromise = new Promise<void>(resolve => {
-      const context = new HL7RequestContext(socket, message);
+      if (!message.header.field(MSHSegment.MessageControlID).getValue())
+        message.header.field(MSHSegment.MessageControlID).setValue(uid(8));
+      const req = new HL7Request(socket, message);
+      const res = new HL7Response(req);
       const timeoutTimer = setTimeout(() => {
         try {
-          const error = new HL7ExchangeError('Response timeout');
-          const ack = context.request.createAck('AE', error);
-          context.end(ack);
+          res.failed(new HL7ExchangeError('Response timeout'));
+          res.socket.sendMessage(res.message);
         } finally {
           resolve();
         }
       }, this.responseTimeout || 30000).unref();
 
-      this._router.handle(context, () => {
+      this._router.handle(req, res, () => {
         clearTimeout(timeoutTimer);
-        if (context.error) this.emit('error', context.error, socket);
+        if (res.errors.length) this.emit('error', res.errors[0], socket);
         resolve();
       });
     });

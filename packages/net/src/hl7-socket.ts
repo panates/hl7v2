@@ -73,9 +73,9 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
     return this.socket.address();
   }
 
-  uri() {
+  peerIp() {
     const address: any = this.socket.address();
-    return address.address + ':' + address.port;
+    return address.address;
   }
 
   get writable() {

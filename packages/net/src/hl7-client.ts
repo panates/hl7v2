@@ -4,7 +4,8 @@ import { HL7Message } from 'hl7v2';
 import { AddressInfo } from 'net';
 import { AsyncEventEmitter } from 'node-events-async';
 import { StrictOmit } from 'ts-gems';
-import { HL7RequestContext } from './h-l7-request-context.js';
+import { HL7Request } from './hl7-request.js';
+import { HL7Response } from './hl7-response.js';
 import { HL7Router } from './hl7-router.js';
 import { HL7Socket } from './hl7-socket.js';
 import { HL7Middleware } from './types.js';
@@ -182,9 +183,10 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
   }
 
   protected _onMessage(message: HL7Message) {
-    const context = new HL7RequestContext(this._socket!, message);
-    this._router.handle(context, () => {
-      if (context.error) this.emit('error', context.error);
+    const req = new HL7Request(this._socket!, message);
+    const res = new HL7Response(req);
+    this._router.handle(req, res, () => {
+      if (res.errors.length) this.emit('error', res.errors[0]);
     });
   }
 }
