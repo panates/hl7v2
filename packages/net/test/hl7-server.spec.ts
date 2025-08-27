@@ -55,6 +55,7 @@ describe('net:server', () => {
     client = Hl7Client.createClient({ host: 'localhost', port: 12345 });
     const msg = new HL7Message();
     msg.header.field(MSHSegment.MessageType).fromHL7String('ORU^R01');
+    msg.header.field(MSHSegment.CharacterSet).fromHL7String('UNICODE UTF-8');
     msg.addSegment('PID');
     const resp = await client.sendMessageWaitAck(msg);
     expect(resp).toBeDefined();

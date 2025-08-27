@@ -113,10 +113,16 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
     try {
       if (!this.connected) throw new Error('Socket is not connected');
       if (!this.socket.writable) throw new Error('Socket is not writable');
-      let encoding = message.header.field(MSHSegment.CharacterSet).getValue();
-      if (!encoding) {
-        encoding = 'UTF-8';
-        message.header.field(MSHSegment.CharacterSet).setValue(encoding);
+      let charset = message.header.field(MSHSegment.CharacterSet).getValue();
+      if (!charset) {
+        charset = 'UNICODE UTF-8';
+        message.header.field(MSHSegment.CharacterSet).setValue(charset);
+      }
+      let encoding = HL7Message.encodingMapping[charset] || charset || 'utf-8';
+      try {
+        iconv.getEncoder(charset);
+      } catch {
+        encoding = 'utf-8';
       }
       const str = message.toHL7String();
       const buf = iconv.encode(str, encoding);
