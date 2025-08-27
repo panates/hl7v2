@@ -16,7 +16,6 @@ export class Hl7SubComponent {
   readonly component: Hl7Component;
   readonly position: number;
   protected _value?: any;
-  // protected _raw?: any;
 
   constructor(
     component: Hl7Component,
