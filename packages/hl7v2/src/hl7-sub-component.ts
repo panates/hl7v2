@@ -16,6 +16,7 @@ export class Hl7SubComponent {
   readonly component: Hl7Component;
   readonly position: number;
   protected _value?: any;
+  // protected _raw?: any;
 
   constructor(
     component: Hl7Component,
@@ -61,16 +62,16 @@ export class Hl7SubComponent {
   }
 
   fromHL7String(value: string) {
-    const decode = this.definition.decode || this.typeDef.decode;
-    if (!value) {
-      this.value = undefined;
-      return;
-    }
+    this._value = undefined;
+    if (!value) return;
     const unescaped = hl7UnEscape(value, this.field.message);
     try {
       if (Buffer.isBuffer(unescaped) || unescaped == null)
         this.value = unescaped;
-      else this.value = decode ? decode(unescaped) : unescaped;
+      else {
+        const decode = this.definition.decode || this.typeDef.decode;
+        this.value = decode ? decode(unescaped) : unescaped;
+      }
     } catch (e: any) {
       const location = `${this.segment.segmentType}.${this.field.position}.${this.component.position}.${this.position}[${this.component.repetition.index}]`;
       let segmentIndex = this.segment.index;

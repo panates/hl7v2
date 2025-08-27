@@ -1,5 +1,13 @@
 import { Buffer } from 'node:buffer';
-import { CR, FS, HL7Message, MSASegment, MSHSegment, VT } from 'hl7v2';
+import {
+  CR,
+  FS,
+  HL7Message,
+  HL7Version,
+  MSASegment,
+  MSHSegment,
+  VT,
+} from 'hl7v2';
 import iconv from 'iconv-lite';
 import { Socket } from 'net';
 import { AsyncEventEmitter } from 'node-events-async';
@@ -40,12 +48,8 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
       this.emit('close');
     });
     frameStream.on('data', data => {
-      try {
-        const message = this._parseMessage(data);
-        this.emit('message', message);
-      } catch (err: any) {
-        this.emit('error', err);
-      }
+      this.emit('data', data);
+      this._onData(data);
     });
   }
 
@@ -179,13 +183,24 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
     this.socket.setKeepAlive(enable, initialDelay);
   }
 
-  protected _parseMessage(data: Buffer): HL7Message {
-    const message = new HL7Message();
-    message.parse(data);
-    for (const hook of this._messageHooks) {
-      if (hook(message)) break;
+  protected _onData(data: Buffer) {
+    try {
+      const message = new HL7Message();
+      message.parse(data);
+      for (const hook of this._messageHooks) {
+        if (hook(message)) break;
+      }
+      this.emit('message', message);
+    } catch (err: any) {
+      this.emit('error', err);
+      if (!this.connected) return;
+      const raw = HL7Message.parseRaw(data);
+      const nak = new HL7Message(raw.version as HL7Version).createNak([err]);
+      nak.header
+        .field(MSHSegment.MessageType)
+        .fromHL7String('ACK^' + raw.messageType.split('^')[1] || '');
+      this.sendMessage(nak);
     }
-    return message;
   }
 }
 
@@ -203,6 +218,7 @@ export namespace HL7Socket {
     ];
     message: [message: HL7Message];
     send: [message: HL7Message];
+    data: [Buffer];
   }
 
   export interface Options {

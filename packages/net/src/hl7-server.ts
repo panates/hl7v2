@@ -1,3 +1,4 @@
+import { Buffer } from 'node:buffer';
 import net from 'node:net';
 import tls from 'node:tls';
 import { HL7Message, MSHSegment } from 'hl7v2';
@@ -233,6 +234,7 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
       this._onMessage(message, socket);
     });
     socket.on('send', message => this.emit('send', message, socket));
+    socket.on('data', data => this.emit('data', data));
     this.emit('connection', socket);
   }
 
@@ -274,6 +276,7 @@ export namespace HL7Server {
     error: [error: Error, HL7Socket | undefined];
     message: [message: HL7Message, socket: HL7Socket];
     send: [message: HL7Message, socket: HL7Socket];
+    data: [Buffer];
   }
 
   export interface Options {
