@@ -104,8 +104,7 @@ export class Hl7Component {
       this.subcomp(subComponent || 1)!.value = value;
       return this;
     }
-    const decode = this.definition.decode || this.typeDef.decode;
-    this._data.value = decode && value != null ? decode(value) : value;
+    this._data.value = value;
     return this;
   }
 

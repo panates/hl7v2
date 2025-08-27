@@ -1,5 +1,6 @@
+import net from 'node:net';
 import { expect } from 'expect';
-import { HL7Message, MSASegment, MSHSegment } from 'hl7v2';
+import { CR, FS, HL7Message, MSASegment, MSHSegment, VT } from 'hl7v2';
 import { Hl7Client, HL7Server } from '../src/index.js';
 
 describe('net:server', () => {
@@ -86,6 +87,37 @@ describe('net:server', () => {
     expect(msa?.field(MSASegment.TextMessage).toHL7String()).toStrictEqual(
       'test error',
     );
+  });
+
+  it('should send nak if message is not valid', done => {
+    server = HL7Server.createServer();
+    server.once('send', resp => {
+      try {
+        expect(resp).toBeDefined();
+        expect(resp!.messageType).toEqual('ACK^R01');
+        const msa = resp!.getSegment('MSA');
+        expect(msa).toBeDefined();
+        expect(
+          msa?.field(MSASegment.AcknowledgmentCode).toHL7String(),
+        ).toStrictEqual('AE');
+        expect(msa?.field(MSASegment.TextMessage).toHL7String()).toContain(
+          'wrong data type',
+        );
+        done();
+      } catch (e) {
+        done(e);
+      }
+    });
+    server
+      .listen(12345)
+      .then(() => {
+        const socket = net.connect({ port: 12345 });
+        socket.write(
+          VT + 'MSH|^~\\&|||||xyz||ORU^R01^ORU_R01|28391|P|2.6\n' + FS + CR,
+        );
+        socket.end();
+      })
+      .catch(done);
   });
 
   it('should wait running handlers for shutdownWait time', function (done) {

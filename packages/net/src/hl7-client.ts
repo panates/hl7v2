@@ -128,6 +128,7 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
         this._onMessage(message);
       });
       socket.on('send', message => this.emit('send', message));
+      socket.on('data', data => this.emit('data', data));
 
       const onReady = () => {
         clearTimeout(timeoutTimer);

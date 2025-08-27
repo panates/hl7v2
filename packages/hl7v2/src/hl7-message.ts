@@ -35,7 +35,6 @@ export class HL7Message {
   subComponentSeparator: string = SUBCOMPONENT_SEPARATOR;
   repetitionSeparator: string = REPETITION_SEPARATOR;
   escapeCharacter: string = ESCAPE_CHARACTER;
-  carriageReturn: string = CR;
 
   constructor(
     version: HL7Version = HL7Version.v2_7_1,
@@ -71,11 +70,7 @@ export class HL7Message {
   }
 
   clear(version?: HL7Version) {
-    if (!version) version = this._version || HL7Version.v2_7_1;
-    this._version = version;
-    const nearestVersion = findNearestHL7Version(version);
-    this._dictionary = this._dictionaries[nearestVersion];
-    this._segments = [];
+    this._clear(version);
     const msh = this.addSegment('MSH');
     msh.field(MSHSegment.DateTimeOfMessage).setValue(new Date());
     msh.field(MSHSegment.MessageControlID).setValue(uid(8));
@@ -127,49 +122,21 @@ export class HL7Message {
       this.segments
         .map(segment => segment.toHL7String(options))
         .filter(v => v)
-        .join(this.carriageReturn) + this.carriageReturn
+        .join(CR) + CR
     );
   }
 
   parse(input: string | Buffer) {
-    let headerStr = '';
-    if (Buffer.isBuffer(input)) {
-      let crIdx = input.indexOf(CR);
-      if (crIdx < 0) crIdx = input.length;
-      headerStr = input.toString('utf8', 0, crIdx);
-    } else if (typeof input === 'string') {
-      let crIdx = input.indexOf(CR);
-      if (crIdx < 0) crIdx = input.length;
-      headerStr = input.substring(0, crIdx);
-    } /* c8 ignore else */ else {
-      throw new TypeError('You must provide string or Buffer argument');
-    }
-    if (headerStr.startsWith(VT)) headerStr = headerStr.substring(1);
-    if (!headerStr.startsWith('MSH'))
-      throw new HL7Error('Message must start with (MSH) segment', {
-        line: 1,
-        hl7ErrorCode: 100,
-      });
-    const fieldSeparator = headerStr[3];
-    /* Detect version and charset */
-    const headerItems = headerStr.split(fieldSeparator);
-    const version = headerItems[11];
-    const encoding = headerItems[17]?.split('^')[0] || 'UTF-8';
+    const raw = HL7Message.parseRaw(input);
+    this._clear(raw.version as HL7Version);
+    this.fieldSeparator = raw.fieldSeparator;
+    this.componentSeparator = raw.componentSeparator;
+    this.repetitionSeparator = raw.repetitionSeparator;
+    this.escapeCharacter = raw.escapeCharacter;
+    this.subComponentSeparator = raw.subComponentSeparator;
 
-    let str = Buffer.isBuffer(input) ? iconv.decode(input, encoding) : input;
-    if (str.startsWith(VT)) str = str.substring(1);
-    const k = str.indexOf(FS);
-    if (k >= 0) str = str.substring(0, k);
-
-    this.clear(version as HL7Version);
-    this.fieldSeparator = fieldSeparator;
-    this.componentSeparator = headerItems[1][0];
-    this.repetitionSeparator = headerItems[1][1];
-    this.escapeCharacter = headerItems[1][2];
-    this.subComponentSeparator = headerItems[1][3];
-    this._segments = [];
-
-    const lines = str.split(CR);
+    const lines = raw.data.split(CR);
+    const headerItems = raw.header.split(this.fieldSeparator);
     for (const [i, line] of lines.entries()) {
       if (!line) continue;
       try {
@@ -189,9 +156,9 @@ export class HL7Message {
         this.header
           .field(MSHSegment.ReceivingFacility)
           .setValue(headerItems[5]);
-        this.header.field(MSHSegment.EncodingCharacters).setValue(encoding);
+        this.header.field(MSHSegment.EncodingCharacters).setValue(raw.encoding);
         this.header.field(MSHSegment.MessageControlID).setValue(headerItems[9]);
-        this.header.field(MSHSegment.VersionID).setValue(version);
+        this.header.field(MSHSegment.VersionID).setValue(raw.version);
         /* c8 ignore next */
         const e1 = e instanceof HL7Error ? e : new HL7Error(e.message);
         if (e1.segmentType) {
@@ -208,7 +175,7 @@ export class HL7Message {
     ackCode: AcknowledgmentCode = 'AA',
     textMessage?: string,
   ): HL7Message {
-    const out = new HL7Message(this.version);
+    const out = new HL7Message(this.version, this._dictionaries);
     const msh = out.header;
     // Sending Application
     msh
@@ -236,7 +203,7 @@ export class HL7Message {
   }
 
   createNak(errors: (Error | string)[]): HL7Message {
-    const out = new HL7Message(this.version);
+    const out = new HL7Message(this.version, this._dictionaries);
     const msh = out.header;
     // Sending Application
     msh
@@ -260,7 +227,7 @@ export class HL7Message {
       .field(MSASegment.MessageControlID)
       .setValue(this.header.field(MSHSegment.MessageControlID).getValue());
     for (const error of errors) {
-      this.addError(error);
+      out.addError(error);
     }
     return out;
   }
@@ -309,6 +276,19 @@ export class HL7Message {
     }
   }
 
+  protected _clear(version?: HL7Version) {
+    if (!version) version = this._version || HL7Version.v2_7_1;
+    this._version = version;
+    const nearestVersion = findNearestHL7Version(version);
+    this._dictionary = this._dictionaries[nearestVersion];
+    this._segments = [];
+    this.fieldSeparator = FIELD_SEPARATOR;
+    this.componentSeparator = COMPONENT_SEPARATOR;
+    this.subComponentSeparator = SUBCOMPONENT_SEPARATOR;
+    this.repetitionSeparator = REPETITION_SEPARATOR;
+    this.escapeCharacter = ESCAPE_CHARACTER;
+  }
+
   /**
    *
    * @static
@@ -320,6 +300,64 @@ export class HL7Message {
     const message = new HL7Message(undefined, dictionaries);
     message.parse(input);
     return message;
+  }
+
+  /**
+   *
+   * @static
+   */
+  static parseRaw(input: string | Buffer): {
+    header: string;
+    fieldSeparator: string;
+    componentSeparator: string;
+    repetitionSeparator: string;
+    escapeCharacter: string;
+    subComponentSeparator: string;
+    encoding: string;
+    version: HL7Version;
+    messageType: string;
+    data: string;
+  } {
+    let headerStr = '';
+    if (Buffer.isBuffer(input)) {
+      let crIdx = input.indexOf(CR);
+      if (crIdx < 0) crIdx = input.length;
+      headerStr = input.toString('utf8', 0, crIdx);
+    } else if (typeof input === 'string') {
+      let crIdx = input.indexOf(CR);
+      if (crIdx < 0) crIdx = input.length;
+      headerStr = input.substring(0, crIdx);
+    } /* c8 ignore else */ else {
+      throw new TypeError('You must provide string or Buffer argument');
+    }
+    if (headerStr.startsWith(VT)) headerStr = headerStr.substring(1);
+    if (!headerStr.startsWith('MSH'))
+      throw new HL7Error('Message must start with (MSH) segment', {
+        line: 1,
+        hl7ErrorCode: 100,
+      });
+    const fieldSeparator = headerStr[3];
+    /* Detect version and charset */
+    const headerItems = headerStr.split(fieldSeparator);
+    const version = headerItems[11];
+    const encoding = headerItems[17]?.split('^')[0] || 'UTF-8';
+    let str = Buffer.isBuffer(input) ? iconv.decode(input, encoding) : input;
+    if (str.startsWith(VT)) str = str.substring(1);
+    const k = str.indexOf(FS);
+    if (k >= 0) str = str.substring(0, k);
+
+    return {
+      fieldSeparator,
+      componentSeparator: headerItems[1][0],
+      repetitionSeparator: headerItems[1][1],
+      escapeCharacter: headerItems[1][2],
+      subComponentSeparator: headerItems[1][3],
+      messageType: headerItems[8],
+      header: headerStr,
+      data: str,
+      encoding,
+      version: version as HL7Version,
+    };
   }
 }
 
