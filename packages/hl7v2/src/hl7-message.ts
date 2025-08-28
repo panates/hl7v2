@@ -136,10 +136,7 @@ export class HL7Message {
     this.escapeCharacter = raw.escapeCharacter;
     this.subComponentSeparator = raw.subComponentSeparator;
 
-    const lines = raw.data
-      .replaceAll(CR + LF, CR)
-      .replaceAll(LF, CR)
-      .split(CR);
+    const lines = raw.data.replaceAll(CR + LF, CR).split(CR);
     const headerItems = raw.header.split(this.fieldSeparator);
     for (const [i, line] of lines.entries()) {
       if (!line) continue;
