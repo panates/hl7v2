@@ -70,7 +70,7 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
       return {
         address: this._options.host || '',
         port: this._options.port || 0,
-        family: 'tcp',
+        family: '',
       } satisfies AddressInfo;
     }
     return out as AddressInfo;

@@ -19,6 +19,7 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
   protected _frameStream: FrameStream;
   protected _waitPromises = new Set<Promise<any>>();
   protected _options: HL7Socket.Options;
+  protected _peerIp: string;
   responseTimeout?: number;
   /**
    * User defined property
@@ -36,7 +37,12 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
       maxBufferSize: options?.maxBufferSize,
     });
     this._frameStream = frameStream;
-    socket.on('error', err => this.emit('error', err));
+    socket.on('error', (err: any) => {
+      if (err.code === 'ECONNRESET') {
+        err.message = `Connection reset by peer`;
+      }
+      this.emit('error', err);
+    });
     socket.pipe(frameStream);
     socket.on('connect', () => this.emit('connect'));
     socket.on('ready', () => this.emit('ready'));
@@ -51,6 +57,9 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
       this.emit('data', data);
       this._onData(data);
     });
+    this._peerIp = (socket.address() as any)?.address || '';
+    if (this._peerIp.lastIndexOf(':') !== -1)
+      this._peerIp = this._peerIp.substring(this._peerIp.lastIndexOf(':') + 1);
   }
 
   get connected(): boolean {
@@ -78,8 +87,7 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
   }
 
   peerIp() {
-    const address: any = this.socket.address();
-    return address.address;
+    return this._peerIp;
   }
 
   get writable() {
