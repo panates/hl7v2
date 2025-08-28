@@ -1,7 +1,7 @@
 {
   "name": "hl7v2-net",
   "description": "HL7 v2 server/client for NodeJS",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "author": "Panates",
   "license": "MIT",
   "private": true,
@@ -16,8 +16,8 @@
     "uid": "^2.0.2"
   },
   "peerDependencies": {
-    "hl7v2": "^1.2.3",
-    "hl7v2-dictionary": "^1.2.3"
+    "hl7v2": "^1.2.4",
+    "hl7v2-dictionary": "^1.2.4"
   },
   "devDependencies": {
     "expect": "^30.0.5"
