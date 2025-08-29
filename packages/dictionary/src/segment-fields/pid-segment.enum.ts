@@ -2,7 +2,7 @@ export enum PIDSegment {
   SetID = 1,
   PatientID = 2,
   PatientIdentifierList = 3,
-  AlternatePatientIDPID = 4,
+  AlternatePatientID = 4,
   PatientName = 5,
   MotherSMaidenName = 6,
   DateTimeOfBirth = 7,

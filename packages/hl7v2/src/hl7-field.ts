@@ -55,6 +55,13 @@ export class HL7Field {
     this._repetitions = [];
   }
 
+  isEmpty(): boolean {
+    for (const rep of this._repetitions) {
+      if (!rep.isEmpty()) return false;
+    }
+    return true;
+  }
+
   repetition(repetitionIndex: number = 0): HL7Repetition {
     while (repetitionIndex >= this._repetitions.length) this.add();
     return this._repetitions[repetitionIndex]!;

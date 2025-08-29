@@ -73,6 +73,16 @@ export class Hl7Component {
     } else this._subComponents = [];
   }
 
+  isEmpty(): boolean {
+    if (this._data) return this._data.value == null;
+    if (this._subComponents) {
+      for (const sub of this._subComponents) {
+        if (!sub.isEmpty()) return false;
+      }
+    }
+    return true;
+  }
+
   subcomp(position: number): Hl7SubComponent {
     if (this.field.isPrimitive)
       throw new Error('Primitive fields have no sub-component');

@@ -60,6 +60,10 @@ export class Hl7SubComponent {
     this._value = decode && value != null ? decode(value) : value;
   }
 
+  isEmpty(): boolean {
+    return this._value == null;
+  }
+
   fromHL7String(value: string) {
     this._value = undefined;
     if (!value) return;

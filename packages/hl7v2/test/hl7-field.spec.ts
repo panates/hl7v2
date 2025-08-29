@@ -139,4 +139,13 @@ describe('hl7v2:HL7Field', () => {
     expect(nameField.repetition(1).getValue(1)).toEqual('Blame');
     expect(nameField.repetition(1).getValue(2)).toEqual('Terry');
   });
+
+  it('should determine is field is empty or not', () => {
+    const msg = new HL7Message();
+    const pid = msg.addSegment('PID');
+    const idField = pid.field(2);
+    expect(idField.isEmpty()).toEqual(true);
+    idField.setValue('12345');
+    expect(idField.isEmpty()).toEqual(false);
+  });
 });
