@@ -3,7 +3,7 @@ export enum CSRSegment {
   AlternateStudyID = 2,
   InstitutionRegisteringThePatient = 3,
   SponsorPatientID = 4,
-  AlternatePatientIDCSR = 5,
+  AlternatePatientID = 5,
   DateTimeOfPatientStudyRegistration = 6,
   PersonPerformingStudyRegistration = 7,
   StudyAuthorizingProvider = 8,
