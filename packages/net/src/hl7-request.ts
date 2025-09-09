@@ -10,7 +10,7 @@ export class HL7Request {
     this.message = message;
   }
 
-  peerIp() {
-    return this.socket.peerIp();
+  remoteAddress() {
+    return this.socket.remoteAddress();
   }
 }

@@ -19,7 +19,6 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
   protected _frameStream: FrameStream;
   protected _waitPromises = new Set<Promise<any>>();
   protected _options: HL7Socket.Options;
-  protected _peerIp: string;
   responseTimeout?: number;
   /**
    * User defined property
@@ -57,9 +56,6 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
       this.emit('data', data);
       this._onData(data);
     });
-    this._peerIp = (socket.address() as any)?.address || '';
-    if (this._peerIp.lastIndexOf(':') !== -1)
-      this._peerIp = this._peerIp.substring(this._peerIp.lastIndexOf(':') + 1);
   }
 
   get connected(): boolean {
@@ -86,8 +82,8 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
     return this.socket.address();
   }
 
-  peerIp() {
-    return this._peerIp;
+  remoteAddress() {
+    return this.socket.remoteAddress;
   }
 
   get writable() {
