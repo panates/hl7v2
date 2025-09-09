@@ -41,7 +41,7 @@
     "esbuild": "^0.25.8",
     "globals": "^16.3.0",
     "madge": "^8.0.0",
-    "mocha": "11.7.1",
+    "mocha": "11.7.2",
     "npm-check-updates": "^18.0.2",
     "prettier": "^3.6.2",
     "putil-varhelpers": "^1.6.5",
