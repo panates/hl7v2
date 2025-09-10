@@ -83,7 +83,8 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
   }
 
   remoteAddress() {
-    return this.socket.remoteAddress;
+    const addr = this.socket.remoteAddress;
+    return addr?.startsWith('::ffff:') ? addr.slice(7) : addr;
   }
 
   get writable() {
