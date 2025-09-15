@@ -77,7 +77,7 @@ export class Hl7SubComponent {
       }
     } catch (e: any) {
       if (!options?.strict) {
-        this.value = unescaped;
+        this._value = unescaped;
         return;
       }
       const location = `${this.segment.segmentType}.${this.field.position}.${this.component.position}.${this.position}[${this.component.repetition.index}]`;
