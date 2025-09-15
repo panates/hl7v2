@@ -3,6 +3,7 @@ import type { Hl7Component } from './hl7-component.js';
 import type { HL7Message } from './hl7-message.js';
 import {
   HL7Repetition,
+  HL7RepetitionParseOptions,
   type HL7RepetitionSerializeOptions,
 } from './hl7-repetition.js';
 import type { HL7Segment } from './hl7-segment.js';
@@ -104,11 +105,11 @@ export class HL7Field {
     return this.repetition(0).setValue(value, component, subComponent);
   }
 
-  fromHL7String(value: string) {
+  fromHL7String(value: string, options?: Hl7FieldParseOptions) {
     const components = value.split(this.message.repetitionSeparator);
     this._repetitions = [];
     for (const cmp of components) {
-      this.add().fromHL7String(cmp);
+      this.add().fromHL7String(cmp, options);
     }
   }
 
@@ -130,6 +131,8 @@ export class HL7Field {
     return this.toHL7String();
   }
 }
+
+export interface Hl7FieldParseOptions extends HL7RepetitionParseOptions {}
 
 export interface Hl7FieldSerializeOptions
   extends HL7RepetitionSerializeOptions {

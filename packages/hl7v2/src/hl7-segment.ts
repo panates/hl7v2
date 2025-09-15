@@ -1,5 +1,9 @@
 import { HL7FieldDefinition, HL7SegmentDefinition } from 'hl7v2-dictionary';
-import { HL7Field, Hl7FieldSerializeOptions } from './hl7-field.js';
+import {
+  HL7Field,
+  Hl7FieldParseOptions,
+  Hl7FieldSerializeOptions,
+} from './hl7-field.js';
 import type { HL7Message } from './hl7-message.js';
 
 export class HL7Segment {
@@ -82,17 +86,23 @@ export class HL7Segment {
     return out;
   }
 
-  static parse(message: HL7Message, input: string): HL7Segment {
+  static parse(
+    message: HL7Message,
+    input: string,
+    options?: Hl7SegmentParseOptions,
+  ): HL7Segment {
     const fields = input.split(message.fieldSeparator);
     const segment = new HL7Segment(message, fields[0]);
     if (segment.segmentType === 'MSH') fields[0] = message.fieldSeparator;
     else fields.shift();
     for (let i = 0; i < fields.length; i++) {
-      segment.field(i + 1).fromHL7String(fields[i]);
+      segment.field(i + 1).fromHL7String(fields[i], options);
     }
     return segment;
   }
 }
+
+export interface Hl7SegmentParseOptions extends Hl7FieldParseOptions {}
 
 export interface Hl7SegmentSerializeOptions extends Hl7FieldSerializeOptions {
   serializeSegment?: (

@@ -18,6 +18,7 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
   protected _router = new HL7Router();
   protected _runningHandlers = new Set<Promise<void>>();
   protected _closing?: boolean;
+  parseStrict?: boolean;
   maxBufferPerSocket?: number;
   responseTimeout?: number;
 
@@ -55,6 +56,7 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
     super();
     this.maxBufferPerSocket = options?.maxBufferPerSocket;
     this.responseTimeout = options?.responseTimeout;
+    this.parseStrict = options?.parseStrict;
     this._server = server;
     this._server.on('connection', socket => this._connectionListener(socket));
     this._server.on('listening', () => this.emit('listening'));
@@ -222,6 +224,7 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
   protected _connectionListener(tcpSocket: Socket) {
     const socket = new HL7Socket(tcpSocket, {
       maxBufferSize: this.maxBufferPerSocket,
+      parseStrict: this.parseStrict,
     });
     this._sockets.add(socket);
     socket.on('close', () => {
@@ -284,5 +287,6 @@ export namespace HL7Server {
     facilityName?: string;
     maxBufferPerSocket?: number;
     responseTimeout?: number;
+    parseStrict?: boolean;
   }
 }

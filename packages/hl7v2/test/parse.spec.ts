@@ -236,10 +236,12 @@ describe('hl7v2:parse', () => {
     expect(pdd?.field(1).getValue()).toStrictEqual('123');
   });
 
-  it('should throw HL7ParseError', () => {
+  it('should throw HL7ParseError if strict option true', () => {
     let error: HL7Error;
     try {
-      HL7Message.parse('MSH|^~\\&|||||X99807311532|||||2.2|1234');
+      HL7Message.parse('MSH|^~\\&|||||X99807311532|||||2.2|1234', {
+        strict: true,
+      });
     } catch (e: any) {
       error = e;
     }
@@ -294,7 +296,9 @@ describe('hl7v2:parse', () => {
     ownDictionaries['2.2'] = dictionaries['2.2'].extend(dictPatch);
     const messageString =
       sampleMessage1 + '\rZDS|12345|1.2.345.67.8.9.12341234123412.345\r';
-    const msg = HL7Message.parse(messageString, ownDictionaries);
+    const msg = HL7Message.parse(messageString, {
+      dictionaries: ownDictionaries,
+    });
     const zds = msg.getSegment('ZDS')!;
     expect(zds.segmentType).toStrictEqual('ZDS');
     expect(zds.field(1).getValue()).toStrictEqual(12345);

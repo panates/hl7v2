@@ -91,7 +91,9 @@ describe('net:server', () => {
   });
 
   it('should send nak if message is not valid', done => {
-    server = HL7Server.createServer();
+    server = HL7Server.createServer(undefined, {
+      parseStrict: true,
+    });
     server.once('send', resp => {
       try {
         expect(resp).toBeDefined();

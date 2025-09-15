@@ -197,7 +197,9 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
   protected _onData(data: Buffer) {
     try {
       const message = new HL7Message();
-      message.parse(data);
+      message.parse(data, {
+        strict: this._options?.parseStrict,
+      });
       for (const hook of this._messageHooks) {
         if (hook(message)) break;
       }
@@ -237,5 +239,6 @@ export namespace HL7Socket {
     keepAlive?: boolean | undefined;
     keepAliveInitialDelay?: number | undefined;
     maxBufferSize?: number;
+    parseStrict?: boolean;
   }
 }

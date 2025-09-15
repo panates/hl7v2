@@ -64,7 +64,7 @@ export class Hl7SubComponent {
     return this._value == null;
   }
 
-  fromHL7String(value: string) {
+  fromHL7String(value: string, options?: Hl7SubComponentParseOptions) {
     this._value = undefined;
     if (!value) return;
     const unescaped = hl7UnEscape(value, this.field.message);
@@ -76,6 +76,10 @@ export class Hl7SubComponent {
         this.value = decode ? decode(unescaped) : unescaped;
       }
     } catch (e: any) {
+      if (!options?.strict) {
+        this.value = unescaped;
+        return;
+      }
       const location = `${this.segment.segmentType}.${this.field.position}.${this.component.position}.${this.position}[${this.component.repetition.index}]`;
       let segmentIndex = this.segment.index;
       if (segmentIndex < 0) segmentIndex = this.message.segments.length;
@@ -99,8 +103,13 @@ export class Hl7SubComponent {
     let v = this.value;
     if (v === null) return '""';
     if (v === undefined) return '';
-    if (encode) v = encode(v);
-    else {
+    if (encode) {
+      try {
+        v = encode(v);
+      } catch {
+        v = v == null ? v : String(v);
+      }
+    } else {
       if (typeof v === 'object' && v instanceof Date) v = toHL7DateTime(v);
     }
     const str = hl7Escape(v, this.field.message);
@@ -113,7 +122,9 @@ export class Hl7SubComponent {
     return this.toHL7String();
   }
 }
-
+export interface Hl7SubComponentParseOptions {
+  strict?: boolean;
+}
 export interface Hl7SubComponentSerializeOptions {
   serializeSubComponent?: (
     subComponent: Hl7SubComponent,
