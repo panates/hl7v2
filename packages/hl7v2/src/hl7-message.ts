@@ -24,7 +24,11 @@ import {
   VT,
 } from './constants.js';
 import { HL7Error } from './hl7-error.js';
-import { HL7Segment, Hl7SegmentSerializeOptions } from './hl7-segment.js';
+import {
+  HL7Segment,
+  Hl7SegmentParseOptions,
+  Hl7SegmentSerializeOptions,
+} from './hl7-segment.js';
 
 export class HL7Message {
   private readonly _dictionaries: Record<string, HL7Dictionary>;
@@ -129,7 +133,7 @@ export class HL7Message {
     );
   }
 
-  parse(input: string | Buffer) {
+  parse(input: string | Buffer, options?: HL7MessageParseOptions) {
     const raw = HL7Message.parseRaw(input);
     this._clear(raw.version as HL7Version);
     this.fieldSeparator = raw.fieldSeparator;
@@ -143,7 +147,7 @@ export class HL7Message {
     for (const [i, line] of lines.entries()) {
       if (!line) continue;
       try {
-        const segment = HL7Segment.parse(this, line);
+        const segment = HL7Segment.parse(this, line, options);
         this._segments.push(segment);
       } catch (e: any) {
         if (!this.header) {
@@ -298,10 +302,10 @@ export class HL7Message {
    */
   static parse(
     input: string | Buffer,
-    dictionaries?: Record<string, HL7Dictionary>,
+    options?: HL7MessageParseOptions,
   ): HL7Message {
-    const message = new HL7Message(undefined, dictionaries);
-    message.parse(input);
+    const message = new HL7Message(undefined, options?.dictionaries);
+    message.parse(input, options);
     return message;
   }
 
@@ -395,6 +399,10 @@ export class HL7Message {
     'UNICODE UTF-16': 'utf16-le',
     // ⚠️ UTF-32 iconv-lite tarafından desteklenmez
   };
+}
+
+export interface HL7MessageParseOptions extends Hl7SegmentParseOptions {
+  dictionaries?: Record<string, HL7Dictionary>;
 }
 
 export interface HL7MessageSerializeOptions

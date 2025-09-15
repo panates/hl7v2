@@ -1,5 +1,6 @@
 import {
   Hl7Component,
+  Hl7ComponentParseOptions,
   type Hl7ComponentSerializeOptions,
 } from './hl7-component.js';
 import type { HL7Field } from './hl7-field.js';
@@ -91,11 +92,11 @@ export class HL7Repetition {
     return this;
   }
 
-  fromHL7String(value: string) {
+  fromHL7String(value: string, options?: HL7RepetitionParseOptions) {
     this._components = [];
     const items = value.split(this.field.message.componentSeparator);
     for (const s of items) {
-      this.comp(this._components.length + 1)!.fromHL7String(s);
+      this.comp(this._components.length + 1)!.fromHL7String(s, options);
     }
   }
 
@@ -113,6 +114,8 @@ export class HL7Repetition {
     return this.toHL7String();
   }
 }
+
+export interface HL7RepetitionParseOptions extends Hl7ComponentParseOptions {}
 
 export interface HL7RepetitionSerializeOptions
   extends Hl7ComponentSerializeOptions {}

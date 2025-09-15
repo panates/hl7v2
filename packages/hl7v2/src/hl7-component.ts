@@ -10,6 +10,7 @@ import type { HL7Repetition } from './hl7-repetition.js';
 import type { HL7Segment } from './hl7-segment.js';
 import {
   Hl7SubComponent,
+  Hl7SubComponentParseOptions,
   type Hl7SubComponentSerializeOptions,
 } from './hl7-sub-component.js';
 import { hl7Escape, hl7UnEscape } from './utils/hl7-escape.js';
@@ -118,7 +119,7 @@ export class Hl7Component {
     return this;
   }
 
-  fromHL7String(value: string) {
+  fromHL7String(value: string, options?: Hl7ComponentParseOptions) {
     if (value === '') {
       this.setValue(undefined);
       return;
@@ -128,9 +129,14 @@ export class Hl7Component {
       const unescaped = hl7UnEscape(value, this.field.message);
       try {
         if (Buffer.isBuffer(unescaped) || unescaped == null)
-          this._data.value = unescaped;
-        else this._data.value = decode ? decode(unescaped) : unescaped;
+          (this._data as any)._value = unescaped;
+        else
+          (this._data as any)._value = decode ? decode(unescaped) : unescaped;
       } catch (e: any) {
+        if (!options?.strict) {
+          (this._data as any)._value = unescaped;
+          return;
+        }
         const location = `${this.segment.segmentType}.${this.field.position}.${this.position}[${this.repetition.index}]`;
         let segmentIndex = this.segment.index;
         if (segmentIndex < 0) segmentIndex = this.message.segments.length;
@@ -156,7 +162,7 @@ export class Hl7Component {
       );
       let pos = 1;
       for (const subComponent of subComponents) {
-        this.subcomp(pos++)!.fromHL7String(subComponent);
+        this.subcomp(pos++)!.fromHL7String(subComponent, options);
       }
     }
   }
@@ -168,8 +174,13 @@ export class Hl7Component {
       if (v === null) return '""';
       if (v === undefined) return '';
       const encode = this.definition.encode || this.typeDef.encode;
-      if (encode) v = encode(v);
-      else {
+      if (encode) {
+        try {
+          v = encode(v);
+        } catch {
+          v = v == null ? v : String(v);
+        }
+      } else {
         if (typeof v === 'object' && v instanceof Date) v = toHL7DateTime(v);
       }
       str = hl7Escape(v, this.field.message);
@@ -190,6 +201,8 @@ export class Hl7Component {
     return this.toHL7String();
   }
 }
+
+export interface Hl7ComponentParseOptions extends Hl7SubComponentParseOptions {}
 
 export interface Hl7ComponentSerializeOptions
   extends Hl7SubComponentSerializeOptions {
