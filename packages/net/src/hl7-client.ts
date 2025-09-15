@@ -199,6 +199,7 @@ export namespace Hl7Client {
     responseTimeout?: number;
     keepAlive?: boolean;
     keepAliveInitialDelay?: number;
+    parseStrict?: boolean;
   }
 
   export type NetConnectOptions = StrictOmit<
