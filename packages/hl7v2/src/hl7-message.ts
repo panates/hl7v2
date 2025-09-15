@@ -168,6 +168,7 @@ export class HL7Message {
         this.header.field(MSHSegment.VersionID).setValue(raw.version);
         /* c8 ignore next */
         const e1 = e instanceof HL7Error ? e : new HL7Error(e.message);
+        e1.stack = e.stack;
         if (e1.segmentType) {
           const lastSeg = this.getSegmentFromLast(e.segmentType);
           if (lastSeg) e1.segmentSequence = lastSeg.index;
