@@ -50,16 +50,6 @@ jobs:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           node-version: ${{ matrix.node }}
           github-registry: "false"
-          install-deps: 'false'
-
-      - name: echo
-        run: cat /home/runner/work/_temp/.npmrc
-
-      - name: echo
-        run: cat .npmrc
-
-      - name: echo
-        run: npm install
 
       - name: Apply tests
         run: |
