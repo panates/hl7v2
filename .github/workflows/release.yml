@@ -65,6 +65,8 @@ jobs:
         )
       )
     uses: panates/github-actions/.github/workflows/node-release.yaml@v1
+    with:
+      github-registry: "false"
     secrets:
       PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
