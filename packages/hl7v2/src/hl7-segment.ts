@@ -57,10 +57,12 @@ export class HL7Segment {
   }
 
   next(segmentType?: string): HL7Segment | undefined {
-    const index = this.index + 1;
-    const segment = this.message.segments[index];
-    if (segment && (!segmentType || segment.segmentType === segmentType))
-      return segment;
+    let index = this.index + 1;
+    let segment = this.message.segments[index];
+    while (segment) {
+      if (!segmentType || segment.segmentType === segmentType) return segment;
+      segment = this.message.segments[++index];
+    }
   }
 
   toHL7String(options?: Hl7SegmentSerializeOptions) {
