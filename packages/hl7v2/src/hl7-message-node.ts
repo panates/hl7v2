@@ -36,4 +36,33 @@ export class HL7MessageNode {
       }
     }
   }
+
+  /**
+   * Searches for a node of a given name
+   */
+  getNode(nodeName: string, index: number = 0): HL7MessageNode | undefined {
+    let k = 0;
+    for (const seg of this.items) {
+      if (seg instanceof HL7MessageNode && seg.name === nodeName) {
+        if (!index || index === k) return seg;
+        k++;
+      }
+    }
+  }
+
+  /**
+   * Searches for a node of a given name in reverse order
+   */
+  getNodeFromLast(
+    nodeName: string,
+    index: number = 0,
+  ): HL7MessageNode | undefined {
+    for (let k = this.items.length - 1; k >= 0; k--) {
+      const seg = this.items[k];
+      if (seg instanceof HL7MessageNode && seg.name === nodeName) {
+        if (!index || index === k) return seg;
+        k++;
+      }
+    }
+  }
 }
