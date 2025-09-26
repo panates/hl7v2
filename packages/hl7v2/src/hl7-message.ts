@@ -24,6 +24,7 @@ import {
   VT,
 } from './constants.js';
 import { HL7Error } from './hl7-error.js';
+import { HL7MessageNode } from './hl7-message-node.js';
 import {
   HL7Segment,
   Hl7SegmentParseOptions,
@@ -177,6 +178,111 @@ export class HL7Message {
         throw e1;
       }
     }
+  }
+
+  buildStructureTree(): HL7MessageNode {
+    // Get the message type to determine the structure
+    const messageType = this.messageType.replace('^', '_');
+    const messageDefinition = this.dictionary.messages?.[messageType];
+
+    if (!messageDefinition?.segments) {
+      const result = new HL7MessageNode('MESSAGE');
+      result.items.push(...this.segments);
+    }
+
+    // Helper function to process a segment definition recursively
+    const processSegmentDefinition = (
+      segmentDef: Record<string, any>,
+      nodeName: string,
+      currentSegmentIndex: { value: number },
+    ): HL7MessageNode => {
+      const node = new HL7MessageNode(nodeName);
+
+      // Sort segment definitions by their index
+      const sortedEntries = Object.entries(segmentDef).sort(
+        ([, a], [, b]) => (a.idx || 0) - (b.idx || 0),
+      );
+
+      for (const [key, def] of sortedEntries) {
+        if (def.segments) {
+          // This is a group - process recursively
+          const maxOccurrences = def.max || Number.MAX_SAFE_INTEGER;
+
+          let occurrenceCount = 0;
+          const initialSegmentIndex = currentSegmentIndex.value;
+
+          // Try to match segments for this group
+          while (
+            occurrenceCount < maxOccurrences &&
+            currentSegmentIndex.value < this.segments.length
+          ) {
+            const groupStartIndex = currentSegmentIndex.value;
+            const groupNode = processSegmentDefinition(
+              def.segments,
+              key,
+              currentSegmentIndex,
+            );
+
+            // Check if we actually consumed any segments
+            if (
+              currentSegmentIndex.value > groupStartIndex &&
+              groupNode.items.length > 0
+            ) {
+              node.items.push(groupNode);
+              occurrenceCount++;
+            } else {
+              // No segments matched, break the loop
+              break;
+            }
+          }
+
+          // If no occurrences found, reset to initial position
+          if (occurrenceCount === 0) {
+            currentSegmentIndex.value = initialSegmentIndex;
+          }
+        } else {
+          // This is a leaf segment
+          const maxOccurrences = def.max || Number.MAX_SAFE_INTEGER;
+          const segmentType = key;
+
+          // Match segments of this type
+          let matchedCount = 0;
+          while (
+            matchedCount < maxOccurrences &&
+            currentSegmentIndex.value < this.segments.length
+          ) {
+            const currentSegment = this.segments[currentSegmentIndex.value];
+
+            if (currentSegment.segmentType === segmentType) {
+              node.items.push(currentSegment);
+              currentSegmentIndex.value++;
+              matchedCount++;
+            } else {
+              // Different segment type - stop matching
+              break;
+            }
+          }
+        }
+      }
+
+      return node;
+    };
+
+    const segmentIndexRef = { value: 0 };
+    const result = processSegmentDefinition(
+      messageDefinition.segments!,
+      messageType,
+      segmentIndexRef,
+    );
+
+    // Add any remaining unmatched segments to the result
+    while (segmentIndexRef.value < this.segments.length) {
+      const segment = this.segments[segmentIndexRef.value];
+      result.items.push(segment);
+      segmentIndexRef.value++;
+    }
+
+    return result;
   }
 
   createAck(

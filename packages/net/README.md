@@ -5,11 +5,9 @@
 [![CI Tests][ci-test-image]][ci-test-url]
 [![Test Coverage][coveralls-image]][coveralls-url]
 
-
 ## About
 
-HL7 v2.x  TCP Client/Server for NodeJS
-
+HL7 v2.x TCP Client/Server for NodeJS
 
 ## Installation
 
@@ -19,9 +17,10 @@ $ npm install hl7v2 --save
 
 ## Node Compatibility
 
-  - node >= 18.x
-   
+- node >= 18.x
+
 ### License
+
 HL7v2 is available under [MIT](LICENSE) license.
 
 [npm-image]: https://img.shields.io/npm/v/hl7v2.svg
@@ -35,8 +34,8 @@ HL7v2 is available under [MIT](LICENSE) license.
 [gitter-image]: https://badges.gitter.im/panates/hl7v2.svg
 [gitter-url]: https://gitter.im/panates/hl7v2?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
 [dependencies-image]: https://david-dm.org/panates/hl7v2/status.svg
-[dependencies-url]:https://david-dm.org/panates/hl7v2
+[dependencies-url]: https://david-dm.org/panates/hl7v2
 [devdependencies-image]: https://david-dm.org/panates/hl7v2/dev-status.svg
-[devdependencies-url]:https://david-dm.org/panates/hl7v2?type=dev
+[devdependencies-url]: https://david-dm.org/panates/hl7v2?type=dev
 [quality-image]: http://npm.packagequality.com/shield/hl7v2.png
 [quality-url]: http://packagequality.com/#?package=hl7v2

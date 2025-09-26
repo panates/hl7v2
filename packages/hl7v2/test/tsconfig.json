@@ -2,6 +2,6 @@
   "extends": ["../tsconfig.json", "../../../tsconfig-base.json"],
   "include": ["**/*.ts"],
   "compilerOptions": {
-    "types": ["node", "mocha"],
+    "types": ["node", "mocha"]
   }
 }
