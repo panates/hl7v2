@@ -1,5 +1,6 @@
 import { HL7Dictionary } from '../hl7-dictionary.js';
 import { HL7Version } from '../version.enum.js';
+import * as messages from './messages/index.js';
 import * as segments from './segments/index.js';
 import * as types from './types/index.js';
 
@@ -7,6 +8,7 @@ const dict = new HL7Dictionary({
   version: HL7Version.v2_1,
   segments,
   types,
+  messages,
 });
 
 export default dict;

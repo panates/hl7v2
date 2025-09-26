@@ -1,0 +1,39 @@
+import { HL7MessageDefinition } from '../../types.js';
+
+export const SDN_S36: HL7MessageDefinition = {
+  desc: 'Notification of Anti-Microbial Device Data',
+  segments: {
+    MSH: {
+      idx: 0,
+      min: 1,
+      max: 1,
+      desc: 'Message Header',
+    },
+    SFT: {
+      idx: 1,
+      desc: 'Software',
+    },
+    UAC: {
+      idx: 2,
+      max: 1,
+      desc: 'User Authentication Credential Segment',
+    },
+    ANTI_MICROBIAL_DEVICE_DATA: {
+      idx: 3,
+      min: 1,
+      desc: 'Anti microbial device data',
+      segments: {
+        SDD: {
+          idx: 0,
+          min: 1,
+          max: 1,
+          desc: 'Sterilization Device',
+        },
+        SCD: {
+          idx: 1,
+          desc: 'Sterilization Cycle',
+        },
+      },
+    },
+  },
+};
