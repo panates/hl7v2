@@ -1,0 +1,58 @@
+import { HL7MessageDefinition } from '../../types.js';
+
+export const RPL_I02: HL7MessageDefinition = {
+  desc: 'Return patient display list',
+  segments: {
+    MSH: {
+      idx: 0,
+      min: 1,
+      max: 1,
+      desc: 'Message Header',
+    },
+    SFT: {
+      idx: 1,
+      desc: 'Software segment',
+    },
+    UAC: {
+      idx: 2,
+      max: 1,
+      desc: 'User Authentication Credential',
+    },
+    MSA: {
+      idx: 3,
+      min: 1,
+      max: 1,
+      desc: 'Message Acknowledgment',
+    },
+    PROVIDER: {
+      idx: 4,
+      min: 1,
+      desc: 'Provider',
+      segments: {
+        PRD: {
+          idx: 0,
+          min: 1,
+          max: 1,
+          desc: 'Provider Data',
+        },
+        CTD: {
+          idx: 1,
+          desc: 'Contact Data',
+        },
+      },
+    },
+    NTE: {
+      idx: 5,
+      desc: 'Notes and Comments',
+    },
+    DSP: {
+      idx: 6,
+      desc: 'Display Data',
+    },
+    DSC: {
+      idx: 7,
+      max: 1,
+      desc: 'Continuation Pointer',
+    },
+  },
+};

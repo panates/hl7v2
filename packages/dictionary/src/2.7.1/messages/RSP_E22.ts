@@ -1,0 +1,83 @@
+import { HL7MessageDefinition } from '../../types.js';
+
+export const RSP_E22: HL7MessageDefinition = {
+  desc: 'Authorization Request Query Response',
+  segments: {
+    MSH: {
+      idx: 0,
+      min: 1,
+      max: 1,
+      desc: 'Message Header',
+    },
+    SFT: {
+      idx: 1,
+      desc: 'Software',
+    },
+    UAC: {
+      idx: 2,
+      desc: 'User Authentication Credential',
+    },
+    MSA: {
+      idx: 3,
+      min: 1,
+      max: 1,
+      desc: 'Message Acknowledgement',
+    },
+    ERR: {
+      idx: 4,
+      desc: 'Error',
+    },
+    QUERY_ACK: {
+      idx: 5,
+      min: 1,
+      max: 1,
+      desc: 'Query Ack',
+      segments: {
+        QAK: {
+          idx: 0,
+          min: 1,
+          max: 1,
+          desc: 'Query Acknowledgement',
+        },
+        QPD: {
+          idx: 1,
+          min: 1,
+          max: 1,
+          desc: 'Query Parameter Definition',
+        },
+        AUTHORIZATION_INFO: {
+          idx: 2,
+          max: 1,
+          desc: 'Authorization Info',
+          segments: {
+            IVC: {
+              idx: 0,
+              min: 1,
+              max: 1,
+              desc: 'Invoice',
+            },
+            PSG: {
+              idx: 1,
+              min: 1,
+              max: 1,
+              desc: 'Product/Service Group',
+            },
+            PSL_ITEM_INFO: {
+              idx: 2,
+              min: 1,
+              desc: 'Psl Item Info',
+              segments: {
+                PSL: {
+                  idx: 0,
+                  min: 1,
+                  max: 1,
+                  desc: 'Product/Service Line Item',
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+};
