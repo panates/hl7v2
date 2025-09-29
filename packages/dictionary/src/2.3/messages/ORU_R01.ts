@@ -9,10 +9,10 @@ export const ORU_R01: HL7MessageDefinition = {
       max: 1,
       desc: 'Message header segment',
     },
-    RESPONSE: {
+    PATIENT_RESULT: {
       idx: 1,
       min: 1,
-      desc: 'Response',
+      desc: 'Patient result',
       segments: {
         PATIENT: {
           idx: 0,
