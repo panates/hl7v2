@@ -15,13 +15,13 @@ export class HL7MessageNode {
     segmentType: string,
     indexOrAfter?: number | HL7Segment,
   ): HL7Segment | undefined {
-    for (let k = 0; k < this.items.length; k++) {
-      const seg = this.items[k];
+    let k = 0;
+    for (let i = 0; i < this.items.length; i++) {
+      const seg = this.items[i];
       if (seg instanceof HL7Segment && seg.segmentType === segmentType) {
         if (!indexOrAfter) return seg;
         if (typeof indexOrAfter === 'number') {
-          if (indexOrAfter === k) return seg;
-          k++;
+          if (indexOrAfter === k++) return seg;
         } else {
           if (indexOrAfter === seg) indexOrAfter = undefined;
         }
@@ -36,13 +36,13 @@ export class HL7MessageNode {
     segmentType: string,
     indexOrAfter?: number | HL7Segment,
   ): HL7Segment | undefined {
-    for (let k = this.items.length - 1; k >= 0; k--) {
-      const seg = this.items[k];
+    let k = 0;
+    for (let i = this.items.length - 1; i >= 0; i--) {
+      const seg = this.items[i];
       if (seg instanceof HL7Segment && seg.segmentType === segmentType) {
         if (!indexOrAfter) return seg;
         if (typeof indexOrAfter === 'number') {
-          if (indexOrAfter === k) return seg;
-          k++;
+          if (indexOrAfter === k++) return seg;
         } else {
           if (indexOrAfter === seg) indexOrAfter = undefined;
         }
@@ -57,13 +57,13 @@ export class HL7MessageNode {
     nodeName: string,
     indexOrAfter?: number | HL7MessageNode,
   ): HL7MessageNode | undefined {
-    for (let k = 0; k < this.items.length; k++) {
-      const node = this.items[k];
+    let k = 0;
+    for (let i = 0; i < this.items.length; i++) {
+      const node = this.items[i];
       if (node instanceof HL7MessageNode && node.name === nodeName) {
         if (!indexOrAfter) return node;
         if (typeof indexOrAfter === 'number') {
-          if (indexOrAfter === k) return node;
-          k++;
+          if (indexOrAfter === k++) return node;
         } else {
           if (indexOrAfter === node) indexOrAfter = undefined;
         }
@@ -78,13 +78,13 @@ export class HL7MessageNode {
     nodeName: string,
     indexOrAfter?: number | HL7MessageNode,
   ): HL7MessageNode | undefined {
-    for (let k = this.items.length - 1; k >= 0; k--) {
-      const node = this.items[k];
+    let k = 0;
+    for (let i = this.items.length - 1; i >= 0; i--) {
+      const node = this.items[i];
       if (node instanceof HL7MessageNode && node.name === nodeName) {
         if (!indexOrAfter) return node;
         if (typeof indexOrAfter === 'number') {
-          if (indexOrAfter === k) return node;
-          k++;
+          if (indexOrAfter === k++) return node;
         } else {
           if (indexOrAfter === node) indexOrAfter = undefined;
         }

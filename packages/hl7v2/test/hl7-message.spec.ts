@@ -1,6 +1,10 @@
 import { expect } from 'expect';
-import { HL7MessageNode } from '../src/hl7-message-node.js';
-import { HL7Message, HL7Segment, HL7Version } from '../src/index.js';
+import {
+  HL7Message,
+  HL7MessageNode,
+  HL7Segment,
+  HL7Version,
+} from '../src/index.js';
 
 describe('hl7v2:HL7Message', () => {
   const sampleMessage1 =

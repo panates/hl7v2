@@ -103,13 +103,13 @@ export class HL7Message {
     segmentType: string,
     indexOrAfter?: number | HL7Segment,
   ): HL7Segment | undefined {
-    for (let k = 0; k < this.segments.length; k++) {
-      const seg = this.segments[k];
+    let k = 0;
+    for (let i = 0; i < this.segments.length; i++) {
+      const seg = this.segments[i];
       if (seg instanceof HL7Segment && seg.segmentType === segmentType) {
         if (!indexOrAfter) return seg;
         if (typeof indexOrAfter === 'number') {
-          if (indexOrAfter === k) return seg;
-          k++;
+          if (indexOrAfter === k++) return seg;
         } else {
           if (indexOrAfter === seg) indexOrAfter = undefined;
         }
@@ -124,13 +124,14 @@ export class HL7Message {
     segmentType: string,
     indexOrAfter?: number | HL7Segment,
   ): HL7Segment | undefined {
-    for (let k = this.segments.length - 1; k >= 0; k--) {
-      const seg = this.segments[k];
+    let k = 0;
+    for (let i = this.segments.length - 1; i >= 0; i--) {
+      const seg = this.segments[i];
       if (seg instanceof HL7Segment && seg.segmentType === segmentType) {
         if (!indexOrAfter) return seg;
         if (typeof indexOrAfter === 'number') {
-          if (indexOrAfter === k) return seg;
-          k++;
+          if (indexOrAfter === k++) return seg;
+          i++;
         } else {
           if (indexOrAfter === seg) indexOrAfter = undefined;
         }
