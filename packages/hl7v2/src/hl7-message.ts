@@ -99,12 +99,20 @@ export class HL7Message {
   /**
    * Searches for a segment of a given type
    */
-  getSegment(segmentType: string, index: number = 0): HL7Segment | undefined {
+  getSegment(
+    segmentType: string,
+    indexOrAfter?: number | HL7Segment,
+  ): HL7Segment | undefined {
     let k = 0;
-    for (const seg of this.segments) {
-      if (seg.segmentType === segmentType) {
-        if (!index || index === k) return seg;
-        k++;
+    for (let i = 0; i < this.segments.length; i++) {
+      const seg = this.segments[i];
+      if (seg instanceof HL7Segment && seg.segmentType === segmentType) {
+        if (!indexOrAfter) return seg;
+        if (typeof indexOrAfter === 'number') {
+          if (indexOrAfter === k++) return seg;
+        } else {
+          if (indexOrAfter === seg) indexOrAfter = undefined;
+        }
       }
     }
   }
@@ -114,13 +122,19 @@ export class HL7Message {
    */
   getSegmentFromLast(
     segmentType: string,
-    index: number = 0,
+    indexOrAfter?: number | HL7Segment,
   ): HL7Segment | undefined {
-    for (let k = this.segments.length - 1; k >= 0; k--) {
-      const seg = this.segments[k];
-      if (seg.segmentType === segmentType) {
-        if (!index || index === k) return seg;
-        k++;
+    let k = 0;
+    for (let i = this.segments.length - 1; i >= 0; i--) {
+      const seg = this.segments[i];
+      if (seg instanceof HL7Segment && seg.segmentType === segmentType) {
+        if (!indexOrAfter) return seg;
+        if (typeof indexOrAfter === 'number') {
+          if (indexOrAfter === k++) return seg;
+          i++;
+        } else {
+          if (indexOrAfter === seg) indexOrAfter = undefined;
+        }
       }
     }
   }
