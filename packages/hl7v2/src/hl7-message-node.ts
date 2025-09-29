@@ -11,12 +11,20 @@ export class HL7MessageNode {
   /**
    * Searches for a segment of a given type
    */
-  getSegment(segmentType: string, index: number = 0): HL7Segment | undefined {
-    let k = 0;
-    for (const seg of this.items) {
+  getSegment(
+    segmentType: string,
+    indexOrAfter?: number | HL7Segment,
+  ): HL7Segment | undefined {
+    for (let k = 0; k < this.items.length; k++) {
+      const seg = this.items[k];
       if (seg instanceof HL7Segment && seg.segmentType === segmentType) {
-        if (!index || index === k) return seg;
-        k++;
+        if (!indexOrAfter) return seg;
+        if (typeof indexOrAfter === 'number') {
+          if (indexOrAfter === k) return seg;
+          k++;
+        } else {
+          if (indexOrAfter === seg) indexOrAfter = undefined;
+        }
       }
     }
   }
@@ -26,13 +34,18 @@ export class HL7MessageNode {
    */
   getSegmentFromLast(
     segmentType: string,
-    index: number = 0,
+    indexOrAfter?: number | HL7Segment,
   ): HL7Segment | undefined {
     for (let k = this.items.length - 1; k >= 0; k--) {
       const seg = this.items[k];
       if (seg instanceof HL7Segment && seg.segmentType === segmentType) {
-        if (!index || index === k) return seg;
-        k++;
+        if (!indexOrAfter) return seg;
+        if (typeof indexOrAfter === 'number') {
+          if (indexOrAfter === k) return seg;
+          k++;
+        } else {
+          if (indexOrAfter === seg) indexOrAfter = undefined;
+        }
       }
     }
   }
@@ -40,12 +53,20 @@ export class HL7MessageNode {
   /**
    * Searches for a node of a given name
    */
-  getNode(nodeName: string, index: number = 0): HL7MessageNode | undefined {
-    let k = 0;
-    for (const seg of this.items) {
-      if (seg instanceof HL7MessageNode && seg.name === nodeName) {
-        if (!index || index === k) return seg;
-        k++;
+  getNode(
+    nodeName: string,
+    indexOrAfter?: number | HL7MessageNode,
+  ): HL7MessageNode | undefined {
+    for (let k = 0; k < this.items.length; k++) {
+      const node = this.items[k];
+      if (node instanceof HL7MessageNode && node.name === nodeName) {
+        if (!indexOrAfter) return node;
+        if (typeof indexOrAfter === 'number') {
+          if (indexOrAfter === k) return node;
+          k++;
+        } else {
+          if (indexOrAfter === node) indexOrAfter = undefined;
+        }
       }
     }
   }
@@ -55,13 +76,18 @@ export class HL7MessageNode {
    */
   getNodeFromLast(
     nodeName: string,
-    index: number = 0,
+    indexOrAfter?: number | HL7MessageNode,
   ): HL7MessageNode | undefined {
     for (let k = this.items.length - 1; k >= 0; k--) {
-      const seg = this.items[k];
-      if (seg instanceof HL7MessageNode && seg.name === nodeName) {
-        if (!index || index === k) return seg;
-        k++;
+      const node = this.items[k];
+      if (node instanceof HL7MessageNode && node.name === nodeName) {
+        if (!indexOrAfter) return node;
+        if (typeof indexOrAfter === 'number') {
+          if (indexOrAfter === k) return node;
+          k++;
+        } else {
+          if (indexOrAfter === node) indexOrAfter = undefined;
+        }
       }
     }
   }
