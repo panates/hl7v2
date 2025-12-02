@@ -237,7 +237,8 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
       this._onMessage(message, socket);
     });
     socket.on('send', message => this.emit('send', message, socket));
-    socket.on('data', data => this.emit('data', data));
+    socket.on('data', data => this.emit('data', data, socket));
+    socket.on('write', data => this.emit('write', data, socket));
     this.emit('connection', socket);
   }
 
@@ -279,7 +280,8 @@ export namespace HL7Server {
     error: [error: Error, HL7Socket | undefined];
     message: [message: HL7Message, socket: HL7Socket];
     send: [message: HL7Message, socket: HL7Socket];
-    data: [Buffer];
+    data: [Buffer, socket: HL7Socket];
+    write: [buffer: Buffer, socket: HL7Socket];
   }
 
   export interface Options {

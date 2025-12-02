@@ -131,10 +131,14 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
       }
       const str = message.toHL7String();
       const buf = iconv.encode(str, encoding);
-      this.socket.write(VT);
-      this.socket.write(buf);
-      this.socket.write(FS + CR);
+      const outBuffer = Buffer.concat([
+        Buffer.from(VT),
+        buf,
+        Buffer.from(FS + CR),
+      ]);
+      this.socket.write(outBuffer);
       this.emit('send', message);
+      this.emit('write', outBuffer);
     } catch (err: any) {
       this.emit('error', err);
       throw err;
@@ -231,7 +235,8 @@ export namespace HL7Socket {
     ];
     message: [message: HL7Message];
     send: [message: HL7Message];
-    data: [Buffer];
+    data: [buffer: Buffer];
+    write: [buffer: Buffer];
   }
 
   export interface Options {
