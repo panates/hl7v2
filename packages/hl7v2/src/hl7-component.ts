@@ -204,8 +204,7 @@ export class Hl7Component {
 
 export interface Hl7ComponentParseOptions extends Hl7SubComponentParseOptions {}
 
-export interface Hl7ComponentSerializeOptions
-  extends Hl7SubComponentSerializeOptions {
+export interface Hl7ComponentSerializeOptions extends Hl7SubComponentSerializeOptions {
   serializeComponent?: (
     component: Hl7Component,
     serializedString: string,

@@ -526,5 +526,4 @@ export interface HL7MessageParseOptions extends Hl7SegmentParseOptions {
   dictionaries?: Record<string, HL7Dictionary>;
 }
 
-export interface HL7MessageSerializeOptions
-  extends Hl7SegmentSerializeOptions {}
+export interface HL7MessageSerializeOptions extends Hl7SegmentSerializeOptions {}
