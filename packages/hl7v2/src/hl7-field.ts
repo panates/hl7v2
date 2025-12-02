@@ -134,8 +134,7 @@ export class HL7Field {
 
 export interface Hl7FieldParseOptions extends HL7RepetitionParseOptions {}
 
-export interface Hl7FieldSerializeOptions
-  extends HL7RepetitionSerializeOptions {
+export interface Hl7FieldSerializeOptions extends HL7RepetitionSerializeOptions {
   serializeField?: (
     field: HL7Field,
     serializedString: string,

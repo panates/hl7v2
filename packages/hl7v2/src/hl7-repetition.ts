@@ -117,5 +117,4 @@ export class HL7Repetition {
 
 export interface HL7RepetitionParseOptions extends Hl7ComponentParseOptions {}
 
-export interface HL7RepetitionSerializeOptions
-  extends Hl7ComponentSerializeOptions {}
+export interface HL7RepetitionSerializeOptions extends Hl7ComponentSerializeOptions {}
