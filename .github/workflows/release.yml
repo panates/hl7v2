@@ -13,6 +13,10 @@ on:
     branches:
       - main
 
+permissions:
+  id-token: write  # Required for OIDC
+  contents: read
+
 # Only one run at a time
 concurrency:
   group: ${{ github.workflow }}
@@ -46,7 +50,7 @@ jobs:
     uses: panates/github-actions/.github/workflows/node-release.yaml@v1
     secrets:
       PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      NPM_TOKEN: ${{ env.NPM_TOKEN }}
 
   release:
     if: >
@@ -67,4 +71,4 @@ jobs:
     uses: panates/github-actions/.github/workflows/node-release.yaml@v1
     secrets:
       PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      NPM_TOKEN: ${{ env.NPM_TOKEN }}

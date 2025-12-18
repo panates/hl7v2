@@ -49,7 +49,6 @@ jobs:
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           node-version: ${{ matrix.node }}
-          github-registry: "false"
 
       - name: Apply tests
         run: |
