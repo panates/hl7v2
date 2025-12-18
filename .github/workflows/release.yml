@@ -50,7 +50,6 @@ jobs:
     uses: panates/github-actions/.github/workflows/node-release.yaml@v1
     secrets:
       PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-      NPM_TOKEN: ${{ env.NPM_TOKEN }}
 
   release:
     if: >
@@ -71,4 +70,3 @@ jobs:
     uses: panates/github-actions/.github/workflows/node-release.yaml@v1
     secrets:
       PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-      NPM_TOKEN: ${{ env.NPM_TOKEN }}
