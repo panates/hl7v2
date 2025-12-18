@@ -45,6 +45,9 @@ jobs:
 
 
   release_after_test:
+    permissions:
+      id-token: write   # Required for OIDC
+      contents: read
     # Wait for "test" job
     needs: test
     uses: panates/github-actions/.github/workflows/node-release.yaml@v1
@@ -52,6 +55,9 @@ jobs:
       PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
   release:
+    permissions:
+      id-token: write   # Required for OIDC
+      contents: read
     if: >
       !contains(github.event.head_commit.message, 'no-release') &&
       !(
