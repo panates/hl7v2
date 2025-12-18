@@ -1,4 +1,10 @@
 {
-  "include": ["./packages", "./support", "./examples", "./"],
-  "exclude": ["node_modules", "build", "coverage", "docs"]
+  "references": [
+    { "path": "./packages/dictionary" },
+    { "path": "./packages/hl7v2" },
+    { "path": "./packages/net" },
+  ],
+  "compilerOptions": {
+    "noEmit": true
+  }
 }

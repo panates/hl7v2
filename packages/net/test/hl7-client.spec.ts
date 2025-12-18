@@ -25,7 +25,7 @@ describe('net:client', () => {
     expect(client.readyState).toStrictEqual('open');
   });
 
-  it('Should reconnect after close', async () => {
+  it('Should manually reconnect after close', async () => {
     server = HL7Server.createServer();
     await server.listen(12345);
     client = Hl7Client.createClient({ host: 'localhost', port: 12345 });
@@ -34,6 +34,26 @@ describe('net:client', () => {
     await client.close();
     expect(client.connected).not.toBeTruthy();
     await client.connect();
+    expect(client.connected).toBeTruthy();
+  });
+
+  it('should automatically reconnect when connection lost', async () => {
+    server = HL7Server.createServer();
+    await server.listen(12345);
+    client = Hl7Client.createClient({ host: 'localhost', port: 12345 });
+    await client.connect();
+    expect(client.connected).toBeTruthy();
+    const events: string[] = [];
+    await new Promise<void>(resolve => {
+      client.on('reconnecting', () => events.push('reconnecting'));
+      client.on('reconnect', () => events.push('reconnect'));
+      client.on('connect', () => {
+        events.push('connect');
+        resolve();
+      });
+      (client as any)._socket.socket.destroy();
+    });
+    expect(events).toStrictEqual(['reconnecting', 'reconnect', 'connect']);
     expect(client.connected).toBeTruthy();
   });
 

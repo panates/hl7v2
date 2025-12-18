@@ -1,10 +1,4 @@
 {
   "extends": ["./tsconfig.json", "../../tsconfig-build.json"],
-  "compilerOptions": {
-    "module": "ES2020",
-    "moduleResolution": "Node",
-    "rootDir": "src",
-    "outDir": "./build/esm",
-    "declarationDir": "./build/types"
-  }
+  "compilerOptions": {}
 }

@@ -1,8 +1,9 @@
 import net from 'node:net';
 import tls from 'node:tls';
+import { Backoff } from 'backoff';
 import { HL7Message } from 'hl7v2';
-import { AddressInfo } from 'net';
 import { AsyncEventEmitter } from 'node-events-async';
+import reconnectCore from 'reconnect-core';
 import { StrictOmit } from 'ts-gems';
 import { HL7Request } from './hl7-request.js';
 import { HL7Response } from './hl7-response.js';
@@ -11,6 +12,7 @@ import { HL7Socket } from './hl7-socket.js';
 import { HL7Middleware } from './types.js';
 
 export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
+  protected _connectionManager: ReturnType<typeof socketReconnect>;
   protected _router = new HL7Router();
   protected _socket?: HL7Socket;
   protected _tls?: boolean;
@@ -46,6 +48,55 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
   ) {
     super();
     this._options = options;
+    let reconnecting = false;
+    const connectionManager = (this._connectionManager = socketReconnect({
+      ...this._options.reconnect,
+      timeout: this._options.connectTimeout,
+    } as any)
+      .on('error', err => {
+        if (!connectionManager.reconnect) return;
+        this.emit('error', err);
+      })
+      .on('connect', (tcpSocket: net.Socket) => {
+        if (!this._socket) {
+          const socket = (this._socket = new HL7Socket(
+            tcpSocket,
+            this._options,
+          ));
+          socket.on('connect', () => this.emit('connect'));
+          socket.on('ready', () => this.emit('ready'));
+          socket.on('lookup', (err, address, family, host) =>
+            this.emit('lookup', err, address, family, host),
+          );
+          socket.on('close', () => {
+            this._socket = undefined;
+            this.emit('close');
+          });
+          socket.on('error', err => this.emit('error', err));
+          socket.on('message', message => {
+            this.emit('message', message);
+            this._onMessage(message);
+          });
+          socket.on('send', message => this.emit('send', message));
+          socket.on('data', data => this.emit('data', data));
+        } else this._socket._bindSocket(tcpSocket);
+        if (reconnecting) this.emit('reconnect', tcpSocket);
+        reconnecting = false;
+        this.emit('connect');
+      })
+      .on('reconnect', (n, delay) => {
+        if (n === 0 && delay === 0) return;
+        reconnecting = true;
+        this.emit('reconnecting', n, delay);
+      })
+      .on('disconnect', err => {
+        this._socket = undefined;
+        if (connectionManager.reconnect) {
+          if (err) err.message = `TCP socket connection lost: ${err.message}`;
+          else err = new Error('TCP socket connection lost');
+          this.emit('disconnect', err);
+        } else this.emit('disconnect');
+      }));
   }
 
   get connected(): boolean {
@@ -64,16 +115,16 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
     return this._options.host + ':' + this._options.port;
   }
 
-  address(): AddressInfo {
+  address(): net.AddressInfo {
     const out = this._socket?.address();
     if (!(out as any)?.address) {
       return {
         address: this._options.host || '',
         port: this._options.port || 0,
         family: '',
-      } satisfies AddressInfo;
+      } satisfies net.AddressInfo;
     }
-    return out as AddressInfo;
+    return out as net.AddressInfo;
   }
 
   get connectTimeout(): number | undefined {
@@ -101,66 +152,32 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
     if (this._socket) this._socket.maxBufferSize = value;
   }
 
-  connect(): Promise<void> {
+  async connect(): Promise<void> {
+    if (this.connected) return;
     return new Promise((resolve, reject) => {
-      if (this.connected) {
-        resolve();
-        return;
-      }
-      let timeoutTimer: NodeJS.Timeout | undefined;
-      const tcpSocket = this._tls
-        ? tls.connect(this._options as any)
-        : net.connect(this._options as any);
-      const socket = (this._socket = new HL7Socket(tcpSocket, this._options));
-
-      socket.on('connect', () => this.emit('connect'));
-      socket.on('ready', () => this.emit('ready'));
-      socket.on('lookup', (err, address, family, host) =>
-        this.emit('lookup', err, address, family, host),
-      );
-      socket.on('close', () => {
-        this._socket = undefined;
-        this.emit('close');
-      });
-      socket.on('error', err => this.emit('error', err));
-      socket.on('message', message => {
-        this.emit('message', message);
-        this._onMessage(message);
-      });
-      socket.on('send', message => this.emit('send', message));
-      socket.on('data', data => this.emit('data', data));
-
       const onReady = () => {
-        clearTimeout(timeoutTimer);
-        tcpSocket.removeListener('error', onError);
-        if (this._options.keepAlive) {
-          tcpSocket.setKeepAlive(
-            this._options.keepAlive,
-            this._options.keepAliveInitialDelay,
-          );
-        }
+        this.removeListener('error', onError);
         resolve();
       };
       const onError = (error: any) => {
-        clearTimeout(timeoutTimer);
-        tcpSocket.removeListener('ready', onReady);
-        tcpSocket.destroy();
+        this.removeListener('ready', onReady);
         reject(error);
       };
-      tcpSocket.once('ready', onReady);
-      tcpSocket.once('error', onError);
-
-      if (this.connectTimeout) {
-        timeoutTimer = setTimeout(() => {
-          this.emit('error', new Error('Connection timeout'));
-          tcpSocket.destroy();
-        }, this._options.connectTimeout).unref();
-      }
+      this.once('ready', onReady);
+      this.once('error', onError);
+      this._connectionManager.reconnect = true;
+      this._connectionManager.connect({
+        tls: this._tls,
+        options: this._options,
+      });
     });
   }
 
   async close(waitRunningHandlers?: number): Promise<void> {
+    this._connectionManager.reconnect = false;
     await this._socket?.close(waitRunningHandlers);
+    this._connectionManager.disconnect();
+    this._connectionManager.reset();
   }
 
   async sendMessage(message: HL7Message): Promise<void> {
@@ -193,6 +210,11 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
 }
 
 export namespace Hl7Client {
+  export interface Events extends HL7Socket.Events {
+    reconnecting: [n: number, delay: number];
+    reconnect: [socket: net.Socket];
+  }
+
   interface CommonConnectOptions {
     connectTimeout?: number;
     maxBufferSize?: number;
@@ -200,6 +222,7 @@ export namespace Hl7Client {
     keepAlive?: boolean;
     keepAliveInitialDelay?: number;
     parseStrict?: boolean;
+    reconnect?: ReconnectOptions;
   }
 
   export type NetConnectOptions = StrictOmit<
@@ -211,5 +234,55 @@ export namespace Hl7Client {
   export type TlsConnectOptions = StrictOmit<tls.ConnectionOptions, 'socket'> &
     CommonConnectOptions;
 
-  export interface Events extends HL7Socket.Events {}
+  export interface ReconnectOptions {
+    strategy?: 'fibonacci' | 'exponential' | Backoff;
+    immediate?: boolean | undefined;
+    failAfter?: number | undefined;
+    randomisationFactor?: number | undefined;
+    initialDelay?: number | undefined;
+    maxDelay?: number | undefined;
+  }
 }
+
+const socketReconnect = reconnectCore(
+  (args: {
+    tls?: boolean;
+    options: Hl7Client.NetConnectOptions | Hl7Client.TlsConnectOptions;
+  }) => {
+    const tcpSocket = args.tls
+      ? tls.connect({
+          ...(args.options as Hl7Client.TlsConnectOptions),
+          timeout: undefined,
+        })
+      : net.connect({
+          ...(args.options as Hl7Client.NetConnectOptions),
+          timeout: undefined,
+        });
+    if (args.options.timeout) {
+      const timer = setTimeout(() => {
+        tcpSocket.destroy(new Error('Connection timed out'));
+      }, args.options.timeout).unref();
+      const onConnect = () => {
+        clearTimeout(timer);
+        tcpSocket.removeListener('error', onError);
+      };
+      const onError = () => {
+        clearTimeout(timer);
+        tcpSocket.removeListener('connect', onConnect);
+        tcpSocket.removeListener('ready', onReady);
+      };
+      const onReady = () => {
+        if (args.options.keepAlive) {
+          tcpSocket.setKeepAlive(
+            args.options.keepAlive,
+            args.options.keepAliveInitialDelay,
+          );
+        }
+      };
+      tcpSocket.once('connect', onConnect);
+      tcpSocket.once('error', onError);
+      tcpSocket.once('ready', onReady);
+    }
+    return tcpSocket;
+  },
+);

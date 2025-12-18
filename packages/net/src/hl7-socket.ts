@@ -14,7 +14,7 @@ import { AsyncEventEmitter } from 'node-events-async';
 import { FrameStream } from './helpers/frame-stream.js';
 
 export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
-  readonly socket: Socket;
+  declare protected _socket: Socket;
   protected _messageHooks = new Set<(resp: HL7Message) => boolean>();
   protected _frameStream: FrameStream;
   protected _waitPromises = new Set<Promise<any>>();
@@ -28,34 +28,22 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
 
   constructor(socket: Socket, options: HL7Socket.Options) {
     super();
-    this.socket = socket;
     this._options = options;
     const frameStream = new FrameStream({
       frameStart: VT,
       frameEnd: FS + CR,
       maxBufferSize: options?.maxBufferSize,
     });
-    this._frameStream = frameStream;
-    socket.on('error', (err: any) => {
-      if (err.code === 'ECONNRESET') {
-        err.message = `Connection reset by peer`;
-      }
-      this.emit('error', err);
-    });
-    socket.pipe(frameStream);
-    socket.on('connect', () => this.emit('connect'));
-    socket.on('ready', () => this.emit('ready'));
-    socket.on('lookup', (err, address, family, host) =>
-      this.emit('lookup', err, address, family, host),
-    );
-    socket.on('timeout', () => socket.destroy());
-    socket.on('close', () => {
-      this.emit('close');
-    });
     frameStream.on('data', data => {
       this.emit('data', data);
       this._onData(data);
     });
+    this._frameStream = frameStream;
+    this._bindSocket(socket);
+  }
+
+  get socket(): Socket {
+    return this._socket;
   }
 
   get connected(): boolean {
@@ -67,7 +55,7 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
   }
 
   get readyState() {
-    return this.socket.readyState;
+    return this.socket?.readyState || 'closed';
   }
 
   get maxBufferSize(): number {
@@ -79,22 +67,22 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
   }
 
   address() {
-    return this.socket.address();
+    return this.socket?.address() || {};
   }
 
   remoteAddress() {
-    const addr = this.socket.remoteAddress;
+    const addr = this.socket?.remoteAddress;
     return addr?.startsWith('::ffff:') ? addr.slice(7) : addr;
   }
 
   get writable() {
-    return this.connected && this.socket.writable;
+    return this.connected && this.socket?.writable;
   }
 
   async close(waitRunningHandlers?: number): Promise<void> {
     if (this.closed) return;
     /** Stop receiving data */
-    this.socket.unpipe(this._frameStream);
+    this.socket!.unpipe(this._frameStream);
     /** Wait for running handlers to finish */
     if (waitRunningHandlers && this._waitPromises.size > 0) {
       await new Promise<void>(resolve => {
@@ -219,6 +207,47 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
       this.sendMessage(nak);
     }
   }
+
+  _bindSocket(socket: Socket) {
+    if (socket === this._socket) return;
+    this._unBindSocket();
+    this._socket = socket;
+    const hl7EventListeners: any = ((socket as any).__hl7EventListeners = {});
+    hl7EventListeners.onConnect = () => this.emit('connect');
+    hl7EventListeners.onReady = () => this.emit('ready');
+    hl7EventListeners.onLookup = (err, address, family, host) =>
+      this.emit('lookup', err, address, family, host);
+    hl7EventListeners.onTimeout = () => socket.destroy();
+    hl7EventListeners.onClose = () => this.emit('close');
+    hl7EventListeners.onError = (err: any) => {
+      if (err.code === 'ECONNRESET') {
+        err.message = `Connection reset by peer`;
+      }
+      this.emit('error', err);
+    };
+
+    socket.on('connect', hl7EventListeners.onConnect);
+    socket.on('ready', hl7EventListeners.onReady);
+    socket.on('lookup', hl7EventListeners.onLookup);
+    socket.on('timeout', hl7EventListeners.onTimeout);
+    socket.on('close', hl7EventListeners.onClose);
+    socket.on('error', hl7EventListeners.onError);
+    socket.pipe(this._frameStream);
+  }
+
+  protected _unBindSocket() {
+    if (!this.socket) return;
+    this.socket.unpipe(this._frameStream);
+    const hl7EventListeners = (this.socket as any).__hl7EventListeners;
+    if (hl7EventListeners) {
+      this.socket.removeListener('connect', hl7EventListeners.onConnect);
+      this.socket.removeListener('ready', hl7EventListeners.onReady);
+      this.socket.removeListener('lookup', hl7EventListeners.onLookup);
+      this.socket.removeListener('timeout', hl7EventListeners.onTimeout);
+      this.socket.removeListener('close', hl7EventListeners.onClose);
+      this.socket.removeListener('error', hl7EventListeners.onError);
+    }
+  }
 }
 
 export namespace HL7Socket {
@@ -228,9 +257,9 @@ export namespace HL7Socket {
     close: [];
     error: [error: Error];
     lookup: [
-      err: Error,
+      err: Error | null,
       address: string,
-      family: string | number,
+      family: number | null,
       host: string,
     ];
     message: [message: HL7Message];
