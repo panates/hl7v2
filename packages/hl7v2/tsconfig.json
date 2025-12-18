@@ -1,10 +1,19 @@
 {
   "extends": "../../tsconfig-base.json",
   "include": ["src"],
+  "exclude": ["build"],
   "compilerOptions": {
+    "composite": true,
+    "incremental": true,
+    "module": "ES2020",
+    "moduleResolution": "Node",
+    "rootDir": "src",
+    "outDir": "./build/esm",
+    "declarationDir": "./build/types",
     "baseUrl": "./",
     "paths": {
-      "hl7v2-dictionary": ["../dictionary", "../dictionary/src/index.js"]
+      "hl7v2-dictionary": ["../dictionary/src"]
     }
-  }
+  },
+  "references": [{ "path": "../dictionary" }]
 }

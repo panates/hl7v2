@@ -228,9 +228,9 @@ export namespace HL7Socket {
     close: [];
     error: [error: Error];
     lookup: [
-      err: Error,
+      err: Error | null,
       address: string,
-      family: string | number,
+      family: number | null,
       host: string,
     ];
     message: [message: HL7Message];

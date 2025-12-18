@@ -2,7 +2,6 @@
   "extends": "@panates/tsconfig/build.json",
   "compilerOptions": {
     "baseUrl": "./",
-    "sourceMap": false,
     "paths": {
       "hl7v2": ["./packages/hl7v2/build"],
       "hl7v2-dictionary": ["./packages/dictionary/build"],
