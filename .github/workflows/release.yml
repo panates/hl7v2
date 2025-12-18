@@ -53,11 +53,9 @@ jobs:
     uses: panates/github-actions/.github/workflows/node-release.yaml@v1
     secrets:
       PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   release:
-    permissions:
-      id-token: write   # Required for OIDC
-      contents: read
     if: >
       !contains(github.event.head_commit.message, 'no-release') &&
       !(
@@ -76,3 +74,4 @@ jobs:
     uses: panates/github-actions/.github/workflows/node-release.yaml@v1
     secrets:
       PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
