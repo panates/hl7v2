@@ -70,7 +70,7 @@ export class HL7Message {
   get messageType(): string {
     const f = this.header.field(MSHSegment.MessageType);
     if (!f) return '';
-    return f.getValue(1) + '^' + f.getValue(2);
+    return f.getValue(1) + '^' + (f.getValue(2) || '');
   }
 
   get controlId(): string {

@@ -3,8 +3,10 @@
     { "path": "./packages/dictionary" },
     { "path": "./packages/hl7v2" },
     { "path": "./packages/net" },
+    { "path": "./examples/*" }
   ],
   "compilerOptions": {
     "noEmit": true
-  }
+  },
+  "exclude": ["node_modules", "coverage"]
 }

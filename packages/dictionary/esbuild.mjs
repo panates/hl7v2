@@ -17,10 +17,7 @@ const external = [
   ...Object.keys(pkgJson.devDependencies || {}),
 ];
 
-/**
- * @type BuildOptions
- */
-const defaultConfig = {
+await esbuild.build({
   entryPoints: [entryPoint],
   bundle: true,
   platform: 'node',
@@ -31,20 +28,6 @@ const defaultConfig = {
   keepNames: true,
   alias: {},
   external,
-};
-
-await esbuild.build({
-  ...defaultConfig,
-  platform: 'node',
-  format: 'esm',
-  outfile: path.join(targetPath, './esm/index.mjs'),
-  tsconfig: './tsconfig-build-esm.json',
-});
-
-await esbuild.build({
-  ...defaultConfig,
-  platform: 'node',
-  format: 'cjs',
-  outfile: path.join(targetPath, './cjs/index.cjs'),
-  tsconfig: './tsconfig-build-cjs.json',
+  outfile: path.join(targetPath, './index.js'),
+  tsconfig: './tsconfig-build.json',
 });

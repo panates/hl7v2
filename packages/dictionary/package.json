@@ -16,40 +16,34 @@
   },
   "scripts": {
     "compile": "tsc --noEmit",
-    "prebuild": "npm run lint && npm run clean",
+    "prebuild": "npm run check && npm run lint && npm run clean",
     "build": "node esbuild.mjs && npm run build:types",
-    "build:types": "tsc -b tsconfig-build-esm.json --emitDeclarationOnly && rimraf ./build/types/2*",
-    "postbuild": "npm run postbuild:copy && node ../../support/postbuild.cjs",
-    "postbuild:copy": "cp README.md package.json ../../LICENSE ./build",
+    "build:types": "tsc -b tsconfig-build.json --emitDeclarationOnly && rimraf ./build/2*",
+    "postbuild": "node ../../support/postbuild.cjs",
     "lint": "eslint . --max-warnings=0",
     "lint:fix": "eslint . --max-warnings=0 --fix",
     "format": "prettier . --write --log-level=warn",
     "check": "madge --circular src/**",
     "test": "mocha",
-    "clean": "npm run clean:src && npm run clean:test && npm run clean:dist && npm run clean:cover",
+    "clean": "npm run clean:src && npm run clean:test && npm run clean:build && npm run clean:cover",
     "clean:src": "ts-cleanup -s src --all",
     "clean:test": "ts-cleanup -s test --all",
-    "clean:dist": "rimraf ./build",
+    "clean:build": "rimraf build *.tsbuildinfo",
     "clean:cover": "rimraf ../../coverage/hl7v2"
   },
   "type": "module",
+  "module": "./index.js",
+  "types": "./index.d.ts",
   "exports": {
     ".": {
-      "import": {
-        "types": "./types/index.d.ts",
-        "default": "./esm/index.mjs"
-      },
-      "require": {
-        "types": "./types/index.d.cts",
-        "default": "./cjs/index.js"
-      },
-      "default": "./esm/index.mjs"
+      "types": "./index.d.ts",
+      "default": "./index.js"
     },
     "./package.json": "./package.json"
   },
-  "main": "./cjs/index.js",
-  "module": "./esm/index.js",
-  "types": "./types/index.d.ts",
+  "engines": {
+    "node": ">=20.0"
+  },
   "contributors": [
     "Eray Hanoglu <e.hanoglu@panates.com>"
   ],
@@ -58,17 +52,6 @@
     "url": "https://github.com/panates/hl7v2.git",
     "directory": "packages/common"
   },
-  "engines": {
-    "node": ">=18.0"
-  },
-  "files": [
-    "cjs/",
-    "esm/",
-    "types/",
-    "LICENSE",
-    "README.md",
-    "CHANGELOG.md"
-  ],
   "keywords": [
     "hl7",
     "perser",

@@ -3,6 +3,7 @@
 **/node_modules
 *.cache.json
 .angular
+*.tsbuildinfo
 junit.xml
 /reports
 packages/*/dist
