@@ -1,0 +1,27 @@
+{
+  "name": "hl7v2-example-client",
+  "version": "0.0.1",
+  "author": "Panates",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "hl7v2": "^1.6.0",
+    "hl7v2-net": "^1.6.0",
+    "tslib": "^2.8.1"
+  },
+  "devDependencies": {
+    "expect": "^30.2.0"
+  },
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "type": "module",
+  "module": "./index.js",
+  "types": "./index.d.ts",
+  "engines": {
+    "node": ">=20.0"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
+}

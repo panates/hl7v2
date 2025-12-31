@@ -11,9 +11,14 @@
     "outDir": "./build",
     "baseUrl": "./",
     "paths": {
-      "hl7v2-dictionary": ["../dictionary/src"],
-      "hl7v2": ["../hl7v2/src"]
+      "hl7v2-dictionary": ["../../packages/dictionary/src"],
+      "hl7v2": ["../../packages/hl7v2/src"],
+      "hl7v2-net": ["../../packages/net/src"]
     }
   },
-  "references": [{ "path": "../dictionary" }, { "path": "../hl7v2" }]
+  "references": [
+    { "path": "../../packages/dictionary" },
+    { "path": "../../packages/hl7v2" },
+    { "path": "../../packages/net" }
+  ]
 }

@@ -66,7 +66,7 @@ export class HL7Router {
 
     if (root) {
       const finalHandler: HL7Middleware = (req, res) => {
-        if (res.finished) return;
+        if (res.finished || req.message.messageType.startsWith('ACK^')) return;
         req.socket.sendMessage(res.message);
       };
       this._handlers.push(finalHandler);

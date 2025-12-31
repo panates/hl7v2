@@ -8,8 +8,7 @@
     "module": "ES2020",
     "moduleResolution": "Node",
     "rootDir": "src",
-    "outDir": "./build/esm",
-    "declarationDir": "./build/types",
+    "outDir": "./build",
     "baseUrl": "./",
     "paths": {
       "hl7v2-dictionary": ["../dictionary/src"]
