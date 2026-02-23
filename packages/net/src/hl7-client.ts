@@ -115,16 +115,15 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
     return this._options.host + ':' + this._options.port;
   }
 
-  address(): net.AddressInfo {
-    const out = this._socket?.address();
-    if (!(out as any)?.address) {
-      return {
-        address: this._options.host || '',
-        port: this._options.port || 0,
-        family: '',
-      } satisfies net.AddressInfo;
-    }
-    return out as net.AddressInfo;
+  address() {
+    return this._socket?.address();
+  }
+
+  remoteAddress(): string {
+    return (
+      this._socket?.remoteAddress() ||
+      this._options.host + ':' + this._options.port
+    );
   }
 
   get connectTimeout(): number | undefined {
