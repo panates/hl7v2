@@ -1,4 +1,5 @@
 import { expect } from 'expect';
+// @ts-ignore
 import iconv from 'iconv-lite';
 import {
   AL1Segment,

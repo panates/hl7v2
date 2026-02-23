@@ -1,22 +1,22 @@
 {
   "name": "hl7v2",
   "description": "HL7 v2 parser, serializer, validator for NodeJS",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "author": "Panates",
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@jsopen/objects": "^2.0.2",
-    "iconv-lite": "^0.7.1",
+    "@jsopen/objects": "^2.1.1",
+    "iconv-lite": "^0.7.2",
     "is-typedarray": "^1.0.0",
     "node-events-async": "^1.5.0",
     "ts-gems": "^3.11.3",
     "tslib": "^2.8.1",
-    "valgen": "^5.18.2",
+    "valgen": "^5.19.5",
     "uid": "^2.0.2"
   },
   "peerDependencies": {
-    "hl7v2-dictionary": "^1.7.0"
+    "hl7v2-dictionary": "^1.7.1"
   },
   "devDependencies": {
     "expect": "^30.2.0"

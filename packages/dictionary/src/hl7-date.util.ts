@@ -5,7 +5,9 @@ export function toHL7Date(value: Date | string): string {
 }
 
 export function toHL7DateTime(value: Date | string): string {
-  const v = _toHL7DateTime(value).replace(/[-T:]/g, '');
+  let v =
+    value instanceof Date ? _toHL7DateTime(value) : _toHL7DateTimeTz(value);
+  v = v.replace(/[-T:]/g, '');
   if (v.length > 8 && v.endsWith('000000')) return v.substring(0, 8);
   if (v.length === 14 && v.endsWith('00')) return v.substring(0, 12);
   return v;
@@ -17,11 +19,19 @@ export function toHL7Time(value: Date | string): string {
 
 const _toHL7Date = vg.isDateString({
   precisionMin: 'year',
-  trim: 'day',
+  precisionMax: 'day',
+  trim: true,
   coerce: true,
 });
 
 const _toHL7DateTime = vg.isDateString({
+  precisionMin: 'year',
+  precisionMax: 'ms',
+  trim: true,
+  coerce: true,
+});
+
+const _toHL7DateTimeTz = vg.isDateString({
   precisionMin: 'year',
   coerce: true,
 });
