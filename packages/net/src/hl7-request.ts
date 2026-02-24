@@ -9,8 +9,4 @@ export class HL7Request {
     this.socket = socket;
     this.message = message;
   }
-
-  remoteAddress() {
-    return this.socket.remoteAddress();
-  }
 }
