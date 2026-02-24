@@ -62,21 +62,37 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
     return this._frameStream.maxBufferSize || 0;
   }
 
-  set maxBufferSize(value: number) {
-    this._frameStream.maxBufferSize = value;
+  get localAddress() {
+    return this.socket?.localAddress;
   }
 
-  address() {
-    return this.socket?.address() || {};
+  get localPort() {
+    return this.socket?.localPort;
   }
 
-  remoteAddress() {
+  get localFamily() {
+    return this.socket?.localFamily;
+  }
+
+  get remoteAddress() {
     const addr = this.socket?.remoteAddress;
     return addr?.startsWith('::ffff:') ? addr.slice(7) : addr;
   }
 
+  get remotePort() {
+    return this.socket?.remotePort;
+  }
+
+  get remoteFamily() {
+    return this.socket?.remoteFamily;
+  }
+
   get writable() {
     return this.connected && this.socket?.writable;
+  }
+
+  address() {
+    return this.socket?.address() || {};
   }
 
   async close(waitRunningHandlers?: number): Promise<void> {
@@ -184,6 +200,10 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
     this._options.keepAlive = enable;
     this._options.keepAliveInitialDelay = initialDelay;
     this.socket.setKeepAlive(enable, initialDelay);
+  }
+
+  setMaxBufferSize(value: number) {
+    this._frameStream.maxBufferSize = value;
   }
 
   protected _onData(data: Buffer) {

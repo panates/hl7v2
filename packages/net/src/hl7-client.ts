@@ -115,40 +115,44 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
     return this._options.host + ':' + this._options.port;
   }
 
-  address() {
-    return this._socket?.address();
+  get localAddress() {
+    return this._socket?.localAddress;
   }
 
-  remoteAddress(): string {
-    return (
-      this._socket?.remoteAddress() ||
-      this._options.host + ':' + this._options.port
-    );
+  get localPort() {
+    return this._socket?.localPort;
+  }
+
+  get localFamily() {
+    return this._socket?.localFamily;
+  }
+
+  get remoteAddress() {
+    return this._socket?.remoteAddress || this._options.host;
+  }
+
+  get remotePort() {
+    return this._socket?.remotePort || this._options.port;
+  }
+
+  get remoteFamily() {
+    return this._socket?.remoteFamily;
   }
 
   get connectTimeout(): number | undefined {
     return this._options.connectTimeout;
   }
 
-  set connectTimeout(value: number | null) {
-    this._options.connectTimeout = value ?? undefined;
-  }
-
   get responseTimeout(): number | undefined {
     return this._options.responseTimeout;
-  }
-
-  set responseTimeout(value: number | null) {
-    this._options.responseTimeout = value ?? undefined;
   }
 
   get maxBufferSize(): number {
     return this._options.maxBufferSize || 0;
   }
 
-  set maxBufferSize(value: number) {
-    this._options.maxBufferSize = value;
-    if (this._socket) this._socket.maxBufferSize = value;
+  address() {
+    return this._socket?.address();
   }
 
   async connect(): Promise<void> {
@@ -187,6 +191,19 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
   async sendMessageWaitAck(request: HL7Message): Promise<HL7Message> {
     if (!this.connected) await this.connect();
     return this._socket!.sendMessageWaitAck(request);
+  }
+
+  setConnectTimeout(value: number | null) {
+    this._options.connectTimeout = value ?? undefined;
+  }
+
+  setResponseTimeout(value: number | null) {
+    this._options.responseTimeout = value ?? undefined;
+  }
+
+  setMaxBufferSize(value: number) {
+    this._options.maxBufferSize = value;
+    if (this._socket) this._socket.setMaxBufferSize(value);
   }
 
   setKeepAlive(enable?: boolean, initialDelay?: number) {
