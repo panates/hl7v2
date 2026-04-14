@@ -446,7 +446,7 @@ export class HL7Message {
     messageType: string;
     data: string;
   } {
-    let headerStr = '';
+    let headerStr: string;
     if (Buffer.isBuffer(input)) {
       let crIdx = input.indexOf(CR);
       if (crIdx < 0) crIdx = input.length;
