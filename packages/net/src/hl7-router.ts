@@ -8,7 +8,7 @@ export class HL7Router {
   protected _handlers: HL7Middleware[] = [];
 
   use(handler: HL7Middleware | HL7Router, priority = 0) {
-    let list = this._handlerStack[priority];
+    let list = this._handlerStack.get(priority);
     if (!list) {
       list = [];
       this._handlerStack.set(priority, list);

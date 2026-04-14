@@ -3,15 +3,10 @@
   "include": ["src"],
   "exclude": ["build"],
   "compilerOptions": {
-    "composite": true,
-    "incremental": true,
-    "module": "ES2020",
-    "moduleResolution": "Node",
     "rootDir": "src",
     "outDir": "./build",
-    "baseUrl": "./",
     "paths": {
-      "hl7v2-dictionary": ["../dictionary/src"]
+      "hl7v2-dictionary": ["../dictionary/src/index.js"]
     }
   },
   "references": [{ "path": "../dictionary" }]

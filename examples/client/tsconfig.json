@@ -1,24 +1,9 @@
 {
-  "extends": "../../tsconfig-base.json",
+  "extends": "../../tsconfig-test.json",
   "include": ["src"],
   "exclude": ["build"],
   "compilerOptions": {
-    "composite": true,
-    "incremental": true,
-    "module": "ES2020",
-    "moduleResolution": "Node",
     "rootDir": "src",
-    "outDir": "./build",
-    "baseUrl": "./",
-    "paths": {
-      "hl7v2-dictionary": ["../../packages/dictionary/src"],
-      "hl7v2": ["../../packages/hl7v2/src"],
-      "hl7v2-net": ["../../packages/net/src"]
-    }
-  },
-  "references": [
-    { "path": "../../packages/dictionary" },
-    { "path": "../../packages/hl7v2" },
-    { "path": "../../packages/net" }
-  ]
+    "outDir": "./build"
+  }
 }

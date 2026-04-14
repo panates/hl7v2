@@ -148,7 +148,7 @@ describe('FrameStream', () => {
   it('should limit max buffer size', done => {
     const frameStream = new FrameStream({ maxBufferSize: 10 }); // Assume '\n' is the frame delimiter
     const inputChunks = ['12345', '67', '89101'];
-    let error;
+    let error: any;
     let errorCount = 0;
     frameStream.on('error', err => {
       errorCount++;
