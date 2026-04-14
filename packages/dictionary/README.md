@@ -27,8 +27,8 @@ HL7v2 is available under [MIT](LICENSE) license.
 [npm-url]: https://npmjs.org/package/hl7v2-dictionary
 [ci-test-image]: https://github.com/panates/hl7v2/actions/workflows/test.yml/badge.svg
 [ci-test-url]: https://github.com/panates/hl7v2/actions/workflows/test.yml
-[coveralls-image]: https://img.shields.io/coveralls/panates/hl7v2-dictionary/master.svg
-[coveralls-url]: https://coveralls.io/r/panates/hl7v2-dictionary
+[coveralls-image]: https://img.shields.io/coveralls/panates/hl7v2/master.svg
+[coveralls-url]: https://coveralls.io/github/panates/hl7v2
 [downloads-image]: https://img.shields.io/npm/dm/hl7v2-dictionary.svg
 [downloads-url]: https://npmjs.org/package/hl7v2-dictionary
 [gitter-image]: https://badges.gitter.im/panates/hl7v2-dictionary.svg
