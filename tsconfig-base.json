@@ -1,10 +1,6 @@
 {
   "extends": "@panates/tsconfig/node.json",
   "compilerOptions": {
-    "types": ["node"],
     "sourceMap": true,
-    "moduleResolution": "nodenext",
-    "module": "NodeNext",
-    "target": "ESNext"
   }
 }
