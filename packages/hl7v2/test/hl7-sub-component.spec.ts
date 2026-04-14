@@ -18,8 +18,8 @@ describe('hl7v2:Hl7SubComponent', () => {
   it('should determine is sub component is empty or not', () => {
     const msg = new HL7Message();
     const orc = msg.addSegment('ORC');
-    orc.field(12).fromHL7String('NPI&9876543210&ISO');
-    const subComponent = orc.field(12).subComponent(1, 1);
+    orc.field(13).fromHL7String('NPI&9876543210&ISO');
+    const subComponent = orc.field(13).subComponent(1, 1);
     expect(subComponent).toBeDefined();
     expect(subComponent.isEmpty()).toEqual(false);
     subComponent.value = null;

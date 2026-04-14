@@ -51,7 +51,7 @@ export class HL7Repetition {
     if (position < 1) throw new Error('Invalid component position');
     let component = this._components[position - 1];
     if (!component) {
-      let fDef = this.field.typeDef.fields?.[String(position - 1)];
+      let fDef = this.field.typeDef.fields?.[String(position)];
       if (!fDef) {
         if (position === 1) fDef = this.field.definition;
         else
