@@ -10,7 +10,7 @@ import { HL7Request } from './hl7-request.js';
 import { HL7Response } from './hl7-response.js';
 import { HL7Router } from './hl7-router.js';
 import { HL7Socket } from './hl7-socket.js';
-import { HL7Middleware } from './types.js';
+import { HL7ErrorMiddleware, HL7Middleware } from './types.js';
 
 export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
   protected _server: net.Server | tls.Server;
@@ -181,8 +181,12 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
     });
   }
 
-  use(handler: HL7Middleware, priority = 0) {
+  use(handler: HL7Router | HL7Middleware, priority = 0) {
     this._router.use(handler, priority);
+  }
+
+  onError(handler: HL7Router | HL7ErrorMiddleware, priority = 0) {
+    this._router.onError(handler, priority);
   }
 
   /**
@@ -257,9 +261,9 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
         }
       }, this.responseTimeout || 30000).unref();
 
-      this._router.handle(req, res, () => {
+      this._router.handle(req, res, err => {
         clearTimeout(timeoutTimer);
-        if (res.errors.length) this.emit('error', res.errors[0], socket);
+        if (err) this.emit('error', err, socket);
         resolve();
       });
     });
