@@ -257,9 +257,9 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
         }
       }, this.responseTimeout || 30000).unref();
 
-      this._router.handle(req, res, () => {
+      this._router.handle(req, res, err => {
         clearTimeout(timeoutTimer);
-        if (res.errors.length) this.emit('error', res.errors[0], socket);
+        if (err) this.emit('error', err, socket);
         resolve();
       });
     });

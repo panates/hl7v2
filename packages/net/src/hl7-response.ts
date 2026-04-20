@@ -5,7 +5,7 @@ import type { HL7Socket } from './hl7-socket.js';
 export class HL7Response {
   protected _finished = false;
   readonly request: HL7Request;
-  errors: Error[] = [];
+  error?: Error;
   message: HL7Message;
 
   constructor(request: HL7Request) {
@@ -25,10 +25,9 @@ export class HL7Response {
   }
 
   failed(error: Error) {
+    this.error = error;
     const msa = this.message.getSegment('MSA');
     if (msa?.field(MSASegment.AcknowledgmentCode).getValue() !== 'AE')
-      this.message = this.request.message.createNak(this.errors);
-    this.errors.push(error);
-    this.message.addError(error);
+      this.message = this.request.message.createNak([error]);
   }
 }
