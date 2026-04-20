@@ -113,13 +113,27 @@ await server.close(5000); // Wait up to 5s for running handlers
 
 ##### .use()
 
-Adds a middleware handler to the server.
+Adds a middleware handler or another router to the server.
 `use(handler: HL7Middleware | HL7Router, priority?: number): void`
 example
 
 ```typescript
 server.use((req, res, next) => {
   // Do something
+  next();
+});
+```
+
+##### .onError()
+
+Adds an error middleware handler or another router to the server.
+`onError(handler: HL7ErrorMiddleware | HL7Router, priority?: number): void`
+example
+
+```typescript
+server.onError((err, req, res, next) => {
+  console.error(err);
+  res.failed(err);
   next();
 });
 ```
@@ -248,6 +262,18 @@ example
 ```typescript
 const router = new HL7Router();
 router.use((req, res) => { ... });
+server.use(router);
+```
+
+##### .onError()
+
+Adds an error middleware or another router to this router.
+`onError(handler: HL7ErrorMiddleware | HL7Router, priority?: number): void`
+example
+
+```typescript
+const router = new HL7Router();
+router.onError((err, req, res, next) => { ... });
 server.use(router);
 ```
 
