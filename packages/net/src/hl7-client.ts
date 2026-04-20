@@ -220,7 +220,7 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
     const req = new HL7Request(this._socket!, message);
     const res = new HL7Response(req);
     this._router.handle(req, res, () => {
-      if (res.errors.length) this.emit('error', res.errors[0]);
+      if (res.error) this.emit('error', res.error);
     });
   }
 }
