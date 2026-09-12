@@ -445,7 +445,7 @@ HL7v2 is available under [MIT](LICENSE) license.
 
 [ci-test-url]: https://github.com/panates/hl7v2/actions/workflows/test.yml
 
-[coveralls-image]: https://img.shields.io/coveralls/panates/hl7v2/master.svg
+[coveralls-image]: https://img.shields.io/coveralls/panates/hl7v2/dev.svg
 
 [coveralls-url]: https://coveralls.io/r/panates/hl7v2
 
