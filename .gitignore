@@ -54,3 +54,6 @@ lerna-debug.log*
 
 packages/*/_debug.js
 packages/*/_debug2.js
+
+# HL7 v2 XML schemas, licensed by HL7 - see support/compare-dictionary.mts
+support/hl7-schemas/
