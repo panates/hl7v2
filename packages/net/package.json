@@ -26,20 +26,7 @@
     "expect": "^30.3.0"
   },
   "scripts": {
-    "compile": "tsc --noEmit",
-    "prebuild": "npm run check && npm run lint && npm run clean",
-    "build": "tsc -b tsconfig-build.json",
-    "postbuild": "node ../../support/postbuild.cjs",
-    "lint": "eslint . --max-warnings=0",
-    "lint:fix": "eslint . --max-warnings=0 --fix",
-    "format": "prettier . --write --log-level=warn",
-    "check": "dpdm -T --no-warning --no-tree ./src/index.ts",
-    "test": "mocha",
-    "clean": "npm run clean:src && npm run clean:test && npm run clean:build && npm run clean:cover",
-    "clean:src": "ts-cleanup -s src --all",
-    "clean:test": "ts-cleanup -s test --all",
-    "clean:build": "rimraf build *.tsbuildinfo",
-    "clean:cover": "rimraf ../../coverage/server"
+    "test": "mocha"
   },
   "type": "module",
   "module": "./index.js",
@@ -62,8 +49,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/panates/hl7v2.git",
-    "directory": "packages/server"
+    "url": "git+https://github.com/panates/hl7v2.git",
+    "directory": "packages/net"
   },
   "keywords": [
     "hl7",

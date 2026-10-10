@@ -1,7 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { pascalCase } from 'putil-varhelpers';
 import { default as dictionary } from 'hl7-dictionary';
 
 const __filename = fileURLToPath(import.meta.url);

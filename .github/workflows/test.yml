@@ -1,16 +1,27 @@
 name: Test
 on:
+  # Can be called from other workflows
   workflow_call:
-    secrets:
-      PERSONAL_ACCESS_TOKEN:
 
   # Can be run manually
   workflow_dispatch:
 
   # on git push
   push:
-    branches:
-      - dev
+    branches-ignore:
+      - main
+    paths:
+      - 'packages/*/src/**'
+      - 'packages/*/test/**'
+      # `packages/*/*` rather than a brace pattern: brace expansion is not in GitHub's filter set,
+      # and a filter that misses a file means the tests quietly do not run.
+      - 'packages/*/*'
+      - '.mocharc.cjs'
+      - '.c8rc.json'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'tsconfig*.json'
+      - '.github/workflows/test.yml'
 
 # Only one run per branch at a time
 concurrency:
@@ -18,42 +29,43 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # ***********************************
-  # Job: Test
-  # ***********************************
   test:
-    name: 'Tests'
+    # Whether a release runs the tests is decided once, in release.yml. In a `workflow_call`
+    # `github.event_name` is the caller's event, so repeating that guard here would evaluate it twice.
     if: >
       github.event_name == 'workflow_dispatch' ||
       (
         github.event_name == 'push' &&
-        !(
-          contains(github.event.head_commit.message, 'no-test') ||
-          ( 
-            startsWith(github.event.head_commit.message, 'Merge pull request') &&
-            contains(github.event.head_commit.message, '/dev')
-          )
-        )
+        !contains(github.event.head_commit.message, 'no-test')
       )
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    permissions:
+      contents: read
     strategy:
       fail-fast: false
       matrix:
         node: [ '22', '23', '24' ]
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v7
 
       - name: Setup Environment
-        uses: panates/gh-setup-node@v1
+        uses: panates/gh-setup-node@v2
         with:
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           node-version: ${{ matrix.node }}
+          rman-version: '2'
+          install: 'ci'
 
-      - name: Apply tests
+      # The preset's own commands, which replaced the `qc` script (`rman run lint && rman run check`).
+      - name: Run qc tests
         run: |
-          npm run qc
-          npm run citest
+          rman check
+          rman lint
+
+      - name: Run unit tests
+        run: npm run citest
         env:
           NODE_OPTIONS: "--max_old_space_size=4096 --no-experimental-strip-types"
 
