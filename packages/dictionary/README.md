@@ -193,7 +193,13 @@ const timeStr = toHL7Time(new Date('2023-10-27T10:30:00'));
 
 #### HL7MessageDefinition
 - `desc?: string` - Description of the message.
-- `segments?: Record<string, HL7MessageSegmentsDefinition>` - Message structure definition.
+- `segments?: Record<string, HL7MessageSegmentsDefinition>` - Message structure definition: groups and segments keyed by name, ordered by `idx`.
+
+#### HL7MessageSegmentsDefinition
+- `idx: number`, `min?: number`, `max?: number`, `desc?: string`
+- `segment?: string` - The segment type, when the key is not it: a segment repeated among its siblings is keyed as HAPI HL7v2 keys it (the second `PID` of ADT_A17 is `PID2`).
+- `aliases?: string[]` - For a group, the names the same group has in other versions of the message. Each version keeps its standard names; `HL7MessageNode.getNode()` finds a group by either.
+- `segments?: Record<string, HL7MessageSegmentsDefinition>` - A group's own structure.
 
 ### Enums
 

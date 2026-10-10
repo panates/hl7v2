@@ -86,13 +86,53 @@ describe('dictionary:dictionaries', () => {
       });
     }
 
-    it('should name the 2.3 ORU_R01 result group as later versions do', () => {
-      const oru = dictionaries['2.3'].messages.ORU_R01;
-      expect(Object.keys(oru.segments!)).toEqual([
-        'MSH',
-        'PATIENT_RESULT',
-        'DSC',
-      ]);
+    it('should keep every element of a message structure', () => {
+      /* Siblings sharing a name used to overwrite each other (320 in the source) */
+      const kids = (n: any): any[] => n.segments?.segments || n.children || [];
+      const count = (n: any): number =>
+        kids(n).reduce((sum: number, c: any) => sum + 1 + count(c), 0);
+      const countOurs = (n: any): number =>
+        Object.values<any>(n.segments || {}).reduce(
+          (sum: number, c: any) => sum + 1 + countOurs(c),
+          0,
+        );
+      for (const [version, def] of Object.entries<any>(source)) {
+        for (const [name, msg] of Object.entries<any>(def.messages || {})) {
+          const ours = dictionaries[version as HL7Version].messages[name];
+          expect([version, name, countOurs(ours)]).toEqual([
+            version,
+            name,
+            count(msg),
+          ]);
+        }
+      }
+    });
+
+    it('should key repeated segments as HAPI does, naming their type', () => {
+      const a17 = dictionaries['2.5'].messages.ADT_A17.segments!;
+      expect(a17.PID.segment).toBeUndefined();
+      expect(a17.PID2).toMatchObject({ segment: 'PID', min: 1, max: 1 });
+      expect(a17.PID2.idx).toBeGreaterThan(a17.PID.idx);
+    });
+
+    it('should keep standard group names and list the others as aliases', () => {
+      const oru23 = dictionaries['2.3'].messages.ORU_R01.segments!;
+      expect(Object.keys(oru23)).toEqual(['MSH', 'RESPONSE', 'DSC']);
+      expect(oru23.RESPONSE.aliases).toEqual(['PATIENT_RESULT']);
+      const oru25 = dictionaries['2.5'].messages.ORU_R01.segments!;
+      expect(oru25.PATIENT_RESULT.aliases).toEqual(['RESPONSE']);
+      /* renamed in 2.4, renamed back in 2.6 */
+      expect(
+        dictionaries['2.4'].messages.ADT_A40.segments!.PATIENT_ID.aliases,
+      ).toEqual(['PATIENT']);
+      expect(
+        dictionaries['2.6'].messages.ADT_A40.segments!.PATIENT.aliases,
+      ).toEqual(['PATIENT_ID']);
+      /* a typo in one version still finds the group */
+      const oml26 = dictionaries['2.6'].messages.OML_O21;
+      const timing = JSON.stringify(oml26).includes('"TIIMING"');
+      expect(timing).toBe(true);
+      expect(JSON.stringify(oml26)).toContain('"aliases":["TIMING"]');
     });
 
     it('should attach value conversions to the types that have them', () => {

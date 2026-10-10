@@ -381,9 +381,20 @@ The smallest unit of data in an HL7 message.
 
 ### HL7MessageNode
 
-Used for representing the hierarchical structure of a message (groups and segments).
+Used for representing the hierarchical structure of a message (groups and segments), as `HL7Message.buildStructureTree()` builds it from the dictionary - for the structure MSH-9.3 names when the dictionary has it (`ADT^A04^ADT_A01` is an `ADT_A01`), otherwise for MSH-9's type and trigger event.
+
+#### Properties
+
+- `name: string`: The group's name in the message's version.
+- `aliases: string[]`: The names the same group has in other versions of the message - ORU_R01's `PATIENT_RESULT` is `RESPONSE` in 2.3, ADT_A40's `PATIENT` is `PATIENT_ID` in 2.4-2.5.1.
+- `items: (HL7Segment | HL7MessageNode)[]`: The segments and groups it holds, in order.
 
 #### Methods
+
+##### .is()
+
+Whether the node is the group of the given name - its own, or one of its aliases.
+`is(name: string): boolean`
 
 ##### .getSegment()
 
@@ -397,11 +408,12 @@ const seg = node.getSegment('PID');
 
 ##### .getNode()
 
-Searches for a child node by name.
+Searches for a child node by name, or by a name the group has in another version: one lookup works across versions. A node carrying the name itself is preferred to one known by it as an alias.
 `getNode(nodeName: string, indexOrAfter?: number | HL7MessageNode): HL7MessageNode | undefined`
 example
 
 ```typescript
+// Finds the group in a 2.3 message (RESPONSE) and in a 2.5 one (PATIENT_RESULT)
 const childNode = node.getNode('PATIENT_RESULT');
 ```
 

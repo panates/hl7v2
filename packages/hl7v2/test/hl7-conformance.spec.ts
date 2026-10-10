@@ -203,6 +203,65 @@ describe('hl7v2:conformance', () => {
     });
   });
 
+  describe('buildStructureTree() across versions', () => {
+    const oru = (version: string) =>
+      HL7Message.parse(
+        `MSH|^~\\&|||||||ORU^R01|1|P|${version}\r` + 'PID|1\rOBR|1\rOBX|1',
+      ).buildStructureTree();
+
+    it('Should find a group by the name another version gives it', () => {
+      /* 2.3 calls it RESPONSE, 2.3.1 and later PATIENT_RESULT */
+      for (const version of ['2.3', '2.5', '2.7.1']) {
+        const tree = oru(version);
+        const byNew = tree.getNode('PATIENT_RESULT');
+        const byOld = tree.getNode('RESPONSE');
+        expect([version, byNew]).toEqual([version, byOld]);
+        expect(byNew).toBeInstanceOf(HL7MessageNode);
+      }
+      expect(oru('2.3').getNode('PATIENT_RESULT')!.name).toEqual('RESPONSE');
+      expect(oru('2.5').getNode('RESPONSE')!.name).toEqual('PATIENT_RESULT');
+    });
+
+    it('Should prefer a node carrying the name itself over an alias', () => {
+      const parent = new HL7MessageNode('X');
+      const aliased = new HL7MessageNode('ORDER', ['OBSERVATION']);
+      const named = new HL7MessageNode('OBSERVATION');
+      parent.items.push(aliased, named);
+      expect(parent.getNode('OBSERVATION')).toBe(named);
+      expect(parent.getNode('ORDER')).toBe(aliased);
+      expect(aliased.is('OBSERVATION')).toBe(true);
+    });
+
+    it('Should place a repeated segment at its own position in a group', () => {
+      /* ADR_A19's QUERY_RESPONSE has ROL after PD1 and again after PV2 */
+      const msg = HL7Message.parse(
+        'MSH|^~\\&|||||||ADR^A19^ADR_A19|1|P|2.5\rMSA|AA|Q1\rQRD|20250101|R|I|Q1\r' +
+          'PID|1||123\rPD1|\rROL|1|AD|AT\rNK1|1\rPV1|1|I\rROL|2|AD|AT',
+      );
+      const tree = msg.buildStructureTree();
+      expect(
+        tree.items.map(i => (i as any).name ?? (i as any).segmentType),
+      ).toEqual(['MSH', 'MSA', 'QRD', 'QUERY_RESPONSE']);
+      const response = tree.getNode('QUERY_RESPONSE')!;
+      expect(response.items.map(i => (i as any).segmentType)).toEqual([
+        'PID',
+        'PD1',
+        'ROL',
+        'NK1',
+        'PV1',
+        'ROL',
+      ]);
+    });
+
+    it('Should use the structure MSH-9.3 names', () => {
+      /* An A04 is structured as an ADT_A01 */
+      const msg = HL7Message.parse(
+        'MSH|^~\\&|||||||ADT^A04^ADT_A01|1|P|2.5\rEVN|A04\rPID|1\rPV1|1|O',
+      );
+      expect(msg.buildStructureTree().name).toEqual('ADT_A01');
+    });
+  });
+
   describe('buildStructureTree()', () => {
     it('Should list segments flat for an unknown message structure', () => {
       const msg = HL7Message.parse(

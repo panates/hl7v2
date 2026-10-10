@@ -239,9 +239,18 @@ export class HL7Message {
   }
 
   buildStructureTree(): HL7MessageNode {
-    // Get the message type to determine the structure
-    const messageType = this.messageType.replace('^', '_');
-    const messageDefinition = this.dictionary.messages?.[messageType];
+    /**
+     * The structure MSH-9.3 names when the dictionary has it (ADT^A04^ADT_A01
+     * is an ADT_A01), as HAPI reads it; otherwise type and trigger event
+     */
+    const messages = this.dictionary.messages || {};
+    const declared = this.header.field(MSHSegment.MessageType).getValue(3) as
+      string | undefined;
+    const messageType =
+      declared && messages[declared]
+        ? declared
+        : this.messageType.replace('^', '_');
+    const messageDefinition = messages[messageType];
 
     if (!messageDefinition?.segments) {
       const result = new HL7MessageNode('MESSAGE');
@@ -254,8 +263,9 @@ export class HL7Message {
       segmentDef: Record<string, any>,
       nodeName: string,
       currentSegmentIndex: { value: number },
+      aliases?: string[],
     ): HL7MessageNode => {
-      const node = new HL7MessageNode(nodeName);
+      const node = new HL7MessageNode(nodeName, aliases);
 
       // Sort segment definitions by their index
       const sortedEntries = Object.entries(segmentDef).sort(
@@ -280,6 +290,7 @@ export class HL7Message {
               def.segments,
               key,
               currentSegmentIndex,
+              def.aliases,
             );
 
             // Check if we actually consumed any segments
@@ -302,7 +313,8 @@ export class HL7Message {
         } else {
           // This is a leaf segment
           const maxOccurrences = def.max || Number.MAX_SAFE_INTEGER;
-          const segmentType = key;
+          /** A repeated segment is keyed PID2, PID3 ... and names its type */
+          const segmentType = def.segment || key;
 
           // Match segments of this type
           let matchedCount = 0;

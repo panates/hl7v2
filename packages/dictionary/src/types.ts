@@ -39,6 +39,13 @@ export interface HL7MessageSegmentsDefinition {
   desc?: string;
   min?: number;
   max?: number;
+  /**
+   * The segment type, when the key is not it: a segment repeated among its
+   * siblings is keyed as HAPI HL7v2 keys it (the second PID is "PID2")
+   */
+  segment?: string;
+  /** For a group, the names the same group has in other versions of the message */
+  aliases?: string[];
   segments?: Record<string, HL7MessageSegmentsDefinition>;
 }
 
