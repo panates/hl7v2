@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const REF_I12: HL7MessageDefinition = {
   desc: 'Patient Referral',

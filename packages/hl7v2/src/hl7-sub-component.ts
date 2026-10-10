@@ -1,8 +1,8 @@
-import {
+import type {
   HL7DataTypeDefinition,
   HL7FieldDefinition,
-  toHL7DateTime,
 } from 'hl7v2-dictionary';
+import { toHL7DateTime } from 'hl7v2-dictionary';
 import type { Hl7Component } from './hl7-component.js';
 import { HL7Error } from './hl7-error.js';
 import type { HL7Field } from './hl7-field.js';

@@ -1,4 +1,4 @@
-import { HL7SegmentDefinition } from '../../types.js';
+import type { HL7SegmentDefinition } from '../../types.js';
 
 export const NPU: HL7SegmentDefinition = {
   desc: 'Non-patient update',

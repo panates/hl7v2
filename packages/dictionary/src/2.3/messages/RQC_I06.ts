@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const RQC_I06: HL7MessageDefinition = {
   desc: 'Request/receipt of clinical data listing',

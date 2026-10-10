@@ -1,6 +1,6 @@
 import { clone, merge } from '@jsopen/objects';
-import { DeeperPartial } from 'ts-gems';
-import {
+import type { DeeperPartial } from 'ts-gems';
+import type {
   HL7DataTypeDefinition,
   HL7MessageDefinition,
   HL7SegmentDefinition,

@@ -1,5 +1,5 @@
-import { DeepPartial } from 'ts-gems';
-import { HL7DataTypeDefinition } from '../../types.js';
+import type { DeepPartial } from 'ts-gems';
+import type { HL7DataTypeDefinition } from '../../types.js';
 
 export const CM_PLACER: DeepPartial<HL7DataTypeDefinition> = {
   desc: 'Auftragsnummer Des Auftraggebers / Der Auftraggebenden Stelle',

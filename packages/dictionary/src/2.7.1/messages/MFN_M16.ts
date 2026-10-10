@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const MFN_M16: HL7MessageDefinition = {
   desc: 'Master File Notification - Inventory Item Enhanced',

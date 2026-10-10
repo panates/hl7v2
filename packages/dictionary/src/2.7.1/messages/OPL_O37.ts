@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const OPL_O37: HL7MessageDefinition = {
   desc: 'Population/Location-Based Laboratory Order Message',

@@ -9,7 +9,7 @@ import dict_2_6 from './2.6/index.js';
 import dict_2_7_1 from './2.7.1/index.js';
 import dict_2_7 from './2.7/index.js';
 import dict_2_8 from './2.8/index.js';
-import { HL7Dictionary } from './hl7-dictionary.js';
+import type { HL7Dictionary } from './hl7-dictionary.js';
 import { HL7Version } from './version.enum.js';
 
 export * from './hl7-date.util.js';

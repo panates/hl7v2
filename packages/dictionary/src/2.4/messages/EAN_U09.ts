@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const EAN_U09: HL7MessageDefinition = {
   desc: 'Automated equipment notification',

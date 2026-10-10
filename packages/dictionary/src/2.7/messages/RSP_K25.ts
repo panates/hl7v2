@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const RSP_K25: HL7MessageDefinition = {
   desc: 'Personnel Information Response Message',

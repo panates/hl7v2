@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const SIU_S26: HL7MessageDefinition = {
   desc: 'Notification that patient did not show up for schedule appointment',

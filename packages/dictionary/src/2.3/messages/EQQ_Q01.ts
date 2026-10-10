@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const EQQ_Q01: HL7MessageDefinition = {
   desc: 'Embedded query language query',

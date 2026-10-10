@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const SLN_S34: HL7MessageDefinition = {
   desc: 'Notification of New Sterilization Lot',

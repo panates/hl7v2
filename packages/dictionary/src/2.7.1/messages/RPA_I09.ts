@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const RPA_I09: HL7MessageDefinition = {
   desc: 'Response to Modification to an Authorization',

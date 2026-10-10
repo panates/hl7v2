@@ -1,4 +1,4 @@
-import { HL7SegmentDefinition } from '../../types.js';
+import type { HL7SegmentDefinition } from '../../types.js';
 
 export const OBX: HL7SegmentDefinition = {
   desc: 'Result',

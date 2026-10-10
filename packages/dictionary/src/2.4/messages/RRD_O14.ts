@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const RRD_O14: HL7MessageDefinition = {
   desc: 'Pharmacy/treatment dispense acknowledgement',

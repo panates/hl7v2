@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const MDM_T02: HL7MessageDefinition = {
   desc: 'Original document notification and content',

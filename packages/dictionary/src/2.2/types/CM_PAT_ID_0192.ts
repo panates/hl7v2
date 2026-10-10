@@ -1,5 +1,5 @@
-import { DeepPartial } from 'ts-gems';
-import { HL7DataTypeDefinition } from '../../types.js';
+import type { DeepPartial } from 'ts-gems';
+import type { HL7DataTypeDefinition } from '../../types.js';
 
 export const CM_PAT_ID_0192: DeepPartial<HL7DataTypeDefinition> = {
   desc: 'Patient ID With Table 0192',

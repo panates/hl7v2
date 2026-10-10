@@ -1,5 +1,5 @@
-import { HL7Request } from './hl7-request.js';
-import { HL7Response } from './hl7-response.js';
+import type { HL7Request } from './hl7-request.js';
+import type { HL7Response } from './hl7-response.js';
 import type {
   HL7ErrorMiddleware,
   HL7Middleware,

@@ -1,5 +1,5 @@
-import { DeepPartial } from 'ts-gems';
-import { HL7DataTypeDefinition } from '../../types.js';
+import type { DeepPartial } from 'ts-gems';
+import type { HL7DataTypeDefinition } from '../../types.js';
 
 export const OSP: DeepPartial<HL7DataTypeDefinition> = {
   desc: 'Occurrence Span Code and Date',

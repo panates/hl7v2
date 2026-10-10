@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const ORD_O04: HL7MessageDefinition = {
   desc: 'Dietary Order Acknowledgment Message',

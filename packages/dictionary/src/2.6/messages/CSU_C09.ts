@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const CSU_C09: HL7MessageDefinition = {
   desc: 'Automated time intervals for reporting, like monthly',

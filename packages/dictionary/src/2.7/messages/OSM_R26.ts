@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const OSM_R26: HL7MessageDefinition = {
   desc: 'Unsolicited Specimen Shipment Manifest Message',

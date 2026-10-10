@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const RQI_I01: HL7MessageDefinition = {
   desc: 'Request for insurance information',

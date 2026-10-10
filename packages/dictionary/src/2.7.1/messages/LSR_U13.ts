@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const LSR_U13: HL7MessageDefinition = {
   desc: 'Equipment Log/Service Message',

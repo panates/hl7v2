@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const OPU_R25: HL7MessageDefinition = {
   desc: 'Unsolicited Population/Location-Based Laboratory Observation',

@@ -1,8 +1,8 @@
-import {
+import type {
   HL7DataTypeDefinition,
   HL7FieldDefinition,
-  toHL7DateTime,
 } from 'hl7v2-dictionary';
+import { toHL7DateTime } from 'hl7v2-dictionary';
 import { HL7Error } from './hl7-error.js';
 import type { HL7Field } from './hl7-field.js';
 import type { HL7Message } from './hl7-message.js';
@@ -10,7 +10,7 @@ import type { HL7Repetition } from './hl7-repetition.js';
 import type { HL7Segment } from './hl7-segment.js';
 import {
   Hl7SubComponent,
-  Hl7SubComponentParseOptions,
+  type Hl7SubComponentParseOptions,
   type Hl7SubComponentSerializeOptions,
 } from './hl7-sub-component.js';
 import { hl7Escape, hl7UnEscape } from './utils/hl7-escape.js';

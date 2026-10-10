@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const OUL_R22: HL7MessageDefinition = {
   desc: 'Unsolicited laboratory observation message',

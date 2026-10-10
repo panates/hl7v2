@@ -1,4 +1,4 @@
-import { HL7SegmentDefinition } from '../../types.js';
+import type { HL7SegmentDefinition } from '../../types.js';
 
 export const NTE: HL7SegmentDefinition = {
   desc: 'Notes and comments',

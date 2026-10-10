@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const BPS_O29: HL7MessageDefinition = {
   desc: 'Bps message',

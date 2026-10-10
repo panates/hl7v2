@@ -1,5 +1,5 @@
-import { DeepPartial } from 'ts-gems';
-import { HL7SegmentDefinition } from '../../types.js';
+import type { DeepPartial } from 'ts-gems';
+import type { HL7SegmentDefinition } from '../../types.js';
 
 export const EQL: DeepPartial<HL7SegmentDefinition> = {
   desc: 'Embedded Query Language',

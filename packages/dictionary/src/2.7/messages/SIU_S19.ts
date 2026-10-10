@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const SIU_S19: HL7MessageDefinition = {
   desc: 'Notification of Modification of Service/Resource on Appointment',

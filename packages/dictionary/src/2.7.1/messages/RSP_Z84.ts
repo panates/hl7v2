@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const RSP_Z84: HL7MessageDefinition = {
   desc: 'RTB Message (Response)',

@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const ORB_O28: HL7MessageDefinition = {
   desc: 'Orb message',

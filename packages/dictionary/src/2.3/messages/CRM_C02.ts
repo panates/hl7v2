@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const CRM_C02: HL7MessageDefinition = {
   desc: 'Cancel a patient registration on clinical trial',

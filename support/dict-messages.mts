@@ -45,7 +45,7 @@ function writeFiles(dict: any) {
     fs.mkdirSync(dir, { recursive: true });
     for (const [k, v] of Object.entries(d)) {
       const out =
-        `import { HL7MessageDefinition } from '../../types.js';
+        `import type { HL7MessageDefinition } from '../../types.js';
 
 export const ${k}: HL7MessageDefinition = ` +
         JSON.stringify(v, null, 2) +

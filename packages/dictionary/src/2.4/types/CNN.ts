@@ -1,5 +1,5 @@
-import { DeepPartial } from 'ts-gems';
-import { HL7DataTypeDefinition } from '../../types.js';
+import type { DeepPartial } from 'ts-gems';
+import type { HL7DataTypeDefinition } from '../../types.js';
 
 export const CNN: DeepPartial<HL7DataTypeDefinition> = {
   desc: 'Composite ID Number And Name (special DT For NDL',

@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const RTB_Z76: HL7MessageDefinition = {
   desc: 'Tabular response',

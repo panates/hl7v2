@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const ADT_A43: HL7MessageDefinition = {
   desc: 'Move patient information - patient identifier list',

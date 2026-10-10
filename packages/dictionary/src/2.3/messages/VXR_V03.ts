@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const VXR_V03: HL7MessageDefinition = {
   desc: 'Vaccination record response',

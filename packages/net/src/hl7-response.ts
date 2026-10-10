@@ -1,4 +1,5 @@
-import { HL7Message, MSASegment } from 'hl7v2';
+import type { HL7Message } from 'hl7v2';
+import { MSASegment } from 'hl7v2';
 import type { HL7Request } from './hl7-request.js';
 import type { HL7Socket } from './hl7-socket.js';
 

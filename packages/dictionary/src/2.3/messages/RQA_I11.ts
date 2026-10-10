@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const RQA_I11: HL7MessageDefinition = {
   desc: 'Request for cancellation of an authorization',

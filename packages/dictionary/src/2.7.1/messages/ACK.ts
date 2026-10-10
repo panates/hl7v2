@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const ACK: HL7MessageDefinition = {
   desc: 'General Acknowledgment',

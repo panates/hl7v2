@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const RRE_O26: HL7MessageDefinition = {
   desc: 'Pharmacy/Treatment Refill Authorization Request Acknowledgment Message',

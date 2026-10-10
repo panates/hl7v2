@@ -1,15 +1,15 @@
 import net from 'node:net';
 import tls from 'node:tls';
-import { Backoff } from 'backoff';
-import { HL7Message } from 'hl7v2';
+import type { Backoff } from 'backoff';
+import type { HL7Message } from 'hl7v2';
 import { AsyncEventEmitter } from 'node-events-async';
 import reconnectCore from 'reconnect-core';
-import { StrictOmit } from 'ts-gems';
+import type { StrictOmit } from 'ts-gems';
 import { HL7Request } from './hl7-request.js';
 import { HL7Response } from './hl7-response.js';
 import { HL7Router } from './hl7-router.js';
 import { HL7Socket } from './hl7-socket.js';
-import { HL7Middleware } from './types.js';
+import type { HL7Middleware } from './types.js';
 
 export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
   protected _connectionManager: ReturnType<typeof socketReconnect>;

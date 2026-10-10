@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const SIU_S24: HL7MessageDefinition = {
   desc: 'Notification of Opened ("un-blocked") Schedule Time Slot(s)',

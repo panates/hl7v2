@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const SRR_S01: HL7MessageDefinition = {
   desc: 'Response to New Appointment Booking Request',

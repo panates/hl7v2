@@ -1,6 +1,5 @@
 export type HL7Version =
-  | `${number}.${number}`
-  | `${number}.${number}.${number}`;
+  `${number}.${number}` | `${number}.${number}.${number}`;
 
 export namespace HL7Version {
   export const v2_1: HL7Version = '2.1';

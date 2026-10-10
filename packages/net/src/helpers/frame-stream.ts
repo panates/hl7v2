@@ -1,7 +1,7 @@
 import { Buffer } from 'node:buffer';
 import { Transform } from 'node:stream';
-import { TransformCallback, TransformOptions } from 'stream';
-import { StrictOmit } from 'ts-gems';
+import type { TransformCallback, TransformOptions } from 'stream';
+import type { StrictOmit } from 'ts-gems';
 
 export class FrameStream extends Transform {
   private _chunks: Buffer[] = [];

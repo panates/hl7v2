@@ -1,5 +1,5 @@
-import { DeepPartial } from 'ts-gems';
-import { HL7SegmentDefinition } from '../../types.js';
+import type { DeepPartial } from 'ts-gems';
+import type { HL7SegmentDefinition } from '../../types.js';
 
 export const QRD: DeepPartial<HL7SegmentDefinition> = {
   desc: 'Original-Style Query Definition',

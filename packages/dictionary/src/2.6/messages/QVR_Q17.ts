@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const QVR_Q17: HL7MessageDefinition = {
   desc: 'Query for previous events',

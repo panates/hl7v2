@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const ORN_O08: HL7MessageDefinition = {
   desc: 'Non-stock requisition acknowledgement',

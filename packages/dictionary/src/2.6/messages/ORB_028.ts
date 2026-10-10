@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const ORB_028: HL7MessageDefinition = {
   desc: 'Blood product order acknowledgement',

@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const RDE_O01: HL7MessageDefinition = {
   desc: 'Pharmacy/treatment encoded order message',

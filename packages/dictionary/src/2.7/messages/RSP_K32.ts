@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const RSP_K32: HL7MessageDefinition = {
   desc: 'Segment Pattern Response',

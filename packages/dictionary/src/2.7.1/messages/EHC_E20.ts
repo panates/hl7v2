@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const EHC_E20: HL7MessageDefinition = {
   desc: 'Submit Authorization Request',

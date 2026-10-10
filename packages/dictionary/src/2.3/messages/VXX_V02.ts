@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const VXX_V02: HL7MessageDefinition = {
   desc: 'Response to vaccination query',

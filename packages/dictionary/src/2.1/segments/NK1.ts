@@ -1,4 +1,4 @@
-import { HL7SegmentDefinition } from '../../types.js';
+import type { HL7SegmentDefinition } from '../../types.js';
 
 export const NK1: HL7SegmentDefinition = {
   desc: 'Next of kin',

@@ -1,11 +1,10 @@
 import process from 'node:process';
+import type { AcknowledgmentCode, HL7Dictionary } from 'hl7v2-dictionary';
 import {
-  AcknowledgmentCode,
   dictionaries as defaultDictionaries,
   ERLType,
   ERRSegment,
   findNearestHL7Version,
-  HL7Dictionary,
   HL7Version,
   MSASegment,
   MSHSegment,
@@ -25,11 +24,11 @@ import {
 } from './constants.js';
 import { HL7Error } from './hl7-error.js';
 import { HL7MessageNode } from './hl7-message-node.js';
-import {
-  HL7Segment,
+import type {
   Hl7SegmentParseOptions,
   Hl7SegmentSerializeOptions,
 } from './hl7-segment.js';
+import { HL7Segment } from './hl7-segment.js';
 
 export class HL7Message {
   private readonly _dictionaries: Record<string, HL7Dictionary>;

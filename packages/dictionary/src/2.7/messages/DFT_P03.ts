@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const DFT_P03: HL7MessageDefinition = {
   desc: 'Detail Financial Transaction',

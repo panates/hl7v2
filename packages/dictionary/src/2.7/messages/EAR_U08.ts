@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const EAR_U08: HL7MessageDefinition = {
   desc: 'Equipment Command Message',

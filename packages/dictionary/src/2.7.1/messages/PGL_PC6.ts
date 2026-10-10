@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const PGL_PC6: HL7MessageDefinition = {
   desc: 'Patient Goal Message',

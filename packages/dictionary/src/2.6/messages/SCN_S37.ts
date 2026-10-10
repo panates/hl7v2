@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const SCN_S37: HL7MessageDefinition = {
   desc: 'Notification of Anti-Microbial Device Cycle Data',

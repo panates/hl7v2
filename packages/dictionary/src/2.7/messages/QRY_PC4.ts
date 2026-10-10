@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const QRY_PC4: HL7MessageDefinition = {
   desc: 'Query',

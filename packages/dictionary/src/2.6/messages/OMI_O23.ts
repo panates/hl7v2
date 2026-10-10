@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const OMI_O23: HL7MessageDefinition = {
   desc: 'Imaging order',

@@ -1,13 +1,16 @@
-import { HL7DataTypeDefinition, HL7FieldDefinition } from 'hl7v2-dictionary';
+import type {
+  HL7DataTypeDefinition,
+  HL7FieldDefinition,
+} from 'hl7v2-dictionary';
 import type { Hl7Component } from './hl7-component.js';
 import type { HL7Message } from './hl7-message.js';
 import {
   HL7Repetition,
-  HL7RepetitionParseOptions,
+  type HL7RepetitionParseOptions,
   type HL7RepetitionSerializeOptions,
 } from './hl7-repetition.js';
 import type { HL7Segment } from './hl7-segment.js';
-import { Hl7SubComponent } from './hl7-sub-component.js';
+import type { Hl7SubComponent } from './hl7-sub-component.js';
 
 export class HL7Field {
   declare protected _repetitions: HL7Repetition[];

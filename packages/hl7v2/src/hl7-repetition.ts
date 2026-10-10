@@ -1,12 +1,12 @@
 import {
   Hl7Component,
-  Hl7ComponentParseOptions,
+  type Hl7ComponentParseOptions,
   type Hl7ComponentSerializeOptions,
 } from './hl7-component.js';
 import type { HL7Field } from './hl7-field.js';
 import type { HL7Message } from './hl7-message.js';
 import type { HL7Segment } from './hl7-segment.js';
-import { Hl7SubComponent } from './hl7-sub-component.js';
+import type { Hl7SubComponent } from './hl7-sub-component.js';
 
 export class HL7Repetition {
   declare protected _components: Hl7Component[];

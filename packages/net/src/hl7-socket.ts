@@ -1,15 +1,8 @@
 import { Buffer } from 'node:buffer';
-import {
-  CR,
-  FS,
-  HL7Message,
-  HL7Version,
-  MSASegment,
-  MSHSegment,
-  VT,
-} from 'hl7v2';
+import type { HL7Version } from 'hl7v2';
+import { CR, FS, HL7Message, MSASegment, MSHSegment, VT } from 'hl7v2';
 import iconv from 'iconv-lite';
-import { Socket } from 'net';
+import type { Socket } from 'net';
 import { AsyncEventEmitter } from 'node-events-async';
 import { FrameStream } from './helpers/frame-stream.js';
 

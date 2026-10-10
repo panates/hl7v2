@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const EDR_R07: HL7MessageDefinition = {
   desc: 'Enhanced display response',

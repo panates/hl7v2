@@ -1,5 +1,5 @@
-import { DeepPartial } from 'ts-gems';
-import { HL7SegmentDefinition } from '../../types.js';
+import type { DeepPartial } from 'ts-gems';
+import type { HL7SegmentDefinition } from '../../types.js';
 
 export const GP2: DeepPartial<HL7SegmentDefinition> = {
   desc: 'Grouping/Reimbursement - Procedure Line Item',

@@ -6,13 +6,10 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@jsopen/objects": "^2.2.1",
+    "@jsopen/objects": "^2.3.4",
     "ts-gems": "^3.11.6",
     "tslib": "^2.8.1",
-    "valgen": "^6.0.3"
-  },
-  "devDependencies": {
-    "expect": "^30.3.0"
+    "valgen": "^7.0.3"
   },
   "scripts": {
     "test": "mocha"

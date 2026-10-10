@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const OUL_R23: HL7MessageDefinition = {
   desc: 'Unsolicited Specimen Container Oriented Observation Message',

@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const OML_O39: HL7MessageDefinition = {
   desc: 'Specimen Shipment Centric Laboratory Order Message',

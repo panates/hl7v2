@@ -1,8 +1,9 @@
-import { Buffer } from 'node:buffer';
+import type { Buffer } from 'node:buffer';
 import net from 'node:net';
 import tls from 'node:tls';
-import { HL7Message, MSHSegment } from 'hl7v2';
-import { AddressInfo, ListenOptions, Socket } from 'net';
+import type { HL7Message } from 'hl7v2';
+import { MSHSegment } from 'hl7v2';
+import type { AddressInfo, ListenOptions, Socket } from 'net';
 import { AsyncEventEmitter } from 'node-events-async';
 import { uid } from 'uid';
 import { HL7ExchangeError } from './helpers/hl7-exchange-error.js';
@@ -10,7 +11,7 @@ import { HL7Request } from './hl7-request.js';
 import { HL7Response } from './hl7-response.js';
 import { HL7Router } from './hl7-router.js';
 import { HL7Socket } from './hl7-socket.js';
-import { HL7ErrorMiddleware, HL7Middleware } from './types.js';
+import type { HL7ErrorMiddleware, HL7Middleware } from './types.js';
 
 export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
   protected _server: net.Server | tls.Server;

@@ -1,4 +1,5 @@
-import { HL7Error, HL7Message } from 'hl7v2';
+import type { HL7Message } from 'hl7v2';
+import { HL7Error } from 'hl7v2';
 
 export class HL7ExchangeError extends HL7Error {
   request?: HL7Message;

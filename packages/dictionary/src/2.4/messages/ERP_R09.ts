@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const ERP_R09: HL7MessageDefinition = {
   desc: 'Event replay response',

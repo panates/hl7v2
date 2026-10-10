@@ -1,4 +1,4 @@
-import { HL7DataTypeDefinition } from '../../types.js';
+import type { HL7DataTypeDefinition } from '../../types.js';
 
 export const CM_MSG: HL7DataTypeDefinition = {
   desc: 'Message Type',

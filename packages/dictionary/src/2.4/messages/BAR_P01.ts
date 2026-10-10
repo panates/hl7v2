@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const BAR_P01: HL7MessageDefinition = {
   desc: 'Add patient accounts',

@@ -1,9 +1,12 @@
-import { HL7FieldDefinition, HL7SegmentDefinition } from 'hl7v2-dictionary';
-import {
-  HL7Field,
+import type {
+  HL7FieldDefinition,
+  HL7SegmentDefinition,
+} from 'hl7v2-dictionary';
+import type {
   Hl7FieldParseOptions,
   Hl7FieldSerializeOptions,
 } from './hl7-field.js';
+import { HL7Field } from './hl7-field.js';
 import type { HL7Message } from './hl7-message.js';
 
 export class HL7Segment {

@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const ROR_ROR: HL7MessageDefinition = {
   desc: 'Pharmacy prescription order query response',

@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const CCQ_I19: HL7MessageDefinition = {
   desc: 'Collaborative Care Referral',

@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const EHC_E04: HL7MessageDefinition = {
   desc: 'Re-Assess HealthCare Services Invoice Request',

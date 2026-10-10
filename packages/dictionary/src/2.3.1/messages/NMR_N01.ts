@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const NMR_N01: HL7MessageDefinition = {
   desc: 'Application management response',

@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const EHC_E21: HL7MessageDefinition = {
   desc: 'Cancel Authorization Request',

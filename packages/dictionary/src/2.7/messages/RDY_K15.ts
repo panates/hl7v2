@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const RDY_K15: HL7MessageDefinition = {
   desc: 'Display Based Response',

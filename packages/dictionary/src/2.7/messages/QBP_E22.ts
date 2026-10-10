@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const QBP_E22: HL7MessageDefinition = {
   desc: 'Query Authorization Request',

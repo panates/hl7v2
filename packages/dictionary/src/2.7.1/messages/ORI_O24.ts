@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const ORI_O24: HL7MessageDefinition = {
   desc: 'Imaging Order Acknowledgment Message',

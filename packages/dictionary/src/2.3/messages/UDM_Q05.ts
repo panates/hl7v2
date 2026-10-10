@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const UDM_Q05: HL7MessageDefinition = {
   desc: 'Unsolicited display update message',

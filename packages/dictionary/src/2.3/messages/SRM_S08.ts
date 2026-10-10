@@ -1,4 +1,4 @@
-import { HL7MessageDefinition } from '../../types.js';
+import type { HL7MessageDefinition } from '../../types.js';
 
 export const SRM_S08: HL7MessageDefinition = {
   desc: 'Request modification of service/resource on appointment',
