@@ -137,9 +137,17 @@ describe('hl7v2:parse', () => {
     expect(msg.header.field(MSHSegment.SendingApplication).getValue()).toEqual(
       '|^~\\&abcdU',
     );
+    /*
+     * \Mxxyyzz\ switches to a multi-byte character set (ISO 2022); it is an
+     * instruction to the receiver, not a character, and is kept as written.
+     * \c65\ is no standard sequence (they are upper case) and gives its content.
+     */
     expect(
       msg.header.field(MSHSegment.SendingFacility).getValue(),
-    ).toStrictEqual('e' + String.fromCharCode(0x15f) + String.fromCharCode(0));
+    ).toStrictEqual('c65\\M015f\\\\M0000\\');
+    expect(msg.header.field(MSHSegment.SendingFacility).toHL7String()).toEqual(
+      'c65\\M015f\\\\M0000\\',
+    );
   });
 
   it('should parse hex field', () => {

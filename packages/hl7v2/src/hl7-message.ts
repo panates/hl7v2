@@ -48,6 +48,8 @@ export class HL7Message {
   subComponentSeparator: string = SUBCOMPONENT_SEPARATOR;
   repetitionSeparator: string = REPETITION_SEPARATOR;
   escapeCharacter: string = ESCAPE_CHARACTER;
+  /** The fifth encoding character of v2.7 and later (MSH-2), when the message declares one */
+  truncationCharacter?: string;
 
   constructor(
     version: HL7Version = HL7Version.v2_7_1,
@@ -191,6 +193,7 @@ export class HL7Message {
     this.repetitionSeparator = raw.repetitionSeparator;
     this.escapeCharacter = raw.escapeCharacter;
     this.subComponentSeparator = raw.subComponentSeparator;
+    this.truncationCharacter = raw.truncationCharacter;
 
     /**
      * CR is the standard segment terminator, and with it an LF is data.
@@ -344,11 +347,19 @@ export class HL7Message {
   /**
    * Creates the ACK message addressed back to this message's sender, with the
    * header filled as HAPI's `fillResponseHeader` fills it: sending and
-   * receiving application/facility swapped, processing ID, version and
-   * character set kept, so the answer goes out in the encoding the request came in.
+   * receiving application/facility swapped; delimiters, processing ID,
+   * version and character set kept, so the answer goes out in the encoding
+   * the request came in.
    */
   protected _createResponse(): HL7Message {
     const out = new HL7Message(this.version, this._dictionaries);
+    /** Answered in the delimiters it was sent in (MSH-1, MSH-2) */
+    out.fieldSeparator = this.fieldSeparator;
+    out.componentSeparator = this.componentSeparator;
+    out.repetitionSeparator = this.repetitionSeparator;
+    out.escapeCharacter = this.escapeCharacter;
+    out.subComponentSeparator = this.subComponentSeparator;
+    out.truncationCharacter = this.truncationCharacter;
     const msh = out.header;
     const copy = (to: number, from: number) =>
       msh.field(to).fromHL7String(this.header.field(from).toHL7String());
@@ -453,6 +464,7 @@ export class HL7Message {
     this.subComponentSeparator = SUBCOMPONENT_SEPARATOR;
     this.repetitionSeparator = REPETITION_SEPARATOR;
     this.escapeCharacter = ESCAPE_CHARACTER;
+    this.truncationCharacter = undefined;
   }
 
   /**
@@ -479,6 +491,7 @@ export class HL7Message {
     repetitionSeparator: string;
     escapeCharacter: string;
     subComponentSeparator: string;
+    truncationCharacter?: string;
     encoding: string;
     version: HL7Version;
     messageType: string;
@@ -533,6 +546,7 @@ export class HL7Message {
       repetitionSeparator: headerItems[1][1],
       escapeCharacter: headerItems[1][2],
       subComponentSeparator: headerItems[1][3],
+      truncationCharacter: headerItems[1][4] || undefined,
       messageType: headerItems[8],
       header: headerStr,
       data: str,

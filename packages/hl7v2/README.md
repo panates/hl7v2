@@ -53,6 +53,7 @@ The root object representing an HL7 message.
 - `componentSeparator: string`: Character used to separate components (default `^`).
 - `repetitionSeparator: string`: Character used to separate repetitions (default `~`).
 - `escapeCharacter: string`: Character used for escaping (default `\`).
+- `truncationCharacter: string | undefined`: The fifth encoding character of v2.7 and later (`#`), when MSH-2 declares one.
 - `subComponentSeparator: string`: Character used to separate sub-components (default `&`).
 - `charset: string | undefined`: The character set the message is encoded with: the first non-empty repetition of MSH-18. A new message gets `UNICODE UTF-8`.
 
@@ -421,7 +422,9 @@ Custom error class for HL7-related errors.
 
 ##### .hl7Escape()
 
-Escapes a string for use in an HL7 message.
+Escapes a string for use in an HL7 message, with the message's own delimiters.
+Control characters are written as hexadecimal data (`\X0D\`), so a CR, VT or FS in a value cannot end a segment or an MLLP frame.
+Highlighting (`\H\`, `\N\`), formatting (`\.br\`), character set switches (`\Cxxyy\`, `\Mxxyyzz\`), locally defined (`\Zxx\`) and hexadecimal (`\Xdd\`) sequences already in the value pass through unchanged, as HAPI HL7v2 writes them.
 `hl7Escape(value: string, message?: HL7Message): string`
 example
 
@@ -433,7 +436,8 @@ const escaped = hl7Escape('DOE^JOHN'); // "DOE\S\JOHN"
 
 ##### .hl7UnEscape()
 
-Unescapes an HL7 string.
+Unescapes an HL7 string, as HAPI HL7v2 reads one: `\F\ \S\ \T\ \R\ \E\` become the message's delimiters, and hexadecimal data (`\Xdd\`) the characters its bytes encode in the message's character set (HAPI's `\X000d\` reads as a CR).
+Highlighting, formatting, character set switch and locally defined sequences are instructions to the receiver and are kept as written; a value that is hexadecimal data as a whole is returned as a `Buffer`.
 `hl7UnEscape(value: string, message?: HL7Message): string | Buffer | null`
 example
 

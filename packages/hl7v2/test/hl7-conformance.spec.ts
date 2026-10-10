@@ -99,6 +99,53 @@ describe('hl7v2:conformance', () => {
     });
   });
 
+  describe('escape sequences (standard, as HAPI reads and writes them)', () => {
+    it('Should keep character set switches as written', () => {
+      /* ISO 2022: \M2442\ switches to JIS X 0208, \C2842\ back to ASCII */
+      for (const text of ['abc\\C2842\\def', 'X\\M2442\\Y\\C2842\\Z']) {
+        expect(hl7UnEscape(text)).toEqual(text);
+        expect(hl7Escape(text)).toEqual(text);
+      }
+    });
+
+    it('Should read hexadecimal data in the message character set', () => {
+      const utf8 = HL7Message.parse(
+        'MSH|^~\\&|||||||ADT^A01|1|P|2.5||||||UNICODE UTF-8',
+      );
+      /* "ş" is C5 9F in UTF-8, FE in ISO 8859-9 */
+      expect(hl7UnEscape('a\\XC59F\\b', utf8)).toEqual('aşb');
+      const latin5 = HL7Message.parse(
+        'MSH|^~\\&|||||||ADT^A01|1|P|2.5||||||8859/9',
+      );
+      expect(hl7UnEscape('a\\XFE\\b', latin5)).toEqual('aşb');
+    });
+
+    it("Should read HAPI's carriage return", () => {
+      expect(hl7UnEscape('line 1\\X000d\\line 2')).toEqual('line 1\rline 2');
+    });
+
+    it('Should write control characters as hexadecimal data', () => {
+      /* raw, a VT or FS would end the MLLP frame and a CR the segment */
+      expect(hl7Escape('a\x0bb\x1cc\rd\x7fe')).toEqual(
+        'a\\X0B\\b\\X1C\\c\\X0D\\d\\X7F\\e',
+      );
+    });
+
+    it('Should pass hexadecimal data in a value through when writing', () => {
+      expect(hl7Escape('a\\X0D\\b')).toEqual('a\\X0D\\b');
+    });
+  });
+
+  describe('truncation character (v2.7)', () => {
+    it('Should keep the fifth encoding character of MSH-2', () => {
+      const input = 'MSH|^~\\&#|APP|||||ADT^A01|1|P|2.7\rPID|1||12#3';
+      const msg = HL7Message.parse(input);
+      expect(msg.truncationCharacter).toEqual('#');
+      expect(msg.toHL7String()).toEqual(input + '\r');
+      expect(msg.createAck().header.toHL7String()).toMatch(/^MSH\|\^~\\&#\|/);
+    });
+  });
+
   describe('escape sequences', () => {
     it('Should keep highlighting and formatting sequences', () => {
       for (const text of [

@@ -68,6 +68,7 @@ export class HL7Segment {
         this.message.repetitionSeparator +
         this.message.escapeCharacter +
         this.message.subComponentSeparator +
+        (this.message.truncationCharacter || '') +
         fieldSeparator;
     }
     const serializeFields = this._fields.map(field =>
