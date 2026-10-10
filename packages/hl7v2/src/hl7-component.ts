@@ -18,6 +18,12 @@ import { hl7Escape, hl7UnEscape } from './utils/hl7-escape.js';
 export class Hl7Component {
   declare protected _subComponents?: Hl7SubComponent[];
   declare protected _data?: Hl7SubComponent;
+  /**
+   * Sub-components a primitive component received beyond its first, kept as
+   * received (HL7-encoded) so the message serializes back unchanged - as HAPI
+   * keeps them as extra components
+   */
+  protected _extra?: string[];
   declare protected _definition: HL7FieldDefinition;
   declare protected _typeDef: HL7DataTypeDefinition;
   readonly repetition: HL7Repetition;
@@ -69,6 +75,7 @@ export class Hl7Component {
   }
 
   clear() {
+    this._extra = undefined;
     if (this.field.isPrimitive) {
       this._data!.value = undefined;
     } else this._subComponents = [];
@@ -105,26 +112,45 @@ export class Hl7Component {
   }
 
   getValue(subComponent?: number): any | undefined {
-    if (this._data)
-      return subComponent && subComponent > 1 ? undefined : this._data.value;
+    if (this._data) {
+      if (!subComponent || subComponent <= 1) return this._data.value;
+      const extra = this._extra?.[subComponent - 2];
+      return extra ? hl7UnEscape(extra, this.field.message) : undefined;
+    }
     return this._subComponents![(subComponent ?? 1) - 1]?.value;
   }
 
   setValue(value: any, subComponent?: number): this {
-    if (subComponent || !this._data) {
-      this.subcomp(subComponent || 1)!.value = value;
+    if (this._data && (!subComponent || subComponent === 1)) {
+      this._extra = undefined;
+      this._data.value = value;
       return this;
     }
-    this._data.value = value;
+    if (this._data) {
+      /** A primitive component holds further sub-components HL7-encoded */
+      const extra = (this._extra = this._extra || []);
+      while (extra.length < subComponent! - 1) extra.push('');
+      extra[subComponent! - 2] =
+        value == null ? '' : hl7Escape(String(value), this.field.message);
+      return this;
+    }
+    this.subcomp(subComponent || 1).value = value;
     return this;
   }
 
   fromHL7String(value: string, options?: Hl7ComponentParseOptions) {
+    this._extra = undefined;
     if (value === '') {
       this.setValue(undefined);
       return;
     }
     if (this._data) {
+      const { subComponentSeparator } = this.field.message;
+      const k = value.indexOf(subComponentSeparator);
+      if (k >= 0) {
+        this._extra = value.substring(k + 1).split(subComponentSeparator);
+        value = value.substring(0, k);
+      }
       const decode = this.definition.decode || this.typeDef.decode;
       const unescaped = hl7UnEscape(value, this.field.message);
       try {
@@ -171,8 +197,8 @@ export class Hl7Component {
     let str: any;
     if (this._data) {
       let v = this._data.value;
-      if (v === null) return '""';
-      if (v === undefined) return '';
+      if (v === null && !this._extra) return '""';
+      if (v === undefined && !this._extra) return '';
       const encode = this.definition.encode || this.typeDef.encode;
       if (encode) {
         try {
@@ -183,7 +209,13 @@ export class Hl7Component {
       } else {
         if (typeof v === 'object' && v instanceof Date) v = toHL7DateTime(v);
       }
-      str = hl7Escape(v, this.field.message);
+      str = v == null ? '' : hl7Escape(v, this.field.message);
+      if (this._extra) {
+        const { subComponentSeparator } = this.segment.message;
+        str = [str, ...this._extra].join(subComponentSeparator);
+        while (str.endsWith(subComponentSeparator))
+          str = str.substring(0, str.length - 1);
+      }
     } else {
       const { subComponentSeparator } = this.segment.message;
       str = this._subComponents!.map(subComponent =>

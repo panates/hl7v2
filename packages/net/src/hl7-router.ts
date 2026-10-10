@@ -48,6 +48,8 @@ export class HL7Router {
         callback(err);
       } catch (e: any) {
         callback(e instanceof Error ? e : new Error(e));
+      } finally {
+        res.dispose();
       }
     });
   }
@@ -112,7 +114,7 @@ export class HL7Router {
     this._handlers = [];
     this._errorHandlers = [];
     Array.from(this._handlerStack.keys())
-      .sort()
+      .sort((a, b) => a - b)
       .forEach(p => {
         const list = this._handlerStack.get(p);
         for (const x of list!) {
@@ -125,7 +127,7 @@ export class HL7Router {
         }
       });
     Array.from(this._errorHandlerStack.keys())
-      .sort()
+      .sort((a, b) => a - b)
       .forEach(p => {
         const list = this._errorHandlerStack.get(p);
         for (const x of list!) {

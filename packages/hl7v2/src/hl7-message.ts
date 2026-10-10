@@ -151,7 +151,6 @@ export class HL7Message {
         if (!indexOrAfter) return seg;
         if (typeof indexOrAfter === 'number') {
           if (indexOrAfter === k++) return seg;
-          i++;
         } else {
           if (indexOrAfter === seg) indexOrAfter = undefined;
         }
@@ -193,7 +192,13 @@ export class HL7Message {
     this.escapeCharacter = raw.escapeCharacter;
     this.subComponentSeparator = raw.subComponentSeparator;
 
-    const lines = raw.data.replaceAll(CR + LF, CR).split(CR);
+    /**
+     * CR is the standard segment terminator, and with it an LF is data.
+     * A message with no CR at all is taken to be split by LF
+     */
+    const lines = raw.data.includes(CR)
+      ? raw.data.replaceAll(CR + LF, CR).split(CR)
+      : raw.data.split(LF);
     const headerItems = raw.header.split(this.fieldSeparator);
     for (const [i, line] of lines.entries()) {
       if (!line) continue;
@@ -238,6 +243,7 @@ export class HL7Message {
     if (!messageDefinition?.segments) {
       const result = new HL7MessageNode('MESSAGE');
       result.items.push(...this.segments);
+      return result;
     }
 
     // Helper function to process a segment definition recursively
@@ -335,19 +341,23 @@ export class HL7Message {
     return result;
   }
 
-  createAck(
-    ackCode: AcknowledgmentCode = 'AA',
-    textMessage?: string,
-  ): HL7Message {
+  /**
+   * Creates the ACK message addressed back to this message's sender, with the
+   * header filled as HAPI's `fillResponseHeader` fills it: sending and
+   * receiving application/facility swapped, processing ID, version and
+   * character set kept, so the answer goes out in the encoding the request came in.
+   */
+  protected _createResponse(): HL7Message {
     const out = new HL7Message(this.version, this._dictionaries);
     const msh = out.header;
-    // Sending Application
-    msh
-      .field(MSHSegment.ReceivingApplication)
-      .setValue(msh.field(MSHSegment.SendingFacility).getValue());
-    msh
-      .field(MSHSegment.ReceivingFacility)
-      .setValue(this.header.field(MSHSegment.SendingFacility).getValue());
+    const copy = (to: number, from: number) =>
+      msh.field(to).fromHL7String(this.header.field(from).toHL7String());
+    copy(MSHSegment.SendingApplication, MSHSegment.ReceivingApplication);
+    copy(MSHSegment.SendingFacility, MSHSegment.ReceivingFacility);
+    copy(MSHSegment.ReceivingApplication, MSHSegment.SendingApplication);
+    copy(MSHSegment.ReceivingFacility, MSHSegment.SendingFacility);
+    copy(MSHSegment.ProcessingID, MSHSegment.ProcessingID);
+    if (this.charset) copy(MSHSegment.CharacterSet, MSHSegment.CharacterSet);
     msh.field(MSHSegment.MessageType).setValue('ACK');
     msh
       .field(MSHSegment.MessageType)
@@ -356,6 +366,14 @@ export class HL7Message {
     msh
       .field(MSHSegment.MessageControlID)
       .setValue(String(Date.now() + uid(5)));
+    return out;
+  }
+
+  createAck(
+    ackCode: AcknowledgmentCode = 'AA',
+    textMessage?: string,
+  ): HL7Message {
+    const out = this._createResponse();
 
     const msa = out.addSegment('MSA');
     msa.field(MSASegment.AcknowledgmentCode).setValue(ackCode);
@@ -367,23 +385,7 @@ export class HL7Message {
   }
 
   createNak(errors: (Error | string)[]): HL7Message {
-    const out = new HL7Message(this.version, this._dictionaries);
-    const msh = out.header;
-    // Sending Application
-    msh
-      .field(MSHSegment.ReceivingApplication)
-      .setValue(msh.field(MSHSegment.SendingFacility).getValue());
-    msh
-      .field(MSHSegment.ReceivingFacility)
-      .setValue(this.header.field(MSHSegment.SendingFacility).getValue());
-    msh.field(MSHSegment.MessageType).setValue('ACK');
-    msh
-      .field(MSHSegment.MessageType)
-      .comp(2)
-      .setValue(this.header.field(MSHSegment.MessageType).getValue(2));
-    msh
-      .field(MSHSegment.MessageControlID)
-      .setValue(String(Date.now() + uid(5)));
+    const out = this._createResponse();
 
     const msaSegment = out.addSegment('MSA');
     msaSegment.field(MSASegment.AcknowledgmentCode).setValue('AE');
@@ -496,13 +498,9 @@ export class HL7Message {
       }
     }
     if (Buffer.isBuffer(input)) {
-      let crIdx = input.indexOf(CR);
-      if (crIdx < 0) crIdx = input.length;
-      headerStr = input.toString('utf8', 0, crIdx);
+      headerStr = input.toString('utf8', 0, headerEnd(input));
     } else if (typeof input === 'string') {
-      let crIdx = input.indexOf(CR);
-      if (crIdx < 0) crIdx = input.length;
-      headerStr = input.substring(0, crIdx);
+      headerStr = input.substring(0, headerEnd(input));
     } /* c8 ignore else */ else {
       throw new TypeError('You must provide string or Buffer argument');
     }
@@ -555,3 +553,10 @@ export interface HL7MessageParseOptions extends Hl7SegmentParseOptions {
 }
 
 export interface HL7MessageSerializeOptions extends Hl7SegmentSerializeOptions {}
+
+/** Where the MSH segment ends: at the first CR, or at the first LF in a message with no CR */
+function headerEnd(input: string | Buffer): number {
+  let end = input.indexOf(CR);
+  if (end < 0) end = input.indexOf(LF);
+  return end < 0 ? input.length : end;
+}

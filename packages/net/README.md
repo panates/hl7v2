@@ -114,6 +114,8 @@ await server.close(5000); // Wait up to 5s for running handlers
 ##### .use()
 
 Adds a middleware handler or another router to the server.
+Handlers run in ascending `priority` order (default `0`). A message no handler answers is acknowledged with `AA`, or with `AE` when a handler throws.
+Acknowledgments (`ACK`) are never routed or answered: HL7 does not acknowledge an acknowledgment.
 `use(handler: HL7Middleware | HL7Router, priority?: number): void`
 example
 
@@ -203,13 +205,23 @@ await client.sendMessage(msg);
 
 ##### .sendMessageWaitAck()
 
-Sends an HL7 message and waits for an acknowledgment.
+Sends an HL7 message and waits for its response: the first received message whose MSA-2 is the sent message's control ID (MSH-10), whatever its type - an `ACK`, or an application response such as `ADR^A19` for a `QRY^A19`, as HAPI HL7v2 matches it.
+Rejects after `responseTimeout` (when set), or when the connection fails or closes first.
+A response is not passed to the client's handlers (`use()`), and is not acknowledged.
 `sendMessageWaitAck(message: HL7Message | string): Promise<HL7Message>`
 example
 
 ```typescript
 const ack = await client.sendMessageWaitAck(msg);
 ```
+
+#### Options
+
+- `connectTimeout?: number`: Milliseconds to wait for a connection before giving up.
+- `responseTimeout?: number`: Milliseconds `sendMessageWaitAck()` waits for a response. Can be changed later with `setResponseTimeout()`.
+- `keepAlive?: boolean`, `keepAliveInitialDelay?: number`: TCP keep-alive, applied to every connection.
+- `maxBufferSize?: number`: The largest frame accepted; a larger one closes the connection.
+- `reconnect?: ReconnectOptions`: How a lost connection is re-established.
 
 ---
 
@@ -237,7 +249,7 @@ await socket.sendMessage(msg);
 
 ##### .sendMessageWaitAck()
 
-Sends an HL7 message and waits for an acknowledgment.
+Sends an HL7 message and waits for its response, matched by MSA-2 (see `Hl7Client.sendMessageWaitAck()`).
 `sendMessageWaitAck(message: HL7Message | string): Promise<HL7Message>`
 example
 

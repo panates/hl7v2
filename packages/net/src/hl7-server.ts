@@ -7,6 +7,7 @@ import type { AddressInfo, ListenOptions, Socket } from 'net';
 import { AsyncEventEmitter } from 'node-events-async';
 import { uid } from 'uid';
 import { HL7ExchangeError } from './helpers/hl7-exchange-error.js';
+import { isRoutable } from './helpers/is-routable.js';
 import { HL7Request } from './hl7-request.js';
 import { HL7Response } from './hl7-response.js';
 import { HL7Router } from './hl7-router.js';
@@ -117,7 +118,7 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
   listen(...args: any[]): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       const onListening = () => {
-        this._server.removeListener('error', onListening);
+        this._server.removeListener('error', onError);
         resolve();
       };
       const onError = (error: Error) => {
@@ -248,6 +249,8 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
   }
 
   protected _onMessage(message: HL7Message, socket: HL7Socket) {
+    /** A response to our own request, or any acknowledgment, is not answered */
+    if (!isRoutable(message, socket)) return;
     const waitPromise = new Promise<void>(resolve => {
       if (!message.header.field(MSHSegment.MessageControlID).getValue())
         message.header.field(MSHSegment.MessageControlID).setValue(uid(8));
@@ -255,8 +258,13 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
       const res = new HL7Response(req);
       const timeoutTimer = setTimeout(() => {
         try {
+          /** A handler that answered and is still running is not interrupted */
+          if (res.finished) return;
           res.failed(new HL7ExchangeError('Response timeout'));
           res.socket.sendMessage(res.message);
+        } catch (e: any) {
+          /** The socket may be gone - sendMessage reports that as an error event too */
+          this.emit('error', e, socket);
         } finally {
           resolve();
         }

@@ -16,6 +16,8 @@ import { FrameStream } from './helpers/frame-stream.js';
 export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
   declare protected _socket: Socket;
   protected _messageHooks = new Set<(resp: HL7Message) => boolean>();
+  /** Received messages that answered one of ours (see sendMessageWaitAck) */
+  protected _responses = new WeakSet<HL7Message>();
   protected _frameStream: FrameStream;
   protected _waitPromises = new Set<Promise<any>>();
   protected _options: HL7Socket.Options;
@@ -29,6 +31,7 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
   constructor(socket: Socket, options: HL7Socket.Options) {
     super();
     this._options = options;
+    this.responseTimeout = options?.responseTimeout;
     const frameStream = new FrameStream({
       frameStart: VT,
       frameEnd: FS + CR,
@@ -37,6 +40,16 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
     frameStream.on('data', data => {
       this.emit('data', data);
       this._onData(data);
+    });
+    /**
+     * A framing error (such as "Max buffer size exceeded") leaves the stream
+     * unable to find the next frame, so the connection is closed, as HAPI
+     * closes it. Unhandled, it stopped the stream and left the socket open
+     * and deaf.
+     */
+    frameStream.on('error', error => {
+      this.emit('error', error);
+      this.socket?.destroy();
     });
     this._frameStream = frameStream;
     this._bindSocket(socket);
@@ -143,18 +156,25 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
     }
   }
 
+  /**
+   * Sends a message and waits for its response: the first received message
+   * whose MSA-2 is this message's control ID, whatever its type - an ACK, or an
+   * application response such as ADR^A19 for QRY^A19 - as HAPI's Initiator
+   * matches it. Rejects on response timeout, socket error or close.
+   */
   async sendMessageWaitAck(message: HL7Message): Promise<HL7Message> {
-    this.sendMessage(message);
     const responseTimeout = this.responseTimeout;
+    const controlId = message.header
+      .field(MSHSegment.MessageControlID)
+      .getValue();
 
     const waitPromise = new Promise<HL7Message>((resolve, reject) => {
       let responseTimer: NodeJS.Timeout | undefined;
       const messageHook = (resp: HL7Message): boolean => {
-        const msgType2 = resp.header.field(MSHSegment.MessageType).getValue();
-        if (msgType2 !== 'ACK') return false;
         const msa = resp.getSegment('MSA');
-        const controlId2 = msa?.field(MSASegment.MessageControlID).getValue();
-        if (controlId2 !== controlId) return false;
+        if (!msa) return false;
+        if (msa.field(MSASegment.MessageControlID).getValue() !== controlId)
+          return false;
         cleanup();
         resolve(resp);
         return true;
@@ -165,29 +185,45 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
         reject(error);
       };
 
+      const onClose = () => onError(new Error('Socket closed before response'));
+
       const cleanup = () => {
         clearTimeout(responseTimer);
         this._messageHooks.delete(messageHook);
         this.socket.removeListener('error', onError);
+        this.socket.removeListener('close', onClose);
       };
 
-      const controlId = message.header
-        .field(MSHSegment.MessageControlID)
-        .getValue();
-      this.socket.once('error', reject);
+      /** Listening before sending, so no response can arrive unseen */
       this._messageHooks.add(messageHook);
-      // this.on('message', messageHook);
+      this.socket.once('error', onError);
+      this.socket.once('close', onClose);
       if (responseTimeout) {
         responseTimer = setTimeout(() => {
           onError(new Error('Response timeout'));
         }, responseTimeout).unref();
       }
+      try {
+        this.sendMessage(message);
+      } catch (e) {
+        onError(e);
+      }
     });
     this._waitPromises.add(waitPromise);
-    waitPromise.finally(() => {
-      this._waitPromises.delete(waitPromise);
-    });
+    waitPromise
+      .finally(() => {
+        this._waitPromises.delete(waitPromise);
+      })
+      .catch(() => undefined);
     return waitPromise;
+  }
+
+  /**
+   * Whether a received message was the response to one sent with
+   * sendMessageWaitAck. A response is not routed to handlers and not acknowledged.
+   */
+  isResponse(message: HL7Message): boolean {
+    return this._responses.has(message);
   }
 
   setKeepAlive(enable?: boolean, initialDelay?: number) {
@@ -207,7 +243,10 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
         strict: this._options?.parseStrict,
       });
       for (const hook of this._messageHooks) {
-        if (hook(message)) break;
+        if (hook(message)) {
+          this._responses.add(message);
+          break;
+        }
       }
       this.emit('message', message);
     } catch (err: any) {

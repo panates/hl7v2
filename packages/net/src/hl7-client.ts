@@ -5,6 +5,7 @@ import type { HL7Message } from 'hl7v2';
 import { AsyncEventEmitter } from 'node-events-async';
 import reconnectCore from 'reconnect-core';
 import type { StrictOmit } from 'ts-gems';
+import { isRoutable } from './helpers/is-routable.js';
 import { HL7Request } from './hl7-request.js';
 import { HL7Response } from './hl7-response.js';
 import { HL7Router } from './hl7-router.js';
@@ -199,6 +200,7 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
 
   setResponseTimeout(value: number | null) {
     this._options.responseTimeout = value ?? undefined;
+    if (this._socket) this._socket.responseTimeout = value ?? undefined;
   }
 
   setMaxBufferSize(value: number) {
@@ -217,6 +219,8 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
   }
 
   protected _onMessage(message: HL7Message) {
+    /** A response to our own request, or any acknowledgment, is not answered */
+    if (!isRoutable(message, this._socket!)) return;
     const req = new HL7Request(this._socket!, message);
     const res = new HL7Response(req);
     this._router.handle(req, res, () => {
@@ -274,30 +278,23 @@ const socketReconnect = reconnectCore(
           ...(args.options as Hl7Client.NetConnectOptions),
           timeout: undefined,
         });
-    if (args.options.timeout) {
+    const { connectTimeout, keepAlive, keepAliveInitialDelay } = args.options;
+    /** Applied on every connection, with or without a connect timeout */
+    if (keepAlive) {
+      tcpSocket.once('connect', () =>
+        tcpSocket.setKeepAlive(true, keepAliveInitialDelay),
+      );
+    }
+    if (connectTimeout) {
       const timer = setTimeout(() => {
-        tcpSocket.destroy(new Error('Connection timed out'));
-      }, args.options.timeout).unref();
-      const onConnect = () => {
-        clearTimeout(timer);
-        tcpSocket.removeListener('error', onError);
-      };
-      const onError = () => {
-        clearTimeout(timer);
-        tcpSocket.removeListener('connect', onConnect);
-        tcpSocket.removeListener('ready', onReady);
-      };
-      const onReady = () => {
-        if (args.options.keepAlive) {
-          tcpSocket.setKeepAlive(
-            args.options.keepAlive,
-            args.options.keepAliveInitialDelay,
-          );
-        }
-      };
-      tcpSocket.once('connect', onConnect);
-      tcpSocket.once('error', onError);
-      tcpSocket.once('ready', onReady);
+        tcpSocket.destroy(
+          new Error(`Connection timed out after ${connectTimeout} ms`),
+        );
+      }, connectTimeout).unref();
+      const clear = () => clearTimeout(timer);
+      tcpSocket.once('connect', clear);
+      tcpSocket.once('error', clear);
+      tcpSocket.once('close', clear);
     }
     return tcpSocket;
   },
