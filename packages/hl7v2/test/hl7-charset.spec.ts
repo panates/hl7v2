@@ -2,6 +2,7 @@ import { expect } from 'expect';
 import iconv from 'iconv-lite';
 import {
   charsetFromMSH18,
+  detectByteOrderMark,
   encodeHL7String,
   HL7Message,
   MSHSegment,
@@ -10,6 +11,8 @@ import {
 } from '../src/index.js';
 
 const TURKISH_NAME = 'Şahin^Gül';
+const VT_BYTE = Buffer.from([0x0b]);
+const FS_CR_BYTES = Buffer.from([0x1c, 0x0d]);
 
 function messageWithName(charset: string): HL7Message {
   const msg = new HL7Message();
@@ -34,6 +37,9 @@ describe('hl7v2:charset', () => {
 
   it('Should resolve HL7 character sets to encodings', () => {
     expect(resolveHL7Encoding('UNICODE UTF-8')).toEqual('utf8');
+    /* As HAPI and Apache Camel read the deprecated, ambiguous value */
+    expect(resolveHL7Encoding('UNICODE')).toEqual('utf8');
+    expect(resolveHL7Encoding('UNICODE UTF-16')).toEqual('utf16');
     expect(resolveHL7Encoding('8859/9')).toEqual('latin5');
     expect(resolveHL7Encoding('ASCII')).toEqual('ascii');
     expect(resolveHL7Encoding('iso-8859-1')).toEqual('iso-8859-1');
@@ -81,11 +87,54 @@ describe('hl7v2:charset', () => {
   });
 
   it('Should round-trip a message through its own charset', () => {
-    for (const charset of ['8859/9', '~UNICODE UTF-8', 'UNICODE UTF-8']) {
-      const msg = HL7Message.parse(messageWithName(charset).toBuffer());
-      expect(
-        msg.getSegment('PID')!.field(PIDSegment.PatientName).toHL7String(),
-      ).toEqual(TURKISH_NAME);
+    for (const charset of [
+      '8859/9',
+      '~UNICODE UTF-8',
+      'UNICODE UTF-8',
+      'UNICODE',
+      'UNICODE UTF-16',
+      'UNICODE UTF-32',
+    ]) {
+      const buf = messageWithName(charset).toBuffer();
+      /* Bare, and inside an MLLP frame as HL7Socket receives it */
+      for (const input of [buf, Buffer.concat([VT_BYTE, buf, FS_CR_BYTES])]) {
+        const msg = HL7Message.parse(input);
+        expect(
+          msg.getSegment('PID')!.field(PIDSegment.PatientName).toHL7String(),
+        ).toEqual(TURKISH_NAME);
+      }
     }
+  });
+
+  it('Should write a byte order mark for UTF-16 and UTF-32', () => {
+    const buf = messageWithName('UNICODE UTF-16').toBuffer();
+    expect(buf.subarray(0, 4).toString('hex')).toEqual('fffe4d00');
+  });
+
+  it('Should decode by byte order mark before reading MSH-18', () => {
+    const text =
+      'MSH|^~\\&|||||||ADT^A08|1||2.5||||||UNICODE UTF-16\rPID|||||Şahin^Gül';
+    const be = Buffer.concat([
+      Buffer.from([0xfe, 0xff]),
+      iconv.encode(text, 'utf16be'),
+    ]);
+    let msg = HL7Message.parse(be);
+    expect(msg.getSegment('PID')!.field(5).toHL7String()).toEqual(TURKISH_NAME);
+    /* A UTF-8 BOM is skipped */
+    const utf8 = Buffer.concat([
+      Buffer.from([0xef, 0xbb, 0xbf]),
+      Buffer.from(text.replace('UNICODE UTF-16', 'UNICODE UTF-8')),
+    ]);
+    msg = HL7Message.parse(utf8);
+    expect(msg.getSegment('PID')!.field(5).toHL7String()).toEqual(TURKISH_NAME);
+  });
+
+  it('Should detect byte order marks inside an MLLP frame', () => {
+    const framed = Buffer.from([0x0b, 0xff, 0xfe, 0x4d, 0x00, 0x1c, 0x0d]);
+    expect(detectByteOrderMark(framed)).toEqual({
+      encoding: 'utf16le',
+      data: Buffer.from([0x4d, 0x00]),
+    });
+    expect(detectByteOrderMark(Buffer.from('MSH|'))).toBeUndefined();
   });
 });

@@ -2,7 +2,8 @@ import anyAscii from 'any-ascii';
 import iconv from 'iconv-lite';
 
 /**
- * HL7 table 0211 (MSH-18) values mapped to iconv-lite encoding names.
+ * HL7 table 0211 (MSH-18) values mapped to iconv-lite encoding names, as HAPI
+ * HL7v2 maps them (`ca.uhn.hl7v2.llp.HL7Charsets`).
  * A value not listed here is tried as an encoding name as-is.
  */
 export const HL7_CHARSET_ENCODINGS: Record<string, string> = {
@@ -25,10 +26,12 @@ export const HL7_CHARSET_ENCODINGS: Record<string, string> = {
   'KS X 1001': 'EUC-KR',
   'CNS 11643-1992': 'EUC-TW',
   'BIG-5': 'Big5',
-  UNICODE: 'utf16-le',
+  /* Deprecated in HL7 and ambiguous; HAPI and Apache Camel both read it as UTF-8 */
+  UNICODE: 'utf8',
   'UNICODE UTF-8': 'utf8',
-  'UNICODE UTF-16': 'utf16-le',
-  // UTF-32 is not supported by iconv-lite
+  /* With a byte order mark, as Java's UTF-16/UTF-32 write them; a BOM selects the byte order on decode */
+  'UNICODE UTF-16': 'utf16',
+  'UNICODE UTF-32': 'utf32',
 };
 
 /** The HL7 value a message is encoded with when MSH-18 is empty */
@@ -39,9 +42,43 @@ const UNICODE_ENCODINGS = new Set([
   'utf16le',
   'utf16be',
   'utf16',
+  'utf32le',
+  'utf32be',
+  'utf32',
   'ucs2',
   'cesu8',
 ]);
+
+const BYTE_ORDER_MARKS: [bytes: number[], encoding: string][] = [
+  [[0xef, 0xbb, 0xbf], 'utf8'],
+  [[0xff, 0xfe, 0x00, 0x00], 'utf32le'],
+  [[0x00, 0x00, 0xfe, 0xff], 'utf32be'],
+  [[0xff, 0xfe], 'utf16le'],
+  [[0xfe, 0xff], 'utf16be'],
+];
+
+/**
+ * Detects a byte order mark at the start of a message (after an optional
+ * MLLP start block), as HAPI's `CharSetUtil` does. A message encoded in
+ * UTF-16 or UTF-32 can only be recognized this way: its MSH segment cannot be
+ * read before its encoding is known.
+ * Returns the encoding and the payload without the start block, the BOM and
+ * the MLLP end block, or `undefined` when there is no BOM.
+ */
+export function detectByteOrderMark(
+  input: Buffer,
+): { encoding: string; data: Buffer } | undefined {
+  const start = input[0] === 0x0b ? 1 : 0;
+  for (const [bytes, encoding] of BYTE_ORDER_MARKS) {
+    if (bytes.every((b, i) => input[start + i] === b)) {
+      let end = input.length;
+      /* The MLLP end block (FS CR) is written as single bytes */
+      if (input[end - 1] === 0x0d && input[end - 2] === 0x1c) end -= 2;
+      else if (input[end - 1] === 0x1c) end -= 1;
+      return { encoding, data: input.subarray(start + bytes.length, end) };
+    }
+  }
+}
 
 /**
  * Returns the character set an MSH-18 value names: the first component of

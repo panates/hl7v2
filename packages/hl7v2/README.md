@@ -105,6 +105,7 @@ const hl7 = message.toHL7String();
 
 Serializes the message and encodes it with the character set in MSH-18 (`ASCII`, `8859/1`, `8859/9`, `UNICODE UTF-8`, ...).
 A character the character set cannot represent is transliterated to its closest ASCII form (`Şahin Gül` -> `Sahin Gul` in `ASCII`) instead of becoming `?`.
+Character sets are mapped as HAPI HL7v2 maps them: the deprecated `UNICODE` is read as UTF-8, and `UNICODE UTF-16`/`UNICODE UTF-32` are written with a byte order mark, which is also how a received UTF-16/UTF-32 message is recognized.
 `toBuffer(options?: HL7MessageSerializeOptions): Buffer`
 example
 

@@ -213,11 +213,17 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
     } catch (err: any) {
       this.emit('error', err);
       if (!this.connected) return;
-      const raw = HL7Message.parseRaw(data);
+      /** A frame whose header cannot be read gets no NAK - there is nothing to address it to */
+      let raw: ReturnType<typeof HL7Message.parseRaw>;
+      try {
+        raw = HL7Message.parseRaw(data);
+      } catch {
+        return;
+      }
       const nak = new HL7Message(raw.version as HL7Version).createNak([err]);
       nak.header
         .field(MSHSegment.MessageType)
-        .fromHL7String('ACK^' + raw.messageType.split('^')[1] || '');
+        .fromHL7String('ACK^' + (raw.messageType?.split('^')[1] || ''));
       this.sendMessage(nak);
     }
   }

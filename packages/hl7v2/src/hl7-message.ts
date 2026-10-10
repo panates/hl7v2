@@ -32,6 +32,7 @@ import { HL7Segment } from './hl7-segment.js';
 import {
   charsetFromMSH18,
   DEFAULT_HL7_CHARSET,
+  detectByteOrderMark,
   encodeHL7String,
   HL7_CHARSET_ENCODINGS,
   resolveHL7Encoding,
@@ -482,6 +483,18 @@ export class HL7Message {
     data: string;
   } {
     let headerStr: string;
+    /** A byte order mark decides the encoding before MSH-18 can be read */
+    let bomEncoding: string | undefined;
+    if (Buffer.isBuffer(input)) {
+      const bom = detectByteOrderMark(input);
+      if (bom) {
+        bomEncoding = bom.encoding;
+        input =
+          bom.encoding === 'utf8'
+            ? bom.data
+            : iconv.decode(bom.data, bom.encoding);
+      }
+    }
     if (Buffer.isBuffer(input)) {
       let crIdx = input.indexOf(CR);
       if (crIdx < 0) crIdx = input.length;
@@ -509,7 +522,7 @@ export class HL7Message {
       encodingChars[1],
       encodingChars[0],
     );
-    const encoding = resolveHL7Encoding(charset);
+    const encoding = bomEncoding || resolveHL7Encoding(charset);
 
     let str = Buffer.isBuffer(input) ? iconv.decode(input, encoding) : input;
     if (str.startsWith(VT)) str = str.substring(1);

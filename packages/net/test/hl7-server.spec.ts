@@ -218,4 +218,39 @@ describe('net:server', () => {
       'Sahin^Gul',
     );
   });
+
+  it('should exchange UTF-16 messages, as HAPI writes them', async () => {
+    server = HL7Server.createServer();
+    await server.listen(12345);
+    let req: HL7Message | undefined;
+    server.use(_req => {
+      req = _req.message;
+    });
+    client = Hl7Client.createClient({ host: 'localhost', port: 12345 });
+    const msg = new HL7Message();
+    msg.header.field(MSHSegment.MessageType).fromHL7String('ORU^R01');
+    msg.header.field(MSHSegment.CharacterSet).fromHL7String('UNICODE UTF-16');
+    msg.addSegment('PID').field(5).fromHL7String('Şahin^Gül');
+    const resp = await client.sendMessageWaitAck(msg);
+    expect(resp.messageType).toEqual('ACK^R01');
+    expect(req!.getSegment('PID')!.field(5).toHL7String()).toStrictEqual(
+      'Şahin^Gül',
+    );
+  });
+
+  it('should survive a frame whose header cannot be read', async () => {
+    server = HL7Server.createServer();
+    await server.listen(12345);
+    const errors: Error[] = [];
+    server.on('error', e => errors.push(e));
+    const socket = net.connect(12345, 'localhost');
+    await new Promise<void>(resolve => socket.once('connect', resolve));
+    socket.write(Buffer.from(VT + 'NOT HL7' + FS + CR));
+    await new Promise(resolve => setTimeout(resolve, 100));
+    socket.destroy();
+    expect(errors.map(e => e.message)).toEqual([
+      'Message must start with (MSH) segment',
+    ]);
+    expect(server.listening).toBe(true);
+  });
 });
