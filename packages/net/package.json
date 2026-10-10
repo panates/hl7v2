@@ -55,7 +55,10 @@
     "node": ">=20.0"
   },
   "contributors": [
-    "Eray Hanoglu <e.hanoglu@panates.com>"
+    "Eray Hanoglu <e.hanoglu@panates.com>",
+    "Ilker Gurelli <i.gurelli@panates.com>",
+    "Onur Tokel <o.tokel@panates.com>",
+    "Bircan Yuruk <b.yuruk@panates.com>"
   ],
   "repository": {
     "type": "git",

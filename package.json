@@ -3,6 +3,12 @@
   "private": true,
   "version": "0.4.0",
   "license": "MIT",
+  "contributors": [
+    "Eray Hanoglu <e.hanoglu@panates.com>",
+    "Ilker Gurelli <i.gurelli@panates.com>",
+    "Onur Tokel <o.tokel@panates.com>",
+    "Bircan Yuruk <b.yuruk@panates.com>"
+  ],
   "type": "module",
   "repository": {
     "type": "git",

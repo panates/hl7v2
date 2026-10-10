@@ -9,6 +9,8 @@ junit.xml
 packages/*/dist
 packages/*/build
 /support/docker/data
+.claude
+graphify-out
 
 # environment variables
 .env
