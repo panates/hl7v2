@@ -1,7 +1,6 @@
 # This package is bundled with esbuild rather than compiled with the preset's `tsc -b`: the
-# generated per-version dictionaries are minified into one `index.js`, and tsc emits only the
-# declarations. The per-version declaration directories are dropped - nothing in the public
-# types refers to them.
+# generated dictionary data (data/hl7-data.js) is minified into one `index.js`, and tsc
+# emits only the declarations.
 run:
   build:
-    exec: node esbuild.mjs && tsc -b tsconfig-build.json --emitDeclarationOnly && rimraf ./build/2*
+    exec: node esbuild.mjs && tsc -b tsconfig-build.json --emitDeclarationOnly

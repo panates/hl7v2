@@ -7,7 +7,21 @@
 
 ## About
 
-HL7 v2.x dictionary for Node.js. This package provides version-specific definitions for segments, data types, and messages, supporting versions from 2.1 to 2.8. It is used by the `hl7v2` parser and serializer to understand message structures.
+HL7 v2.x dictionary for Node.js. This package provides version-specific definitions for segments, data types, and messages, supporting versions from 2.1 to 2.7.1 (2.8 is served with the 2.7.1 definitions for now). It is used by the `hl7v2` parser and serializer to understand message structures.
+
+### How the dictionaries are built
+
+- **Every version is complete**, exactly as its source defines it: a segment, field or data type withdrawn in a version is not in that version's dictionary.
+- **A version is built the first time it is used**; the others cost nothing until then.
+- **A definition identical in several versions is one object**, shared by all of them and frozen. Change a dictionary through `extend()`, `overwriteSegments()` or `overwriteTypes()`, which copy what they change - a definition cannot be modified in place.
+
+The data (`data/hl7-data.js`) is generated from the [`hl7-dictionary`](https://www.npmjs.com/package/hl7-dictionary) package by `support/build-dictionary.mts`, which writes each distinct definition once:
+
+```bash
+$ node support/build-dictionary.mts
+```
+
+The tests compare every version with that source, field by field.
 
 ## Installation
 
@@ -65,6 +79,7 @@ The `HL7Dictionary` class holds definitions for a specific HL7 version.
 
 ##### .extend()
 Creates a new dictionary by extending the current one with new or overridden definitions.
+Given segments and types are merged over the current ones, and given messages added to them; only those are copied - every other definition is shared with the current dictionary.
 `extend(args: { version?: HL7Version; segments?: Record<string, DeeperPartial<HL7SegmentDefinition>>; types?: Record<string, DeeperPartial<HL7DataTypeDefinition>>; messages?: Record<string, HL7MessageDefinition>; }): HL7Dictionary`
 
 example
@@ -119,7 +134,7 @@ example
 import { findNearestHL7Version, HL7Version } from 'hl7v2-dictionary';
 
 const nearest = findNearestHL7Version('2.5.2' as any);
-// Returns HL7Version.v2_5
+// Returns HL7Version.v2_5_1 - the newest version not newer than 2.5.2
 ```
 
 ##### .toHL7Date()

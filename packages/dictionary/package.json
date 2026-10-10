@@ -11,6 +11,10 @@
     "tslib": "^2.8.1",
     "valgen": "^7.0.3"
   },
+  "devDependencies": {
+    "expect": "^30.5.2",
+    "hl7-dictionary": "^1.0.1"
+  },
   "scripts": {
     "test": "mocha"
   },

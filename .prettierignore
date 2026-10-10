@@ -9,6 +9,7 @@
 /.nyc_output
 /.github
 **/*.md
+/packages/dictionary/data/hl7-data.js
 
 # IDEs and editors
 .project

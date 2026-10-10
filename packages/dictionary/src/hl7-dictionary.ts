@@ -25,6 +25,11 @@ export class HL7Dictionary {
     this.messages = args.messages || {};
   }
 
+  /**
+   * Creates a dictionary with this one's definitions, the given ones merged
+   * over them. Only what is given is copied - every other definition is shared,
+   * unchanged, with this dictionary.
+   */
   extend(args: {
     version?: HL7Version;
     segments?: Record<string, DeeperPartial<HL7SegmentDefinition>>;
@@ -33,28 +38,37 @@ export class HL7Dictionary {
   }): HL7Dictionary {
     const dict = new HL7Dictionary({
       version: args.version || this.version,
-      segments: clone(this.segments, { deep: 'full' }),
-      types: clone(this.types, { deep: 'full' }),
-      messages: args.messages || clone(this.messages, { deep: 'full' }),
+      segments: { ...this.segments },
+      types: { ...this.types },
+      messages: { ...this.messages, ...args.messages },
     });
-    if (args.segments) {
-      dict.overwriteSegments(args.segments);
-    }
-    if (args.types) {
-      dict.overwriteTypes(args.types);
-    }
+    if (args.segments) dict.overwriteSegments(args.segments);
+    if (args.types) dict.overwriteTypes(args.types);
     return dict;
   }
 
+  /** Merges the given definitions over this dictionary's segments */
   overwriteSegments(
     segmentsDefs: Record<string, DeeperPartial<HL7SegmentDefinition>>,
   ): void {
-    merge(this.segments, segmentsDefs, { deep: 'full' });
+    overwrite(this.segments, segmentsDefs);
   }
 
+  /** Merges the given definitions over this dictionary's data types */
   overwriteTypes(
     typeDefs: Record<string, DeeperPartial<HL7DataTypeDefinition>>,
   ): void {
-    merge(this.types, typeDefs, { deep: 'full' });
+    overwrite(this.types, typeDefs);
+  }
+}
+
+/**
+ * Copy-on-write: a definition may be shared, frozen, by several versions, so
+ * the merge goes into a copy that then replaces it in this dictionary alone.
+ */
+function overwrite(target: Record<string, any>, defs: Record<string, any>) {
+  for (const [name, def] of Object.entries(defs)) {
+    const copy = target[name] ? clone(target[name], { deep: 'full' }) : {};
+    target[name] = merge(copy, def, { deep: 'full' });
   }
 }
