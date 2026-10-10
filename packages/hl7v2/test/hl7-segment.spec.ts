@@ -28,7 +28,7 @@ describe('hl7v2:HL7Segment', () => {
     msg.header.field(7).setValue(new Date('2025-03-12T14:32:22'));
     const controlId = msg.header.field(10).getValue();
     expect(msg.header.toHL7String()).toEqual(
-      `MSH|^~\\&|||||20250312143222|||${controlId}||2.7.1||||||UTF-8`,
+      `MSH|^~\\&|||||20250312143222|||${controlId}||2.7.1||||||UNICODE UTF-8`,
     );
   });
 });

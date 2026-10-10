@@ -179,4 +179,43 @@ describe('net:server', () => {
     const server2 = HL7Server.createServer();
     server2.listen(12345).catch(() => done());
   });
+
+  it('should keep MSH-18 repetitions and encode with the first non-empty one', async () => {
+    server = HL7Server.createServer();
+    await server.listen(12345);
+    let req: HL7Message | undefined;
+    server.use(_req => {
+      req = _req.message;
+    });
+    client = Hl7Client.createClient({ host: 'localhost', port: 12345 });
+    const msg = new HL7Message();
+    msg.header.field(MSHSegment.MessageType).fromHL7String('ORU^R01');
+    msg.header.field(MSHSegment.CharacterSet).fromHL7String('~UNICODE UTF-8');
+    msg.addSegment('PID').field(5).fromHL7String('Şahin^Gül');
+    await client.sendMessageWaitAck(msg);
+    expect(
+      req!.header.field(MSHSegment.CharacterSet).toHL7String(),
+    ).toStrictEqual('~UNICODE UTF-8');
+    expect(req!.getSegment('PID')!.field(5).toHL7String()).toStrictEqual(
+      'Şahin^Gül',
+    );
+  });
+
+  it('should transliterate what the charset cannot hold', async () => {
+    server = HL7Server.createServer();
+    await server.listen(12345);
+    let req: HL7Message | undefined;
+    server.use(_req => {
+      req = _req.message;
+    });
+    client = Hl7Client.createClient({ host: 'localhost', port: 12345 });
+    const msg = new HL7Message();
+    msg.header.field(MSHSegment.MessageType).fromHL7String('ORU^R01');
+    msg.header.field(MSHSegment.CharacterSet).fromHL7String('ASCII');
+    msg.addSegment('PID').field(5).fromHL7String('Şahin^Gül');
+    await client.sendMessageWaitAck(msg);
+    expect(req!.getSegment('PID')!.field(5).toHL7String()).toStrictEqual(
+      'Sahin^Gul',
+    );
+  });
 });

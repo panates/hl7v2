@@ -54,6 +54,7 @@ The root object representing an HL7 message.
 - `repetitionSeparator: string`: Character used to separate repetitions (default `~`).
 - `escapeCharacter: string`: Character used for escaping (default `\`).
 - `subComponentSeparator: string`: Character used to separate sub-components (default `&`).
+- `charset: string | undefined`: The character set the message is encoded with: the first non-empty repetition of MSH-18. A new message gets `UNICODE UTF-8`.
 
 #### Methods
 
@@ -98,6 +99,18 @@ example
 
 ```typescript
 const hl7 = message.toHL7String();
+```
+
+##### .toBuffer()
+
+Serializes the message and encodes it with the character set in MSH-18 (`ASCII`, `8859/1`, `8859/9`, `UNICODE UTF-8`, ...).
+A character the character set cannot represent is transliterated to its closest ASCII form (`Şahin Gül` -> `Sahin Gul` in `ASCII`) instead of becoming `?`.
+`toBuffer(options?: HL7MessageSerializeOptions): Buffer`
+example
+
+```typescript
+message.header.field(MSHSegment.CharacterSet).setValue('ASCII');
+const buf = message.toBuffer();
 ```
 
 ##### .createAck()

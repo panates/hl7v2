@@ -68,7 +68,7 @@ NTE|1|L|ROUTINE RESPIRATORY FLORA
     msg.header.field(7).setValue(new Date('2025-03-12T14:32:22'));
     const controlId = msg.header.field(10).getValue();
     expect(msg.toHL7String()).toEqual(
-      `MSH|^~\\&|||||20250312143222|||${controlId}||2.7.1||||||UTF-8\r`,
+      `MSH|^~\\&|||||20250312143222|||${controlId}||2.7.1||||||UNICODE UTF-8\r`,
     );
   });
 

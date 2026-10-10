@@ -7,5 +7,6 @@ export * from './hl7-message-node.js';
 export * from './hl7-repetition.js';
 export * from './hl7-segment.js';
 export * from './hl7-sub-component.js';
+export * from './utils/hl7-charset.js';
 export * from './utils/hl7-escape.js';
 export * from 'hl7v2-dictionary';

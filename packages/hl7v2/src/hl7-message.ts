@@ -29,6 +29,13 @@ import type {
   Hl7SegmentSerializeOptions,
 } from './hl7-segment.js';
 import { HL7Segment } from './hl7-segment.js';
+import {
+  charsetFromMSH18,
+  DEFAULT_HL7_CHARSET,
+  encodeHL7String,
+  HL7_CHARSET_ENCODINGS,
+  resolveHL7Encoding,
+} from './utils/hl7-charset.js';
 
 export class HL7Message {
   private readonly _dictionaries: Record<string, HL7Dictionary>;
@@ -72,6 +79,19 @@ export class HL7Message {
     return f.getValue(1) + '^' + (f.getValue(2) || '');
   }
 
+  /**
+   * The character set the message is encoded with: the first non-empty
+   * repetition of MSH-18
+   */
+  get charset(): string | undefined {
+    const field = this.header?.field(MSHSegment.CharacterSet);
+    if (!field) return;
+    for (const rep of field.repetitions) {
+      const value = rep.getValue(1);
+      if (value) return String(value);
+    }
+  }
+
   get controlId(): string {
     return this.header.field(MSHSegment.MessageControlID).toHL7String();
   }
@@ -82,7 +102,7 @@ export class HL7Message {
     msh.field(MSHSegment.DateTimeOfMessage).setValue(new Date());
     msh.field(MSHSegment.MessageControlID).setValue(uid(8));
     msh.field(MSHSegment.VersionID).setValue(version);
-    msh.field(MSHSegment.CharacterSet).setValue('UTF-8');
+    msh.field(MSHSegment.CharacterSet).setValue(DEFAULT_HL7_CHARSET);
   }
 
   addSegment(segmentType: string, index?: number): HL7Segment {
@@ -144,6 +164,22 @@ export class HL7Message {
         .map(segment => segment.toHL7String(options))
         .filter(v => v)
         .join(CR) + CR
+    );
+  }
+
+  /**
+   * Serializes the message and encodes it with the character set in MSH-18.
+   * Characters the character set cannot represent are transliterated to ASCII.
+   */
+  toBuffer(options?: HL7MessageSerializeOptions): Buffer {
+    return encodeHL7String(
+      this.toHL7String(options),
+      this.charset,
+      this.fieldSeparator +
+        this.componentSeparator +
+        this.repetitionSeparator +
+        this.escapeCharacter +
+        this.subComponentSeparator,
     );
   }
 
@@ -467,13 +503,13 @@ export class HL7Message {
     /* Detect version and charset */
     const headerItems = headerStr.split(fieldSeparator);
     const version = headerItems[11];
-    const charset = headerItems[17]?.split('^')[0];
-    let encoding = HL7Message.encodingMapping[charset] || charset || 'utf-8';
-    try {
-      iconv.getDecoder(charset);
-    } catch {
-      encoding = 'utf-8';
-    }
+    const encodingChars = headerItems[1] || '';
+    const charset = charsetFromMSH18(
+      headerItems[17],
+      encodingChars[1],
+      encodingChars[0],
+    );
+    const encoding = resolveHL7Encoding(charset);
 
     let str = Buffer.isBuffer(input) ? iconv.decode(input, encoding) : input;
     if (str.startsWith(VT)) str = str.substring(1);
@@ -494,31 +530,11 @@ export class HL7Message {
     };
   }
 
-  static readonly encodingMapping = {
-    ASCII: 'ascii',
-    '8859/1': 'latin1',
-    '8859/2': 'latin2',
-    '8859/3': 'ISO-8859-3',
-    '8859/4': 'ISO-8859-4',
-    '8859/5': 'ISO-8859-5',
-    '8859/6': 'ISO-8859-6',
-    '8859/7': 'ISO-8859-7',
-    '8859/8': 'ISO-8859-8',
-    '8859/9': 'latin5',
-    '8859/15': 'latin9',
-    'ISO IR6': 'ascii',
-    'ISO IR14': 'ISO-2022-JP',
-    'ISO IR87': 'ISO-2022-JP',
-    'ISO IR159': 'ISO-2022-JP-2',
-    'GB 18030-2000': 'gb18030',
-    'KS X 1001': 'EUC-KR',
-    'CNS 11643-1992': 'EUC-TW',
-    'BIG-5': 'Big5',
-    UNICODE: 'utf16-le',
-    'UNICODE UTF-8': 'utf8',
-    'UNICODE UTF-16': 'utf16-le',
-    // ⚠️ UTF-32 iconv-lite tarafından desteklenmez
-  };
+  /**
+   * @deprecated Use HL7_CHARSET_ENCODINGS
+   */
+  static readonly encodingMapping: Record<string, string> =
+    HL7_CHARSET_ENCODINGS;
 }
 
 export interface HL7MessageParseOptions extends Hl7SegmentParseOptions {

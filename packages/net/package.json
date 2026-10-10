@@ -7,7 +7,6 @@
   "private": true,
   "dependencies": {
     "backoff": "^2.5.0",
-    "iconv-lite": "^0.7.3",
     "node-events-async": "^1.5.2",
     "reconnect-core": "^1.3.0",
     "ts-gems": "^3.11.6",

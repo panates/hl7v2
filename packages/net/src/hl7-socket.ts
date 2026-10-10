@@ -1,7 +1,14 @@
 import { Buffer } from 'node:buffer';
 import type { HL7Version } from 'hl7v2';
-import { CR, FS, HL7Message, MSASegment, MSHSegment, VT } from 'hl7v2';
-import iconv from 'iconv-lite';
+import {
+  CR,
+  DEFAULT_HL7_CHARSET,
+  FS,
+  HL7Message,
+  MSASegment,
+  MSHSegment,
+  VT,
+} from 'hl7v2';
 import type { Socket } from 'net';
 import { AsyncEventEmitter } from 'node-events-async';
 import { FrameStream } from './helpers/frame-stream.js';
@@ -115,19 +122,13 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
     try {
       if (!this.connected) throw new Error('Socket is not connected');
       if (!this.socket.writable) throw new Error('Socket is not writable');
-      let charset = message.header.field(MSHSegment.CharacterSet).getValue();
-      if (!charset) {
-        charset = 'UNICODE UTF-8';
-        message.header.field(MSHSegment.CharacterSet).setValue(charset);
+      /** Fill MSH-18 only when every repetition is empty - never rewrite what the message carries */
+      if (!message.charset) {
+        message.header
+          .field(MSHSegment.CharacterSet)
+          .setValue(DEFAULT_HL7_CHARSET);
       }
-      let encoding = HL7Message.encodingMapping[charset] || charset || 'utf-8';
-      try {
-        iconv.getEncoder(charset);
-      } catch {
-        encoding = 'utf-8';
-      }
-      const str = message.toHL7String();
-      const buf = iconv.encode(str, encoding);
+      const buf = message.toBuffer();
       const outBuffer = Buffer.concat([
         Buffer.from(VT),
         buf,
