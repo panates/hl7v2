@@ -48,7 +48,8 @@ describe('hl7v2:serialize', () => {
     seg
       .field(ABSSegment.DateTimeOfAttestation)
       .setValue(new Date('2001-01-12T15:30:00'));
-    expect(seg.toHL7String()).toStrictEqual('ABS||||200101121530');
+    /* local time with its offset, seconds kept */
+    expect(seg.toHL7String()).toMatch(/^ABS\|\|\|\|20010112153000[+-]\d{4}$/);
   });
 
   it('should escape non chars', () => {

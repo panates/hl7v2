@@ -97,18 +97,20 @@ describe('hl7v2:parse', () => {
     const msg = HL7Message.parse('MSH|^~\\&|||||19980731153200|||||2.5');
     expect(
       msg.header.field(MSHSegment.DateTimeOfMessage).getValue(),
-    ).toStrictEqual('199807311532');
+    ).toStrictEqual('19980731153200');
   });
 
   it('should parse Date Time fields with milliseconds', () => {
-    const msg = HL7Message.parse('MSH|^~\\&|||||199807311532.123|||||2.2');
+    const msg = HL7Message.parse('MSH|^~\\&|||||19980731153200.123|||||2.2');
     expect(
       msg.header.field(MSHSegment.DateTimeOfMessage).getValue(),
     ).toStrictEqual('19980731153200.123');
   });
 
   it('should parse Date Time fields with timezone', () => {
-    const msg = HL7Message.parse('MSH|^~\\&|||||199807311532.123+0500|||||2.2');
+    const msg = HL7Message.parse(
+      'MSH|^~\\&|||||19980731153200.123+0500|||||2.2',
+    );
     expect(
       msg.header.field(MSHSegment.DateTimeOfMessage).getValue(),
     ).toStrictEqual('19980731153200.123+0500');

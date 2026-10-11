@@ -6,6 +6,17 @@ import {
   HL7Version,
 } from '../src/index.js';
 
+/** The local time zone offset of a Date, as HL7 writes it: +0300 */
+const offsetOf = (d: Date) => {
+  const m = -d.getTimezoneOffset();
+  const a = Math.abs(m);
+  return (
+    (m < 0 ? '-' : '+') +
+    String(Math.floor(a / 60)).padStart(2, '0') +
+    String(a % 60).padStart(2, '0')
+  );
+};
+
 describe('hl7v2:HL7Message', () => {
   const sampleMessage1 =
     `MSH|^~\\&|LCS|LCA|LIS|TEST9999|20250823000600.0000+0300||ORU^R01|3629|P|2.2
@@ -65,10 +76,11 @@ NTE|1|L|ROUTINE RESPIRATORY FLORA
 
   it('should convert to HL7 string', () => {
     const msg = new HL7Message();
-    msg.header.field(7).setValue(new Date('2025-03-12T14:32:22'));
+    const date = new Date('2025-03-12T14:32:22');
+    msg.header.field(7).setValue(date);
     const controlId = msg.header.field(10).getValue();
     expect(msg.toHL7String()).toEqual(
-      `MSH|^~\\&|||||20250312143222|||${controlId}|P|2.7.1||||||UNICODE UTF-8\r`,
+      `MSH|^~\\&|||||20250312143222${offsetOf(date)}|||${controlId}|P|2.7.1||||||UNICODE UTF-8\r`,
     );
   });
 

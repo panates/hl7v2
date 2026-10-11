@@ -100,6 +100,14 @@ export class HL7Field {
     return this.subComponent(componentPos, subComponentPos);
   }
 
+  /**
+   * The value as a Date, for a DT, DTM or TS value (see parseHL7DateTime):
+   * read in its offset, or as local time without one. Undefined when empty.
+   */
+  getDate(component?: number, subComponent?: number): Date | undefined {
+    return this._repetitions[0]?.getDate(component, subComponent);
+  }
+
   getValue(component?: number, subComponent?: number): any {
     return this._repetitions[0]?.getValue(component, subComponent);
   }

@@ -14,6 +14,7 @@ import {
   type Hl7SubComponentSerializeOptions,
 } from './hl7-sub-component.js';
 import { hl7Escape, hl7UnEscape } from './utils/hl7-escape.js';
+import { toDate } from './utils/to-date.js';
 
 export class Hl7Component {
   declare protected _subComponents?: Hl7SubComponent[];
@@ -109,6 +110,14 @@ export class Hl7Component {
       this._subComponents![position - 1] = subComponent;
     }
     return subComponent;
+  }
+
+  /**
+   * The value as a Date, for a DT, DTM or TS value (see parseHL7DateTime):
+   * read in its offset, or as local time without one. Undefined when empty.
+   */
+  getDate(subComponent?: number): Date | undefined {
+    return toDate(this.getValue(subComponent));
   }
 
   getValue(subComponent?: number): any | undefined {

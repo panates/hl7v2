@@ -143,41 +143,24 @@ const nearest = findNearestHL7Version('2.5.2' as any);
 // Returns HL7Version.v2_5_1 - the newest version not newer than 2.5.2
 ```
 
-##### .toHL7Date()
-Formats a Date or string into an HL7 date string (YYYYMMDD).
-`toHL7Date(value: Date | string): string`
+##### Dates and times
 
-example
+HL7 writes DT as `YYYY[MM[DD]]`, DTM/TS as `YYYY[MM[DD[HH[MM[SS[.SSSS]]]]]][+/-ZZZZ]` and TM as `HH[MM[SS[.SSSS]]][+/-ZZZZ]`. A value read from a message is kept as written - its precision and offset are part of it - once checked. A `Date` is written in local time with its offset, as HAPI HL7v2 writes it; without an offset the standard reads a time as the sender's local time.
+
+- `toHL7DateTime(value: Date | string): string`, `toHL7Date(...)`, `toHL7Time(...)` - the codecs of DTM/TS, DT and TM: check an HL7 value and return it unchanged, format a `Date` (or an ISO 8601 string).
+- `formatHL7DateTime(date: Date, options?: { offset?: boolean }): string` - `20250102060405.678+0300`; `offset: false` leaves the offset out.
+- `formatHL7Date(date: Date): string` - `20250102`, the local date.
+- `formatHL7Time(date: Date, options?: { offset?: boolean }): string` - `060405.678+0300`.
+- `parseHL7DateTime(value: string): Date` - read in its offset, or as local time without one; missing parts are their lowest (`2025` is 2025-01-01 00:00).
+
 ```typescript
-import { toHL7Date } from 'hl7v2-dictionary';
+import { formatHL7DateTime, parseHL7DateTime } from 'hl7v2-dictionary';
 
-const dateStr = toHL7Date(new Date('2023-10-27'));
-// Returns "20231027"
+formatHL7DateTime(new Date()); // "20250102060405.678+0300"
+parseHL7DateTime('20250102030405-0500').toISOString(); // "2025-01-02T08:04:05.000Z"
 ```
 
-##### .toHL7DateTime()
-Formats a Date or string into an HL7 date-time string (YYYYMMDDHHMMSS).
-`toHL7DateTime(value: Date | string): string`
-
-example
-```typescript
-import { toHL7DateTime } from 'hl7v2-dictionary';
-
-const dateTimeStr = toHL7DateTime(new Date('2023-10-27T10:30:00'));
-// Returns "20231027103000"
-```
-
-##### .toHL7Time()
-Formats a Date or string into an HL7 time string (HHMMSS).
-`toHL7Time(value: Date | string): string`
-
-example
-```typescript
-import { toHL7Time } from 'hl7v2-dictionary';
-
-const timeStr = toHL7Time(new Date('2023-10-27T10:30:00'));
-// Returns "103000"
-```
+In `hl7v2`, `getDate()` reads a value as a `Date`: `field.getDate()`, `component.getDate()`, `message.getDate('PID-7')`.
 
 ### Interfaces
 

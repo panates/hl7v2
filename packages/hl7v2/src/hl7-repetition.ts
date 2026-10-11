@@ -83,6 +83,14 @@ export class HL7Repetition {
     return this.subComponent(componentPos, subComponentPos);
   }
 
+  /**
+   * The value as a Date, for a DT, DTM or TS value (see parseHL7DateTime):
+   * read in its offset, or as local time without one. Undefined when empty.
+   */
+  getDate(component?: number, subComponent?: number): Date | undefined {
+    return this._components[(component || 1) - 1]?.getDate(subComponent);
+  }
+
   getValue(component?: number, subComponent?: number): any {
     return this._components[(component || 1) - 1]?.getValue(subComponent);
   }

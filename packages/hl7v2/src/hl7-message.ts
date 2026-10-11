@@ -39,6 +39,7 @@ import {
   HL7_CHARSET_ENCODINGS,
   resolveHL7Encoding,
 } from './utils/hl7-charset.js';
+import { toDate } from './utils/to-date.js';
 
 export class HL7Message {
   private readonly _dictionaries: Record<string, HL7Dictionary>;
@@ -266,6 +267,11 @@ export class HL7Message {
    */
   get(path: string): any {
     return getPathValue(this, path);
+  }
+
+  /** The value at a path as a Date (see get() and Hl7Component.getDate()) */
+  getDate(path: string): Date | undefined {
+    return toDate(this.get(path));
   }
 
   /** Sets the value at a path (see get() and HL7Path) */
