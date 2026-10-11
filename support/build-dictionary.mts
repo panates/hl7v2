@@ -396,6 +396,21 @@ if (!versionList.length) {
   );
 }
 
+/**
+ * Corrections to a version's schemas. 2.5.1's RSP_K21 has QUERY_RESPONSE
+ * once, and its set has no RSP_K22, which the event map makes an RSP_K21:
+ * a find candidates response (IHE PDQ's RSP^K22^RSP_K21) held one patient.
+ * It repeats, as in 2.5's schema, as RSP_K22's in 2.4 and 2.6 and later,
+ * and as HAPI reads it.
+ */
+function correctStructures(
+  version: string,
+  list: Record<string, StructureNode>,
+) {
+  const response = list.RSP_K21?.segments?.QUERY_RESPONSE;
+  if (version === '2.5.1' && response) delete response.max;
+}
+
 const structures: Record<string, Record<string, StructureNode>> = {};
 const eventsByVersion: Record<string, Record<string, string>> = {};
 for (const version of versionList) {
@@ -412,6 +427,7 @@ for (const version of versionList) {
     node.segments = structureNodes(items, segmentDescs, descs.groups);
     structures[version][name] = node;
   }
+  correctStructures(version, structures[version]);
   eventsByVersion[version] = Object.fromEntries(
     Object.entries(eventsFor(version)).filter(
       ([event, struct]) =>
