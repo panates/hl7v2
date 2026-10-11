@@ -13,8 +13,20 @@ export interface HL7FieldDefinition {
   desc?: string;
   opt?: HL7DatatypeOptional;
   rep?: HL7DatatypeRepetition;
+  /** Maximum length */
   len?: number;
   table?: number;
+  /** HL7 data element number: PID-5 is item 108 */
+  item?: number;
+  /** Minimum length */
+  minLen?: number;
+  /** Conformance length (2.7+): the length a receiver must at least keep */
+  confLen?: number;
+  /**
+   * Whether a longer value may be truncated (2.7+): true is HL7's "#", false
+   * its "=" (never)
+   */
+  truncate?: boolean;
   encode?: (v: any) => string;
   decode?: (v: any) => any;
 }

@@ -66,6 +66,13 @@ export interface SchemaField {
   max: number;
   len?: number;
   table?: number;
+  /** HL7 data element number (PID-5 is item 108) */
+  item?: number;
+  minLen?: number;
+  /** Conformance length, 2.7+ */
+  confLen?: number;
+  /** Whether the value may be truncated (#) or not (=), 2.7+ */
+  truncate?: boolean;
 }
 
 export interface SchemaNode {
@@ -171,6 +178,15 @@ export function readSchemas(version: string): Schemas {
         max: ref.max,
         len: a.maxLength ? Number(a.maxLength) : undefined,
         table: table > 0 && table !== 9999 ? table : undefined,
+        item: Number(a.Item) > 0 ? Number(a.Item) : undefined,
+        minLen: a.minLength ? Number(a.minLength) : undefined,
+        confLen: a.confLength ? Number(a.confLength) : undefined,
+        truncate:
+          a.truncation === '#'
+            ? true
+            : a.truncation === '='
+              ? false
+              : undefined,
       };
     }
     return fields;

@@ -122,6 +122,21 @@ describe('dictionary:dictionaries', () => {
       expect(dictionaries['2.6'].segments.MSH.fields['7'].type).toEqual('DTM');
     });
 
+    it('should carry lengths, element numbers and truncation', () => {
+      const msh10 = dictionaries['2.7'].segments.MSH.fields['10'];
+      expect(msh10).toMatchObject({
+        type: 'ST',
+        item: 10,
+        minLen: 1,
+        len: 199,
+        truncate: false,
+      });
+      expect(dictionaries['2.5'].segments.PID.fields['5'].item).toEqual(108);
+      /* 2.7 gives most string fields a conformance length instead of a maximum */
+      const acc3 = dictionaries['2.7'].segments.ACC.fields['3'];
+      expect(acc3.confLen).toEqual(25);
+    });
+
     it('should leave out a field the version withdrew', () => {
       /* DG1-2 (Diagnosis Coding Method) is withdrawn in 2.6 */
       expect(dictionaries['2.5'].segments.DG1.fields['2']).toBeDefined();
@@ -214,6 +229,17 @@ describe('dictionary:dictionaries', () => {
             if (o?.rep !== rep) diffs.push(`${at} rep ${o?.rep} / ${rep}`);
             if (f.table !== undefined && o?.table !== f.table) {
               diffs.push(`${at} table ${o?.table} / ${f.table}`);
+            }
+            for (const key of [
+              'len',
+              'item',
+              'minLen',
+              'confLen',
+              'truncate',
+            ] as const) {
+              if (f[key] !== undefined && (o as any)?.[key] !== f[key]) {
+                diffs.push(`${at} ${key} ${(o as any)?.[key]} / ${f[key]}`);
+              }
             }
           });
         }

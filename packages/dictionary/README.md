@@ -192,6 +192,10 @@ const timeStr = toHL7Time(new Date('2023-10-27T10:30:00'));
 - `rep?: HL7DatatypeRepetition` - Repetition (number or 'infinite').
 - `len?: number` - Maximum length.
 - `table?: number` - Associated table number.
+- `item?: number` - HL7 data element number (PID-5 is item 108).
+- `minLen?: number` - Minimum length.
+- `confLen?: number` - Conformance length (2.7+): the length a receiver must keep at least. From 2.7 on most string fields have this instead of `len`.
+- `truncate?: boolean` - Whether a longer value may be truncated (2.7+): `true` is HL7's `#`, `false` its `=`.
 
 #### HL7DataTypeDefinition
 - `desc?: string` - Description of the data type.

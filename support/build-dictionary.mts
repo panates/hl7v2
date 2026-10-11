@@ -127,19 +127,29 @@ function addField(
       : f.type;
   const sameType = old?.datatype === type;
   const oldOpt = OPTIONALITY[old?.opt];
-  return fields.add([
+  return addFieldTuple([
     type,
     f.desc ?? old?.desc ?? null,
     f.min >= 1 ? 'R' : oldOpt === 'C' || oldOpt === 'B' ? oldOpt : 'O',
     f.max === 0 ? 'infinite' : f.max,
     f.len ?? (sameType ? old.len : undefined) ?? null,
     f.table ?? (sameType ? old.table : undefined) ?? null,
+    f.item ?? null,
+    f.minLen ?? null,
+    f.confLen ?? null,
+    f.truncate ?? null,
   ]);
 }
 
 /** A field as the previous source writes it */
+/** Trailing nulls are left out: most fields carry no 2.7+ length details */
+function addFieldTuple(tuple: unknown[]): number {
+  while (tuple.length && tuple[tuple.length - 1] === null) tuple.pop();
+  return fields.add(tuple);
+}
+
 function addLegacyField(f: any): number {
-  return fields.add([
+  return addFieldTuple([
     f.datatype,
     f.desc ?? null,
     OPTIONALITY[f.opt] ?? null,
@@ -420,7 +430,7 @@ for (const version of versionList) {
   };
   for (const s of Object.values(structures[version])) collect(s.segments || {});
   for (const name of referenced) {
-    if (segmentMap[name] || /^any(HL7|Z)Segment$/.test(name)) continue;
+    if (name in segmentMap || /^any(HL7|Z)Segment$/.test(name)) continue;
     const def = nearestLegacy(version)
       .map(v => legacy[v].segments[name])
       .find(Boolean);

@@ -47,13 +47,18 @@ const messageCache: HL7MessageDefinition[] = [];
 function field(index: number): HL7FieldDefinition {
   let def = fieldCache[index];
   if (!def) {
-    const [type, desc, opt, rep, len, table] = data.fields[index];
+    const [type, desc, opt, rep, len, table, item, minLen, confLen, truncate] =
+      data.fields[index];
     const d: HL7FieldDefinition = { type };
     if (desc != null) d.desc = desc;
     if (opt != null) d.opt = opt as HL7DatatypeOptional;
     if (rep != null) d.rep = rep as HL7DatatypeRepetition;
     if (len != null) d.len = len;
     if (table != null) d.table = table;
+    if (item != null) d.item = item;
+    if (minLen != null) d.minLen = minLen;
+    if (confLen != null) d.confLen = confLen;
+    if (truncate != null) d.truncate = truncate;
     def = fieldCache[index] = Object.freeze(d);
   }
   return def;
