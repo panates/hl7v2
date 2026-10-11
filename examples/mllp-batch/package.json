@@ -1,0 +1,15 @@
+{
+  "name": "hl7v2-example-mllp-batch",
+  "description": "Batches over MLLP: sending a batch file, each message processed, the reply batch",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "node --no-experimental-strip-types --import ../register.mjs src/index.ts"
+  },
+  "dependencies": {
+    "hl7v2": "*",
+    "hl7v2-net": "*"
+  }
+}

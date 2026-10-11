@@ -17,6 +17,7 @@ Small programs showing how `hl7v2` and `hl7v2-net` are used. Each is one comment
 | [tls](tls) | MLLP over TLS, with a certificate the client trusts |
 | [enhanced-ack](enhanced-ack) | Enhanced acknowledgment mode (MSH-15/16): accept (CA/CE) and application (AA/AE) acknowledgments |
 | [router-gateway](router-gateway) | A gateway routing messages by type to other MLLP systems, passing their answers back |
+| [mllp-batch](mllp-batch) | Batches over MLLP: a batch file sent in one block, each message processed, the reply batch of acknowledgments |
 
 The sample messages are in [messages](messages).
 
@@ -31,7 +32,7 @@ npm start
 
 The examples import `hl7v2` and `hl7v2-net` as an application does; here those names resolve to the packages' sources (see `tsconfig.json` and `register.mjs`), so nothing needs building first. Node.js 22.6 or later.
 
-`tls`, `enhanced-ack` and `router-gateway` run their servers and clients in one process. For `mllp-server` and `mllp-client`, start the server first, then the client in another terminal:
+`tls`, `enhanced-ack`, `router-gateway` and `mllp-batch` run their servers and clients in one process. For `mllp-server` and `mllp-client`, start the server first, then the client in another terminal:
 
 ```bash
 cd examples/mllp-server && npm start
