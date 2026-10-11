@@ -179,6 +179,26 @@ const nak = message.createNak([error]);
 
 ---
 
+### HL7BatchFile / HL7Batch
+
+Batches of messages (HL7 batch protocol), in a file or one stream: `[FHS] { [BHS] { MSH ... } [BTS] } [FTS]`. A file with no FHS, no BHS, or neither - bare messages one after another - is read too. The whole is one character set: its BOM's, or the first message's MSH-18.
+
+- `HL7BatchFile.parse(input: string | Buffer, options?: HL7MessageParseOptions): HL7BatchFile` - `header` (FHS), `trailer` (FTS), `batches`, and `messages`, every message of every batch.
+- `HL7Batch` - `header` (BHS), `trailer` (BTS), `messages`.
+- `HL7BatchFile.create(version?)`, `HL7Batch.create(version?)` - new ones, with headers dated now.
+- `toHL7String()`, `toBuffer()` - BTS-1 and FTS-1 are set to the message and batch counts.
+
+```typescript
+const file = HL7BatchFile.parse(fs.readFileSync('results.hl7'));
+for (const message of file.messages) store(message);
+
+const out = HL7BatchFile.create();
+const batch = HL7Batch.create();
+batch.messages.push(message1, message2);
+out.batches.push(batch);
+fs.writeFileSync('out.hl7', out.toBuffer());
+```
+
 ### HL7Segment
 
 Represents a single segment (e.g., PID, MSH) within an HL7 message.

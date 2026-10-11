@@ -1,4 +1,5 @@
 export * from './constants.js';
+export * from './hl7-batch.js';
 export * from './hl7-component.js';
 export * from './hl7-error.js';
 export * from './hl7-field.js';

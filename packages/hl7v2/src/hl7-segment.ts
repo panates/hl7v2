@@ -9,6 +9,16 @@ import type {
 import { HL7Field } from './hl7-field.js';
 import type { HL7Message } from './hl7-message.js';
 
+/**
+ * Segments whose first two fields are the delimiters themselves, written
+ * right after the segment ID: MSH, and the batch headers FHS and BHS
+ */
+export function isHeaderSegment(segmentType: string): boolean {
+  return (
+    segmentType === 'MSH' || segmentType === 'FHS' || segmentType === 'BHS'
+  );
+}
+
 export class HL7Segment {
   declare protected _fields: HL7Field[];
   declare protected _definition: HL7SegmentDefinition;
@@ -62,7 +72,7 @@ export class HL7Segment {
   toHL7String(options?: Hl7SegmentSerializeOptions) {
     const { fieldSeparator } = this.message;
     let out = this.segmentType + fieldSeparator;
-    if (this.segmentType === 'MSH') {
+    if (isHeaderSegment(this.segmentType)) {
       out +=
         this.message.componentSeparator +
         this.message.repetitionSeparator +
@@ -74,7 +84,7 @@ export class HL7Segment {
     const serializeFields = this._fields.map(field =>
       field.toHL7String(options),
     );
-    if (this.segmentType === 'MSH') {
+    if (isHeaderSegment(this.segmentType)) {
       serializeFields.shift();
       serializeFields.shift();
     }
@@ -90,8 +100,9 @@ export class HL7Segment {
   ): HL7Segment {
     const fields = input.split(message.fieldSeparator);
     const segment = new HL7Segment(message, fields[0]);
-    if (segment.segmentType === 'MSH') fields[0] = message.fieldSeparator;
-    else fields.shift();
+    if (isHeaderSegment(segment.segmentType)) {
+      fields[0] = message.fieldSeparator;
+    } else fields.shift();
     for (let i = 0; i < fields.length; i++) {
       segment.field(i + 1).fromHL7String(fields[i], options);
     }

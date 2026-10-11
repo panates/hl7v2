@@ -6,7 +6,7 @@ import type { Hl7Component } from './hl7-component.js';
 import { HL7Error } from './hl7-error.js';
 import type { HL7Field } from './hl7-field.js';
 import type { HL7Message } from './hl7-message.js';
-import type { HL7Segment } from './hl7-segment.js';
+import { type HL7Segment, isHeaderSegment } from './hl7-segment.js';
 
 export interface HL7ValidateOptions {
   /**
@@ -80,7 +80,7 @@ function validateSegment(
   for (const [key, def] of Object.entries(defs)) {
     const pos = Number(key);
     /* MSH-1 and MSH-2 are the delimiters, not values */
-    if (segment.segmentType === 'MSH' && pos <= 2) continue;
+    if (isHeaderSegment(segment.segmentType) && pos <= 2) continue;
     const field = segment.fields[pos - 1] as HL7Field | undefined;
     const name = `${segment.segmentType}-${pos}`;
     if (!field || field.isEmpty()) {
