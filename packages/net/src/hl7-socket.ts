@@ -14,6 +14,7 @@ import {
 } from 'hl7v2';
 import type { Socket } from 'net';
 import { AsyncEventEmitter } from 'node-events-async';
+import { ackModeOf } from './helpers/acknowledgment.js';
 import { FrameStream } from './helpers/frame-stream.js';
 
 export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
@@ -168,11 +169,27 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
    * application response such as ADR^A19 for QRY^A19 - as HAPI's Initiator
    * matches it. Rejects on response timeout, socket error or close.
    */
-  async sendMessageWaitAck(message: HL7Message): Promise<HL7Message> {
+  async sendMessageWaitAck(
+    message: HL7Message,
+    options?: HL7Socket.WaitAckOptions,
+  ): Promise<HL7Message> {
     const responseTimeout = this.responseTimeout;
     const controlId = message.header
       .field(MSHSegment.MessageControlID)
       .getValue();
+    /*
+     * Enhanced mode: the accept acknowledgment (CA/CE/CR) comes first, the
+     * application one after it. By default the first one asked for resolves.
+     */
+    const mode = ackModeOf(message);
+    if (mode.accept === 'NE' && mode.application === 'NE') {
+      throw new Error(
+        'No acknowledgment to wait for: MSH-15 and MSH-16 are both NE',
+      );
+    }
+    const waitFor =
+      options?.acknowledgment ??
+      (mode.accept && mode.accept !== 'NE' ? 'accept' : 'application');
 
     const waitPromise = new Promise<HL7Message>((resolve, reject) => {
       let responseTimer: NodeJS.Timeout | undefined;
@@ -181,6 +198,16 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
         if (!msa) return false;
         if (msa.field(MSASegment.MessageControlID).getValue() !== controlId)
           return false;
+        /*
+         * Waiting for the application acknowledgment, a CA is passed over; a
+         * CE or CR resolves, since no application acknowledgment will follow
+         */
+        if (
+          waitFor === 'application' &&
+          msa.field(MSASegment.AcknowledgmentCode).getValue() === 'CA'
+        ) {
+          return true;
+        }
         cleanup();
         resolve(resp);
         return true;
@@ -383,6 +410,17 @@ export namespace HL7Socket {
     encoding: string;
     direction: 'receive' | 'send';
     hl7Message: HL7Message;
+  }
+
+  export interface WaitAckOptions {
+    /**
+     * In enhanced mode (MSH-15/16 valued), which acknowledgment resolves:
+     * the accept one (CA/CE/CR) or the application one (AA/AE/AR; a CE or CR
+     * resolves it too, as no application acknowledgment follows them).
+     * Default: the accept one when MSH-15 asks for it, otherwise the
+     * application one.
+     */
+    acknowledgment?: 'accept' | 'application';
   }
 
   export interface Options {

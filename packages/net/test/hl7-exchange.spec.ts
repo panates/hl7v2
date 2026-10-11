@@ -484,4 +484,101 @@ describe('net:exchange', () => {
       ).toEqual('AA');
     });
   });
+
+  describe('acknowledgment modes', () => {
+    /** The MSA-1 codes the server sends, in order */
+    async function exchange(
+      msh15: string,
+      msh16: string,
+      opts: {
+        fail?: boolean;
+        invalid?: boolean;
+        wait?: 'accept' | 'application';
+      } = {},
+    ) {
+      const s2 = HL7Server.createServer(undefined, { validate: opts.invalid });
+      await s2.listen(0);
+      const sent: string[] = [];
+      s2.on('send', m =>
+        sent.push(
+          m
+            .getSegment('MSA')!
+            .field(MSASegment.AcknowledgmentCode)
+            .toHL7String(),
+        ),
+      );
+      if (opts.fail) {
+        s2.use(() => {
+          throw new Error('cannot process');
+        });
+      }
+      client = Hl7Client.createClient({
+        host: 'localhost',
+        port: (s2.address() as AddressInfo).port,
+        responseTimeout: 300,
+      });
+      const msg = newMessage(opts.invalid ? 'ADT^A01^ADT_A01' : 'ORU^R01');
+      msg.header.field(MSHSegment.AcceptAcknowledgmentType).setValue(msh15);
+      msg.header
+        .field(MSHSegment.ApplicationAcknowledgmentType)
+        .setValue(msh16);
+      let got: string;
+      try {
+        const resp = await client.sendMessageWaitAck(
+          msg,
+          opts.wait && { acknowledgment: opts.wait },
+        );
+        got = resp
+          .getSegment('MSA')!
+          .field(MSASegment.AcknowledgmentCode)
+          .toHL7String();
+      } catch (e: any) {
+        got = e.message;
+      }
+      await sleep(50);
+      await client.close();
+      client = undefined;
+      await s2.close();
+      return { sent, got };
+    }
+
+    it('should answer once in original mode', async () => {
+      expect(await exchange('', '')).toEqual({ sent: ['AA'], got: 'AA' });
+    });
+
+    it('should send both acknowledgments when both are asked for', async () => {
+      expect(await exchange('AL', 'AL')).toEqual({
+        sent: ['CA', 'AA'],
+        got: 'CA',
+      });
+      expect(await exchange('AL', 'AL', { wait: 'application' })).toEqual({
+        sent: ['CA', 'AA'],
+        got: 'AA',
+      });
+    });
+
+    it('should follow ER, SU and NE', async () => {
+      /* accept: never; application: on error only - success sends nothing */
+      expect((await exchange('NE', 'ER')).sent).toEqual([]);
+      expect((await exchange('NE', 'ER', { fail: true })).sent).toEqual(['AE']);
+      /* accept: on success only; application: never */
+      expect(await exchange('SU', 'NE')).toEqual({ sent: ['CA'], got: 'CA' });
+      expect((await exchange('ER', 'AL')).sent).toEqual(['AA']);
+    });
+
+    it('should not process a message it cannot accept', async () => {
+      /* invalid (validate on): CE, and no application acknowledgment */
+      expect(await exchange('AL', 'AL', { invalid: true })).toEqual({
+        sent: ['CE'],
+        got: 'CE',
+      });
+      expect(
+        await exchange('AL', 'AL', { invalid: true, wait: 'application' }),
+      ).toEqual({ sent: ['CE'], got: 'CE' });
+    });
+
+    it('should refuse to wait when no acknowledgment is asked for', async () => {
+      expect((await exchange('NE', 'NE')).got).toContain('MSH-15 and MSH-16');
+    });
+  });
 });

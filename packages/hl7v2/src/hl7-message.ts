@@ -440,7 +440,11 @@ export class HL7Message {
    * type, event, processing ID or version (HL7 errors 200-203) - otherwise
    * AE (error). An HL7Error's `ackCode` decides it explicitly.
    */
-  createNak(errors: (Error | string)[]): HL7Message {
+  createNak(
+    errors: (Error | string)[],
+    /** 'accept' for an enhanced-mode accept acknowledgment: CE / CR */
+    kind: 'application' | 'accept' = 'application',
+  ): HL7Message {
     const out = this._createResponse();
 
     const rejected = errors.some(
@@ -455,7 +459,9 @@ export class HL7Message {
     const msaSegment = out.addSegment('MSA');
     msaSegment
       .field(MSASegment.AcknowledgmentCode)
-      .setValue(rejected ? 'AR' : 'AE');
+      .setValue(
+        kind === 'accept' ? (rejected ? 'CR' : 'CE') : rejected ? 'AR' : 'AE',
+      );
     msaSegment
       .field(MSASegment.MessageControlID)
       .setValue(this.header.field(MSHSegment.MessageControlID).getValue());

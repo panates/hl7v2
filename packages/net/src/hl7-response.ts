@@ -1,4 +1,5 @@
 import { HL7Message, MSASegment } from 'hl7v2';
+import { ackCodeOf, ackModeOf, ackWanted } from './helpers/acknowledgment.js';
 import type { HL7Request } from './hl7-request.js';
 import type { HL7Socket } from './hl7-socket.js';
 
@@ -48,10 +49,29 @@ export class HL7Response {
     this.request.socket.removeListener('send', this._onSend);
   }
 
+  /**
+   * Whether the request wants the application acknowledgment this response
+   * would send: in enhanced mode MSH-16 decides it (see helpers/acknowledgment)
+   */
+  get acknowledgmentWanted(): boolean {
+    return ackWanted(
+      ackModeOf(this.request.message).application,
+      ackCodeOf(this.message),
+    );
+  }
+
   protected _answers(sent: HL7Message): boolean {
     const controlId = this.request.message.controlId;
     if (!controlId) return false;
     const msa = sent.getSegment('MSA');
+    /* An accept (commit) acknowledgment does not answer for the application */
+    if (
+      /^C[AER]$/.test(
+        String(msa?.field(MSASegment.AcknowledgmentCode).getValue()),
+      )
+    ) {
+      return false;
+    }
     return msa?.field(MSASegment.MessageControlID).toHL7String() === controlId;
   }
 }

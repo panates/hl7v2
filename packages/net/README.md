@@ -236,6 +236,17 @@ const ack = await client.sendMessageWaitAck(msg);
 - `validate?: boolean | { structure?: boolean; fields?: boolean }`: Validate received messages (`HL7Message.validate()`); one that fails is answered with a NAK listing its errors (one ERR each) and is not passed to the handlers. `HL7Server` takes it too.
 - `defaultCharset?: string`: The character set used when MSH-18 is empty on a received message, or names one the library does not know (HL7 table 0211 value or iconv-lite encoding name). Default: UTF-8, which reads ASCII as well. `HL7Server` takes it too.
 
+#### Acknowledgment modes
+
+The server and the client answer as the message's MSH-15 and MSH-16 ask:
+
+- **Original mode** (both empty): one application acknowledgment - `AA`, `AE` or `AR`.
+- **Enhanced mode** (either valued, each `AL` always, `NE` never, `ER` on error only, `SU` on success only):
+  - MSH-15 asks for an accept (commit) acknowledgment, sent on receipt before processing: `CA`, or `CE`/`CR` for a message that is not accepted (with `validate` on) - which is then not processed. Empty, none is sent, as HAPI HL7v2 sends none.
+  - MSH-16 asks for the application acknowledgment, sent after processing. Empty, it is sent.
+
+`sendMessageWaitAck(message, { acknowledgment })` chooses which one resolves in enhanced mode: `'accept'` (the default when MSH-15 asks for one) or `'application'` - a `CE` or `CR` resolves that too, since no application acknowledgment follows them.
+
 #### Warnings
 
 A message whose MSH-18 names an unknown character set (`ANSI`, for one) is still received and sent, with the default character set, and `Hl7Client`, `HL7Server` and `HL7Socket` emit a `warning` - as HAPI HL7v2 logs one:

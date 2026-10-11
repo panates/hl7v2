@@ -5,8 +5,8 @@ import type { HL7Message, HL7ValidateOptions } from 'hl7v2';
 import { AsyncEventEmitter } from 'node-events-async';
 import reconnectCore from 'reconnect-core';
 import type { StrictOmit } from 'ts-gems';
+import { acceptMessage } from './helpers/acknowledgment.js';
 import { isRoutable } from './helpers/is-routable.js';
-import { rejectInvalid } from './helpers/reject-invalid.js';
 import { HL7Request } from './hl7-request.js';
 import { HL7Response } from './hl7-response.js';
 import { HL7Router } from './hl7-router.js';
@@ -191,9 +191,12 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
     this._socket!.sendMessage(message);
   }
 
-  async sendMessageWaitAck(request: HL7Message): Promise<HL7Message> {
+  async sendMessageWaitAck(
+    request: HL7Message,
+    options?: HL7Socket.WaitAckOptions,
+  ): Promise<HL7Message> {
     if (!this.connected) await this.connect();
-    return this._socket!.sendMessageWaitAck(request);
+    return this._socket!.sendMessageWaitAck(request, options);
   }
 
   setConnectTimeout(value: number | null) {
@@ -230,7 +233,7 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
   protected _onMessage(message: HL7Message) {
     /** A response to our own request, or any acknowledgment, is not answered */
     if (!isRoutable(message, this._socket!)) return;
-    if (rejectInvalid(message, this._socket!, this._options.validate)) return;
+    if (!acceptMessage(message, this._socket!, this._options.validate)) return;
     const req = new HL7Request(this._socket!, message);
     const res = new HL7Response(req);
     this._router.handle(req, res, () => {
