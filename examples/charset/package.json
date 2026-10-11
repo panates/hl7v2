@@ -1,0 +1,14 @@
+{
+  "name": "hl7v2-example-charset",
+  "description": "Character sets (MSH-18), encoding to bytes and escape sequences",
+  "version": "0.0.0",
+  "private": true,
+  "license": "BSD-3-Clause",
+  "type": "module",
+  "scripts": {
+    "start": "node --no-experimental-strip-types --import ../register.mjs src/index.ts"
+  },
+  "dependencies": {
+    "hl7v2": "*"
+  }
+}

@@ -14,4 +14,7 @@ export enum OM4Segment {
   SpecimenPriorities = 13,
   SpecimenRetentionTime = 14,
   SpecimenRetentionTime2 = 15,
+  SpecimenPreference = 16,
+  PreferredSpecimenAttribtureSequenceID = 17,
+  TaxonomicClassificationCode = 18,
 }

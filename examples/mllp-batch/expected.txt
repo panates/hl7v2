@@ -1,0 +1,10 @@
+Server received a batch file of 3 messages
+  server: ADT^A04 for patient 100001
+  server: ADT^A08 for patient 100001
+
+Reply file
+  FHS-12 (answers): DAILY-20250301
+  batch answering ADM-0001
+    B0001: AA
+    B0002: AE - Patient record locked
+    B0003: AA

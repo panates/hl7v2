@@ -1,5 +1,10 @@
 {
   "include": ["packages/*/src/**/*.ts"],
   "reporter": ["text", "html", "lcov"],
-  "all": true
+  "all": true,
+  "exclude": [
+    "packages/dictionary/src/segment-objects.ts",
+    "packages/dictionary/src/versioned-objects.ts",
+    "packages/dictionary/src/versioned-messages.ts"
+  ]
 }

@@ -99,7 +99,7 @@ describe('hl7v2:HL7Field', () => {
     idField.setValue('\\');
     expect(idField.toHL7String()).toEqual('\\E\\');
     idField.setValue('\r');
-    expect(idField.toHL7String()).toEqual('\\X0D\\');
+    expect(idField.toHL7String()).toEqual('\\X000d\\');
     idField.setValue(String.fromCharCode(0x16));
     expect(idField.toHL7String()).toEqual('\\X16\\');
   });

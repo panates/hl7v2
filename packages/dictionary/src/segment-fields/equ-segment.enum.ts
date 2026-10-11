@@ -4,4 +4,5 @@ export enum EQUSegment {
   EquipmentState = 3,
   LocalRemoteControlState = 4,
   AlertLevel = 5,
+  ExpectedDateTimeOfTheNextStatusChange = 6,
 }

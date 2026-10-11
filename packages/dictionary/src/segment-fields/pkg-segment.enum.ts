@@ -6,4 +6,8 @@ export enum PKGSegment {
   Price = 5,
   FutureItemPrice = 6,
   FutureItemPriceEffectiveDate = 7,
+  GlobalTradeItemNumber = 8,
+  ContractPrice = 9,
+  QuantityOfEach = 10,
+  VendorCatalogNumber = 11,
 }

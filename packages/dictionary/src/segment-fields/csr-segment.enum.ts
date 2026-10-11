@@ -15,4 +15,5 @@ export enum CSRSegment {
   PatientEvaluabilityStatus = 14,
   DateTimeEndedStudy = 15,
   ReasonEndedStudy = 16,
+  ActionCode = 17,
 }

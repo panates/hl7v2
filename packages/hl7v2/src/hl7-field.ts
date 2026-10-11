@@ -1,16 +1,25 @@
-import { HL7DataTypeDefinition, HL7FieldDefinition } from 'hl7v2-dictionary';
+import type {
+  HL7DataTypeDefinition,
+  HL7FieldDefinition,
+} from 'hl7v2-dictionary';
 import type { Hl7Component } from './hl7-component.js';
 import type { HL7Message } from './hl7-message.js';
 import {
   HL7Repetition,
-  HL7RepetitionParseOptions,
+  type HL7RepetitionParseOptions,
   type HL7RepetitionSerializeOptions,
 } from './hl7-repetition.js';
 import type { HL7Segment } from './hl7-segment.js';
-import { Hl7SubComponent } from './hl7-sub-component.js';
+import type { Hl7SubComponent } from './hl7-sub-component.js';
 
-export class HL7Field {
-  declare protected _repetitions: HL7Repetition[];
+/**
+ * A field. K is the component positions comp(), getValue() and setValue()
+ * take: any number, or for a field of a message whose version the compiler
+ * knows, those of the field's data type in that version (a primitive's only
+ * one is 1).
+ */
+export class HL7Field<K extends number = number> {
+  declare protected _repetitions: HL7Repetition<K>[];
   declare protected _definition: HL7FieldDefinition;
   declare protected _typeDef: HL7DataTypeDefinition;
   readonly segment: HL7Segment;
@@ -42,12 +51,12 @@ export class HL7Field {
     return !this.typeDef.fields;
   }
 
-  get repetitions(): HL7Repetition[] {
+  get repetitions(): HL7Repetition<K>[] {
     return this._repetitions;
   }
 
-  add(): HL7Repetition {
-    const rep = new HL7Repetition(this);
+  add(): HL7Repetition<K> {
+    const rep = new HL7Repetition(this) as HL7Repetition<K>;
     this._repetitions.push(rep);
     return rep;
   }
@@ -63,45 +72,53 @@ export class HL7Field {
     return true;
   }
 
-  repetition(repetitionIndex: number = 0): HL7Repetition {
+  repetition(repetitionIndex: number = 0): HL7Repetition<K> {
     while (repetitionIndex >= this._repetitions.length) this.add();
     return this._repetitions[repetitionIndex]!;
   }
 
-  component(position: number): Hl7Component {
+  component(position: K): Hl7Component {
     return this.repetition(0).comp(position);
   }
 
-  subComponent(componentPos: number, subComponentPos: number): Hl7SubComponent {
+  subComponent(componentPos: K, subComponentPos: number): Hl7SubComponent {
     return this.repetition(0).comp(componentPos).subcomp(subComponentPos);
   }
 
   /**
    * Alias of .repetition()
    */
-  rep(repetitionIndex: number = 0): HL7Repetition {
+  rep(repetitionIndex: number = 0): HL7Repetition<K> {
     return this.repetition(repetitionIndex);
   }
 
   /**
    * Alias of .component()
    */
-  comp(position: number): Hl7Component {
+  comp(position: K): Hl7Component {
     return this.component(position);
   }
 
   /**
    * Alias of .subComponent()
    */
-  subcomp(componentPos: number, subComponentPos: number): Hl7SubComponent {
+  subcomp(componentPos: K, subComponentPos: number): Hl7SubComponent {
     return this.subComponent(componentPos, subComponentPos);
   }
 
-  getValue(component?: number, subComponent?: number): any {
+  /**
+   * The value as a Date, for a DT, DTM or TS value (see parseHL7DateTime):
+   * read in its offset, or as local time without one. Undefined when empty.
+   */
+  getDate(component?: K, subComponent?: number): Date | undefined {
+    return this._repetitions[0]?.getDate(component, subComponent);
+  }
+
+  getValue(component?: K, subComponent?: number): any {
     return this._repetitions[0]?.getValue(component, subComponent);
   }
 
-  setValue(value: any, component?: number, subComponent?: number): any {
+  setValue(value: any, component?: K, subComponent?: number): any {
     return this.repetition(0).setValue(value, component, subComponent);
   }
 

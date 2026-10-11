@@ -15,4 +15,6 @@ export enum RELSegment {
   PriorityNo = 14,
   PrioritySequenceNo = 15,
   SeparabilityIndicator = 16,
+  SourceInformationInstanceObjectType = 17,
+  TargetInformationInstanceObjectType = 18,
 }

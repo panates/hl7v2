@@ -1,15 +1,33 @@
 import net from 'node:net';
 import tls from 'node:tls';
-import { Backoff } from 'backoff';
-import { HL7Message } from 'hl7v2';
+import type { Backoff } from 'backoff';
+import type {
+  HL7Batch,
+  HL7BatchFile,
+  HL7Message,
+  HL7ValidateOptions,
+} from 'hl7v2';
+import { MSHSegment } from 'hl7v2';
 import { AsyncEventEmitter } from 'node-events-async';
 import reconnectCore from 'reconnect-core';
-import { StrictOmit } from 'ts-gems';
+import type { StrictOmit } from 'ts-gems';
+import { uid } from 'uid';
+import { acceptMessage } from './helpers/acknowledgment.js';
+import {
+  type HL7BatchAcknowledgment,
+  HL7BatchReplies,
+  replyBatchFile,
+} from './helpers/batch.js';
+import { isRoutable } from './helpers/is-routable.js';
 import { HL7Request } from './hl7-request.js';
 import { HL7Response } from './hl7-response.js';
 import { HL7Router } from './hl7-router.js';
 import { HL7Socket } from './hl7-socket.js';
-import { HL7Middleware } from './types.js';
+import type {
+  HL7ErrorMiddleware,
+  HL7MessageFilter,
+  HL7Middleware,
+} from './types.js';
 
 export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
   protected _connectionManager: ReturnType<typeof socketReconnect>;
@@ -73,12 +91,19 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
             this.emit('close');
           });
           socket.on('error', err => this.emit('error', err));
+          socket.on('warning', warning => this.emit('warning', warning));
           socket.on('message', message => {
             this.emit('message', message);
             this._onMessage(message);
           });
+          socket.on('batch', file => {
+            this.emit('batch', file);
+            this._onBatch(file);
+          });
           socket.on('send', message => this.emit('send', message));
+          socket.on('sendBatch', file => this.emit('sendBatch', file));
           socket.on('data', data => this.emit('data', data));
+          socket.on('write', data => this.emit('write', data));
         } else this._socket._bindSocket(tcpSocket);
         if (reconnecting) this.emit('reconnect', tcpSocket);
         reconnecting = false;
@@ -188,9 +213,26 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
     this._socket!.sendMessage(message);
   }
 
-  async sendMessageWaitAck(request: HL7Message): Promise<HL7Message> {
+  async sendMessageWaitAck(
+    request: HL7Message,
+    options?: HL7Socket.WaitAckOptions,
+  ): Promise<HL7Message> {
     if (!this.connected) await this.connect();
-    return this._socket!.sendMessageWaitAck(request);
+    return this._socket!.sendMessageWaitAck(request, options);
+  }
+
+  /** Sends a batch file or batch in one block (see HL7Socket.sendBatch()) */
+  async sendBatch(batch: HL7BatchFile | HL7Batch): Promise<HL7BatchFile> {
+    if (!this.connected) await this.connect();
+    return this._socket!.sendBatch(batch);
+  }
+
+  /** Sends a batch file or batch and waits for its reply batch */
+  async sendBatchWaitAck(
+    batch: HL7BatchFile | HL7Batch,
+  ): Promise<HL7BatchFile> {
+    if (!this.connected) await this.connect();
+    return this._socket!.sendBatchWaitAck(batch);
   }
 
   setConnectTimeout(value: number | null) {
@@ -199,6 +241,7 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
 
   setResponseTimeout(value: number | null) {
     this._options.responseTimeout = value ?? undefined;
+    if (this._socket) this._socket.responseTimeout = value ?? undefined;
   }
 
   setMaxBufferSize(value: number) {
@@ -212,15 +255,67 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
     this._socket?.setKeepAlive(enable, initialDelay);
   }
 
-  use(handler: HL7Middleware, priority = 0) {
-    this._router.use(handler, priority);
+  /** See HL7Router.use(): `client.use('ADT^A08', handler)` */
+  use(handler: HL7Router | HL7Middleware, priority?: number): void;
+  use(
+    filter: HL7MessageFilter,
+    handler: HL7Router | HL7Middleware,
+    priority?: number,
+  ): void;
+  use(...args: any[]): void {
+    (this._router.use as any)(...args);
   }
 
   protected _onMessage(message: HL7Message) {
-    const req = new HL7Request(this._socket!, message);
+    this._process(message).catch(() => undefined);
+  }
+
+  /** Answers a received batch with a batch, as HL7Server does */
+  protected _onBatch(file: HL7BatchFile) {
+    const socket = this._socket!;
+    (async () => {
+      const replies: HL7Message[][] = [];
+      for (const batch of file.batches) {
+        const gathered = new HL7BatchReplies();
+        for (const message of batch.messages) {
+          await this._process(message, gathered);
+        }
+        replies.push(gathered.messages);
+      }
+      const policy = this._options.batchAcknowledgment ?? 'all';
+      if (policy === 'none' || !socket.writable) return;
+      socket.sendBatch(replyBatchFile(file, replies, policy));
+    })().catch(e => {
+      this.emit('error', e);
+    });
+  }
+
+  /** See HL7Router.onError() */
+  onError(handler: HL7Router | HL7ErrorMiddleware, priority = 0) {
+    this._router.onError(handler, priority);
+  }
+
+  protected _process(
+    message: HL7Message,
+    batch?: HL7BatchReplies,
+  ): Promise<void> {
+    const socket = this._socket!;
+    /** A response to our own request, or any acknowledgment, is not answered */
+    if (!isRoutable(message, socket)) return Promise.resolve();
+    const send = (m: HL7Message) =>
+      batch ? batch.send(m) : socket.sendMessage(m);
+    if (!acceptMessage(message, send, this._options.validate))
+      return Promise.resolve();
+    /* Answered by its control ID: one it lacks is given, as the server does */
+    if (!message.header.field(MSHSegment.MessageControlID).getValue())
+      message.header.field(MSHSegment.MessageControlID).setValue(uid(8));
+    const req = new HL7Request(socket, message, batch);
     const res = new HL7Response(req);
-    this._router.handle(req, res, () => {
-      if (res.error) this.emit('error', res.error);
+    return new Promise<void>(resolve => {
+      this._router.handle(req, res, () => {
+        if (res.error) this.emit('error', res.error);
+        resolve();
+      });
     });
   }
 }
@@ -229,6 +324,8 @@ export namespace Hl7Client {
   export interface Events extends HL7Socket.Events {
     reconnecting: [n: number, delay: number];
     reconnect: [socket: net.Socket];
+    /** The connection lost; with the error, when reconnecting */
+    disconnect: [error?: Error];
   }
 
   interface CommonConnectOptions {
@@ -238,6 +335,16 @@ export namespace Hl7Client {
     keepAlive?: boolean;
     keepAliveInitialDelay?: number;
     parseStrict?: boolean;
+    /** See HL7Socket.Options.defaultCharset */
+    defaultCharset?: string;
+    /**
+     * Validate received messages against their version's dictionary
+     * (HL7Message.validate()): one that fails is answered with a NAK listing
+     * its errors and is not passed to the handlers. Default false.
+     */
+    validate?: boolean | HL7ValidateOptions;
+    /** Which acknowledgments a received batch is answered with; default 'all' */
+    batchAcknowledgment?: HL7BatchAcknowledgment;
     reconnect?: ReconnectOptions;
   }
 
@@ -274,30 +381,23 @@ const socketReconnect = reconnectCore(
           ...(args.options as Hl7Client.NetConnectOptions),
           timeout: undefined,
         });
-    if (args.options.timeout) {
+    const { connectTimeout, keepAlive, keepAliveInitialDelay } = args.options;
+    /** Applied on every connection, with or without a connect timeout */
+    if (keepAlive) {
+      tcpSocket.once('connect', () =>
+        tcpSocket.setKeepAlive(true, keepAliveInitialDelay),
+      );
+    }
+    if (connectTimeout) {
       const timer = setTimeout(() => {
-        tcpSocket.destroy(new Error('Connection timed out'));
-      }, args.options.timeout).unref();
-      const onConnect = () => {
-        clearTimeout(timer);
-        tcpSocket.removeListener('error', onError);
-      };
-      const onError = () => {
-        clearTimeout(timer);
-        tcpSocket.removeListener('connect', onConnect);
-        tcpSocket.removeListener('ready', onReady);
-      };
-      const onReady = () => {
-        if (args.options.keepAlive) {
-          tcpSocket.setKeepAlive(
-            args.options.keepAlive,
-            args.options.keepAliveInitialDelay,
-          );
-        }
-      };
-      tcpSocket.once('connect', onConnect);
-      tcpSocket.once('error', onError);
-      tcpSocket.once('ready', onReady);
+        tcpSocket.destroy(
+          new Error(`Connection timed out after ${connectTimeout} ms`),
+        );
+      }, connectTimeout).unref();
+      const clear = () => clearTimeout(timer);
+      tcpSocket.once('connect', clear);
+      tcpSocket.once('error', clear);
+      tcpSocket.once('close', clear);
     }
     return tcpSocket;
   },

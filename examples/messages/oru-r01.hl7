@@ -1,0 +1,13 @@
+MSH|^~\&|LIS|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250302083000+0300||ORU^R01^ORU_R01|LAB00042|P|2.5.1
+PID|1||123456^^^GHH^MR||Yılmaz^Ayşe^Gül||19800512|F
+PV1|1|I|2000^2012^01
+ORC|RE|ORD1001|LAB1001
+OBR|1|ORD1001|LAB1001|58410-2^CBC panel - Blood by Automated count^LN|||20250302070000+0300
+OBX|1|NM|6690-2^Leukocytes [#/volume] in Blood^LN||7.2|10*3/uL^^UCUM|4.0-10.0|N|||F
+OBX|2|NM|718-7^Hemoglobin [Mass/volume] in Blood^LN||11.1|g/dL^^UCUM|12.0-16.0|L|||F
+OBX|3|NM|777-3^Platelets [#/volume] in Blood^LN||250|10*3/uL^^UCUM|150-400|N|||F
+ORC|RE|ORD1002|LAB1002
+OBR|2|ORD1002|LAB1002|24323-8^Comprehensive metabolic panel^LN|||20250302070000+0300
+OBX|1|NM|2345-7^Glucose [Mass/volume] in Serum or Plasma^LN||132|mg/dL^^UCUM|70-99|H|||F
+OBX|2|NM|2160-0^Creatinine [Mass/volume] in Serum or Plasma^LN||0.9|mg/dL^^UCUM|0.6-1.1|N|||F
+NTE|1||Fasting sample.

@@ -97,18 +97,20 @@ describe('hl7v2:parse', () => {
     const msg = HL7Message.parse('MSH|^~\\&|||||19980731153200|||||2.5');
     expect(
       msg.header.field(MSHSegment.DateTimeOfMessage).getValue(),
-    ).toStrictEqual('199807311532');
+    ).toStrictEqual('19980731153200');
   });
 
   it('should parse Date Time fields with milliseconds', () => {
-    const msg = HL7Message.parse('MSH|^~\\&|||||199807311532.123|||||2.2');
+    const msg = HL7Message.parse('MSH|^~\\&|||||19980731153200.123|||||2.2');
     expect(
       msg.header.field(MSHSegment.DateTimeOfMessage).getValue(),
     ).toStrictEqual('19980731153200.123');
   });
 
   it('should parse Date Time fields with timezone', () => {
-    const msg = HL7Message.parse('MSH|^~\\&|||||199807311532.123+0500|||||2.2');
+    const msg = HL7Message.parse(
+      'MSH|^~\\&|||||19980731153200.123+0500|||||2.2',
+    );
     expect(
       msg.header.field(MSHSegment.DateTimeOfMessage).getValue(),
     ).toStrictEqual('19980731153200.123+0500');
@@ -137,9 +139,17 @@ describe('hl7v2:parse', () => {
     expect(msg.header.field(MSHSegment.SendingApplication).getValue()).toEqual(
       '|^~\\&abcdU',
     );
+    /*
+     * \Mxxyyzz\ switches to a multi-byte character set (ISO 2022); it is an
+     * instruction to the receiver, not a character, and is kept as written.
+     * \c65\ is no standard sequence (they are upper case) and gives its content.
+     */
     expect(
       msg.header.field(MSHSegment.SendingFacility).getValue(),
-    ).toStrictEqual('e' + String.fromCharCode(0x15f) + String.fromCharCode(0));
+    ).toStrictEqual('c65\\M015f\\\\M0000\\');
+    expect(msg.header.field(MSHSegment.SendingFacility).toHL7String()).toEqual(
+      'c65\\M015f\\\\M0000\\',
+    );
   });
 
   it('should parse hex field', () => {
@@ -249,7 +259,7 @@ describe('hl7v2:parse', () => {
     expect(error!).toBeDefined();
     expect(error!).toBeInstanceOf(HL7Error);
     expect(error!.segmentType).toEqual('MSH');
-    expect(error!.segmentSequence).toEqual(0);
+    expect(error!.segmentSequence).toEqual(1);
     expect(error!.fieldPosition).toEqual(MSHSegment.DateTimeOfMessage);
     expect(error!.componentPosition).toEqual(1);
     expect(error!.repetitionIndex).toEqual(0);

@@ -1,0 +1,10 @@
+Listening on <port>
+Connected: <address>
+Admitted 123456: Ayşe Yılmaz
+  ADT^A01 MSG00001 -> AA
+Stored 5 results of 123456
+  ORU^R01 LAB00042 -> AA
+  ORU^R01 LAB00042 -> AE
+Stopped
+--- stderr
+  efc9c4cb failed: QBP^Q22 is not supported here

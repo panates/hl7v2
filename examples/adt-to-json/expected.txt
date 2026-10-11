@@ -1,0 +1,37 @@
+{
+  "identifiers": [
+    {
+      "value": "123456",
+      "type": "MR",
+      "assigner": "GHH"
+    },
+    {
+      "value": "98765432100",
+      "type": "NNTUR",
+      "assigner": "TRNVI"
+    }
+  ],
+  "family": "Yılmaz",
+  "given": [
+    "Ayşe",
+    "Gül"
+  ],
+  "prefix": "Dr.",
+  "gender": "female",
+  "birthDate": "1980-05-12",
+  "address": {
+    "line": "Atatürk Cad. 12",
+    "city": "İstanbul",
+    "postalCode": "34000",
+    "country": "TUR"
+  },
+  "phone": "90 212 5551234"
+}
+
+MSH|^~\&|MY-APP||||20250601120000.123+0300||ADT^A08^ADT_A01|dc8efc9c|P|2.5||||||UNICODE UTF-8
+EVN|A08|20250601120000.123+0300
+PID|1||123456^^^GHH^MR~98765432100^^^TRNVI^NNTUR~P-778899^^^TUR^PPN||Yılmaz^Ayşe^^^Dr.||19800512|F
+PV1|1|N
+
+Valid: [] 
+Round trip: true

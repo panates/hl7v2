@@ -19,4 +19,6 @@ export enum INVSegment {
   SupplierIdentifier = 18,
   OnBoardStabilityTime = 19,
   TargetValue = 20,
+  EquipmentStateIndicatorTypeCode = 21,
+  EquipmentStateIndicatorValue = 22,
 }

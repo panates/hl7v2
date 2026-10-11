@@ -13,65 +13,51 @@ on:
     branches:
       - main
 
-permissions:
-  id-token: write  # Required for OIDC
-  contents: read
-
 # Only one run at a time
 concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: false
 
 jobs:
+  # Answers "did this commit arrive through a pull request, and from which branch?" - which a job's
+  # own `if:` cannot ask, since a push payload says nothing about a pull request.
+  source:
+    uses: panates/github-actions/.github/workflows/pr-source.yaml@v3
+    permissions:
+      contents: read
+      pull-requests: read
+
   test:
+    needs: source
+    permissions:
+      contents: read
+    # A merge from dev was already tested on dev.
     if: >
       !contains(github.event.head_commit.message, 'no-release') &&
       (
         (github.event_name == 'workflow_dispatch' && github.event.inputs.skip-tests != 'true') ||
         (
           github.event_name == 'push' &&
-          !(
-            contains(github.event.head_commit.message, 'no-test') ||
-            ( 
-              startsWith(github.event.head_commit.message, 'Merge pull request') &&
-              contains(github.event.head_commit.message, '/dev')
-            )
-          )
+          !contains(github.event.head_commit.message, 'no-test') &&
+          needs.source.outputs.head-ref != 'dev'
         )
       )
     uses: ./.github/workflows/test.yml
-    secrets:
-      PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-
-
-  release_after_test:
-    permissions:
-      id-token: write   # Required for OIDC
-      contents: read
-    # Wait for "test" job
-    needs: test
-    uses: panates/github-actions/.github/workflows/node-release.yaml@v1
-    secrets:
-      PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   release:
+    needs: [source, test]
+    # `always()` because `needs` alone blocks this whenever `test` is skipped, which is a normal path.
     if: >
-      !contains(github.event.head_commit.message, 'no-release') &&
-      !(
-        (github.event_name == 'workflow_dispatch' && github.event.inputs.skip-tests != 'true') ||
-        (
-          github.event_name == 'push' &&
-          !(
-            contains(github.event.head_commit.message, 'no-test') ||
-            ( 
-              startsWith(github.event.head_commit.message, 'Merge pull request') &&
-              contains(github.event.head_commit.message, '/dev')
-            )
-          )
-        )
-      )
-    uses: panates/github-actions/.github/workflows/node-release.yaml@v1
+      always() && !cancelled() &&
+      needs.source.result == 'success' &&
+      (needs.test.result == 'success' || needs.test.result == 'skipped') &&
+      !contains(github.event.head_commit.message, 'no-release')
+    uses: panates/github-actions/.github/workflows/node-release.yaml@v3
+    # Declared on the calling job, because that is what governs a reusable workflow's permissions.
+    permissions:
+      id-token: write
+      contents: write
     secrets:
-      PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      # No PERSONAL_ACCESS_TOKEN: no manifest here carries a private scope and there is no .npmrc,
+      # so it had nothing to authenticate.
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -7,4 +7,7 @@ export enum TCDSegment {
   AutomaticRepeatAllowed = 6,
   ReflexAllowed = 7,
   AnalyteRepeatStatus = 8,
+  SpecimenConsumptionQuantity = 9,
+  PoolSize = 10,
+  AutoDilutionType = 11,
 }

@@ -24,4 +24,5 @@ export enum ARQSegment {
   ParentFillerAppointmentID = 23,
   PlacerOrderNumber = 24,
   FillerOrderNumber = 25,
+  AlternatePlacerOrderGroupNumber = 26,
 }

@@ -1,7 +1,7 @@
 import { Buffer } from 'node:buffer';
 import { Transform } from 'node:stream';
-import { TransformCallback, TransformOptions } from 'stream';
-import { StrictOmit } from 'ts-gems';
+import type { TransformCallback, TransformOptions } from 'stream';
+import type { StrictOmit } from 'ts-gems';
 
 export class FrameStream extends Transform {
   private _chunks: Buffer[] = [];
@@ -11,6 +11,8 @@ export class FrameStream extends Transform {
   private readonly _frameStart?: Buffer;
   private readonly _frameEnd?: Buffer;
   private _bufferSize = 0;
+  /** Over maxBufferSize: what is left of the stream is not framed */
+  private _overflowed = false;
   private readonly _customTransform?: Function;
   maxBufferSize?: number;
 
@@ -58,12 +60,16 @@ export class FrameStream extends Transform {
     if (this._flushTimeout) {
       clearTimeout(this._flushTimeout);
     }
+    if (this._overflowed) {
+      callback();
+      return;
+    }
     try {
       // console.log(chunk);
       if (!Buffer.isBuffer(chunk)) chunk = Buffer.from(chunk);
 
       if (this._chunkBuffer) {
-        this._assertMaxBuffer(chunk.length);
+        if (!this._assertMaxBuffer(chunk.length)) return;
         chunk = Buffer.concat([this._chunkBuffer, chunk]);
         this._chunkBuffer = undefined;
       }
@@ -98,12 +104,12 @@ export class FrameStream extends Transform {
             return;
           }
           etxPos += etxLen;
-          this._pushChunk(chunk.subarray(stxPos, etxPos));
+          if (!this._pushChunk(chunk.subarray(stxPos, etxPos))) return;
           this.flushBuffer();
         }
         return;
       }
-      this._pushChunk(chunk);
+      if (!this._pushChunk(chunk)) return;
     } finally {
       if (this._chunks.length && this._frameDelayMs)
         this._flushTimeout = setTimeout(
@@ -114,20 +120,31 @@ export class FrameStream extends Transform {
     }
   }
 
-  protected _pushChunk(chunk: Buffer) {
-    this._assertMaxBuffer(chunk.length);
+  protected _pushChunk(chunk: Buffer): boolean {
+    if (!this._assertMaxBuffer(chunk.length)) return false;
     this._chunks.push(chunk);
     this._bufferSize += chunk.length;
+    return true;
   }
 
-  protected _assertMaxBuffer(newChunkLen: number = 0) {
+  /**
+   * Whether the buffer stays within maxBufferSize. Over it, what is buffered
+   * is dropped - an oversized frame is never passed on - and the stream
+   * stops framing, its error event telling the socket to close.
+   */
+  protected _assertMaxBuffer(newChunkLen: number = 0): boolean {
     if (
       this.maxBufferSize &&
       this._bufferSize + newChunkLen + (this._chunkBuffer?.length || 0) >
         this.maxBufferSize
     ) {
+      this._overflowed = true;
+      this.reset();
+      this._bufferSize = 0;
       this.emit('error', new Error('Max buffer size exceeded'));
+      return false;
     }
+    return true;
   }
 
   _flush(callback: TransformCallback) {

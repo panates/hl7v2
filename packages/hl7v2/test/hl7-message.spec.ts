@@ -1,10 +1,22 @@
 import { expect } from 'expect';
 import {
+  dictionaries,
   HL7Message,
   HL7MessageNode,
   HL7Segment,
   HL7Version,
 } from '../src/index.js';
+
+/** The local time zone offset of a Date, as HL7 writes it: +0300 */
+const offsetOf = (d: Date) => {
+  const m = -d.getTimezoneOffset();
+  const a = Math.abs(m);
+  return (
+    (m < 0 ? '-' : '+') +
+    String(Math.floor(a / 60)).padStart(2, '0') +
+    String(a % 60).padStart(2, '0')
+  );
+};
 
 describe('hl7v2:HL7Message', () => {
   const sampleMessage1 =
@@ -38,11 +50,11 @@ NTE|1|L|ROUTINE RESPIRATORY FLORA
   });
 
   it('should create HL7Message with given nearest version when given version not found', () => {
-    const msg = new HL7Message('2.9');
+    const msg = new HL7Message('2.10');
     expect(msg.header).toBeDefined();
-    expect(msg.version).toEqual('2.9');
-    expect(msg.header.field(12).getValue()).toEqual('2.9');
-    expect(msg.dictionary.version).toEqual(HL7Version.v2_8);
+    expect(msg.version).toEqual('2.10');
+    expect(msg.header.field(12).getValue()).toEqual('2.10');
+    expect(msg.dictionary.version).toEqual(HL7Version.v2_9);
   });
 
   it('should add segment', () => {
@@ -65,10 +77,11 @@ NTE|1|L|ROUTINE RESPIRATORY FLORA
 
   it('should convert to HL7 string', () => {
     const msg = new HL7Message();
-    msg.header.field(7).setValue(new Date('2025-03-12T14:32:22'));
+    const date = new Date('2025-03-12T14:32:22');
+    msg.header.field(7).setValue(date);
     const controlId = msg.header.field(10).getValue();
     expect(msg.toHL7String()).toEqual(
-      `MSH|^~\\&|||||20250312143222|||${controlId}||2.7.1||||||UTF-8\r`,
+      `MSH|^~\\&|||||20250312143222${offsetOf(date)}|||${controlId}|P|2.7.1||||||UNICODE UTF-8\r`,
     );
   });
 
@@ -83,5 +96,23 @@ NTE|1|L|ROUTINE RESPIRATORY FLORA
     expect((tree.items[0] as HL7Segment).segmentType).toEqual('MSH');
     expect(tree.items[1]).toBeInstanceOf(HL7MessageNode);
     expect((tree.items[1] as HL7MessageNode).name).toEqual('PATIENT_RESULT');
+  });
+
+  it('should read with a dictionary given for one version, the default ones for the others', () => {
+    const site = dictionaries['2.5'].extend({
+      segments: {
+        ZPI: { fields: { 1: { type: 'ST', desc: 'Nickname', opt: 'O' } } },
+      },
+    } as any);
+    const msg = HL7Message.parse(
+      'MSH|^~\\&|A|B|C|D|20250101||ADT^A01|1|P|2.5\rZPI|Ayşo',
+      { dictionaries: { '2.5': site } as any },
+    );
+    expect(msg.getSegment('ZPI')!.definition.fields[1].desc).toEqual(
+      'Nickname',
+    );
+    expect(new HL7Message('2.7', { '2.5': site } as any).dictionary).toBe(
+      dictionaries['2.7'],
+    );
   });
 });

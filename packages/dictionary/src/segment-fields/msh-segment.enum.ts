@@ -24,4 +24,7 @@ export enum MSHSegment {
   ReceivingResponsibleOrganization = 23,
   SendingNetworkAddress = 24,
   ReceivingNetworkAddress = 25,
+  SecurityClassificationTag = 26,
+  SecurityHandlingInstructions = 27,
+  SpecialAccessRestrictionInstructions = 28,
 }

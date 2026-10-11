@@ -8,4 +8,6 @@ export enum RXCSegment {
   SupplementaryCode = 7,
   ComponentDrugStrengthVolume = 8,
   ComponentDrugStrengthVolumeUnits = 9,
+  DispenseAmount = 10,
+  DispenseUnits = 11,
 }

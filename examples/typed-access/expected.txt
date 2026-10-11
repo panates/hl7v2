@@ -1,0 +1,6 @@
+Refused: Message of version 2.5, not 2.7
+Name: Ayşe Yılmaz
+Patient: Ayşe Yılmaz, born 19800512
+Sex: F
+By a run-time path: Ayşe
+By a run-time position: Ayşe

@@ -1,0 +1,1326 @@
+{
+  "read": [
+    {
+      "name": "adt 2.5: components, sub-components, repetitions",
+      "message": [
+        "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.5",
+        "EVN|A01|20250301101500+0300",
+        "PID|1||123456^^^GHH&1.2.3&ISO^MR~98765432100^^^TRNVI^NNTUR||Yılmaz&Van&Der^Ayşe^Gül^^Dr.||19800512|F|||Atatürk Cad. 12^^İstanbul^^34000^TUR||^PRN^PH^^90^212^5551234",
+        "NK1|1|Yılmaz^Mehmet|SPO^Spouse^HL70063",
+        "NK1|2|Yılmaz^Zeynep|DAU^Daughter^HL70063",
+        "PV1|1|I|2000^2012^01||||004777^Doğan^Ali^^^Dr.|||SUR"
+      ],
+      "paths": [
+        "MSH-1",
+        "MSH-2",
+        "MSH-3",
+        "MSH-9",
+        "MSH-9-1",
+        "MSH-9-2",
+        "MSH-9-3",
+        "MSH-10",
+        "MSH-12",
+        "EVN-2",
+        "PID-1",
+        "PID-3",
+        "PID-3-1",
+        "PID-3-4",
+        "PID-3-4-1",
+        "PID-3-4-2",
+        "PID-3-4-3",
+        "PID-3-5",
+        "PID-3(1)-1",
+        "PID-3(1)-5",
+        "PID-3(2)-1",
+        "PID-5",
+        "PID-5-1",
+        "PID-5-1-1",
+        "PID-5-1-2",
+        "PID-5-1-3",
+        "PID-5-2",
+        "PID-5-3",
+        "PID-5-5",
+        "PID-7",
+        "PID-7-1",
+        "PID-8",
+        "PID-11-1",
+        "PID-11-3",
+        "PID-13-2",
+        "PID-13-6",
+        "PID-13-7",
+        "NK1-2-1",
+        "NK1(1)-2-1",
+        "NK1(1)-3-2",
+        "PV1-3",
+        "PV1-3-2",
+        "PV1-7-2",
+        "PV1-10",
+        "PID-30",
+        "PID-5-9"
+      ]
+    },
+    {
+      "name": "escapes in values",
+      "message": [
+        "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.5",
+        "EVN|A01",
+        "PID|1||1||X",
+        "NTE|1||a\\F\\b\\S\\c\\T\\d\\R\\e\\E\\f",
+        "NTE|2||hex \\X41\\ and \\X0D0A\\ end",
+        "NTE|3||line\\.br\\break",
+        "NTE|4||\\H\\bold\\N\\ text",
+        "NTE|5||unknown \\Q123\\ seq",
+        "NTE|6||trailing \\"
+      ],
+      "paths": [
+        "NTE-3",
+        "NTE(1)-3",
+        "NTE(2)-3",
+        "NTE(3)-3",
+        "NTE(4)-3",
+        "NTE(5)-3"
+      ]
+    },
+    {
+      "name": "null and empty values",
+      "message": [
+        "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.5",
+        "EVN|A01",
+        "PID|1||\"\"||\"\"^Ayşe||||||||\"\"~|"
+      ],
+      "paths": [
+        "PID-3",
+        "PID-5",
+        "PID-5-1",
+        "PID-5-2",
+        "PID-7",
+        "PID-13",
+        "PID-13(1)",
+        "PID-14"
+      ]
+    },
+    {
+      "name": "custom delimiters",
+      "message": [
+        "MSH#$*@%#APP#FAC#####ADT$A01$ADT_A01#C1#P#2.5",
+        "EVN#A01",
+        "PID#1##A|B^C$D*E%F##N1$N2"
+      ],
+      "paths": [
+        "MSH-1",
+        "MSH-2",
+        "MSH-9-2",
+        "PID-3",
+        "PID-3-1",
+        "PID-3-2",
+        "PID-3-2-2",
+        "PID-5-1",
+        "PID-5-2"
+      ]
+    },
+    {
+      "name": "2.7 truncation character",
+      "message": [
+        "MSH|^~\\&#|APP|FAC|||20250101||ADT^A01^ADT_A01|C1|P|2.7",
+        "EVN|A01",
+        "PID|1||12#34^^^H^MR||Doe#^J"
+      ],
+      "paths": ["MSH-2", "PID-3-1", "PID-5-1", "PID-5-2"]
+    },
+    {
+      "name": "segments split by LF",
+      "message": [
+        "MSH|^~\\&|APP|FAC|||20250101||ADT^A01^ADT_A01|C1|P|2.5\nEVN|A01\nPID|1||123||Doe"
+      ],
+      "paths": ["PID-3", "PID-5-1", "EVN-1"]
+    },
+    {
+      "name": "oru 2.5.1: groups and segment repetitions",
+      "message": [
+        "MSH|^~\\&|LIS|GHH|EHR|GHH|20250302083000+0300||ORU^R01^ORU_R01|LAB00042|P|2.5.1",
+        "PID|1||123456^^^GHH^MR||Yılmaz^Ayşe",
+        "PV1|1|I",
+        "ORC|RE|ORD1001",
+        "OBR|1|ORD1001|LAB1001|58410-2^CBC panel^LN",
+        "OBX|1|NM|6690-2^Leukocytes^LN||7.2|10*3/uL^^UCUM|4.0-10.0|N|||F",
+        "OBX|2|NM|718-7^Hemoglobin^LN||11.1|g/dL^^UCUM|12.0-16.0|L|||F",
+        "ORC|RE|ORD1002",
+        "OBR|2|ORD1002|LAB1002|24323-8^Metabolic panel^LN",
+        "OBX|1|NM|2345-7^Glucose^LN||132|mg/dL^^UCUM|70-99|H|||F",
+        "NTE|1||Fasting sample."
+      ],
+      "paths": [
+        "OBX-5",
+        "OBX(1)-5",
+        "OBX(2)-5",
+        "OBR(1)-4-2",
+        "/PATIENT_RESULT/ORDER_OBSERVATION/OBSERVATION/OBX-5",
+        "/PATIENT_RESULT/ORDER_OBSERVATION(0)/OBSERVATION(1)/OBX-3-2",
+        "/PATIENT_RESULT/ORDER_OBSERVATION(1)/OBSERVATION(0)/OBX-5",
+        "/PATIENT_RESULT/ORDER_OBSERVATION(1)/OBR-4-1",
+        "/PATIENT_RESULT/PATIENT/PID-5-1",
+        "/PATIENT_RESULT/ORDER_OBSERVATION(1)/OBSERVATION/NTE-3",
+        "NTE-3"
+      ]
+    },
+    {
+      "name": "oru 2.3: RESPONSE group",
+      "message": [
+        "MSH|^~\\&|LIS|GHH|EHR|GHH|20250302083000+0300||ORU^R01|LAB00042|P|2.3",
+        "PID|1||123456^^^GHH^MR||Yılmaz^Ayşe",
+        "PV1|1|I",
+        "ORC|RE|ORD1001",
+        "OBR|1|ORD1001|LAB1001|58410-2^CBC panel^LN",
+        "OBX|1|NM|6690-2^Leukocytes^LN||7.2|10*3/uL^^UCUM|4.0-10.0|N|||F",
+        "OBX|2|NM|718-7^Hemoglobin^LN||11.1|g/dL^^UCUM|12.0-16.0|L|||F",
+        "ORC|RE|ORD1002",
+        "OBR|2|ORD1002|LAB1002|24323-8^Metabolic panel^LN",
+        "OBX|1|NM|2345-7^Glucose^LN||132|mg/dL^^UCUM|70-99|H|||F",
+        "NTE|1||Fasting sample."
+      ],
+      "paths": [
+        "OBX(2)-5",
+        "/RESPONSE/ORDER_OBSERVATION(1)/OBSERVATION/OBX-5",
+        "/RESPONSE/PATIENT/PID-5-1"
+      ]
+    },
+    {
+      "name": "2.1 adt",
+      "message": [
+        "MSH|^~\\&|APP|FAC|||198808181126||ADT^A01|C1|P|2.1",
+        "EVN|A01|198808181123",
+        "PID|||PATID1234^5^M11||JONES^WILLIAM^A^III||19610615|M"
+      ],
+      "paths": [
+        "MSH-9",
+        "MSH-9-1",
+        "PID-3",
+        "PID-3-1",
+        "PID-3-2",
+        "PID-5",
+        "PID-5-1",
+        "PID-5-2",
+        "PID-5-4",
+        "PID-7",
+        "PID-8"
+      ]
+    },
+    {
+      "name": "2.4 adt",
+      "message": [
+        "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.4",
+        "EVN|A01",
+        "PID|1||123^^^H&1.2&ISO^MR||Doe^John^^^^^L|||M"
+      ],
+      "paths": ["PID-3-4-2", "PID-5-1", "PID-5-1-1", "PID-5-7", "MSH-9-3"]
+    },
+    {
+      "name": "2.8 adt",
+      "message": [
+        "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.8",
+        "EVN||20250101",
+        "PID|1||123^^^H^MR||Doe^John||20000101|M"
+      ],
+      "paths": ["PID-3-1", "PID-5-1", "PID-5-2", "PID-7", "PID-8", "MSH-9-3"]
+    },
+    {
+      "name": "primitive with extra components",
+      "message": [
+        "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.5",
+        "EVN|A01",
+        "PID|1||1||X|||F^extra^more|"
+      ],
+      "paths": ["PID-8", "PID-8-1", "PID-8-2", "PID-8-3"]
+    },
+    {
+      "name": "z segment and fields beyond the definition",
+      "message": [
+        "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.5",
+        "EVN|A01",
+        "PID|1||1||X",
+        "PV1|1|I",
+        "ZPI|a|b^c&d|e~f"
+      ],
+      "paths": [
+        "ZPI-1",
+        "ZPI-2",
+        "ZPI-2-1",
+        "ZPI-2-2",
+        "ZPI-2-2-2",
+        "ZPI-3",
+        "ZPI-3(1)"
+      ]
+    },
+    {
+      "name": "orm 2.5: orders and order details",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ORM^O01^ORM_O01|C1|P|2.5",
+        "PID|1||123^^^H^MR||Doe^John",
+        "PV1|1|O",
+        "ORC|NW|ORD1^APP||||||^^^20250301",
+        "OBR|1|ORD1^APP||CBC^Complete blood count^L|||20250301",
+        "NTE|1||Fasting",
+        "ORC|NW|ORD2^APP",
+        "OBR|1|ORD2^APP||BMP^Basic metabolic panel^L"
+      ],
+      "paths": [
+        "ORC-2-1",
+        "ORC(1)-2-1",
+        "/ORDER(1)/ORDER_DETAIL/OBR-4-2",
+        "/ORDER/ORDER_DETAIL/NTE-3",
+        "/ORDER(1)/ORC-1",
+        "/PATIENT/PID-5-1",
+        "/PATIENT/PATIENT_VISIT/PV1-2",
+        "ORC-7-4"
+      ]
+    },
+    {
+      "name": "siu 2.5: scheduling with resources",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||SIU^S12^SIU_S12|C1|P|2.5",
+        "SCH|10345^10345|2196178^2196178|||10345|OFFICE^Office visit^L|reason|OFFICE|60|m|^^60^20250310090000^20250310100000",
+        "PID|1||42^^^H^MR||Kaya^Emre",
+        "RGS|1|A",
+        "AIS|1|A|70^Consultation^L|20250310090000|||60|m",
+        "AIP|1|A|1234^Doğan^Ali|D^Doctor"
+      ],
+      "paths": [
+        "SCH-1-1",
+        "SCH-6",
+        "SCH-11-4",
+        "/PATIENT/PID-5-1",
+        "/RESOURCES/SERVICE/AIS-3-2",
+        "/RESOURCES/PERSONNEL_RESOURCE/AIP-3-2",
+        "AIP-4-2",
+        "RGS-2"
+      ]
+    },
+    {
+      "name": "mdm 2.6: document with text",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||MDM^T02^MDM_T02|C1|P|2.6",
+        "EVN|T02|20250301",
+        "PID|1||42^^^H^MR||Kaya^Emre",
+        "PV1|1|O",
+        "TXA|1|CN^Consultation note^HL70270|TX|20250301|||||||DOC123|||||AU",
+        "OBX|1|TX|||First line~Second line||||||F",
+        "OBX|2|FT|||Bold \\H\\text\\N\\ here.\\.br\\Next||||||F"
+      ],
+      "paths": [
+        "TXA-2-2",
+        "TXA-12",
+        "OBX-5",
+        "OBX(1)-5",
+        "/OBSERVATION/OBX-5",
+        "/OBSERVATION(1)/OBX-5",
+        "/OBSERVATION/OBX-5(1)"
+      ]
+    },
+    {
+      "name": "vxu 2.5.1: immunization",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||VXU^V04^VXU_V04|C1|P|2.5.1",
+        "PID|1||42^^^H^MR||Kaya^Emre||20200101|M",
+        "ORC|RE||197023^DCS",
+        "RXA|0|1|20250301|20250301|08^HEPB-PEDS^CVX|0.5|mL^^UCUM||00^New record^NIP001",
+        "RXR|C28161^Intramuscular^NCIT|LD^Left deltoid^HL70163",
+        "OBX|1|CE|64994-7^Eligibility^LN|1|V02^VFC eligible^HL70064||||||F"
+      ],
+      "paths": [
+        "/ORDER/RXA-5-2",
+        "/ORDER/RXA-6",
+        "/ORDER/RXR-2-2",
+        "/ORDER/OBSERVATION/OBX-5-2",
+        "RXA-5-1",
+        "OBX-3-1"
+      ]
+    },
+    {
+      "name": "rsp 2.5.1: query response",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||RSP^K22^RSP_K21|C1|P|2.5.1",
+        "MSA|AA|Q1",
+        "QAK|Q1|OK|Q22^Find candidates^HL70471|2",
+        "QPD|Q22^Find candidates^HL70471|Q1|@PID.5.1^Kaya",
+        "PID|1||42^^^H^MR||Kaya^Emre",
+        "PID|2||43^^^H^MR||Kaya^Can"
+      ],
+      "paths": [
+        "MSA-1",
+        "QAK-2",
+        "QAK-4",
+        "QPD-3-1",
+        "QPD-3-2",
+        "/QUERY_RESPONSE/PID-5-2",
+        "/QUERY_RESPONSE(1)/PID-5-2",
+        "PID(1)-3-1"
+      ]
+    },
+    {
+      "name": "dft 2.4: charges",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||DFT^P03^DFT_P03|C1|P|2.4",
+        "EVN|P03|20250301",
+        "PID|1||42^^^H^MR||Kaya^Emre",
+        "FT1|1|||20250301||CG|71020^Chest x-ray^CPT|||1|||||||||||||||||||||||||||||",
+        "FT1|2|||20250301||CG|80053^Metabolic panel^CPT|||2"
+      ],
+      "paths": [
+        "FT1-7-1",
+        "FT1(1)-7-2",
+        "FT1(1)-10",
+        "/FINANCIAL/FT1-7-2",
+        "/FINANCIAL(1)/FT1-10"
+      ]
+    },
+    {
+      "name": "adt a40 2.5: merge",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A40^ADT_A39|C1|P|2.5",
+        "EVN|A40|20250301",
+        "PID|1||42^^^H^MR||Kaya^Emre",
+        "MRG|41^^^H^MR"
+      ],
+      "paths": ["/PATIENT/PID-3-1", "/PATIENT/MRG-1-1", "MRG-1-4", "MSH-9-3"]
+    },
+    {
+      "name": "oml 2.5.1: lab order",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||OML^O21^OML_O21|C1|P|2.5.1",
+        "PID|1||42^^^H^MR||Kaya^Emre",
+        "ORC|NW|ORD9",
+        "OBR|1|ORD9||GLU^Glucose^L",
+        "SPM|1|SP1||SER^Serum^HL70487"
+      ],
+      "paths": [
+        "/ORDER/ORC-2",
+        "/ORDER/OBSERVATION_REQUEST/OBR-4-2",
+        "/ORDER/OBSERVATION_REQUEST/SPECIMEN/SPM-4-2",
+        "/PATIENT/PID-5-1"
+      ]
+    },
+    {
+      "name": "ack 2.5 read",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ACK^A01^ACK|C1|P|2.5",
+        "MSA|AE|MSG1|Error text",
+        "ERR||PID^1^3|101^Required field missing^HL70357|E"
+      ],
+      "paths": [
+        "MSA-1",
+        "MSA-2",
+        "MSA-3",
+        "ERR-2-1",
+        "ERR-2-2",
+        "ERR-2-3",
+        "ERR-3-1",
+        "ERR-3-2",
+        "ERR-4"
+      ]
+    },
+    {
+      "name": "2.2 adt with repetitions",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A04|C1|P|2.2",
+        "EVN|A04|19980301",
+        "PID|||12345~67890||Smith^Jane^Q||19700101|F|||1 Main St^^Town^ST^12345~2 Side St^^City",
+        "NK1|1|Smith^John|SPO"
+      ],
+      "paths": [
+        "PID-3",
+        "PID-3(1)",
+        "PID-11-3",
+        "PID-11(1)-3",
+        "PID-5-3",
+        "NK1-3"
+      ]
+    },
+    {
+      "name": "2.6 adt with XTN and CWE",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A01^ADT_A01|C1|P|2.6",
+        "EVN||20250301",
+        "PID|1||42^^^H^MR||Kaya^Emre||20000101|M|||||^PRN^PH^^90^212^5551234~^NET^Internet^emre@example.com",
+        "PV1|1|I||||||||MED^Medicine^HL70069"
+      ],
+      "paths": [
+        "PID-13-2",
+        "PID-13(1)-4",
+        "PID-13-6",
+        "PV1-10-1",
+        "PV1-10-2",
+        "PV1-10-3"
+      ]
+    },
+    {
+      "name": "2.8 with 2.8 fields",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A01^ADT_A01|C1|P|2.8",
+        "EVN||20250301",
+        "PID|1||42^^^H^MR||Kaya^Emre||20000101|M",
+        "PV1|1|I"
+      ],
+      "paths": ["MSH-9-3", "PID-5-2", "PV1-2", "EVN-2"]
+    },
+    {
+      "name": "numbers as written",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ORU^R01^ORU_R01|C1|P|2.5",
+        "PID|1||1^^^H^MR||X",
+        "OBR|1|||CBC",
+        "OBX|1|NM|X||12345678901234567890||||||F",
+        "OBX|2|NM|X||007.50||||||F",
+        "OBX|3|NM|X||12,5||||||F"
+      ],
+      "paths": [
+        "OBX-5",
+        "/PATIENT_RESULT/ORDER_OBSERVATION/OBSERVATION(1)/OBX-5",
+        "/PATIENT_RESULT/ORDER_OBSERVATION/OBSERVATION(2)/OBX-5"
+      ]
+    }
+  ],
+  "write": [
+    {
+      "name": "set components",
+      "message": [
+        "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.5",
+        "EVN|A01",
+        "PID|1||1||X"
+      ],
+      "set": [
+        ["PID-5-1", "Yılmaz"],
+        ["PID-5-2", "Ayşe"],
+        ["PID-7", "19800512"],
+        ["PID-8", "F"]
+      ]
+    },
+    {
+      "name": "set values holding delimiters",
+      "message": [
+        "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.5",
+        "EVN|A01",
+        "PID|1||1||X"
+      ],
+      "set": [
+        ["PID-5-1", "a|b^c&d~e\\f"],
+        ["PID-5-2", "line1\rline2"]
+      ]
+    },
+    {
+      "name": "set repetitions and sub-components",
+      "message": [
+        "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.5",
+        "EVN|A01",
+        "PID|1||1||X"
+      ],
+      "set": [
+        ["PID-3(1)-1", "222"],
+        ["PID-3(1)-4-2", "1.2.3"],
+        ["PID-3(2)-5", "SS"]
+      ]
+    },
+    {
+      "name": "set in a new repeating segment",
+      "message": [
+        "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.5",
+        "EVN|A01",
+        "PID|1||1||X",
+        "PV1|1|I"
+      ],
+      "set": [
+        ["NK1-2-1", "Yılmaz"],
+        ["NK1(1)-2-1", "Kaya"]
+      ]
+    },
+    {
+      "name": "set empty and null",
+      "message": [
+        "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.5",
+        "EVN|A01",
+        "PID|1||1||X^Y|||F"
+      ],
+      "set": [
+        ["PID-5-2", ""],
+        ["PID-8", "\"\""]
+      ]
+    },
+    {
+      "name": "set through groups",
+      "message": [
+        "MSH|^~\\&|LIS|GHH|EHR|GHH|20250302083000+0300||ORU^R01^ORU_R01|LAB00042|P|2.5.1",
+        "PID|1||123456^^^GHH^MR||Yılmaz^Ayşe",
+        "PV1|1|I",
+        "ORC|RE|ORD1001",
+        "OBR|1|ORD1001|LAB1001|58410-2^CBC panel^LN",
+        "OBX|1|NM|6690-2^Leukocytes^LN||7.2|10*3/uL^^UCUM|4.0-10.0|N|||F",
+        "OBX|2|NM|718-7^Hemoglobin^LN||11.1|g/dL^^UCUM|12.0-16.0|L|||F",
+        "ORC|RE|ORD1002",
+        "OBR|2|ORD1002|LAB1002|24323-8^Metabolic panel^LN",
+        "OBX|1|NM|2345-7^Glucose^LN||132|mg/dL^^UCUM|70-99|H|||F",
+        "NTE|1||Fasting sample."
+      ],
+      "set": [
+        ["/PATIENT_RESULT/ORDER_OBSERVATION(1)/OBSERVATION(0)/OBX-5", "140"],
+        ["/PATIENT_RESULT/ORDER_OBSERVATION(1)/OBSERVATION(1)/OBX-5", "1.0"]
+      ]
+    },
+    {
+      "name": "set in a 2.3 message",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A01|C1|P|2.3",
+        "EVN|A01",
+        "PID|1||1||X",
+        "PV1|1|I"
+      ],
+      "set": [
+        ["PID-5-1", "Kaya"],
+        ["PID-11-3", "İstanbul"],
+        ["PV1-3-2", "12"]
+      ]
+    },
+    {
+      "name": "set with custom delimiters",
+      "message": [
+        "MSH#$*@%#APP#FAC#####ADT$A01$ADT_A01#C1#P#2.5",
+        "EVN#A01",
+        "PID#1##1##X"
+      ],
+      "set": [
+        ["PID-5-1", "a#b$c*d%e@f"],
+        ["PID-5-2", "Ayşe"]
+      ]
+    },
+    {
+      "name": "set a new order in an ORM",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ORM^O01^ORM_O01|C1|P|2.5",
+        "PID|1||123||Doe",
+        "ORC|NW|ORD1",
+        "OBR|1|ORD1||CBC"
+      ],
+      "set": [
+        ["/ORDER(1)/ORC-1", "NW"],
+        ["/ORDER(1)/ORC-2", "ORD2"]
+      ]
+    },
+    {
+      "name": "set MSH fields",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A01^ADT_A01|C1|P|2.5",
+        "EVN|A01",
+        "PID|1||1||X"
+      ],
+      "set": [
+        ["MSH-3-1", "NEWAPP"],
+        ["MSH-3-2", "1.2.3"],
+        ["MSH-3-3", "ISO"],
+        ["MSH-11", "T"]
+      ]
+    },
+    {
+      "name": "set a value needing every escape",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A01^ADT_A01|C1|P|2.5",
+        "EVN|A01",
+        "PID|1||1||X",
+        "NTE|1"
+      ],
+      "set": [["NTE-3", "|^&~\\ \\H\\x\\N\\ \\.br\\ end"]]
+    }
+  ],
+  "escape": [
+    {
+      "name": "delimiters and text",
+      "values": [
+        "a|b",
+        "a^b",
+        "a&b",
+        "a~b",
+        "a\\b",
+        "a\rb",
+        "a\nb",
+        "plain",
+        "Şahin Gül",
+        "\\F\\",
+        "x\\.br\\y",
+        "\\H\\bold\\N\\",
+        "\\X41\\",
+        "a\\Q1\\b",
+        "end\\"
+      ]
+    },
+    {
+      "name": "hex escapes",
+      "values": [
+        "a\\X000d\\b",
+        "a\\X0D\\b",
+        "a\\X0A\\b",
+        "a\\X000a\\b",
+        "a\\X0D0A\\b",
+        "\\X0d\\"
+      ]
+    },
+    {
+      "name": "formatting and highlighting",
+      "values": [
+        "\\H\\bold\\N\\",
+        "\\.br\\",
+        "\\.sp2\\",
+        "\\.in+4\\",
+        "\\C2842\\x\\C2B42\\",
+        "\\M244041\\",
+        "\\Zlocal\\",
+        "a \\.br\\ b|c"
+      ]
+    }
+  ],
+  "ack": [
+    {
+      "name": "original mode 2.5",
+      "message": [
+        "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.5",
+        "EVN|A01|20250301101500+0300",
+        "PID|1||123456^^^GHH&1.2.3&ISO^MR~98765432100^^^TRNVI^NNTUR||Yılmaz&Van&Der^Ayşe^Gül^^Dr.||19800512|F|||Atatürk Cad. 12^^İstanbul^^34000^TUR||^PRN^PH^^90^212^5551234",
+        "NK1|1|Yılmaz^Mehmet|SPO^Spouse^HL70063",
+        "NK1|2|Yılmaz^Zeynep|DAU^Daughter^HL70063",
+        "PV1|1|I|2000^2012^01||||004777^Doğan^Ali^^^Dr.|||SUR"
+      ]
+    },
+    {
+      "name": "enhanced mode",
+      "message": [
+        "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.5|||AL|NE",
+        "EVN|A01",
+        "PID|1||1||X"
+      ]
+    },
+    {
+      "name": "2.3",
+      "message": [
+        "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.3",
+        "EVN|A01",
+        "PID|1||1||X"
+      ]
+    },
+    {
+      "name": "2.1",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|198808181126||ADT^A01|C1|P|2.1",
+        "EVN|A01",
+        "PID|||1||X"
+      ]
+    },
+    {
+      "name": "2.7 with charset and HD",
+      "message": [
+        "MSH|^~\\&|APP^1.2.3^ISO|FAC|RAPP|RFAC|20250101||ORU^R01^ORU_R01|C1|P|2.7|||||TUR|UNICODE UTF-8",
+        "PID|1||1||X"
+      ]
+    },
+    {
+      "name": "2.2",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A01|C1|P|2.2",
+        "EVN|A01",
+        "PID|||1||X"
+      ]
+    },
+    {
+      "name": "2.4 with structure",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A04^ADT_A01|C1|P|2.4",
+        "EVN|A04",
+        "PID|1||1||X"
+      ]
+    },
+    {
+      "name": "2.6",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ORU^R01^ORU_R01|C1|P|2.6",
+        "PID|1||1||X"
+      ]
+    },
+    {
+      "name": "2.8",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A08^ADT_A01|C1|P|2.8",
+        "EVN||20250101",
+        "PID|1||1||X",
+        "PV1|1|I"
+      ]
+    },
+    {
+      "name": "custom delimiters",
+      "message": [
+        "MSH#$*@%#APP#FAC#RAPP#RFAC#20250101##ADT$A01$ADT_A01#C1#P#2.5",
+        "EVN#A01",
+        "PID#1##1##X"
+      ]
+    },
+    {
+      "name": "processing id T",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A01^ADT_A01|C1|T|2.5",
+        "EVN|A01",
+        "PID|1||1||X"
+      ]
+    }
+  ],
+  "nak": [
+    {
+      "name": "2.5 required field",
+      "message": [
+        "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.5",
+        "EVN|A01|20250301101500+0300",
+        "PID|1||123456^^^GHH&1.2.3&ISO^MR~98765432100^^^TRNVI^NNTUR||Yılmaz&Van&Der^Ayşe^Gül^^Dr.||19800512|F|||Atatürk Cad. 12^^İstanbul^^34000^TUR||^PRN^PH^^90^212^5551234",
+        "NK1|1|Yılmaz^Mehmet|SPO^Spouse^HL70063",
+        "NK1|2|Yılmaz^Zeynep|DAU^Daughter^HL70063",
+        "PV1|1|I|2000^2012^01||||004777^Doğan^Ali^^^Dr.|||SUR"
+      ],
+      "error": {
+        "code": 101,
+        "text": "PID-3 is required",
+        "segment": "PID",
+        "segmentRepetition": 1,
+        "field": 3
+      }
+    },
+    {
+      "name": "2.5 with repetition and component",
+      "message": [
+        "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.5",
+        "EVN|A01|20250301101500+0300",
+        "PID|1||123456^^^GHH&1.2.3&ISO^MR~98765432100^^^TRNVI^NNTUR||Yılmaz&Van&Der^Ayşe^Gül^^Dr.||19800512|F|||Atatürk Cad. 12^^İstanbul^^34000^TUR||^PRN^PH^^90^212^5551234",
+        "NK1|1|Yılmaz^Mehmet|SPO^Spouse^HL70063",
+        "NK1|2|Yılmaz^Zeynep|DAU^Daughter^HL70063",
+        "PV1|1|I|2000^2012^01||||004777^Doğan^Ali^^^Dr.|||SUR"
+      ],
+      "error": {
+        "code": 102,
+        "text": "Bad data",
+        "segment": "PID",
+        "segmentRepetition": 1,
+        "field": 3,
+        "fieldRepetition": 2,
+        "component": 4
+      }
+    },
+    {
+      "name": "2.5 application error, no location",
+      "message": [
+        "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.5",
+        "EVN|A01|20250301101500+0300",
+        "PID|1||123456^^^GHH&1.2.3&ISO^MR~98765432100^^^TRNVI^NNTUR||Yılmaz&Van&Der^Ayşe^Gül^^Dr.||19800512|F|||Atatürk Cad. 12^^İstanbul^^34000^TUR||^PRN^PH^^90^212^5551234",
+        "NK1|1|Yılmaz^Mehmet|SPO^Spouse^HL70063",
+        "NK1|2|Yılmaz^Zeynep|DAU^Daughter^HL70063",
+        "PV1|1|I|2000^2012^01||||004777^Doğan^Ali^^^Dr.|||SUR"
+      ],
+      "error": {
+        "code": 207,
+        "text": "Database down"
+      }
+    },
+    {
+      "name": "2.5 rejected",
+      "message": [
+        "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.5",
+        "EVN|A01|20250301101500+0300",
+        "PID|1||123456^^^GHH&1.2.3&ISO^MR~98765432100^^^TRNVI^NNTUR||Yılmaz&Van&Der^Ayşe^Gül^^Dr.||19800512|F|||Atatürk Cad. 12^^İstanbul^^34000^TUR||^PRN^PH^^90^212^5551234",
+        "NK1|1|Yılmaz^Mehmet|SPO^Spouse^HL70063",
+        "NK1|2|Yılmaz^Zeynep|DAU^Daughter^HL70063",
+        "PV1|1|I|2000^2012^01||||004777^Doğan^Ali^^^Dr.|||SUR"
+      ],
+      "error": {
+        "code": 200,
+        "text": "Unsupported message type",
+        "ackCode": "AR"
+      }
+    },
+    {
+      "name": "2.4 required field",
+      "message": [
+        "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.4",
+        "EVN|A01",
+        "PID|1"
+      ],
+      "error": {
+        "code": 101,
+        "text": "PID-3 is required",
+        "segment": "PID",
+        "segmentRepetition": 1,
+        "field": 3
+      }
+    },
+    {
+      "name": "2.3 required field",
+      "message": [
+        "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.3",
+        "EVN|A01",
+        "PID|1"
+      ],
+      "error": {
+        "code": 101,
+        "text": "PID-3 is required",
+        "segment": "PID",
+        "segmentRepetition": 1,
+        "field": 3
+      }
+    },
+    {
+      "name": "2.2 error",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|19880818||ADT^A01|C1|P|2.2",
+        "EVN|A01",
+        "PID|||1||X"
+      ],
+      "error": {
+        "code": 207,
+        "text": "Failed",
+        "segment": "PID",
+        "segmentRepetition": 1,
+        "field": 3
+      }
+    },
+    {
+      "name": "2.7 required field",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250101||ADT^A01^ADT_A01|C1|P|2.7",
+        "EVN||20250101",
+        "PID|1"
+      ],
+      "error": {
+        "code": 101,
+        "text": "PID-3 is required",
+        "segment": "PID",
+        "segmentRepetition": 1,
+        "field": 3
+      }
+    },
+    {
+      "name": "2.6 data type error with sub-component",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A01^ADT_A01|C1|P|2.6",
+        "EVN||20250101",
+        "PID|1"
+      ],
+      "error": {
+        "code": 102,
+        "text": "Bad",
+        "segment": "PID",
+        "segmentRepetition": 1,
+        "field": 3,
+        "fieldRepetition": 1,
+        "component": 4,
+        "subcomponent": 2
+      }
+    },
+    {
+      "name": "2.8 unsupported event",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A99|C1|P|2.8",
+        "EVN||20250101",
+        "PID|1"
+      ],
+      "error": {
+        "code": 201,
+        "text": "Unsupported event",
+        "ackCode": "AR"
+      }
+    },
+    {
+      "name": "2.5.1 segment sequence error",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ORU^R01^ORU_R01|C1|P|2.5.1",
+        "OBX|1"
+      ],
+      "error": {
+        "code": 100,
+        "text": "PID missing",
+        "segment": "OBX",
+        "segmentRepetition": 1
+      }
+    },
+    {
+      "name": "2.1 error",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A01|C1|P|2.1",
+        "EVN|A01",
+        "PID|||1||X"
+      ],
+      "error": {
+        "code": 207,
+        "text": "Failed",
+        "segment": "PID",
+        "segmentRepetition": 1,
+        "field": 3
+      }
+    }
+  ],
+  "charset": [
+    {
+      "name": "msh-18 UNICODE UTF-8",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A08^ADT_A01|C1|P|2.5||||||UNICODE UTF-8",
+        "EVN|A08",
+        "PID|1||1||Şahin^Gülşen Çağla"
+      ],
+      "paths": ["PID-5-1", "PID-5-2"]
+    },
+    {
+      "name": "msh-18 8859/9",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A08^ADT_A01|C1|P|2.5||||||8859/9",
+        "EVN|A08",
+        "PID|1||1||Şahin^Gülşen Çağla"
+      ],
+      "paths": ["PID-5-1", "PID-5-2"]
+    },
+    {
+      "name": "msh-18 8859/1",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A08^ADT_A01|C1|P|2.5||||||8859/1",
+        "EVN|A08",
+        "PID|1||1||Şahin^Gülşen Çağla"
+      ],
+      "paths": ["PID-5-1", "PID-5-2"]
+    },
+    {
+      "name": "msh-18 ASCII",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A08^ADT_A01|C1|P|2.5||||||ASCII",
+        "EVN|A08",
+        "PID|1||1||Şahin^Gülşen Çağla"
+      ],
+      "paths": ["PID-5-1", "PID-5-2"]
+    },
+    {
+      "name": "msh-18 empty",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A08^ADT_A01|C1|P|2.5",
+        "EVN|A08",
+        "PID|1||1||Şahin^Gülşen Çağla"
+      ],
+      "paths": ["PID-5-1", "PID-5-2"]
+    },
+    {
+      "name": "msh-18 UNICODE UTF-16",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A08^ADT_A01|C1|P|2.5||||||UNICODE UTF-16",
+        "EVN|A08",
+        "PID|1||1||Şahin^Gülşen Çağla"
+      ],
+      "paths": ["PID-5-1", "PID-5-2"]
+    },
+    {
+      "name": "msh-18 UNICODE UTF-32",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A08^ADT_A01|C1|P|2.5||||||UNICODE UTF-32",
+        "EVN|A08",
+        "PID|1||1||Şahin^Gülşen Çağla"
+      ],
+      "paths": ["PID-5-1", "PID-5-2"]
+    }
+  ],
+  "validate": [
+    {
+      "name": "valid",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A01^ADT_A01|C1|P|2.5",
+        "EVN|A01|20250301",
+        "PID|1||123^^^H^MR||Doe^John||19800512|F",
+        "PV1|1|I"
+      ]
+    },
+    {
+      "name": "bad dates and numbers",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A01^ADT_A01|C1|P|2.5",
+        "EVN|A01|2025-03-01",
+        "PID|X||123^^^H^MR||Doe^John||1980-05-12|F",
+        "PV1|1|I||||||||||||||||||||||||||||||||||||||abc"
+      ]
+    },
+    {
+      "name": "too long",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A01^ADT_A01|C1|P|2.5",
+        "EVN|A01|20250301",
+        "PID|1||111111111111111111111111111111^^^H^MR||DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD^John",
+        "PV1|1|I"
+      ]
+    },
+    {
+      "name": "bad time and timestamp",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ORU^R01^ORU_R01|C1|P|2.5",
+        "PID|1||1^^^H^MR||X",
+        "OBR|1|||CBC|||20251399",
+        "OBX|1|TM|X||25:61||||||F",
+        "OBX|2|NM|X||12a||||||F"
+      ]
+    },
+    {
+      "name": "2.3 bad id",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A01|C1|P|2.3",
+        "EVN|A01|20250301",
+        "PID|1||1||X||19800532|F",
+        "PV1|1|I"
+      ]
+    },
+    {
+      "name": "obx-5 TM by OBX-2",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ORU^R01^ORU_R01|C1|P|2.5",
+        "PID|1||1^^^H^MR||X",
+        "OBR|1|||CBC",
+        "OBX|1|TM|X||25:61||||||F"
+      ]
+    },
+    {
+      "name": "obx-5 NM by OBX-2",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ORU^R01^ORU_R01|C1|P|2.5",
+        "PID|1||1^^^H^MR||X",
+        "OBR|1|||CBC",
+        "OBX|1|NM|X||12a||||||F"
+      ]
+    },
+    {
+      "name": "obx-5 decimal comma",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ORU^R01^ORU_R01|C1|P|2.5",
+        "PID|1||1^^^H^MR||X",
+        "OBR|1|||CBC",
+        "OBX|1|NM|X||12,5||||||F"
+      ]
+    },
+    {
+      "name": "obx-5 DT by OBX-2",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ORU^R01^ORU_R01|C1|P|2.5",
+        "PID|1||1^^^H^MR||X",
+        "OBR|1|||CBC",
+        "OBX|1|DT|X||2025-01-01||||||F"
+      ]
+    },
+    {
+      "name": "obx-5 TS component",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ORU^R01^ORU_R01|C1|P|2.5",
+        "PID|1||1^^^H^MR||X",
+        "OBR|1|||CBC",
+        "OBX|1|TS|X||2025x||||||F"
+      ]
+    },
+    {
+      "name": "obx-5 good values",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ORU^R01^ORU_R01|C1|P|2.5",
+        "PID|1||1^^^H^MR||X",
+        "OBR|1|||CBC",
+        "OBX|1|NM|X||-12.50||||||F"
+      ]
+    },
+    {
+      "name": "bad set id",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A01^ADT_A01|C1|P|2.5",
+        "EVN|A01|20250301",
+        "PID|-1||1^^^H^MR||X",
+        "PV1|1|I"
+      ]
+    }
+  ],
+  "batch": [
+    {
+      "name": "file of batches",
+      "message": [
+        "FHS|^~\\&|APP|FAC|||20250301||F1||F1",
+        "BHS|^~\\&|APP|FAC|||20250301||B1||B1",
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A04^ADT_A01|M1|P|2.5",
+        "EVN|A04",
+        "PID|1||100^^^H^MR||Kaya",
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A08^ADT_A01|M2|P|2.5",
+        "EVN|A08",
+        "PID|1||200^^^H^MR||Yılmaz",
+        "BTS|2",
+        "BHS|^~\\&|APP|FAC|||20250301||B2||B2",
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A01^ADT_A01|M3|P|2.5",
+        "EVN|A01",
+        "PID|1||300^^^H^MR||Doğan",
+        "BTS|1",
+        "FTS|2"
+      ]
+    },
+    {
+      "name": "bare messages",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A04^ADT_A01|M1|P|2.5",
+        "EVN|A04",
+        "PID|1||100^^^H^MR||Kaya",
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A08^ADT_A01|M2|P|2.5",
+        "EVN|A08",
+        "PID|1||200^^^H^MR||Yılmaz",
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A01^ADT_A01|M3|P|2.5",
+        "EVN|A01",
+        "PID|1||300^^^H^MR||Doğan"
+      ]
+    }
+  ],
+  "structure": [
+    {
+      "name": "oru 2.5.1: patients, orders, observations",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ORU^R01^ORU_R01|C1|P|2.5.1",
+        "PID|1||1||A",
+        "PV1|1|I",
+        "OBR|1",
+        "OBX|1",
+        "NTE|1",
+        "OBX|2",
+        "OBR|2",
+        "NTE|1",
+        "OBX|3",
+        "PID|2||2||B",
+        "OBR|3",
+        "OBX|4"
+      ]
+    },
+    {
+      "name": "adt 2.5: optional groups and repeats",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A01^ADT_A01|C1|P|2.5",
+        "EVN|A01",
+        "PID|1||1||A",
+        "NK1|1",
+        "NK1|2",
+        "PV1|1|I",
+        "PV2|||REASON",
+        "OBX|1",
+        "AL1|1",
+        "DG1|1",
+        "PR1|1",
+        "ROL|1",
+        "GT1|1",
+        "IN1|1",
+        "IN2|1",
+        "IN1|2"
+      ]
+    },
+    {
+      "name": "adt 2.5: segments out of order",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A01^ADT_A01|C1|P|2.5",
+        "EVN|A01",
+        "PV1|1|I",
+        "PID|1||1||A",
+        "NK1|1"
+      ]
+    },
+    {
+      "name": "adt 2.5: z segments",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A01^ADT_A01|C1|P|2.5",
+        "EVN|A01",
+        "PID|1||1||A",
+        "ZPI|1",
+        "PV1|1|I",
+        "ZPV|1"
+      ]
+    },
+    {
+      "name": "orm 2.5: orders with details",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ORM^O01^ORM_O01|C1|P|2.5",
+        "PID|1||1||A",
+        "PV1|1|O",
+        "ORC|NW|1",
+        "OBR|1",
+        "NTE|1",
+        "DG1|1",
+        "OBX|1",
+        "ORC|NW|2",
+        "OBR|2"
+      ]
+    },
+    {
+      "name": "siu 2.5: resources",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||SIU^S12^SIU_S12|C1|P|2.5",
+        "SCH|1",
+        "PID|1||1||A",
+        "RGS|1",
+        "AIS|1",
+        "AIP|1",
+        "RGS|2",
+        "AIL|1"
+      ]
+    },
+    {
+      "name": "rsp 2.5.1: query responses",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||RSP^K22^RSP_K21|C1|P|2.5.1",
+        "MSA|AA|Q1",
+        "QAK|Q1|OK",
+        "QPD|Q22",
+        "PID|1||1||A",
+        "PID|2||2||B",
+        "PID|3||3||C"
+      ]
+    },
+    {
+      "name": "vxu 2.5.1: orders",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||VXU^V04^VXU_V04|C1|P|2.5.1",
+        "PID|1||1||A",
+        "ORC|RE",
+        "RXA|0|1",
+        "RXR|IM",
+        "OBX|1",
+        "ORC|RE",
+        "RXA|0|2"
+      ]
+    },
+    {
+      "name": "mdm 2.6",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||MDM^T02^MDM_T02|C1|P|2.6",
+        "EVN|T02",
+        "PID|1||1||A",
+        "PV1|1|O",
+        "TXA|1",
+        "OBX|1",
+        "OBX|2"
+      ]
+    },
+    {
+      "name": "oml 2.5.1",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||OML^O21^OML_O21|C1|P|2.5.1",
+        "PID|1||1||A",
+        "ORC|NW",
+        "OBR|1",
+        "SPM|1",
+        "ORC|NW",
+        "OBR|2"
+      ]
+    },
+    {
+      "name": "oru 2.5.1: z segments among groups",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ORU^R01^ORU_R01|C1|P|2.5.1",
+        "PID|1||1||A",
+        "ZPD|1",
+        "OBR|1",
+        "OBX|1",
+        "ZOX|1",
+        "OBX|2",
+        "OBR|2",
+        "ZOB|1",
+        "OBX|3",
+        "ZEN|1"
+      ]
+    }
+  ]
+}

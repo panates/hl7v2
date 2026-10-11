@@ -24,4 +24,10 @@ export enum IN3Segment {
   SecondOpinionStatus = 23,
   SecondOpinionDocumentationReceived = 24,
   SecondOpinionPhysician = 25,
+  CertificationType = 26,
+  CertificationCategory = 27,
+  OnlineVerificationDateTime = 28,
+  OnlineVerificationResult = 29,
+  OnlineVerificationResultErrorCode = 30,
+  OnlineVerificationResultCheckDigit = 31,
 }

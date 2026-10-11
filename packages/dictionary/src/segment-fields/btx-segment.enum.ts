@@ -18,4 +18,6 @@ export enum BTXSegment {
   BPTransfusionEndDateTimeOfStatus = 17,
   BPAdverseReactionType = 18,
   BPTransfusionInterruptedReason = 19,
+  BPUniqueID = 20,
+  ActionCode = 21,
 }

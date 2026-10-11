@@ -13,4 +13,5 @@ export enum TCCSegment {
   EquipmentDynamicRange = 12,
   Units = 13,
   ProcessingType = 14,
+  TestCriticality = 15,
 }

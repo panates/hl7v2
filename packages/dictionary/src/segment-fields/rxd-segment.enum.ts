@@ -33,4 +33,5 @@ export enum RXDSegment {
   PharmacyOrderType = 32,
   DispenseType = 33,
   PharmacyPhoneNumber = 34,
+  DispenseTagIdentifier = 35,
 }

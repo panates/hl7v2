@@ -1,0 +1,15 @@
+{
+  "name": "hl7v2-example-mllp-client",
+  "description": "An MLLP client: sending messages and waiting for their acknowledgments",
+  "version": "0.0.0",
+  "private": true,
+  "license": "BSD-3-Clause",
+  "type": "module",
+  "scripts": {
+    "start": "node --no-experimental-strip-types --import ../register.mjs src/index.ts"
+  },
+  "dependencies": {
+    "hl7v2": "*",
+    "hl7v2-net": "*"
+  }
+}

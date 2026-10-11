@@ -1,0 +1,14 @@
+{
+  "name": "hl7v2-example-validation",
+  "description": "Checking messages against their version: structure, fields, tables; errors as a NAK carries them",
+  "version": "0.0.0",
+  "private": true,
+  "license": "BSD-3-Clause",
+  "type": "module",
+  "scripts": {
+    "start": "node --no-experimental-strip-types --import ../register.mjs src/index.ts"
+  },
+  "dependencies": {
+    "hl7v2": "*"
+  }
+}

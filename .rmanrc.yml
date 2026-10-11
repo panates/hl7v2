@@ -1,0 +1,14 @@
+extends: '@panates/rman-preset'
+
+# All packages release together, under one version and one `v*` tag.
+group: true
+
+version:
+  # Bump every package in the group, not only the ones that changed.
+  cascade: group
+
+changelog:
+  # One changelog for the whole release, at the repository root.
+  groupBy: group
+  # Start the changelog at the 1.x line; v0.x is pre-release history.
+  startingAt: v1.0.0

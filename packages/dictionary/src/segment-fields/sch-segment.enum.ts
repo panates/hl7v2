@@ -26,4 +26,5 @@ export enum SCHSegment {
   FillerStatusCode = 25,
   PlacerOrderNumber = 26,
   FillerOrderNumber = 27,
+  AlternatePlacerOrderGroupNumber = 28,
 }

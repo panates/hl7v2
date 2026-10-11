@@ -1,0 +1,23 @@
+ORU^R01 (ORU_R01), LAB00042
+
+Patient: Ayşe Yılmaz
+
+  CBC panel - Blood by Automated count (58410-2)
+    Leukocytes [#/volume] in Blood                      7.2 10*3/uL    [4.0-10.0] 
+    Hemoglobin [Mass/volume] in Blood                  11.1 g/dL       [12.0-16.0] <- L
+    Platelets [#/volume] in Blood                       250 10*3/uL    [150-400] 
+
+  Comprehensive metabolic panel (24323-8)
+    Glucose [Mass/volume] in Serum or Plasma            132 mg/dL      [70-99] <- H
+    Creatinine [Mass/volume] in Serum or Plasma         0.9 mg/dL      [0.6-1.1] 
+      Note: Fasting sample.
+
+-- By path
+Second order : Comprehensive metabolic panel
+Its first OBX: Glucose [Mass/volume] in Serum or Plasma
+Value        : 132
+Observed at  : 2025-03-02T04:00:00.000Z
+
+-- As an object
+58410-2: 6690-2=7.2, 718-7=11.1, 777-3=250
+24323-8: 2345-7=132, 2160-0=0.9

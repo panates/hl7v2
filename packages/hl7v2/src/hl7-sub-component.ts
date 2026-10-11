@@ -1,8 +1,8 @@
-import {
+import type {
   HL7DataTypeDefinition,
   HL7FieldDefinition,
-  toHL7DateTime,
 } from 'hl7v2-dictionary';
+import { toHL7DateTime } from 'hl7v2-dictionary';
 import type { Hl7Component } from './hl7-component.js';
 import { HL7Error } from './hl7-error.js';
 import type { HL7Field } from './hl7-field.js';
@@ -60,8 +60,9 @@ export class Hl7SubComponent {
     this._value = decode && value != null ? decode(value) : value;
   }
 
+  /** No value: none set, or an empty string - written as nothing either way */
   isEmpty(): boolean {
-    return this._value == null;
+    return this._value == null || this._value === '';
   }
 
   fromHL7String(value: string, options?: Hl7SubComponentParseOptions) {
@@ -73,7 +74,8 @@ export class Hl7SubComponent {
         this.value = unescaped;
       else {
         const decode = this.definition.decode || this.typeDef.decode;
-        this.value = decode ? decode(unescaped) : unescaped;
+        /* Read from HL7 text: HL7's own format only */
+        this._value = decode ? decode(unescaped, true) : unescaped;
       }
     } catch (e: any) {
       if (!options?.strict) {
@@ -81,13 +83,11 @@ export class Hl7SubComponent {
         return;
       }
       const location = `${this.segment.segmentType}.${this.field.position}.${this.component.position}.${this.position}[${this.component.repetition.index}]`;
-      let segmentIndex = this.segment.index;
-      if (segmentIndex < 0) segmentIndex = this.message.segments.length;
       throw new HL7Error(
         `The field (${location}) contained data of the wrong data type. ${e.message}.`,
         {
           segmentType: this.segment.segmentType,
-          segmentSequence: segmentIndex,
+          segmentSequence: this.segment.sequence,
           fieldPosition: this.field.position,
           componentPosition: this.component.position,
           subComponentPosition: this.position,

@@ -1,0 +1,12 @@
+ADT^A01
+    ADT system: ADT^A01 of 123456
+  -> AA
+ORU^R01
+    Lab system: results of 123456
+  -> AA
+ORU^R01 for an unknown patient
+  -> AE - LAB: No such patient
+ORU^R01 with a preliminary result
+  -> AE - Only final results are routed
+ORM^O01
+  -> AR - No route for ORM^O01

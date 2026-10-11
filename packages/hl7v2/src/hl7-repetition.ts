@@ -1,18 +1,19 @@
 import {
   Hl7Component,
-  Hl7ComponentParseOptions,
+  type Hl7ComponentParseOptions,
   type Hl7ComponentSerializeOptions,
 } from './hl7-component.js';
 import type { HL7Field } from './hl7-field.js';
 import type { HL7Message } from './hl7-message.js';
 import type { HL7Segment } from './hl7-segment.js';
-import { Hl7SubComponent } from './hl7-sub-component.js';
+import type { Hl7SubComponent } from './hl7-sub-component.js';
 
-export class HL7Repetition {
+/** A repetition of a field; K is its field's component positions (see HL7Field) */
+export class HL7Repetition<K extends number = number> {
   declare protected _components: Hl7Component[];
-  readonly field: HL7Field;
+  readonly field: HL7Field<any>;
 
-  constructor(field: HL7Field) {
+  constructor(field: HL7Field<any>) {
     this.field = field;
     this.clear();
   }
@@ -47,7 +48,7 @@ export class HL7Repetition {
   /**
    *
    */
-  component(position: number = 1): Hl7Component {
+  component(position: K = 1 as K): Hl7Component {
     if (position < 1) throw new Error('Invalid component position');
     let component = this._components[position - 1];
     if (!component) {
@@ -65,30 +66,38 @@ export class HL7Repetition {
     return component;
   }
 
-  subComponent(componentPos: number, subComponentPos: number): Hl7SubComponent {
+  subComponent(componentPos: K, subComponentPos: number): Hl7SubComponent {
     return this.comp(componentPos).subcomp(subComponentPos);
   }
 
   /**
    * Alias of .component()
    */
-  comp(position: number): Hl7Component {
+  comp(position: K): Hl7Component {
     return this.component(position);
   }
 
   /**
    * Alias of .subComponent()
    */
-  subcomp(componentPos: number, subComponentPos: number): Hl7SubComponent {
+  subcomp(componentPos: K, subComponentPos: number): Hl7SubComponent {
     return this.subComponent(componentPos, subComponentPos);
   }
 
-  getValue(component?: number, subComponent?: number): any {
+  /**
+   * The value as a Date, for a DT, DTM or TS value (see parseHL7DateTime):
+   * read in its offset, or as local time without one. Undefined when empty.
+   */
+  getDate(component?: K, subComponent?: number): Date | undefined {
+    return this._components[(component || 1) - 1]?.getDate(subComponent);
+  }
+
+  getValue(component?: K, subComponent?: number): any {
     return this._components[(component || 1) - 1]?.getValue(subComponent);
   }
 
-  setValue(value: any, component?: number, subComponent?: number): this {
-    this.comp(component ?? 1).setValue(value, subComponent);
+  setValue(value: any, component?: K, subComponent?: number): this {
+    this.comp(component ?? (1 as K)).setValue(value, subComponent);
     return this;
   }
 
@@ -96,7 +105,7 @@ export class HL7Repetition {
     this._components = [];
     const items = value.split(this.field.message.componentSeparator);
     for (const s of items) {
-      this.comp(this._components.length + 1)!.fromHL7String(s, options);
+      this.comp((this._components.length + 1) as K).fromHL7String(s, options);
     }
   }
 

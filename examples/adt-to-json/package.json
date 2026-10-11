@@ -1,0 +1,14 @@
+{
+  "name": "hl7v2-example-adt-to-json",
+  "description": "Mapping an ADT message to an application JSON model and back, with the typed objects",
+  "version": "0.0.0",
+  "private": true,
+  "license": "BSD-3-Clause",
+  "type": "module",
+  "scripts": {
+    "start": "node --no-experimental-strip-types --import ../register.mjs src/index.ts"
+  },
+  "dependencies": {
+    "hl7v2": "*"
+  }
+}

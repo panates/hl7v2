@@ -1,0 +1,15 @@
+export enum OMCSegment {
+  SequenceNumberTestObservationMasterFile = 1,
+  SegmentActionCode = 2,
+  SegmentUniqueKey = 3,
+  ClinicalInformationRequest = 4,
+  CollectionEventProcessStep = 5,
+  CommunicationLocation = 6,
+  AnswerRequired = 7,
+  HintHelpText = 8,
+  TypeOfAnswer = 9,
+  MultipleAnswersAllowed = 10,
+  AnswerChoices = 11,
+  CharacterLimit = 12,
+  NumberOfDecimals = 13,
+}

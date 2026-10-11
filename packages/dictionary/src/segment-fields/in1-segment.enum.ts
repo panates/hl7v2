@@ -53,4 +53,5 @@ export enum IN1Segment {
   InsuredSBirthPlace = 52,
   VIPIndicator = 53,
   ExternalHealthPlanIdentifiers = 54,
+  InsuranceActionCode = 55,
 }

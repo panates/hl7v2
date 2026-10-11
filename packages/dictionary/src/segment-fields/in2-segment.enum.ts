@@ -71,4 +71,5 @@ export enum IN2Segment {
   InsuredEmployerOrganizationNameAndID = 70,
   Race = 71,
   PatientSRelationshipToInsured = 72,
+  CoPayAmount = 73,
 }

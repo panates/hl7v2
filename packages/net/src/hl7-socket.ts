@@ -1,21 +1,35 @@
 import { Buffer } from 'node:buffer';
+import tls from 'node:tls';
+import type { HL7Version } from 'hl7v2';
 import {
   CR,
+  DEFAULT_HL7_CHARSET,
+  findHL7Encoding,
   FS,
+  HL7Batch,
+  HL7BatchFile,
   HL7Message,
-  HL7Version,
   MSASegment,
   MSHSegment,
+  resolveHL7Encoding,
   VT,
 } from 'hl7v2';
-import iconv from 'iconv-lite';
-import { Socket } from 'net';
+import type { Socket } from 'net';
 import { AsyncEventEmitter } from 'node-events-async';
+import { ackModeOf } from './helpers/acknowledgment.js';
+import {
+  answersBatch,
+  identifyBatchFile,
+  isBatchData,
+} from './helpers/batch.js';
 import { FrameStream } from './helpers/frame-stream.js';
 
 export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
   declare protected _socket: Socket;
   protected _messageHooks = new Set<(resp: HL7Message) => boolean>();
+  protected _batchHooks = new Set<(reply: HL7BatchFile) => boolean>();
+  /** Received messages that answered one of ours (see sendMessageWaitAck) */
+  protected _responses = new WeakSet<HL7Message>();
   protected _frameStream: FrameStream;
   protected _waitPromises = new Set<Promise<any>>();
   protected _options: HL7Socket.Options;
@@ -29,6 +43,7 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
   constructor(socket: Socket, options: HL7Socket.Options) {
     super();
     this._options = options;
+    this.responseTimeout = options?.responseTimeout;
     const frameStream = new FrameStream({
       frameStart: VT,
       frameEnd: FS + CR,
@@ -37,6 +52,16 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
     frameStream.on('data', data => {
       this.emit('data', data);
       this._onData(data);
+    });
+    /**
+     * A framing error (such as "Max buffer size exceeded") leaves the stream
+     * unable to find the next frame, so the connection is closed, as HAPI
+     * closes it. Unhandled, it stopped the stream and left the socket open
+     * and deaf.
+     */
+    frameStream.on('error', error => {
+      this.emit('error', error);
+      this.socket?.destroy();
     });
     this._frameStream = frameStream;
     this._bindSocket(socket);
@@ -122,19 +147,19 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
     try {
       if (!this.connected) throw new Error('Socket is not connected');
       if (!this.socket.writable) throw new Error('Socket is not writable');
-      let charset = message.header.field(MSHSegment.CharacterSet).getValue();
-      if (!charset) {
-        charset = 'UNICODE UTF-8';
-        message.header.field(MSHSegment.CharacterSet).setValue(charset);
+      /** Fill MSH-18 only when every repetition is empty - never rewrite what the message carries */
+      if (
+        !message.charset &&
+        message.header.definition.fields[MSHSegment.CharacterSet]
+      ) {
+        message.header
+          .field(MSHSegment.CharacterSet)
+          .setValue(DEFAULT_HL7_CHARSET);
       }
-      let encoding = HL7Message.encodingMapping[charset] || charset || 'utf-8';
-      try {
-        iconv.getEncoder(charset);
-      } catch {
-        encoding = 'utf-8';
-      }
-      const str = message.toHL7String();
-      const buf = iconv.encode(str, encoding);
+      this._warnUnknownCharset(message, 'send');
+      const buf = message.toBuffer({
+        defaultCharset: this._options?.defaultCharset,
+      });
       const outBuffer = Buffer.concat([
         Buffer.from(VT),
         buf,
@@ -149,18 +174,134 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
     }
   }
 
-  async sendMessageWaitAck(message: HL7Message): Promise<HL7Message> {
-    this.sendMessage(message);
+  /**
+   * Sends a batch file, or a batch, in one MLLP block - FHS ... FTS, or
+   * BHS ... BTS - encoded in its first message's character set. A file or
+   * batch header without a control ID (FHS-11, BHS-11) is given one, for the
+   * reply to refer to.
+   */
+  sendBatch(batch: HL7BatchFile | HL7Batch): HL7BatchFile {
+    const file = asFile(batch);
+    try {
+      if (!this.connected) throw new Error('Socket is not connected');
+      if (!this.socket.writable) throw new Error('Socket is not writable');
+      identifyBatchFile(file);
+      const buf = file.toBuffer({
+        defaultCharset: this._options?.defaultCharset,
+      });
+      const outBuffer = Buffer.concat([
+        Buffer.from(VT),
+        buf,
+        Buffer.from(FS + CR),
+      ]);
+      this.socket.write(outBuffer);
+      this.emit('sendBatch', file);
+      this.emit('write', outBuffer);
+    } catch (err: any) {
+      this.emit('error', err);
+      throw err;
+    }
+    return file;
+  }
+
+  /**
+   * Sends a batch file or batch and waits for the reply batch: the first
+   * received batch referring to it (FHS-12, or the first BHS-12, the sent
+   * FHS-11 / BHS-11). Rejects on response timeout, socket error or close.
+   */
+  async sendBatchWaitAck(
+    batch: HL7BatchFile | HL7Batch,
+  ): Promise<HL7BatchFile> {
+    const file = asFile(batch);
+    identifyBatchFile(file);
     const responseTimeout = this.responseTimeout;
+    const waitPromise = new Promise<HL7BatchFile>((resolve, reject) => {
+      let responseTimer: NodeJS.Timeout | undefined;
+      const hook = (reply: HL7BatchFile): boolean => {
+        if (!answersBatch(reply, file)) return false;
+        cleanup();
+        resolve(reply);
+        return true;
+      };
+      const onError = (error: any) => {
+        cleanup();
+        reject(error);
+      };
+      const onClose = () => onError(new Error('Socket closed before response'));
+      const cleanup = () => {
+        clearTimeout(responseTimer);
+        this._batchHooks.delete(hook);
+        this.socket.removeListener('error', onError);
+        this.socket.removeListener('close', onClose);
+      };
+      this._batchHooks.add(hook);
+      this.socket.once('error', onError);
+      this.socket.once('close', onClose);
+      if (responseTimeout) {
+        responseTimer = setTimeout(() => {
+          onError(new Error('Response timeout'));
+        }, responseTimeout).unref();
+      }
+      try {
+        this.sendBatch(file);
+      } catch (e) {
+        onError(e);
+      }
+    });
+    this._waitPromises.add(waitPromise);
+    waitPromise
+      .finally(() => {
+        this._waitPromises.delete(waitPromise);
+      })
+      .catch(() => undefined);
+    return waitPromise;
+  }
+
+  /**
+   * Sends a message and waits for its response: the first received message
+   * whose MSA-2 is this message's control ID, whatever its type - an ACK, or an
+   * application response such as ADR^A19 for QRY^A19 - as HAPI's Initiator
+   * matches it. Rejects on response timeout, socket error or close.
+   */
+  async sendMessageWaitAck(
+    message: HL7Message,
+    options?: HL7Socket.WaitAckOptions,
+  ): Promise<HL7Message> {
+    const responseTimeout = this.responseTimeout;
+    const controlId = message.header
+      .field(MSHSegment.MessageControlID)
+      .getValue();
+    /*
+     * Enhanced mode: the accept acknowledgment (CA/CE/CR) comes first, the
+     * application one after it. By default the first one asked for resolves.
+     */
+    const mode = ackModeOf(message);
+    if (mode.accept === 'NE' && mode.application === 'NE') {
+      throw new Error(
+        'No acknowledgment to wait for: MSH-15 and MSH-16 are both NE',
+      );
+    }
+    const waitFor =
+      options?.acknowledgment ??
+      (mode.accept && mode.accept !== 'NE' ? 'accept' : 'application');
 
     const waitPromise = new Promise<HL7Message>((resolve, reject) => {
       let responseTimer: NodeJS.Timeout | undefined;
       const messageHook = (resp: HL7Message): boolean => {
-        const msgType2 = resp.header.field(MSHSegment.MessageType).getValue();
-        if (msgType2 !== 'ACK') return false;
         const msa = resp.getSegment('MSA');
-        const controlId2 = msa?.field(MSASegment.MessageControlID).getValue();
-        if (controlId2 !== controlId) return false;
+        if (!msa) return false;
+        if (msa.field(MSASegment.MessageControlID).getValue() !== controlId)
+          return false;
+        /*
+         * Waiting for the application acknowledgment, a CA is passed over; a
+         * CE or CR resolves, since no application acknowledgment will follow
+         */
+        if (
+          waitFor === 'application' &&
+          msa.field(MSASegment.AcknowledgmentCode).getValue() === 'CA'
+        ) {
+          return true;
+        }
         cleanup();
         resolve(resp);
         return true;
@@ -171,29 +312,45 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
         reject(error);
       };
 
+      const onClose = () => onError(new Error('Socket closed before response'));
+
       const cleanup = () => {
         clearTimeout(responseTimer);
         this._messageHooks.delete(messageHook);
         this.socket.removeListener('error', onError);
+        this.socket.removeListener('close', onClose);
       };
 
-      const controlId = message.header
-        .field(MSHSegment.MessageControlID)
-        .getValue();
-      this.socket.once('error', reject);
+      /** Listening before sending, so no response can arrive unseen */
       this._messageHooks.add(messageHook);
-      // this.on('message', messageHook);
+      this.socket.once('error', onError);
+      this.socket.once('close', onClose);
       if (responseTimeout) {
         responseTimer = setTimeout(() => {
           onError(new Error('Response timeout'));
         }, responseTimeout).unref();
       }
+      try {
+        this.sendMessage(message);
+      } catch (e) {
+        onError(e);
+      }
     });
     this._waitPromises.add(waitPromise);
-    waitPromise.finally(() => {
-      this._waitPromises.delete(waitPromise);
-    });
+    waitPromise
+      .finally(() => {
+        this._waitPromises.delete(waitPromise);
+      })
+      .catch(() => undefined);
     return waitPromise;
+  }
+
+  /**
+   * Whether a received message was the response to one sent with
+   * sendMessageWaitAck. A response is not routed to handlers and not acknowledged.
+   */
+  isResponse(message: HL7Message): boolean {
+    return this._responses.has(message);
   }
 
   setKeepAlive(enable?: boolean, initialDelay?: number) {
@@ -206,26 +363,90 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
     this._frameStream.maxBufferSize = value;
   }
 
+  /**
+   * Reports an MSH-18 value naming a character set this library does not
+   * know - the message is still read and sent, with the default character
+   * set - as HAPI logs "Invalid or unsupported charset in MSH-18"
+   */
+  protected _warnUnknownCharset(
+    message: HL7Message,
+    direction: 'receive' | 'send',
+  ) {
+    const charset = message.charset;
+    if (!charset || findHL7Encoding(charset)) return;
+    const encoding = resolveHL7Encoding(
+      undefined,
+      this._options?.defaultCharset,
+    );
+    this.emit('warning', {
+      code: 'UNKNOWN_CHARSET',
+      message:
+        `Unknown character set "${charset}" in MSH-18 of a message to ${direction}; ` +
+        `${direction === 'receive' ? 'decoded' : 'encoded'} as ${encoding}`,
+      charset,
+      encoding,
+      direction,
+      hl7Message: message,
+    });
+  }
+
   protected _onData(data: Buffer) {
+    if (isBatchData(data)) {
+      this._onBatchData(data);
+      return;
+    }
     try {
       const message = new HL7Message();
       message.parse(data, {
         strict: this._options?.parseStrict,
+        defaultCharset: this._options?.defaultCharset,
       });
+      this._warnUnknownCharset(message, 'receive');
       for (const hook of this._messageHooks) {
-        if (hook(message)) break;
+        if (hook(message)) {
+          this._responses.add(message);
+          break;
+        }
       }
       this.emit('message', message);
     } catch (err: any) {
       this.emit('error', err);
       if (!this.connected) return;
-      const raw = HL7Message.parseRaw(data);
+      /** A frame whose header cannot be read gets no NAK - there is nothing to address it to */
+      let raw: ReturnType<typeof HL7Message.parseRaw>;
+      try {
+        raw = HL7Message.parseRaw(data);
+      } catch {
+        return;
+      }
       const nak = new HL7Message(raw.version as HL7Version).createNak([err]);
       nak.header
         .field(MSHSegment.MessageType)
-        .fromHL7String('ACK^' + raw.messageType.split('^')[1] || '');
+        .fromHL7String('ACK^' + (raw.messageType?.split('^')[1] || ''));
       this.sendMessage(nak);
     }
+  }
+
+  /** A received batch: the reply to one of ours, or one to answer */
+  protected _onBatchData(data: Buffer) {
+    let file: HL7BatchFile;
+    try {
+      file = HL7BatchFile.parse(data, {
+        strict: this._options?.parseStrict,
+        defaultCharset: this._options?.defaultCharset,
+      });
+    } catch (err: any) {
+      /* No reply: a batch that cannot be read has nothing to answer by */
+      this.emit('error', err);
+      return;
+    }
+    for (const message of file.messages) {
+      this._warnUnknownCharset(message, 'receive');
+    }
+    for (const hook of this._batchHooks) {
+      if (hook(file)) return;
+    }
+    this.emit('batch', file);
   }
 
   _bindSocket(socket: Socket) {
@@ -247,7 +468,14 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
     };
 
     socket.on('connect', hl7EventListeners.onConnect);
-    socket.on('ready', hl7EventListeners.onReady);
+    /**
+     * A TLS client is ready once the handshake is done and the server
+     * verified - before it, a certificate the client refuses would only
+     * surface as an error after a message was sent
+     */
+    hl7EventListeners.readyEvent =
+      socket instanceof tls.TLSSocket ? 'secureConnect' : 'ready';
+    socket.on(hl7EventListeners.readyEvent, hl7EventListeners.onReady);
     socket.on('lookup', hl7EventListeners.onLookup);
     socket.on('timeout', hl7EventListeners.onTimeout);
     socket.on('close', hl7EventListeners.onClose);
@@ -261,7 +489,10 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
     const hl7EventListeners = (this.socket as any).__hl7EventListeners;
     if (hl7EventListeners) {
       this.socket.removeListener('connect', hl7EventListeners.onConnect);
-      this.socket.removeListener('ready', hl7EventListeners.onReady);
+      this.socket.removeListener(
+        hl7EventListeners.readyEvent,
+        hl7EventListeners.onReady,
+      );
       this.socket.removeListener('lookup', hl7EventListeners.onLookup);
       this.socket.removeListener('timeout', hl7EventListeners.onTimeout);
       this.socket.removeListener('close', hl7EventListeners.onClose);
@@ -283,9 +514,36 @@ export namespace HL7Socket {
       host: string,
     ];
     message: [message: HL7Message];
+    /** A batch received - not the reply to one sent with sendBatchWaitAck */
+    batch: [file: HL7BatchFile];
     send: [message: HL7Message];
+    sendBatch: [file: HL7BatchFile];
     data: [buffer: Buffer];
     write: [buffer: Buffer];
+    warning: [warning: Warning];
+  }
+
+  /** Something the socket worked around rather than failed on */
+  export interface Warning {
+    code: 'UNKNOWN_CHARSET';
+    message: string;
+    /** The MSH-18 value */
+    charset: string;
+    /** The encoding used instead */
+    encoding: string;
+    direction: 'receive' | 'send';
+    hl7Message: HL7Message;
+  }
+
+  export interface WaitAckOptions {
+    /**
+     * In enhanced mode (MSH-15/16 valued), which acknowledgment resolves:
+     * the accept one (CA/CE/CR) or the application one (AA/AE/AR; a CE or CR
+     * resolves it too, as no application acknowledgment follows them).
+     * Default: the accept one when MSH-15 asks for it, otherwise the
+     * application one.
+     */
+    acknowledgment?: 'accept' | 'application';
   }
 
   export interface Options {
@@ -294,5 +552,19 @@ export namespace HL7Socket {
     keepAliveInitialDelay?: number | undefined;
     maxBufferSize?: number;
     parseStrict?: boolean;
+    /**
+     * The character set used when MSH-18 is empty on a received message, or
+     * names one this library does not know: an HL7 table 0211 value or an
+     * iconv-lite encoding name. Default: UTF-8, which reads ASCII as well.
+     */
+    defaultCharset?: string;
   }
+}
+
+/** A batch as a file with no file header */
+function asFile(batch: HL7BatchFile | HL7Batch): HL7BatchFile {
+  if (batch instanceof HL7BatchFile) return batch;
+  const file = new HL7BatchFile();
+  file.batches.push(batch);
+  return file;
 }

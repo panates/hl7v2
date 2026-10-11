@@ -9,6 +9,7 @@
 /.nyc_output
 /.github
 **/*.md
+/packages/dictionary/data/hl7-data.js
 
 # IDEs and editors
 .project
@@ -24,3 +25,6 @@
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# Written by HAPI (npm run hapi:expected)
+packages/hl7v2/test/hapi/expected.json
