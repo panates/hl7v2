@@ -74,7 +74,8 @@ export class Hl7SubComponent {
         this.value = unescaped;
       else {
         const decode = this.definition.decode || this.typeDef.decode;
-        this.value = decode ? decode(unescaped) : unescaped;
+        /* Read from HL7 text: HL7's own format only */
+        this._value = decode ? decode(unescaped, true) : unescaped;
       }
     } catch (e: any) {
       if (!options?.strict) {

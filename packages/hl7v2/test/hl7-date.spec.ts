@@ -103,6 +103,25 @@ describe('hl7v2:dates', () => {
       expect(read.header.field(7).getDate()).toEqual(d);
     });
 
+    it('should keep a date read from HL7 text as written, never reinterpreted', () => {
+      const text =
+        'MSH|^~\\&|A|B|C|D|20250101||ADT^A01|1|P|2.5\rPID|1||1||X||1980-05-12';
+      /* Not HL7's format: kept as text, not turned into a local date/time */
+      const msg = HL7Message.parse(text);
+      expect(msg.get('PID-7')).toEqual('1980-05-12');
+      expect(
+        msg.validate({ structure: false }).map(e => e.hl7ErrorCode),
+      ).toEqual([102]);
+      expect(() => HL7Message.parse(text, { strict: true })).toThrow(
+        'not a valid HL7 date/time',
+      );
+      /* Given in code, an ISO 8601 date/time is still taken */
+      msg.set('PID-7', '1980-05-12T10:30:00Z');
+      expect(msg.getDate('PID-7')!.toISOString()).toEqual(
+        '1980-05-12T10:30:00.000Z',
+      );
+    });
+
     it('should take an ISO 8601 string', () => {
       const iso = '2025-01-02T03:04:05Z';
       expect(parseHL7DateTime(toHL7DateTime(iso)).toISOString()).toEqual(

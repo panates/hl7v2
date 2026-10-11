@@ -28,8 +28,9 @@ const TYPE_CODECS: Record<
   DT: { decode: toHL7Date, encode: toHL7Date },
   DTM: { decode: toHL7DateTime, encode: toHL7DateTime },
   TM: { decode: toHL7Time, encode: toHL7Time },
-  NM: { decode: toNumber },
-  SI: { decode: toInteger },
+  /* Wrapped: valgen's second argument is its options, not decode's `read` */
+  NM: { decode: v => toNumber(v) },
+  SI: { decode: v => toInteger(v) },
 };
 
 /** Conversions on a component of a composite type: the time of a TS */

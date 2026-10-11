@@ -45,12 +45,13 @@ function checkParts(
 }
 
 /** A Date, or an ISO 8601 string (2025-01-02T03:04:05Z), as a Date; undefined for an HL7 value */
-function asDate(value: Date | string): Date | undefined {
+/* A Date, or an ISO 8601 string given in code; HL7 text read is never one */
+function asDate(value: Date | string, read?: boolean): Date | undefined {
   if (value instanceof Date) {
     if (isNaN(value.getTime())) throw new TypeError('Invalid Date');
     return value;
   }
-  if (/^\d{4}-\d{2}/.test(String(value).trim())) {
+  if (!read && /^\d{4}-\d{2}/.test(String(value).trim())) {
     const d = new Date(String(value).trim());
     if (isNaN(d.getTime())) {
       throw new TypeError(`Value "${value}" is not a valid date`);
@@ -123,8 +124,8 @@ export function parseHL7DateTime(value: string): Date {
 /* -------------------------------------------- codecs of the dictionary */
 
 /** DTM / TS: a value read is kept as written once checked; a Date is formatted */
-export function toHL7DateTime(value: Date | string): string {
-  const date = asDate(value);
+export function toHL7DateTime(value: Date | string, read?: boolean): string {
+  const date = asDate(value, read);
   if (date) return formatHL7DateTime(date);
   const v = String(value).trim();
   const m = DTM.exec(v);
@@ -134,8 +135,8 @@ export function toHL7DateTime(value: Date | string): string {
 }
 
 /** DT: a value read is kept as written once checked; a Date is formatted */
-export function toHL7Date(value: Date | string): string {
-  const date = asDate(value);
+export function toHL7Date(value: Date | string, read?: boolean): string {
+  const date = asDate(value, read);
   if (date) return formatHL7Date(date);
   const v = String(value).trim();
   const m = DT.exec(v);

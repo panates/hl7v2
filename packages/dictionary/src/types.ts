@@ -28,7 +28,12 @@ export interface HL7FieldDefinition {
    */
   truncate?: boolean;
   encode?: (v: any) => string;
-  decode?: (v: any) => any;
+  /**
+   * Reads a value into what the library holds. `read` is true for a value
+   * from HL7 text, which must be in HL7's own format; false for one given in
+   * code, which may be more (a Date, an ISO 8601 date/time).
+   */
+  decode?: (v: any, read?: boolean) => any;
 }
 
 export interface HL7DataTypeDefinition {
@@ -38,7 +43,12 @@ export interface HL7DataTypeDefinition {
     HL7FieldDefinition
   >;
   encode?: (v: any) => string;
-  decode?: (v: any) => any;
+  /**
+   * Reads a value into what the library holds. `read` is true for a value
+   * from HL7 text, which must be in HL7's own format; false for one given in
+   * code, which may be more (a Date, an ISO 8601 date/time).
+   */
+  decode?: (v: any, read?: boolean) => any;
 }
 
 /** An HL7 table: the values a coded field takes (table 0001: F, M, ...) */

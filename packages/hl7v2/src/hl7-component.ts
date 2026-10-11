@@ -166,7 +166,9 @@ export class Hl7Component {
         if (Buffer.isBuffer(unescaped) || unescaped == null)
           (this._data as any)._value = unescaped;
         else
-          (this._data as any)._value = decode ? decode(unescaped) : unescaped;
+          (this._data as any)._value = decode
+            ? decode(unescaped, true)
+            : unescaped;
       } catch (e: any) {
         if (!options?.strict) {
           (this._data as any)._value = unescaped;

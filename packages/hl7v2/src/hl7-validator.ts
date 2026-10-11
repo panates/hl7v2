@@ -197,7 +197,7 @@ function checkValue(
   const decode = def.decode || component.typeDef.decode;
   if (!decode) return;
   try {
-    decode(value);
+    decode(value, true);
   } catch (e: any) {
     errors.push(
       error(102, `${name} is not a valid ${def.type}: ${e.message}`, location),
