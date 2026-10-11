@@ -98,10 +98,9 @@ A message of a version in between - 2.5.2, say - is read by the nearest one belo
 
 ## Requirements
 
-| Requirement | Version          | For                        |
-| ----------- | ---------------- | -------------------------- |
-| Node.js     | 20 or later      | all three packages         |
-| TypeScript  | 5.4 or later     | the types - optional       |
+Node.js 20 or later.
+
+The packages are plain JavaScript (ES modules) and need nothing else. They ship their type declarations: TypeScript projects use them as they are, with TypeScript 5.4 or later.
 
 ## Development
 
