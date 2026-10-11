@@ -181,6 +181,75 @@ describe('net:exchange', () => {
     });
   });
 
+  describe('unknown character sets', () => {
+    it('should warn and still answer, on both sides', async () => {
+      const warnings: string[] = [];
+      server.on('warning', w =>
+        warnings.push(`server ${w.direction} ${w.charset} ${w.encoding}`),
+      );
+      let received: HL7Message | undefined;
+      server.use(req => {
+        received = req.message;
+      });
+      client = Hl7Client.createClient({ host: 'localhost', port });
+      client.on('warning', w =>
+        warnings.push(`client ${w.direction} ${w.charset} ${w.encoding}`),
+      );
+      const msg = newMessage();
+      msg.header.field(MSHSegment.CharacterSet).setValue('ANSI');
+      const ack = await client.sendMessageWaitAck(msg);
+      expect(ack.messageType).toEqual('ACK^R01');
+      expect(received).toBeDefined();
+      /* the ACK carries the request's MSH-18, so it warns on the way back too */
+      expect(warnings).toEqual([
+        'client send ANSI utf-8',
+        'server receive ANSI utf-8',
+        'server send ANSI utf-8',
+        'client receive ANSI utf-8',
+      ]);
+    });
+
+    it('should use the configured default character set', async () => {
+      const s2 = HL7Server.createServer(undefined, {
+        defaultCharset: '8859/9',
+      });
+      await s2.listen(0);
+      const warnings: string[] = [];
+      s2.on('warning', w => warnings.push(w.encoding));
+      let name: string | undefined;
+      s2.use(req => {
+        name = req.message.getSegment('PID')!.field(5).toHL7String();
+      });
+      client = Hl7Client.createClient({
+        host: 'localhost',
+        port: (s2.address() as AddressInfo).port,
+        defaultCharset: '8859/9',
+      });
+      const msg = newMessage();
+      msg.header.field(MSHSegment.CharacterSet).setValue('ANSI');
+      msg.addSegment('PID').field(5).fromHL7String('Şahin^Gül');
+      await client.sendMessageWaitAck(msg);
+      await client.close();
+      client = undefined;
+      await s2.close();
+      expect(name).toEqual('Şahin^Gül');
+      expect(warnings[0]).toEqual('latin5');
+    });
+
+    it('should not warn for an empty or standard character set', async () => {
+      const warnings: unknown[] = [];
+      server.on('warning', w => warnings.push(w));
+      client = Hl7Client.createClient({ host: 'localhost', port });
+      client.on('warning', w => warnings.push(w));
+      for (const charset of ['', 'UNICODE UTF-8', '8859/9']) {
+        const msg = newMessage();
+        msg.header.field(MSHSegment.CharacterSet).setValue(charset);
+        await client.sendMessageWaitAck(msg);
+      }
+      expect(warnings).toEqual([]);
+    });
+  });
+
   describe('router', () => {
     it('should run handlers in numeric priority order', async () => {
       const router = new HL7Router();

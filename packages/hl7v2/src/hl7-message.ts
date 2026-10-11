@@ -172,8 +172,10 @@ export class HL7Message {
   /**
    * Serializes the message and encodes it with the character set in MSH-18.
    * Characters the character set cannot represent are transliterated to ASCII.
+   * A character set this library does not know is encoded with
+   * `options.defaultCharset` (UTF-8 unless given).
    */
-  toBuffer(options?: HL7MessageSerializeOptions): Buffer {
+  toBuffer(options?: HL7MessageEncodeOptions): Buffer {
     return encodeHL7String(
       this.toHL7String(options),
       this.charset,
@@ -182,11 +184,12 @@ export class HL7Message {
         this.repetitionSeparator +
         this.escapeCharacter +
         this.subComponentSeparator,
+      options?.defaultCharset,
     );
   }
 
   parse(input: string | Buffer, options?: HL7MessageParseOptions) {
-    const raw = HL7Message.parseRaw(input);
+    const raw = HL7Message.parseRaw(input, options?.defaultCharset);
     this._clear(raw.version as HL7Version);
     this.fieldSeparator = raw.fieldSeparator;
     this.componentSeparator = raw.componentSeparator;
@@ -503,7 +506,15 @@ export class HL7Message {
    *
    * @static
    */
-  static parseRaw(input: string | Buffer): {
+  /**
+   * Reads a message's header and decodes it with the character set MSH-18
+   * names; one this library does not know is decoded with `defaultCharset`
+   * (UTF-8 unless given), as HAPI decodes it with its configured default.
+   */
+  static parseRaw(
+    input: string | Buffer,
+    defaultCharset?: string,
+  ): {
     header: string;
     fieldSeparator: string;
     componentSeparator: string;
@@ -552,7 +563,7 @@ export class HL7Message {
       encodingChars[1],
       encodingChars[0],
     );
-    const encoding = bomEncoding || resolveHL7Encoding(charset);
+    const encoding = bomEncoding || resolveHL7Encoding(charset, defaultCharset);
 
     let str = Buffer.isBuffer(input) ? iconv.decode(input, encoding) : input;
     if (str.startsWith(VT)) str = str.substring(1);
@@ -583,9 +594,20 @@ export class HL7Message {
 
 export interface HL7MessageParseOptions extends Hl7SegmentParseOptions {
   dictionaries?: Record<string, HL7Dictionary>;
+  /**
+   * The character set a Buffer is decoded with when MSH-18 is empty or names
+   * one this library does not know: an HL7 table 0211 value or an iconv-lite
+   * encoding name. Default: UTF-8, which reads ASCII as well.
+   */
+  defaultCharset?: string;
 }
 
 export interface HL7MessageSerializeOptions extends Hl7SegmentSerializeOptions {}
+
+export interface HL7MessageEncodeOptions extends HL7MessageSerializeOptions {
+  /** The character set used when MSH-18 names one this library does not know */
+  defaultCharset?: string;
+}
 
 /**
  * Where the MSH segment ends: at the first CR, or at the first LF in a message

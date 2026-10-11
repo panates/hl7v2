@@ -101,10 +101,23 @@ export function charsetFromMSH18(
  * Resolves an HL7 character set (MSH-18) to an iconv-lite encoding name.
  * Falls back to utf-8 for an empty or unknown value.
  */
-export function resolveHL7Encoding(charset?: string): string {
-  if (!charset) return 'utf-8';
+export function resolveHL7Encoding(
+  charset?: string,
+  defaultCharset = 'utf-8',
+): string {
+  return findHL7Encoding(charset) ?? findHL7Encoding(defaultCharset) ?? 'utf-8';
+}
+
+/**
+ * The iconv-lite encoding an MSH-18 value names, or undefined when it names
+ * none this library knows - HL7 table 0211 or an encoding name iconv-lite
+ * has. ANSI is neither: it means whatever code page the sender's Windows
+ * uses; map it yourself when you know it, HL7_CHARSET_ENCODINGS.ANSI = 'windows-1254'.
+ */
+export function findHL7Encoding(charset?: string): string | undefined {
+  if (!charset) return;
   const encoding = HL7_CHARSET_ENCODINGS[charset] || charset;
-  return iconv.encodingExists(encoding) ? encoding : 'utf-8';
+  return iconv.encodingExists(encoding) ? encoding : undefined;
 }
 
 /**
@@ -118,8 +131,9 @@ export function encodeHL7String(
   str: string,
   charset?: string,
   delimiters = '|^~\\&',
+  defaultCharset?: string,
 ): Buffer {
-  const encoding = resolveHL7Encoding(charset);
+  const encoding = resolveHL7Encoding(charset, defaultCharset);
   const canonical = encoding.toLowerCase().replace(/[^a-z0-9]/g, '');
   if (UNICODE_ENCODINGS.has(canonical)) return iconv.encode(str, encoding);
 

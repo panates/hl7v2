@@ -21,6 +21,7 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
   protected _runningHandlers = new Set<Promise<void>>();
   protected _closing?: boolean;
   parseStrict?: boolean;
+  defaultCharset?: string;
   maxBufferPerSocket?: number;
   responseTimeout?: number;
 
@@ -59,6 +60,7 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
     this.maxBufferPerSocket = options?.maxBufferPerSocket;
     this.responseTimeout = options?.responseTimeout;
     this.parseStrict = options?.parseStrict;
+    this.defaultCharset = options?.defaultCharset;
     this._server = server;
     /**
      * A TLS server's 'connection' is the raw TCP socket, still encrypted; the
@@ -242,6 +244,7 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
     const socket = new HL7Socket(tcpSocket, {
       maxBufferSize: this.maxBufferPerSocket,
       parseStrict: this.parseStrict,
+      defaultCharset: this.defaultCharset,
     });
     this._sockets.add(socket);
     socket.on('close', () => {
@@ -249,6 +252,7 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
       this.emit('disconnect', socket);
     });
     socket.on('error', error => this.emit('error', error, socket));
+    socket.on('warning', warning => this.emit('warning', warning, socket));
     socket.on('message', message => {
       this.emit('message', message, socket);
       this._onMessage(message, socket);
@@ -306,6 +310,7 @@ export namespace HL7Server {
     send: [message: HL7Message, socket: HL7Socket];
     data: [Buffer, socket: HL7Socket];
     write: [buffer: Buffer, socket: HL7Socket];
+    warning: [warning: HL7Socket.Warning, socket: HL7Socket];
   }
 
   export interface Options {
@@ -314,5 +319,7 @@ export namespace HL7Server {
     maxBufferPerSocket?: number;
     responseTimeout?: number;
     parseStrict?: boolean;
+    /** See HL7Socket.Options.defaultCharset */
+    defaultCharset?: string;
   }
 }

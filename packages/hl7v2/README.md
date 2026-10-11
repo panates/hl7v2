@@ -107,6 +107,13 @@ const hl7 = message.toHL7String();
 Serializes the message and encodes it with the character set in MSH-18 (`ASCII`, `8859/1`, `8859/9`, `UNICODE UTF-8`, ...).
 A character the character set cannot represent is transliterated to its closest ASCII form (`Şahin Gül` -> `Sahin Gul` in `ASCII`) instead of becoming `?`.
 Character sets are mapped as HAPI HL7v2 maps them: the deprecated `UNICODE` is read as UTF-8, and `UNICODE UTF-16`/`UNICODE UTF-32` are written with a byte order mark, which is also how a received UTF-16/UTF-32 message is recognized.
+A character set the library does not know - HL7 table 0211 or an iconv-lite encoding name - is encoded with `options.defaultCharset`, UTF-8 unless given; `HL7Message.parse()` takes the same option. `ANSI` is such a value: it is not in the standard, and means whatever code page the sender's Windows uses. When you know which, map it:
+
+```typescript
+import { HL7_CHARSET_ENCODINGS } from 'hl7v2';
+
+HL7_CHARSET_ENCODINGS['ANSI'] = 'windows-1254';
+```
 `toBuffer(options?: HL7MessageSerializeOptions): Buffer`
 example
 

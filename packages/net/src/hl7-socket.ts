@@ -4,10 +4,12 @@ import type { HL7Version } from 'hl7v2';
 import {
   CR,
   DEFAULT_HL7_CHARSET,
+  findHL7Encoding,
   FS,
   HL7Message,
   MSASegment,
   MSHSegment,
+  resolveHL7Encoding,
   VT,
 } from 'hl7v2';
 import type { Socket } from 'net';
@@ -142,7 +144,10 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
           .field(MSHSegment.CharacterSet)
           .setValue(DEFAULT_HL7_CHARSET);
       }
-      const buf = message.toBuffer();
+      this._warnUnknownCharset(message, 'send');
+      const buf = message.toBuffer({
+        defaultCharset: this._options?.defaultCharset,
+      });
       const outBuffer = Buffer.concat([
         Buffer.from(VT),
         buf,
@@ -237,12 +242,41 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
     this._frameStream.maxBufferSize = value;
   }
 
+  /**
+   * Reports an MSH-18 value naming a character set this library does not
+   * know - the message is still read and sent, with the default character
+   * set - as HAPI logs "Invalid or unsupported charset in MSH-18"
+   */
+  protected _warnUnknownCharset(
+    message: HL7Message,
+    direction: 'receive' | 'send',
+  ) {
+    const charset = message.charset;
+    if (!charset || findHL7Encoding(charset)) return;
+    const encoding = resolveHL7Encoding(
+      undefined,
+      this._options?.defaultCharset,
+    );
+    this.emit('warning', {
+      code: 'UNKNOWN_CHARSET',
+      message:
+        `Unknown character set "${charset}" in MSH-18 of a message to ${direction}; ` +
+        `${direction === 'receive' ? 'decoded' : 'encoded'} as ${encoding}`,
+      charset,
+      encoding,
+      direction,
+      hl7Message: message,
+    });
+  }
+
   protected _onData(data: Buffer) {
     try {
       const message = new HL7Message();
       message.parse(data, {
         strict: this._options?.parseStrict,
+        defaultCharset: this._options?.defaultCharset,
       });
+      this._warnUnknownCharset(message, 'receive');
       for (const hook of this._messageHooks) {
         if (hook(message)) {
           this._responses.add(message);
@@ -336,6 +370,19 @@ export namespace HL7Socket {
     send: [message: HL7Message];
     data: [buffer: Buffer];
     write: [buffer: Buffer];
+    warning: [warning: Warning];
+  }
+
+  /** Something the socket worked around rather than failed on */
+  export interface Warning {
+    code: 'UNKNOWN_CHARSET';
+    message: string;
+    /** The MSH-18 value */
+    charset: string;
+    /** The encoding used instead */
+    encoding: string;
+    direction: 'receive' | 'send';
+    hl7Message: HL7Message;
   }
 
   export interface Options {
@@ -344,5 +391,11 @@ export namespace HL7Socket {
     keepAliveInitialDelay?: number | undefined;
     maxBufferSize?: number;
     parseStrict?: boolean;
+    /**
+     * The character set used when MSH-18 is empty on a received message, or
+     * names one this library does not know: an HL7 table 0211 value or an
+     * iconv-lite encoding name. Default: UTF-8, which reads ASCII as well.
+     */
+    defaultCharset?: string;
   }
 }

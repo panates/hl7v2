@@ -222,6 +222,18 @@ const ack = await client.sendMessageWaitAck(msg);
 - `keepAlive?: boolean`, `keepAliveInitialDelay?: number`: TCP keep-alive, applied to every connection.
 - `maxBufferSize?: number`: The largest frame accepted; a larger one closes the connection.
 - `reconnect?: ReconnectOptions`: How a lost connection is re-established.
+- `defaultCharset?: string`: The character set used when MSH-18 is empty on a received message, or names one the library does not know (HL7 table 0211 value or iconv-lite encoding name). Default: UTF-8, which reads ASCII as well. `HL7Server` takes it too.
+
+#### Warnings
+
+A message whose MSH-18 names an unknown character set (`ANSI`, for one) is still received and sent, with the default character set, and `Hl7Client`, `HL7Server` and `HL7Socket` emit a `warning` - as HAPI HL7v2 logs one:
+
+```typescript
+server.on('warning', (warning, socket) => {
+  // { code: 'UNKNOWN_CHARSET', charset: 'ANSI', encoding: 'utf-8', direction: 'receive', message, hl7Message }
+  console.warn(warning.message);
+});
+```
 
 ---
 

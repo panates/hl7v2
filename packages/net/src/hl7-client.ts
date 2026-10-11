@@ -74,6 +74,7 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
             this.emit('close');
           });
           socket.on('error', err => this.emit('error', err));
+          socket.on('warning', warning => this.emit('warning', warning));
           socket.on('message', message => {
             this.emit('message', message);
             this._onMessage(message);
@@ -242,6 +243,8 @@ export namespace Hl7Client {
     keepAlive?: boolean;
     keepAliveInitialDelay?: number;
     parseStrict?: boolean;
+    /** See HL7Socket.Options.defaultCharset */
+    defaultCharset?: string;
     reconnect?: ReconnectOptions;
   }
 

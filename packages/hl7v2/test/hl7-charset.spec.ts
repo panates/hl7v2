@@ -4,6 +4,8 @@ import {
   charsetFromMSH18,
   detectByteOrderMark,
   encodeHL7String,
+  findHL7Encoding,
+  HL7_CHARSET_ENCODINGS,
   HL7Message,
   MSHSegment,
   PIDSegment,
@@ -136,5 +138,40 @@ describe('hl7v2:charset', () => {
       data: Buffer.from([0x4d, 0x00]),
     });
     expect(detectByteOrderMark(Buffer.from('MSH|'))).toBeUndefined();
+  });
+
+  it('Should tell a known character set from an unknown one', () => {
+    expect(findHL7Encoding('8859/9')).toEqual('latin5');
+    expect(findHL7Encoding('windows-1254')).toEqual('windows-1254');
+    /* not an HL7 value, and not one code page: it is the sender's Windows' */
+    expect(findHL7Encoding('ANSI')).toBeUndefined();
+    expect(findHL7Encoding(undefined)).toBeUndefined();
+  });
+
+  it('Should use the given default for an unknown character set', () => {
+    const latin5 = iconv.encode(
+      'MSH|^~\\&|||||||ADT^A01|1|P|2.5||||||ANSI\rPID|||||Şahin^Gül',
+      'latin5',
+    );
+    /* UTF-8 by default: the latin5 bytes do not decode */
+    expect(
+      HL7Message.parse(latin5).getSegment('PID')!.field(5).toHL7String(),
+    ).not.toEqual(TURKISH_NAME);
+    const msg = HL7Message.parse(latin5, { defaultCharset: '8859/9' });
+    expect(msg.getSegment('PID')!.field(5).toHL7String()).toEqual(TURKISH_NAME);
+    expect(
+      iconv.decode(msg.toBuffer({ defaultCharset: 'windows-1254' }), 'win1254'),
+    ).toContain(TURKISH_NAME);
+  });
+
+  it('Should take a mapping added for a non-standard value', () => {
+    HL7_CHARSET_ENCODINGS.ANSI = 'windows-1254';
+    try {
+      expect(findHL7Encoding('ANSI')).toEqual('windows-1254');
+      const buf = messageWithName('ANSI').toBuffer();
+      expect(iconv.decode(buf, 'win1254')).toContain(TURKISH_NAME);
+    } finally {
+      delete HL7_CHARSET_ENCODINGS.ANSI;
+    }
   });
 });
