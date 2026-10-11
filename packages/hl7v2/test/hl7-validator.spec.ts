@@ -28,6 +28,14 @@ describe('hl7v2:validate', () => {
       expect(errors[0]).toMatchObject({ segmentSequence: 2, severity: 'E' });
     });
 
+    it('should take a field set to an empty string as missing', () => {
+      const msg = HL7Message.parse(VALID.join('\r'));
+      msg.header.field(10).setValue('');
+      msg.set('PID-3-1', '');
+      expect(msg.header.field(10).isEmpty()).toBe(true);
+      expect(summary(msg.validate())).toEqual(['101 MSH-10', '101 PID-3']);
+    });
+
     it('should report a missing required component of a present field', () => {
       /* In 2.7 CX.1 (ID Number) and CX.5 (Identifier Type Code) are required */
       const errors = validate([

@@ -83,7 +83,7 @@ export class Hl7Component {
   }
 
   isEmpty(): boolean {
-    if (this._data) return this._data.value == null;
+    if (this._data) return this._data.isEmpty();
     if (this._subComponents) {
       for (const sub of this._subComponents) {
         if (!sub.isEmpty()) return false;

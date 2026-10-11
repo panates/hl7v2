@@ -60,8 +60,9 @@ export class Hl7SubComponent {
     this._value = decode && value != null ? decode(value) : value;
   }
 
+  /** No value: none set, or an empty string - written as nothing either way */
   isEmpty(): boolean {
-    return this._value == null;
+    return this._value == null || this._value === '';
   }
 
   fromHL7String(value: string, options?: Hl7SubComponentParseOptions) {
