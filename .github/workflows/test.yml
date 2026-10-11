@@ -63,6 +63,7 @@ jobs:
         run: |
           rman check
           rman lint
+          rman format --check
 
       - name: Run unit tests
         run: npm run citest

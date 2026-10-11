@@ -1,6 +1,6 @@
 {
   "extends": "@panates/tsconfig/node.json",
   "compilerOptions": {
-    "sourceMap": true,
+    "sourceMap": true
   }
 }
