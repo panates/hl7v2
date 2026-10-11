@@ -247,6 +247,21 @@ The server and the client answer as the message's MSH-15 and MSH-16 ask:
 
 `sendMessageWaitAck(message, { acknowledgment })` chooses which one resolves in enhanced mode: `'accept'` (the default when MSH-15 asks for one) or `'application'` - a `CE` or `CR` resolves that too, since no application acknowledgment follows them.
 
+#### Batches
+
+One MLLP block may hold a batch instead of a message - `BHS ... BTS`, or a file `FHS ... FTS` (HL7 v2 chapter 2, "Batch protocol"). The server and the client take each message of a received batch in turn, as if it came alone - validated, routed to the handlers, acknowledged - and answer the batch with a batch: the same shape, sender and receiver swapped, each reply header referring to the one it answers (`BHS-12`, `FHS-12` = the received `BHS-11`, `FHS-11`). No message of a batch is acknowledged on its own.
+
+`batchAcknowledgment` (server and client option) chooses what the reply batch carries, as the standard leaves it to the receiver: `'all'` every message's acknowledgment (the default), `'errors'` only those of messages not accepted - an empty batch when all were - or `'none'`, no reply batch.
+
+```typescript
+const batch = HL7Batch.create();
+batch.messages.push(msg1, msg2, msg3);
+const reply = await client.sendBatchWaitAck(batch); // HL7BatchFile
+for (const ack of reply.messages) console.log(ack.get('MSA-2'), ack.get('MSA-1'));
+```
+
+`sendBatch()` sends without waiting; `sendBatchWaitAck()` resolves with the reply batch, matched by its reference control ID. A header without a control ID is given one. A batch file (`HL7BatchFile`) is sent the same way. `server.on('batch', (file, socket) => ...)` and `client.on('batch', file => ...)` report a received batch.
+
 #### Warnings
 
 A message whose MSH-18 names an unknown character set (`ANSI`, for one) is still received and sent, with the default character set, and `Hl7Client`, `HL7Server` and `HL7Socket` emit a `warning` - as HAPI HL7v2 logs one:

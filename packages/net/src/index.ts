@@ -1,4 +1,5 @@
 export * from './helpers/acknowledgment.js';
+export * from './helpers/batch.js';
 export * from './helpers/hl7-exchange-error.js';
 export * from './hl7-client.js';
 export * from './hl7-request.js';

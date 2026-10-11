@@ -1,12 +1,17 @@
 import type { Buffer } from 'node:buffer';
 import net from 'node:net';
 import tls from 'node:tls';
-import type { HL7Message, HL7ValidateOptions } from 'hl7v2';
+import type { HL7BatchFile, HL7Message, HL7ValidateOptions } from 'hl7v2';
 import { MSHSegment } from 'hl7v2';
 import type { AddressInfo, ListenOptions, Socket } from 'net';
 import { AsyncEventEmitter } from 'node-events-async';
 import { uid } from 'uid';
 import { acceptMessage } from './helpers/acknowledgment.js';
+import {
+  type HL7BatchAcknowledgment,
+  HL7BatchReplies,
+  replyBatchFile,
+} from './helpers/batch.js';
 import { HL7ExchangeError } from './helpers/hl7-exchange-error.js';
 import { isRoutable } from './helpers/is-routable.js';
 import { HL7Request } from './hl7-request.js';
@@ -28,6 +33,7 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
   parseStrict?: boolean;
   defaultCharset?: string;
   validate?: boolean | HL7ValidateOptions;
+  batchAcknowledgment?: HL7BatchAcknowledgment;
   maxBufferPerSocket?: number;
   responseTimeout?: number;
 
@@ -68,6 +74,7 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
     this.parseStrict = options?.parseStrict;
     this.defaultCharset = options?.defaultCharset;
     this.validate = options?.validate;
+    this.batchAcknowledgment = options?.batchAcknowledgment;
     this._server = server;
     /**
      * A TLS server's 'connection' is the raw TCP socket, still encrypted; the
@@ -271,6 +278,11 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
       this.emit('message', message, socket);
       this._onMessage(message, socket);
     });
+    socket.on('batch', file => {
+      this.emit('batch', file, socket);
+      this._onBatch(file, socket);
+    });
+    socket.on('sendBatch', file => this.emit('sendBatch', file, socket));
     socket.on('send', message => this.emit('send', message, socket));
     socket.on('data', data => this.emit('data', data, socket));
     socket.on('write', data => this.emit('write', data, socket));
@@ -278,20 +290,62 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
   }
 
   protected _onMessage(message: HL7Message, socket: HL7Socket) {
+    const running = this._process(message, socket);
+    this._runningHandlers.add(running);
+    running.finally(() => {
+      this._runningHandlers.delete(running);
+    });
+  }
+
+  /**
+   * Answers a received batch with a batch (see helpers/batch): its messages
+   * processed in turn, each as if it came alone, their acknowledgments
+   * gathered into the reply - none sent on their own
+   */
+  protected _onBatch(file: HL7BatchFile, socket: HL7Socket) {
+    const running = (async () => {
+      const replies: HL7Message[][] = [];
+      for (const batch of file.batches) {
+        const gathered = new HL7BatchReplies();
+        for (const message of batch.messages) {
+          await this._process(message, socket, gathered);
+        }
+        replies.push(gathered.messages);
+      }
+      const policy = this.batchAcknowledgment ?? 'all';
+      if (policy === 'none' || !socket.writable) return;
+      socket.sendBatch(replyBatchFile(file, replies, policy));
+    })().catch(e => {
+      this.emit('error', e, socket);
+    });
+    this._runningHandlers.add(running);
+    running.finally(() => {
+      this._runningHandlers.delete(running);
+    });
+  }
+
+  /** Processes one message: accepts it, routes it, answers it */
+  protected _process(
+    message: HL7Message,
+    socket: HL7Socket,
+    batch?: HL7BatchReplies,
+  ): Promise<void> {
     /** A response to our own request, or any acknowledgment, is not answered */
-    if (!isRoutable(message, socket)) return;
-    if (!acceptMessage(message, socket, this.validate)) return;
-    const waitPromise = new Promise<void>(resolve => {
+    if (!isRoutable(message, socket)) return Promise.resolve();
+    const send = (m: HL7Message) =>
+      batch ? batch.send(m) : socket.sendMessage(m);
+    if (!acceptMessage(message, send, this.validate)) return Promise.resolve();
+    return new Promise<void>(resolve => {
       if (!message.header.field(MSHSegment.MessageControlID).getValue())
         message.header.field(MSHSegment.MessageControlID).setValue(uid(8));
-      const req = new HL7Request(socket, message);
+      const req = new HL7Request(socket, message, batch);
       const res = new HL7Response(req);
       const timeoutTimer = setTimeout(() => {
         try {
           /** A handler that answered and is still running is not interrupted */
           if (res.finished) return;
           res.failed(new HL7ExchangeError('Response timeout'));
-          if (res.acknowledgmentWanted) res.socket.sendMessage(res.message);
+          if (res.acknowledgmentWanted) req.send(res.message);
         } catch (e: any) {
           /** The socket may be gone - sendMessage reports that as an error event too */
           this.emit('error', e, socket);
@@ -306,10 +360,6 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
         resolve();
       });
     });
-    this._runningHandlers.add(waitPromise);
-    waitPromise.finally(() => {
-      this._runningHandlers.delete(waitPromise);
-    });
   }
 }
 
@@ -322,7 +372,9 @@ export namespace HL7Server {
     drop: [data?: net.DropArgument];
     error: [error: Error, HL7Socket | undefined];
     message: [message: HL7Message, socket: HL7Socket];
+    batch: [file: HL7BatchFile, socket: HL7Socket];
     send: [message: HL7Message, socket: HL7Socket];
+    sendBatch: [file: HL7BatchFile, socket: HL7Socket];
     data: [Buffer, socket: HL7Socket];
     write: [buffer: Buffer, socket: HL7Socket];
     warning: [warning: HL7Socket.Warning, socket: HL7Socket];
@@ -342,5 +394,7 @@ export namespace HL7Server {
      * its errors and is not passed to the handlers. Default false.
      */
     validate?: boolean | HL7ValidateOptions;
+    /** Which acknowledgments a received batch is answered with; default 'all' */
+    batchAcknowledgment?: HL7BatchAcknowledgment;
   }
 }

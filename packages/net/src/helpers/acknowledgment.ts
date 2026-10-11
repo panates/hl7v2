@@ -74,9 +74,14 @@ export function ackCodeOf(message: HL7Message): string {
  */
 export function acceptMessage(
   message: HL7Message,
-  socket: HL7Socket,
+  /** Where an acknowledgment goes: the socket, or a function sending it */
+  socket: HL7Socket | ((ack: HL7Message) => void),
   validate: boolean | HL7ValidateOptions | undefined,
 ): boolean {
+  const send =
+    typeof socket === 'function'
+      ? socket
+      : (m: HL7Message) => socket.sendMessage(m);
   const errors = validate
     ? message
         .validate(validate === true ? undefined : validate)
@@ -87,12 +92,12 @@ export function acceptMessage(
     const ack = errors.length
       ? message.createNak(errors, 'accept')
       : message.createAck('CA');
-    if (ackWanted(mode.accept, ackCodeOf(ack))) socket.sendMessage(ack);
+    if (ackWanted(mode.accept, ackCodeOf(ack))) send(ack);
     return !errors.length;
   }
   if (errors.length) {
     const nak = message.createNak(errors);
-    if (ackWanted(mode.application, ackCodeOf(nak))) socket.sendMessage(nak);
+    if (ackWanted(mode.application, ackCodeOf(nak))) send(nak);
     return false;
   }
   return true;

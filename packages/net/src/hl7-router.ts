@@ -195,7 +195,7 @@ export class HL7Router {
   protected _finalHandler(req: HL7Request, res: HL7Response) {
     /** Unless the request's MSH-16 asks for no such acknowledgment */
     if (!res.finished && res.acknowledgmentWanted) {
-      req.socket.sendMessage(res.message);
+      req.send(res.message);
     }
   }
 }

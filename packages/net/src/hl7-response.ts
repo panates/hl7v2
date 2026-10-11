@@ -24,7 +24,8 @@ export class HL7Response {
       this._finished = true;
       this.dispose();
     };
-    request.socket.on('send', this._onSend);
+    if (request.batch) request.batch.listeners.add(this._onSend);
+    else request.socket.on('send', this._onSend);
   }
 
   get socket(): HL7Socket {
@@ -46,6 +47,7 @@ export class HL7Response {
 
   /** Stops watching the socket; called once the request is handled */
   dispose() {
+    this.request.batch?.listeners.delete(this._onSend);
     this.request.socket.removeListener('send', this._onSend);
   }
 

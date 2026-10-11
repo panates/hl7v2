@@ -6,6 +6,8 @@ import {
   DEFAULT_HL7_CHARSET,
   findHL7Encoding,
   FS,
+  HL7Batch,
+  HL7BatchFile,
   HL7Message,
   MSASegment,
   MSHSegment,
@@ -15,11 +17,17 @@ import {
 import type { Socket } from 'net';
 import { AsyncEventEmitter } from 'node-events-async';
 import { ackModeOf } from './helpers/acknowledgment.js';
+import {
+  answersBatch,
+  identifyBatchFile,
+  isBatchData,
+} from './helpers/batch.js';
 import { FrameStream } from './helpers/frame-stream.js';
 
 export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
   declare protected _socket: Socket;
   protected _messageHooks = new Set<(resp: HL7Message) => boolean>();
+  protected _batchHooks = new Set<(reply: HL7BatchFile) => boolean>();
   /** Received messages that answered one of ours (see sendMessageWaitAck) */
   protected _responses = new WeakSet<HL7Message>();
   protected _frameStream: FrameStream;
@@ -164,6 +172,89 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
   }
 
   /**
+   * Sends a batch file, or a batch, in one MLLP block - FHS ... FTS, or
+   * BHS ... BTS - encoded in its first message's character set. A file or
+   * batch header without a control ID (FHS-11, BHS-11) is given one, for the
+   * reply to refer to.
+   */
+  sendBatch(batch: HL7BatchFile | HL7Batch): HL7BatchFile {
+    const file = asFile(batch);
+    try {
+      if (!this.connected) throw new Error('Socket is not connected');
+      if (!this.socket.writable) throw new Error('Socket is not writable');
+      identifyBatchFile(file);
+      const buf = file.toBuffer({
+        defaultCharset: this._options?.defaultCharset,
+      });
+      const outBuffer = Buffer.concat([
+        Buffer.from(VT),
+        buf,
+        Buffer.from(FS + CR),
+      ]);
+      this.socket.write(outBuffer);
+      this.emit('sendBatch', file);
+      this.emit('write', outBuffer);
+    } catch (err: any) {
+      this.emit('error', err);
+      throw err;
+    }
+    return file;
+  }
+
+  /**
+   * Sends a batch file or batch and waits for the reply batch: the first
+   * received batch referring to it (FHS-12, or the first BHS-12, the sent
+   * FHS-11 / BHS-11). Rejects on response timeout, socket error or close.
+   */
+  async sendBatchWaitAck(
+    batch: HL7BatchFile | HL7Batch,
+  ): Promise<HL7BatchFile> {
+    const file = asFile(batch);
+    identifyBatchFile(file);
+    const responseTimeout = this.responseTimeout;
+    const waitPromise = new Promise<HL7BatchFile>((resolve, reject) => {
+      let responseTimer: NodeJS.Timeout | undefined;
+      const hook = (reply: HL7BatchFile): boolean => {
+        if (!answersBatch(reply, file)) return false;
+        cleanup();
+        resolve(reply);
+        return true;
+      };
+      const onError = (error: any) => {
+        cleanup();
+        reject(error);
+      };
+      const onClose = () => onError(new Error('Socket closed before response'));
+      const cleanup = () => {
+        clearTimeout(responseTimer);
+        this._batchHooks.delete(hook);
+        this.socket.removeListener('error', onError);
+        this.socket.removeListener('close', onClose);
+      };
+      this._batchHooks.add(hook);
+      this.socket.once('error', onError);
+      this.socket.once('close', onClose);
+      if (responseTimeout) {
+        responseTimer = setTimeout(() => {
+          onError(new Error('Response timeout'));
+        }, responseTimeout).unref();
+      }
+      try {
+        this.sendBatch(file);
+      } catch (e) {
+        onError(e);
+      }
+    });
+    this._waitPromises.add(waitPromise);
+    waitPromise
+      .finally(() => {
+        this._waitPromises.delete(waitPromise);
+      })
+      .catch(() => undefined);
+    return waitPromise;
+  }
+
+  /**
    * Sends a message and waits for its response: the first received message
    * whose MSA-2 is this message's control ID, whatever its type - an ACK, or an
    * application response such as ADR^A19 for QRY^A19 - as HAPI's Initiator
@@ -297,6 +388,10 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
   }
 
   protected _onData(data: Buffer) {
+    if (isBatchData(data)) {
+      this._onBatchData(data);
+      return;
+    }
     try {
       const message = new HL7Message();
       message.parse(data, {
@@ -327,6 +422,28 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
         .fromHL7String('ACK^' + (raw.messageType?.split('^')[1] || ''));
       this.sendMessage(nak);
     }
+  }
+
+  /** A received batch: the reply to one of ours, or one to answer */
+  protected _onBatchData(data: Buffer) {
+    let file: HL7BatchFile;
+    try {
+      file = HL7BatchFile.parse(data, {
+        strict: this._options?.parseStrict,
+        defaultCharset: this._options?.defaultCharset,
+      });
+    } catch (err: any) {
+      /* No reply: a batch that cannot be read has nothing to answer by */
+      this.emit('error', err);
+      return;
+    }
+    for (const message of file.messages) {
+      this._warnUnknownCharset(message, 'receive');
+    }
+    for (const hook of this._batchHooks) {
+      if (hook(file)) return;
+    }
+    this.emit('batch', file);
   }
 
   _bindSocket(socket: Socket) {
@@ -394,7 +511,10 @@ export namespace HL7Socket {
       host: string,
     ];
     message: [message: HL7Message];
+    /** A batch received - not the reply to one sent with sendBatchWaitAck */
+    batch: [file: HL7BatchFile];
     send: [message: HL7Message];
+    sendBatch: [file: HL7BatchFile];
     data: [buffer: Buffer];
     write: [buffer: Buffer];
     warning: [warning: Warning];
@@ -436,4 +556,12 @@ export namespace HL7Socket {
      */
     defaultCharset?: string;
   }
+}
+
+/** A batch as a file with no file header */
+function asFile(batch: HL7BatchFile | HL7Batch): HL7BatchFile {
+  if (batch instanceof HL7BatchFile) return batch;
+  const file = new HL7BatchFile();
+  file.batches.push(batch);
+  return file;
 }

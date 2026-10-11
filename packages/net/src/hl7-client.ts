@@ -1,11 +1,21 @@
 import net from 'node:net';
 import tls from 'node:tls';
 import type { Backoff } from 'backoff';
-import type { HL7Message, HL7ValidateOptions } from 'hl7v2';
+import type {
+  HL7Batch,
+  HL7BatchFile,
+  HL7Message,
+  HL7ValidateOptions,
+} from 'hl7v2';
 import { AsyncEventEmitter } from 'node-events-async';
 import reconnectCore from 'reconnect-core';
 import type { StrictOmit } from 'ts-gems';
 import { acceptMessage } from './helpers/acknowledgment.js';
+import {
+  type HL7BatchAcknowledgment,
+  HL7BatchReplies,
+  replyBatchFile,
+} from './helpers/batch.js';
 import { isRoutable } from './helpers/is-routable.js';
 import { HL7Request } from './hl7-request.js';
 import { HL7Response } from './hl7-response.js';
@@ -80,7 +90,12 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
             this.emit('message', message);
             this._onMessage(message);
           });
+          socket.on('batch', file => {
+            this.emit('batch', file);
+            this._onBatch(file);
+          });
           socket.on('send', message => this.emit('send', message));
+          socket.on('sendBatch', file => this.emit('sendBatch', file));
           socket.on('data', data => this.emit('data', data));
         } else this._socket._bindSocket(tcpSocket);
         if (reconnecting) this.emit('reconnect', tcpSocket);
@@ -199,6 +214,20 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
     return this._socket!.sendMessageWaitAck(request, options);
   }
 
+  /** Sends a batch file or batch in one block (see HL7Socket.sendBatch()) */
+  async sendBatch(batch: HL7BatchFile | HL7Batch): Promise<HL7BatchFile> {
+    if (!this.connected) await this.connect();
+    return this._socket!.sendBatch(batch);
+  }
+
+  /** Sends a batch file or batch and waits for its reply batch */
+  async sendBatchWaitAck(
+    batch: HL7BatchFile | HL7Batch,
+  ): Promise<HL7BatchFile> {
+    if (!this.connected) await this.connect();
+    return this._socket!.sendBatchWaitAck(batch);
+  }
+
   setConnectTimeout(value: number | null) {
     this._options.connectTimeout = value ?? undefined;
   }
@@ -231,13 +260,47 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
   }
 
   protected _onMessage(message: HL7Message) {
+    this._process(message).catch(() => undefined);
+  }
+
+  /** Answers a received batch with a batch, as HL7Server does */
+  protected _onBatch(file: HL7BatchFile) {
+    const socket = this._socket!;
+    (async () => {
+      const replies: HL7Message[][] = [];
+      for (const batch of file.batches) {
+        const gathered = new HL7BatchReplies();
+        for (const message of batch.messages) {
+          await this._process(message, gathered);
+        }
+        replies.push(gathered.messages);
+      }
+      const policy = this._options.batchAcknowledgment ?? 'all';
+      if (policy === 'none' || !socket.writable) return;
+      socket.sendBatch(replyBatchFile(file, replies, policy));
+    })().catch(e => {
+      this.emit('error', e);
+    });
+  }
+
+  protected _process(
+    message: HL7Message,
+    batch?: HL7BatchReplies,
+  ): Promise<void> {
+    const socket = this._socket!;
     /** A response to our own request, or any acknowledgment, is not answered */
-    if (!isRoutable(message, this._socket!)) return;
-    if (!acceptMessage(message, this._socket!, this._options.validate)) return;
-    const req = new HL7Request(this._socket!, message);
+    if (!isRoutable(message, socket)) return Promise.resolve();
+    const send = (m: HL7Message) =>
+      batch ? batch.send(m) : socket.sendMessage(m);
+    if (!acceptMessage(message, send, this._options.validate))
+      return Promise.resolve();
+    const req = new HL7Request(socket, message, batch);
     const res = new HL7Response(req);
-    this._router.handle(req, res, () => {
-      if (res.error) this.emit('error', res.error);
+    return new Promise<void>(resolve => {
+      this._router.handle(req, res, () => {
+        if (res.error) this.emit('error', res.error);
+        resolve();
+      });
     });
   }
 }
@@ -263,6 +326,8 @@ export namespace Hl7Client {
      * its errors and is not passed to the handlers. Default false.
      */
     validate?: boolean | HL7ValidateOptions;
+    /** Which acknowledgments a received batch is answered with; default 'all' */
+    batchAcknowledgment?: HL7BatchAcknowledgment;
     reconnect?: ReconnectOptions;
   }
 
