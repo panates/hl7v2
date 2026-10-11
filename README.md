@@ -78,11 +78,30 @@ The [documentation](./doc/README.md) covers all three packages:
 
 Fourteen runnable programs in [examples](./examples/README.md) - reading and building messages, typed access, validation, lab results, mapping to JSON, character sets, batch files, an MLLP server and client, TLS, enhanced acknowledgments, a routing gateway, batches over MLLP. Each runs with `npm start`; CI checks their output.
 
-## Compatibility
+## HL7 versions
 
-- Node.js 20 or later.
-- TypeScript 5.4 or later, for the types.
-- HL7 v2.1, 2.2, 2.3, 2.3.1, 2.4, 2.5, 2.5.1, 2.6, 2.7, 2.7.1, 2.8, 2.8.1, 2.8.2, 2.9.
+Every HL7 v2 version from 2.1 to 2.9, each read and written by its own definitions:
+
+| Series | Versions                      |
+| ------ | ----------------------------- |
+| 2.1    | 2.1                           |
+| 2.2    | 2.2                           |
+| 2.3    | 2.3, 2.3.1                    |
+| 2.4    | 2.4                           |
+| 2.5    | 2.5, 2.5.1                    |
+| 2.6    | 2.6                           |
+| 2.7    | 2.7, 2.7.1                    |
+| 2.8    | 2.8, 2.8.1, 2.8.2             |
+| 2.9    | 2.9                           |
+
+A message of a version in between - 2.5.2, say - is read by the nearest one below it.
+
+## Requirements
+
+| Requirement | Version          | For                        |
+| ----------- | ---------------- | -------------------------- |
+| Node.js     | 20 or later      | all three packages         |
+| TypeScript  | 5.4 or later     | the types - optional       |
 
 ## Development
 
