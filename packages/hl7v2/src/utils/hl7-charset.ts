@@ -135,6 +135,13 @@ export function encodeHL7String(
 ): Buffer {
   const encoding = resolveHL7Encoding(charset, defaultCharset);
   const canonical = encoding.toLowerCase().replace(/[^a-z0-9]/g, '');
+  /* UTF-16 as Java writes it: big-endian after a BOM (FE FF), as HAPI sends it */
+  if (canonical === 'utf16') {
+    return Buffer.concat([
+      Buffer.from([0xfe, 0xff]),
+      iconv.encode(str, 'utf16be'),
+    ]);
+  }
   if (UNICODE_ENCODINGS.has(canonical)) return iconv.encode(str, encoding);
 
   const representable = new Map<string, boolean>();

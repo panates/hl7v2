@@ -109,8 +109,9 @@ describe('hl7v2:charset', () => {
   });
 
   it('Should write a byte order mark for UTF-16 and UTF-32', () => {
+    /* UTF-16 big-endian after FE FF, as Java and HAPI write it */
     const buf = messageWithName('UNICODE UTF-16').toBuffer();
-    expect(buf.subarray(0, 4).toString('hex')).toEqual('fffe4d00');
+    expect(buf.subarray(0, 4).toString('hex')).toEqual('feff004d');
   });
 
   it('Should decode by byte order mark before reading MSH-18', () => {
