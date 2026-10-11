@@ -11,8 +11,7 @@
     "tslib": "^2.8.1"
   },
   "devDependencies": {
-    "expect": "^30.5.2",
-    "hl7-dictionary": "^1.0.1"
+    "expect": "^30.5.2"
   },
   "scripts": {
     "test": "mocha"
