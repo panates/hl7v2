@@ -160,7 +160,7 @@ describe('dictionary:dictionaries', () => {
       expect(d.messages.ADT_A01.segments!.SFT).toBeDefined();
     });
 
-    it('should key repeated segments as HAPI does, naming their type', () => {
+    it('should key repeated segments by number, naming their type', () => {
       const a17 = dictionaries['2.5'].messages.ADT_A17.segments!;
       expect(a17.PID.segment).toBeUndefined();
       expect(a17.PID2).toMatchObject({ segment: 'PID', min: 1, max: 1 });

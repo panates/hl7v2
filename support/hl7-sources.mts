@@ -1,19 +1,16 @@
 /**
- * Reads the two references the dictionary is built and checked against:
+ * Reads HL7's v2 XML schemas, the source the dictionary is built and checked
+ * against. They are licensed by HL7 and not in the repository. Put the
+ * downloaded zips in support/hl7-schemas/ (git-ignored), from
+ * https://www.hl7.org/implement/standards/product_brief.cfm?product_id=185:
+ * "HL7 Version 2.x Messaging Schemas" (HL7-xml v2.6.zip ... v2.9.zip) and
+ * "Version 2 v2.xml XML Schemas for HL7 Version 2.5 and earlier"
+ * (Sun_HL7v2xsd.zip). Sun's set is used up to 2.5.1: it was regenerated from
+ * the HL7 database because HL7's own early schemas had errors, and it is the
+ * only one with 2.1-2.3.
  *
- * - HL7's v2 XML schemas, licensed by HL7 and not in the repository. Put the
- *   downloaded zips in support/hl7-schemas/ (git-ignored), from
- *   https://www.hl7.org/implement/standards/product_brief.cfm?product_id=185:
- *   "HL7 Version 2.x Messaging Schemas" (HL7-xml v2.6.zip ... v2.9.zip) and
- *   "Version 2 v2.xml XML Schemas for HL7 Version 2.5 and earlier"
- *   (Sun_HL7v2xsd.zip). Sun's set is used up to 2.5.1: it was regenerated from
- *   the HL7 database because HL7's own early schemas had errors, and it is the
- *   only one with 2.1-2.3.
- * - HAPI HL7v2's structure sources (MPL 1.1 / GPL), from Maven Central: a
- *   second reading of the same HL7 database, and the event map (ADT_A04 is an
- *   ADT_A01) the schemas do not have.
- *
- * Both are unpacked into node_modules/.cache.
+ * They are unpacked into node_modules/.cache. Trigger events (ADT_A04 is an
+ * ADT_A01), which the schemas do not have, are in trigger-events.json.
  */
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
@@ -24,24 +21,23 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export const root = path.resolve(__dirname, '..');
 export const schemasDir = path.join(__dirname, 'hl7-schemas');
 const cacheDir = path.join(root, 'node_modules/.cache');
-export const HAPI_VERSION = '2.6.0';
 
-/** version: [schema zip, directory inside it, HAPI package] */
-export const SOURCES: Record<string, [string, string, string | null]> = {
-  '2.1': ['Sun_HL7v2xsd.zip', 'hl7v2xsd/2.1', 'v21'],
-  '2.2': ['Sun_HL7v2xsd.zip', 'hl7v2xsd/2.2', 'v22'],
-  '2.3': ['Sun_HL7v2xsd.zip', 'hl7v2xsd/2.3', 'v23'],
-  '2.3.1': ['Sun_HL7v2xsd.zip', 'hl7v2xsd/2.3.1', 'v231'],
-  '2.4': ['Sun_HL7v2xsd.zip', 'hl7v2xsd/2.4', 'v24'],
-  '2.5': ['Sun_HL7v2xsd.zip', 'hl7v2xsd/2.5', 'v25'],
-  '2.5.1': ['Sun_HL7v2xsd.zip', 'hl7v2xsd/2.5.1', 'v251'],
-  '2.6': ['HL7-xml v2.6.zip', '', 'v26'],
-  '2.7': ['HL7-xml v2.7.zip', '', 'v27'],
-  '2.7.1': ['HL7-xml v2.7.1.zip', '', null],
-  '2.8': ['HL7-xml v2.8.zip', '', 'v28'],
-  '2.8.1': ['HL7-xml v2.8.1.zip', '', 'v281'],
-  '2.8.2': ['HL7-xml v2.8.2.zip', '', null],
-  '2.9': ['HL7-xml v2.9.zip', '', null],
+/** version: [schema zip, directory inside it] */
+export const SOURCES: Record<string, [string, string]> = {
+  '2.1': ['Sun_HL7v2xsd.zip', 'hl7v2xsd/2.1'],
+  '2.2': ['Sun_HL7v2xsd.zip', 'hl7v2xsd/2.2'],
+  '2.3': ['Sun_HL7v2xsd.zip', 'hl7v2xsd/2.3'],
+  '2.3.1': ['Sun_HL7v2xsd.zip', 'hl7v2xsd/2.3.1'],
+  '2.4': ['Sun_HL7v2xsd.zip', 'hl7v2xsd/2.4'],
+  '2.5': ['Sun_HL7v2xsd.zip', 'hl7v2xsd/2.5'],
+  '2.5.1': ['Sun_HL7v2xsd.zip', 'hl7v2xsd/2.5.1'],
+  '2.6': ['HL7-xml v2.6.zip', ''],
+  '2.7': ['HL7-xml v2.7.zip', ''],
+  '2.7.1': ['HL7-xml v2.7.1.zip', ''],
+  '2.8': ['HL7-xml v2.8.zip', ''],
+  '2.8.1': ['HL7-xml v2.8.1.zip', ''],
+  '2.8.2': ['HL7-xml v2.8.2.zip', ''],
+  '2.9': ['HL7-xml v2.9.zip', ''],
 };
 
 export const versionsWithSchemas = () =>
@@ -254,59 +250,11 @@ export function readSchemas(version: string): Schemas {
   return schemas;
 }
 
-/* ---------------------------------------------------------------- HAPI */
+const triggerEvents: Record<string, Record<string, string>> = JSON.parse(
+  fs.readFileSync(path.join(__dirname, 'trigger-events.json'), 'utf8'),
+);
 
-export function hapiSourceDir(version: string): string | undefined {
-  const v = SOURCES[version][2];
-  if (!v) return;
-  const dir = path.join(cacheDir, 'hapi-structures', v);
-  if (!fs.existsSync(dir)) {
-    const jar = path.join(cacheDir, 'hapi-structures', `${v}.jar`);
-    fs.mkdirSync(path.dirname(jar), { recursive: true });
-    execFileSync('curl', [
-      '-sfL',
-      '--retry',
-      '3',
-      '-o',
-      jar,
-      `https://repo1.maven.org/maven2/ca/uhn/hapi/hapi-structures-${v}/` +
-        `${HAPI_VERSION}/hapi-structures-${v}-${HAPI_VERSION}-sources.jar`,
-    ]);
-    unzipOnce(jar, dir);
-  }
-  return dir;
-}
-
-function hapiEventMap(version: string): Record<string, string> {
-  const dir = hapiSourceDir(version);
-  const file =
-    dir &&
-    path.join(dir, 'ca/uhn/hl7v2/parser/eventmap', `${version}.properties`);
-  const events: Record<string, string> = {};
-  if (!file || !fs.existsSync(file)) return events;
-  for (const line of fs.readFileSync(file, 'utf8').split('\n')) {
-    const [event, struct] = line.trim().split(/\s+/);
-    if (event && struct && struct !== '?' && !event.startsWith('#')) {
-      events[event] = struct;
-    }
-  }
-  return events;
-}
-
-/**
- * Trigger event to message structure (ADT_A04 -> ADT_A01), from HAPI's event
- * map, completed from the nearest versions: its 2.3 map is nearly empty, and
- * there is none for 2.7.1, 2.8.2 and 2.9. An event keeps its structure across
- * versions far more often than not; callers check that the structure exists.
- */
+/** Trigger event to message structure (ADT_A04 -> ADT_A01), by version */
 export function eventsFor(version: string): Record<string, string> {
-  const all = Object.keys(SOURCES);
-  const i = all.indexOf(version);
-  const farthestFirst = all
-    .map((v, j) => [v, Math.abs(j - i)] as const)
-    .sort((a, b) => b[1] - a[1])
-    .map(([v]) => v);
-  const events: Record<string, string> = {};
-  for (const v of farthestFirst) Object.assign(events, hapiEventMap(v));
-  return events;
+  return triggerEvents[version] ?? {};
 }

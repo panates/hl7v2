@@ -55,8 +55,8 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
     });
     /**
      * A framing error (such as "Max buffer size exceeded") leaves the stream
-     * unable to find the next frame, so the connection is closed, as HAPI
-     * closes it. Unhandled, it stopped the stream and left the socket open
+     * unable to find the next frame, so the connection is closed.
+     * Unhandled, it stopped the stream and left the socket open
      * and deaf.
      */
     frameStream.on('error', error => {
@@ -260,8 +260,7 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
   /**
    * Sends a message and waits for its response: the first received message
    * whose MSA-2 is this message's control ID, whatever its type - an ACK, or an
-   * application response such as ADR^A19 for QRY^A19 - as HAPI's Initiator
-   * matches it. Rejects on response timeout, socket error or close.
+   * application response such as ADR^A19 for QRY^A19. Rejects on response timeout, socket error or close.
    */
   async sendMessageWaitAck(
     message: HL7Message,
@@ -366,7 +365,7 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
   /**
    * Reports an MSH-18 value naming a character set this library does not
    * know - the message is still read and sent, with the default character
-   * set - as HAPI logs "Invalid or unsupported charset in MSH-18"
+   * set
    */
   protected _warnUnknownCharset(
     message: HL7Message,

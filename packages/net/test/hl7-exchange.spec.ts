@@ -13,7 +13,7 @@ function newMessage(messageType = 'ORU^R01', controlId?: string): HL7Message {
   return msg;
 }
 
-/** Message exchange, checked against how HAPI HL7v2 exchanges messages */
+/** Message exchange, as other HL7 systems exchange messages */
 describe('net:exchange', () => {
   let server: HL7Server;
   let client: Hl7Client | undefined;

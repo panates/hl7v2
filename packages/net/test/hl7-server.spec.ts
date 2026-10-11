@@ -219,7 +219,7 @@ describe('net:server', () => {
     );
   });
 
-  it('should exchange UTF-16 messages, as HAPI writes them', async () => {
+  it('should exchange UTF-16 messages, big-endian after a BOM', async () => {
     server = HL7Server.createServer();
     await server.listen(12345);
     let req: HL7Message | undefined;

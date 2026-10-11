@@ -6,8 +6,9 @@
  *
  * The schemas are the source of every segment, field, data type and message
  * structure. What they do not carry comes from elsewhere:
- * - trigger events (ADT_A04 is an ADT_A01): HAPI HL7v2's event map. An event
- *   is the same definition object as its structure, so it cannot go stale;
+ * - trigger events (ADT_A04 is an ADT_A01): support/trigger-events.json. An
+ *   event is the same definition object as its structure, so it cannot go
+ *   stale;
  * - descriptions of segments, data types, messages and groups, lengths before
  *   2.6, the conditional/backward-compatible optionalities (C, B) and the
  *   tables of data type components: the `hl7-dictionary` package, the
@@ -216,7 +217,7 @@ function fieldIndexes(
 
 /**
  * A message structure: groups, choices and segments keyed by name, in order
- * (idx). Siblings sharing a name are numbered as HAPI HL7v2 numbers them -
+ * (idx). Siblings sharing a name are numbered from the second -
  * the second PID of ADT_A17 is PID2 - and a segment whose key is not its type
  * says which segment it is (`segment`). A choice holds its alternatives, of
  * which a message carries one.
@@ -400,8 +401,7 @@ if (!versionList.length) {
  * Corrections to a version's schemas. 2.5.1's RSP_K21 has QUERY_RESPONSE
  * once, and its set has no RSP_K22, which the event map makes an RSP_K21:
  * a find candidates response (IHE PDQ's RSP^K22^RSP_K21) held one patient.
- * It repeats, as in 2.5's schema, as RSP_K22's in 2.4 and 2.6 and later,
- * and as HAPI reads it.
+ * It repeats, as in 2.5's schema and as RSP_K22's in 2.4 and 2.6 and later.
  */
 function correctStructures(
   version: string,

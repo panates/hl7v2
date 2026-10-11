@@ -166,7 +166,7 @@ export class HL7Message<V extends HL7Version = HL7Version> {
   clear(version?: HL7Version) {
     this._clear(version);
     const msh: HL7Segment = this.addSegment('MSH');
-    /* MSH-1 and MSH-2 read as the delimiters, as HAPI gives them */
+    /* MSH-1 and MSH-2 read as the delimiters */
     msh.field(MSHSegment.FieldSeparator).setValue(this.fieldSeparator);
     msh
       .field(MSHSegment.EncodingCharacters)
@@ -178,7 +178,7 @@ export class HL7Message<V extends HL7Version = HL7Version> {
       );
     msh.field(MSHSegment.DateTimeOfMessage).setValue(new Date());
     msh.field(MSHSegment.MessageControlID).setValue(uid(8));
-    /** Required; production, as HAPI's initQuickstart fills it */
+    /** Required; production */
     msh.field(MSHSegment.ProcessingID).setValue('P');
     msh.field(MSHSegment.VersionID).setValue(version);
     /* MSH-18 came in 2.3: 2.1 and 2.2 have no character set field */
@@ -332,8 +332,8 @@ export class HL7Message<V extends HL7Version = HL7Version> {
 
   /**
    * The name of the message structure this message follows: the one MSH-9.3
-   * names when the dictionary has it (ADT^A04^ADT_A01 is an ADT_A01), as HAPI
-   * reads it; otherwise type and trigger event (ADT_A04), which the
+   * names when the dictionary has it (ADT^A04^ADT_A01 is an ADT_A01);
+   * otherwise type and trigger event (ADT_A04), which the
    * dictionary maps to its structure. Undefined when the dictionary has none.
    */
   get structureName(): string | undefined {
@@ -346,7 +346,7 @@ export class HL7Message<V extends HL7Version = HL7Version> {
   }
 
   /**
-   * The value at a path written as HAPI's Terser writes it - "PID-5-1",
+   * The value at a path in the notation common among HL7 tools - "PID-5-1",
    * "OBX(2)-5", "/PATIENT_RESULT/ORDER_OBSERVATION(1)/OBX(0)-5" (see HL7Path)
    */
   get<P extends string>(path: HL7CheckedPath<V, P>): any {
@@ -441,7 +441,7 @@ export class HL7Message<V extends HL7Version = HL7Version> {
       return result;
     }
     /*
-     * Z segments are where they are, as HAPI keeps them: matched around, then
+     * Z segments are where they are: matched around, then
      * put back after the segment before them - unless the structure has a
      * place for them (anyZSegment, anyHL7Segment)
      */
@@ -558,7 +558,7 @@ export class HL7Message<V extends HL7Version = HL7Version> {
 
   /**
    * Creates the ACK message addressed back to this message's sender, with the
-   * header filled as HAPI's `fillResponseHeader` fills it: sending and
+   * header filled from the request's: sending and
    * receiving application/facility swapped; delimiters, processing ID,
    * version and character set kept, so the answer goes out in the encoding
    * the request came in.
@@ -586,7 +586,7 @@ export class HL7Message<V extends HL7Version = HL7Version> {
       .field(MSHSegment.MessageType)
       .comp(2)
       .setValue(this._header.field(MSHSegment.MessageType).getValue(2));
-    /* The message structure, ACK - from 2.5, as HAPI writes it */
+    /* The message structure, ACK - from 2.5 */
     if (atLeast(this.version, '2.5')) {
       msh.field(MSHSegment.MessageType).comp(3).setValue('ACK');
     }
@@ -719,7 +719,7 @@ export class HL7Message<V extends HL7Version = HL7Version> {
     codeComponent.setValue(code, 1);
     codeComponent.setValue(HL7_ERROR_CODES[code] ?? text, 2);
     codeComponent.setValue('HL70357', 3);
-    /* The error's text as the code's alternate text, as HAPI writes it */
+    /* The error's text as the code's original text (CWE-9) */
     codeComponent.setValue(text, 5);
   }
 
@@ -764,7 +764,7 @@ export class HL7Message<V extends HL7Version = HL7Version> {
   /**
    * Reads a message's header and decodes it with the character set MSH-18
    * names; one this library does not know is decoded with `defaultCharset`
-   * (UTF-8 unless given), as HAPI decodes it with its configured default.
+   * (UTF-8 unless given).
    */
   static parseRaw(
     input: string | Buffer,

@@ -4,7 +4,7 @@ import { HL7MessageNode } from './hl7-message-node.js';
 import { HL7Segment } from './hl7-segment.js';
 
 /**
- * A location in a message, written as HAPI HL7v2's Terser writes it:
+ * A location in a message, in the notation common among HL7 tools:
  *
  *   PID-5-1                 the first PID, field 5, component 1
  *   OBX(2)-5                the third OBX of the message, field 5

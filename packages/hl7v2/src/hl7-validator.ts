@@ -32,8 +32,7 @@ export interface HL7ValidateOptions {
 }
 
 /**
- * Checks a message against its version's dictionary, as HAPI HL7v2's
- * validation does, and returns what it finds - HL7Errors carrying the HL7
+ * Checks a message against its version's dictionary and returns what it finds - HL7Errors carrying the HL7
  * error code (table 0357) and the location, ready for a NAK:
  *
  * - 100 segment sequence error: a required segment or group missing, or a
@@ -176,7 +175,7 @@ function validateSegment(
 }
 
 /**
- * OBX-5 (VARIES) checked as the data type OBX-2 names, as HAPI reads it: a
+ * OBX-5 (VARIES) checked as the data type OBX-2 names: a
  * primitive's value, a composite's primitive components. A type the
  * version does not define is left alone.
  */

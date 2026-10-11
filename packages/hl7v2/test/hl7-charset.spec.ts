@@ -39,7 +39,7 @@ describe('hl7v2:charset', () => {
 
   it('Should resolve HL7 character sets to encodings', () => {
     expect(resolveHL7Encoding('UNICODE UTF-8')).toEqual('utf8');
-    /* As HAPI and Apache Camel read the deprecated, ambiguous value */
+    /* As other HL7 systems read the deprecated, ambiguous value */
     expect(resolveHL7Encoding('UNICODE')).toEqual('utf8');
     expect(resolveHL7Encoding('UNICODE UTF-16')).toEqual('utf16');
     expect(resolveHL7Encoding('8859/9')).toEqual('latin5');
@@ -109,7 +109,7 @@ describe('hl7v2:charset', () => {
   });
 
   it('Should write a byte order mark for UTF-16 and UTF-32', () => {
-    /* UTF-16 big-endian after FE FF, as Java and HAPI write it */
+    /* UTF-16 big-endian after FE FF, as Java writes it */
     const buf = messageWithName('UNICODE UTF-16').toBuffer();
     expect(buf.subarray(0, 4).toString('hex')).toEqual('feff004d');
   });

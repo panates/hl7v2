@@ -9,7 +9,7 @@ import {
   MSHSegment,
 } from '../src/index.js';
 
-/** Behaviour checked against the HL7 v2 standard and HAPI HL7v2 */
+/** Behaviour checked against the HL7 v2 standard */
 describe('hl7v2:conformance', () => {
   describe('segment terminators', () => {
     it('Should split on LF when the message has no CR', () => {
@@ -99,7 +99,7 @@ describe('hl7v2:conformance', () => {
     });
   });
 
-  describe('escape sequences (standard, as HAPI reads and writes them)', () => {
+  describe('escape sequences', () => {
     it('Should keep character set switches as written', () => {
       /* ISO 2022: \M2442\ switches to JIS X 0208, \C2842\ back to ASCII */
       for (const text of ['abc\\C2842\\def', 'X\\M2442\\Y\\C2842\\Z']) {
@@ -120,16 +120,16 @@ describe('hl7v2:conformance', () => {
       expect(hl7UnEscape('a\\XFE\\b', latin5)).toEqual('aşb');
     });
 
-    it("Should read HAPI's carriage return", () => {
+    it('Should read \\X000d\\ as a carriage return', () => {
       expect(hl7UnEscape('line 1\\X000d\\line 2')).toEqual('line 1\rline 2');
     });
 
-    it('Should write control characters as HAPI writes them', () => {
+    it('Should write control characters as hexadecimal data', () => {
       /* raw, a VT or FS would end the MLLP frame: hexadecimal data */
       expect(hl7Escape('a\x0bb\x1cc\x7fe')).toEqual(
         'a\\X0B\\b\\X1C\\c\\X7F\\e',
       );
-      /* a CR in HAPI's form, the only hexadecimal data HAPI reads; LF and tab raw */
+      /* a CR as \X000d\, the form HL7 systems commonly read; LF and tab raw */
       expect(hl7Escape('a\rb\nc\td')).toEqual('a\\X000d\\b\nc\td');
       expect(hl7UnEscape(hl7Escape('a\r\nb'))).toEqual('a\r\nb');
     });
@@ -307,7 +307,7 @@ describe('hl7v2:conformance', () => {
         expect(msh.field(MSHSegment.ProcessingID).toHL7String()).toEqual('T');
         expect(msh.field(MSHSegment.VersionID).toHL7String()).toEqual('2.5');
         expect(response.charset).toEqual('8859/9');
-        /* MSH-9-3, the structure: ACK from 2.5, as HAPI writes it */
+        /* MSH-9-3, the structure: ACK from 2.5 */
         expect(msh.field(MSHSegment.MessageType).toHL7String()).toEqual(
           'ACK^A01^ACK',
         );
@@ -403,7 +403,7 @@ describe('hl7v2:conformance', () => {
 
     it('Should lay ERR out as 2.5 and later define it', () => {
       const err = request('2.5').createNak([located]).getSegment('ERR')!;
-      /* ERR-3 a CWE of table 0357, the text its original text, as HAPI writes it */
+      /* ERR-3 a CWE of table 0357, the text its original text */
       expect(err.toHL7String()).toEqual(
         'ERR||PID^1^5|101^Required field missing^HL70357^^^^^^Required field missing|E',
       );

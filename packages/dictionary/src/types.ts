@@ -70,7 +70,7 @@ export interface HL7MessageSegmentsDefinition {
   max?: number;
   /**
    * The segment type, when the key is not it: a segment repeated among its
-   * siblings is keyed as HAPI HL7v2 keys it (the second PID is "PID2")
+   * siblings is keyed by its number from the second (the second PID is "PID2")
    */
   segment?: string;
   /** A choice: the message carries one of its items (`segments`) */
