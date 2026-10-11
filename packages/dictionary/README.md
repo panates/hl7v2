@@ -13,6 +13,8 @@ The definitions of **HL7 v2.1 to v2.9**, generated from HL7's own v2 XML schemas
 
 [`hl7v2`](https://www.npmjs.com/package/hl7v2) reads, writes and validates messages by them.
 
+> **Upgrading from 1.x?** Version 2 changes how values are read and written and adds type checks for typed messages - see [Migrating from v1 to v2](https://github.com/panates/hl7v2/blob/main/doc/migration-v1-to-v2.md).
+
 ## Installation
 
 ```bash
