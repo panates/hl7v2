@@ -25,7 +25,37 @@ describe('hl7v2:validate', () => {
     it('should report a missing required field (101)', () => {
       const errors = validate([MSH, 'EVN||20250101', 'PID|1', 'PV1|1|I']);
       expect(summary(errors)).toEqual(['101 PID-3', '101 PID-5']);
-      expect(errors[0]).toMatchObject({ segmentSequence: 2, severity: 'E' });
+      /* ERL-2: the first PID - its occurrence, from 1 */
+      expect(errors[0]).toMatchObject({ segmentSequence: 1, severity: 'E' });
+    });
+
+    it('should locate a segment by its occurrence, and repetitions from 1 (ERL)', () => {
+      const msg = HL7Message.parse(
+        [
+          MSH,
+          'EVN||20250101',
+          'PID|1||123||Doe',
+          'NK1|1',
+          'NK1',
+          'PV1|1|I',
+        ].join('\r'),
+      );
+      const errors = msg.validate();
+      expect(summary(errors)).toEqual(['101 NK1-1']);
+      expect(errors[0].segmentSequence).toEqual(2);
+      const nak = msg.createNak([
+        new HL7Error('Bad identifier', {
+          hl7ErrorCode: 102,
+          segmentType: 'PID',
+          segmentSequence: 1,
+          fieldPosition: 3,
+          repetitionIndex: 1,
+        }),
+      ]);
+      /* ERL-4 counts repetitions from 1: the second is 2 */
+      expect(nak.getSegment('ERR')!.toHL7String()).toEqual(
+        'ERR||PID^1^3^2|102|E',
+      );
     });
 
     it('should take a field set to an empty string as missing', () => {
@@ -93,7 +123,7 @@ describe('hl7v2:validate', () => {
     it('should report a segment out of place (100)', () => {
       const errors = validate([...VALID, 'OBR|1|||CBC']);
       expect(summary(errors)).toEqual(['100 OBR']);
-      expect(errors[0].segmentSequence).toEqual(4);
+      expect(errors[0].segmentSequence).toEqual(1);
     });
 
     it('should let Z segments through', () => {
@@ -135,7 +165,7 @@ describe('hl7v2:validate', () => {
     const msg = HL7Message.parse([MSH, 'EVN||20250101', 'PID|1'].join('\r'));
     const nak = msg.createNak(msg.validate());
     expect(nak.segments.filter(s => s.segmentType === 'ERR').length).toEqual(3);
-    expect(nak.getSegment('ERR')!.toHL7String()).toEqual('ERR||PID^2^3|101|E');
+    expect(nak.getSegment('ERR')!.toHL7String()).toEqual('ERR||PID^1^3|101|E');
   });
 
   describe('tables', () => {

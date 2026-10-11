@@ -259,7 +259,7 @@ describe('hl7v2:parse', () => {
     expect(error!).toBeDefined();
     expect(error!).toBeInstanceOf(HL7Error);
     expect(error!.segmentType).toEqual('MSH');
-    expect(error!.segmentSequence).toEqual(0);
+    expect(error!.segmentSequence).toEqual(1);
     expect(error!.fieldPosition).toEqual(MSHSegment.DateTimeOfMessage);
     expect(error!.componentPosition).toEqual(1);
     expect(error!.repetitionIndex).toEqual(0);

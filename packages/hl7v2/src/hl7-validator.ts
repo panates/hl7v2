@@ -81,7 +81,7 @@ function validateSegment(
   const defs = segment.definition.fields || {};
   const at = (fieldPosition: number, more?: Partial<HL7Error.ErrorArgs>) => ({
     segmentType: segment.segmentType,
-    segmentSequence: index,
+    segmentSequence: segment.sequence,
     fieldPosition,
     ...more,
   });
@@ -262,7 +262,6 @@ function validateStructure(message: HL7Message<any>, errors: HL7Error[]) {
         found.push(
           error(100, `${name}: required ${what} missing`, {
             segmentType: def.segments ? undefined : def.segment || key,
-            segmentSequence: i,
           }),
         );
       }
@@ -292,7 +291,7 @@ function validateStructure(message: HL7Message<any>, errors: HL7Error[]) {
       errors.push(
         error(100, `${name}: ${segment.segmentType} is out of place`, {
           segmentType: segment.segmentType,
-          segmentSequence: next,
+          segmentSequence: segment.sequence,
         }),
       );
     }

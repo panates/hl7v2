@@ -289,7 +289,7 @@ export class HL7Message<V extends HL7Version = HL7Version> {
         e1.stack = e.stack;
         if (e1.segmentType) {
           const lastSeg = this.getSegmentFromLast(e.segmentType);
-          if (lastSeg) e1.segmentSequence = lastSeg.index;
+          if (lastSeg) e1.segmentSequence = lastSeg.sequence;
         }
         e1.line = i + 1;
         throw e1;
@@ -615,7 +615,12 @@ export class HL7Message<V extends HL7Version = HL7Version> {
         errLocation.comp(ERLType.SegmentSequence).setValue(e.segmentSequence);
         errLocation.comp(ERLType.FieldPosition).setValue(e.fieldPosition);
         errLocation.comp(ERLType.ComponentNumber).setValue(e.componentPosition);
-        errLocation.comp(ERLType.FieldRepetition).setValue(e.repetitionIndex);
+        /* ERL-4 counts repetitions from 1 */
+        errLocation
+          .comp(ERLType.FieldRepetition)
+          .setValue(
+            e.repetitionIndex != null ? e.repetitionIndex + 1 : undefined,
+          );
         errLocation
           .comp(ERLType.SubComponentNumber)
           .setValue(e.subComponentPosition);

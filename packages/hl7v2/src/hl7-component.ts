@@ -173,13 +173,11 @@ export class Hl7Component {
           return;
         }
         const location = `${this.segment.segmentType}.${this.field.position}.${this.position}[${this.repetition.index}]`;
-        let segmentIndex = this.segment.index;
-        if (segmentIndex < 0) segmentIndex = this.message.segments.length;
         const err = new HL7Error(
           `The field (${location}) contained data of the wrong data type. ${e.message}.`,
           {
             segmentType: this.segment.segmentType,
-            segmentSequence: segmentIndex,
+            segmentSequence: this.segment.sequence,
             fieldPosition: this.field.position,
             componentPosition: this.position,
             repetitionIndex: this.repetition.index,

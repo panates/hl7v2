@@ -27,6 +27,7 @@ export class HL7Error extends Error {
   appErrorCode?: string;
   line?: number;
   segmentType?: string;
+  /** The segment's occurrence among the message's segments of its type, from 1 (ERL-2) */
   segmentSequence?: number;
   fieldPosition?: number;
   componentPosition?: number;

@@ -53,6 +53,20 @@ export class HL7Segment<P extends number = number> {
     return this.message.segments.indexOf(this);
   }
 
+  /**
+   * The segment's occurrence among its message's segments of its type, from
+   * 1 - ERL-2's "segment sequence". A segment not yet in its message (one
+   * being parsed) is the next one.
+   */
+  get sequence(): number {
+    let n = 0;
+    for (const seg of this.message.segments) {
+      if (seg.segmentType === this.segmentType) n++;
+      if (seg === this) return n;
+    }
+    return n + 1;
+  }
+
   clear() {
     this._fields = [];
   }
