@@ -49,7 +49,12 @@ untrusting.on('error', () => undefined);
 try {
   await untrusting.connect();
 } catch (e) {
-  console.log('Without the CA:', (e as Error).message);
+  /* Node's text varies by version; the reason is the same */
+  const selfSigned = /self[- ]signed/i.test((e as Error).message);
+  console.log(
+    'Without the CA: refused',
+    selfSigned ? '(self-signed certificate not trusted)' : `(${e})`,
+  );
 }
 await untrusting.close();
 

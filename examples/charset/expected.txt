@@ -1,0 +1,15 @@
+-- Encoding
+UNICODE UTF-8  120 bytes, Şahin as c5 9e 61 68 69 6e
+8859/9         108 bytes, Şahin as de 61 68 69 6e
+ASCII          107 bytes, Şahin as 53 61 68 69 6e
+
+-- Decoding
+MSH-18 : 8859/9
+Name   : Gülşen Çağla Şahin
+ANSI   : �ahin (as UTF-8)
+ANSI   : Şahin (as windows-1254)
+
+-- Escaping
+Written: NTE|||Dose: 5 mg \F\ twice a day \S\ after meals \T\ water
+Read   : Dose: 5 mg | twice a day ^ after meals & water
+Written: NTE|||First line\X0A\Second line

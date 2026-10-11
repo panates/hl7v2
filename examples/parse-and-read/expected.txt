@@ -1,0 +1,32 @@
+Message type : ADT^A01
+Structure    : ADT_A01
+Version      : 2.5
+Control ID   : MSG00001
+
+-- By path
+Family name  : Yılmaz
+Given name   : Ayşe
+First ID     : 123456
+Second ID    : 98765432100
+Its type     : NNTUR
+Birth date   : Mon May 12 1980
+Admitted at  : 20250301101500+0300
+
+-- As an object
+Identifier   : 123456 (MR)
+Identifier   : 98765432100 (NNTUR)
+Sex          : F
+City         : İstanbul
+
+-- Field by field
+Name type    : XPN
+Name         : Ayşe Yılmaz
+Identifier   : 123456 assigned by GHH
+Identifier   : 98765432100 assigned by TRNVI
+
+-- Segments
+MSH | ^~\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITA
+EVN | A01|20250301101500+0300
+PID | 1||123456^^^GHH^MR~98765432100^^^TRNVI^NNTUR||Yılmaz^Ayş
+NK1 | 1|Yılmaz^Mehmet|SPO^Spouse^HL70063||^PRN^PH^^90^532^5554
+PV1 | 1|I|2000^2012^01||||004777^Doğan^Ali^^^Dr.|||SUR||||ADM|

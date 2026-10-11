@@ -1,0 +1,4 @@
+Listening on <port> (TLS)
+Server received: ADT^A08 over TLS
+Client received: ACK^A08 AA
+Without the CA: refused (self-signed certificate not trusted)

@@ -1,0 +1,16 @@
+Original (both empty)                          AA
+MSH-15 AL, MSH-16 NE                           CA
+MSH-15 AL, MSH-16 AL - waiting for accept      CA
+MSH-15 AL, MSH-16 AL - waiting for application AA
+MSH-15 NE, MSH-16 ER - failing                 AE - Patient record locked
+MSH-15 NE, MSH-16 ER - succeeding              (no answer)
+Invalid, MSH-15 AL                             CE - PID-3 (Patient Identifier List) is required
+
+All acknowledgments received:
+  Original (both empty)                          AA
+  MSH-15 AL, MSH-16 NE                           CA
+  MSH-15 AL, MSH-16 AL - waiting for accept      CA, AA
+  MSH-15 AL, MSH-16 AL - waiting for application CA, AA
+  MSH-15 NE, MSH-16 ER - failing                 AE
+  MSH-15 NE, MSH-16 ER - succeeding              -
+  Invalid, MSH-15 AL                             CE

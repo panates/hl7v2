@@ -1,0 +1,12 @@
+Connected
+
+ADT^A01                    AA
+ORU^R01                    AA
+QBP^Q22 (unsupported)      AR - QBP^Q22 is not supported here
+                             ERR ||200|E
+ADT^A01 without PID-3      AE - PID-3 (Patient Identifier List) is required
+                             ERR |PID^1^3|101|E
+ORU^R01 without results    AE - No results in the message
+                             ERR ||207|E
+
+Closed

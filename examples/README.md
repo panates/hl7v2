@@ -41,4 +41,10 @@ cd examples/mllp-server && npm start
 cd examples/mllp-client && npm start
 ```
 
-`node examples/run-all.mjs` runs them all - the client against the server - as CI does, and `npx tsc -p examples/tsconfig.json` checks their types, including the compile errors `typed-access` expects.
+`npm run examples` (from the repository root) checks the examples' types - including the compile errors `typed-access` expects - and runs them all, the client against the server, as CI does. Each must print what its `expected.txt` holds: the examples run with a standing clock, a seeded `Math.random()` and a fixed time zone ([deterministic.mjs](deterministic.mjs)), so their dates and control IDs repeat, and ports, addresses and temporary paths are replaced before comparing. The examples are tests too: a change in what the library reads, writes or answers shows as a difference.
+
+After a deliberate change, look at the differences, then write the expected outputs anew:
+
+```bash
+node examples/run-all.mjs --update
+```
