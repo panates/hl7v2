@@ -1,6 +1,19 @@
 # Changelog
 
-<!-- rman:documented-up-to 0ffe30971d7675974f2477de67b81f472695abd9 -->
+<!-- rman:documented-up-to 415264bd6592a49562664e139d06d2cbb758f43d -->
+
+## v2.2.0 (2026-10-11)
+
+### ✨ Features
+
+- **net:** beforeResponse hooks to change, replace or drop an answer before it is sent (7c09d04)
+
+### 🧹 Chores
+
+- sync lockfile (cad57cc)
+- **dictionary:** drop the unused hl7-dictionary dev dependency (e32025c)
+
+---
 
 ## v2.1.0 (2026-10-11)
 
