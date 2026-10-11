@@ -5,7 +5,7 @@ import type {
 import type { Hl7Component } from './hl7-component.js';
 import { HL7Error } from './hl7-error.js';
 import type { HL7Field } from './hl7-field.js';
-import type { HL7Message } from './hl7-message.js';
+import { hasPlaceholder, type HL7Message } from './hl7-message.js';
 import type { HL7Repetition } from './hl7-repetition.js';
 import { type HL7Segment, isHeaderSegment } from './hl7-segment.js';
 import { hl7UnEscape } from './utils/hl7-escape.js';
@@ -277,7 +277,10 @@ function validateStructure(message: HL7Message<any>, errors: HL7Error[]) {
   const name = message.structureName;
   const definition = name && message.dictionary.messages[name];
   if (!definition || !definition.segments) return;
-  const segments = message.segments;
+  /* Z segments are matched around, as the structure tree does (see HL7Message.buildStructureTree) */
+  const segments = hasPlaceholder(definition.segments)
+    ? message.segments
+    : message.segments.filter(s => !s.segmentType.startsWith('Z'));
   const byIdx = (defs: Definitions) =>
     Object.entries(defs).sort(([, a], [, b]) => (a.idx || 0) - (b.idx || 0));
 

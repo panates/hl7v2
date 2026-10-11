@@ -117,6 +117,30 @@ describe('hl7v2:message objects', () => {
     expect(copy.toHL7String()).toEqual(msg.toHL7String());
   });
 
+  it('should keep a Z segment in the group it is in', () => {
+    const text = [
+      'MSH|^~\\&|A|B|C|D|20250101||ORU^R01^ORU_R01|1|P|2.5',
+      'PID|1||1||X',
+      'OBR|1',
+      'OBX|1',
+      'ZOX|1',
+      'OBX|2',
+      'OBR|2',
+      'OBX|3',
+    ].join('\r');
+    const msg = HL7Message.parse(text);
+    const orders = msg.toObject().PATIENT_RESULT[0].ORDER_OBSERVATION;
+    expect(orders.length).toEqual(2);
+    expect(orders[0].OBSERVATION[0].ZOX).toEqual([{ 1: '1' }]);
+    expect(orders[0].OBSERVATION[1].OBX.SetID).toEqual(2);
+    expect(
+      msg.get('/PATIENT_RESULT/ORDER_OBSERVATION(1)/OBSERVATION/OBX-1'),
+    ).toEqual(3);
+    const copy = HL7Message.parse(text.split('\r')[0]);
+    copy.assign(msg.toObject());
+    expect(copy.toHL7String()).toEqual(msg.toHL7String());
+  });
+
   it('should give a message of an unknown structure as its segments', () => {
     const o = HL7Message.parse(
       'MSH|^~\\&|A|B|C|D|20250101||ZZZ^Z01|1|P|2.5\rPID|1||1\rPID|2||2',

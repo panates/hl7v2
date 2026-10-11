@@ -199,6 +199,23 @@ describe('hl7v2:validate', () => {
       expect(errors[0].segmentSequence).toEqual(1);
     });
 
+    it('should match the structure around Z segments among groups', () => {
+      /* A Z segment amid an order's observations does not end the order */
+      const errors = HL7Message.parse(
+        [
+          'MSH|^~\\&|A|B|C|D|20250101||ORU^R01^ORU_R01|1|P|2.5',
+          'PID|1||1||X',
+          'OBR|1|||CBC',
+          'OBX|1|NM|WBC||7||||||F',
+          'ZOX|1',
+          'OBX|2|NM|HGB||11||||||F',
+          'OBR|2|||BMP',
+          'OBX|1|NM|GLU||5||||||F',
+        ].join('\r'),
+      ).validate();
+      expect(summary(errors)).toEqual([]);
+    });
+
     it('should let Z segments through', () => {
       expect(validate([...VALID, 'ZPI|1|x'])).toEqual([]);
     });

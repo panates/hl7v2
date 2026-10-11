@@ -436,6 +436,15 @@ export class HL7Message<V extends HL7Version = HL7Version> {
       result.items.push(...this.segments);
       return result;
     }
+    /*
+     * Z segments are where they are, as HAPI keeps them: matched around, then
+     * put back after the segment before them - unless the structure has a
+     * place for them (anyZSegment, anyHL7Segment)
+     */
+    const zAside = !hasPlaceholder(messageDefinition.segments);
+    const segs = zAside
+      ? this.segments.filter(s => !isZSegment(s))
+      : this.segments;
 
     // Helper function to process a segment definition recursively
     const byIdx = (defs: Record<string, any>) =>
@@ -468,7 +477,7 @@ export class HL7Message<V extends HL7Version = HL7Version> {
         let occurrenceCount = 0;
         while (
           occurrenceCount < maxOccurrences &&
-          currentSegmentIndex.value < this.segments.length
+          currentSegmentIndex.value < segs.length
         ) {
           const groupStartIndex = currentSegmentIndex.value;
           const groupNode = processSegmentDefinition(
@@ -499,10 +508,10 @@ export class HL7Message<V extends HL7Version = HL7Version> {
       let matchedCount = 0;
       while (
         matchedCount < maxOccurrences &&
-        currentSegmentIndex.value < this.segments.length &&
-        matches(this.segments[currentSegmentIndex.value].segmentType)
+        currentSegmentIndex.value < segs.length &&
+        matches(segs[currentSegmentIndex.value].segmentType)
       ) {
-        node.items.push(this.segments[currentSegmentIndex.value]);
+        node.items.push(segs[currentSegmentIndex.value]);
         currentSegmentIndex.value++;
         matchedCount++;
       }
@@ -533,12 +542,13 @@ export class HL7Message<V extends HL7Version = HL7Version> {
     );
 
     // Add any remaining unmatched segments to the result
-    while (segmentIndexRef.value < this.segments.length) {
-      const segment = this.segments[segmentIndexRef.value];
+    while (segmentIndexRef.value < segs.length) {
+      const segment = segs[segmentIndexRef.value];
       result.items.push(segment);
       segmentIndexRef.value++;
     }
 
+    if (zAside) putBackZSegments(result, this.segments);
     return result;
   }
 
@@ -872,4 +882,35 @@ function atLeast(a: string, b: string): boolean {
     if (d) return d > 0;
   }
   return true;
+}
+
+const isZSegment = (s: HL7Segment) => s.segmentType.startsWith('Z');
+
+/** Whether a structure has a place for any segment, or any Z segment */
+export function hasPlaceholder(defs: Record<string, any>): boolean {
+  return Object.entries<any>(defs).some(
+    ([key, def]) =>
+      /^any(HL7|Z)Segment$/.test(def.segment || key) ||
+      (def.segments && hasPlaceholder(def.segments)),
+  );
+}
+
+/** Puts each Z segment back after the segment before it, in that one's group */
+function putBackZSegments(tree: HL7MessageNode, segments: HL7Segment[]) {
+  const parents = new Map<HL7Segment, HL7MessageNode>();
+  const index = (node: HL7MessageNode) => {
+    for (const item of node.items) {
+      if (item instanceof HL7MessageNode) index(item);
+      else parents.set(item, node);
+    }
+  };
+  index(tree);
+  segments.forEach((segment, i) => {
+    if (!isZSegment(segment)) return;
+    const before = segments[i - 1];
+    const node = (before && parents.get(before)) || tree;
+    const at = before ? node.items.indexOf(before) + 1 : node.items.length;
+    node.items.splice(at, 0, segment);
+    parents.set(segment, node);
+  });
 }

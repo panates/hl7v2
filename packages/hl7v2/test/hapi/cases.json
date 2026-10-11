@@ -1305,6 +1305,22 @@
         "ORC|NW",
         "OBR|2"
       ]
+    },
+    {
+      "name": "oru 2.5.1: z segments among groups",
+      "message": [
+        "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ORU^R01^ORU_R01|C1|P|2.5.1",
+        "PID|1||1||A",
+        "ZPD|1",
+        "OBR|1",
+        "OBX|1",
+        "ZOX|1",
+        "OBX|2",
+        "OBR|2",
+        "ZOB|1",
+        "OBX|3",
+        "ZEN|1"
+      ]
     }
   ]
 }

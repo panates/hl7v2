@@ -1,4 +1,4 @@
-import type { HL7Message } from './hl7-message.js';
+import { hasPlaceholder, type HL7Message } from './hl7-message.js';
 import { HL7MessageNode } from './hl7-message-node.js';
 import { assignSegment, segmentToObject } from './hl7-object.js';
 import { HL7Segment } from './hl7-segment.js';
@@ -48,7 +48,14 @@ function nodeToObject(
   defs: Definitions,
 ): Record<string, any> {
   const out: Record<string, any> = {};
-  const items = node.items;
+  /* Z segments where they are, by ID - unless the structure has a place for them */
+  const zAside = !hasPlaceholder(defs);
+  const items = node.items.filter(item => {
+    if (!zAside || !(item instanceof HL7Segment)) return true;
+    if (!item.segmentType.startsWith('Z')) return true;
+    put(out, item.segmentType, segmentToObject(item), true);
+    return false;
+  });
   let at = 0;
   const take = (key: string, def: any): boolean => {
     const item = items[at];
@@ -150,6 +157,14 @@ export function assignMessage(
         } else {
           const type = segmentTypeOf(k, d);
           add(/^any(HL7|Z)Segment$/.test(type) ? k : type, value);
+        }
+      }
+    }
+    /* Z segments of a group, after its own */
+    if (!top) {
+      for (const [key, value] of Object.entries(obj)) {
+        if (/^Z[A-Z0-9]{2}$/.test(key) && value != null && !(key in level)) {
+          add(key, value);
         }
       }
     }
