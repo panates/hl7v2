@@ -1,5 +1,9 @@
 import process from 'node:process';
-import type { AcknowledgmentCode, HL7Dictionary } from 'hl7v2-dictionary';
+import type {
+  AcknowledgmentCode,
+  HL7Dictionary,
+  HL7SegmentObjects,
+} from 'hl7v2-dictionary';
 import {
   dictionaries as defaultDictionaries,
   ERLType,
@@ -272,6 +276,19 @@ export class HL7Message {
   /** The value at a path as a Date (see get() and Hl7Component.getDate()) */
   getDate(path: string): Date | undefined {
     return toDate(this.get(path));
+  }
+
+  /**
+   * A segment as a typed plain object (see HL7Segment.toObject()):
+   * getSegmentObject('PID')?.PatientName. Undefined when there is none.
+   */
+  getSegmentObject<K extends keyof HL7SegmentObjects>(
+    segmentType: K,
+    index?: number,
+  ): HL7SegmentObjects[K] | undefined {
+    return this.getSegment(segmentType, index)?.toObject<
+      HL7SegmentObjects[K]
+    >();
   }
 
   /** Sets the value at a path (see get() and HL7Path) */

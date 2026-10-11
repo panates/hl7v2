@@ -8,6 +8,7 @@ import type {
 } from './hl7-field.js';
 import { HL7Field } from './hl7-field.js';
 import type { HL7Message } from './hl7-message.js';
+import { assignSegment, segmentToObject } from './hl7-object.js';
 
 /**
  * Segments whose first two fields are the delimiters themselves, written
@@ -91,6 +92,21 @@ export class HL7Segment {
     out += serializeFields.join(fieldSeparator);
     while (out.endsWith(fieldSeparator)) out = out.substring(0, out.length - 1);
     return out;
+  }
+
+  /**
+   * The segment as a plain object keyed by field names - PIDSegment's
+   * "PatientName" - typed by the segment's interface (PIDObject); see
+   * hl7-object.ts
+   */
+  toObject<T extends object = Record<string, any>>(): T {
+    return segmentToObject(this) as T;
+  }
+
+  /** Sets fields from an object shaped as toObject() makes it */
+  assign<T extends object = Record<string, any>>(object: T): this {
+    assignSegment(this, object as Record<string, any>);
+    return this;
   }
 
   static parse(

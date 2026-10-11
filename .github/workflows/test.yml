@@ -64,6 +64,8 @@ jobs:
           rman check
           rman lint
           rman format --check
+          # The tests are type-checked too: they use the generated object types
+          for p in hl7v2 net dictionary; do npx tsc -p packages/$p/test/tsconfig.json --noEmit; done
 
       - name: Run unit tests
         run: npm run citest

@@ -180,6 +180,23 @@ const nak = message.createNak([error]);
 
 ---
 
+### Typed objects
+
+A segment as a plain object keyed by field names - the field enums' members (`PIDSegment.PatientName` is `PatientName`) - with an interface per segment and data type (`PIDObject`, `XPNObject` ...) generated from every version: a field whose type a version changed is the union of its shapes (MSH-7 is `TSObject | string`), and a field any version lets repeat is an array. Empty values are left out; HL7's null (`""`) is `null`. The interfaces are types only.
+
+- `segment.toObject<T>()`, `message.getSegmentObject('PID', index?)` - typed by the segment ID.
+- `segment.assign(object)` - sets the fields given; `null` writes HL7's null, `undefined` clears a field.
+
+```typescript
+const pid = message.getSegmentObject('PID'); // PIDObject | undefined
+const name = pid?.PatientName?.[0]; // PNObject | XPNObject (2.1's PN, later XPN)
+
+message.getSegment('PID')!.assign<PIDObject>({
+  PatientName: [{ FamilyName: { Surname: 'Doe' }, GivenName: 'John' }],
+  AdministrativeSex: 'M',
+});
+```
+
 ### HL7BatchFile / HL7Batch
 
 Batches of messages (HL7 batch protocol), in a file or one stream: `[FHS] { [BHS] { MSH ... } [BTS] } [FTS]`. A file with no FHS, no BHS, or neither - bare messages one after another - is read too. The whole is one character set: its BOM's, or the first message's MSH-18.

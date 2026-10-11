@@ -2,6 +2,7 @@ export * from './hl7-date.util.js';
 export * from './hl7-dictionaries.js';
 export * from './hl7-dictionary.js';
 export * from './segment-fields/index.js';
+export type * from './segment-objects.js';
 export * from './tables/index.js';
 export * from './type-fields/index.js';
 export * from './types.js';
