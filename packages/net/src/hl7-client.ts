@@ -11,7 +11,7 @@ import { HL7Request } from './hl7-request.js';
 import { HL7Response } from './hl7-response.js';
 import { HL7Router } from './hl7-router.js';
 import { HL7Socket } from './hl7-socket.js';
-import type { HL7Middleware } from './types.js';
+import type { HL7MessageFilter, HL7Middleware } from './types.js';
 
 export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
   protected _connectionManager: ReturnType<typeof socketReconnect>;
@@ -216,8 +216,15 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
     this._socket?.setKeepAlive(enable, initialDelay);
   }
 
-  use(handler: HL7Middleware, priority = 0) {
-    this._router.use(handler, priority);
+  /** See HL7Router.use(): `client.use('ADT^A08', handler)` */
+  use(handler: HL7Router | HL7Middleware, priority?: number): void;
+  use(
+    filter: HL7MessageFilter,
+    handler: HL7Router | HL7Middleware,
+    priority?: number,
+  ): void;
+  use(...args: any[]): void {
+    (this._router.use as any)(...args);
   }
 
   protected _onMessage(message: HL7Message) {

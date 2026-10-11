@@ -13,7 +13,11 @@ import { HL7Request } from './hl7-request.js';
 import { HL7Response } from './hl7-response.js';
 import { HL7Router } from './hl7-router.js';
 import { HL7Socket } from './hl7-socket.js';
-import type { HL7ErrorMiddleware, HL7Middleware } from './types.js';
+import type {
+  HL7ErrorMiddleware,
+  HL7MessageFilter,
+  HL7Middleware,
+} from './types.js';
 
 export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
   protected _server: net.Server | tls.Server;
@@ -199,8 +203,15 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
     });
   }
 
-  use(handler: HL7Router | HL7Middleware, priority = 0) {
-    this._router.use(handler, priority);
+  /** See HL7Router.use(): `server.use('ADT^A01', handler)` */
+  use(handler: HL7Router | HL7Middleware, priority?: number): void;
+  use(
+    filter: HL7MessageFilter,
+    handler: HL7Router | HL7Middleware,
+    priority?: number,
+  ): void;
+  use(...args: any[]): void {
+    (this._router.use as any)(...args);
   }
 
   onError(handler: HL7Router | HL7ErrorMiddleware, priority = 0) {

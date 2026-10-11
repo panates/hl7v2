@@ -116,6 +116,17 @@ await server.close(5000); // Wait up to 5s for running handlers
 Adds a middleware handler or another router to the server.
 Handlers run in ascending `priority` order (default `0`). A message no handler answers is acknowledged with `AA`, or with `AE` when a handler throws.
 Acknowledgments (`ACK`) are never routed or answered: HL7 does not acknowledge an acknowledgment.
+Given a filter first, the handler (or router) runs only for the messages it matches:
+
+- `'ADT^A01'` - message type and trigger event; `*` matches any part, so `'ADT^*'` (or just `'ADT'`) is every ADT message, `'*'` every message;
+- `'ADT_A01'` - a message structure: every event using it (A01, A04, A08 ...);
+- a list of these, or a function `(req) => boolean`.
+
+```typescript
+server.use('ADT^A01', (req, res) => admit(req.message));
+server.use(['ORU^R01', 'ORU^R30'], (req, res) => storeResults(req.message));
+server.use('ADT', adtRouter); // a whole router, for every ADT message
+```
 `use(handler: HL7Middleware | HL7Router, priority?: number): void`
 example
 

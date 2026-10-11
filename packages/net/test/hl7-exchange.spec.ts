@@ -387,4 +387,101 @@ describe('net:exchange', () => {
       expect(received?.messageType).toEqual('ACK^A08');
     });
   });
+
+  describe('routing by message', () => {
+    const sendAll = async (types: string[]) => {
+      client = Hl7Client.createClient({ host: 'localhost', port });
+      for (const type of types)
+        await client.sendMessageWaitAck(newMessage(type));
+    };
+
+    it('should route by type and event, with wildcards', async () => {
+      const seen: string[] = [];
+      server.use('ADT^A01', req => {
+        seen.push('A01 ' + req.message.messageType);
+      });
+      server.use('ADT^*', req => {
+        seen.push('ADT ' + req.message.messageType);
+      });
+      server.use('ORU', req => {
+        seen.push('ORU ' + req.message.messageType);
+      });
+      server.use('*', req => {
+        seen.push('all ' + req.message.messageType);
+      });
+      await sendAll(['ADT^A01', 'ADT^A08', 'ORU^R01', 'SIU^S12']);
+      expect(seen).toEqual([
+        'A01 ADT^A01',
+        'ADT ADT^A01',
+        'all ADT^A01',
+        'ADT ADT^A08',
+        'all ADT^A08',
+        'ORU ORU^R01',
+        'all ORU^R01',
+        'all SIU^S12',
+      ]);
+    });
+
+    it('should route by message structure', async () => {
+      /* A01, A04 and A08 all use the ADT_A01 structure; A02 does not */
+      const seen: string[] = [];
+      server.use('ADT_A01', req => {
+        seen.push(req.message.messageType);
+      });
+      await sendAll(['ADT^A01', 'ADT^A04', 'ADT^A08', 'ADT^A02']);
+      expect(seen).toEqual(['ADT^A01', 'ADT^A04', 'ADT^A08']);
+    });
+
+    it('should take a list, or a function', async () => {
+      const seen: string[] = [];
+      server.use(['ADT^A01', 'ORU^R01'], req => {
+        seen.push('list ' + req.message.messageType);
+      });
+      server.use(
+        req => req.message.messageType.endsWith('S12'),
+        req => {
+          seen.push('fn ' + req.message.messageType);
+        },
+      );
+      await sendAll(['ADT^A01', 'SIU^S12', 'ADT^A08']);
+      expect(seen).toEqual(['list ADT^A01', 'fn SIU^S12']);
+    });
+
+    it('should filter a whole router, and keep next() working', async () => {
+      const seen: string[] = [];
+      const adt = new HL7Router();
+      adt.use((req, res, next) => {
+        seen.push('first ' + req.message.messageType);
+        next();
+      });
+      adt.use(req => {
+        seen.push('second ' + req.message.messageType);
+      });
+      server.use('ADT', adt);
+      server.use(req => {
+        seen.push('after ' + req.message.messageType);
+      });
+      await sendAll(['ADT^A01', 'ORU^R01']);
+      expect(seen).toEqual([
+        'first ADT^A01',
+        'second ADT^A01',
+        'after ADT^A01',
+        'after ORU^R01',
+      ]);
+    });
+
+    it('should answer a message no filtered handler took', async () => {
+      server.use('ADT', () => {
+        throw new Error('not for ORU');
+      });
+      client = Hl7Client.createClient({ host: 'localhost', port });
+      const ack = await client.sendMessageWaitAck(newMessage('ORU^R01'));
+      expect(
+        ack
+          .getSegment('MSA')!
+          .field(MSASegment.AcknowledgmentCode)
+          .toHL7String(),
+      ).toEqual('AA');
+    });
+  });
 });
