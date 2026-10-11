@@ -71,6 +71,8 @@ type HL7Types_2_1 = {
 
 type ACCFields1 = 1 | 2 | 3;
 
+type ACCTypes1 = [never, 'TS', 'ID', 'ST'];
+
 interface ACCObject1<T extends HL7TypeMap> {
   AccidentDateTime?: string | null;
   AccidentCode?: string | null;
@@ -79,11 +81,29 @@ interface ACCObject1<T extends HL7TypeMap> {
 
 type ADDFields1 = 1;
 
+type ADDTypes1 = [never, 'ST'];
+
 interface ADDObject1<T extends HL7TypeMap> {
   AddendumContinuationPointer?: string | null;
 }
 
 type BHSFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type BHSTypes1 = [
+  never,
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'TS',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+];
 
 interface BHSObject1<T extends HL7TypeMap> {
   BatchFieldSeparator?: string | null;
@@ -102,6 +122,8 @@ interface BHSObject1<T extends HL7TypeMap> {
 
 type BLGFields1 = 1 | 2 | 3;
 
+type BLGTypes1 = [never, 'CM', 'ID', 'CM'];
+
 interface BLGObject1<T extends HL7TypeMap> {
   WhenToCharge?: string | null;
   ChargeType?: string | null;
@@ -110,6 +132,8 @@ interface BLGObject1<T extends HL7TypeMap> {
 
 type BTSFields1 = 1 | 2 | 3;
 
+type BTSTypes1 = [never, 'ST', 'ST', 'CM'];
+
 interface BTSObject1<T extends HL7TypeMap> {
   BatchMessageCount?: string | null;
   BatchComment?: string | null;
@@ -117,6 +141,24 @@ interface BTSObject1<T extends HL7TypeMap> {
 }
 
 type DG1Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
+type DG1Types1 = [
+  never,
+  'SI',
+  'ID',
+  'ID',
+  'ST',
+  'TS',
+  'ID',
+  'ST',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'NM',
+  'NM',
+  'ST',
+];
 
 interface DG1Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -137,11 +179,15 @@ interface DG1Object1<T extends HL7TypeMap> {
 
 type DSCFields1 = 1;
 
+type DSCTypes1 = [never, 'ST'];
+
 interface DSCObject1<T extends HL7TypeMap> {
   ContinuationPointer?: string | null;
 }
 
 type DSPFields1 = 1 | 2 | 3 | 4 | 5;
+
+type DSPTypes1 = [never, 'SI', 'SI', 'TX', 'ST', 'TX'];
 
 interface DSPObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -153,11 +199,15 @@ interface DSPObject1<T extends HL7TypeMap> {
 
 type ERRFields1 = 1;
 
+type ERRTypes1 = [never, 'ID'];
+
 interface ERRObject1<T extends HL7TypeMap> {
   ErrorCodeAndLocation?: string[] | null;
 }
 
 type EVNFields1 = 1 | 2 | 3 | 4;
+
+type EVNTypes1 = [never, 'ID', 'TS', 'TS', 'ID'];
 
 interface EVNObject1<T extends HL7TypeMap> {
   EventTypeCode?: string | null;
@@ -167,6 +217,22 @@ interface EVNObject1<T extends HL7TypeMap> {
 }
 
 type FHSFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type FHSTypes1 = [
+  never,
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'TS',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+];
 
 interface FHSObject1<T extends HL7TypeMap> {
   FileFieldSeparator?: string | null;
@@ -207,6 +273,32 @@ type FT1Fields1 =
   | 21
   | 22;
 
+type FT1Types1 = [
+  never,
+  'SI',
+  'ST',
+  'ST',
+  'DT',
+  'DT',
+  'ID',
+  'ID',
+  'ST',
+  'ST',
+  'NM',
+  'NM',
+  'NM',
+  'ST',
+  'ID',
+  'NM',
+  'ST',
+  'ID',
+  'ID',
+  'ID',
+  'CN',
+  'CN',
+  'NM',
+];
+
 interface FT1Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   TransactionID?: string | null;
@@ -234,6 +326,8 @@ interface FT1Object1<T extends HL7TypeMap> {
 
 type FTSFields1 = 1 | 2;
 
+type FTSTypes1 = [never, 'ST', 'ST'];
+
 interface FTSObject1<T extends HL7TypeMap> {
   FileBatchCount?: string | null;
   FileTrailerComment?: string | null;
@@ -260,6 +354,30 @@ type GT1Fields1 =
   | 18
   | 19
   | 20;
+
+type GT1Types1 = [
+  never,
+  'SI',
+  'ID',
+  'PN',
+  'PN',
+  'AD',
+  'TN',
+  'TN',
+  'DT',
+  'ID',
+  'ID',
+  'ID',
+  'ST',
+  'DT',
+  'DT',
+  'NM',
+  'ST',
+  'AD',
+  'TN',
+  'ST',
+  'ID',
+];
 
 interface GT1Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -330,6 +448,54 @@ type IN1Fields1 =
   | 43
   | 44;
 
+type IN1Types1 = [
+  never,
+  'SI',
+  'ID',
+  'ST',
+  'ST',
+  'AD',
+  'PN',
+  'TN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'DT',
+  'DT',
+  'ST',
+  'ID',
+  'PN',
+  'ID',
+  'DT',
+  'AD',
+  'ID',
+  'ID',
+  'ST',
+  'ID',
+  'DT',
+  'ID',
+  'DT',
+  'ID',
+  'ST',
+  'DT',
+  'CM',
+  'ID',
+  'ID',
+  'NM',
+  'NM',
+  'ST',
+  'ST',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'ID',
+  'ID',
+  'AD',
+];
+
 interface IN1Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   HealthPlanID?: string | null;
@@ -379,6 +545,8 @@ interface IN1Object1<T extends HL7TypeMap> {
 
 type MRGFields1 = 1 | 2 | 3;
 
+type MRGTypes1 = [never, 'CK', 'CK', 'CK'];
+
 interface MRGObject1<T extends HL7TypeMap> {
   PriorPatientIdentifierList?: string | null;
   PriorAlternatePatientID?: string | null;
@@ -386,6 +554,8 @@ interface MRGObject1<T extends HL7TypeMap> {
 }
 
 type MSAFields1 = 1 | 2 | 3 | 4 | 5;
+
+type MSATypes1 = [never, 'ID', 'ST', 'ST', 'NM', 'ID'];
 
 interface MSAObject1<T extends HL7TypeMap> {
   AcknowledgmentCode?: string | null;
@@ -396,6 +566,24 @@ interface MSAObject1<T extends HL7TypeMap> {
 }
 
 type MSHFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
+type MSHTypes1 = [
+  never,
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'TS',
+  'ST',
+  'ID',
+  'ST',
+  'ID',
+  'NM',
+  'NM',
+  'ST',
+];
 
 interface MSHObject1<T extends HL7TypeMap> {
   FieldSeparator?: string | null;
@@ -416,11 +604,15 @@ interface MSHObject1<T extends HL7TypeMap> {
 
 type NCKFields1 = 1;
 
+type NCKTypes1 = [never, 'TS'];
+
 interface NCKObject1<T extends HL7TypeMap> {
   SystemDateTime?: string | null;
 }
 
 type NK1Fields1 = 1 | 2 | 3 | 4 | 5;
+
+type NK1Types1 = [never, 'SI', 'PN', 'ST', 'AD', 'TN'];
 
 interface NK1Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -432,12 +624,16 @@ interface NK1Object1<T extends HL7TypeMap> {
 
 type NPUFields1 = 1 | 2;
 
+type NPUTypes1 = [never, 'ID', 'ID'];
+
 interface NPUObject1<T extends HL7TypeMap> {
   BedLocation?: string | null;
   BedStatus?: string | null;
 }
 
 type NSCFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+
+type NSCTypes1 = [never, 'ID', 'ST', 'ST', 'ST', 'ST', 'ST', 'ST', 'ST', 'ST'];
 
 interface NSCObject1<T extends HL7TypeMap> {
   ApplicationChangeType?: string | null;
@@ -453,6 +649,25 @@ interface NSCObject1<T extends HL7TypeMap> {
 
 type NSTFields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
+
+type NSTTypes1 = [
+  never,
+  'ID',
+  'ST',
+  'ID',
+  'TS',
+  'TS',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+];
 
 interface NSTObject1<T extends HL7TypeMap> {
   StatisticsAvailable?: string | null;
@@ -473,6 +688,8 @@ interface NSTObject1<T extends HL7TypeMap> {
 }
 
 type NTEFields1 = 1 | 2 | 3;
+
+type NTETypes1 = [never, 'SI', 'ID', 'TX'];
 
 interface NTEObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -518,6 +735,46 @@ type OBRFields1 =
   | 35
   | 36;
 
+type OBRTypes1 = [
+  never,
+  'SI',
+  'CM',
+  'CM',
+  'CE',
+  'ST',
+  'TS',
+  'TS',
+  'TS',
+  'CQ',
+  'CN',
+  'ST',
+  'CM',
+  'ST',
+  'TS',
+  'CM',
+  'CN',
+  'TN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'TS',
+  'CM',
+  'ID',
+  'ID',
+  'CE',
+  'CM',
+  'CN',
+  'CM',
+  'ID',
+  'CE',
+  'CN',
+  'CN',
+  'CN',
+  'CN',
+  'TS',
+];
+
 interface OBRObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   PlacerOrderNumber?: string | null;
@@ -559,6 +816,22 @@ interface OBRObject1<T extends HL7TypeMap> {
 
 type OBXFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
+type OBXTypes1 = [
+  never,
+  'SI',
+  'ID',
+  'CE',
+  'NM',
+  'ST',
+  'ID',
+  'ST',
+  'ST',
+  'NM',
+  'ID',
+  'ID',
+  'TS',
+];
+
 interface OBXObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ValueType?: string | null;
@@ -575,6 +848,24 @@ interface OBXObject1<T extends HL7TypeMap> {
 }
 
 type ORCFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
+type ORCTypes1 = [
+  never,
+  'ST',
+  'CM',
+  'CM',
+  'CM',
+  'ST',
+  'ST',
+  'CM',
+  'CM',
+  'TS',
+  'CN',
+  'CN',
+  'CN',
+  'CM',
+  'TN',
+];
 
 interface ORCObject1<T extends HL7TypeMap> {
   OrderControl?: string | null;
@@ -594,6 +885,8 @@ interface ORCObject1<T extends HL7TypeMap> {
 }
 
 type OROFields1 = 1 | 2 | 3 | 4;
+
+type OROTypes1 = [never, 'CE', 'ID', 'CN', 'ID'];
 
 interface OROObject1<T extends HL7TypeMap> {
   OrderItemId?: T['CE'] | null;
@@ -624,6 +917,30 @@ type PIDFields1 =
   | 19
   | 20;
 
+type PIDTypes1 = [
+  never,
+  'SI',
+  'CK',
+  'CK',
+  'ST',
+  'PN',
+  'ST',
+  'DT',
+  'ID',
+  'PN',
+  'ID',
+  'AD',
+  'ID',
+  'TN',
+  'TN',
+  'ST',
+  'ID',
+  'ID',
+  'CK',
+  'ST',
+  'CM',
+];
+
 interface PIDObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   PatientID?: string | null;
@@ -648,6 +965,23 @@ interface PIDObject1<T extends HL7TypeMap> {
 }
 
 type PR1Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
+
+type PR1Types1 = [
+  never,
+  'SI',
+  'ID',
+  'ID',
+  'ST',
+  'TS',
+  'ID',
+  'NM',
+  'CN',
+  'ID',
+  'NM',
+  'CN',
+  'CN',
+  'ID',
+];
 
 interface PR1Object1<T extends HL7TypeMap> {
   SetID?: (number | string)[] | null;
@@ -716,6 +1050,59 @@ type PV1Fields1 =
   | 48
   | 49;
 
+type PV1Types1 = [
+  never,
+  'SI',
+  'ID',
+  'ID',
+  'ID',
+  'ST',
+  'ID',
+  'CN',
+  'CN',
+  'CN',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'CN',
+  'ID',
+  'NM',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'DT',
+  'NM',
+  'NM',
+  'ID',
+  'ID',
+  'DT',
+  'ST',
+  'NM',
+  'NM',
+  'ID',
+  'DT',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'TS',
+  'TS',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+];
+
 interface PV1Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   PatientClass?: string | null;
@@ -770,6 +1157,22 @@ interface PV1Object1<T extends HL7TypeMap> {
 
 type QRDFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
+type QRDTypes1 = [
+  never,
+  'TS',
+  'ID',
+  'ID',
+  'ST',
+  'ID',
+  'TS',
+  'CQ',
+  'ST',
+  'ID',
+  'ST',
+  'ST',
+  'ID',
+];
+
 interface QRDObject1<T extends HL7TypeMap> {
   QueryDateTime?: string | null;
   QueryFormatCode?: string | null;
@@ -786,6 +1189,8 @@ interface QRDObject1<T extends HL7TypeMap> {
 }
 
 type QRFFields1 = 1 | 2 | 3 | 4 | 5;
+
+type QRFTypes1 = [never, 'ST', 'TS', 'TS', 'ST', 'ST'];
 
 interface QRFObject1<T extends HL7TypeMap> {
   WhereSubjectFilter?: string[] | null;
@@ -826,6 +1231,40 @@ type RX1Fields1 =
   | 28
   | 29
   | 30;
+
+type RX1Types1 = [
+  never,
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'CQ',
+  'CQ',
+  'NM',
+  'NM',
+  'CM',
+  'ID',
+  'NM',
+  'CQ',
+  'ST',
+  'CE',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'NM',
+  'ST',
+  'NM',
+  'ID',
+  'NM',
+  'ST',
+  'TS',
+  'ST',
+  'ID',
+  'TX',
+  'TX',
+  'TX',
+];
 
 interface RX1Object1<T extends HL7TypeMap> {
   UNUSED?: string | null;
@@ -885,6 +1324,33 @@ type UB1Fields1 =
   | 22
   | 23;
 
+type UB1Types1 = [
+  never,
+  'SI',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ID',
+  'ST',
+  'ST',
+  'CM',
+  'ST',
+  'ID',
+  'ID',
+  'DT',
+  'DT',
+  'ID',
+  'ID',
+  'DT',
+  'DT',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+];
+
 interface UB1Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   BloodDeductible?: string | null;
@@ -913,6 +1379,8 @@ interface UB1Object1<T extends HL7TypeMap> {
 
 type URDFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
+type URDTypes1 = [never, 'TS', 'ID', 'ST', 'ID', 'ST', 'ST', 'ID'];
+
 interface URDObject1<T extends HL7TypeMap> {
   RUDateTime?: string | null;
   ReportPriority?: string | null;
@@ -925,6 +1393,8 @@ interface URDObject1<T extends HL7TypeMap> {
 
 type URSFields1 = 1 | 2 | 3 | 4 | 5;
 
+type URSTypes1 = [never, 'ST', 'TS', 'TS', 'ST', 'ST'];
+
 interface URSObject1<T extends HL7TypeMap> {
   RUWhereSubjectDefinition?: string[] | null;
   RUWhenDataStartDateTime?: string | null;
@@ -934,6 +1404,22 @@ interface URSObject1<T extends HL7TypeMap> {
 }
 
 type PD1Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type PD1Types1 = [
+  never,
+  'IS',
+  'IS',
+  'XON',
+  'XCN',
+  'IS',
+  'IS',
+  'IS',
+  'IS',
+  'ID',
+  'CX',
+  'CE',
+  'ID',
+];
 
 interface PD1Object1<T extends HL7TypeMap> {
   LivingDependency?: string | null;
@@ -949,6 +1435,32 @@ interface PD1Object1<T extends HL7TypeMap> {
   PublicityCode?: T['CE'] | null;
   ProtectionIndicator?: string | null;
 }
+
+type CEComps1 = [never, 'ID', 'ST', 'ST', 'ST', 'ST', 'ST'];
+
+type XONComps1 = [never, 'ST', 'IS', 'NM', 'ST', 'ID', 'HD', 'IS', 'HD'];
+
+type XCNComps1 = [
+  never,
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ID',
+  'HD',
+  'ID',
+  'ST',
+  'ID',
+  'IS',
+  'HD',
+];
+
+type CXComps1 = [never, 'ST', 'ST', 'ID', 'HD', 'IS', 'HD'];
+
+type HDComps1 = [never, 'IS', 'ST', 'ID'];
 
 interface ADObject1 {
   StreetAddress?: string | null;
@@ -1438,6 +1950,8 @@ interface ACCObject2<T extends HL7TypeMap> {
 
 type AL1Fields1 = 1 | 2 | 3 | 4 | 5 | 6;
 
+type AL1Types1 = [never, 'SI', 'ID', 'CE', 'ID', 'ST', 'DT'];
+
 interface AL1Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   AllergenTypeCode?: string | null;
@@ -1462,11 +1976,15 @@ interface BHSObject2<T extends HL7TypeMap> {
   ReferenceBatchControlID?: string | null;
 }
 
+type BLGTypes2 = [never, 'CM_CCD', 'ID', 'CK'];
+
 interface BLGObject2<T extends HL7TypeMap> {
   WhenToCharge?: T['CM_CCD'] | null;
   ChargeType?: string | null;
   AccountID?: string | null;
 }
+
+type BTSTypes2 = [never, 'ST', 'ST', 'CM_BATCH_TOTAL'];
 
 interface BTSObject2<T extends HL7TypeMap> {
   BatchMessageCount?: string | null;
@@ -1476,6 +1994,26 @@ interface BTSObject2<T extends HL7TypeMap> {
 
 type DG1Fields2 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
+
+type DG1Types2 = [
+  never,
+  'SI',
+  'ID',
+  'ID',
+  'ST',
+  'TS',
+  'ID',
+  'CE',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'NM',
+  'NM',
+  'ST',
+  'NM',
+  'CN',
+];
 
 interface DG1Object2<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -1496,11 +2034,15 @@ interface DG1Object2<T extends HL7TypeMap> {
   DiagnosingClinician?: T['CN'] | null;
 }
 
+type ERRTypes2 = [never, 'CM_ELD'];
+
 interface ERRObject2<T extends HL7TypeMap> {
   ErrorCodeAndLocation?: T['CM_ELD'][] | null;
 }
 
 type EVNFields2 = 1 | 2 | 3 | 4 | 5;
+
+type EVNTypes2 = [never, 'ID', 'TS', 'TS', 'ID', 'ID'];
 
 interface EVNObject2<T extends HL7TypeMap> {
   EventTypeCode?: string | null;
@@ -1550,6 +2092,33 @@ type FT1Fields2 =
   | 22
   | 23;
 
+type FT1Types2 = [
+  never,
+  'SI',
+  'ST',
+  'ST',
+  'DT',
+  'DT',
+  'ID',
+  'CE',
+  'ST',
+  'ST',
+  'NM',
+  'NM',
+  'NM',
+  'CE',
+  'ID',
+  'NM',
+  'CM_INTERNAL_LOCATION',
+  'ID',
+  'ID',
+  'CE',
+  'CN',
+  'CN',
+  'NM',
+  'CM_FILLER',
+];
+
 interface FT1Object2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   TransactionID?: string | null;
@@ -1575,6 +2144,8 @@ interface FT1Object2<T extends HL7TypeMap> {
   UnitCost?: number | string | null;
   FillerOrderNumber?: T['CM_FILLER'] | null;
 }
+
+type FTSTypes2 = [never, 'NM', 'ST'];
 
 interface FTSObject2<T extends HL7TypeMap> {
   FileBatchCount?: number | string | null;
@@ -1603,6 +2174,31 @@ type GT1Fields2 =
   | 19
   | 20
   | 21;
+
+type GT1Types2 = [
+  never,
+  'SI',
+  'CK',
+  'PN',
+  'PN',
+  'AD',
+  'TN',
+  'TN',
+  'DT',
+  'ID',
+  'ID',
+  'ID',
+  'ST',
+  'DT',
+  'DT',
+  'NM',
+  'ST',
+  'AD',
+  'TN',
+  'ST',
+  'ID',
+  'ST',
+];
 
 interface GT1Object2<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -1675,6 +2271,56 @@ type IN1Fields2 =
   | 44
   | 45
   | 46;
+
+type IN1Types2 = [
+  never,
+  'SI',
+  'ID',
+  'ST',
+  'ST',
+  'AD',
+  'PN',
+  'TN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'DT',
+  'DT',
+  'CM_AUI',
+  'ID',
+  'PN',
+  'ID',
+  'DT',
+  'AD',
+  'ID',
+  'ID',
+  'ST',
+  'ID',
+  'DT',
+  'ID',
+  'DT',
+  'ID',
+  'ST',
+  'TS',
+  'CN',
+  'ID',
+  'ID',
+  'NM',
+  'NM',
+  'ID',
+  'ST',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'CE',
+  'ID',
+  'AD',
+  'ST',
+  'ID',
+];
 
 interface IN1Object2<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -1757,6 +2403,40 @@ type IN2Fields1 =
   | 29
   | 30;
 
+type IN2Types1 = [
+  never,
+  'ST',
+  'ST',
+  'CN',
+  'ID',
+  'ID',
+  'NM',
+  'PN',
+  'NM',
+  'PN',
+  'NM',
+  'ID',
+  'ST',
+  'ST',
+  'ID',
+  'ID',
+  'ID',
+  'DT',
+  'ID',
+  'ID',
+  'ID',
+  'NM',
+  'PN',
+  'ST',
+  'ID',
+  'ST',
+  'ST',
+  'ID',
+  'CM_RMC',
+  'CM_PTA',
+  'CM_DDI',
+];
+
 interface IN2Object1<T extends HL7TypeMap> {
   InsuredSEmployeeID?: string | null;
   InsuredSSocialSecurityNumber?: string | null;
@@ -1817,6 +2497,35 @@ type IN3Fields1 =
   | 24
   | 25;
 
+type IN3Types1 = [
+  never,
+  'SI',
+  'ST',
+  'CN',
+  'ID',
+  'CM_PEN',
+  'TS',
+  'TS',
+  'CN',
+  'DT',
+  'DT',
+  'CM_DTN',
+  'CE',
+  'TS',
+  'CN',
+  'ST',
+  'TN',
+  'CE',
+  'CE',
+  'TN',
+  'CM_PCF',
+  'ST',
+  'DT',
+  'ID',
+  'ID',
+  'CN',
+];
+
 interface IN3Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   CertificationNumber?: string | null;
@@ -1847,6 +2556,8 @@ interface IN3Object1<T extends HL7TypeMap> {
 
 type MFAFields1 = 1 | 2 | 3 | 4 | 5;
 
+type MFATypes1 = [never, 'ID', 'ST', 'TS', 'CE', 'CE'];
+
 interface MFAObject1<T extends HL7TypeMap> {
   RecordLevelEventCode?: string | null;
   MFNControlID?: string | null;
@@ -1857,6 +2568,8 @@ interface MFAObject1<T extends HL7TypeMap> {
 
 type MFEFields1 = 1 | 2 | 3 | 4;
 
+type MFETypes1 = [never, 'ID', 'ST', 'TS', 'CE'];
+
 interface MFEObject1<T extends HL7TypeMap> {
   RecordLevelEventCode?: string | null;
   MFNControlID?: string | null;
@@ -1865,6 +2578,8 @@ interface MFEObject1<T extends HL7TypeMap> {
 }
 
 type MFIFields1 = 1 | 2 | 3 | 4 | 5 | 6;
+
+type MFITypes1 = [never, 'CE', 'ID', 'ID', 'TS', 'TS', 'ID'];
 
 interface MFIObject1<T extends HL7TypeMap> {
   MasterFileIdentifier?: T['CE'] | null;
@@ -1877,6 +2592,8 @@ interface MFIObject1<T extends HL7TypeMap> {
 
 type MRGFields2 = 1 | 2 | 3 | 4;
 
+type MRGTypes2 = [never, 'CM_PAT_ID', 'CM_PAT_ID', 'CK', 'CK'];
+
 interface MRGObject2<T extends HL7TypeMap> {
   PriorPatientIdentifierList?: T['CM_PAT_ID'] | null;
   PriorAlternatePatientID?: T['CM_PAT_ID'] | null;
@@ -1885,6 +2602,8 @@ interface MRGObject2<T extends HL7TypeMap> {
 }
 
 type MSAFields2 = 1 | 2 | 3 | 4 | 5 | 6;
+
+type MSATypes2 = [never, 'ID', 'ST', 'ST', 'NM', 'ID', 'CE'];
 
 interface MSAObject2<T extends HL7TypeMap> {
   AcknowledgmentCode?: string | null;
@@ -1897,6 +2616,27 @@ interface MSAObject2<T extends HL7TypeMap> {
 
 type MSHFields2 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17;
+
+type MSHTypes2 = [
+  never,
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'TS',
+  'ST',
+  'CM_MSG',
+  'ST',
+  'ID',
+  'ID',
+  'NM',
+  'ST',
+  'ID',
+  'ID',
+  'ID',
+];
 
 interface MSHObject2<T extends HL7TypeMap> {
   FieldSeparator?: string | null;
@@ -1924,6 +2664,23 @@ interface NCKObject2<T extends HL7TypeMap> {
 
 type NK1Fields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
 
+type NK1Types2 = [
+  never,
+  'SI',
+  'PN',
+  'CE',
+  'AD',
+  'TN',
+  'TN',
+  'CE',
+  'DT',
+  'DT',
+  'ST',
+  'CM_JOB_CODE',
+  'ST',
+  'ST',
+];
+
 interface NK1Object2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   Name?: T['PN'] | null;
@@ -1939,6 +2696,8 @@ interface NK1Object2<T extends HL7TypeMap> {
   NextOfKinAssociatedPartiesEmployeeNumber?: string | null;
   OrganizationNameNK1?: string | null;
 }
+
+type NPUTypes2 = [never, 'CM_INTERNAL_LOCATION', 'ID'];
 
 interface NPUObject2<T extends HL7TypeMap> {
   BedLocation?: T['CM_INTERNAL_LOCATION'] | null;
@@ -1962,6 +2721,48 @@ interface NSTObject2<T extends HL7TypeMap> {
   ReceiveTimeouts?: number | string | null;
   ApplicationControlLevelErrors?: number | string | null;
 }
+
+type NTETypes2 = [never, 'SI', 'ID', 'FT'];
+
+type OBRTypes2 = [
+  never,
+  'SI',
+  'CM_PLACER',
+  'CM_FILLER',
+  'CE',
+  'ID',
+  'TS',
+  'TS',
+  'TS',
+  'CQ',
+  'CN',
+  'ID',
+  'CE',
+  'ST',
+  'TS',
+  'CM_SPS',
+  'CN',
+  'TN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'TS',
+  'CM_MOC',
+  'ID',
+  'ID',
+  'CM_PARENT_RESULT',
+  'TQ',
+  'CN',
+  'CM_EIP',
+  'ID',
+  'CE',
+  'CM_NDL',
+  'CM_NDL',
+  'CM_NDL',
+  'CM_NDL',
+  'TS',
+];
 
 interface OBRObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -2005,6 +2806,26 @@ interface OBRObject2<T extends HL7TypeMap> {
 type OBXFields2 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
 
+type OBXTypes2 = [
+  never,
+  'SI',
+  'ID',
+  'CE',
+  'ST',
+  'VARIES',
+  'CE',
+  'ST',
+  'ID',
+  'NM',
+  'ID',
+  'ID',
+  'TS',
+  'ST',
+  'TS',
+  'CE',
+  'CN',
+];
+
 interface OBXObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ValueType?: string | null;
@@ -2026,6 +2847,8 @@ interface OBXObject2<T extends HL7TypeMap> {
 
 type ODSFields1 = 1 | 2 | 3 | 4;
 
+type ODSTypes1 = [never, 'ID', 'CE', 'CE', 'ST'];
+
 interface ODSObject1<T extends HL7TypeMap> {
   Type?: string | null;
   ServicePeriod?: T['CE'][] | null;
@@ -2034,6 +2857,8 @@ interface ODSObject1<T extends HL7TypeMap> {
 }
 
 type ODTFields1 = 1 | 2 | 3;
+
+type ODTTypes1 = [never, 'CE', 'CE', 'ST'];
 
 interface ODTObject1<T extends HL7TypeMap> {
   TrayType?: T['CE'] | null;
@@ -2085,6 +2910,52 @@ type OM1Fields1 =
   | 41
   | 42;
 
+type OM1Types1 = [
+  never,
+  'ST',
+  'NM',
+  'CE',
+  'ID',
+  'ID',
+  'CE',
+  'TX',
+  'CE',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ID',
+  'CE',
+  'CE',
+  'ID',
+  'ID',
+  'TN',
+  'ID',
+  'CE',
+  'ST',
+  'TS',
+  'TS',
+  'NM',
+  'NM',
+  'ID',
+  'ID',
+  'CE',
+  'AD',
+  'TN',
+  'ID',
+  'CE',
+  'TX',
+  'CE',
+  'CE',
+  'ST',
+  'CE',
+  'TX',
+  'CE',
+  'TX',
+  'ST',
+  'TX',
+];
+
 interface OM1Object1<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: string | null;
   ProducerSServiceTestObservationID?: number | string | null;
@@ -2132,6 +3003,21 @@ interface OM1Object1<T extends HL7TypeMap> {
 
 type OM2Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
 
+type OM2Types1 = [
+  never,
+  'ST',
+  'NM',
+  'CE',
+  'NM',
+  'CE',
+  'TX',
+  'CM_RFR',
+  'CM_RANGE',
+  'CM_ABS_RANGE',
+  'CM_DLT',
+  'NM',
+];
+
 interface OM2Object1<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: string | null;
   UnitsOfMeasure?: number | string | null;
@@ -2148,6 +3034,8 @@ interface OM2Object1<T extends HL7TypeMap> {
 
 type OM3Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
+type OM3Types1 = [never, 'ST', 'NM', 'ID', 'CE', 'CE', 'CE', 'CE', 'ID'];
+
 interface OM3Object1<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: string | null;
   PreferredCodingSystem?: number | string | null;
@@ -2161,6 +3049,25 @@ interface OM3Object1<T extends HL7TypeMap> {
 
 type OM4Fields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
+
+type OM4Types1 = [
+  never,
+  'ST',
+  'NM',
+  'ID',
+  'TX',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'TX',
+  'TX',
+  'CQ',
+  'CQ',
+  'TX',
+  'ID',
+  'CQ',
+];
 
 interface OM4Object1<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: string | null;
@@ -2182,6 +3089,8 @@ interface OM4Object1<T extends HL7TypeMap> {
 
 type OM5Fields1 = 1 | 2 | 3 | 4;
 
+type OM5Types1 = [never, 'ST', 'NM', 'CE', 'ST'];
+
 interface OM5Object1<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: string | null;
   TestObservationsIncludedWithinAnOrderedTestBattery?: number | string | null;
@@ -2190,6 +3099,8 @@ interface OM5Object1<T extends HL7TypeMap> {
 }
 
 type OM6Fields1 = 1 | 2 | 3;
+
+type OM6Types1 = [never, 'ST', 'NM', 'TX'];
 
 interface OM6Object1<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: string | null;
@@ -2217,6 +3128,29 @@ type ORCFields2 =
   | 17
   | 18
   | 19;
+
+type ORCTypes2 = [
+  never,
+  'ID',
+  'CM_PLACER',
+  'CM_FILLER',
+  'CM_GROUP_ID',
+  'ID',
+  'ID',
+  'TQ',
+  'CM_EIP',
+  'TS',
+  'CN',
+  'CN',
+  'CN',
+  'CM_PARENT_RESULT',
+  'TN',
+  'TS',
+  'CE',
+  'CE',
+  'CE',
+  'CN',
+];
 
 interface ORCObject2<T extends HL7TypeMap> {
   OrderControl?: string | null;
@@ -2269,6 +3203,37 @@ type PIDFields2 =
   | 26
   | 27;
 
+type PIDTypes2 = [
+  never,
+  'SI',
+  'CK',
+  'CM_PAT_ID',
+  'ST',
+  'PN',
+  'ST',
+  'TS',
+  'ID',
+  'PN',
+  'ID',
+  'AD',
+  'ID',
+  'TN',
+  'TN',
+  'ST',
+  'ID',
+  'ID',
+  'CK',
+  'ST',
+  'CM_LICENSE_NO',
+  'CK',
+  'ID',
+  'ST',
+  'ID',
+  'NM',
+  'ID',
+  'ST',
+];
+
 interface PIDObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   PatientID?: string | null;
@@ -2301,6 +3266,24 @@ interface PIDObject2<T extends HL7TypeMap> {
 
 type PR1Fields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
 
+type PR1Types2 = [
+  never,
+  'SI',
+  'ID',
+  'ID',
+  'ST',
+  'TS',
+  'ID',
+  'NM',
+  'CN',
+  'ID',
+  'NM',
+  'CN',
+  'CM_PRACTITIONER',
+  'ID',
+  'NM',
+];
+
 interface PR1Object2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ProcedureCodingMethod?: string[] | null;
@@ -2319,6 +3302,8 @@ interface PR1Object2<T extends HL7TypeMap> {
 }
 
 type PRAFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
+type PRATypes1 = [never, 'ST', 'CE', 'ID', 'ID', 'CM_SPD', 'CM_PLN', 'CM_PIP'];
 
 interface PRAObject1<T extends HL7TypeMap> {
   PrimaryKeyValuePRA?: string | null;
@@ -2382,6 +3367,60 @@ type PV1Fields2 =
   | 49
   | 50;
 
+type PV1Types2 = [
+  never,
+  'SI',
+  'ID',
+  'CM_INTERNAL_LOCATION',
+  'ID',
+  'ST',
+  'CM_INTERNAL_LOCATION',
+  'CN',
+  'CN',
+  'CN',
+  'ID',
+  'CM_INTERNAL_LOCATION',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'CN',
+  'ID',
+  'CM_PAT_ID',
+  'CM_FINANCE',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'DT',
+  'NM',
+  'NM',
+  'ID',
+  'ID',
+  'DT',
+  'ID',
+  'NM',
+  'NM',
+  'ID',
+  'DT',
+  'ID',
+  'CM_DLD',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'CM_INTERNAL_LOCATION',
+  'CM_INTERNAL_LOCATION',
+  'TS',
+  'TS',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'CM_PAT_ID_0192',
+];
+
 interface PV1Object2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   PatientClass?: string | null;
@@ -2437,6 +3476,19 @@ interface PV1Object2<T extends HL7TypeMap> {
 
 type PV2Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
+type PV2Types1 = [
+  never,
+  'CM_INTERNAL_LOCATION',
+  'CE',
+  'CE',
+  'CE',
+  'ST',
+  'ST',
+  'ID',
+  'DT',
+  'DT',
+];
+
 interface PV2Object1<T extends HL7TypeMap> {
   PriorPendingLocation?: T['CM_INTERNAL_LOCATION'] | null;
   AccommodationCode?: T['CE'] | null;
@@ -2448,6 +3500,22 @@ interface PV2Object1<T extends HL7TypeMap> {
   ExpectedAdmitDateTime?: string | null;
   ExpectedDischargeDateTime?: string | null;
 }
+
+type QRDTypes2 = [
+  never,
+  'TS',
+  'ID',
+  'ID',
+  'ST',
+  'ID',
+  'TS',
+  'CQ',
+  'ST',
+  'ID',
+  'ST',
+  'CM_VR',
+  'ID',
+];
 
 interface QRDObject2<T extends HL7TypeMap> {
   QueryDateTime?: T['TS'] | null;
@@ -2466,6 +3534,8 @@ interface QRDObject2<T extends HL7TypeMap> {
 
 type QRFFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
+type QRFTypes2 = [never, 'ST', 'TS', 'TS', 'ST', 'ST', 'ID', 'ID', 'ID'];
+
 interface QRFObject2<T extends HL7TypeMap> {
   WhereSubjectFilter?: string[] | null;
   WhenDataStartDateTime?: T['TS'] | null;
@@ -2479,6 +3549,8 @@ interface QRFObject2<T extends HL7TypeMap> {
 
 type RQ1Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
+type RQ1Types1 = [never, 'SI', 'CE', 'ST', 'CE', 'ST', 'ID', 'ID'];
+
 interface RQ1Object1<T extends HL7TypeMap> {
   AnticipatedPrice?: number | string | null;
   ManufacturerIdentifier?: T['CE'] | null;
@@ -2490,6 +3562,20 @@ interface RQ1Object1<T extends HL7TypeMap> {
 }
 
 type RQDFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+
+type RQDTypes1 = [
+  never,
+  'SI',
+  'CE',
+  'CE',
+  'CE',
+  'NM',
+  'CE',
+  'ID',
+  'ID',
+  'CE',
+  'DT',
+];
 
 interface RQDObject1<T extends HL7TypeMap> {
   RequisitionLineNumber?: number | string | null;
@@ -2505,6 +3591,22 @@ interface RQDObject1<T extends HL7TypeMap> {
 }
 
 type RXAFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type RXATypes1 = [
+  never,
+  'NM',
+  'NM',
+  'TS',
+  'TS',
+  'CE',
+  'NM',
+  'CE',
+  'CE',
+  'ST',
+  'CN',
+  'CM_LA1',
+  'ST',
+];
 
 interface RXAObject1<T extends HL7TypeMap> {
   GiveSubIDCounter?: number | string | null;
@@ -2523,6 +3625,8 @@ interface RXAObject1<T extends HL7TypeMap> {
 
 type RXCFields1 = 1 | 2 | 3 | 4;
 
+type RXCTypes1 = [never, 'ID', 'CE', 'NM', 'CE'];
+
 interface RXCObject1<T extends HL7TypeMap> {
   RXComponentType?: string | null;
   ComponentCode?: T['CE'] | null;
@@ -2532,6 +3636,25 @@ interface RXCObject1<T extends HL7TypeMap> {
 
 type RXDFields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
+
+type RXDTypes1 = [
+  never,
+  'NM',
+  'CE',
+  'TS',
+  'NM',
+  'CE',
+  'CE',
+  'ST',
+  'NM',
+  'ST',
+  'CN',
+  'ID',
+  'CQ',
+  'CM_LA1',
+  'ID',
+  'CE',
+];
 
 interface RXDObject1<T extends HL7TypeMap> {
   DispenseSubIDCounter?: number | string | null;
@@ -2577,6 +3700,34 @@ type RXEFields1 =
   | 23
   | 24;
 
+type RXETypes1 = [
+  never,
+  'TQ',
+  'CE',
+  'NM',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'CM_LA1',
+  'ID',
+  'NM',
+  'CE',
+  'NM',
+  'CN',
+  'CN',
+  'ST',
+  'NM',
+  'NM',
+  'TS',
+  'CQ',
+  'ID',
+  'CE',
+  'ST',
+  'CE',
+  'CE',
+];
+
 interface RXEObject1<T extends HL7TypeMap> {
   QuantityTiming?: T['TQ'][] | null;
   GiveCode?: T['CE'] | null;
@@ -2607,6 +3758,26 @@ interface RXEObject1<T extends HL7TypeMap> {
 type RXGFields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
 
+type RXGTypes1 = [
+  never,
+  'NM',
+  'NM',
+  'TQ',
+  'CE',
+  'NM',
+  'NM',
+  'CE',
+  'CE',
+  'ST',
+  'ID',
+  'CM_LA1',
+  'ID',
+  'CE',
+  'ST',
+  'CE',
+  'CE',
+];
+
 interface RXGObject1<T extends HL7TypeMap> {
   GiveSubIDCounter?: number | string | null;
   DispenseSubIDCounter?: number | string | null;
@@ -2630,6 +3801,27 @@ interface RXGObject1<T extends HL7TypeMap> {
 type RXOFields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17;
 
+type RXOTypes1 = [
+  never,
+  'CE',
+  'NM',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'CM_LA1',
+  'ID',
+  'CE',
+  'NM',
+  'CE',
+  'NM',
+  'CN',
+  'CN',
+  'ID',
+  'ST',
+];
+
 interface RXOObject1<T extends HL7TypeMap> {
   RequestedGiveCode?: T['CE'] | null;
   RequestedGiveAmountMinimum?: number | string | null;
@@ -2652,6 +3844,8 @@ interface RXOObject1<T extends HL7TypeMap> {
 
 type RXRFields1 = 1 | 2 | 3 | 4;
 
+type RXRTypes1 = [never, 'CE', 'CE', 'CE', 'CE'];
+
 interface RXRObject1<T extends HL7TypeMap> {
   Route?: T['CE'] | null;
   AdministrationSite?: T['CE'] | null;
@@ -2661,6 +3855,26 @@ interface RXRObject1<T extends HL7TypeMap> {
 
 type STFFields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
+
+type STFTypes1 = [
+  never,
+  'CE',
+  'CE',
+  'PN',
+  'ID',
+  'ID',
+  'TS',
+  'ID',
+  'CE',
+  'CE',
+  'TN',
+  'AD',
+  'CM_DIN',
+  'CM_DIN',
+  'CE',
+  'ST',
+  'ID',
+];
 
 interface STFObject1<T extends HL7TypeMap> {
   PrimaryKeyValueSTF?: T['CE'] | null;
@@ -2680,6 +3894,33 @@ interface STFObject1<T extends HL7TypeMap> {
   EMailAddress?: string[] | null;
   PreferredMethodOfContact?: string | null;
 }
+
+type UB1Types2 = [
+  never,
+  'SI',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'ID',
+  'NM',
+  'NM',
+  'CM_UVC',
+  'NM',
+  'ID',
+  'ID',
+  'DT',
+  'DT',
+  'CM_OCD',
+  'ID',
+  'DT',
+  'DT',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+];
 
 interface UB1Object2<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -2709,6 +3950,26 @@ interface UB1Object2<T extends HL7TypeMap> {
 
 type UB2Fields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
+
+type UB2Types1 = [
+  never,
+  'SI',
+  'ST',
+  'ID',
+  'ST',
+  'ST',
+  'CM_UVC',
+  'CM_OCD',
+  'CM_OSP',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+];
 
 interface UB2Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -2741,6 +4002,8 @@ interface URDObject2<T extends HL7TypeMap> {
 
 type URSFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
+type URSTypes2 = [never, 'ST', 'TS', 'TS', 'ST', 'ST', 'ID', 'ID', 'ID'];
+
 interface URSObject2<T extends HL7TypeMap> {
   RUWhereSubjectDefinition?: string[] | null;
   RUWhenDataStartDateTime?: T['TS'] | null;
@@ -2751,6 +4014,164 @@ interface URSObject2<T extends HL7TypeMap> {
   RUWhichDateTimeStatusQualifier?: string[] | null;
   RUDateTimeSelectionQualifier?: string[] | null;
 }
+
+type ADComps1 = [never, 'ST', 'ST', 'ST', 'ST', 'ID', 'ID', 'ID', 'ST'];
+
+type CK_ACCOUNT_NOComps1 = [never, 'NM', 'NM', 'ID', 'ID'];
+
+type CK_PAT_IDComps1 = [never, 'ST', 'NM', 'ID', 'ID'];
+
+type CM_ABS_RANGEComps1 = [never, 'CM_RANGE', 'NM', 'NM', 'NM'];
+
+type CM_AUIComps1 = [never, 'ST', 'DT', 'ST'];
+
+type CM_BATCH_TOTALComps1 = [never, 'NM', 'NM'];
+
+type CM_CCDComps1 = [never, 'ID', 'TS'];
+
+type CM_DDIComps1 = [never, 'ST', 'NM', 'NM'];
+
+type CM_DINComps1 = [never, 'TS', 'CE'];
+
+type CM_DLDComps1 = [never, 'ID', 'TS'];
+
+type CM_DLTComps1 = [never, 'CM_RANGE', 'NM', 'ST', 'NM'];
+
+type CM_DTNComps1 = [never, 'ID', 'NM'];
+
+type CM_EIPComps1 = [never, 'ST', 'ST'];
+
+type CM_ELDComps1 = [never, 'ST', 'NM', 'NM', 'CE'];
+
+type CM_FILLERComps1 = [never, 'ID', 'ID'];
+
+type CM_FINANCEComps1 = [never, 'ID', 'TS'];
+
+type CM_GROUP_IDComps1 = [never, 'ID', 'ID'];
+
+type CM_INTERNAL_LOCATIONComps1 = [
+  never,
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+];
+
+type CM_JOB_CODEComps1 = [never, 'ID', 'ID'];
+
+type CM_LA1Comps1 = [never, 'CM_INTERNAL_LOCATION', 'AD'];
+
+type CM_LICENSE_NOComps1 = [never, 'ST', 'ST'];
+
+type CM_MOCComps1 = [never, 'ST', 'ST'];
+
+type CM_MSGComps1 = [never, 'ID', 'ID'];
+
+type CM_NDLComps1 = [never, 'CN', 'TS', 'TS', 'CM_INTERNAL_LOCATION'];
+
+type CM_OCDComps1 = [never, 'ID', 'DT'];
+
+type CM_OSPComps1 = [never, 'ID', 'DT', 'DT'];
+
+type CM_PAT_IDComps1 = [never, 'ST', 'NM', 'ID', 'ID', 'ID'];
+
+type CM_PAT_ID_0192Comps1 = [never, 'ST', 'NM', 'ID', 'ID', 'ID'];
+
+type CM_PCFComps1 = [never, 'ID', 'ID', 'TS'];
+
+type CM_PENComps1 = [never, 'ID', 'NM'];
+
+type CM_PIPComps1 = [never, 'CE', 'CE', 'DT', 'DT'];
+
+type CM_PLACERComps1 = [never, 'ID', 'ID'];
+
+type CM_PLNComps1 = [never, 'ST', 'ID', 'ST'];
+
+type CM_POSITIONComps1 = [never, 'ST', 'ST', 'ST'];
+
+type CM_PRACTITIONERComps1 = [never, 'CN', 'ID'];
+
+type CM_PTAComps1 = [never, 'ID', 'ID', 'NM'];
+
+type CM_RANGEComps1 = [never, 'CE', 'CE'];
+
+type CM_RFRComps1 = [never, 'CE', 'ID', 'CE', 'CE', 'ST', 'ID', 'ST'];
+
+type CM_RIComps1 = [never, 'ST', 'ST'];
+
+type CM_RMCComps1 = [never, 'ID', 'ID', 'NM'];
+
+type CM_SPDComps1 = [never, 'ST', 'ST', 'ID', 'DT'];
+
+type CM_SPSComps1 = [never, 'CE', 'TX', 'TX', 'CE', 'CE'];
+
+type CM_UVCComps1 = [never, 'ID', 'NM'];
+
+type CM_VRComps1 = [never, 'ST', 'ST'];
+
+type CN_PERSONComps1 = [never, 'ID', 'ST', 'ST', 'ST', 'ST', 'ST', 'ST', 'ID'];
+
+type CN_PHYSICIANComps1 = [
+  never,
+  'ID',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ID',
+  'AD',
+  'TN',
+  'TN',
+  'TN',
+  'ST',
+];
+
+type CQ_QUANTITYComps1 = [never, 'ST', 'ST'];
+
+type PNComps1 = [never, 'ST', 'ST', 'ST', 'ST', 'ST', 'ST'];
+
+type TQComps1 = [
+  never,
+  'CQ',
+  'CM_RI',
+  'ST',
+  'TS',
+  'TS',
+  'ID',
+  'ST',
+  'TX',
+  'ID',
+  'ST',
+];
+
+type TSComps1 = [never, 'ST', 'ST'];
+
+type CNComps1 = [
+  never,
+  'ID',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ID',
+  'AD',
+  'TN',
+  'TN',
+  'TN',
+  'ST',
+];
+
+type CQComps1 = [never, 'NM', 'ST'];
+
+type CM_PARENT_RESULTComps1 = [never, 'CE', 'ST', 'CE'];
 
 interface CM_WVIComponents1 {
   ChannelNumber?: number | string | null;
@@ -3192,6 +4613,8 @@ type HL7Types_2_3 = {
 
 type ACCFields2 = 1 | 2 | 3 | 4 | 5 | 6;
 
+type ACCTypes2 = [never, 'TS', 'CE', 'ST', 'CE', 'ID', 'ID'];
+
 interface ACCObject3<T extends HL7TypeMap> {
   AccidentDateTime?: T['TS'] | null;
   AccidentCode?: T['CE'] | null;
@@ -3202,6 +4625,24 @@ interface ACCObject3<T extends HL7TypeMap> {
 }
 
 type AIGFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
+type AIGTypes1 = [
+  never,
+  'SI',
+  'ID',
+  'CE',
+  'CE',
+  'CE',
+  'NM',
+  'CE',
+  'TS',
+  'NM',
+  'CE',
+  'NM',
+  'CE',
+  'IS',
+  'CE',
+];
 
 interface AIGObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -3222,6 +4663,22 @@ interface AIGObject1<T extends HL7TypeMap> {
 
 type AILFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
+type AILTypes1 = [
+  never,
+  'SI',
+  'ID',
+  'PL',
+  'CE',
+  'CE',
+  'TS',
+  'NM',
+  'CE',
+  'NM',
+  'CE',
+  'IS',
+  'CE',
+];
+
 interface AILObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SegmentActionCode?: string | null;
@@ -3238,6 +4695,22 @@ interface AILObject1<T extends HL7TypeMap> {
 }
 
 type AIPFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type AIPTypes1 = [
+  never,
+  'SI',
+  'ID',
+  'XCN',
+  'CE',
+  'CE',
+  'TS',
+  'NM',
+  'CE',
+  'NM',
+  'CE',
+  'IS',
+  'CE',
+];
 
 interface AIPObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -3256,6 +4729,20 @@ interface AIPObject1<T extends HL7TypeMap> {
 
 type AISFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
+type AISTypes1 = [
+  never,
+  'SI',
+  'ID',
+  'CE',
+  'TS',
+  'NM',
+  'CE',
+  'NM',
+  'CE',
+  'IS',
+  'CE',
+];
+
 interface AISObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SegmentActionCode?: string | null;
@@ -3270,6 +4757,8 @@ interface AISObject1<T extends HL7TypeMap> {
 }
 
 type APRFields1 = 1 | 2 | 3 | 4 | 5;
+
+type APRTypes1 = [never, 'SCV', 'SCV', 'SCV', 'NM', 'SCV'];
 
 interface APRObject1<T extends HL7TypeMap> {
   TimeSelectionCriteria?: T['SCV'][] | null;
@@ -3304,6 +4793,33 @@ type ARQFields1 =
   | 22
   | 23;
 
+type ARQTypes1 = [
+  never,
+  'EI',
+  'EI',
+  'NM',
+  'EI',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'NM',
+  'CE',
+  'DR',
+  'ST',
+  'RI',
+  'ST',
+  'XCN',
+  'XTN',
+  'XAD',
+  'PL',
+  'XCN',
+  'XTN',
+  'PL',
+  'EI',
+  'EI',
+];
+
 interface ARQObject1<T extends HL7TypeMap> {
   PlacerAppointmentID?: T['EI'] | null;
   FillerAppointmentID?: T['EI'] | null;
@@ -3332,6 +4848,20 @@ interface ARQObject1<T extends HL7TypeMap> {
 
 type AUTFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
+type AUTTypes1 = [
+  never,
+  'CE',
+  'CE',
+  'ST',
+  'TS',
+  'TS',
+  'EI',
+  'CP',
+  'NM',
+  'NM',
+  'TS',
+];
+
 interface AUTObject1<T extends HL7TypeMap> {
   AuthorizingPayorPlanID?: T['CE'] | null;
   AuthorizingPayorCompanyID?: T['CE'] | null;
@@ -3351,6 +4881,8 @@ interface BLGObject3<T extends HL7TypeMap> {
   AccountID?: T['CK'] | null;
 }
 
+type BTSTypes3 = [never, 'ST', 'ST', 'NM'];
+
 interface BTSObject3<T extends HL7TypeMap> {
   BatchMessageCount?: string | null;
   BatchComment?: string | null;
@@ -3358,6 +4890,23 @@ interface BTSObject3<T extends HL7TypeMap> {
 }
 
 type CDMFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
+
+type CDMTypes1 = [
+  never,
+  'CE',
+  'CE',
+  'ST',
+  'ST',
+  'ID',
+  'CE',
+  'CE',
+  'ID',
+  'CE',
+  'NM',
+  'CK',
+  'XON',
+  'ID',
+];
 
 interface CDMObject1<T extends HL7TypeMap> {
   PrimaryKeyValueCDM?: T['CE'] | null;
@@ -3377,6 +4926,21 @@ interface CDMObject1<T extends HL7TypeMap> {
 
 type CM0Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
 
+type CM0Types1 = [
+  never,
+  'SI',
+  'EI',
+  'CE',
+  'ST',
+  'XCN',
+  'DT',
+  'NM',
+  'DT',
+  'XCN',
+  'XTN',
+  'XAD',
+];
+
 interface CM0Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SponsorStudyID?: T['EI'] | null;
@@ -3393,6 +4957,8 @@ interface CM0Object1<T extends HL7TypeMap> {
 
 type CM1Fields1 = 1 | 2 | 3;
 
+type CM1Types1 = [never, 'SI', 'CE', 'ST'];
+
 interface CM1Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   StudyPhaseIdentifier?: T['CE'] | null;
@@ -3400,6 +4966,8 @@ interface CM1Object1<T extends HL7TypeMap> {
 }
 
 type CM2Fields1 = 1 | 2 | 3 | 4;
+
+type CM2Types1 = [never, 'SI', 'CE', 'ST', 'CE'];
 
 interface CM2Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -3410,6 +4978,8 @@ interface CM2Object1<T extends HL7TypeMap> {
 
 type CSPFields1 = 1 | 2 | 3 | 4;
 
+type CSPTypes1 = [never, 'CE', 'TS', 'TS', 'CE'];
+
 interface CSPObject1<T extends HL7TypeMap> {
   StudyPhaseIdentifier?: T['CE'] | null;
   DateTimeStudyPhaseBegan?: T['TS'] | null;
@@ -3419,6 +4989,26 @@ interface CSPObject1<T extends HL7TypeMap> {
 
 type CSRFields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
+
+type CSRTypes1 = [
+  never,
+  'EI',
+  'EI',
+  'CE',
+  'CX',
+  'CX',
+  'TS',
+  'XCN',
+  'XCN',
+  'TS',
+  'CE',
+  'TS',
+  'CE',
+  'CE',
+  'CE',
+  'TS',
+  'CE',
+];
 
 interface CSRObject1<T extends HL7TypeMap> {
   SponsorStudyID?: T['EI'] | null;
@@ -3441,6 +5031,8 @@ interface CSRObject1<T extends HL7TypeMap> {
 
 type CSSFields1 = 1 | 2 | 3;
 
+type CSSTypes1 = [never, 'CE', 'TS', 'CE'];
+
 interface CSSObject1<T extends HL7TypeMap> {
   StudyScheduledTimePoint?: T['CE'] | null;
   StudyScheduledPatientTimePoint?: T['TS'] | null;
@@ -3448,6 +5040,8 @@ interface CSSObject1<T extends HL7TypeMap> {
 }
 
 type CTDFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
+type CTDTypes1 = [never, 'CE', 'XPN', 'XAD', 'PL', 'XTN', 'CE', 'CM_PI'];
 
 interface CTDObject1<T extends HL7TypeMap> {
   ContactRole?: T['CE'] | null;
@@ -3461,6 +5055,8 @@ interface CTDObject1<T extends HL7TypeMap> {
 
 type CTIFields1 = 1 | 2 | 3;
 
+type CTITypes1 = [never, 'EI', 'CE', 'CE'];
+
 interface CTIObject1<T extends HL7TypeMap> {
   SponsorStudyID?: T['EI'] | null;
   StudyPhaseIdentifier?: T['CE'] | null;
@@ -3468,6 +5064,8 @@ interface CTIObject1<T extends HL7TypeMap> {
 }
 
 type DB1Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
+type DB1Types1 = [never, 'SI', 'IS', 'CX', 'ID', 'DT', 'DT', 'DT', 'DT'];
 
 interface DB1Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -3501,6 +5099,29 @@ type DG1Fields3 =
   | 18
   | 19;
 
+type DG1Types3 = [
+  never,
+  'SI',
+  'ID',
+  'CE',
+  'ST',
+  'TS',
+  'IS',
+  'CE',
+  'CE',
+  'ID',
+  'IS',
+  'CE',
+  'NM',
+  'CP',
+  'ST',
+  'NM',
+  'XCN',
+  'IS',
+  'ID',
+  'TS',
+];
+
 interface DG1Object3<T extends HL7TypeMap> {
   SetID?: number | string | null;
   DiagnosisCodingMethod?: string | null;
@@ -3525,6 +5146,20 @@ interface DG1Object3<T extends HL7TypeMap> {
 
 type DRGFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
+type DRGTypes1 = [
+  never,
+  'CE',
+  'TS',
+  'ID',
+  'IS',
+  'CE',
+  'NM',
+  'CP',
+  'IS',
+  'CP',
+  'ID',
+];
+
 interface DRGObject1<T extends HL7TypeMap> {
   DiagnosticRelatedGroup?: T['CE'] | null;
   DRGAssignedDateTime?: T['TS'] | null;
@@ -3540,6 +5175,8 @@ interface DRGObject1<T extends HL7TypeMap> {
 
 type EQLFields1 = 1 | 2 | 3 | 4;
 
+type EQLTypes1 = [never, 'ST', 'ID', 'CE', 'ST'];
+
 interface EQLObject1<T extends HL7TypeMap> {
   QueryTag?: string | null;
   QueryResponseFormatCode?: string | null;
@@ -3549,6 +5186,8 @@ interface EQLObject1<T extends HL7TypeMap> {
 
 type ERQFields1 = 1 | 2 | 3;
 
+type ERQTypes1 = [never, 'ST', 'CE', 'QIP'];
+
 interface ERQObject1<T extends HL7TypeMap> {
   QueryTag?: string | null;
   EventIdentifier?: T['CE'] | null;
@@ -3556,6 +5195,8 @@ interface ERQObject1<T extends HL7TypeMap> {
 }
 
 type EVNFields3 = 1 | 2 | 3 | 4 | 5 | 6;
+
+type EVNTypes3 = [never, 'ID', 'TS', 'TS', 'ID', 'CN', 'TS'];
 
 interface EVNObject3<T extends HL7TypeMap> {
   EventTypeCode?: string | null;
@@ -3567,6 +5208,22 @@ interface EVNObject3<T extends HL7TypeMap> {
 }
 
 type FACFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type FACTypes1 = [
+  never,
+  'EI',
+  'ID',
+  'XAD',
+  'XTN',
+  'XCN',
+  'ST',
+  'XAD',
+  'XTN',
+  'XCN',
+  'ST',
+  'XAD',
+  'XTN',
+];
 
 interface FACObject1<T extends HL7TypeMap> {
   FacilityIDFAC?: T['EI'][] | null;
@@ -3609,6 +5266,35 @@ type FT1Fields3 =
   | 23
   | 24
   | 25;
+
+type FT1Types3 = [
+  never,
+  'SI',
+  'ST',
+  'ST',
+  'TS',
+  'TS',
+  'ID',
+  'CE',
+  'ST',
+  'ST',
+  'NM',
+  'CP',
+  'CP',
+  'CE',
+  'CE',
+  'CP',
+  'PL',
+  'ID',
+  'ID',
+  'CE',
+  'XCN',
+  'XCN',
+  'NM',
+  'EI',
+  'XCN',
+  'CE',
+];
 
 interface FT1Object3<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -3660,6 +5346,31 @@ type GOLFields1 =
   | 19
   | 20
   | 21;
+
+type GOLTypes1 = [
+  never,
+  'ID',
+  'TS',
+  'CE',
+  'EI',
+  'EI',
+  'NM',
+  'TS',
+  'TS',
+  'CE',
+  'CE',
+  'CE',
+  'TS',
+  'TS',
+  'TS',
+  'TQ',
+  'CE',
+  'ST',
+  'CE',
+  'TS',
+  'CE',
+  'XPN',
+];
 
 interface GOLObject1<T extends HL7TypeMap> {
   ActionCode?: string | null;
@@ -3741,6 +5452,65 @@ type GT1Fields3 =
   | 53
   | 54
   | 55;
+
+type GT1Types3 = [
+  never,
+  'SI',
+  'CX',
+  'XPN',
+  'XPN',
+  'XAD',
+  'XTN',
+  'XTN',
+  'TS',
+  'IS',
+  'IS',
+  'IS',
+  'ST',
+  'DT',
+  'DT',
+  'NM',
+  'XPN',
+  'XAD',
+  'XTN',
+  'CX',
+  'IS',
+  'XON',
+  'ID',
+  'CE',
+  'TS',
+  'ID',
+  'CE',
+  'CP',
+  'NM',
+  'CX',
+  'IS',
+  'DT',
+  'DT',
+  'IS',
+  'IS',
+  'IS',
+  'CE',
+  'IS',
+  'CE',
+  'ID',
+  'IS',
+  'IS',
+  'XPN',
+  'CE',
+  'IS',
+  'XPN',
+  'XTN',
+  'CE',
+  'IS',
+  'ST',
+  'JCC',
+  'XON',
+  'IS',
+  'IS',
+  'FC',
+  'IS',
+];
 
 interface GT1Object3<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -3850,6 +5620,59 @@ type IN1Fields3 =
   | 47
   | 48
   | 49;
+
+type IN1Types3 = [
+  never,
+  'SI',
+  'CE',
+  'CX',
+  'XON',
+  'XAD',
+  'XPN',
+  'XTN',
+  'ST',
+  'XON',
+  'CX',
+  'XON',
+  'DT',
+  'DT',
+  'CM_AUI',
+  'IS',
+  'XPN',
+  'IS',
+  'TS',
+  'XAD',
+  'IS',
+  'IS',
+  'ST',
+  'ID',
+  'DT',
+  'ID',
+  'DT',
+  'IS',
+  'ST',
+  'TS',
+  'XPN',
+  'IS',
+  'IS',
+  'NM',
+  'NM',
+  'IS',
+  'ST',
+  'CP',
+  'CP',
+  'NM',
+  'CP',
+  'CP',
+  'CE',
+  'IS',
+  'XAD',
+  'ST',
+  'IS',
+  'IS',
+  'IS',
+  'CX',
+];
 
 interface IN1Object3<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -3977,6 +5800,82 @@ type IN2Fields2 =
   | 71
   | 72;
 
+type IN2Types2 = [
+  never,
+  'CX',
+  'ST',
+  'XCN',
+  'IS',
+  'IS',
+  'ST',
+  'XPN',
+  'ST',
+  'XPN',
+  'ST',
+  'CE',
+  'ST',
+  'ST',
+  'IS',
+  'IS',
+  'IS',
+  'DT',
+  'ID',
+  'ID',
+  'ID',
+  'ST',
+  'XPN',
+  'ST',
+  'ST',
+  'CX',
+  'CX',
+  'IS',
+  'CM_RMC',
+  'CM_PTA',
+  'CM_DDI',
+  'IS',
+  'IS',
+  'IS',
+  'CE',
+  'IS',
+  'CE',
+  'ID',
+  'IS',
+  'IS',
+  'XPN',
+  'CE',
+  'IS',
+  'IS',
+  'DT',
+  'DT',
+  'ST',
+  'JCC',
+  'IS',
+  'XPN',
+  'XTN',
+  'IS',
+  'XPN',
+  'XTN',
+  'IS',
+  'DT',
+  'DT',
+  'IS',
+  'XTN',
+  'IS',
+  'IS',
+  'CX',
+  'IS',
+  'XTN',
+  'XTN',
+  'CE',
+  'ID',
+  'ID',
+  'ID',
+  'XON',
+  'XON',
+  'IS',
+  'ID',
+];
+
 interface IN2Object2<T extends HL7TypeMap> {
   InsuredSEmployeeID?: T['CX'] | null;
   InsuredSSocialSecurityNumber?: string | null;
@@ -4052,6 +5951,35 @@ interface IN2Object2<T extends HL7TypeMap> {
   PatientSRelationshipToInsured?: string | null;
 }
 
+type IN3Types2 = [
+  never,
+  'SI',
+  'CX',
+  'XCN',
+  'ID',
+  'CM_PEN',
+  'TS',
+  'TS',
+  'XCN',
+  'DT',
+  'DT',
+  'CM_DTN',
+  'CE',
+  'TS',
+  'XCN',
+  'ST',
+  'XTN',
+  'CE',
+  'CE',
+  'XTN',
+  'CM_PCF',
+  'ST',
+  'DT',
+  'IS',
+  'IS',
+  'XCN',
+];
+
 interface IN3Object2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   CertificationNumber?: T['CX'] | null;
@@ -4082,6 +6010,8 @@ interface IN3Object2<T extends HL7TypeMap> {
 
 type LCCFields1 = 1 | 2 | 3 | 4;
 
+type LCCTypes1 = [never, 'PL', 'IS', 'CE', 'CE'];
+
 interface LCCObject1<T extends HL7TypeMap> {
   PrimaryKeyValueLCC?: T['PL'] | null;
   LocationDepartment?: string | null;
@@ -4090,6 +6020,8 @@ interface LCCObject1<T extends HL7TypeMap> {
 }
 
 type LCHFields1 = 1 | 2 | 3 | 4 | 5;
+
+type LCHTypes1 = [never, 'PL', 'ID', 'EI', 'CE', 'CE'];
 
 interface LCHObject1<T extends HL7TypeMap> {
   PrimaryKeyValueLCH?: T['PL'] | null;
@@ -4100,6 +6032,21 @@ interface LCHObject1<T extends HL7TypeMap> {
 }
 
 type LDPFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+
+type LDPTypes1 = [
+  never,
+  'PL',
+  'IS',
+  'IS',
+  'CE',
+  'ID',
+  'ID',
+  'TS',
+  'TS',
+  'ST',
+  'VH',
+  'XTN',
+];
 
 interface LDPObject1<T extends HL7TypeMap> {
   PrimaryKeyValueLDP?: T['PL'] | null;
@@ -4117,6 +6064,8 @@ interface LDPObject1<T extends HL7TypeMap> {
 
 type LOCFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
+type LOCTypes1 = [never, 'PL', 'ST', 'IS', 'XON', 'XAD', 'XTN', 'CE', 'ID'];
+
 interface LOCObject1<T extends HL7TypeMap> {
   PrimaryKeyValueLOC?: T['PL'] | null;
   LocationDescription?: string | null;
@@ -4130,6 +6079,8 @@ interface LOCObject1<T extends HL7TypeMap> {
 
 type LRLFields1 = 1 | 2 | 3 | 4 | 5 | 6;
 
+type LRLTypes1 = [never, 'PL', 'ID', 'EI', 'CE', 'XON', 'PL'];
+
 interface LRLObject1<T extends HL7TypeMap> {
   PrimaryKeyValueLRL?: T['PL'] | null;
   SegmentActionCode?: string | null;
@@ -4138,6 +6089,8 @@ interface LRLObject1<T extends HL7TypeMap> {
   OrganizationalLocationRelationshipValue?: T['XON'] | null;
   PatientLocationRelationshipValue?: T['PL'] | null;
 }
+
+type MFITypes2 = [never, 'CE', 'HD', 'ID', 'TS', 'TS', 'ID'];
 
 interface MFIObject2<T extends HL7TypeMap> {
   MasterFileIdentifier?: T['CE'] | null;
@@ -4149,6 +6102,8 @@ interface MFIObject2<T extends HL7TypeMap> {
 }
 
 type MRGFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
+type MRGTypes3 = [never, 'CX', 'CX', 'CX', 'CX', 'CX', 'CX', 'CX'];
 
 interface MRGObject3<T extends HL7TypeMap> {
   PriorPatientIdentifierList?: T['CX'][] | null;
@@ -4180,6 +6135,29 @@ type MSHFields3 =
   | 17
   | 18
   | 19;
+
+type MSHTypes3 = [
+  never,
+  'ST',
+  'ST',
+  'HD',
+  'HD',
+  'HD',
+  'HD',
+  'TS',
+  'ST',
+  'CM_MSG',
+  'ST',
+  'PT',
+  'ID',
+  'NM',
+  'ST',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'CE',
+];
 
 interface MSHObject3<T extends HL7TypeMap> {
   FieldSeparator?: string | null;
@@ -4242,6 +6220,47 @@ type NK1Fields3 =
   | 36
   | 37;
 
+type NK1Types3 = [
+  never,
+  'SI',
+  'XPN',
+  'CE',
+  'XAD',
+  'XTN',
+  'XTN',
+  'CE',
+  'DT',
+  'DT',
+  'ST',
+  'JCC',
+  'CX',
+  'XON',
+  'IS',
+  'IS',
+  'TS',
+  'IS',
+  'IS',
+  'IS',
+  'CE',
+  'IS',
+  'CE',
+  'ID',
+  'IS',
+  'IS',
+  'XPN',
+  'CE',
+  'IS',
+  'CE',
+  'XPN',
+  'XTN',
+  'XAD',
+  'CX',
+  'IS',
+  'IS',
+  'IS',
+  'ST',
+];
+
 interface NK1Object3<T extends HL7TypeMap> {
   SetID?: number | string | null;
   Name?: T['XPN'][] | null;
@@ -4282,12 +6301,16 @@ interface NK1Object3<T extends HL7TypeMap> {
   ContactPersonSocialSecurityNumber?: string | null;
 }
 
+type NPUTypes3 = [never, 'PL', 'IS'];
+
 interface NPUObject3<T extends HL7TypeMap> {
   BedLocation?: T['PL'] | null;
   BedStatus?: string | null;
 }
 
 type NSCFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
+type NSCTypes2 = [never, 'ID', 'ST', 'ST', 'ST', 'ST', 'ST', 'ST', 'ST'];
 
 interface NSCObject2<T extends HL7TypeMap> {
   ApplicationChangeType?: string | null;
@@ -4345,6 +6368,53 @@ type OBRFields2 =
   | 42
   | 43;
 
+type OBRTypes3 = [
+  never,
+  'SI',
+  'EI',
+  'EI',
+  'CE',
+  'ID',
+  'TS',
+  'TS',
+  'TS',
+  'CQ',
+  'XCN',
+  'ID',
+  'CE',
+  'ST',
+  'TS',
+  'CM_SPS',
+  'XCN',
+  'XTN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'TS',
+  'CM_MOC',
+  'ID',
+  'ID',
+  'CM_PRL',
+  'TQ',
+  'XCN',
+  'CM_EIP',
+  'ID',
+  'CE',
+  'CM_NDL',
+  'CM_NDL',
+  'CM_NDL',
+  'CM_NDL',
+  'TS',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'ID',
+  'ID',
+  'CE',
+];
+
 interface OBRObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
   PlacerOrderNumber?: T['EI'][] | null;
@@ -4393,6 +6463,27 @@ interface OBRObject3<T extends HL7TypeMap> {
 
 type OBXFields3 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17;
+
+type OBXTypes3 = [
+  never,
+  'SI',
+  'ID',
+  'CE',
+  'ST',
+  'VARIES',
+  'CE',
+  'ST',
+  'ID',
+  'NM',
+  'ID',
+  'ID',
+  'TS',
+  'ST',
+  'TS',
+  'CE',
+  'XCN',
+  'CE',
+];
 
 interface OBXObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -4476,6 +6567,57 @@ type OM1Fields2 =
   | 46
   | 47;
 
+type OM1Types2 = [
+  never,
+  'NM',
+  'CE',
+  'ID',
+  'ID',
+  'CE',
+  'CE',
+  'CE',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ID',
+  'CE',
+  'CE',
+  'ID',
+  'CE',
+  'TN',
+  'ID',
+  'CE',
+  'ST',
+  'TS',
+  'TS',
+  'NM',
+  'NM',
+  'ID',
+  'ID',
+  'CE',
+  'AD',
+  'TN',
+  'ID',
+  'CE',
+  'TX',
+  'CE',
+  'CE',
+  'ST',
+  'CE',
+  'TX',
+  'CE',
+  'TX',
+  'ST',
+  'TX',
+  'CE',
+  'CE',
+  'TX',
+  'CE',
+  'CE',
+  'CE',
+];
+
 interface OM1Object2<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
   ProducerSServiceTestObservationID?: T['CE'] | null;
@@ -4528,6 +6670,20 @@ interface OM1Object2<T extends HL7TypeMap> {
 
 type OM2Fields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
+type OM2Types2 = [
+  never,
+  'NM',
+  'CE',
+  'NM',
+  'CE',
+  'TX',
+  'CM_RFR',
+  'CM_RANGE',
+  'CM_ABS_RANGE',
+  'CM_DLT',
+  'NM',
+];
+
 interface OM2Object2<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
   UnitsOfMeasure?: T['CE'] | null;
@@ -4543,6 +6699,8 @@ interface OM2Object2<T extends HL7TypeMap> {
 
 type OM3Fields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
+type OM3Types2 = [never, 'NM', 'CE', 'CE', 'CE', 'CE', 'CE', 'ID'];
+
 interface OM3Object2<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
   PreferredCodingSystem?: T['CE'] | null;
@@ -4554,6 +6712,24 @@ interface OM3Object2<T extends HL7TypeMap> {
 }
 
 type OM4Fields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
+type OM4Types2 = [
+  never,
+  'NM',
+  'ID',
+  'TX',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'TX',
+  'TX',
+  'CQ',
+  'CQ',
+  'TX',
+  'ID',
+  'CQ',
+];
 
 interface OM4Object2<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
@@ -4574,6 +6750,8 @@ interface OM4Object2<T extends HL7TypeMap> {
 
 type OM5Fields2 = 1 | 2 | 3;
 
+type OM5Types2 = [never, 'NM', 'CE', 'ST'];
+
 interface OM5Object2<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
   TestObservationsIncludedWithinAnOrderedTestBattery?: T['CE'][] | null;
@@ -4582,10 +6760,35 @@ interface OM5Object2<T extends HL7TypeMap> {
 
 type OM6Fields2 = 1 | 2;
 
+type OM6Types2 = [never, 'NM', 'TX'];
+
 interface OM6Object2<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
   DerivationRule?: string | null;
 }
+
+type ORCTypes3 = [
+  never,
+  'ID',
+  'EI',
+  'EI',
+  'EI',
+  'ID',
+  'ID',
+  'TQ',
+  'CM_EIP',
+  'TS',
+  'XCN',
+  'XCN',
+  'XCN',
+  'PL',
+  'TN',
+  'TS',
+  'CE',
+  'CE',
+  'CE',
+  'XCN',
+];
 
 interface ORCObject3<T extends HL7TypeMap> {
   OrderControl?: string | null;
@@ -4634,6 +6837,33 @@ type PCRFields1 =
   | 22
   | 23;
 
+type PCRTypes1 = [
+  never,
+  'CE',
+  'IS',
+  'CE',
+  'CQ',
+  'TS',
+  'TS',
+  'TS',
+  'TS',
+  'IS',
+  'CE',
+  'IS',
+  'ST',
+  'IS',
+  'CE',
+  'CE',
+  'CE',
+  'ID',
+  'TS',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+];
+
 interface PCRObject1<T extends HL7TypeMap> {
   ImplicatedProduct?: T['CE'] | null;
   GenericProduct?: string | null;
@@ -4662,6 +6892,25 @@ interface PCRObject1<T extends HL7TypeMap> {
 
 type PDCFields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
+
+type PDCTypes1 = [
+  never,
+  'XON',
+  'CE',
+  'ST',
+  'ST',
+  'CE',
+  'ST',
+  'ST',
+  'ST',
+  'CE',
+  'ID',
+  'ST',
+  'CQ',
+  'CQ',
+  'TS',
+  'TS',
+];
 
 interface PDCObject1<T extends HL7TypeMap> {
   ManufacturerDistributor?: T['XON'] | null;
@@ -4708,6 +6957,35 @@ type PEOFields1 =
   | 24
   | 25;
 
+type PEOTypes1 = [
+  never,
+  'CE',
+  'CE',
+  'TS',
+  'TS',
+  'TS',
+  'TS',
+  'XAD',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'FT',
+  'FT',
+  'FT',
+  'FT',
+  'FT',
+  'CE',
+  'XPN',
+  'XAD',
+  'XTN',
+  'ID',
+  'ID',
+  'TS',
+  'ID',
+];
+
 interface PEOObject1<T extends HL7TypeMap> {
   EventIdentifiersUsed?: T['CE'][] | null;
   EventSymptomDiagnosisCode?: T['CE'][] | null;
@@ -4737,6 +7015,23 @@ interface PEOObject1<T extends HL7TypeMap> {
 }
 
 type PESFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
+
+type PESTypes1 = [
+  never,
+  'XON',
+  'XCN',
+  'XAD',
+  'XTN',
+  'EI',
+  'NM',
+  'FT',
+  'FT',
+  'TS',
+  'TS',
+  'ID',
+  'ID',
+  'ID',
+];
 
 interface PESObject1<T extends HL7TypeMap> {
   SenderOrganizationName?: T['XON'] | null;
@@ -4786,6 +7081,40 @@ type PIDFields3 =
   | 29
   | 30;
 
+type PIDTypes3 = [
+  never,
+  'SI',
+  'CX',
+  'CX',
+  'CX',
+  'XPN',
+  'XPN',
+  'TS',
+  'IS',
+  'XPN',
+  'IS',
+  'XAD',
+  'IS',
+  'XTN',
+  'XTN',
+  'CE',
+  'IS',
+  'IS',
+  'CX',
+  'ST',
+  'DLN',
+  'CX',
+  'IS',
+  'ST',
+  'ID',
+  'NM',
+  'IS',
+  'CE',
+  'CE',
+  'TS',
+  'ID',
+];
+
 interface PIDObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
   PatientID?: T['CX'] | null;
@@ -4821,6 +7150,25 @@ interface PIDObject3<T extends HL7TypeMap> {
 
 type PR1Fields3 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
+
+type PR1Types3 = [
+  never,
+  'SI',
+  'IS',
+  'CE',
+  'ST',
+  'TS',
+  'ID',
+  'NM',
+  'XCN',
+  'IS',
+  'NM',
+  'XCN',
+  'XCN',
+  'CE',
+  'NM',
+  'CE',
+];
 
 interface PR1Object3<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -4866,6 +7214,35 @@ type PRBFields1 =
   | 23
   | 24
   | 25;
+
+type PRBTypes1 = [
+  never,
+  'ID',
+  'TS',
+  'CE',
+  'EI',
+  'EI',
+  'NM',
+  'TS',
+  'TS',
+  'TS',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'TS',
+  'TS',
+  'ST',
+  'CE',
+  'CE',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'ST',
+  'CE',
+];
 
 interface PRBObject1<T extends HL7TypeMap> {
   ActionCode?: string | null;
@@ -4915,6 +7292,28 @@ type PRCFields1 =
   | 17
   | 18;
 
+type PRCTypes1 = [
+  never,
+  'CE',
+  'EI',
+  'CE',
+  'ID',
+  'CP',
+  'ST',
+  'NM',
+  'NM',
+  'MO',
+  'MO',
+  'TS',
+  'TS',
+  'ID',
+  'CE',
+  'ID',
+  'ID',
+  'MO',
+  'ID',
+];
+
 interface PRCObject1<T extends HL7TypeMap> {
   PrimaryKeyValuePRC?: T['CE'] | null;
   FacilityIDPRC?: T['EI'][] | null;
@@ -4938,6 +7337,19 @@ interface PRCObject1<T extends HL7TypeMap> {
 
 type PRDFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
+type PRDTypes1 = [
+  never,
+  'CE',
+  'XPN',
+  'XAD',
+  'PL',
+  'XTN',
+  'CE',
+  'CM_PI',
+  'TS',
+  'TS',
+];
+
 interface PRDObject1<T extends HL7TypeMap> {
   ProviderRole?: T['CE'][] | null;
   ProviderName?: T['XPN'][] | null;
@@ -4951,6 +7363,24 @@ interface PRDObject1<T extends HL7TypeMap> {
 }
 
 type PSHFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
+type PSHTypes1 = [
+  never,
+  'ST',
+  'ST',
+  'TS',
+  'TS',
+  'TS',
+  'CQ',
+  'CQ',
+  'ID',
+  'FT',
+  'CQ',
+  'ID',
+  'FT',
+  'NM',
+  'NM',
+];
 
 interface PSHObject1<T extends HL7TypeMap> {
   ReportType?: string | null;
@@ -4971,6 +7401,8 @@ interface PSHObject1<T extends HL7TypeMap> {
 }
 
 type PTHFields1 = 1 | 2 | 3 | 4 | 5 | 6;
+
+type PTHTypes1 = [never, 'ID', 'CE', 'EI', 'TS', 'CE', 'TS'];
 
 interface PTHObject1<T extends HL7TypeMap> {
   ActionCode?: string | null;
@@ -5034,6 +7466,62 @@ type PV1Fields3 =
   | 50
   | 51
   | 52;
+
+type PV1Types3 = [
+  never,
+  'SI',
+  'ID',
+  'PL',
+  'ID',
+  'CX',
+  'PL',
+  'XCN',
+  'XCN',
+  'XCN',
+  'ID',
+  'PL',
+  'ID',
+  'ID',
+  'ID',
+  'IS',
+  'ID',
+  'XCN',
+  'ID',
+  'CX',
+  'FC',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'DT',
+  'NM',
+  'NM',
+  'ID',
+  'ID',
+  'DT',
+  'ID',
+  'NM',
+  'NM',
+  'ID',
+  'DT',
+  'ID',
+  'CM_DLD',
+  'ID',
+  'ID',
+  'IS',
+  'ID',
+  'PL',
+  'PL',
+  'TS',
+  'TS',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'CX',
+  'IS',
+  'XCN',
+];
 
 interface PV1Object3<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -5129,6 +7617,47 @@ type PV2Fields2 =
   | 36
   | 37;
 
+type PV2Types2 = [
+  never,
+  'PL',
+  'CE',
+  'CE',
+  'CE',
+  'ST',
+  'ST',
+  'IS',
+  'TS',
+  'TS',
+  'NM',
+  'NM',
+  'ST',
+  'XCN',
+  'DT',
+  'ID',
+  'IS',
+  'DT',
+  'IS',
+  'ID',
+  'NM',
+  'IS',
+  'ID',
+  'XON',
+  'IS',
+  'IS',
+  'DT',
+  'IS',
+  'DT',
+  'DT',
+  'IS',
+  'IS',
+  'ID',
+  'TS',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+];
+
 interface PV2Object2<T extends HL7TypeMap> {
   PriorPendingLocation?: T['PL'] | null;
   AccommodationCode?: T['CE'] | null;
@@ -5171,10 +7700,28 @@ interface PV2Object2<T extends HL7TypeMap> {
 
 type QAKFields1 = 1 | 2;
 
+type QAKTypes1 = [never, 'ST', 'ID'];
+
 interface QAKObject1<T extends HL7TypeMap> {
   QueryTag?: string | null;
   QueryResponseStatus?: string | null;
 }
+
+type QRDTypes3 = [
+  never,
+  'TS',
+  'ID',
+  'ID',
+  'ST',
+  'ID',
+  'TS',
+  'CQ',
+  'XCN',
+  'CE',
+  'CE',
+  'CM_VR',
+  'ID',
+];
 
 interface QRDObject3<T extends HL7TypeMap> {
   QueryDateTime?: T['TS'] | null;
@@ -5193,6 +7740,8 @@ interface QRDObject3<T extends HL7TypeMap> {
 
 type QRFFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
+type QRFTypes3 = [never, 'ST', 'TS', 'TS', 'ST', 'ST', 'ID', 'ID', 'ID', 'TQ'];
+
 interface QRFObject3<T extends HL7TypeMap> {
   WhereSubjectFilter?: string[] | null;
   WhenDataStartDateTime?: T['TS'] | null;
@@ -5207,6 +7756,8 @@ interface QRFObject3<T extends HL7TypeMap> {
 
 type RDFFields1 = 1 | 2;
 
+type RDFTypes1 = [never, 'NM', 'RCD'];
+
 interface RDFObject1<T extends HL7TypeMap> {
   NumberOfColumnsPerRow?: number | string | null;
   ColumnDescription?: T['RCD'][] | null;
@@ -5214,11 +7765,28 @@ interface RDFObject1<T extends HL7TypeMap> {
 
 type RDTFields1 = 1;
 
+type RDTTypes1 = [never, 'VARIES'];
+
 interface RDTObject1<T extends HL7TypeMap> {
   ColumnValue?: string | null;
 }
 
 type RF1Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+
+type RF1Types1 = [
+  never,
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'EI',
+  'TS',
+  'TS',
+  'TS',
+  'CE',
+  'EI',
+];
 
 interface RF1Object1<T extends HL7TypeMap> {
   ReferralStatus?: T['CE'] | null;
@@ -5236,6 +7804,8 @@ interface RF1Object1<T extends HL7TypeMap> {
 
 type RGSFields1 = 1 | 2 | 3;
 
+type RGSTypes1 = [never, 'SI', 'ID', 'CE'];
+
 interface RGSObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SegmentActionCode?: string | null;
@@ -5243,6 +7813,8 @@ interface RGSObject1<T extends HL7TypeMap> {
 }
 
 type ROLFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
+type ROLTypes1 = [never, 'EI', 'ID', 'CE', 'XCN', 'TS', 'TS', 'CE', 'CE'];
 
 interface ROLObject1<T extends HL7TypeMap> {
   RoleInstanceID?: T['EI'] | null;
@@ -5254,6 +7826,8 @@ interface ROLObject1<T extends HL7TypeMap> {
   RoleDuration?: T['CE'] | null;
   RoleActionReason?: T['CE'] | null;
 }
+
+type RQ1Types2 = [never, 'ST', 'CE', 'ST', 'CE', 'ST', 'ID', 'ID'];
 
 interface RQ1Object2<T extends HL7TypeMap> {
   AnticipatedPrice?: string | null;
@@ -5289,6 +7863,32 @@ type RXAFields2 =
   | 21
   | 22;
 
+type RXATypes2 = [
+  never,
+  'ID',
+  'NM',
+  'TS',
+  'TS',
+  'CE',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'XCN',
+  'CM_LA1',
+  'ST',
+  'NM',
+  'CE',
+  'ST',
+  'TS',
+  'CE',
+  'CE',
+  'CE',
+  'ID',
+  'ID',
+  'TS',
+];
+
 interface RXAObject2<T extends HL7TypeMap> {
   GiveSubIDCounter?: string | null;
   AdministrationSubIDCounter?: number | string | null;
@@ -5315,6 +7915,8 @@ interface RXAObject2<T extends HL7TypeMap> {
 }
 
 type RXCFields2 = 1 | 2 | 3 | 4 | 5 | 6;
+
+type RXCTypes2 = [never, 'ID', 'CE', 'NM', 'CE', 'NM', 'CE'];
 
 interface RXCObject2<T extends HL7TypeMap> {
   RXComponentType?: string | null;
@@ -5350,6 +7952,34 @@ type RXDFields2 =
   | 22
   | 23
   | 24;
+
+type RXDTypes2 = [
+  never,
+  'NM',
+  'CE',
+  'TS',
+  'NM',
+  'CE',
+  'CE',
+  'ST',
+  'NM',
+  'CE',
+  'XCN',
+  'ID',
+  'CQ',
+  'CM_LA1',
+  'ID',
+  'CE',
+  'NM',
+  'CE',
+  'ST',
+  'TS',
+  'CE',
+  'CE',
+  'NM',
+  'CE',
+  'ID',
+];
 
 interface RXDObject2<T extends HL7TypeMap> {
   DispenseSubIDCounter?: number | string | null;
@@ -5410,6 +8040,40 @@ type RXEFields2 =
   | 29
   | 30;
 
+type RXETypes2 = [
+  never,
+  'TQ',
+  'CE',
+  'NM',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'CM_LA1',
+  'ID',
+  'NM',
+  'CE',
+  'NM',
+  'CN',
+  'CN',
+  'ST',
+  'NM',
+  'NM',
+  'TS',
+  'CQ',
+  'ID',
+  'CE',
+  'ST',
+  'ST',
+  'CE',
+  'NM',
+  'CE',
+  'CE',
+  'NM',
+  'CE',
+  'ID',
+];
+
 interface RXEObject2<T extends HL7TypeMap> {
   QuantityTiming?: T['TQ'] | null;
   GiveCode?: T['CE'] | null;
@@ -5467,6 +8131,32 @@ type RXGFields2 =
   | 21
   | 22;
 
+type RXGTypes2 = [
+  never,
+  'ID',
+  'NM',
+  'TQ',
+  'CE',
+  'NM',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'ID',
+  'CM_LA1',
+  'ID',
+  'CE',
+  'ST',
+  'ST',
+  'CE',
+  'NM',
+  'CE',
+  'ST',
+  'TS',
+  'CE',
+  'CE',
+];
+
 interface RXGObject2<T extends HL7TypeMap> {
   GiveSubIDCounter?: string | null;
   DispenseSubIDCounter?: number | string | null;
@@ -5515,6 +8205,32 @@ type RXOFields2 =
   | 20
   | 21
   | 22;
+
+type RXOTypes2 = [
+  never,
+  'CE',
+  'NM',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'CM_LA1',
+  'ID',
+  'CE',
+  'NM',
+  'CE',
+  'NM',
+  'CN',
+  'CN',
+  'ID',
+  'ST',
+  'NM',
+  'CE',
+  'CE',
+  'ST',
+  'CE',
+];
 
 interface RXOObject2<T extends HL7TypeMap> {
   RequestedGiveCode?: T['CE'] | null;
@@ -5568,6 +8284,35 @@ type SCHFields1 =
   | 24
   | 25;
 
+type SCHTypes1 = [
+  never,
+  'EI',
+  'EI',
+  'NM',
+  'EI',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'NM',
+  'CE',
+  'TQ',
+  'XCN',
+  'XTN',
+  'XAD',
+  'PL',
+  'XCN',
+  'XTN',
+  'XAD',
+  'PL',
+  'XCN',
+  'XTN',
+  'PL',
+  'EI',
+  'EI',
+  'CE',
+];
+
 interface SCHObject1<T extends HL7TypeMap> {
   PlacerAppointmentID?: T['EI'] | null;
   FillerAppointmentID?: T['EI'] | null;
@@ -5597,6 +8342,8 @@ interface SCHObject1<T extends HL7TypeMap> {
 }
 
 type SPRFields1 = 1 | 2 | 3 | 4;
+
+type SPRTypes1 = [never, 'ST', 'ID', 'CE', 'QIP'];
 
 interface SPRObject1<T extends HL7TypeMap> {
   QueryTag?: string | null;
@@ -5632,6 +8379,36 @@ type STFFields2 =
   | 24
   | 25
   | 26;
+
+type STFTypes2 = [
+  never,
+  'CE',
+  'CE',
+  'XPN',
+  'ID',
+  'IS',
+  'TS',
+  'ID',
+  'CE',
+  'CE',
+  'TN',
+  'AD',
+  'CM_DIN',
+  'CM_DIN',
+  'CE',
+  'ST',
+  'CE',
+  'IS',
+  'ST',
+  'JCC',
+  'IS',
+  'ID',
+  'DLN',
+  'ID',
+  'DT',
+  'DT',
+  'DT',
+];
 
 interface STFObject2<T extends HL7TypeMap> {
   PrimaryKeyValueSTF?: T['CE'] | null;
@@ -5687,6 +8464,33 @@ type TXAFields1 =
   | 22
   | 23;
 
+type TXATypes1 = [
+  never,
+  'SI',
+  'IS',
+  'ID',
+  'TS',
+  'XCN',
+  'TS',
+  'TS',
+  'TS',
+  'XCN',
+  'XCN',
+  'XCN',
+  'EI',
+  'EI',
+  'EI',
+  'EI',
+  'ST',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ST',
+  'PPN',
+  'XCN',
+];
+
 interface TXAObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   DocumentType?: string | null;
@@ -5712,6 +8516,33 @@ interface TXAObject1<T extends HL7TypeMap> {
   AuthenticationPersonTimeStamp?: T['PPN'][] | null;
   DistributedCopies?: T['XCN'][] | null;
 }
+
+type UB1Types3 = [
+  never,
+  'SI',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'IS',
+  'NM',
+  'NM',
+  'CM_UVC',
+  'NM',
+  'CE',
+  'ID',
+  'DT',
+  'DT',
+  'CM_OCD',
+  'ID',
+  'DT',
+  'DT',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+];
 
 interface UB1Object3<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -5742,6 +8573,27 @@ interface UB1Object3<T extends HL7TypeMap> {
 type UB2Fields2 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17;
 
+type UB2Types2 = [
+  never,
+  'SI',
+  'ST',
+  'ID',
+  'ST',
+  'ST',
+  'CM_UVC',
+  'CM_OCD',
+  'CM_OSP',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'NM',
+];
+
 interface UB2Object2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   CoInsurance?: string | null;
@@ -5762,6 +8614,8 @@ interface UB2Object2<T extends HL7TypeMap> {
   SpecialVisitCount?: number | string | null;
 }
 
+type URDTypes2 = [never, 'TS', 'ID', 'XCN', 'CE', 'CE', 'ST', 'ID'];
+
 interface URDObject3<T extends HL7TypeMap> {
   RUDateTime?: T['TS'] | null;
   ReportPriority?: string | null;
@@ -5773,6 +8627,8 @@ interface URDObject3<T extends HL7TypeMap> {
 }
 
 type URSFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+
+type URSTypes3 = [never, 'ST', 'TS', 'TS', 'ST', 'ST', 'ID', 'ID', 'ID', 'TQ'];
 
 interface URSObject3<T extends HL7TypeMap> {
   RUWhereSubjectDefinition?: string[] | null;
@@ -5788,6 +8644,8 @@ interface URSObject3<T extends HL7TypeMap> {
 
 type VARFields1 = 1 | 2 | 3 | 4 | 5 | 6;
 
+type VARTypes1 = [never, 'EI', 'TS', 'TS', 'XCN', 'CE', 'ST'];
+
 interface VARObject1<T extends HL7TypeMap> {
   VarianceInstanceID?: T['EI'] | null;
   DocumentedDateTime?: T['TS'] | null;
@@ -5799,6 +8657,8 @@ interface VARObject1<T extends HL7TypeMap> {
 
 type VTQFields1 = 1 | 2 | 3 | 4 | 5;
 
+type VTQTypes1 = [never, 'ST', 'ID', 'CE', 'CE', 'QSC'];
+
 interface VTQObject1<T extends HL7TypeMap> {
   QueryTag?: string | null;
   QueryResponseFormatCode?: string | null;
@@ -5806,6 +8666,201 @@ interface VTQObject1<T extends HL7TypeMap> {
   VirtualTableName?: T['CE'] | null;
   SelectionCriteria?: T['QSC'][] | null;
 }
+
+type ADComps2 = [never, 'ST', 'ST', 'ST', 'ST', 'ST', 'ID', 'ID', 'ST'];
+
+type CDComps1 = [
+  never,
+  'CM_WVI',
+  'CM_CD_ELECTRODE',
+  'CM_CSU',
+  'CM_CCP',
+  'NM',
+  'CM_MDV',
+];
+
+type CEComps2 = [never, 'ID', 'ST', 'ST', 'ID', 'ST', 'ST'];
+
+type CFComps1 = [never, 'ID', 'FT', 'ST', 'ID', 'FT', 'ST'];
+
+type CKComps1 = [never, 'NM', 'ST', 'ID', 'HD'];
+
+type CM_AUIComps2 = [never, 'ST', 'TS', 'ST'];
+
+type CM_DDIComps2 = [never, 'NM', 'NM', 'NM'];
+
+type CM_DTNComps2 = [never, 'IS', 'NM'];
+
+type CM_EIPComps2 = [never, 'EI', 'EI'];
+
+type CM_LA1Comps2 = [
+  never,
+  'ST',
+  'IS',
+  'IS',
+  'HD',
+  'IS',
+  'IS',
+  'IS',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ID',
+  'ID',
+  'ST',
+];
+
+type CM_MOCComps2 = [never, 'MO', 'CE'];
+
+type CM_NDLComps2 = [
+  never,
+  'CN',
+  'TS',
+  'TS',
+  'IS',
+  'IS',
+  'IS',
+  'HD',
+  'IS',
+  'IS',
+  'IS',
+  'ST',
+];
+
+type CM_OCDComps2 = [never, 'CE', 'DT'];
+
+type CM_OSPComps2 = [never, 'CE', 'DT', 'DT'];
+
+type CM_PCFComps2 = [never, 'IS', 'ID', 'TS'];
+
+type CM_PENComps2 = [never, 'IS', 'NM'];
+
+type CM_PIComps1 = [never, 'ST', 'IS', 'ST'];
+
+type CM_PLNComps2 = [never, 'ST', 'IS', 'ST', 'DT'];
+
+type CM_PRLComps1 = [never, 'CE', 'ST', 'TX'];
+
+type CM_PTAComps2 = [never, 'IS', 'IS', 'NM'];
+
+type CM_RFRComps2 = [
+  never,
+  'CM_RANGE',
+  'IS',
+  'CM_RANGE',
+  'CM_RANGE',
+  'TX',
+  'ST',
+  'TX',
+];
+
+type CM_RIComps2 = [never, 'IS', 'ST'];
+
+type CM_RMCComps2 = [never, 'IS', 'IS', 'NM'];
+
+type CM_SPSComps2 = [never, 'CE', 'TX', 'TX', 'CE', 'CE', 'CE'];
+
+type CM_UVCComps2 = [never, 'IS', 'NM'];
+
+type CM_WVIComps1 = [never, 'NM', 'ST'];
+
+type CNComps2 = [never, 'ST', 'ST', 'ST', 'ST', 'ST', 'ST', 'ST', 'ID', 'HD'];
+
+type CPComps1 = [never, 'MO', 'ID', 'NM', 'NM', 'CE', 'ID'];
+
+type CQComps2 = [never, 'NM', 'CE'];
+
+type DLNComps1 = [never, 'ST', 'IS', 'DT'];
+
+type DRComps1 = [never, 'TS', 'TS'];
+
+type EDComps1 = [never, 'HD', 'ID', 'ID', 'ID', 'ST'];
+
+type EIComps1 = [never, 'ST', 'IS', 'ST', 'ID'];
+
+type FCComps1 = [never, 'IS', 'TS'];
+
+type JCCComps1 = [never, 'IS', 'IS'];
+
+type MAComps1 = [never, 'NM', 'NM', 'NM', 'NM', 'NM', 'NM'];
+
+type MOComps1 = [never, 'NM', 'ID'];
+
+type NAComps1 = [never, 'NM', 'NM', 'NM', 'NM'];
+
+type PLComps1 = [never, 'ID', 'IS', 'IS', 'HD', 'IS', 'IS', 'IS', 'ST', 'ST'];
+
+type PPNComps1 = [
+  never,
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ID',
+  'HD',
+  'ID',
+  'ST',
+  'ID',
+  'IS',
+  'HD',
+  'TS',
+];
+
+type PTComps1 = [never, 'ST', 'ST'];
+
+type QIPComps1 = [never, 'ST', 'ST'];
+
+type QSCComps1 = [never, 'ST', 'ID', 'ST', 'ID'];
+
+type RCDComps1 = [never, 'ST', 'ST', 'NM'];
+
+type RIComps1 = [never, 'IS', 'ST'];
+
+type RPComps1 = [never, 'ST', 'HD', 'ID', 'ID'];
+
+type SCVComps1 = [never, 'IS', 'ST'];
+
+type SNComps1 = [never, 'ST', 'NM', 'ST', 'NM'];
+
+type TQComps2 = [
+  never,
+  'CQ',
+  'CM_RI',
+  'ST',
+  'TS',
+  'TS',
+  'ST',
+  'ST',
+  'TX',
+  'ST',
+  'CM_OSD',
+];
+
+type VHComps1 = [never, 'ID', 'ID', 'TM', 'TM'];
+
+type XADComps1 = [
+  never,
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ID',
+  'ID',
+  'ST',
+  'IS',
+  'IS',
+];
+
+type XPNComps1 = [never, 'ST', 'ST', 'ST', 'ST', 'ST', 'ST', 'ID', 'ID'];
+
+type XTNComps1 = [never, 'TN', 'ID', 'ID', 'ST', 'NM', 'NM', 'NM', 'NM', 'ST'];
 
 interface AUIObject1 {
   AuthorizationNumber?: string | null;
@@ -6386,6 +9441,8 @@ interface AIPObject2<T extends HL7TypeMap> {
   FillerStatusCode?: T['CE'] | null;
 }
 
+type AL1Types2 = [never, 'SI', 'IS', 'CE', 'IS', 'ST', 'DT'];
+
 interface AL1Object2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   AllergenTypeCode?: string | null;
@@ -6421,11 +9478,30 @@ interface ARQObject2<T extends HL7TypeMap> {
   ParentFillerAppointmentID?: T['EI'] | null;
 }
 
+type BLGTypes3 = [never, 'CCD', 'ID', 'CX'];
+
 interface BLGObject4<T extends HL7TypeMap> {
   WhenToCharge?: T['CCD'] | null;
   ChargeType?: string | null;
   AccountID?: T['CX'] | null;
 }
+
+type CDMTypes2 = [
+  never,
+  'CE',
+  'CE',
+  'ST',
+  'ST',
+  'IS',
+  'CE',
+  'CE',
+  'ID',
+  'CE',
+  'NM',
+  'CK',
+  'XON',
+  'ID',
+];
 
 interface CDMObject2<T extends HL7TypeMap> {
   PrimaryKeyValueCDM?: T['CE'] | null;
@@ -6442,6 +9518,21 @@ interface CDMObject2<T extends HL7TypeMap> {
   ContractOrganization?: T['XON'][] | null;
   RoomFeeIndicator?: string | null;
 }
+
+type CM0Types2 = [
+  never,
+  'SI',
+  'EI',
+  'EI',
+  'ST',
+  'XCN',
+  'DT',
+  'NM',
+  'DT',
+  'XCN',
+  'XTN',
+  'XAD',
+];
 
 interface CM0Object2<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -6476,6 +9567,8 @@ interface CSRObject2<T extends HL7TypeMap> {
   ReasonEndedStudy?: T['CE'] | null;
 }
 
+type CTDTypes2 = [never, 'CE', 'XPN', 'XAD', 'PL', 'XTN', 'CE', 'PI'];
+
 interface CTDObject2<T extends HL7TypeMap> {
   ContactRole?: T['CE'][] | null;
   ContactName?: T['XPN'][] | null;
@@ -6485,6 +9578,29 @@ interface CTDObject2<T extends HL7TypeMap> {
   PreferredMethodOfContact?: T['CE'] | null;
   ContactIdentifiers?: T['PI'][] | null;
 }
+
+type DG1Types4 = [
+  never,
+  'SI',
+  'ID',
+  'CE',
+  'ST',
+  'TS',
+  'IS',
+  'CE',
+  'CE',
+  'ID',
+  'IS',
+  'CE',
+  'NM',
+  'CP',
+  'ST',
+  'ID',
+  'XCN',
+  'IS',
+  'ID',
+  'TS',
+];
 
 interface DG1Object4<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -6508,9 +9624,13 @@ interface DG1Object4<T extends HL7TypeMap> {
   AttestationDateTime?: T['TS'] | null;
 }
 
+type ERRTypes3 = [never, 'ELD'];
+
 interface ERRObject3<T extends HL7TypeMap> {
   ErrorCodeAndLocation?: T['ELD'][] | null;
 }
+
+type EVNTypes4 = [never, 'ID', 'TS', 'TS', 'IS', 'XCN', 'TS'];
 
 interface EVNObject4<T extends HL7TypeMap> {
   EventTypeCode?: string | null;
@@ -6564,6 +9684,36 @@ type FT1Fields4 =
   | 25
   | 26;
 
+type FT1Types4 = [
+  never,
+  'SI',
+  'ST',
+  'ST',
+  'TS',
+  'TS',
+  'IS',
+  'CE',
+  'ST',
+  'ST',
+  'NM',
+  'CP',
+  'CP',
+  'CE',
+  'CE',
+  'CP',
+  'PL',
+  'IS',
+  'IS',
+  'CE',
+  'XCN',
+  'XCN',
+  'CP',
+  'EI',
+  'XCN',
+  'CE',
+  'CE',
+];
+
 interface FT1Object4<T extends HL7TypeMap> {
   SetID?: number | string | null;
   TransactionID?: string | null;
@@ -6592,6 +9742,65 @@ interface FT1Object4<T extends HL7TypeMap> {
   ProcedureCode?: T['CE'] | null;
   ProcedureCodeModifier?: T['CE'][] | null;
 }
+
+type GT1Types4 = [
+  never,
+  'SI',
+  'CX',
+  'XPN',
+  'XPN',
+  'XAD',
+  'XTN',
+  'XTN',
+  'TS',
+  'IS',
+  'IS',
+  'CE',
+  'ST',
+  'DT',
+  'DT',
+  'NM',
+  'XPN',
+  'XAD',
+  'XTN',
+  'CX',
+  'IS',
+  'XON',
+  'ID',
+  'CE',
+  'TS',
+  'ID',
+  'CE',
+  'CP',
+  'NM',
+  'CX',
+  'CE',
+  'DT',
+  'DT',
+  'IS',
+  'IS',
+  'CE',
+  'CE',
+  'IS',
+  'CE',
+  'ID',
+  'IS',
+  'CE',
+  'XPN',
+  'CE',
+  'CE',
+  'XPN',
+  'XTN',
+  'CE',
+  'IS',
+  'ST',
+  'JCC',
+  'XON',
+  'IS',
+  'IS',
+  'FC',
+  'CE',
+];
 
 interface GT1Object4<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -6651,6 +9860,59 @@ interface GT1Object4<T extends HL7TypeMap> {
   GuarantorRace?: T['CE'][] | null;
 }
 
+type IN1Types4 = [
+  never,
+  'SI',
+  'CE',
+  'CX',
+  'XON',
+  'XAD',
+  'XPN',
+  'XTN',
+  'ST',
+  'XON',
+  'CX',
+  'XON',
+  'DT',
+  'DT',
+  'AUI',
+  'IS',
+  'XPN',
+  'CE',
+  'TS',
+  'XAD',
+  'IS',
+  'IS',
+  'ST',
+  'ID',
+  'DT',
+  'ID',
+  'DT',
+  'IS',
+  'ST',
+  'TS',
+  'XCN',
+  'IS',
+  'IS',
+  'NM',
+  'NM',
+  'IS',
+  'ST',
+  'CP',
+  'CP',
+  'NM',
+  'CP',
+  'CP',
+  'CE',
+  'IS',
+  'XAD',
+  'ST',
+  'IS',
+  'IS',
+  'IS',
+  'CX',
+];
+
 interface IN1Object4<T extends HL7TypeMap> {
   SetID?: number | string | null;
   HealthPlanID?: T['CE'] | null;
@@ -6702,6 +9964,82 @@ interface IN1Object4<T extends HL7TypeMap> {
   Handicap?: string | null;
   InsuredSIDNumber?: T['CX'][] | null;
 }
+
+type IN2Types3 = [
+  never,
+  'CX',
+  'ST',
+  'XCN',
+  'IS',
+  'IS',
+  'ST',
+  'XPN',
+  'ST',
+  'XPN',
+  'ST',
+  'CE',
+  'ST',
+  'ST',
+  'IS',
+  'IS',
+  'IS',
+  'DT',
+  'ID',
+  'ID',
+  'ID',
+  'ST',
+  'XPN',
+  'ST',
+  'IS',
+  'CX',
+  'CX',
+  'IS',
+  'RMC',
+  'PTA',
+  'DDI',
+  'IS',
+  'IS',
+  'CE',
+  'CE',
+  'IS',
+  'CE',
+  'ID',
+  'IS',
+  'CE',
+  'XPN',
+  'CE',
+  'CE',
+  'CE',
+  'DT',
+  'DT',
+  'ST',
+  'JCC',
+  'IS',
+  'XPN',
+  'XTN',
+  'IS',
+  'XPN',
+  'XTN',
+  'IS',
+  'DT',
+  'DT',
+  'IS',
+  'XTN',
+  'IS',
+  'IS',
+  'CX',
+  'CE',
+  'XTN',
+  'XTN',
+  'CE',
+  'ID',
+  'ID',
+  'ID',
+  'XON',
+  'XON',
+  'CE',
+  'CE',
+];
 
 interface IN2Object3<T extends HL7TypeMap> {
   InsuredSEmployeeID?: T['CX'][] | null;
@@ -6778,6 +10116,35 @@ interface IN2Object3<T extends HL7TypeMap> {
   PatientSRelationshipToInsured?: T['CE'] | null;
 }
 
+type IN3Types3 = [
+  never,
+  'SI',
+  'CX',
+  'XCN',
+  'ID',
+  'MOP',
+  'TS',
+  'TS',
+  'XCN',
+  'DT',
+  'DT',
+  'DTN',
+  'CE',
+  'TS',
+  'XCN',
+  'ST',
+  'XTN',
+  'CE',
+  'CE',
+  'XTN',
+  'PCF',
+  'ST',
+  'DT',
+  'IS',
+  'IS',
+  'XCN',
+];
+
 interface IN3Object3<T extends HL7TypeMap> {
   SetID?: number | string | null;
   CertificationNumber?: T['CX'] | null;
@@ -6806,6 +10173,23 @@ interface IN3Object3<T extends HL7TypeMap> {
   SecondOpinionPhysician?: T['XCN'][] | null;
 }
 
+type LDPTypes2 = [
+  never,
+  'PL',
+  'IS',
+  'IS',
+  'CE',
+  'IS',
+  'ID',
+  'TS',
+  'TS',
+  'ST',
+  'VH',
+  'XTN',
+];
+
+type LOCTypes2 = [never, 'PL', 'ST', 'IS', 'XON', 'XAD', 'XTN', 'CE', 'IS'];
+
 interface LOCObject2<T extends HL7TypeMap> {
   PrimaryKeyValueLOC?: T['PL'] | null;
   LocationDescription?: string | null;
@@ -6828,6 +10212,8 @@ interface LRLObject2<T extends HL7TypeMap> {
 
 type MFAFields2 = 1 | 2 | 3 | 4 | 5 | 6;
 
+type MFATypes2 = [never, 'ID', 'ST', 'TS', 'CE', 'CE', 'ID'];
+
 interface MFAObject2<T extends HL7TypeMap> {
   RecordLevelEventCode?: string | null;
   MFNControlID?: string | null;
@@ -6839,6 +10225,8 @@ interface MFAObject2<T extends HL7TypeMap> {
 
 type MFEFields2 = 1 | 2 | 3 | 4 | 5;
 
+type MFETypes2 = [never, 'ID', 'ST', 'TS', 'VARIES', 'ID'];
+
 interface MFEObject2<T extends HL7TypeMap> {
   RecordLevelEventCode?: string | null;
   MFNControlID?: string | null;
@@ -6846,6 +10234,8 @@ interface MFEObject2<T extends HL7TypeMap> {
   PrimaryKeyValueMFE?: string[] | null;
   PrimaryKeyValueType?: string[] | null;
 }
+
+type MRGTypes4 = [never, 'CX', 'CX', 'CX', 'CX', 'CX', 'CX', 'XPN'];
 
 interface MRGObject4<T extends HL7TypeMap> {
   PriorPatientIdentifierList?: T['CX'][] | null;
@@ -6879,6 +10269,30 @@ type MSHFields4 =
   | 19
   | 20;
 
+type MSHTypes4 = [
+  never,
+  'ST',
+  'ST',
+  'HD',
+  'HD',
+  'HD',
+  'HD',
+  'TS',
+  'ST',
+  'MSG',
+  'ST',
+  'PT',
+  'VID',
+  'NM',
+  'ST',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'CE',
+  'ID',
+];
+
 interface MSHObject4<T extends HL7TypeMap> {
   FieldSeparator?: string | null;
   EncodingCharacters?: string | null;
@@ -6901,6 +10315,47 @@ interface MSHObject4<T extends HL7TypeMap> {
   PrincipalLanguageOfMessage?: T['CE'] | null;
   AlternateCharacterSetHandlingScheme?: string | null;
 }
+
+type NK1Types4 = [
+  never,
+  'SI',
+  'XPN',
+  'CE',
+  'XAD',
+  'XTN',
+  'XTN',
+  'CE',
+  'DT',
+  'DT',
+  'ST',
+  'JCC',
+  'CX',
+  'XON',
+  'CE',
+  'IS',
+  'TS',
+  'IS',
+  'IS',
+  'CE',
+  'CE',
+  'IS',
+  'CE',
+  'ID',
+  'IS',
+  'CE',
+  'XPN',
+  'CE',
+  'CE',
+  'CE',
+  'XPN',
+  'XTN',
+  'XAD',
+  'CX',
+  'IS',
+  'CE',
+  'IS',
+  'ST',
+];
 
 interface NK1Object4<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -6942,7 +10397,11 @@ interface NK1Object4<T extends HL7TypeMap> {
   ContactPersonSocialSecurityNumber?: string | null;
 }
 
+type NSCTypes3 = [never, 'IS', 'ST', 'ST', 'ST', 'ST', 'ST', 'ST', 'ST', 'ST'];
+
 type NTEFields2 = 1 | 2 | 3 | 4;
+
+type NTETypes3 = [never, 'SI', 'ID', 'FT', 'CE'];
 
 interface NTEObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -6997,6 +10456,55 @@ type OBRFields3 =
   | 43
   | 44
   | 45;
+
+type OBRTypes4 = [
+  never,
+  'SI',
+  'EI',
+  'EI',
+  'CE',
+  'ID',
+  'TS',
+  'TS',
+  'TS',
+  'CQ',
+  'XCN',
+  'ID',
+  'CE',
+  'ST',
+  'TS',
+  'SPS',
+  'XCN',
+  'XTN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'TS',
+  'MOC',
+  'ID',
+  'ID',
+  'PRL',
+  'TQ',
+  'XCN',
+  'EIP',
+  'ID',
+  'CE',
+  'NDL',
+  'NDL',
+  'NDL',
+  'NDL',
+  'TS',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'ID',
+  'ID',
+  'CE',
+  'CE',
+  'CE',
+];
 
 interface OBRObject4<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -7066,6 +10574,57 @@ interface OBXObject4<T extends HL7TypeMap> {
   ObservationMethod?: T['CE'][] | null;
 }
 
+type OM1Types3 = [
+  never,
+  'NM',
+  'CE',
+  'ID',
+  'ID',
+  'CE',
+  'TX',
+  'CE',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ID',
+  'CE',
+  'CE',
+  'ID',
+  'CE',
+  'XTN',
+  'IS',
+  'CE',
+  'ST',
+  'TS',
+  'TS',
+  'NM',
+  'NM',
+  'ID',
+  'ID',
+  'CE',
+  'XAD',
+  'XTN',
+  'IS',
+  'CE',
+  'TX',
+  'CE',
+  'CE',
+  'TX',
+  'CE',
+  'TX',
+  'CE',
+  'TX',
+  'ST',
+  'TX',
+  'CE',
+  'CE',
+  'TX',
+  'CE',
+  'CE',
+  'CE',
+];
+
 interface OM1Object3<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
   ProducerSServiceTestObservationID?: T['CE'] | null;
@@ -7115,6 +10674,20 @@ interface OM1Object3<T extends HL7TypeMap> {
   TargetAnatomicSiteOfTest?: T['CE'] | null;
   ModalityOfImagingMeasurement?: T['CE'] | null;
 }
+
+type OM2Types3 = [
+  never,
+  'NM',
+  'CE',
+  'NM',
+  'CE',
+  'TX',
+  'RFR',
+  'NR',
+  'RFR',
+  'DLT',
+  'NM',
+];
 
 interface OM2Object3<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
@@ -7171,6 +10744,34 @@ type ORCFields3 =
   | 22
   | 23
   | 24;
+
+type ORCTypes4 = [
+  never,
+  'ID',
+  'EI',
+  'EI',
+  'EI',
+  'ID',
+  'ID',
+  'TQ',
+  'EIP',
+  'TS',
+  'XCN',
+  'XCN',
+  'XCN',
+  'PL',
+  'XTN',
+  'TS',
+  'CE',
+  'CE',
+  'CE',
+  'XCN',
+  'CE',
+  'XON',
+  'XAD',
+  'XTN',
+  'XAD',
+];
 
 interface ORCObject4<T extends HL7TypeMap> {
   OrderControl?: string | null;
@@ -7276,6 +10877,40 @@ interface PESObject2<T extends HL7TypeMap> {
   EventReportedTo?: string[] | null;
 }
 
+type PIDTypes4 = [
+  never,
+  'SI',
+  'CX',
+  'CX',
+  'CX',
+  'XPN',
+  'XPN',
+  'TS',
+  'IS',
+  'XPN',
+  'CE',
+  'XAD',
+  'IS',
+  'XTN',
+  'XTN',
+  'CE',
+  'CE',
+  'CE',
+  'CX',
+  'ST',
+  'DLN',
+  'CX',
+  'CE',
+  'ST',
+  'ID',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'TS',
+  'ID',
+];
+
 interface PIDObject4<T extends HL7TypeMap> {
   SetID?: number | string | null;
   PatientID?: T['CX'] | null;
@@ -7312,6 +10947,26 @@ interface PIDObject4<T extends HL7TypeMap> {
 type PR1Fields4 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
 
+type PR1Types4 = [
+  never,
+  'SI',
+  'IS',
+  'CE',
+  'ST',
+  'TS',
+  'IS',
+  'NM',
+  'XCN',
+  'IS',
+  'NM',
+  'XCN',
+  'XCN',
+  'CE',
+  'NM',
+  'CE',
+  'CE',
+];
+
 interface PR1Object4<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ProcedureCodingMethod?: string | null;
@@ -7333,6 +10988,8 @@ interface PR1Object4<T extends HL7TypeMap> {
 
 type PRAFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
+type PRATypes2 = [never, 'CE', 'CE', 'IS', 'ID', 'SPD', 'PLN', 'PIP', 'DT'];
+
 interface PRAObject2<T extends HL7TypeMap> {
   PrimaryKeyValuePRA?: T['CE'] | null;
   PractitionerGroup?: T['CE'][] | null;
@@ -7343,6 +11000,28 @@ interface PRAObject2<T extends HL7TypeMap> {
   Privileges?: T['PIP'][] | null;
   DateEnteredPractice?: string | null;
 }
+
+type PRCTypes2 = [
+  never,
+  'CE',
+  'CE',
+  'CE',
+  'IS',
+  'CP',
+  'ST',
+  'NM',
+  'NM',
+  'MO',
+  'MO',
+  'TS',
+  'TS',
+  'IS',
+  'CE',
+  'ID',
+  'ID',
+  'MO',
+  'IS',
+];
 
 interface PRCObject2<T extends HL7TypeMap> {
   PrimaryKeyValuePRC?: T['CE'] | null;
@@ -7365,6 +11044,19 @@ interface PRCObject2<T extends HL7TypeMap> {
   ChargeOnIndicator?: string | null;
 }
 
+type PRDTypes2 = [
+  never,
+  'CE',
+  'XPN',
+  'XAD',
+  'PL',
+  'XTN',
+  'CE',
+  'PI',
+  'TS',
+  'TS',
+];
+
 interface PRDObject2<T extends HL7TypeMap> {
   ProviderRole?: T['CE'][] | null;
   ProviderName?: T['XPN'][] | null;
@@ -7376,6 +11068,62 @@ interface PRDObject2<T extends HL7TypeMap> {
   EffectiveStartDateOfProviderRole?: T['TS'] | null;
   EffectiveEndDateOfProviderRole?: T['TS'] | null;
 }
+
+type PV1Types4 = [
+  never,
+  'SI',
+  'IS',
+  'PL',
+  'IS',
+  'CX',
+  'PL',
+  'XCN',
+  'XCN',
+  'XCN',
+  'IS',
+  'PL',
+  'IS',
+  'IS',
+  'IS',
+  'IS',
+  'IS',
+  'XCN',
+  'IS',
+  'CX',
+  'FC',
+  'IS',
+  'IS',
+  'IS',
+  'IS',
+  'DT',
+  'NM',
+  'NM',
+  'IS',
+  'IS',
+  'DT',
+  'IS',
+  'NM',
+  'NM',
+  'IS',
+  'DT',
+  'IS',
+  'DLD',
+  'CE',
+  'IS',
+  'IS',
+  'IS',
+  'PL',
+  'PL',
+  'TS',
+  'TS',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'CX',
+  'IS',
+  'XCN',
+];
 
 interface PV1Object4<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -7432,6 +11180,47 @@ interface PV1Object4<T extends HL7TypeMap> {
   OtherHealthcareProvider?: T['XCN'][] | null;
 }
 
+type PV2Types3 = [
+  never,
+  'PL',
+  'CE',
+  'CE',
+  'CE',
+  'ST',
+  'ST',
+  'IS',
+  'TS',
+  'TS',
+  'NM',
+  'NM',
+  'ST',
+  'XCN',
+  'DT',
+  'ID',
+  'IS',
+  'DT',
+  'IS',
+  'ID',
+  'NM',
+  'IS',
+  'ID',
+  'XON',
+  'IS',
+  'IS',
+  'DT',
+  'IS',
+  'DT',
+  'DT',
+  'CE',
+  'IS',
+  'ID',
+  'TS',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+];
+
 interface PV2Object3<T extends HL7TypeMap> {
   PriorPendingLocation?: T['PL'] | null;
   AccommodationCode?: T['CE'] | null;
@@ -7472,6 +11261,22 @@ interface PV2Object3<T extends HL7TypeMap> {
   BabyDetainedIndicator?: string | null;
 }
 
+type QRDTypes4 = [
+  never,
+  'TS',
+  'ID',
+  'ID',
+  'ST',
+  'ID',
+  'TS',
+  'CQ',
+  'XCN',
+  'CE',
+  'CE',
+  'VR',
+  'ID',
+];
+
 interface QRDObject4<T extends HL7TypeMap> {
   QueryDateTime?: T['TS'] | null;
   QueryFormatCode?: string | null;
@@ -7498,6 +11303,46 @@ interface ROLObject2<T extends HL7TypeMap> {
   RoleActionReason?: T['CE'] | null;
 }
 
+type RQDTypes2 = [
+  never,
+  'SI',
+  'CE',
+  'CE',
+  'CE',
+  'NM',
+  'CE',
+  'IS',
+  'IS',
+  'CE',
+  'DT',
+];
+
+type RXATypes3 = [
+  never,
+  'NM',
+  'NM',
+  'TS',
+  'TS',
+  'CE',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'XCN',
+  'LA2',
+  'ST',
+  'NM',
+  'CE',
+  'ST',
+  'TS',
+  'CE',
+  'CE',
+  'CE',
+  'ID',
+  'ID',
+  'TS',
+];
+
 interface RXAObject3<T extends HL7TypeMap> {
   GiveSubIDCounter?: number | string | null;
   AdministrationSubIDCounter?: number | string | null;
@@ -7522,6 +11367,34 @@ interface RXAObject3<T extends HL7TypeMap> {
   ActionCodeRXA?: string | null;
   SystemEntryDateTime?: T['TS'] | null;
 }
+
+type RXDTypes3 = [
+  never,
+  'NM',
+  'CE',
+  'TS',
+  'NM',
+  'CE',
+  'CE',
+  'ST',
+  'NM',
+  'ST',
+  'XCN',
+  'ID',
+  'CQ',
+  'LA2',
+  'ID',
+  'CE',
+  'NM',
+  'CE',
+  'ST',
+  'TS',
+  'CE',
+  'CE',
+  'NM',
+  'CE',
+  'ID',
+];
 
 interface RXDObject3<T extends HL7TypeMap> {
   DispenseSubIDCounter?: number | string | null;
@@ -7549,6 +11422,40 @@ interface RXDObject3<T extends HL7TypeMap> {
   DispensePackageSizeUnit?: T['CE'] | null;
   DispensePackageMethod?: string | null;
 }
+
+type RXETypes3 = [
+  never,
+  'TQ',
+  'CE',
+  'NM',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'LA1',
+  'ID',
+  'NM',
+  'CE',
+  'NM',
+  'XCN',
+  'XCN',
+  'ST',
+  'NM',
+  'NM',
+  'TS',
+  'CQ',
+  'ID',
+  'CE',
+  'ST',
+  'ST',
+  'CE',
+  'NM',
+  'CE',
+  'CE',
+  'NM',
+  'CE',
+  'ID',
+];
 
 interface RXEObject3<T extends HL7TypeMap> {
   QuantityTiming?: T['TQ'] | null;
@@ -7582,6 +11489,32 @@ interface RXEObject3<T extends HL7TypeMap> {
   DispensePackageSizeUnit?: T['CE'] | null;
   DispensePackageMethod?: string | null;
 }
+
+type RXGTypes3 = [
+  never,
+  'NM',
+  'NM',
+  'TQ',
+  'CE',
+  'NM',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'ID',
+  'LA2',
+  'ID',
+  'CE',
+  'ST',
+  'ST',
+  'CE',
+  'NM',
+  'CE',
+  'ST',
+  'TS',
+  'CE',
+  'CE',
+];
 
 interface RXGObject3<T extends HL7TypeMap> {
   GiveSubIDCounter?: number | string | null;
@@ -7634,6 +11567,33 @@ type RXOFields3 =
   | 22
   | 23;
 
+type RXOTypes3 = [
+  never,
+  'CE',
+  'NM',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'LA1',
+  'ID',
+  'CE',
+  'NM',
+  'CE',
+  'NM',
+  'XCN',
+  'XCN',
+  'ID',
+  'ST',
+  'NM',
+  'CE',
+  'CE',
+  'ST',
+  'CE',
+  'CQ',
+];
+
 interface RXOObject3<T extends HL7TypeMap> {
   RequestedGiveCode?: T['CE'] | null;
   RequestedGiveAmountMinimum?: number | string | null;
@@ -7661,6 +11621,8 @@ interface RXOObject3<T extends HL7TypeMap> {
 }
 
 type RXRFields2 = 1 | 2 | 3 | 4 | 5;
+
+type RXRTypes2 = [never, 'CE', 'CE', 'CE', 'CE', 'CE'];
 
 interface RXRObject2<T extends HL7TypeMap> {
   Route?: T['CE'] | null;
@@ -7697,6 +11659,36 @@ interface SCHObject2<T extends HL7TypeMap> {
   ParentFillerAppointmentID?: T['EI'] | null;
   FillerStatusCode?: T['CE'] | null;
 }
+
+type STFTypes3 = [
+  never,
+  'CE',
+  'CX',
+  'XPN',
+  'IS',
+  'IS',
+  'TS',
+  'ID',
+  'CE',
+  'CE',
+  'XTN',
+  'XAD',
+  'DIN',
+  'DIN',
+  'CE',
+  'ST',
+  'CE',
+  'CE',
+  'ST',
+  'JCC',
+  'IS',
+  'ID',
+  'DLN',
+  'ID',
+  'DT',
+  'DT',
+  'DT',
+];
 
 interface STFObject3<T extends HL7TypeMap> {
   PrimaryKeyValueSTF?: T['CE'] | null;
@@ -7753,6 +11745,33 @@ interface TXAObject2<T extends HL7TypeMap> {
   DistributedCopies?: T['XCN'][] | null;
 }
 
+type UB1Types4 = [
+  never,
+  'SI',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'IS',
+  'NM',
+  'NM',
+  'UVC',
+  'NM',
+  'CE',
+  'CE',
+  'DT',
+  'DT',
+  'OCD',
+  'CE',
+  'DT',
+  'DT',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+];
+
 interface UB1Object4<T extends HL7TypeMap> {
   SetID?: number | string | null;
   BloodDeductible?: number | string | null;
@@ -7778,6 +11797,27 @@ interface UB1Object4<T extends HL7TypeMap> {
   UB82Locator27?: string | null;
   UB82Locator45?: string | null;
 }
+
+type UB2Types3 = [
+  never,
+  'SI',
+  'ST',
+  'IS',
+  'ST',
+  'ST',
+  'UVC',
+  'OCD',
+  'OSP',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'NM',
+];
 
 interface UB2Object3<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -7807,6 +11847,239 @@ interface VARObject2<T extends HL7TypeMap> {
   VarianceClassification?: T['CE'] | null;
   VarianceDescription?: string[] | null;
 }
+
+type AUIComps1 = [never, 'ST', 'TS', 'ST'];
+
+type CCDComps1 = [never, 'ID', 'TS'];
+
+type CCPComps1 = [never, 'NM', 'NM', 'NM'];
+
+type CDComps2 = [never, 'WVI', 'WVS', 'CSU', 'CCP', 'NM', 'NR'];
+
+type CEComps3 = [never, 'ST', 'ST', 'ST', 'ST', 'ST', 'ST'];
+
+type CFComps2 = [never, 'ST', 'FT', 'ST', 'ST', 'FT', 'ST'];
+
+type CKComps2 = [never, 'NM', 'NM', 'ID', 'HD'];
+
+type CNComps3 = [never, 'ST', 'ST', 'ST', 'ST', 'ST', 'ST', 'IS', 'IS', 'HD'];
+
+type CNEComps1 = [never, 'ST', 'ST', 'ST', 'ST', 'ST', 'ST', 'ST', 'ST', 'ST'];
+
+type CNSComps1 = [
+  never,
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'IS',
+  'IS',
+  'IS',
+  'ST',
+  'ID',
+];
+
+type CSUComps1 = [never, 'NM', 'ST', 'ST', 'IS', 'ST', 'ST', 'IS'];
+
+type CWEComps1 = [never, 'ST', 'ST', 'ST', 'ST', 'ST', 'ST', 'ST', 'ST', 'ST'];
+
+type CXComps2 = [never, 'ST', 'NM', 'ID', 'HD', 'IS', 'HD'];
+
+type DDIComps1 = [never, 'NM', 'NM', 'NM'];
+
+type DINComps1 = [never, 'TS', 'CE'];
+
+type DLDComps1 = [never, 'IS', 'TS'];
+
+type DLTComps1 = [never, 'NR', 'NM', 'ST', 'NM'];
+
+type DTNComps1 = [never, 'IS', 'NM'];
+
+type EIPComps1 = [never, 'EI', 'EI'];
+
+type ELDComps1 = [never, 'ST', 'NM', 'NM', 'CE'];
+
+type FNComps1 = [never, 'ST', 'ST'];
+
+type LA1Comps1 = [never, 'IS', 'IS', 'IS', 'HD', 'IS', 'IS', 'IS', 'IS', 'AD'];
+
+type LA2Comps1 = [
+  never,
+  'IS',
+  'IS',
+  'IS',
+  'HD',
+  'IS',
+  'IS',
+  'IS',
+  'IS',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ID',
+  'ID',
+  'ST',
+];
+
+type MOCComps1 = [never, 'MO', 'CE'];
+
+type MOPComps1 = [never, 'IS', 'NM'];
+
+type MSGComps1 = [never, 'ID', 'ID', 'ID'];
+
+type NDLComps1 = [
+  never,
+  'CN',
+  'TS',
+  'TS',
+  'IS',
+  'IS',
+  'IS',
+  'HD',
+  'IS',
+  'IS',
+  'IS',
+  'IS',
+];
+
+type NRComps1 = [never, 'NM', 'NM'];
+
+type OCDComps1 = [never, 'ID', 'DT'];
+
+type OSDComps1 = [
+  never,
+  'ID',
+  'ST',
+  'IS',
+  'ST',
+  'IS',
+  'ST',
+  'NM',
+  'ST',
+  'ID',
+  'ST',
+  'ID',
+];
+
+type OSPComps1 = [never, 'CE', 'DT', 'DT'];
+
+type PCFComps1 = [never, 'IS', 'ID', 'TS'];
+
+type PIComps1 = [never, 'ST', 'IS', 'ST'];
+
+type PIPComps1 = [never, 'CE', 'CE', 'DT', 'DT', 'EI'];
+
+type PLComps2 = [never, 'IS', 'IS', 'IS', 'HD', 'IS', 'IS', 'IS', 'IS', 'ST'];
+
+type PLNComps1 = [never, 'ST', 'IS', 'ST', 'DT'];
+
+type PNComps2 = [never, 'FN', 'ST', 'ST', 'ST', 'ST', 'IS'];
+
+type PPNComps2 = [
+  never,
+  'ST',
+  'FN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'IS',
+  'IS',
+  'HD',
+  'ID',
+  'ST',
+  'ID',
+  'IS',
+  'HD',
+  'TS',
+  'ID',
+];
+
+type PRLComps1 = [never, 'CE', 'ST', 'TX'];
+
+type PTComps2 = [never, 'ID', 'ID'];
+
+type PTAComps1 = [never, 'IS', 'IS', 'NM'];
+
+type RFRComps1 = [never, 'NR', 'IS', 'NR', 'NR', 'TX', 'ST', 'TX'];
+
+type RMCComps1 = [never, 'IS', 'IS', 'NM'];
+
+type SCVComps2 = [never, 'IS', 'IS'];
+
+type SPDComps1 = [never, 'ST', 'ST', 'ID', 'DT'];
+
+type SPSComps1 = [never, 'CE', 'TX', 'TX', 'CE', 'CE', 'CE', 'CE'];
+
+type TQComps3 = [
+  never,
+  'CQ',
+  'RI',
+  'ST',
+  'TS',
+  'TS',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'OSD',
+  'CE',
+  'NM',
+];
+
+type TX_CHALLENGEComps1 = [never, 'TX', 'TX'];
+
+type UVCComps1 = [never, 'IS', 'NM'];
+
+type VIDComps1 = [never, 'ID', 'CE', 'CE'];
+
+type VRComps1 = [never, 'ST', 'ST'];
+
+type WVIComps1 = [never, 'NM', 'ST'];
+
+type WVSComps1 = [never, 'ST', 'ST'];
+
+type XADComps2 = [
+  never,
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ID',
+  'ID',
+  'ST',
+  'IS',
+  'IS',
+  'ID',
+];
+
+type XCNComps2 = [
+  never,
+  'ST',
+  'FN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'IS',
+  'IS',
+  'HD',
+  'ID',
+  'ST',
+  'ID',
+  'IS',
+  'HD',
+  'ID',
+];
+
+type XONComps2 = [never, 'ST', 'IS', 'NM', 'NM', 'ID', 'HD', 'IS', 'HD', 'ID'];
+
+type XPNComps2 = [never, 'FN', 'ST', 'ST', 'ST', 'ST', 'IS', 'ID', 'ID'];
 
 interface AUIObject2 {
   AuthorizationNumber?: string | null;
@@ -8084,6 +12357,24 @@ type HL7Types_2_4 = {
 
 type ABSFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
 
+type ABSTypes1 = [
+  never,
+  'XCN',
+  'CE',
+  'CE',
+  'TS',
+  'XCN',
+  'CE',
+  'TS',
+  'XCN',
+  'CE',
+  'ID',
+  'CE',
+  'NM',
+  'CE',
+  'ID',
+];
+
 interface ABSObject1<T extends HL7TypeMap> {
   DischargeCareProvider?: T['XCN'] | null;
   TransferMedicalServiceCode?: T['CE'] | null;
@@ -8103,6 +12394,20 @@ interface ABSObject1<T extends HL7TypeMap> {
 
 type ACCFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
+type ACCTypes3 = [
+  never,
+  'TS',
+  'CE',
+  'ST',
+  'CE',
+  'ID',
+  'ID',
+  'XCN',
+  'ST',
+  'ST',
+  'ID',
+];
+
 interface ACCObject4<T extends HL7TypeMap> {
   AccidentDateTime?: T['TS'] | null;
   AccidentCode?: T['CE'] | null;
@@ -8118,6 +12423,8 @@ interface ACCObject4<T extends HL7TypeMap> {
 
 type AFFFields1 = 1 | 2 | 3 | 4 | 5;
 
+type AFFTypes1 = [never, 'SI', 'XON', 'XAD', 'DR', 'ST'];
+
 interface AFFObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ProfessionalOrganization?: T['XON'] | null;
@@ -8127,6 +12434,22 @@ interface AFFObject1<T extends HL7TypeMap> {
 }
 
 type AISFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type AISTypes2 = [
+  never,
+  'SI',
+  'ID',
+  'CE',
+  'TS',
+  'NM',
+  'CE',
+  'NM',
+  'CE',
+  'IS',
+  'CE',
+  'CE',
+  'CE',
+];
 
 interface AISObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -8142,6 +12465,8 @@ interface AISObject2<T extends HL7TypeMap> {
   PlacerSupplementalServiceInformation?: T['CE'][] | null;
   FillerSupplementalServiceInformation?: T['CE'][] | null;
 }
+
+type AL1Types3 = [never, 'CE', 'CE', 'CE', 'CE', 'ST', 'DT'];
 
 interface AL1Object3<T extends HL7TypeMap> {
   SetID?: T['CE'] | null;
@@ -8179,6 +12504,35 @@ type ARQFields2 =
   | 24
   | 25;
 
+type ARQTypes2 = [
+  never,
+  'EI',
+  'EI',
+  'NM',
+  'EI',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'NM',
+  'CE',
+  'DR',
+  'ST',
+  'RI',
+  'ST',
+  'XCN',
+  'XTN',
+  'XAD',
+  'PL',
+  'XCN',
+  'XTN',
+  'PL',
+  'EI',
+  'EI',
+  'EI',
+  'EI',
+];
+
 interface ARQObject3<T extends HL7TypeMap> {
   PlacerAppointmentID?: T['EI'] | null;
   FillerAppointmentID?: T['EI'] | null;
@@ -8209,12 +12563,16 @@ interface ARQObject3<T extends HL7TypeMap> {
 
 type BLCFields1 = 1 | 2;
 
+type BLCTypes1 = [never, 'CE', 'CQ'];
+
 interface BLCObject1<T extends HL7TypeMap> {
   BloodProductCode?: T['CE'] | null;
   BloodAmount?: T['CQ'] | null;
 }
 
 type CNSFields1 = 1 | 2 | 3 | 4 | 5 | 6;
+
+type CNSTypes1 = [never, 'NM', 'NM', 'TS', 'TS', 'CE', 'CE'];
 
 interface CNSObject2<T extends HL7TypeMap> {
   StartingNotificationReferenceNumber?: number | string | null;
@@ -8226,6 +12584,21 @@ interface CNSObject2<T extends HL7TypeMap> {
 }
 
 type DRGFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+
+type DRGTypes2 = [
+  never,
+  'CE',
+  'TS',
+  'ID',
+  'IS',
+  'CE',
+  'NM',
+  'CP',
+  'IS',
+  'CP',
+  'ID',
+  'IS',
+];
 
 interface DRGObject2<T extends HL7TypeMap> {
   DiagnosticRelatedGroup?: T['CE'] | null;
@@ -8243,12 +12616,16 @@ interface DRGObject2<T extends HL7TypeMap> {
 
 type DSCFields2 = 1 | 2;
 
+type DSCTypes2 = [never, 'ST', 'ID'];
+
 interface DSCObject2<T extends HL7TypeMap> {
   ContinuationPointer?: string | null;
   ContinuationStyle?: string | null;
 }
 
 type ECDFields1 = 1 | 2 | 3 | 4 | 5;
+
+type ECDTypes1 = [never, 'NM', 'CE', 'ID', 'TQ', 'ST'];
 
 interface ECDObject1<T extends HL7TypeMap> {
   ReferenceCommandNumber?: number | string | null;
@@ -8260,6 +12637,8 @@ interface ECDObject1<T extends HL7TypeMap> {
 
 type ECRFields1 = 1 | 2 | 3;
 
+type ECRTypes1 = [never, 'CE', 'TS', 'ST'];
+
 interface ECRObject1<T extends HL7TypeMap> {
   CommandResponse?: T['CE'] | null;
   DateTimeCompleted?: T['TS'] | null;
@@ -8267,6 +12646,8 @@ interface ECRObject1<T extends HL7TypeMap> {
 }
 
 type EDUFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
+type EDUTypes1 = [never, 'SI', 'IS', 'DR', 'DR', 'DT', 'XON', 'CE', 'XAD'];
 
 interface EDUObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -8281,6 +12662,8 @@ interface EDUObject1<T extends HL7TypeMap> {
 
 type EQPFields1 = 1 | 2 | 3 | 4 | 5;
 
+type EQPTypes1 = [never, 'CE', 'ST', 'TS', 'TS', 'FT'];
+
 interface EQPObject1<T extends HL7TypeMap> {
   EventType?: T['CE'] | null;
   FileName?: string | null;
@@ -8291,6 +12674,8 @@ interface EQPObject1<T extends HL7TypeMap> {
 
 type EQUFields1 = 1 | 2 | 3 | 4 | 5;
 
+type EQUTypes1 = [never, 'EI', 'TS', 'CE', 'CE', 'CE'];
+
 interface EQUObject1<T extends HL7TypeMap> {
   EquipmentInstanceIdentifier?: T['EI'] | null;
   EventDateTime?: T['TS'] | null;
@@ -8300,6 +12685,8 @@ interface EQUObject1<T extends HL7TypeMap> {
 }
 
 type EVNFields4 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
+type EVNTypes5 = [never, 'ID', 'TS', 'TS', 'IS', 'XCN', 'TS', 'HD'];
 
 interface EVNObject5<T extends HL7TypeMap> {
   EventTypeCode?: string | null;
@@ -8313,6 +12700,8 @@ interface EVNObject5<T extends HL7TypeMap> {
 
 type GP1Fields1 = 1 | 2 | 3 | 4 | 5;
 
+type GP1Types1 = [never, 'IS', 'IS', 'IS', 'IS', 'CP'];
+
 interface GP1Object1<T extends HL7TypeMap> {
   TypeOfBillCode?: string | null;
   RevenueCode?: string[] | null;
@@ -8322,6 +12711,24 @@ interface GP1Object1<T extends HL7TypeMap> {
 }
 
 type GP2Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
+type GP2Types1 = [
+  never,
+  'IS',
+  'NM',
+  'CP',
+  'IS',
+  'IS',
+  'IS',
+  'CE',
+  'IS',
+  'IS',
+  'IS',
+  'CP',
+  'IS',
+  'CP',
+  'NM',
+];
 
 interface GP2Object1<T extends HL7TypeMap> {
   RevenueCode?: string | null;
@@ -8361,6 +12768,30 @@ type IAMFields1 =
   | 18
   | 19
   | 20;
+
+type IAMTypes1 = [
+  never,
+  'SI',
+  'CE',
+  'CE',
+  'CE',
+  'ST',
+  'CNE',
+  'EI',
+  'ST',
+  'CE',
+  'CE',
+  'DT',
+  'ST',
+  'TS',
+  'XPN',
+  'CE',
+  'CE',
+  'CE',
+  'XCN',
+  'XON',
+  'TS',
+];
 
 interface IAMObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -8405,6 +12836,28 @@ type INVFields1 =
   | 17
   | 18;
 
+type INVTypes1 = [
+  never,
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'CE',
+  'TS',
+  'TS',
+  'TQ',
+  'CE',
+  'ST',
+  'CE',
+  'CE',
+];
+
 interface INVObject1<T extends HL7TypeMap> {
   SubstanceIdentifier?: T['CE'] | null;
   SubstanceStatus?: T['CE'][] | null;
@@ -8428,6 +12881,8 @@ interface INVObject1<T extends HL7TypeMap> {
 
 type ISDFields1 = 1 | 2 | 3;
 
+type ISDTypes1 = [never, 'NM', 'CE', 'CE'];
+
 interface ISDObject1<T extends HL7TypeMap> {
   ReferenceInteractionNumber?: number | string | null;
   InteractionTypeIdentifier?: T['CE'] | null;
@@ -8436,12 +12891,16 @@ interface ISDObject1<T extends HL7TypeMap> {
 
 type LANFields1 = 1 | 2 | 3 | 4;
 
+type LANTypes1 = [never, 'SI', 'CE', 'CE', 'CE'];
+
 interface LANObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   LanguageCode?: T['CE'] | null;
   LanguageAbilityCode?: T['CE'][] | null;
   LanguageProficiencyCode?: T['CE'] | null;
 }
+
+type LCCTypes2 = [never, 'PL', 'CE', 'CE', 'CE'];
 
 interface LCCObject2<T extends HL7TypeMap> {
   PrimaryKeyValueLCC?: T['PL'] | null;
@@ -8451,6 +12910,22 @@ interface LCCObject2<T extends HL7TypeMap> {
 }
 
 type LDPFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type LDPTypes3 = [
+  never,
+  'PL',
+  'CE',
+  'IS',
+  'CE',
+  'IS',
+  'ID',
+  'TS',
+  'TS',
+  'ST',
+  'VH',
+  'XTN',
+  'CE',
+];
 
 interface LDPObject2<T extends HL7TypeMap> {
   PrimaryKeyValueLDP?: T['PL'] | null;
@@ -8468,6 +12943,19 @@ interface LDPObject2<T extends HL7TypeMap> {
 }
 
 type LOCFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+
+type LOCTypes3 = [
+  never,
+  'PL',
+  'ST',
+  'IS',
+  'XON',
+  'XAD',
+  'XTN',
+  'CE',
+  'IS',
+  'IS',
+];
 
 interface LOCObject3<T extends HL7TypeMap> {
   PrimaryKeyValueLOC?: T['PL'] | null;
@@ -8504,6 +12992,31 @@ type MSHFields5 =
   | 20
   | 21;
 
+type MSHTypes5 = [
+  never,
+  'ST',
+  'ST',
+  'HD',
+  'HD',
+  'HD',
+  'HD',
+  'TS',
+  'ST',
+  'MSG',
+  'ST',
+  'PT',
+  'VID',
+  'NM',
+  'ST',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'CE',
+  'ID',
+  'ID',
+];
+
 interface MSHObject5<T extends HL7TypeMap> {
   FieldSeparator?: string | null;
   EncodingCharacters?: string | null;
@@ -8530,12 +13043,16 @@ interface MSHObject5<T extends HL7TypeMap> {
 
 type NDSFields1 = 1 | 2 | 3 | 4;
 
+type NDSTypes1 = [never, 'NM', 'TS', 'CE', 'CE'];
+
 interface NDSObject1<T extends HL7TypeMap> {
   NotificationReferenceNumber?: number | string | null;
   NotificationDateTime?: T['TS'] | null;
   NotificationAlertSeverity?: T['CE'] | null;
   NotificationCode?: T['CE'] | null;
 }
+
+type NSCTypes4 = [never, 'IS', 'ST', 'ST', 'HD', 'HD', 'ST', 'ST', 'HD', 'HD'];
 
 interface NSCObject3<T extends HL7TypeMap> {
   ApplicationChangeType?: string | null;
@@ -8597,6 +13114,57 @@ type OBRFields4 =
   | 45
   | 46
   | 47;
+
+type OBRTypes5 = [
+  never,
+  'SI',
+  'EI',
+  'EI',
+  'CE',
+  'ID',
+  'TS',
+  'TS',
+  'TS',
+  'CQ',
+  'XCN',
+  'ID',
+  'CE',
+  'ST',
+  'TS',
+  'SPS',
+  'XCN',
+  'XTN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'TS',
+  'MOC',
+  'ID',
+  'ID',
+  'PRL',
+  'TQ',
+  'XCN',
+  'EIP',
+  'ID',
+  'CE',
+  'NDL',
+  'NDL',
+  'NDL',
+  'NDL',
+  'TS',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'ID',
+  'ID',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+];
 
 interface OBRObject5<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -8669,6 +13237,29 @@ type OBXFields4 =
   | 18
   | 19;
 
+type OBXTypes4 = [
+  never,
+  'SI',
+  'ID',
+  'CE',
+  'ST',
+  'VARIES',
+  'CE',
+  'ST',
+  'IS',
+  'NM',
+  'ID',
+  'ID',
+  'TS',
+  'ST',
+  'TS',
+  'CE',
+  'XCN',
+  'CE',
+  'EI',
+  'TS',
+];
+
 interface OBXObject5<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ValueType?: string | null;
@@ -8716,6 +13307,34 @@ type OM7Fields1 =
   | 22
   | 23
   | 24;
+
+type OM7Types1 = [
+  never,
+  'NM',
+  'CE',
+  'CE',
+  'TX',
+  'ST',
+  'TS',
+  'TS',
+  'NM',
+  'CE',
+  'IS',
+  'ID',
+  'CE',
+  'TS',
+  'TS',
+  'NM',
+  'CE',
+  'NM',
+  'CE',
+  'TS',
+  'XCN',
+  'PL',
+  'IS',
+  'ID',
+  'CE',
+];
 
 interface OM7Object1<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
@@ -8771,6 +13390,35 @@ type ORCFields4 =
   | 24
   | 25;
 
+type ORCTypes5 = [
+  never,
+  'ID',
+  'EI',
+  'EI',
+  'EI',
+  'ID',
+  'ID',
+  'TQ',
+  'EIP',
+  'TS',
+  'XCN',
+  'XCN',
+  'XCN',
+  'PL',
+  'XTN',
+  'TS',
+  'CE',
+  'CE',
+  'CE',
+  'XCN',
+  'CE',
+  'XON',
+  'XAD',
+  'XTN',
+  'XAD',
+  'CWE',
+];
+
 interface ORCObject5<T extends HL7TypeMap> {
   OrderControl?: string | null;
   PlacerOrderNumber?: T['EI'] | null;
@@ -8800,6 +13448,22 @@ interface ORCObject5<T extends HL7TypeMap> {
 }
 
 type ORGFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type ORGTypes1 = [
+  never,
+  'SI',
+  'CE',
+  'CE',
+  'ID',
+  'CX',
+  'CE',
+  'CE',
+  'CE',
+  'DR',
+  'CE',
+  'ID',
+  'ID',
+];
 
 interface ORGObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -8839,6 +13503,31 @@ type PD1Fields2 =
   | 20
   | 21;
 
+type PD1Types2 = [
+  never,
+  'IS',
+  'IS',
+  'XON',
+  'XCN',
+  'IS',
+  'IS',
+  'IS',
+  'IS',
+  'ID',
+  'CX',
+  'CE',
+  'ID',
+  'DT',
+  'XON',
+  'CE',
+  'IS',
+  'DT',
+  'DT',
+  'IS',
+  'IS',
+  'IS',
+];
+
 interface PD1Object3<T extends HL7TypeMap> {
   LivingDependency?: string[] | null;
   LivingArrangement?: string | null;
@@ -8864,6 +13553,19 @@ interface PD1Object3<T extends HL7TypeMap> {
 }
 
 type PDAFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+
+type PDATypes1 = [
+  never,
+  'CE',
+  'PL',
+  'ID',
+  'TS',
+  'XCN',
+  'ID',
+  'DR',
+  'XCN',
+  'ID',
+];
 
 interface PDAObject1<T extends HL7TypeMap> {
   DeathCauseCode?: T['CE'][] | null;
@@ -8916,6 +13618,48 @@ type PIDFields4 =
   | 36
   | 37
   | 38;
+
+type PIDTypes5 = [
+  never,
+  'SI',
+  'CX',
+  'CX',
+  'CX',
+  'XPN',
+  'XPN',
+  'TS',
+  'IS',
+  'XPN',
+  'CE',
+  'XAD',
+  'IS',
+  'XTN',
+  'XTN',
+  'CE',
+  'CE',
+  'CE',
+  'CX',
+  'ST',
+  'DLN',
+  'CX',
+  'CE',
+  'ST',
+  'ID',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'TS',
+  'ID',
+  'ID',
+  'IS',
+  'TS',
+  'HD',
+  'CE',
+  'CE',
+  'ST',
+  'CE',
+];
 
 interface PIDObject5<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -8978,6 +13722,28 @@ type PR1Fields5 =
   | 17
   | 18;
 
+type PR1Types5 = [
+  never,
+  'SI',
+  'IS',
+  'CE',
+  'ST',
+  'TS',
+  'IS',
+  'NM',
+  'XCN',
+  'IS',
+  'NM',
+  'XCN',
+  'XCN',
+  'CE',
+  'ID',
+  'CE',
+  'CE',
+  'IS',
+  'CE',
+];
+
 interface PR1Object5<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ProcedureCodingMethod?: string | null;
@@ -9000,6 +13766,22 @@ interface PR1Object5<T extends HL7TypeMap> {
 }
 
 type PRAFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type PRATypes3 = [
+  never,
+  'CE',
+  'CE',
+  'IS',
+  'ID',
+  'SPD',
+  'PLN',
+  'PIP',
+  'DT',
+  'CE',
+  'DT',
+  'CE',
+  'SI',
+];
 
 interface PRAObject3<T extends HL7TypeMap> {
   PrimaryKeyValuePRA?: T['CE'] | null;
@@ -9120,6 +13902,57 @@ type PV2Fields3 =
   | 46
   | 47;
 
+type PV2Types4 = [
+  never,
+  'PL',
+  'CE',
+  'CE',
+  'CE',
+  'ST',
+  'ST',
+  'IS',
+  'TS',
+  'TS',
+  'NM',
+  'NM',
+  'ST',
+  'XCN',
+  'DT',
+  'ID',
+  'IS',
+  'DT',
+  'IS',
+  'ID',
+  'NM',
+  'IS',
+  'ID',
+  'XON',
+  'IS',
+  'IS',
+  'DT',
+  'IS',
+  'DT',
+  'DT',
+  'CE',
+  'IS',
+  'ID',
+  'TS',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'IS',
+  'IS',
+  'CE',
+  'DT',
+  'TS',
+];
+
 interface PV2Object4<T extends HL7TypeMap> {
   PriorPendingLocation?: T['PL'] | null;
   AccommodationCode?: T['CE'] | null;
@@ -9172,6 +14005,8 @@ interface PV2Object4<T extends HL7TypeMap> {
 
 type QAKFields2 = 1 | 2 | 3 | 4 | 5 | 6;
 
+type QAKTypes2 = [never, 'ST', 'ID', 'CE', 'NM', 'NM', 'NM'];
+
 interface QAKObject2<T extends HL7TypeMap> {
   QueryTag?: string | null;
   QueryResponseStatus?: string | null;
@@ -9183,12 +14018,16 @@ interface QAKObject2<T extends HL7TypeMap> {
 
 type QIDFields1 = 1 | 2;
 
+type QIDTypes1 = [never, 'ST', 'CE'];
+
 interface QIDObject1<T extends HL7TypeMap> {
   QueryTag?: string | null;
   MessageQueryName?: T['CE'] | null;
 }
 
 type QPDFields1 = 1 | 2 | 3;
+
+type QPDTypes1 = [never, 'CE', 'ST', 'VARIES'];
 
 interface QPDObject1<T extends HL7TypeMap> {
   MessageQueryName?: T['CE'] | null;
@@ -9197,6 +14036,20 @@ interface QPDObject1<T extends HL7TypeMap> {
 }
 
 type QRFFields4 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+
+type QRFTypes4 = [
+  never,
+  'ST',
+  'TS',
+  'TS',
+  'ST',
+  'ST',
+  'ID',
+  'ID',
+  'ID',
+  'TQ',
+  'NM',
+];
 
 interface QRFObject4<T extends HL7TypeMap> {
   WhereSubjectFilter?: string[] | null;
@@ -9213,6 +14066,8 @@ interface QRFObject4<T extends HL7TypeMap> {
 
 type QRIFields1 = 1 | 2 | 3;
 
+type QRITypes1 = [never, 'NM', 'IS', 'CE'];
+
 interface QRIObject1<T extends HL7TypeMap> {
   CandidateConfidence?: number | string | null;
   MatchReasonCode?: string[] | null;
@@ -9220,6 +14075,8 @@ interface QRIObject1<T extends HL7TypeMap> {
 }
 
 type RCPFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
+type RCPTypes1 = [never, 'ID', 'CQ', 'CE', 'TS', 'ID', 'SRT', 'ID'];
 
 interface RCPObject1<T extends HL7TypeMap> {
   QueryPriority?: string | null;
@@ -9233,6 +14090,8 @@ interface RCPObject1<T extends HL7TypeMap> {
 
 type RMIFields1 = 1 | 2 | 3;
 
+type RMITypes1 = [never, 'CE', 'TS', 'CE'];
+
 interface RMIObject1<T extends HL7TypeMap> {
   RiskManagementIncidentCode?: T['CE'] | null;
   DateTimeIncident?: T['TS'] | null;
@@ -9240,6 +14099,22 @@ interface RMIObject1<T extends HL7TypeMap> {
 }
 
 type ROLFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type ROLTypes2 = [
+  never,
+  'EI',
+  'ID',
+  'CE',
+  'XCN',
+  'TS',
+  'TS',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'XAD',
+  'XTN',
+];
 
 interface ROLObject3<T extends HL7TypeMap> {
   RoleInstanceID?: T['EI'] | null;
@@ -9257,6 +14132,8 @@ interface ROLObject3<T extends HL7TypeMap> {
 }
 
 type RXCFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
+type RXCTypes3 = [never, 'ID', 'CE', 'NM', 'CE', 'NM', 'CE', 'CE'];
 
 interface RXCObject3<T extends HL7TypeMap> {
   RXComponentType?: string | null;
@@ -9296,6 +14173,37 @@ type RXDFields3 =
   | 25
   | 26
   | 27;
+
+type RXDTypes4 = [
+  never,
+  'NM',
+  'CE',
+  'TS',
+  'NM',
+  'CE',
+  'CE',
+  'ST',
+  'NM',
+  'ST',
+  'XCN',
+  'ID',
+  'CQ',
+  'LA2',
+  'ID',
+  'CE',
+  'NM',
+  'CE',
+  'ST',
+  'TS',
+  'CE',
+  'CE',
+  'NM',
+  'CE',
+  'ID',
+  'CE',
+  'CE',
+  'CE',
+];
 
 interface RXDObject4<T extends HL7TypeMap> {
   DispenseSubIDCounter?: number | string | null;
@@ -9360,6 +14268,41 @@ type RXEFields3 =
   | 30
   | 31;
 
+type RXETypes4 = [
+  never,
+  'TQ',
+  'CE',
+  'NM',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'LA1',
+  'ID',
+  'NM',
+  'CE',
+  'NM',
+  'XCN',
+  'XCN',
+  'ST',
+  'NM',
+  'NM',
+  'TS',
+  'CQ',
+  'ID',
+  'CE',
+  'ST',
+  'ST',
+  'CE',
+  'NM',
+  'CE',
+  'CE',
+  'NM',
+  'CE',
+  'ID',
+  'CE',
+];
+
 interface RXEObject4<T extends HL7TypeMap> {
   QuantityTiming?: T['TQ'] | null;
   GiveCode?: T['CE'] | null;
@@ -9419,6 +14362,34 @@ type RXOFields4 =
   | 22
   | 23
   | 24;
+
+type RXOTypes4 = [
+  never,
+  'CE',
+  'NM',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'LA1',
+  'ID',
+  'CE',
+  'NM',
+  'CE',
+  'NM',
+  'XCN',
+  'XCN',
+  'ID',
+  'ST',
+  'NM',
+  'CE',
+  'CE',
+  'ST',
+  'CE',
+  'CQ',
+  'CE',
+];
 
 interface RXOObject4<T extends HL7TypeMap> {
   RequestedGiveCode?: T['CE'] | null;
@@ -9492,6 +14463,54 @@ type SACFields1 =
   | 42
   | 43
   | 44;
+
+type SACTypes1 = [
+  never,
+  'EI',
+  'EI',
+  'EI',
+  'EI',
+  'EI',
+  'SPS',
+  'TS',
+  'CE',
+  'CE',
+  'EI',
+  'NA',
+  'CE',
+  'EI',
+  'NA',
+  'CE',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'CE',
+  'NM',
+  'NM',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'SN',
+  'CE',
+  'SN',
+  'NM',
+  'CE',
+  'NM',
+  'CE',
+  'NM',
+  'CE',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+];
 
 interface SACObject1<T extends HL7TypeMap> {
   ExternalAccessionIdentifier?: T['EI'] | null;
@@ -9569,6 +14588,37 @@ type SCHFields2 =
   | 26
   | 27;
 
+type SCHTypes2 = [
+  never,
+  'EI',
+  'EI',
+  'NM',
+  'EI',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'NM',
+  'CE',
+  'TQ',
+  'XCN',
+  'XTN',
+  'XAD',
+  'PL',
+  'XCN',
+  'XTN',
+  'XAD',
+  'PL',
+  'XCN',
+  'XTN',
+  'PL',
+  'EI',
+  'EI',
+  'CE',
+  'EI',
+  'EI',
+];
+
 interface SCHObject3<T extends HL7TypeMap> {
   PlacerAppointmentID?: T['EI'] | null;
   FillerAppointmentID?: T['EI'] | null;
@@ -9600,6 +14650,8 @@ interface SCHObject3<T extends HL7TypeMap> {
 }
 
 type SIDFields1 = 1 | 2 | 3 | 4;
+
+type SIDTypes1 = [never, 'CE', 'ST', 'ST', 'CE'];
 
 interface SIDObject1<T extends HL7TypeMap> {
   ApplicationMethodIdentifier?: T['CE'] | null;
@@ -9639,6 +14691,39 @@ type STFFields3 =
   | 28
   | 29;
 
+type STFTypes4 = [
+  never,
+  'CE',
+  'CX',
+  'XPN',
+  'IS',
+  'IS',
+  'TS',
+  'ID',
+  'CE',
+  'CE',
+  'XTN',
+  'XAD',
+  'DIN',
+  'DIN',
+  'CE',
+  'ST',
+  'CE',
+  'CE',
+  'ST',
+  'JCC',
+  'CE',
+  'ID',
+  'DLN',
+  'ID',
+  'DT',
+  'DT',
+  'DT',
+  'CE',
+  'CE',
+  'ID',
+];
+
 interface STFObject4<T extends HL7TypeMap> {
   PrimaryKeyValueSTF?: T['CE'] | null;
   StaffIdentifierList?: T['CX'][] | null;
@@ -9673,6 +14758,24 @@ interface STFObject4<T extends HL7TypeMap> {
 
 type TCCFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
 
+type TCCTypes1 = [
+  never,
+  'CE',
+  'EI',
+  'SPS',
+  'SN',
+  'SN',
+  'SN',
+  'SN',
+  'NM',
+  'ID',
+  'ID',
+  'ID',
+  'SN',
+  'CE',
+  'CE',
+];
+
 interface TCCObject1<T extends HL7TypeMap> {
   UniversalServiceIdentifier?: T['CE'] | null;
   EquipmentTestApplicationIdentifier?: T['EI'] | null;
@@ -9692,6 +14795,8 @@ interface TCCObject1<T extends HL7TypeMap> {
 
 type TCDFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
+type TCDTypes1 = [never, 'CE', 'SN', 'SN', 'SN', 'SN', 'ID', 'ID', 'CE'];
+
 interface TCDObject1<T extends HL7TypeMap> {
   UniversalServiceIdentifier?: T['CE'] | null;
   AutoDilutionFactor?: T['SN'] | null;
@@ -9702,6 +14807,152 @@ interface TCDObject1<T extends HL7TypeMap> {
   ReflexAllowed?: string | null;
   AnalyteRepeatStatus?: T['CE'] | null;
 }
+
+type AUIComps2 = [never, 'ST', 'DT', 'ST'];
+
+type CEComps4 = [never, 'ST', 'ST', 'IS', 'ST', 'ST', 'IS'];
+
+type CFComps3 = [never, 'ID', 'FT', 'IS', 'ID', 'FT', 'IS'];
+
+type CNComps4 = [never, 'ST', 'FN', 'ST', 'ST', 'ST', 'ST', 'IS', 'IS', 'HD'];
+
+type CNEComps2 = [never, 'ST', 'ST', 'IS', 'ST', 'ST', 'IS', 'ST', 'ST', 'ST'];
+
+type CNNComps1 = [
+  never,
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'IS',
+  'IS',
+  'IS',
+  'ST',
+  'ID',
+];
+
+type CWEComps2 = [never, 'ST', 'ST', 'IS', 'ST', 'ST', 'IS', 'ST', 'ST', 'ST'];
+
+type CXComps3 = [never, 'ST', 'ST', 'ID', 'HD', 'ID', 'HD', 'DT', 'DT'];
+
+type DLDComps2 = [never, 'ID', 'TS'];
+
+type FNComps2 = [never, 'ST', 'ST', 'ST', 'ST', 'ST'];
+
+type NDLComps2 = [
+  never,
+  'CNN',
+  'TS',
+  'TS',
+  'IS',
+  'IS',
+  'IS',
+  'HD',
+  'IS',
+  'IS',
+  'IS',
+  'IS',
+];
+
+type OCDComps2 = [never, 'IS', 'DT'];
+
+type PPNComps3 = [
+  never,
+  'ST',
+  'FN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'IS',
+  'IS',
+  'HD',
+  'ID',
+  'ST',
+  'ID',
+  'IS',
+  'HD',
+  'TS',
+  'ID',
+  'CE',
+  'DR',
+  'ID',
+];
+
+type SADComps1 = [never, 'ST', 'ST', 'ST'];
+
+type SRTComps1 = [never, 'ST', 'ID'];
+
+type TQComps4 = [
+  never,
+  'CQ',
+  'RI',
+  'ST',
+  'TS',
+  'TS',
+  'ST',
+  'ST',
+  'TX',
+  'ID',
+  'OSD',
+  'CE',
+  'NM',
+];
+
+type XADComps3 = [
+  never,
+  'SAD',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ID',
+  'ID',
+  'ST',
+  'IS',
+  'IS',
+  'ID',
+  'DR',
+];
+
+type XCNComps3 = [
+  never,
+  'ST',
+  'FN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'IS',
+  'IS',
+  'HD',
+  'ID',
+  'ST',
+  'ID',
+  'IS',
+  'HD',
+  'ID',
+  'CE',
+  'DR',
+  'ID',
+];
+
+type XPNComps3 = [
+  never,
+  'FN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'IS',
+  'ID',
+  'ID',
+  'CE',
+  'DR',
+  'ID',
+];
 
 interface CWEComponents1 {
   Identifier?: number | string | null;
@@ -10050,6 +15301,21 @@ type HL7Types_2_5 = {
 
 type ACCFields4 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
 
+type ACCTypes4 = [
+  never,
+  'TS',
+  'CE',
+  'ST',
+  'CE',
+  'ID',
+  'ID',
+  'XCN',
+  'ST',
+  'ST',
+  'ID',
+  'XAD',
+];
+
 interface ACCObject5<T extends HL7TypeMap> {
   AccidentDateTime?: T['TS'] | null;
   AccidentCode?: T['CE'] | null;
@@ -10079,6 +15345,8 @@ interface AILObject2<T extends HL7TypeMap> {
   FillerStatusCode?: T['CE'] | null;
 }
 
+type AL1Types4 = [never, 'SI', 'CE', 'CE', 'CE', 'ST', 'DT'];
+
 interface AL1Object4<T extends HL7TypeMap> {
   SetID?: number | string | null;
   AllergenTypeCode?: T['CE'] | null;
@@ -10087,6 +15355,22 @@ interface AL1Object4<T extends HL7TypeMap> {
   AllergyReactionCode?: string[] | null;
   IdentificationDate?: string | null;
 }
+
+type BHSTypes2 = [
+  never,
+  'ST',
+  'ST',
+  'HD',
+  'HD',
+  'HD',
+  'HD',
+  'TS',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+];
 
 interface BHSObject3<T extends HL7TypeMap> {
   BatchFieldSeparator?: string | null;
@@ -10105,6 +15389,8 @@ interface BHSObject3<T extends HL7TypeMap> {
 
 type BLGFields2 = 1 | 2 | 3 | 4;
 
+type BLGTypes4 = [never, 'CCD', 'ID', 'CX', 'CWE'];
+
 interface BLGObject5<T extends HL7TypeMap> {
   WhenToCharge?: T['CCD'] | null;
   ChargeType?: string | null;
@@ -10113,6 +15399,24 @@ interface BLGObject5<T extends HL7TypeMap> {
 }
 
 type BPOFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
+type BPOTypes1 = [
+  never,
+  'SI',
+  'CWE',
+  'CWE',
+  'NM',
+  'NM',
+  'CE',
+  'TS',
+  'PL',
+  'XAD',
+  'TS',
+  'PL',
+  'XAD',
+  'CWE',
+  'ID',
+];
 
 interface BPOObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -10153,6 +15457,31 @@ type BPXFields1 =
   | 19
   | 20
   | 21;
+
+type BPXTypes1 = [
+  never,
+  'SI',
+  'CWE',
+  'ID',
+  'TS',
+  'EI',
+  'CNE',
+  'CNE',
+  'CWE',
+  'XON',
+  'EI',
+  'CNE',
+  'CNE',
+  'TS',
+  'NM',
+  'NM',
+  'CE',
+  'EI',
+  'PL',
+  'XAD',
+  'XCN',
+  'XCN',
+];
 
 interface BPXObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -10199,6 +15528,29 @@ type BTXFields1 =
   | 18
   | 19;
 
+type BTXTypes1 = [
+  never,
+  'SI',
+  'EI',
+  'CNE',
+  'CNE',
+  'CWE',
+  'XON',
+  'EI',
+  'NM',
+  'NM',
+  'CE',
+  'CWE',
+  'ID',
+  'TS',
+  'XCN',
+  'XCN',
+  'TS',
+  'TS',
+  'CWE',
+  'CWE',
+];
+
 interface BTXObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   BCDonationID?: T['EI'] | null;
@@ -10220,6 +15572,23 @@ interface BTXObject1<T extends HL7TypeMap> {
   BPAdverseReactionType?: T['CWE'][] | null;
   BPTransfusionInterruptedReason?: T['CWE'] | null;
 }
+
+type CDMTypes3 = [
+  never,
+  'CE',
+  'CE',
+  'ST',
+  'ST',
+  'IS',
+  'CE',
+  'CE',
+  'ID',
+  'CE',
+  'NM',
+  'CX',
+  'XON',
+  'ID',
+];
 
 interface CDMObject3<T extends HL7TypeMap> {
   PrimaryKeyValueCDM?: T['CE'] | null;
@@ -10269,6 +15638,41 @@ type CERFields1 =
   | 29
   | 30
   | 31;
+
+type CERTypes1 = [
+  never,
+  'SI',
+  'ST',
+  'ST',
+  'XON',
+  'XCN',
+  'ED',
+  'ID',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'ST',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'CWE',
+  'ID',
+  'CWE',
+  'CWE',
+  'CWE',
+  'TS',
+  'TS',
+  'TS',
+  'TS',
+  'TS',
+  'TS',
+  'TS',
+  'CE',
+  'CWE',
+];
 
 interface CERObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -10331,6 +15735,35 @@ type CONFields1 =
   | 24
   | 25;
 
+type CONTypes1 = [
+  never,
+  'SI',
+  'CWE',
+  'ST',
+  'EI',
+  'FT',
+  'FT',
+  'FT',
+  'FT',
+  'FT',
+  'CNE',
+  'CNE',
+  'TS',
+  'TS',
+  'TS',
+  'TS',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'CWE',
+  'ID',
+  'CWE',
+  'CWE',
+  'XPN',
+  'IS',
+];
+
 interface CONObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ConsentType?: T['CWE'] | null;
@@ -10358,6 +15791,8 @@ interface CONObject1<T extends HL7TypeMap> {
   ConsenterID?: T['XPN'][] | null;
   RelationshipToSubject?: string[] | null;
 }
+
+type CTDTypes3 = [never, 'CE', 'XPN', 'XAD', 'PL', 'XTN', 'CE', 'PLN'];
 
 interface CTDObject3<T extends HL7TypeMap> {
   ContactRole?: T['CE'][] | null;
@@ -10392,6 +15827,31 @@ type DG1Fields4 =
   | 20
   | 21;
 
+type DG1Types5 = [
+  never,
+  'SI',
+  'ID',
+  'CE',
+  'ST',
+  'TS',
+  'IS',
+  'CE',
+  'CE',
+  'ID',
+  'IS',
+  'CE',
+  'NM',
+  'CP',
+  'ST',
+  'ID',
+  'XCN',
+  'IS',
+  'ID',
+  'TS',
+  'EI',
+  'ID',
+];
+
 interface DG1Object5<T extends HL7TypeMap> {
   SetID?: number | string | null;
   DiagnosisCodingMethod?: string | null;
@@ -10416,7 +15876,24 @@ interface DG1Object5<T extends HL7TypeMap> {
   DiagnosisActionCode?: string | null;
 }
 
+type ECDTypes2 = [never, 'NM', 'CE', 'ID', 'TQ', 'TX'];
+
+type ECRTypes2 = [never, 'CE', 'TS', 'TX'];
+
 type EDUFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+
+type EDUTypes2 = [
+  never,
+  'SI',
+  'IS',
+  'DR',
+  'DR',
+  'DT',
+  'XON',
+  'CE',
+  'XAD',
+  'CWE',
+];
 
 interface EDUObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -10432,6 +15909,22 @@ interface EDUObject2<T extends HL7TypeMap> {
 
 type ERRFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
+type ERRTypes4 = [
+  never,
+  'ELD',
+  'ERL',
+  'CWE',
+  'ID',
+  'CWE',
+  'ST',
+  'TX',
+  'TX',
+  'IS',
+  'CWE',
+  'CWE',
+  'XTN',
+];
+
 interface ERRObject4<T extends HL7TypeMap> {
   ErrorCodeAndLocation?: T['ELD'][] | null;
   ErrorLocation?: T['ERL'][] | null;
@@ -10446,6 +15939,22 @@ interface ERRObject4<T extends HL7TypeMap> {
   OverrideReasonCode?: T['CWE'][] | null;
   HelpDeskContactPoint?: T['XTN'][] | null;
 }
+
+type FHSTypes2 = [
+  never,
+  'ST',
+  'ST',
+  'HD',
+  'HD',
+  'HD',
+  'HD',
+  'TS',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+];
 
 interface FHSObject3<T extends HL7TypeMap> {
   FileFieldSeparator?: string | null;
@@ -10494,6 +16003,41 @@ type FT1Fields5 =
   | 29
   | 30
   | 31;
+
+type FT1Types5 = [
+  never,
+  'SI',
+  'ST',
+  'ST',
+  'DR',
+  'TS',
+  'IS',
+  'CE',
+  'ST',
+  'ST',
+  'NM',
+  'CP',
+  'CP',
+  'CE',
+  'CE',
+  'CP',
+  'PL',
+  'IS',
+  'IS',
+  'CE',
+  'XCN',
+  'XCN',
+  'CP',
+  'EI',
+  'XCN',
+  'CE',
+  'CE',
+  'CE',
+  'CWE',
+  'CNE',
+  'CX',
+  'SI',
+];
 
 interface FT1Object5<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -10588,6 +16132,67 @@ type GT1Fields4 =
   | 56
   | 57;
 
+type GT1Types5 = [
+  never,
+  'SI',
+  'CX',
+  'XPN',
+  'XPN',
+  'XAD',
+  'XTN',
+  'XTN',
+  'TS',
+  'IS',
+  'IS',
+  'CE',
+  'ST',
+  'DT',
+  'DT',
+  'NM',
+  'XPN',
+  'XAD',
+  'XTN',
+  'CX',
+  'IS',
+  'XON',
+  'ID',
+  'CE',
+  'TS',
+  'ID',
+  'CE',
+  'CP',
+  'NM',
+  'CX',
+  'CE',
+  'DT',
+  'DT',
+  'IS',
+  'IS',
+  'CE',
+  'CE',
+  'IS',
+  'CE',
+  'ID',
+  'IS',
+  'CE',
+  'XPN',
+  'CE',
+  'CE',
+  'XPN',
+  'XTN',
+  'CE',
+  'IS',
+  'ST',
+  'JCC',
+  'XON',
+  'IS',
+  'IS',
+  'FC',
+  'CE',
+  'ST',
+  'IS',
+];
+
 interface GT1Object5<T extends HL7TypeMap> {
   SetID?: number | string | null;
   GuarantorNumber?: T['CX'][] | null;
@@ -10650,6 +16255,25 @@ interface GT1Object5<T extends HL7TypeMap> {
 
 type IIMFields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
+
+type IIMTypes1 = [
+  never,
+  'CWE',
+  'CWE',
+  'ST',
+  'TS',
+  'CWE',
+  'CWE',
+  'TS',
+  'NM',
+  'CWE',
+  'MO',
+  'TS',
+  'NM',
+  'CWE',
+  'CE',
+  'CE',
+];
 
 interface IIMObject1<T extends HL7TypeMap> {
   PrimaryKeyValueIIM?: T['CWE'] | null;
@@ -10724,6 +16348,63 @@ type IN1Fields4 =
   | 52
   | 53;
 
+type IN1Types5 = [
+  never,
+  'SI',
+  'CE',
+  'CX',
+  'XON',
+  'XAD',
+  'XPN',
+  'XTN',
+  'ST',
+  'XON',
+  'CX',
+  'XON',
+  'DT',
+  'DT',
+  'AUI',
+  'IS',
+  'XPN',
+  'CE',
+  'TS',
+  'XAD',
+  'IS',
+  'IS',
+  'ST',
+  'ID',
+  'DT',
+  'ID',
+  'DT',
+  'IS',
+  'ST',
+  'TS',
+  'XCN',
+  'IS',
+  'IS',
+  'NM',
+  'NM',
+  'IS',
+  'ST',
+  'CP',
+  'CP',
+  'NM',
+  'CP',
+  'CP',
+  'CE',
+  'IS',
+  'XAD',
+  'ST',
+  'IS',
+  'IS',
+  'IS',
+  'CX',
+  'IS',
+  'DT',
+  'ST',
+  'IS',
+];
+
 interface IN1Object5<T extends HL7TypeMap> {
   SetID?: number | string | null;
   HealthPlanID?: T['CE'] | null;
@@ -10780,6 +16461,35 @@ interface IN1Object5<T extends HL7TypeMap> {
   VIPIndicator?: string | null;
 }
 
+type IN3Types4 = [
+  never,
+  'SI',
+  'CX',
+  'XCN',
+  'ID',
+  'MOP',
+  'TS',
+  'TS',
+  'XCN',
+  'DT',
+  'DT',
+  'DTN',
+  'CE',
+  'TS',
+  'XCN',
+  'ST',
+  'XTN',
+  'CE',
+  'CE',
+  'XTN',
+  'ICD',
+  'ST',
+  'DT',
+  'IS',
+  'IS',
+  'XCN',
+];
+
 interface IN3Object4<T extends HL7TypeMap> {
   SetID?: number | string | null;
   CertificationNumber?: T['CX'] | null;
@@ -10830,6 +16540,30 @@ type INVFields2 =
   | 19
   | 20;
 
+type INVTypes2 = [
+  never,
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'CE',
+  'TS',
+  'TS',
+  'TQ',
+  'CE',
+  'ST',
+  'CE',
+  'CE',
+  'CQ',
+  'CQ',
+];
+
 interface INVObject2<T extends HL7TypeMap> {
   SubstanceIdentifier?: T['CE'] | null;
   SubstanceStatus?: T['CE'][] | null;
@@ -10855,6 +16589,8 @@ interface INVObject2<T extends HL7TypeMap> {
 
 type IPCFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
+type IPCTypes1 = [never, 'EI', 'EI', 'EI', 'EI', 'CE', 'CE', 'EI', 'CE', 'ST'];
+
 interface IPCObject1<T extends HL7TypeMap> {
   AccessionIdentifier?: T['EI'] | null;
   RequestedProcedureID?: T['EI'] | null;
@@ -10867,6 +16603,8 @@ interface IPCObject1<T extends HL7TypeMap> {
   ScheduledStationAETitle?: string | null;
 }
 
+type MFATypes3 = [never, 'ID', 'ST', 'TS', 'CE', 'VARIES', 'ID'];
+
 interface MFAObject3<T extends HL7TypeMap> {
   RecordLevelEventCode?: string | null;
   MFNControlID?: string | null;
@@ -10875,6 +16613,31 @@ interface MFAObject3<T extends HL7TypeMap> {
   PrimaryKeyValueMFA?: string[] | null;
   PrimaryKeyValueTypeMFA?: string[] | null;
 }
+
+type MSHTypes6 = [
+  never,
+  'ST',
+  'ST',
+  'HD',
+  'HD',
+  'HD',
+  'HD',
+  'TS',
+  'ST',
+  'MSG',
+  'ST',
+  'PT',
+  'VID',
+  'NM',
+  'ST',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'CE',
+  'ID',
+  'EI',
+];
 
 interface MSHObject6<T extends HL7TypeMap> {
   FieldSeparator?: string | null;
@@ -10940,6 +16703,49 @@ type NK1Fields4 =
   | 37
   | 38
   | 39;
+
+type NK1Types5 = [
+  never,
+  'SI',
+  'XPN',
+  'CE',
+  'XAD',
+  'XTN',
+  'XTN',
+  'CE',
+  'DT',
+  'DT',
+  'ST',
+  'JCC',
+  'CX',
+  'XON',
+  'CE',
+  'IS',
+  'TS',
+  'IS',
+  'IS',
+  'CE',
+  'CE',
+  'IS',
+  'CE',
+  'ID',
+  'IS',
+  'CE',
+  'XPN',
+  'CE',
+  'CE',
+  'CE',
+  'XPN',
+  'XTN',
+  'XAD',
+  'CX',
+  'IS',
+  'CE',
+  'IS',
+  'ST',
+  'ST',
+  'IS',
+];
 
 interface NK1Object5<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -11034,6 +16840,59 @@ type OBRFields5 =
   | 48
   | 49;
 
+type OBRTypes6 = [
+  never,
+  'SI',
+  'EI',
+  'EI',
+  'CE',
+  'ID',
+  'TS',
+  'TS',
+  'TS',
+  'CQ',
+  'XCN',
+  'ID',
+  'CE',
+  'ST',
+  'TS',
+  'SPS',
+  'XCN',
+  'XTN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'TS',
+  'MOC',
+  'ID',
+  'ID',
+  'PRL',
+  'TQ',
+  'XCN',
+  'EIP',
+  'ID',
+  'CE',
+  'NDL',
+  'NDL',
+  'NDL',
+  'NDL',
+  'TS',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'ID',
+  'ID',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'CWE',
+  'IS',
+];
+
 interface OBRObject6<T extends HL7TypeMap> {
   SetID?: number | string | null;
   PlacerOrderNumber?: T['EI'] | null;
@@ -11108,6 +16967,57 @@ interface OBXObject6<T extends HL7TypeMap> {
   DateTimeOfTheAnalysis?: T['TS'] | null;
 }
 
+type OM1Types4 = [
+  never,
+  'NM',
+  'CE',
+  'ID',
+  'ID',
+  'CE',
+  'TX',
+  'CE',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ID',
+  'CE',
+  'CE',
+  'ID',
+  'CE',
+  'XTN',
+  'IS',
+  'CE',
+  'ST',
+  'TS',
+  'TS',
+  'NM',
+  'NM',
+  'ID',
+  'ID',
+  'CE',
+  'XAD',
+  'XTN',
+  'CWE',
+  'CE',
+  'TX',
+  'CE',
+  'CE',
+  'TX',
+  'CE',
+  'TX',
+  'CE',
+  'TX',
+  'ST',
+  'TX',
+  'CE',
+  'CE',
+  'TX',
+  'CE',
+  'CE',
+  'CE',
+];
+
 interface OM1Object4<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
   ProducerSServiceTestObservationID?: T['CE'] | null;
@@ -11158,6 +17068,20 @@ interface OM1Object4<T extends HL7TypeMap> {
   ModalityOfImagingMeasurement?: T['CE'] | null;
 }
 
+type OM2Types4 = [
+  never,
+  'NM',
+  'CE',
+  'NM',
+  'CE',
+  'TX',
+  'RFR',
+  'RFR',
+  'RFR',
+  'DLT',
+  'NM',
+];
+
 interface OM2Object4<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
   UnitsOfMeasure?: T['CE'] | null;
@@ -11180,6 +17104,24 @@ interface OM3Object3<T extends HL7TypeMap> {
   CriticalTextCodesForCategoricalObservations?: T['CE'][] | null;
   ValueType?: string | null;
 }
+
+type OM4Types3 = [
+  never,
+  'NM',
+  'ID',
+  'TX',
+  'NM',
+  'CE',
+  'CE',
+  'CWE',
+  'TX',
+  'TX',
+  'CQ',
+  'CQ',
+  'TX',
+  'ID',
+  'CQ',
+];
 
 interface OM4Object4<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
@@ -11230,6 +17172,40 @@ type ORCFields5 =
   | 29
   | 30;
 
+type ORCTypes6 = [
+  never,
+  'ID',
+  'EI',
+  'EI',
+  'EI',
+  'ID',
+  'ID',
+  'TQ',
+  'EIP',
+  'TS',
+  'XCN',
+  'XCN',
+  'XCN',
+  'PL',
+  'XTN',
+  'TS',
+  'CE',
+  'CE',
+  'CE',
+  'XCN',
+  'CE',
+  'XON',
+  'XAD',
+  'XTN',
+  'XAD',
+  'CWE',
+  'CWE',
+  'TS',
+  'CWE',
+  'CWE',
+  'CNE',
+];
+
 interface ORCObject6<T extends HL7TypeMap> {
   OrderControl?: string | null;
   PlacerOrderNumber?: T['EI'] | null;
@@ -11264,6 +17240,8 @@ interface ORCObject6<T extends HL7TypeMap> {
 }
 
 type OVRFields1 = 1 | 2 | 3 | 4 | 5;
+
+type OVRTypes1 = [never, 'CWE', 'CWE', 'TX', 'XCN', 'XCN'];
 
 interface OVRObject1<T extends HL7TypeMap> {
   BusinessRuleOverrideType?: T['CWE'] | null;
@@ -11313,6 +17291,49 @@ type PIDFields5 =
   | 37
   | 38
   | 39;
+
+type PIDTypes6 = [
+  never,
+  'SI',
+  'CX',
+  'CX',
+  'CX',
+  'XPN',
+  'XPN',
+  'TS',
+  'IS',
+  'XPN',
+  'CE',
+  'XAD',
+  'IS',
+  'XTN',
+  'XTN',
+  'CE',
+  'CE',
+  'CE',
+  'CX',
+  'ST',
+  'DLN',
+  'CX',
+  'CE',
+  'ST',
+  'ID',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'TS',
+  'ID',
+  'ID',
+  'IS',
+  'TS',
+  'HD',
+  'CE',
+  'CE',
+  'ST',
+  'CE',
+  'CWE',
+];
 
 interface PIDObject6<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -11378,6 +17399,30 @@ type PR1Fields6 =
   | 19
   | 20;
 
+type PR1Types6 = [
+  never,
+  'SI',
+  'IS',
+  'CE',
+  'ST',
+  'TS',
+  'IS',
+  'NM',
+  'XCN',
+  'IS',
+  'NM',
+  'XCN',
+  'XCN',
+  'CE',
+  'ID',
+  'CE',
+  'CE',
+  'IS',
+  'CE',
+  'EI',
+  'ID',
+];
+
 interface PR1Object6<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ProcedureCodingMethod?: string | null;
@@ -11400,6 +17445,19 @@ interface PR1Object6<T extends HL7TypeMap> {
   ProcedureIdentifier?: T['EI'] | null;
   ProcedureActionCode?: string | null;
 }
+
+type PRDTypes3 = [
+  never,
+  'CE',
+  'XPN',
+  'XAD',
+  'PL',
+  'XTN',
+  'CE',
+  'PLN',
+  'TS',
+  'TS',
+];
 
 interface PRDObject3<T extends HL7TypeMap> {
   ProviderRole?: T['CE'][] | null;
@@ -11463,6 +17521,59 @@ type PV2Fields4 =
   | 47
   | 48
   | 49;
+
+type PV2Types5 = [
+  never,
+  'PL',
+  'CE',
+  'CE',
+  'CE',
+  'ST',
+  'ST',
+  'IS',
+  'TS',
+  'TS',
+  'NM',
+  'NM',
+  'ST',
+  'XCN',
+  'DT',
+  'ID',
+  'IS',
+  'DT',
+  'IS',
+  'ID',
+  'NM',
+  'IS',
+  'ID',
+  'XON',
+  'IS',
+  'IS',
+  'DT',
+  'IS',
+  'DT',
+  'DT',
+  'CE',
+  'IS',
+  'ID',
+  'TS',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'IS',
+  'IS',
+  'CE',
+  'DT',
+  'TS',
+  'TS',
+  'IS',
+];
 
 interface PV2Object5<T extends HL7TypeMap> {
   PriorPendingLocation?: T['PL'] | null;
@@ -11544,6 +17655,36 @@ type RXAFields3 =
   | 25
   | 26;
 
+type RXATypes4 = [
+  never,
+  'NM',
+  'NM',
+  'TS',
+  'TS',
+  'CE',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'XCN',
+  'LA2',
+  'ST',
+  'NM',
+  'CE',
+  'ST',
+  'TS',
+  'CE',
+  'CE',
+  'CE',
+  'ID',
+  'ID',
+  'TS',
+  'NM',
+  'CWE',
+  'CWE',
+  'ID',
+];
+
 interface RXAObject4<T extends HL7TypeMap> {
   GiveSubIDCounter?: number | string | null;
   AdministrationSubIDCounter?: number | string | null;
@@ -11574,6 +17715,8 @@ interface RXAObject4<T extends HL7TypeMap> {
 }
 
 type RXCFields4 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+
+type RXCTypes4 = [never, 'ID', 'CE', 'NM', 'CE', 'NM', 'CE', 'CE', 'NM', 'CWE'];
 
 interface RXCObject4<T extends HL7TypeMap> {
   RXComponentType?: string | null;
@@ -11621,6 +17764,43 @@ type RXDFields4 =
   | 31
   | 32
   | 33;
+
+type RXDTypes5 = [
+  never,
+  'NM',
+  'CE',
+  'TS',
+  'NM',
+  'CE',
+  'CE',
+  'ST',
+  'NM',
+  'ST',
+  'XCN',
+  'ID',
+  'CQ',
+  'LA2',
+  'ID',
+  'CE',
+  'NM',
+  'CE',
+  'ST',
+  'TS',
+  'CE',
+  'CE',
+  'NM',
+  'CE',
+  'ID',
+  'CE',
+  'CE',
+  'CE',
+  'NM',
+  'CWE',
+  'CWE',
+  'XAD',
+  'ID',
+  'CWE',
+];
 
 interface RXDObject5<T extends HL7TypeMap> {
   DispenseSubIDCounter?: number | string | null;
@@ -11704,6 +17884,54 @@ type RXEFields4 =
   | 43
   | 44;
 
+type RXETypes5 = [
+  never,
+  'TQ',
+  'CE',
+  'NM',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'LA1',
+  'ID',
+  'NM',
+  'CE',
+  'NM',
+  'XCN',
+  'XCN',
+  'ST',
+  'NM',
+  'NM',
+  'TS',
+  'CQ',
+  'ID',
+  'CE',
+  'ST',
+  'ST',
+  'CE',
+  'NM',
+  'CE',
+  'CE',
+  'NM',
+  'CE',
+  'ID',
+  'CE',
+  'TS',
+  'NM',
+  'CWE',
+  'CWE',
+  'ID',
+  'CWE',
+  'CWE',
+  'NM',
+  'CWE',
+  'XAD',
+  'PL',
+  'XAD',
+  'ID',
+];
+
 interface RXEObject5<T extends HL7TypeMap> {
   QuantityTiming?: T['TQ'] | null;
   GiveCode?: T['CE'] | null;
@@ -11779,6 +18007,36 @@ type RXGFields3 =
   | 25
   | 26;
 
+type RXGTypes4 = [
+  never,
+  'NM',
+  'NM',
+  'TQ',
+  'CE',
+  'NM',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'ID',
+  'LA2',
+  'ID',
+  'CE',
+  'ST',
+  'ST',
+  'CE',
+  'NM',
+  'CE',
+  'ST',
+  'TS',
+  'CE',
+  'CE',
+  'NM',
+  'CWE',
+  'CWE',
+  'ID',
+];
+
 interface RXGObject4<T extends HL7TypeMap> {
   GiveSubIDCounter?: number | string | null;
   DispenseSubIDCounter?: number | string | null;
@@ -11839,6 +18097,38 @@ type RXOFields5 =
   | 27
   | 28;
 
+type RXOTypes5 = [
+  never,
+  'CE',
+  'NM',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'LA1',
+  'ID',
+  'CE',
+  'NM',
+  'CE',
+  'NM',
+  'XCN',
+  'XCN',
+  'ID',
+  'ST',
+  'NM',
+  'CE',
+  'CE',
+  'ST',
+  'CE',
+  'CQ',
+  'CE',
+  'NM',
+  'CWE',
+  'ID',
+  'NM',
+];
+
 interface RXOObject5<T extends HL7TypeMap> {
   RequestedGiveCode?: T['CE'] | null;
   RequestedGiveAmountMinimum?: number | string | null;
@@ -11872,6 +18162,8 @@ interface RXOObject5<T extends HL7TypeMap> {
 
 type RXRFields3 = 1 | 2 | 3 | 4 | 5 | 6;
 
+type RXRTypes3 = [never, 'CE', 'CWE', 'CE', 'CWE', 'CE', 'CWE'];
+
 interface RXRObject3<T extends HL7TypeMap> {
   Route?: T['CE'] | null;
   AdministrationSite?: T['CWE'] | null;
@@ -11880,6 +18172,54 @@ interface RXRObject3<T extends HL7TypeMap> {
   RoutingInstruction?: T['CE'] | null;
   AdministrationSiteModifier?: T['CWE'] | null;
 }
+
+type SACTypes2 = [
+  never,
+  'EI',
+  'EI',
+  'EI',
+  'EI',
+  'EI',
+  'SPS',
+  'TS',
+  'CE',
+  'CE',
+  'EI',
+  'NA',
+  'CE',
+  'EI',
+  'NA',
+  'CE',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'CE',
+  'NM',
+  'NM',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'CWE',
+  'CE',
+  'SN',
+  'CE',
+  'SN',
+  'NM',
+  'CE',
+  'NM',
+  'CE',
+  'NM',
+  'CE',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'CWE',
+  'CE',
+];
 
 interface SACObject2<T extends HL7TypeMap> {
   ExternalAccessionIdentifier?: T['EI'] | null;
@@ -11930,6 +18270,8 @@ interface SACObject2<T extends HL7TypeMap> {
 
 type SFTFields1 = 1 | 2 | 3 | 4 | 5 | 6;
 
+type SFTTypes1 = [never, 'XON', 'ST', 'ST', 'ST', 'TX', 'TS'];
+
 interface SFTObject1<T extends HL7TypeMap> {
   SoftwareVendorOrganization?: T['XON'] | null;
   SoftwareCertifiedVersionOrReleaseNumber?: string | null;
@@ -11969,6 +18311,39 @@ type SPMFields1 =
   | 27
   | 28
   | 29;
+
+type SPMTypes1 = [
+  never,
+  'SI',
+  'EIP',
+  'EIP',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CQ',
+  'NM',
+  'ST',
+  'CWE',
+  'CWE',
+  'DR',
+  'TS',
+  'TS',
+  'ID',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CQ',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+];
 
 interface SPMObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -12042,6 +18417,48 @@ type STFFields4 =
   | 37
   | 38;
 
+type STFTypes5 = [
+  never,
+  'CE',
+  'CX',
+  'XPN',
+  'IS',
+  'IS',
+  'TS',
+  'ID',
+  'CE',
+  'CE',
+  'XTN',
+  'XAD',
+  'DIN',
+  'DIN',
+  'CE',
+  'ST',
+  'CE',
+  'CE',
+  'ST',
+  'JCC',
+  'CE',
+  'ID',
+  'DLN',
+  'ID',
+  'DT',
+  'DT',
+  'DT',
+  'CE',
+  'CE',
+  'ID',
+  'CE',
+  'TS',
+  'ID',
+  'CWE',
+  'DR',
+  'DT',
+  'CWE',
+  'ID',
+  'CWE',
+];
+
 interface STFObject5<T extends HL7TypeMap> {
   PrimaryKeyValueSTF?: T['CE'] | null;
   StaffIdentifierList?: T['CX'][] | null;
@@ -12085,6 +18502,24 @@ interface STFObject5<T extends HL7TypeMap> {
 
 type TQ1Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
 
+type TQ1Types1 = [
+  never,
+  'SI',
+  'CQ',
+  'RPT',
+  'TM',
+  'CQ',
+  'CQ',
+  'TS',
+  'TS',
+  'CWE',
+  'TX',
+  'TX',
+  'ID',
+  'CQ',
+  'NM',
+];
+
 interface TQ1Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   Quantity?: T['CQ'] | null;
@@ -12104,6 +18539,20 @@ interface TQ1Object1<T extends HL7TypeMap> {
 
 type TQ2Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
+type TQ2Types1 = [
+  never,
+  'SI',
+  'ID',
+  'EI',
+  'EI',
+  'EI',
+  'ID',
+  'ID',
+  'CQ',
+  'NM',
+  'ID',
+];
+
 interface TQ2Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SequenceResultsFlag?: string | null;
@@ -12119,9 +18568,220 @@ interface TQ2Object1<T extends HL7TypeMap> {
 
 type EDFields1 = 1;
 
+type EDTypes1 = [never, 'ST'];
+
 interface EDObject2<T extends HL7TypeMap> {
   Data?: string | null;
 }
+
+type CEComps5 = [never, 'ST', 'ST', 'ID', 'ST', 'ST', 'ID'];
+
+type CFComps4 = [never, 'ST', 'FT', 'ID', 'ST', 'FT', 'ID'];
+
+type CNEComps3 = [never, 'ST', 'ST', 'ID', 'ST', 'ST', 'ID', 'ST', 'ST', 'ST'];
+
+type CSUComps2 = [never, 'NM', 'ST', 'ST', 'ID', 'ST', 'ST', 'ID'];
+
+type CWEComps3 = [never, 'ST', 'ST', 'ID', 'ST', 'ST', 'ID', 'ST', 'ST', 'ST'];
+
+type CXComps4 = [
+  never,
+  'ST',
+  'ST',
+  'ID',
+  'HD',
+  'ID',
+  'HD',
+  'DT',
+  'DT',
+  'CWE',
+  'CWE',
+];
+
+type DDIComps2 = [never, 'NM', 'MO', 'NM'];
+
+type DLTComps2 = [never, 'NR', 'NM', 'ID', 'NM'];
+
+type EDComps2 = [never, 'HD', 'ID', 'ID', 'ID', 'TX'];
+
+type ERLComps1 = [never, 'ST', 'NM', 'NM', 'NM', 'NM', 'NM'];
+
+type ICDComps1 = [never, 'IS', 'ID', 'TS'];
+
+type JCCComps2 = [never, 'IS', 'IS', 'TX'];
+
+type MOPComps2 = [never, 'ID', 'NM', 'ID'];
+
+type OCDComps3 = [never, 'CNE', 'DT'];
+
+type OSPComps2 = [never, 'CNE', 'DT', 'DT'];
+
+type PLComps3 = [
+  never,
+  'IS',
+  'IS',
+  'IS',
+  'HD',
+  'IS',
+  'IS',
+  'IS',
+  'IS',
+  'ST',
+  'EI',
+  'HD',
+];
+
+type PPNComps4 = [
+  never,
+  'ST',
+  'FN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'IS',
+  'IS',
+  'HD',
+  'ID',
+  'ST',
+  'ID',
+  'ID',
+  'HD',
+  'TS',
+  'ID',
+  'CE',
+  'DR',
+  'ID',
+  'TS',
+  'TS',
+  'ST',
+  'CWE',
+  'CWE',
+];
+
+type PTAComps2 = [never, 'IS', 'IS', 'NM', 'MOP'];
+
+type RCDComps2 = [never, 'ST', 'ID', 'NM'];
+
+type RFRComps2 = [never, 'NR', 'IS', 'NR', 'NR', 'ST', 'ST', 'TX'];
+
+type RMCComps2 = [never, 'IS', 'IS', 'NM', 'MOP'];
+
+type RPTComps1 = [
+  never,
+  'CWE',
+  'ID',
+  'NM',
+  'NM',
+  'NM',
+  'IS',
+  'ID',
+  'ID',
+  'NM',
+  'IS',
+  'GTS',
+];
+
+type SCVComps3 = [never, 'CWE', 'ST'];
+
+type SPSComps2 = [never, 'CWE', 'CWE', 'TX', 'CWE', 'CWE', 'CWE', 'CWE'];
+
+type TSComps2 = [never, 'DTM', 'ID'];
+
+type UVCComps2 = [never, 'CNE', 'MO'];
+
+type XADComps4 = [
+  never,
+  'SAD',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ID',
+  'ID',
+  'ST',
+  'IS',
+  'IS',
+  'ID',
+  'DR',
+  'TS',
+  'TS',
+];
+
+type XCNComps4 = [
+  never,
+  'ST',
+  'FN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'IS',
+  'IS',
+  'HD',
+  'ID',
+  'ST',
+  'ID',
+  'ID',
+  'HD',
+  'ID',
+  'CE',
+  'DR',
+  'ID',
+  'TS',
+  'TS',
+  'ST',
+  'CWE',
+  'CWE',
+];
+
+type XONComps3 = [
+  never,
+  'ST',
+  'IS',
+  'NM',
+  'NM',
+  'ID',
+  'HD',
+  'ID',
+  'HD',
+  'ID',
+  'ST',
+];
+
+type XPNComps4 = [
+  never,
+  'FN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'IS',
+  'ID',
+  'ID',
+  'CE',
+  'DR',
+  'ID',
+  'TS',
+  'TS',
+  'ST',
+];
+
+type XTNComps2 = [
+  never,
+  'ST',
+  'ID',
+  'ID',
+  'ST',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+];
 
 type HL7Types_2_5_1 = {
   AD: ADObject1;
@@ -12204,6 +18864,8 @@ type HL7Types_2_5_1 = {
   XTN: XTNObject2;
 };
 
+type MSATypes3 = [never, 'ID', 'ST', 'ST', 'NM', 'NUL', 'CE'];
+
 type OBRFields6 =
   | 1
   | 2
@@ -12255,6 +18917,60 @@ type OBRFields6 =
   | 48
   | 49
   | 50;
+
+type OBRTypes7 = [
+  never,
+  'SI',
+  'EI',
+  'EI',
+  'CE',
+  'ID',
+  'TS',
+  'TS',
+  'TS',
+  'CQ',
+  'XCN',
+  'ID',
+  'CE',
+  'ST',
+  'TS',
+  'SPS',
+  'XCN',
+  'XTN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'TS',
+  'MOC',
+  'ID',
+  'ID',
+  'PRL',
+  'TQ',
+  'XCN',
+  'EIP',
+  'ID',
+  'CE',
+  'NDL',
+  'NDL',
+  'NDL',
+  'NDL',
+  'TS',
+  'NM',
+  'CE',
+  'CE',
+  'CE',
+  'ID',
+  'ID',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'CE',
+  'CWE',
+  'IS',
+  'CWE',
+];
 
 interface OBRObject7<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -12333,6 +19049,32 @@ type OBXFields5 =
   | 21
   | 22;
 
+type OBXTypes5 = [
+  never,
+  'SI',
+  'ID',
+  'CE',
+  'ST',
+  'VARIES',
+  'CE',
+  'ST',
+  'IS',
+  'NM',
+  'ID',
+  'ID',
+  'TS',
+  'ST',
+  'TS',
+  'CE',
+  'XCN',
+  'CE',
+  'EI',
+  'TS',
+  'XON',
+  'XAD',
+  'XCN',
+];
+
 interface OBXObject7<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ValueType?: string | null;
@@ -12390,6 +19132,41 @@ type ORCFields6 =
   | 29
   | 30
   | 31;
+
+type ORCTypes7 = [
+  never,
+  'ID',
+  'EI',
+  'EI',
+  'EI',
+  'ID',
+  'ID',
+  'TQ',
+  'EIP',
+  'TS',
+  'XCN',
+  'XCN',
+  'XCN',
+  'PL',
+  'XTN',
+  'TS',
+  'CE',
+  'CE',
+  'CE',
+  'XCN',
+  'CE',
+  'XON',
+  'XAD',
+  'XTN',
+  'XAD',
+  'CWE',
+  'CWE',
+  'TS',
+  'CWE',
+  'CWE',
+  'CNE',
+  'CWE',
+];
 
 interface ORCObject7<T extends HL7TypeMap> {
   OrderControl?: string | null;
@@ -12733,6 +19510,24 @@ type HL7Types_2_6 = {
   XTN: XTNObject3;
 };
 
+type ABSTypes2 = [
+  never,
+  'XCN',
+  'CWE',
+  'CWE',
+  'DTM',
+  'XCN',
+  'CWE',
+  'DTM',
+  'XCN',
+  'CWE',
+  'ID',
+  'CWE',
+  'NM',
+  'CWE',
+  'ID',
+];
+
 interface ABSObject2<T extends HL7TypeMap> {
   DischargeCareProvider?: T['XCN'] | null;
   TransferMedicalServiceCode?: T['CWE'] | null;
@@ -12750,6 +19545,21 @@ interface ABSObject2<T extends HL7TypeMap> {
   StillbornIndicator?: string | null;
 }
 
+type ACCTypes5 = [
+  never,
+  'DTM',
+  'CWE',
+  'ST',
+  'CWE',
+  'ID',
+  'ID',
+  'XCN',
+  'ST',
+  'ST',
+  'ID',
+  'XAD',
+];
+
 interface ACCObject6<T extends HL7TypeMap> {
   AccidentDateTime?: string | null;
   AccidentCode?: T['CWE'] | null;
@@ -12766,6 +19576,25 @@ interface ACCObject6<T extends HL7TypeMap> {
 
 type ADJFields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
+
+type ADJTypes1 = [
+  never,
+  'EI',
+  'EI',
+  'SI',
+  'IS',
+  'CP',
+  'CQ',
+  'CWE',
+  'ST',
+  'NM',
+  'NM',
+  'IS',
+  'EI',
+  'EI',
+  'DTM',
+  'XON',
+];
 
 interface ADJObject1<T extends HL7TypeMap> {
   ProviderAdjustmentNumber?: T['EI'] | null;
@@ -12785,6 +19614,24 @@ interface ADJObject1<T extends HL7TypeMap> {
   ResponsibleOrganization?: T['XON'] | null;
 }
 
+type AIGTypes2 = [
+  never,
+  'SI',
+  'ID',
+  'CWE',
+  'CWE',
+  'CWE',
+  'NM',
+  'CNE',
+  'DTM',
+  'NM',
+  'CNE',
+  'NM',
+  'CNE',
+  'IS',
+  'CWE',
+];
+
 interface AIGObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SegmentActionCode?: string | null;
@@ -12802,6 +19649,22 @@ interface AIGObject2<T extends HL7TypeMap> {
   FillerStatusCode?: T['CWE'] | null;
 }
 
+type AILTypes2 = [
+  never,
+  'SI',
+  'ID',
+  'PL',
+  'CWE',
+  'CWE',
+  'DTM',
+  'NM',
+  'CNE',
+  'NM',
+  'CNE',
+  'IS',
+  'CWE',
+];
+
 interface AILObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SegmentActionCode?: string | null;
@@ -12816,6 +19679,22 @@ interface AILObject3<T extends HL7TypeMap> {
   AllowSubstitutionCode?: string | null;
   FillerStatusCode?: T['CWE'] | null;
 }
+
+type AIPTypes2 = [
+  never,
+  'SI',
+  'ID',
+  'XCN',
+  'CWE',
+  'CWE',
+  'DTM',
+  'NM',
+  'CNE',
+  'NM',
+  'CNE',
+  'IS',
+  'CWE',
+];
 
 interface AIPObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -12832,6 +19711,22 @@ interface AIPObject3<T extends HL7TypeMap> {
   FillerStatusCode?: T['CWE'] | null;
 }
 
+type AISTypes3 = [
+  never,
+  'SI',
+  'ID',
+  'CWE',
+  'DTM',
+  'NM',
+  'CNE',
+  'NM',
+  'CNE',
+  'IS',
+  'CWE',
+  'CWE',
+  'CWE',
+];
+
 interface AISObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SegmentActionCode?: string | null;
@@ -12847,6 +19742,8 @@ interface AISObject3<T extends HL7TypeMap> {
   FillerSupplementalServiceInformation?: T['CWE'][] | null;
 }
 
+type AL1Types5 = [never, 'SI', 'CWE', 'CWE', 'CWE', 'ST', 'DT'];
+
 interface AL1Object5<T extends HL7TypeMap> {
   SetID?: number | string | null;
   AllergenTypeCode?: T['CWE'] | null;
@@ -12855,6 +19752,35 @@ interface AL1Object5<T extends HL7TypeMap> {
   AllergyReactionCode?: string[] | null;
   IdentificationDate?: string | null;
 }
+
+type ARQTypes3 = [
+  never,
+  'EI',
+  'EI',
+  'NM',
+  'EI',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'NM',
+  'CNE',
+  'DR',
+  'ST',
+  'RI',
+  'ST',
+  'XCN',
+  'XTN',
+  'XAD',
+  'PL',
+  'XCN',
+  'XTN',
+  'PL',
+  'EI',
+  'EI',
+  'EI',
+  'EI',
+];
 
 interface ARQObject4<T extends HL7TypeMap> {
   PlacerAppointmentID?: T['EI'] | null;
@@ -12886,6 +19812,8 @@ interface ARQObject4<T extends HL7TypeMap> {
 
 type ARVFields1 = 1 | 2 | 3 | 4 | 5 | 6;
 
+type ARVTypes1 = [never, 'SI', 'CNE', 'CWE', 'CWE', 'ST', 'DR'];
+
 interface ARVObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   AccessRestrictionActionCode?: T['CNE'] | null;
@@ -12894,6 +19822,20 @@ interface ARVObject1<T extends HL7TypeMap> {
   SpecialAccessRestrictionInstructions?: string[] | null;
   AccessRestrictionDateRange?: T['DR'] | null;
 }
+
+type AUTTypes2 = [
+  never,
+  'CWE',
+  'CWE',
+  'ST',
+  'DTM',
+  'DTM',
+  'EI',
+  'CP',
+  'NM',
+  'NM',
+  'DTM',
+];
 
 interface AUTObject2<T extends HL7TypeMap> {
   AuthorizingPayorPlanID?: T['CWE'] | null;
@@ -12909,6 +19851,24 @@ interface AUTObject2<T extends HL7TypeMap> {
 }
 
 type BHSFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
+type BHSTypes3 = [
+  never,
+  'ST',
+  'ST',
+  'HD',
+  'HD',
+  'HD',
+  'HD',
+  'DTM',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'HD',
+  'HD',
+];
 
 interface BHSObject4<T extends HL7TypeMap> {
   BatchFieldSeparator?: string | null;
@@ -12927,10 +19887,30 @@ interface BHSObject4<T extends HL7TypeMap> {
   BatchReceivingNetworkAddress?: T['HD'] | null;
 }
 
+type BLCTypes2 = [never, 'CWE', 'CQ'];
+
 interface BLCObject2<T extends HL7TypeMap> {
   BloodProductCode?: T['CWE'] | null;
   BloodAmount?: T['CQ'] | null;
 }
+
+type BPOTypes2 = [
+  never,
+  'SI',
+  'CWE',
+  'CWE',
+  'NM',
+  'NM',
+  'CWE',
+  'DTM',
+  'PL',
+  'XAD',
+  'DTM',
+  'PL',
+  'XAD',
+  'CWE',
+  'ID',
+];
 
 interface BPOObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -12948,6 +19928,31 @@ interface BPOObject2<T extends HL7TypeMap> {
   BPIndicationForUse?: T['CWE'][] | null;
   BPInformedConsentIndicator?: string | null;
 }
+
+type BPXTypes2 = [
+  never,
+  'SI',
+  'CWE',
+  'ID',
+  'DTM',
+  'EI',
+  'CNE',
+  'CNE',
+  'CWE',
+  'XON',
+  'EI',
+  'CNE',
+  'CNE',
+  'DTM',
+  'NM',
+  'NM',
+  'CWE',
+  'EI',
+  'PL',
+  'XAD',
+  'XCN',
+  'XCN',
+];
 
 interface BPXObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -12973,6 +19978,29 @@ interface BPXObject2<T extends HL7TypeMap> {
   BPDispensingIndividual?: T['XCN'] | null;
 }
 
+type BTXTypes2 = [
+  never,
+  'SI',
+  'EI',
+  'CNE',
+  'CNE',
+  'CWE',
+  'XON',
+  'EI',
+  'NM',
+  'NM',
+  'CWE',
+  'CWE',
+  'ID',
+  'DTM',
+  'XCN',
+  'XCN',
+  'DTM',
+  'DTM',
+  'CWE',
+  'CWE',
+];
+
 interface BTXObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   BCDonationID?: T['EI'] | null;
@@ -12995,6 +20023,23 @@ interface BTXObject2<T extends HL7TypeMap> {
   BPTransfusionInterruptedReason?: T['CWE'] | null;
 }
 
+type CDMTypes4 = [
+  never,
+  'CWE',
+  'CWE',
+  'ST',
+  'ST',
+  'IS',
+  'CWE',
+  'CNE',
+  'ID',
+  'CWE',
+  'NM',
+  'CX',
+  'XON',
+  'ID',
+];
+
 interface CDMObject4<T extends HL7TypeMap> {
   PrimaryKeyValueCDM?: T['CWE'] | null;
   ChargeCodeAlias?: T['CWE'][] | null;
@@ -13010,6 +20055,41 @@ interface CDMObject4<T extends HL7TypeMap> {
   ContractOrganization?: T['XON'][] | null;
   RoomFeeIndicator?: string | null;
 }
+
+type CERTypes2 = [
+  never,
+  'SI',
+  'ST',
+  'ST',
+  'XON',
+  'XCN',
+  'ED',
+  'ID',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'ST',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'CWE',
+  'ID',
+  'CWE',
+  'CWE',
+  'CWE',
+  'DTM',
+  'DTM',
+  'DTM',
+  'DTM',
+  'DTM',
+  'DTM',
+  'DTM',
+  'CWE',
+  'CWE',
+];
 
 interface CERObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -13045,11 +20125,15 @@ interface CERObject2<T extends HL7TypeMap> {
   CertificateStatusCode?: T['CWE'] | null;
 }
 
+type CM1Types2 = [never, 'SI', 'CWE', 'ST'];
+
 interface CM1Object2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   StudyPhaseIdentifier?: T['CWE'] | null;
   DescriptionOfStudyPhase?: string | null;
 }
+
+type CM2Types2 = [never, 'SI', 'CWE', 'ST', 'CWE'];
 
 interface CM2Object2<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -13057,6 +20141,8 @@ interface CM2Object2<T extends HL7TypeMap> {
   DescriptionOfTimePoint?: string | null;
   EventsScheduledThisTimePoint?: T['CWE'][] | null;
 }
+
+type CNSTypes2 = [never, 'NM', 'NM', 'DTM', 'DTM', 'CWE', 'CWE'];
 
 interface CNSObject3<T extends HL7TypeMap> {
   StartingNotificationReferenceNumber?: number | string | null;
@@ -13066,6 +20152,35 @@ interface CNSObject3<T extends HL7TypeMap> {
   StartingNotificationCode?: T['CWE'] | null;
   EndingNotificationCode?: T['CWE'] | null;
 }
+
+type CONTypes2 = [
+  never,
+  'SI',
+  'CWE',
+  'ST',
+  'EI',
+  'FT',
+  'FT',
+  'FT',
+  'FT',
+  'FT',
+  'CNE',
+  'CNE',
+  'DTM',
+  'DTM',
+  'DTM',
+  'DTM',
+  'ID',
+  'ID',
+  'CWE',
+  'ID',
+  'CWE',
+  'ID',
+  'CWE',
+  'CWE',
+  'XPN',
+  'IS',
+];
 
 interface CONObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -13095,12 +20210,34 @@ interface CONObject2<T extends HL7TypeMap> {
   RelationshipToSubject?: string[] | null;
 }
 
+type CSPTypes2 = [never, 'CWE', 'DTM', 'DTM', 'CWE'];
+
 interface CSPObject2<T extends HL7TypeMap> {
   StudyPhaseIdentifier?: T['CWE'] | null;
   DateTimeStudyPhaseBegan?: string | null;
   DateTimeStudyPhaseEnded?: string | null;
   StudyPhaseEvaluability?: T['CWE'] | null;
 }
+
+type CSRTypes2 = [
+  never,
+  'EI',
+  'EI',
+  'CWE',
+  'CX',
+  'CX',
+  'DTM',
+  'XCN',
+  'XCN',
+  'DTM',
+  'CWE',
+  'DTM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'DTM',
+  'CWE',
+];
 
 interface CSRObject3<T extends HL7TypeMap> {
   SponsorStudyID?: T['EI'] | null;
@@ -13121,11 +20258,15 @@ interface CSRObject3<T extends HL7TypeMap> {
   ReasonEndedStudy?: T['CWE'] | null;
 }
 
+type CSSTypes2 = [never, 'CWE', 'DTM', 'CWE'];
+
 interface CSSObject2<T extends HL7TypeMap> {
   StudyScheduledTimePoint?: T['CWE'] | null;
   StudyScheduledPatientTimePoint?: string | null;
   StudyQualityControlCodes?: T['CWE'][] | null;
 }
+
+type CTDTypes4 = [never, 'CWE', 'XPN', 'XAD', 'PL', 'XTN', 'CWE', 'PLN'];
 
 interface CTDObject4<T extends HL7TypeMap> {
   ContactRole?: T['CWE'][] | null;
@@ -13137,6 +20278,8 @@ interface CTDObject4<T extends HL7TypeMap> {
   ContactIdentifiers?: T['PLN'][] | null;
 }
 
+type CTITypes2 = [never, 'EI', 'CWE', 'CWE'];
+
 interface CTIObject2<T extends HL7TypeMap> {
   SponsorStudyID?: T['EI'] | null;
   StudyPhaseIdentifier?: T['CWE'] | null;
@@ -13145,6 +20288,36 @@ interface CTIObject2<T extends HL7TypeMap> {
 
 type DG1Fields5 =
   1 | 3 | 5 | 6 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26;
+
+type DG1Types6 = [
+  never,
+  'SI',
+  never,
+  'CWE',
+  never,
+  'DTM',
+  'IS',
+  never,
+  never,
+  never,
+  never,
+  never,
+  never,
+  never,
+  never,
+  'ID',
+  'XCN',
+  'IS',
+  'ID',
+  'DTM',
+  'EI',
+  'ID',
+  'EI',
+  'CWE',
+  'ID',
+  'IS',
+  'IS',
+];
 
 interface DG1Object6<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -13166,6 +20339,8 @@ interface DG1Object6<T extends HL7TypeMap> {
 }
 
 type DMIFields1 = 1 | 2 | 3 | 4 | 5;
+
+type DMITypes1 = [never, 'CNE', 'CNE', 'NR', 'NM', 'NM'];
 
 interface DMIObject1<T extends HL7TypeMap> {
   DiagnosticRelatedGroup?: T['CNE'] | null;
@@ -13210,6 +20385,43 @@ type DRGFields3 =
   | 32
   | 33;
 
+type DRGTypes3 = [
+  never,
+  'CNE',
+  'DTM',
+  'ID',
+  'IS',
+  'CWE',
+  'NM',
+  'CP',
+  'IS',
+  'CP',
+  'ID',
+  'IS',
+  'XPN',
+  'CWE',
+  'CWE',
+  'NM',
+  'MO',
+  'IS',
+  'ST',
+  'ST',
+  'IS',
+  'MO',
+  'MO',
+  'MO',
+  'MO',
+  'NM',
+  'IS',
+  'IS',
+  'IS',
+  'IS',
+  'IS',
+  'IS',
+  'IS',
+  'IS',
+];
+
 interface DRGObject3<T extends HL7TypeMap> {
   DiagnosticRelatedGroup?: T['CNE'] | null;
   DRGAssignedDateTime?: string | null;
@@ -13246,6 +20458,8 @@ interface DRGObject3<T extends HL7TypeMap> {
   StatusAdmission?: string | null;
 }
 
+type ECDTypes3 = [never, 'NM', 'CWE', 'ID', 'TQ', 'TX'];
+
 interface ECDObject2<T extends HL7TypeMap> {
   ReferenceCommandNumber?: number | string | null;
   RemoteControlCommand?: T['CWE'] | null;
@@ -13254,13 +20468,30 @@ interface ECDObject2<T extends HL7TypeMap> {
   Parameters?: string[] | null;
 }
 
+type ECRTypes3 = [never, 'CWE', 'DTM', 'TX'];
+
 interface ECRObject2<T extends HL7TypeMap> {
   CommandResponse?: T['CWE'] | null;
   DateTimeCompleted?: string | null;
   CommandResponseParameters?: string[] | null;
 }
 
+type EDTypes2 = [never];
+
 interface EDObject3<T extends HL7TypeMap> {}
+
+type EDUTypes3 = [
+  never,
+  'SI',
+  'IS',
+  'DR',
+  'DR',
+  'DT',
+  'XON',
+  'CWE',
+  'XAD',
+  'CWE',
+];
 
 interface EDUObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -13274,6 +20505,8 @@ interface EDUObject3<T extends HL7TypeMap> {
   MajorFieldOfStudy?: T['CWE'][] | null;
 }
 
+type EQPTypes2 = [never, 'CWE', 'ST', 'DTM', 'DTM', 'FT'];
+
 interface EQPObject2<T extends HL7TypeMap> {
   EventType?: T['CWE'] | null;
   FileName?: string | null;
@@ -13282,6 +20515,8 @@ interface EQPObject2<T extends HL7TypeMap> {
   TransactionData?: string | null;
 }
 
+type EQUTypes2 = [never, 'EI', 'DTM', 'CWE', 'CWE', 'CWE'];
+
 interface EQUObject2<T extends HL7TypeMap> {
   EquipmentInstanceIdentifier?: T['EI'] | null;
   EventDateTime?: string | null;
@@ -13289,6 +20524,8 @@ interface EQUObject2<T extends HL7TypeMap> {
   LocalRemoteControlState?: T['CWE'] | null;
   AlertLevel?: T['CWE'] | null;
 }
+
+type EVNTypes6 = [never, 'ID', 'DTM', 'DTM', 'IS', 'XCN', 'DTM', 'HD'];
 
 interface EVNObject6<T extends HL7TypeMap> {
   EventTypeCode?: string | null;
@@ -13301,6 +20538,24 @@ interface EVNObject6<T extends HL7TypeMap> {
 }
 
 type FHSFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
+type FHSTypes3 = [
+  never,
+  'ST',
+  'ST',
+  'HD',
+  'HD',
+  'HD',
+  'HD',
+  'DTM',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'HD',
+  'HD',
+];
 
 interface FHSObject4<T extends HL7TypeMap> {
   FileFieldSeparator?: string | null;
@@ -13349,6 +20604,41 @@ type FT1Fields6 =
   | 29
   | 30
   | 31;
+
+type FT1Types6 = [
+  never,
+  'SI',
+  'ST',
+  'ST',
+  'DR',
+  'DTM',
+  'IS',
+  'CWE',
+  never,
+  never,
+  'NM',
+  'CP',
+  'CP',
+  'CWE',
+  'CWE',
+  'CP',
+  'PL',
+  'IS',
+  'IS',
+  'CWE',
+  'XCN',
+  'XCN',
+  'CP',
+  'EI',
+  'XCN',
+  'CNE',
+  'CNE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CX',
+  'SI',
+];
 
 interface FT1Object6<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -13406,6 +20696,32 @@ type GOLFields2 =
   | 21
   | 22;
 
+type GOLTypes2 = [
+  never,
+  'ID',
+  'DTM',
+  'CWE',
+  'EI',
+  'EI',
+  'NM',
+  'DTM',
+  'DTM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'DTM',
+  'DTM',
+  'DTM',
+  'TQ',
+  'CWE',
+  'ST',
+  'CWE',
+  'DTM',
+  'CWE',
+  'XPN',
+  'CNE',
+];
+
 interface GOLObject2<T extends HL7TypeMap> {
   ActionCode?: string | null;
   ActionDateTime?: string | null;
@@ -13431,6 +20747,24 @@ interface GOLObject2<T extends HL7TypeMap> {
   MoodCode?: T['CNE'] | null;
 }
 
+type GP2Types2 = [
+  never,
+  'IS',
+  'NM',
+  'CP',
+  'IS',
+  'IS',
+  'IS',
+  'CWE',
+  'IS',
+  'IS',
+  'IS',
+  'CP',
+  'IS',
+  'CP',
+  'NM',
+];
+
 interface GP2Object2<T extends HL7TypeMap> {
   RevenueCode?: string | null;
   NumberOfServiceUnits?: number | string | null;
@@ -13447,6 +20781,67 @@ interface GP2Object2<T extends HL7TypeMap> {
   CoPayAmount?: T['CP'] | null;
   PayRatePerServiceUnit?: number | string | null;
 }
+
+type GT1Types6 = [
+  never,
+  'SI',
+  'CX',
+  'XPN',
+  'XPN',
+  'XAD',
+  'XTN',
+  'XTN',
+  'DTM',
+  'IS',
+  'IS',
+  'CWE',
+  'ST',
+  'DT',
+  'DT',
+  'NM',
+  'XPN',
+  'XAD',
+  'XTN',
+  'CX',
+  'IS',
+  'XON',
+  'ID',
+  'CWE',
+  'DTM',
+  'ID',
+  'CWE',
+  'CP',
+  'NM',
+  'CX',
+  'CWE',
+  'DT',
+  'DT',
+  'IS',
+  'IS',
+  'CWE',
+  'CWE',
+  'IS',
+  'CWE',
+  'ID',
+  'IS',
+  'CWE',
+  'XPN',
+  'CWE',
+  'CWE',
+  'XPN',
+  'XTN',
+  'CWE',
+  'IS',
+  'ST',
+  'JCC',
+  'XON',
+  'IS',
+  'IS',
+  'FC',
+  'CWE',
+  'ST',
+  'IS',
+];
 
 interface GT1Object6<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -13508,7 +20903,33 @@ interface GT1Object6<T extends HL7TypeMap> {
   VIPIndicator?: string | null;
 }
 
+type HxxTypes1 = [never];
+
 interface HxxObject1<T extends HL7TypeMap> {}
+
+type IAMTypes2 = [
+  never,
+  'SI',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ST',
+  'CNE',
+  'EI',
+  'ST',
+  'CWE',
+  'CWE',
+  'DT',
+  'ST',
+  'DTM',
+  'XPN',
+  'CWE',
+  'CWE',
+  'CWE',
+  'XCN',
+  'XON',
+  'DTM',
+];
 
 interface IAMObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -13533,6 +20954,25 @@ interface IAMObject2<T extends HL7TypeMap> {
   StatusedAtDateTime?: string | null;
 }
 
+type IIMTypes2 = [
+  never,
+  'CWE',
+  'CWE',
+  'ST',
+  'DTM',
+  'CWE',
+  'CWE',
+  'DTM',
+  'NM',
+  'CWE',
+  'MO',
+  'DTM',
+  'NM',
+  'CWE',
+  'CNE',
+  'CNE',
+];
+
 interface IIMObject2<T extends HL7TypeMap> {
   PrimaryKeyValueIIM?: T['CWE'] | null;
   ServiceItemCode?: T['CWE'] | null;
@@ -13552,6 +20992,20 @@ interface IIMObject2<T extends HL7TypeMap> {
 }
 
 type ILTFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+
+type ILTTypes1 = [
+  never,
+  'SI',
+  'ST',
+  'DTM',
+  'DTM',
+  'NM',
+  'CWE',
+  'MO',
+  'DTM',
+  'NM',
+  'CWE',
+];
 
 interface ILTObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -13618,6 +21072,63 @@ type IN1Fields5 =
   | 52
   | 53;
 
+type IN1Types6 = [
+  never,
+  'SI',
+  'CWE',
+  'CX',
+  'XON',
+  'XAD',
+  'XPN',
+  'XTN',
+  'ST',
+  'XON',
+  'CX',
+  'XON',
+  'DT',
+  'DT',
+  'AUI',
+  'IS',
+  'XPN',
+  'CWE',
+  'DTM',
+  'XAD',
+  'IS',
+  'IS',
+  'ST',
+  'ID',
+  'DT',
+  'ID',
+  'DT',
+  'IS',
+  'ST',
+  'DTM',
+  'XCN',
+  'IS',
+  'IS',
+  'NM',
+  'NM',
+  'IS',
+  'ST',
+  'CP',
+  never,
+  'NM',
+  never,
+  never,
+  'CWE',
+  'IS',
+  'XAD',
+  'ST',
+  'IS',
+  'IS',
+  'IS',
+  'CX',
+  'IS',
+  'DT',
+  'ST',
+  'IS',
+];
+
 interface IN1Object6<T extends HL7TypeMap> {
   SetID?: number | string | null;
   HealthPlanID?: T['CWE'] | null;
@@ -13670,6 +21181,82 @@ interface IN1Object6<T extends HL7TypeMap> {
   InsuredSBirthPlace?: string | null;
   VIPIndicator?: string | null;
 }
+
+type IN2Types4 = [
+  never,
+  'CX',
+  'ST',
+  'XCN',
+  'IS',
+  'IS',
+  'ST',
+  'XPN',
+  'ST',
+  'XPN',
+  'ST',
+  'CWE',
+  'ST',
+  'ST',
+  'IS',
+  'IS',
+  'IS',
+  'DT',
+  'ID',
+  'ID',
+  'ID',
+  'ST',
+  'XPN',
+  'ST',
+  'IS',
+  'CX',
+  'CX',
+  'IS',
+  'RMC',
+  'PTA',
+  'DDI',
+  'IS',
+  'IS',
+  'CWE',
+  'CWE',
+  'IS',
+  'CWE',
+  'ID',
+  'IS',
+  'CWE',
+  'XPN',
+  'CWE',
+  'CWE',
+  'CWE',
+  'DT',
+  'DT',
+  'ST',
+  'JCC',
+  'IS',
+  'XPN',
+  'XTN',
+  'IS',
+  'XPN',
+  'XTN',
+  'IS',
+  'DT',
+  'DT',
+  'IS',
+  'XTN',
+  'IS',
+  'IS',
+  'CX',
+  'CWE',
+  'XTN',
+  'XTN',
+  'CWE',
+  'ID',
+  'ID',
+  'ID',
+  'XON',
+  'XON',
+  'CWE',
+  'CWE',
+];
 
 interface IN2Object4<T extends HL7TypeMap> {
   InsuredSEmployeeID?: T['CX'][] | null;
@@ -13746,6 +21333,35 @@ interface IN2Object4<T extends HL7TypeMap> {
   PatientSRelationshipToInsured?: T['CWE'] | null;
 }
 
+type IN3Types5 = [
+  never,
+  'SI',
+  'CX',
+  'XCN',
+  'ID',
+  'MOP',
+  'DTM',
+  'DTM',
+  'XCN',
+  'DT',
+  'DT',
+  'DTN',
+  'CWE',
+  'DTM',
+  'XCN',
+  'ST',
+  'XTN',
+  'CWE',
+  'CWE',
+  'XTN',
+  'ICD',
+  'ST',
+  'DT',
+  'IS',
+  'IS',
+  'XCN',
+];
+
 interface IN3Object5<T extends HL7TypeMap> {
   SetID?: number | string | null;
   CertificationNumber?: T['CX'] | null;
@@ -13774,6 +21390,30 @@ interface IN3Object5<T extends HL7TypeMap> {
   SecondOpinionPhysician?: T['XCN'][] | null;
 }
 
+type INVTypes3 = [
+  never,
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'CWE',
+  'DTM',
+  'DTM',
+  'TQ',
+  'CWE',
+  'ST',
+  'CWE',
+  'CWE',
+  'CQ',
+  'CQ',
+];
+
 interface INVObject3<T extends HL7TypeMap> {
   SubstanceIdentifier?: T['CWE'] | null;
   SubstanceStatus?: T['CWE'][] | null;
@@ -13797,6 +21437,19 @@ interface INVObject3<T extends HL7TypeMap> {
   TargetValue?: T['CQ'] | null;
 }
 
+type IPCTypes2 = [
+  never,
+  'EI',
+  'EI',
+  'EI',
+  'EI',
+  'CWE',
+  'CWE',
+  'EI',
+  'CWE',
+  'ST',
+];
+
 interface IPCObject2<T extends HL7TypeMap> {
   AccessionIdentifier?: T['EI'] | null;
   RequestedProcedureID?: T['EI'] | null;
@@ -13811,6 +21464,8 @@ interface IPCObject2<T extends HL7TypeMap> {
 
 type IPRFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
+type IPRTypes1 = [never, 'EI', 'EI', 'EI', 'CWE', 'DTM', 'CP', 'DTM', 'ST'];
+
 interface IPRObject1<T extends HL7TypeMap> {
   IPRIdentifier?: T['EI'] | null;
   ProviderCrossReferenceIdentifier?: T['EI'] | null;
@@ -13821,6 +21476,8 @@ interface IPRObject1<T extends HL7TypeMap> {
   ExpectedPaymentDateTime?: string | null;
   IPRChecksum?: string | null;
 }
+
+type ISDTypes2 = [never, 'NM', 'CWE', 'CWE'];
 
 interface ISDObject2<T extends HL7TypeMap> {
   ReferenceInteractionNumber?: number | string | null;
@@ -13858,6 +21515,39 @@ type ITMFields1 =
   | 27
   | 28
   | 29;
+
+type ITMTypes1 = [
+  never,
+  'EI',
+  'ST',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CNE',
+  'EI',
+  'ST',
+  'ST',
+  'CWE',
+  'CNE',
+  'CWE',
+  'CP',
+  'CNE',
+  'CWE',
+  'XON',
+  'CNE',
+  'CWE',
+  'IS',
+  'NM',
+  'MO',
+  'CNE',
+  'CNE',
+  'CNE',
+  'EI',
+  'CNE',
+  'CNE',
+  'CNE',
+  'CWE',
+];
 
 interface ITMObject1<T extends HL7TypeMap> {
   ItemIdentifier?: T['EI'] | null;
@@ -13923,6 +21613,40 @@ type IVCFields1 =
   | 29
   | 30;
 
+type IVCTypes1 = [
+  never,
+  'EI',
+  'EI',
+  'EI',
+  'IS',
+  'IS',
+  'IS',
+  'DTM',
+  'CP',
+  'ST',
+  'XON',
+  'XON',
+  'XCN',
+  'ID',
+  'DTM',
+  'ST',
+  'CP',
+  'CP',
+  'CP',
+  'XCN',
+  'CX',
+  'CP',
+  'CP',
+  'CP',
+  'NM',
+  'IS',
+  'ST',
+  'ST',
+  'IS',
+  'IS',
+  'ST',
+];
+
 interface IVCObject1<T extends HL7TypeMap> {
   ProviderInvoiceNumber?: T['EI'] | null;
   PayerInvoiceNumber?: T['EI'] | null;
@@ -13984,6 +21708,36 @@ type IVTFields1 =
   | 25
   | 26;
 
+type IVTTypes1 = [
+  never,
+  'SI',
+  'EI',
+  'ST',
+  'EI',
+  'ST',
+  'CWE',
+  'EI',
+  'CWE',
+  'CWE',
+  'EI',
+  'CNE',
+  'CWE',
+  'CP',
+  'CWE',
+  'CNE',
+  'CNE',
+  'CNE',
+  'CP',
+  'EI',
+  'EI',
+  'CWE',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'CNE',
+];
+
 interface IVTObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   InventoryLocationIdentifier?: T['EI'] | null;
@@ -14013,12 +21767,16 @@ interface IVTObject1<T extends HL7TypeMap> {
   OperatingRoomParLevelIndicator?: T['CNE'] | null;
 }
 
+type LANTypes2 = [never, 'SI', 'CWE', 'CWE', 'CWE'];
+
 interface LANObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   LanguageCode?: T['CWE'] | null;
   LanguageAbilityCode?: T['CWE'][] | null;
   LanguageProficiencyCode?: T['CWE'] | null;
 }
+
+type LCCTypes3 = [never, 'PL', 'CWE', 'CWE', 'CWE'];
 
 interface LCCObject3<T extends HL7TypeMap> {
   PrimaryKeyValueLCC?: T['PL'] | null;
@@ -14027,6 +21785,8 @@ interface LCCObject3<T extends HL7TypeMap> {
   ChargeCode?: T['CWE'][] | null;
 }
 
+type LCHTypes2 = [never, 'PL', 'ID', 'EI', 'CWE', 'CWE'];
+
 interface LCHObject2<T extends HL7TypeMap> {
   PrimaryKeyValueLCH?: T['PL'] | null;
   SegmentActionCode?: string | null;
@@ -14034,6 +21794,22 @@ interface LCHObject2<T extends HL7TypeMap> {
   LocationCharacteristicID?: T['CWE'] | null;
   LocationCharacteristicValueLCH?: T['CWE'] | null;
 }
+
+type LDPTypes4 = [
+  never,
+  'PL',
+  'CWE',
+  'IS',
+  'CWE',
+  'IS',
+  'ID',
+  'DTM',
+  'DTM',
+  'ST',
+  'VH',
+  'XTN',
+  'CWE',
+];
 
 interface LDPObject3<T extends HL7TypeMap> {
   PrimaryKeyValueLDP?: T['PL'] | null;
@@ -14050,6 +21826,19 @@ interface LDPObject3<T extends HL7TypeMap> {
   LocationCostCenter?: T['CWE'] | null;
 }
 
+type LOCTypes4 = [
+  never,
+  'PL',
+  'ST',
+  'IS',
+  'XON',
+  'XAD',
+  'XTN',
+  'CWE',
+  'IS',
+  'IS',
+];
+
 interface LOCObject4<T extends HL7TypeMap> {
   PrimaryKeyValueLOC?: T['PL'] | null;
   LocationDescription?: string | null;
@@ -14062,6 +21851,8 @@ interface LOCObject4<T extends HL7TypeMap> {
   LocationServiceCode?: string | null;
 }
 
+type LRLTypes2 = [never, 'PL', 'ID', 'EI', 'CWE', 'XON', 'PL'];
+
 interface LRLObject3<T extends HL7TypeMap> {
   PrimaryKeyValueLRL?: T['PL'] | null;
   SegmentActionCode?: string | null;
@@ -14070,6 +21861,8 @@ interface LRLObject3<T extends HL7TypeMap> {
   OrganizationalLocationRelationshipValue?: T['XON'][] | null;
   PatientLocationRelationshipValue?: T['PL'] | null;
 }
+
+type MFATypes4 = [never, 'ID', 'ST', 'DTM', 'CWE', 'VARIES', 'ID'];
 
 interface MFAObject4<T extends HL7TypeMap> {
   RecordLevelEventCode?: string | null;
@@ -14082,6 +21875,8 @@ interface MFAObject4<T extends HL7TypeMap> {
 
 type MFEFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
+type MFETypes3 = [never, 'ID', 'ST', 'DTM', 'VARIES', 'ID', 'DTM', 'XCN'];
+
 interface MFEObject3<T extends HL7TypeMap> {
   RecordLevelEventCode?: string | null;
   MFNControlID?: string | null;
@@ -14091,6 +21886,8 @@ interface MFEObject3<T extends HL7TypeMap> {
   EnteredDateTime?: string | null;
   EnteredBy?: T['XCN'] | null;
 }
+
+type MFITypes3 = [never, 'CWE', 'HD', 'ID', 'DTM', 'DTM', 'ID'];
 
 interface MFIObject3<T extends HL7TypeMap> {
   MasterFileIdentifier?: T['CWE'] | null;
@@ -14102,6 +21899,8 @@ interface MFIObject3<T extends HL7TypeMap> {
 }
 
 type MSAFields3 = 1 | 2 | 3 | 4 | 6 | 7 | 8;
+
+type MSATypes4 = [never, 'ID', 'ST', 'ST', 'NM', never, 'CNE', 'NM', 'ID'];
 
 interface MSAObject3<T extends HL7TypeMap> {
   AcknowledgmentCode?: string | null;
@@ -14140,6 +21939,35 @@ type MSHFields6 =
   | 24
   | 25;
 
+type MSHTypes7 = [
+  never,
+  'ST',
+  'ST',
+  'HD',
+  'HD',
+  'HD',
+  'HD',
+  'DTM',
+  'ST',
+  'MSG',
+  'ST',
+  'PT',
+  'VID',
+  'NM',
+  'ST',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'CWE',
+  'ID',
+  'EI',
+  'XON',
+  'XON',
+  'HD',
+  'HD',
+];
+
 interface MSHObject7<T extends HL7TypeMap> {
   FieldSeparator?: string | null;
   EncodingCharacters?: string | null;
@@ -14168,12 +21996,59 @@ interface MSHObject7<T extends HL7TypeMap> {
   ReceivingNetworkAddress?: T['HD'] | null;
 }
 
+type NCKTypes2 = [never, 'DTM'];
+
+type NDSTypes2 = [never, 'NM', 'DTM', 'CWE', 'CWE'];
+
 interface NDSObject2<T extends HL7TypeMap> {
   NotificationReferenceNumber?: number | string | null;
   NotificationDateTime?: string | null;
   NotificationAlertSeverity?: T['CWE'] | null;
   NotificationCode?: T['CWE'] | null;
 }
+
+type NK1Types6 = [
+  never,
+  'SI',
+  'XPN',
+  'CWE',
+  'XAD',
+  'XTN',
+  'XTN',
+  'CWE',
+  'DT',
+  'DT',
+  'ST',
+  'JCC',
+  'CX',
+  'XON',
+  'CWE',
+  'IS',
+  'DTM',
+  'IS',
+  'IS',
+  'CWE',
+  'CWE',
+  'IS',
+  'CWE',
+  'ID',
+  'IS',
+  'CWE',
+  'XPN',
+  'CWE',
+  'CWE',
+  'CWE',
+  'XPN',
+  'XTN',
+  'XAD',
+  'CX',
+  'IS',
+  'CWE',
+  'IS',
+  'ST',
+  'ST',
+  'IS',
+];
 
 interface NK1Object6<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -14217,7 +22092,28 @@ interface NK1Object6<T extends HL7TypeMap> {
   VIPIndicator?: string | null;
 }
 
+type NSTTypes2 = [
+  never,
+  'ID',
+  'ST',
+  'ID',
+  'DTM',
+  'DTM',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+];
+
 type NTEFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
+type NTETypes4 = [never, 'SI', 'ID', 'FT', 'CWE', 'XCN', 'DTM', 'DTM', 'DTM'];
 
 interface NTEObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -14229,6 +22125,60 @@ interface NTEObject3<T extends HL7TypeMap> {
   EffectiveStartDate?: string | null;
   ExpirationDate?: string | null;
 }
+
+type OBRTypes8 = [
+  never,
+  'SI',
+  'EI',
+  'EI',
+  'CWE',
+  'ID',
+  'DTM',
+  'DTM',
+  'DTM',
+  'CQ',
+  'XCN',
+  'ID',
+  'CWE',
+  'ST',
+  'DTM',
+  'SPS',
+  'XCN',
+  'XTN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'DTM',
+  'MOC',
+  'ID',
+  'ID',
+  'PRL',
+  'TQ',
+  'XCN',
+  'EIP',
+  'ID',
+  'CWE',
+  'NDL',
+  'NDL',
+  'NDL',
+  'NDL',
+  'DTM',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'ID',
+  'CWE',
+  'CNE',
+  'CNE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'IS',
+  'CWE',
+];
 
 interface OBRObject8<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -14310,6 +22260,35 @@ type OBXFields6 =
   | 24
   | 25;
 
+type OBXTypes6 = [
+  never,
+  'SI',
+  'ID',
+  'CWE',
+  'ST',
+  'VARIES',
+  'CWE',
+  'ST',
+  'IS',
+  'NM',
+  'ID',
+  'ID',
+  'DTM',
+  'ST',
+  'DTM',
+  'CWE',
+  'XCN',
+  'CWE',
+  'EI',
+  'DTM',
+  'CWE',
+  'EI',
+  'CNE',
+  'XON',
+  'XAD',
+  'XCN',
+];
+
 interface OBXObject8<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ValueType?: string | null;
@@ -14338,6 +22317,8 @@ interface OBXObject8<T extends HL7TypeMap> {
   PerformingOrganizationMedicalDirector?: T['XCN'] | null;
 }
 
+type ODSTypes2 = [never, 'ID', 'CWE', 'CWE', 'ST'];
+
 interface ODSObject3<T extends HL7TypeMap> {
   Type?: string | null;
   ServicePeriod?: T['CWE'][] | null;
@@ -14345,11 +22326,64 @@ interface ODSObject3<T extends HL7TypeMap> {
   TextInstruction?: string[] | null;
 }
 
+type ODTTypes2 = [never, 'CWE', 'CWE', 'ST'];
+
 interface ODTObject3<T extends HL7TypeMap> {
   TrayType?: T['CWE'] | null;
   ServicePeriod?: T['CWE'][] | null;
   TextInstruction?: string | null;
 }
+
+type OM1Types5 = [
+  never,
+  'NM',
+  'CWE',
+  'ID',
+  'ID',
+  'CWE',
+  'TX',
+  'CWE',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ID',
+  'CWE',
+  'CWE',
+  'ID',
+  'CWE',
+  'XTN',
+  'IS',
+  'CWE',
+  'ST',
+  'DTM',
+  'DTM',
+  'NM',
+  'NM',
+  'ID',
+  'ID',
+  'CWE',
+  'XAD',
+  'XTN',
+  'CWE',
+  'CWE',
+  'TX',
+  'CWE',
+  'CWE',
+  'TX',
+  'CWE',
+  'TX',
+  'CWE',
+  'TX',
+  'ST',
+  'TX',
+  'CWE',
+  'CWE',
+  'TX',
+  'CWE',
+  'CWE',
+  'CWE',
+];
 
 interface OM1Object5<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
@@ -14401,6 +22435,20 @@ interface OM1Object5<T extends HL7TypeMap> {
   ModalityOfImagingMeasurement?: T['CWE'] | null;
 }
 
+type OM2Types5 = [
+  never,
+  'NM',
+  'CWE',
+  'NM',
+  'CWE',
+  'TX',
+  'RFR',
+  'RFR',
+  'RFR',
+  'DLT',
+  'NM',
+];
+
 interface OM2Object5<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
   UnitsOfMeasure?: T['CWE'] | null;
@@ -14414,6 +22462,8 @@ interface OM2Object5<T extends HL7TypeMap> {
   MinimumMeaningfulIncrements?: number | string | null;
 }
 
+type OM3Types3 = [never, 'NM', 'CWE', 'CWE', 'CWE', 'CWE', 'CWE', 'ID'];
+
 interface OM3Object4<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
   PreferredCodingSystem?: T['CWE'] | null;
@@ -14423,6 +22473,24 @@ interface OM3Object4<T extends HL7TypeMap> {
   CriticalTextCodesForCategoricalObservations?: T['CWE'][] | null;
   ValueType?: string | null;
 }
+
+type OM4Types4 = [
+  never,
+  'NM',
+  'ID',
+  'TX',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'TX',
+  'TX',
+  'CQ',
+  'CQ',
+  'TX',
+  'ID',
+  'CQ',
+];
 
 interface OM4Object5<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
@@ -14441,11 +22509,41 @@ interface OM4Object5<T extends HL7TypeMap> {
   SpecimenRetentionTime?: T['CQ'] | null;
 }
 
+type OM5Types3 = [never, 'NM', 'CWE', 'ST'];
+
 interface OM5Object3<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
   TestObservationsIncludedWithinAnOrderedTestBattery?: T['CWE'][] | null;
   ObservationIDSuffixes?: string | null;
 }
+
+type OM7Types2 = [
+  never,
+  'NM',
+  'CWE',
+  'CWE',
+  'TX',
+  'ST',
+  'DTM',
+  'DTM',
+  'NM',
+  'CWE',
+  'IS',
+  'ID',
+  'CWE',
+  'DTM',
+  'DTM',
+  'NM',
+  'CWE',
+  'NM',
+  'CWE',
+  'DTM',
+  'XCN',
+  'PL',
+  'IS',
+  'ID',
+  'CWE',
+];
 
 interface OM7Object2<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
@@ -14473,6 +22571,41 @@ interface OM7Object2<T extends HL7TypeMap> {
   SpecialOrderIndicator?: string | null;
   PrimaryKeyValueCDM?: T['CWE'][] | null;
 }
+
+type ORCTypes8 = [
+  never,
+  'ID',
+  'EI',
+  'EI',
+  'EI',
+  'ID',
+  'ID',
+  'TQ',
+  'EIP',
+  'DTM',
+  'XCN',
+  'XCN',
+  'XCN',
+  'PL',
+  'XTN',
+  'DTM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'XCN',
+  'CWE',
+  'XON',
+  'XAD',
+  'XTN',
+  'XAD',
+  'CWE',
+  'CWE',
+  'DTM',
+  'CWE',
+  'CWE',
+  'CNE',
+  'CWE',
+];
 
 interface ORCObject8<T extends HL7TypeMap> {
   OrderControl?: string | null;
@@ -14508,6 +22641,22 @@ interface ORCObject8<T extends HL7TypeMap> {
   ParentUniversalServiceIdentifier?: T['CWE'] | null;
 }
 
+type ORGTypes2 = [
+  never,
+  'SI',
+  'CWE',
+  'CWE',
+  'ID',
+  'CX',
+  'CWE',
+  'CWE',
+  'CWE',
+  'DR',
+  'CWE',
+  'ID',
+  'ID',
+];
+
 interface ORGObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   OrganizationUnitCode?: T['CWE'] | null;
@@ -14525,12 +22674,41 @@ interface ORGObject2<T extends HL7TypeMap> {
 
 type PCEFields1 = 1 | 2 | 3 | 4;
 
+type PCETypes1 = [never, 'SI', 'IS', 'CWE', 'CP'];
+
 interface PCEObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   CostCenterAccountNumber?: string | null;
   TransactionCode?: T['CWE'] | null;
   TransactionAmountUnit?: T['CP'] | null;
 }
+
+type PCRTypes2 = [
+  never,
+  'CWE',
+  'IS',
+  'CWE',
+  'CQ',
+  'DTM',
+  'DTM',
+  'DTM',
+  'DTM',
+  'IS',
+  'CWE',
+  'IS',
+  'ST',
+  'IS',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'DTM',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+];
 
 interface PCRObject2<T extends HL7TypeMap> {
   ImplicatedProduct?: T['CWE'] | null;
@@ -14582,6 +22760,32 @@ type PD1Fields3 =
   | 21
   | 22;
 
+type PD1Types3 = [
+  never,
+  'IS',
+  'IS',
+  'XON',
+  'XCN',
+  'IS',
+  'IS',
+  'IS',
+  'IS',
+  'ID',
+  'CX',
+  'CWE',
+  'ID',
+  'DT',
+  'XON',
+  'CWE',
+  'IS',
+  'DT',
+  'DT',
+  'IS',
+  'IS',
+  'IS',
+  'DT',
+];
+
 interface PD1Object4<T extends HL7TypeMap> {
   LivingDependency?: string[] | null;
   LivingArrangement?: string | null;
@@ -14607,6 +22811,19 @@ interface PD1Object4<T extends HL7TypeMap> {
   AdvanceDirectiveLastVerifiedDate?: string | null;
 }
 
+type PDATypes2 = [
+  never,
+  'CWE',
+  'PL',
+  'ID',
+  'DTM',
+  'XCN',
+  'ID',
+  'DR',
+  'XCN',
+  'ID',
+];
+
 interface PDAObject2<T extends HL7TypeMap> {
   DeathCauseCode?: T['CWE'][] | null;
   DeathLocation?: T['PL'] | null;
@@ -14618,6 +22835,25 @@ interface PDAObject2<T extends HL7TypeMap> {
   AutopsyPerformedBy?: T['XCN'] | null;
   CoronerIndicator?: string | null;
 }
+
+type PDCTypes2 = [
+  never,
+  'XON',
+  'CWE',
+  'ST',
+  'ST',
+  'CWE',
+  'ST',
+  'ST',
+  'ST',
+  'CWE',
+  'ID',
+  'ST',
+  'CQ',
+  'CQ',
+  'DTM',
+  'DTM',
+];
 
 interface PDCObject3<T extends HL7TypeMap> {
   ManufacturerDistributor?: T['XON'][] | null;
@@ -14636,6 +22872,35 @@ interface PDCObject3<T extends HL7TypeMap> {
   DateFirstMarketed?: string | null;
   DateLastMarketed?: string | null;
 }
+
+type PEOTypes2 = [
+  never,
+  'CWE',
+  'CWE',
+  'DTM',
+  'DTM',
+  'DTM',
+  'DTM',
+  'XAD',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'FT',
+  'FT',
+  'FT',
+  'FT',
+  'FT',
+  'CWE',
+  'XPN',
+  'XAD',
+  'XTN',
+  'ID',
+  'ID',
+  'DTM',
+  'ID',
+];
 
 interface PEOObject3<T extends HL7TypeMap> {
   EventIdentifiersUsed?: T['CWE'][] | null;
@@ -14665,6 +22930,23 @@ interface PEOObject3<T extends HL7TypeMap> {
   PrimaryObserverSIdentityMayBeDivulged?: string | null;
 }
 
+type PESTypes2 = [
+  never,
+  'XON',
+  'XCN',
+  'XAD',
+  'XTN',
+  'EI',
+  'NM',
+  'FT',
+  'FT',
+  'DTM',
+  'DTM',
+  'ID',
+  'ID',
+  'ID',
+];
+
 interface PESObject3<T extends HL7TypeMap> {
   SenderOrganizationName?: T['XON'][] | null;
   SenderIndividualName?: T['XCN'][] | null;
@@ -14680,6 +22962,49 @@ interface PESObject3<T extends HL7TypeMap> {
   EventReportSource?: string | null;
   EventReportedTo?: string[] | null;
 }
+
+type PIDTypes7 = [
+  never,
+  'SI',
+  'CX',
+  'CX',
+  'CX',
+  'XPN',
+  'XPN',
+  'DTM',
+  'IS',
+  'XPN',
+  'CWE',
+  'XAD',
+  'IS',
+  'XTN',
+  'XTN',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CX',
+  'ST',
+  'DLN',
+  'CX',
+  'CWE',
+  'ST',
+  'ID',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'DTM',
+  'ID',
+  'ID',
+  'IS',
+  'DTM',
+  'HD',
+  'CWE',
+  'CWE',
+  'ST',
+  'CWE',
+  'CWE',
+];
 
 interface PIDObject7<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -14725,6 +23050,8 @@ interface PIDObject7<T extends HL7TypeMap> {
 
 type PKGFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
+type PKGTypes1 = [never, 'SI', 'CWE', 'CNE', 'NM', 'CP', 'CP', 'DTM'];
+
 interface PKGObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   PackagingUnits?: T['CWE'] | null;
@@ -14736,6 +23063,22 @@ interface PKGObject1<T extends HL7TypeMap> {
 }
 
 type PMTFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type PMTTypes1 = [
+  never,
+  'EI',
+  'DTM',
+  'DTM',
+  'CWE',
+  'DTM',
+  'CP',
+  'EI',
+  'XON',
+  'ST',
+  'CX',
+  'XON',
+  'ST',
+];
 
 interface PMTObject1<T extends HL7TypeMap> {
   PaymentRemittanceAdviceNumber?: T['EI'] | null;
@@ -14754,6 +23097,32 @@ interface PMTObject1<T extends HL7TypeMap> {
 
 type PR1Fields7 =
   1 | 3 | 5 | 6 | 7 | 9 | 10 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22;
+
+type PR1Types7 = [
+  never,
+  'SI',
+  never,
+  'CNE',
+  never,
+  'DTM',
+  'IS',
+  'NM',
+  never,
+  'IS',
+  'NM',
+  never,
+  never,
+  'CWE',
+  'ID',
+  'CWE',
+  'CNE',
+  'IS',
+  'CWE',
+  'EI',
+  'ID',
+  'IS',
+  'IS',
+];
 
 interface PR1Object7<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -14774,6 +23143,22 @@ interface PR1Object7<T extends HL7TypeMap> {
   DRGProcedureDeterminationStatus?: string | null;
   DRGProcedureRelevance?: string | null;
 }
+
+type PRATypes4 = [
+  never,
+  'CWE',
+  'CWE',
+  'IS',
+  'ID',
+  'SPD',
+  'PLN',
+  'PIP',
+  'DT',
+  'CWE',
+  'DT',
+  'CWE',
+  'SI',
+];
 
 interface PRAObject4<T extends HL7TypeMap> {
   PrimaryKeyValuePRA?: T['CWE'] | null;
@@ -14820,6 +23205,38 @@ type PRBFields2 =
   | 27
   | 28;
 
+type PRBTypes2 = [
+  never,
+  'ID',
+  'DTM',
+  'CWE',
+  'EI',
+  'EI',
+  'NM',
+  'DTM',
+  'DTM',
+  'DTM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'DTM',
+  'DTM',
+  'ST',
+  'CWE',
+  'CWE',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ST',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CNE',
+];
+
 interface PRBObject2<T extends HL7TypeMap> {
   ActionCode?: string | null;
   ActionDateTime?: string | null;
@@ -14851,6 +23268,28 @@ interface PRBObject2<T extends HL7TypeMap> {
   MoodCode?: T['CNE'] | null;
 }
 
+type PRCTypes3 = [
+  never,
+  'CWE',
+  'CWE',
+  'CWE',
+  'IS',
+  'CP',
+  'ST',
+  'NM',
+  'NM',
+  'MO',
+  'MO',
+  'DTM',
+  'DTM',
+  'IS',
+  'CWE',
+  'ID',
+  'ID',
+  'MO',
+  'IS',
+];
+
 interface PRCObject3<T extends HL7TypeMap> {
   PrimaryKeyValuePRC?: T['CWE'] | null;
   FacilityIDPRC?: T['CWE'][] | null;
@@ -14874,6 +23313,24 @@ interface PRCObject3<T extends HL7TypeMap> {
 
 type PRDFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
 
+type PRDTypes4 = [
+  never,
+  'CWE',
+  'XPN',
+  'XAD',
+  'PL',
+  'XTN',
+  'CWE',
+  'PLN',
+  'DTM',
+  'DTM',
+  'XON',
+  'XAD',
+  'PL',
+  'XTN',
+  'CWE',
+];
+
 interface PRDObject4<T extends HL7TypeMap> {
   ProviderRole?: T['CWE'][] | null;
   ProviderName?: T['XPN'][] | null;
@@ -14893,6 +23350,8 @@ interface PRDObject4<T extends HL7TypeMap> {
 
 type PSGFields1 = 1 | 2 | 3 | 4 | 5 | 6;
 
+type PSGTypes1 = [never, 'EI', 'EI', 'SI', 'ID', 'CP', 'ST'];
+
 interface PSGObject1<T extends HL7TypeMap> {
   ProviderProductServiceGroupNumber?: T['EI'] | null;
   PayerProductServiceGroupNumber?: T['EI'] | null;
@@ -14901,6 +23360,24 @@ interface PSGObject1<T extends HL7TypeMap> {
   ProductServiceGroupBilledAmount?: T['CP'] | null;
   ProductServiceGroupDescription?: string | null;
 }
+
+type PSHTypes2 = [
+  never,
+  'ST',
+  'ST',
+  'DTM',
+  'DTM',
+  'DTM',
+  'CQ',
+  'CQ',
+  'ID',
+  'FT',
+  'CQ',
+  'ID',
+  'FT',
+  'NM',
+  'NM',
+];
 
 interface PSHObject2<T extends HL7TypeMap> {
   ReportType?: string | null;
@@ -14970,6 +23447,58 @@ type PSLFields1 =
   | 47
   | 48;
 
+type PSLTypes1 = [
+  never,
+  'EI',
+  'EI',
+  'SI',
+  'EI',
+  'EI',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ST',
+  'DTM',
+  'DTM',
+  'CQ',
+  'CP',
+  'NM',
+  'CP',
+  'CP',
+  'IS',
+  'ST',
+  'EI',
+  'IS',
+  'ID',
+  'CWE',
+  'CP',
+  'NM',
+  'CX',
+  'DR',
+  'NM',
+  'NM',
+  'XCN',
+  'XCN',
+  'CWE',
+  'CWE',
+  'CWE',
+  'NM',
+  'CP',
+  'NM',
+  'NM',
+  'CP',
+  'NM',
+  'CP',
+  'NM',
+  'NM',
+  'CP',
+  'CP',
+  'NM',
+  'ID',
+  'ID',
+  'ST',
+];
+
 interface PSLObject1<T extends HL7TypeMap> {
   ProviderProductServiceLineItemNumber?: T['EI'] | null;
   PayerProductServiceLineItemNumber?: T['EI'] | null;
@@ -15023,6 +23552,8 @@ interface PSLObject1<T extends HL7TypeMap> {
 
 type PSSFields1 = 1 | 2 | 3 | 4 | 5;
 
+type PSSTypes1 = [never, 'EI', 'EI', 'SI', 'CP', 'ST'];
+
 interface PSSObject1<T extends HL7TypeMap> {
   ProviderProductServiceSectionNumber?: T['EI'] | null;
   PayerProductServiceSectionNumber?: T['EI'] | null;
@@ -15033,6 +23564,8 @@ interface PSSObject1<T extends HL7TypeMap> {
 
 type PTHFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
+type PTHTypes2 = [never, 'ID', 'CWE', 'EI', 'DTM', 'CWE', 'DTM', 'CNE'];
+
 interface PTHObject2<T extends HL7TypeMap> {
   ActionCode?: string | null;
   PathwayID?: T['CWE'] | null;
@@ -15042,6 +23575,62 @@ interface PTHObject2<T extends HL7TypeMap> {
   ChangePathwayLifeCycleStatusDateTime?: string | null;
   MoodCode?: T['CNE'] | null;
 }
+
+type PV1Types5 = [
+  never,
+  'SI',
+  'IS',
+  'PL',
+  'IS',
+  'CX',
+  'PL',
+  'XCN',
+  'XCN',
+  'XCN',
+  'IS',
+  'PL',
+  'IS',
+  'IS',
+  'IS',
+  'IS',
+  'IS',
+  'XCN',
+  'IS',
+  'CX',
+  'FC',
+  'IS',
+  'IS',
+  'IS',
+  'IS',
+  'DT',
+  'NM',
+  'NM',
+  'IS',
+  'IS',
+  'DT',
+  'IS',
+  'NM',
+  'NM',
+  'IS',
+  'DT',
+  'IS',
+  'DLD',
+  'CWE',
+  'IS',
+  'IS',
+  'IS',
+  'PL',
+  'PL',
+  'DTM',
+  'DTM',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'CX',
+  'IS',
+  'XCN',
+];
 
 interface PV1Object6<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -15150,6 +23739,60 @@ type PV2Fields5 =
   | 49
   | 50;
 
+type PV2Types6 = [
+  never,
+  'PL',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ST',
+  'ST',
+  'IS',
+  'DTM',
+  'DTM',
+  'NM',
+  'NM',
+  'ST',
+  'XCN',
+  'DT',
+  'ID',
+  'IS',
+  'DT',
+  'IS',
+  'ID',
+  'NM',
+  'IS',
+  'ID',
+  'XON',
+  'IS',
+  'IS',
+  'DT',
+  'IS',
+  'DT',
+  'DT',
+  'CWE',
+  'IS',
+  'ID',
+  'DTM',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'IS',
+  'IS',
+  'CWE',
+  'DT',
+  'DTM',
+  'DTM',
+  'IS',
+  'DT',
+];
+
 interface PV2Object6<T extends HL7TypeMap> {
   PriorPendingLocation?: T['PL'] | null;
   AccommodationCode?: T['CWE'] | null;
@@ -15205,6 +23848,8 @@ interface PV2Object6<T extends HL7TypeMap> {
 
 type PYEFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
+type PYETypes1 = [never, 'SI', 'IS', 'IS', 'XON', 'XPN', 'XAD', 'IS'];
+
 interface PYEObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   PayeeType?: string | null;
@@ -15215,6 +23860,8 @@ interface PYEObject1<T extends HL7TypeMap> {
   PaymentMethod?: string | null;
 }
 
+type QAKTypes3 = [never, 'ST', 'ID', 'CWE', 'NM', 'NM', 'NM'];
+
 interface QAKObject3<T extends HL7TypeMap> {
   QueryTag?: string | null;
   QueryResponseStatus?: string | null;
@@ -15224,16 +23871,36 @@ interface QAKObject3<T extends HL7TypeMap> {
   HitsRemaining?: number | string | null;
 }
 
+type QIDTypes2 = [never, 'ST', 'CWE'];
+
 interface QIDObject2<T extends HL7TypeMap> {
   QueryTag?: string | null;
   MessageQueryName?: T['CWE'] | null;
 }
+
+type QPDTypes2 = [never, 'CWE', 'ST', 'VARIES'];
 
 interface QPDObject2<T extends HL7TypeMap> {
   MessageQueryName?: T['CWE'] | null;
   QueryTag?: string | null;
   UserParameters?: string | null;
 }
+
+type QRDTypes5 = [
+  never,
+  'DTM',
+  'ID',
+  'ID',
+  'ST',
+  'ID',
+  'DTM',
+  'CQ',
+  'XCN',
+  'CWE',
+  'CWE',
+  'VR',
+  'ID',
+];
 
 interface QRDObject5<T extends HL7TypeMap> {
   QueryDateTime?: string | null;
@@ -15250,6 +23917,20 @@ interface QRDObject5<T extends HL7TypeMap> {
   QueryResultsLevel?: string | null;
 }
 
+type QRFTypes5 = [
+  never,
+  'ST',
+  'DTM',
+  'DTM',
+  'ST',
+  'ST',
+  'ID',
+  'ID',
+  'ID',
+  'TQ',
+  'NM',
+];
+
 interface QRFObject5<T extends HL7TypeMap> {
   WhereSubjectFilter?: string[] | null;
   WhenDataStartDateTime?: string | null;
@@ -15263,11 +23944,15 @@ interface QRFObject5<T extends HL7TypeMap> {
   SearchConfidenceThreshold?: number | string | null;
 }
 
+type QRITypes2 = [never, 'NM', 'IS', 'CWE'];
+
 interface QRIObject2<T extends HL7TypeMap> {
   CandidateConfidence?: number | string | null;
   MatchReasonCode?: string[] | null;
   AlgorithmDescriptor?: T['CWE'] | null;
 }
+
+type RCPTypes2 = [never, 'ID', 'CQ', 'CNE', 'DTM', 'ID', 'SRT', 'ID'];
 
 interface RCPObject2<T extends HL7TypeMap> {
   QueryPriority?: string | null;
@@ -15281,6 +23966,26 @@ interface RCPObject2<T extends HL7TypeMap> {
 
 type RELFields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
+
+type RELTypes1 = [
+  never,
+  'SI',
+  'CWE',
+  'EI',
+  'EI',
+  'EI',
+  'EI',
+  'XCN',
+  'XON',
+  'XAD',
+  'XTN',
+  'DR',
+  'ID',
+  'CWE',
+  'NM',
+  'NM',
+  'ID',
+];
 
 interface RELObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -15303,6 +24008,22 @@ interface RELObject1<T extends HL7TypeMap> {
 
 type RF1Fields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
+type RF1Types2 = [
+  never,
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'EI',
+  'DTM',
+  'DTM',
+  'DTM',
+  'CWE',
+  'EI',
+  'CWE',
+];
+
 interface RF1Object2<T extends HL7TypeMap> {
   ReferralStatus?: T['CWE'] | null;
   ReferralPriority?: T['CWE'] | null;
@@ -15320,6 +24041,8 @@ interface RF1Object2<T extends HL7TypeMap> {
 
 type RFIFields1 = 1 | 2 | 3 | 4;
 
+type RFITypes1 = [never, 'DTM', 'DTM', 'ID', 'DTM'];
+
 interface RFIObject1<T extends HL7TypeMap> {
   RequestDate?: string | null;
   ResponseDueDate?: string | null;
@@ -15327,11 +24050,15 @@ interface RFIObject1<T extends HL7TypeMap> {
   DateAdditionalInformationWasSubmitted?: string | null;
 }
 
+type RGSTypes2 = [never, 'SI', 'ID', 'CWE'];
+
 interface RGSObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SegmentActionCode?: string | null;
   ResourceGroupID?: T['CWE'] | null;
 }
+
+type RMITypes2 = [never, 'CWE', 'DTM', 'CWE'];
 
 interface RMIObject2<T extends HL7TypeMap> {
   RiskManagementIncidentCode?: T['CWE'] | null;
@@ -15340,6 +24067,23 @@ interface RMIObject2<T extends HL7TypeMap> {
 }
 
 type ROLFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
+
+type ROLTypes3 = [
+  never,
+  'EI',
+  'ID',
+  'CWE',
+  'XCN',
+  'DTM',
+  'DTM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'XAD',
+  'XTN',
+  'PL',
+];
 
 interface ROLObject4<T extends HL7TypeMap> {
   RoleInstanceID?: T['EI'] | null;
@@ -15357,6 +24101,8 @@ interface ROLObject4<T extends HL7TypeMap> {
   PersonSLocation?: T['PL'] | null;
 }
 
+type RQ1Types3 = [never, 'ST', 'CWE', 'ST', 'CWE', 'ST', 'ID', 'ID'];
+
 interface RQ1Object3<T extends HL7TypeMap> {
   AnticipatedPrice?: string | null;
   ManufacturerIdentifier?: T['CWE'] | null;
@@ -15366,6 +24112,20 @@ interface RQ1Object3<T extends HL7TypeMap> {
   Taxable?: string | null;
   SubstituteAllowed?: string | null;
 }
+
+type RQDTypes3 = [
+  never,
+  'SI',
+  'CWE',
+  'CWE',
+  'CWE',
+  'NM',
+  'CWE',
+  'IS',
+  'IS',
+  'CWE',
+  'DT',
+];
 
 interface RQDObject2<T extends HL7TypeMap> {
   RequisitionLineNumber?: number | string | null;
@@ -15410,6 +24170,38 @@ type RXAFields4 =
   | 27
   | 28;
 
+type RXATypes5 = [
+  never,
+  'NM',
+  'NM',
+  'DTM',
+  'DTM',
+  'CWE',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'XCN',
+  'LA2',
+  'ST',
+  'NM',
+  'CWE',
+  'ST',
+  'DTM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'ID',
+  'DTM',
+  'NM',
+  'CWE',
+  'CWE',
+  'ID',
+  'PL',
+  'XAD',
+];
+
 interface RXAObject5<T extends HL7TypeMap> {
   GiveSubIDCounter?: number | string | null;
   AdministrationSubIDCounter?: number | string | null;
@@ -15441,6 +24233,19 @@ interface RXAObject5<T extends HL7TypeMap> {
   AdministeredAtAddress?: T['XAD'] | null;
 }
 
+type RXCTypes5 = [
+  never,
+  'ID',
+  'CWE',
+  'NM',
+  'CWE',
+  'NM',
+  'CWE',
+  'CWE',
+  'NM',
+  'CWE',
+];
+
 interface RXCObject5<T extends HL7TypeMap> {
   RXComponentType?: string | null;
   ComponentCode?: T['CWE'] | null;
@@ -15452,6 +24257,43 @@ interface RXCObject5<T extends HL7TypeMap> {
   ComponentDrugStrengthVolume?: number | string | null;
   ComponentDrugStrengthVolumeUnits?: T['CWE'] | null;
 }
+
+type RXDTypes6 = [
+  never,
+  'NM',
+  'CWE',
+  'DTM',
+  'NM',
+  'CWE',
+  'CWE',
+  'ST',
+  'NM',
+  'ST',
+  'XCN',
+  'ID',
+  'CQ',
+  'LA2',
+  'ID',
+  'CWE',
+  'NM',
+  'CWE',
+  'ST',
+  'DTM',
+  'CWE',
+  'CWE',
+  'NM',
+  'CWE',
+  'ID',
+  'CWE',
+  'CWE',
+  'CWE',
+  'NM',
+  'CWE',
+  'CWE',
+  'XAD',
+  'ID',
+  'CWE',
+];
 
 interface RXDObject6<T extends HL7TypeMap> {
   DispenseSubIDCounter?: number | string | null;
@@ -15488,6 +24330,54 @@ interface RXDObject6<T extends HL7TypeMap> {
   PharmacyOrderType?: string | null;
   DispenseType?: T['CWE'] | null;
 }
+
+type RXETypes6 = [
+  never,
+  'TQ',
+  'CWE',
+  'NM',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'LA1',
+  'ID',
+  'NM',
+  'CWE',
+  'NM',
+  'XCN',
+  'XCN',
+  'ST',
+  'NM',
+  'NM',
+  'DTM',
+  'CQ',
+  'ID',
+  'CWE',
+  'ST',
+  'ST',
+  'CWE',
+  'NM',
+  'CWE',
+  'CWE',
+  'NM',
+  'CWE',
+  'ID',
+  'CWE',
+  'DTM',
+  'NM',
+  'CWE',
+  'CWE',
+  'ID',
+  'CWE',
+  'CWE',
+  'NM',
+  'CWE',
+  'XAD',
+  'PL',
+  'XAD',
+  'ID',
+];
 
 interface RXEObject6<T extends HL7TypeMap> {
   QuantityTiming?: T['TQ'] | null;
@@ -15568,6 +24458,40 @@ type RXGFields4 =
   | 29
   | 30;
 
+type RXGTypes5 = [
+  never,
+  'NM',
+  'NM',
+  'TQ',
+  'CWE',
+  'NM',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'LA2',
+  'ID',
+  'CWE',
+  'ST',
+  'ST',
+  'CWE',
+  'NM',
+  'CWE',
+  'ST',
+  'DTM',
+  'CWE',
+  'CWE',
+  'NM',
+  'CWE',
+  'CWE',
+  'ID',
+  'CWE',
+  'XAD',
+  'PL',
+  'XAD',
+];
+
 interface RXGObject5<T extends HL7TypeMap> {
   GiveSubIDCounter?: number | string | null;
   DispenseSubIDCounter?: number | string | null;
@@ -15639,6 +24563,45 @@ type RXOFields6 =
   | 34
   | 35;
 
+type RXOTypes6 = [
+  never,
+  'CWE',
+  'NM',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'LA1',
+  'ID',
+  'CWE',
+  'NM',
+  'CWE',
+  'NM',
+  'XCN',
+  'XCN',
+  'ID',
+  'ST',
+  'NM',
+  'CWE',
+  'CWE',
+  'ST',
+  'CWE',
+  'CQ',
+  'CWE',
+  'NM',
+  'CWE',
+  'ID',
+  'NM',
+  'EI',
+  'EI',
+  'CNE',
+  'CWE',
+  'XAD',
+  'PL',
+  'XAD',
+];
+
 interface RXOObject6<T extends HL7TypeMap> {
   RequestedGiveCode?: T['CWE'] | null;
   RequestedGiveAmountMinimum?: number | string | null;
@@ -15677,6 +24640,8 @@ interface RXOObject6<T extends HL7TypeMap> {
   DeliverToAddress?: T['XAD'] | null;
 }
 
+type RXRTypes4 = [never, 'CWE', 'CWE', 'CWE', 'CWE', 'CWE', 'CWE'];
+
 interface RXRObject4<T extends HL7TypeMap> {
   Route?: T['CWE'] | null;
   AdministrationSite?: T['CWE'] | null;
@@ -15685,6 +24650,54 @@ interface RXRObject4<T extends HL7TypeMap> {
   RoutingInstruction?: T['CWE'] | null;
   AdministrationSiteModifier?: T['CWE'] | null;
 }
+
+type SACTypes3 = [
+  never,
+  'EI',
+  'EI',
+  'EI',
+  'EI',
+  'EI',
+  'SPS',
+  'DTM',
+  'CWE',
+  'CWE',
+  'EI',
+  'NA',
+  'CWE',
+  'EI',
+  'NA',
+  'CWE',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'CWE',
+  'NM',
+  'NM',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'SN',
+  'CWE',
+  'SN',
+  'NM',
+  'CWE',
+  'NM',
+  'CWE',
+  'NM',
+  'CWE',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+];
 
 interface SACObject3<T extends HL7TypeMap> {
   ExternalAccessionIdentifier?: T['EI'] | null;
@@ -15772,6 +24785,47 @@ type SCDFields1 =
   | 36
   | 37;
 
+type SCDTypes1 = [
+  never,
+  'TM',
+  'NM',
+  'CQ',
+  'CQ',
+  'NM',
+  'CQ',
+  'CQ',
+  'CQ',
+  'CQ',
+  'CWE',
+  'DTM',
+  'CQ',
+  'CQ',
+  'CQ',
+  'CQ',
+  'TM',
+  'CQ',
+  'CQ',
+  'CNE',
+  'CNE',
+  'CNE',
+  'CNE',
+  'CNE',
+  'CNE',
+  'XCN',
+  'CNE',
+  'CNE',
+  'CWE',
+  'CQ',
+  'CQ',
+  'CQ',
+  'CNE',
+  'CX',
+  'XCN',
+  'SN',
+  'CQ',
+  'CQ',
+];
+
 interface SCDObject1<T extends HL7TypeMap> {
   CycleStartTime?: string | null;
   CycleCount?: number | string | null;
@@ -15812,6 +24866,37 @@ interface SCDObject1<T extends HL7TypeMap> {
   InletTemperature?: T['CQ'] | null;
 }
 
+type SCHTypes3 = [
+  never,
+  'EI',
+  'EI',
+  'NM',
+  'EI',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'NM',
+  'CNE',
+  'TQ',
+  'XCN',
+  'XTN',
+  'XAD',
+  'PL',
+  'XCN',
+  'XTN',
+  'XAD',
+  'PL',
+  'XCN',
+  'XTN',
+  'PL',
+  'EI',
+  'EI',
+  'CWE',
+  'EI',
+  'EI',
+];
+
 interface SCHObject4<T extends HL7TypeMap> {
   PlacerAppointmentID?: T['EI'] | null;
   FillerAppointmentID?: T['EI'] | null;
@@ -15844,6 +24929,8 @@ interface SCHObject4<T extends HL7TypeMap> {
 
 type SCPFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
+type SCPTypes1 = [never, 'NM', 'CWE', 'CWE', 'EI', 'ST', 'ST', 'CWE', 'CWE'];
+
 interface SCPObject1<T extends HL7TypeMap> {
   NumberOfDecontaminationSterilizationDevices?: number | string | null;
   LaborCalculationType?: T['CWE'] | null;
@@ -15857,6 +24944,8 @@ interface SCPObject1<T extends HL7TypeMap> {
 
 type SDDFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
+type SDDTypes1 = [never, 'EI', 'EI', 'ST', 'IS', 'IS', 'NM', 'ST'];
+
 interface SDDObject1<T extends HL7TypeMap> {
   LotNumber?: T['EI'] | null;
   DeviceNumber?: T['EI'] | null;
@@ -15867,6 +24956,8 @@ interface SDDObject1<T extends HL7TypeMap> {
   OperatorName?: string | null;
 }
 
+type SFTTypes2 = [never, 'XON', 'ST', 'ST', 'ST', 'TX', 'DTM'];
+
 interface SFTObject2<T extends HL7TypeMap> {
   SoftwareVendorOrganization?: T['XON'] | null;
   SoftwareCertifiedVersionOrReleaseNumber?: string | null;
@@ -15875,6 +24966,8 @@ interface SFTObject2<T extends HL7TypeMap> {
   SoftwareProductInformation?: string | null;
   SoftwareInstallDate?: string | null;
 }
+
+type SIDTypes2 = [never, 'CWE', 'ST', 'ST', 'CWE'];
 
 interface SIDObject2<T extends HL7TypeMap> {
   ApplicationMethodIdentifier?: T['CWE'] | null;
@@ -15885,6 +24978,8 @@ interface SIDObject2<T extends HL7TypeMap> {
 
 type SLTFields1 = 1 | 2 | 3 | 4 | 5;
 
+type SLTTypes1 = [never, 'EI', 'ST', 'EI', 'EI', 'ST'];
+
 interface SLTObject1<T extends HL7TypeMap> {
   DeviceNumber?: T['EI'] | null;
   DeviceName?: string | null;
@@ -15892,6 +24987,39 @@ interface SLTObject1<T extends HL7TypeMap> {
   ItemIdentifier?: T['EI'] | null;
   BarCode?: string | null;
 }
+
+type SPMTypes2 = [
+  never,
+  'SI',
+  'EIP',
+  'EIP',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CQ',
+  'NM',
+  'ST',
+  'CWE',
+  'CWE',
+  'DR',
+  'DTM',
+  'DTM',
+  'ID',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CQ',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+];
 
 interface SPMObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -15966,6 +25094,49 @@ type STFFields5 =
   | 38
   | 39;
 
+type STFTypes6 = [
+  never,
+  'CWE',
+  'CX',
+  'XPN',
+  'IS',
+  'IS',
+  'DTM',
+  'ID',
+  'CWE',
+  'CWE',
+  'XTN',
+  'XAD',
+  'DIN',
+  'DIN',
+  'CWE',
+  'ST',
+  'CWE',
+  'CWE',
+  'ST',
+  'JCC',
+  'CWE',
+  'ID',
+  'DLN',
+  'ID',
+  'DT',
+  'DT',
+  'DT',
+  'CWE',
+  'CWE',
+  'ID',
+  'CWE',
+  'DTM',
+  'ID',
+  'CWE',
+  'DR',
+  'DT',
+  'CWE',
+  'ID',
+  'CWE',
+  'CWE',
+];
+
 interface STFObject6<T extends HL7TypeMap> {
   PrimaryKeyValueSTF?: T['CWE'] | null;
   StaffIdentifierList?: T['CX'][] | null;
@@ -16010,12 +25181,32 @@ interface STFObject6<T extends HL7TypeMap> {
 
 type STZFields1 = 1 | 2 | 3 | 4;
 
+type STZTypes1 = [never, 'CWE', 'CWE', 'CWE', 'CWE'];
+
 interface STZObject1<T extends HL7TypeMap> {
   SterilizationType?: T['CWE'] | null;
   SterilizationCycle?: T['CWE'] | null;
   MaintenanceCycle?: T['CWE'] | null;
   MaintenanceType?: T['CWE'] | null;
 }
+
+type TCCTypes2 = [
+  never,
+  'CWE',
+  'EI',
+  'SPS',
+  'SN',
+  'SN',
+  'SN',
+  'SN',
+  'NM',
+  'ID',
+  'ID',
+  'ID',
+  'SN',
+  'CWE',
+  'CWE',
+];
 
 interface TCCObject2<T extends HL7TypeMap> {
   UniversalServiceIdentifier?: T['CWE'] | null;
@@ -16034,6 +25225,8 @@ interface TCCObject2<T extends HL7TypeMap> {
   ProcessingType?: T['CWE'] | null;
 }
 
+type TCDTypes2 = [never, 'CWE', 'SN', 'SN', 'SN', 'SN', 'ID', 'ID', 'CWE'];
+
 interface TCDObject2<T extends HL7TypeMap> {
   UniversalServiceIdentifier?: T['CWE'] | null;
   AutoDilutionFactor?: T['SN'] | null;
@@ -16044,6 +25237,24 @@ interface TCDObject2<T extends HL7TypeMap> {
   ReflexAllowed?: string | null;
   AnalyteRepeatStatus?: T['CWE'] | null;
 }
+
+type TQ1Types2 = [
+  never,
+  'SI',
+  'CQ',
+  'RPT',
+  'TM',
+  'CQ',
+  'CQ',
+  'DTM',
+  'DTM',
+  'CWE',
+  'TX',
+  'TX',
+  'ID',
+  'CQ',
+  'NM',
+];
 
 interface TQ1Object2<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -16061,6 +25272,33 @@ interface TQ1Object2<T extends HL7TypeMap> {
   OccurrenceDuration?: T['CQ'] | null;
   TotalOccurrences?: number | string | null;
 }
+
+type TXATypes2 = [
+  never,
+  'SI',
+  'IS',
+  'ID',
+  'DTM',
+  'XCN',
+  'DTM',
+  'DTM',
+  'DTM',
+  'XCN',
+  'XCN',
+  'XCN',
+  'EI',
+  'EI',
+  'EI',
+  'EI',
+  'ST',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ST',
+  'PPN',
+  'XCN',
+];
 
 interface TXAObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -16089,6 +25327,8 @@ interface TXAObject3<T extends HL7TypeMap> {
 }
 
 type UACFields1 = 1 | 2;
+
+type UACTypes1 = [never, 'CWE', 'ED'];
 
 interface UACObject1<T extends HL7TypeMap> {
   UserAuthenticationCredentialTypeCode?: T['CWE'] | null;
@@ -16119,6 +25359,33 @@ type UB1Fields2 =
   | 22
   | 23;
 
+type UB1Types5 = [
+  never,
+  'SI',
+  never,
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'IS',
+  'NM',
+  'NM',
+  'UVC',
+  'NM',
+  'CWE',
+  'CWE',
+  'DT',
+  'DT',
+  'OCD',
+  'CWE',
+  'DT',
+  'DT',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+];
+
 interface UB1Object5<T extends HL7TypeMap> {
   SetID?: number | string | null;
   BloodFurnishedPints?: number | string | null;
@@ -16144,6 +25411,8 @@ interface UB1Object5<T extends HL7TypeMap> {
   UB82Locator45?: string | null;
 }
 
+type URDTypes3 = [never, 'DTM', 'ID', 'XCN', 'CWE', 'CWE', 'ST', 'ID'];
+
 interface URDObject4<T extends HL7TypeMap> {
   RUDateTime?: string | null;
   ReportPriority?: string | null;
@@ -16153,6 +25422,19 @@ interface URDObject4<T extends HL7TypeMap> {
   RUDisplayPrintLocations?: string[] | null;
   RUResultsLevel?: string | null;
 }
+
+type URSTypes4 = [
+  never,
+  'ST',
+  'DTM',
+  'DTM',
+  'ST',
+  'ST',
+  'ID',
+  'ID',
+  'ID',
+  'TQ',
+];
 
 interface URSObject4<T extends HL7TypeMap> {
   RUWhereSubjectDefinition?: string[] | null;
@@ -16166,6 +25448,8 @@ interface URSObject4<T extends HL7TypeMap> {
   RUQuantityTimingQualifier?: T['TQ'] | null;
 }
 
+type VARTypes2 = [never, 'EI', 'DTM', 'DTM', 'XCN', 'CWE', 'ST'];
+
 interface VARObject3<T extends HL7TypeMap> {
   VarianceInstanceID?: T['EI'] | null;
   DocumentedDateTime?: string | null;
@@ -16177,6 +25461,8 @@ interface VARObject3<T extends HL7TypeMap> {
 
 type VNDFields1 = 1 | 2 | 3 | 4 | 5;
 
+type VNDTypes1 = [never, 'SI', 'EI', 'ST', 'EI', 'CNE'];
+
 interface VNDObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   VendorIdentifier?: T['EI'] | null;
@@ -16185,9 +25471,194 @@ interface VNDObject1<T extends HL7TypeMap> {
   PrimaryVendorIndicator?: T['CNE'] | null;
 }
 
+type ZL7Types1 = [never];
+
 interface ZL7Object1<T extends HL7TypeMap> {}
 
+type ZxxTypes1 = [never];
+
 interface ZxxObject1<T extends HL7TypeMap> {}
+
+type CCDComps2 = [never, 'ID', 'DTM'];
+
+type CPComps2 = [never, 'MO', 'ID', 'NM', 'NM', 'CWE', 'ID'];
+
+type CQComps3 = [never, 'NM', 'CWE'];
+
+type DINComps2 = [never, 'DTM', 'CWE'];
+
+type DLDComps3 = [never, 'CWE', 'DTM'];
+
+type DRComps2 = [never, 'DTM', 'DTM'];
+
+type ELDComps2 = [never, 'ST', 'NM', 'NM', 'CWE'];
+
+type FCComps2 = [never, 'IS', 'DTM'];
+
+type ICDComps2 = [never, 'IS', 'ID', 'DTM'];
+
+type MAComps2 = [never, 'NM', 'NM', 'NM', 'NM'];
+
+type MOCComps2 = [never, 'MO', 'CWE'];
+
+type NDLComps3 = [
+  never,
+  'CNN',
+  'DTM',
+  'DTM',
+  'IS',
+  'IS',
+  'IS',
+  'HD',
+  'IS',
+  'IS',
+  'IS',
+  'IS',
+];
+
+type PIPComps2 = [never, 'CWE', 'CWE', 'DT', 'DT', 'EI'];
+
+type PPNComps5 = [
+  never,
+  'ST',
+  'FN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'IS',
+  'IS',
+  'HD',
+  'ID',
+  'ST',
+  'ID',
+  'ID',
+  'HD',
+  'DTM',
+  'ID',
+  'CWE',
+  'DR',
+  'ID',
+  'DTM',
+  'DTM',
+  'ST',
+  'CWE',
+  'CWE',
+];
+
+type PRLComps2 = [never, 'CWE', 'ST', 'TX'];
+
+type TQComps5 = [
+  never,
+  'CQ',
+  'RI',
+  'ST',
+  'DTM',
+  'DTM',
+  'ST',
+  'ST',
+  'TX',
+  'ID',
+  'OSD',
+  'CWE',
+  'NM',
+];
+
+type VIDComps2 = [never, 'ID', 'CWE', 'CWE'];
+
+type XADComps5 = [
+  never,
+  'SAD',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ID',
+  'ID',
+  'ST',
+  'IS',
+  'IS',
+  'ID',
+  'DR',
+  'DTM',
+  'DTM',
+  'CWE',
+  'ID',
+  'ID',
+  'ID',
+  'ST',
+  'ST',
+  'NM',
+  'CWE',
+  'EI',
+];
+
+type XCNComps5 = [
+  never,
+  'ST',
+  'FN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'IS',
+  'IS',
+  'HD',
+  'ID',
+  'ST',
+  'ID',
+  'ID',
+  'HD',
+  'ID',
+  'CWE',
+  'DR',
+  'ID',
+  'DTM',
+  'DTM',
+  'ST',
+  'CWE',
+  'CWE',
+];
+
+type XPNComps5 = [
+  never,
+  'FN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'IS',
+  'ID',
+  'ID',
+  'CWE',
+  'DR',
+  'ID',
+  'DTM',
+  'DTM',
+  'ST',
+];
+
+type XTNComps3 = [
+  never,
+  never,
+  'ID',
+  'ID',
+  'ST',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'DTM',
+  'DTM',
+  'CWE',
+  'CWE',
+  'EI',
+  'NM',
+];
 
 interface CSUComponents2 {
   ChannelSensitivity?: number | string | null;
@@ -16755,6 +26226,22 @@ type HL7Types_2_7 = {
 
 type ACCFields5 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
+type ACCTypes6 = [
+  never,
+  'DTM',
+  'CWE',
+  'ST',
+  'CWE',
+  'ID',
+  'ID',
+  'XCN',
+  'ST',
+  'ST',
+  'ID',
+  'XAD',
+  'NM',
+];
+
 interface ACCObject7<T extends HL7TypeMap> {
   AccidentDateTime?: string | null;
   AccidentCode?: T['CWE'] | null;
@@ -16769,6 +26256,25 @@ interface ACCObject7<T extends HL7TypeMap> {
   AccidentAddress?: T['XAD'] | null;
   DegreeOfPatientLiability?: number | string | null;
 }
+
+type ADJTypes2 = [
+  never,
+  'EI',
+  'EI',
+  'SI',
+  'CWE',
+  'CP',
+  'CQ',
+  'CWE',
+  'ST',
+  'NM',
+  'NM',
+  'CWE',
+  'EI',
+  'EI',
+  'DTM',
+  'XON',
+];
 
 interface ADJObject2<T extends HL7TypeMap> {
   ProviderAdjustmentNumber?: T['EI'] | null;
@@ -16788,6 +26294,24 @@ interface ADJObject2<T extends HL7TypeMap> {
   ResponsibleOrganization?: T['XON'] | null;
 }
 
+type AIGTypes3 = [
+  never,
+  'SI',
+  'ID',
+  'CWE',
+  'CWE',
+  'CWE',
+  'NM',
+  'CNE',
+  'DTM',
+  'NM',
+  'CNE',
+  'NM',
+  'CNE',
+  'CWE',
+  'CWE',
+];
+
 interface AIGObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SegmentActionCode?: string | null;
@@ -16805,6 +26329,22 @@ interface AIGObject3<T extends HL7TypeMap> {
   FillerStatusCode?: T['CWE'] | null;
 }
 
+type AILTypes3 = [
+  never,
+  'SI',
+  'ID',
+  'PL',
+  'CWE',
+  'CWE',
+  'DTM',
+  'NM',
+  'CNE',
+  'NM',
+  'CNE',
+  'CWE',
+  'CWE',
+];
+
 interface AILObject4<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SegmentActionCode?: string | null;
@@ -16820,6 +26360,22 @@ interface AILObject4<T extends HL7TypeMap> {
   FillerStatusCode?: T['CWE'] | null;
 }
 
+type AIPTypes3 = [
+  never,
+  'SI',
+  'ID',
+  'XCN',
+  'CWE',
+  'CWE',
+  'DTM',
+  'NM',
+  'CNE',
+  'NM',
+  'CNE',
+  'CWE',
+  'CWE',
+];
+
 interface AIPObject4<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SegmentActionCode?: string | null;
@@ -16834,6 +26390,22 @@ interface AIPObject4<T extends HL7TypeMap> {
   AllowSubstitutionCode?: T['CWE'] | null;
   FillerStatusCode?: T['CWE'] | null;
 }
+
+type AISTypes4 = [
+  never,
+  'SI',
+  'ID',
+  'CWE',
+  'DTM',
+  'NM',
+  'CNE',
+  'NM',
+  'CNE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+];
 
 interface AISObject4<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -16852,6 +26424,8 @@ interface AISObject4<T extends HL7TypeMap> {
 
 type AL1Fields2 = 1 | 2 | 3 | 4 | 5;
 
+type AL1Types6 = [never, 'SI', 'CWE', 'CWE', 'CWE', 'ST'];
+
 interface AL1Object6<T extends HL7TypeMap> {
   SetID?: number | string | null;
   AllergenTypeCode?: T['CWE'] | null;
@@ -16861,6 +26435,22 @@ interface AL1Object6<T extends HL7TypeMap> {
 }
 
 type AUTFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type AUTTypes3 = [
+  never,
+  'CWE',
+  'CWE',
+  'ST',
+  'DTM',
+  'DTM',
+  'EI',
+  'CP',
+  'CQ',
+  'CQ',
+  'DTM',
+  'CWE',
+  'CWE',
+];
 
 interface AUTObject3<T extends HL7TypeMap> {
   AuthorizingPayorPlanID?: T['CWE'] | null;
@@ -16877,6 +26467,23 @@ interface AUTObject3<T extends HL7TypeMap> {
   AuthorizedDiscipline?: T['CWE'][] | null;
 }
 
+type CDMTypes5 = [
+  never,
+  'CWE',
+  'CWE',
+  'ST',
+  'ST',
+  'CWE',
+  'CWE',
+  'CNE',
+  'ID',
+  'CWE',
+  'NM',
+  'CX',
+  'XON',
+  'ID',
+];
+
 interface CDMObject5<T extends HL7TypeMap> {
   PrimaryKeyValueCDM?: T['CWE'] | null;
   ChargeCodeAlias?: T['CWE'][] | null;
@@ -16892,6 +26499,41 @@ interface CDMObject5<T extends HL7TypeMap> {
   ContractOrganization?: T['XON'][] | null;
   RoomFeeIndicator?: string | null;
 }
+
+type CERTypes3 = [
+  never,
+  'SI',
+  'ST',
+  'ST',
+  'XON',
+  'XCN',
+  'ED',
+  'ID',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'EI',
+  'ST',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'CWE',
+  'ID',
+  'CWE',
+  'CWE',
+  'CWE',
+  'DTM',
+  'DTM',
+  'DTM',
+  'DTM',
+  'DTM',
+  'DTM',
+  'DTM',
+  'CWE',
+  'CWE',
+];
 
 interface CERObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -16927,6 +26569,35 @@ interface CERObject3<T extends HL7TypeMap> {
   CertificateStatusCode?: T['CWE'] | null;
 }
 
+type CONTypes3 = [
+  never,
+  'SI',
+  'CWE',
+  'ST',
+  'EI',
+  'FT',
+  'FT',
+  'FT',
+  'FT',
+  'FT',
+  'CNE',
+  'CNE',
+  'DTM',
+  'DTM',
+  'DTM',
+  'DTM',
+  'ID',
+  'ID',
+  'CWE',
+  'ID',
+  'CWE',
+  'ID',
+  'CWE',
+  'CWE',
+  'XPN',
+  'CWE',
+];
+
 interface CONObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ConsentType?: T['CWE'] | null;
@@ -16955,6 +26626,8 @@ interface CONObject3<T extends HL7TypeMap> {
   RelationshipToSubject?: T['CWE'][] | null;
 }
 
+type DB1Types2 = [never, 'SI', 'CWE', 'CX', 'ID', 'DT', 'DT', 'DT', 'DT'];
+
 interface DB1Object2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   DisabledPersonCode?: T['CWE'] | null;
@@ -16965,6 +26638,36 @@ interface DB1Object2<T extends HL7TypeMap> {
   DisabilityReturnToWorkDate?: string | null;
   DisabilityUnableToWorkDate?: string | null;
 }
+
+type DG1Types7 = [
+  never,
+  'SI',
+  never,
+  'CWE',
+  never,
+  'DTM',
+  'CWE',
+  never,
+  never,
+  never,
+  never,
+  never,
+  never,
+  never,
+  never,
+  'NM',
+  'XCN',
+  'CWE',
+  'ID',
+  'DTM',
+  'EI',
+  'ID',
+  'EI',
+  'CWE',
+  'ID',
+  'CWE',
+  'CWE',
+];
 
 interface DG1Object7<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -16984,6 +26687,43 @@ interface DG1Object7<T extends HL7TypeMap> {
   DRGDiagnosisDeterminationStatus?: T['CWE'] | null;
   PresentOnAdmissionPOAIndicator?: T['CWE'] | null;
 }
+
+type DRGTypes4 = [
+  never,
+  'CNE',
+  'DTM',
+  'ID',
+  'CWE',
+  'CWE',
+  'NM',
+  'CP',
+  'CWE',
+  'CP',
+  'ID',
+  'CWE',
+  'XPN',
+  'CWE',
+  'CWE',
+  'NM',
+  'MO',
+  'CWE',
+  'ST',
+  'ST',
+  'CWE',
+  'MO',
+  'MO',
+  'MO',
+  'MO',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+];
 
 interface DRGObject4<T extends HL7TypeMap> {
   DiagnosticRelatedGroup?: T['CNE'] | null;
@@ -17023,12 +26763,27 @@ interface DRGObject4<T extends HL7TypeMap> {
 
 type ECDFields2 = 1 | 2 | 3 | 5;
 
+type ECDTypes4 = [never, 'NM', 'CWE', 'ID', never, 'TX'];
+
 interface ECDObject3<T extends HL7TypeMap> {
   ReferenceCommandNumber?: number | string | null;
   RemoteControlCommand?: T['CWE'] | null;
   ResponseRequired?: string | null;
   Parameters?: string[] | null;
 }
+
+type EDUTypes4 = [
+  never,
+  'SI',
+  'CWE',
+  'DR',
+  'DR',
+  'DT',
+  'XON',
+  'CWE',
+  'XAD',
+  'CWE',
+];
 
 interface EDUObject4<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -17043,6 +26798,22 @@ interface EDUObject4<T extends HL7TypeMap> {
 }
 
 type ERRFields3 = 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type ERRTypes5 = [
+  never,
+  never,
+  'ERL',
+  'CWE',
+  'ID',
+  'CWE',
+  'ST',
+  'TX',
+  'TX',
+  'CWE',
+  'CWE',
+  'CWE',
+  'XTN',
+];
 
 interface ERRObject5<T extends HL7TypeMap> {
   ErrorLocation?: T['ERL'][] | null;
@@ -17059,6 +26830,8 @@ interface ERRObject5<T extends HL7TypeMap> {
 }
 
 type EVNFields5 = 2 | 3 | 4 | 5 | 6 | 7;
+
+type EVNTypes7 = [never, never, 'DTM', 'DTM', 'CWE', 'XCN', 'DTM', 'HD'];
 
 interface EVNObject7<T extends HL7TypeMap> {
   RecordedDateTime?: string | null;
@@ -17111,6 +26884,53 @@ type FT1Fields7 =
   | 41
   | 42
   | 43;
+
+type FT1Types7 = [
+  never,
+  'SI',
+  'ST',
+  'ST',
+  'DR',
+  'DTM',
+  'CWE',
+  'CWE',
+  never,
+  never,
+  'NM',
+  'CP',
+  'CP',
+  'CWE',
+  'CWE',
+  'CP',
+  'PL',
+  'CWE',
+  'CWE',
+  'CWE',
+  'XCN',
+  'XCN',
+  'CP',
+  'EI',
+  'XCN',
+  'CNE',
+  'CNE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CX',
+  'SI',
+  'XON',
+  'XON',
+  'CWE',
+  'ST',
+  'CWE',
+  'CWE',
+  'CX',
+  'CX',
+  'CWE',
+  'CWE',
+  'ST',
+  'CQ',
+];
 
 interface FT1Object7<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -17179,6 +26999,32 @@ type GOLFields3 =
   | 21
   | 22;
 
+type GOLTypes3 = [
+  never,
+  'ID',
+  'DTM',
+  'CWE',
+  'EI',
+  'EI',
+  'NM',
+  'DTM',
+  'DTM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'DTM',
+  'DTM',
+  'DTM',
+  never,
+  'CWE',
+  'ST',
+  'CWE',
+  'DTM',
+  'CWE',
+  'XPN',
+  'CNE',
+];
+
 interface GOLObject3<T extends HL7TypeMap> {
   ActionCode?: string | null;
   ActionDateTime?: string | null;
@@ -17203,6 +27049,8 @@ interface GOLObject3<T extends HL7TypeMap> {
   MoodCode?: T['CNE'] | null;
 }
 
+type GP1Types2 = [never, 'CWE', 'CWE', 'CWE', 'CWE', 'CP'];
+
 interface GP1Object2<T extends HL7TypeMap> {
   TypeOfBillCode?: T['CWE'] | null;
   RevenueCode?: T['CWE'][] | null;
@@ -17210,6 +27058,24 @@ interface GP1Object2<T extends HL7TypeMap> {
   OCEEditsPerVisitCode?: T['CWE'][] | null;
   OutlierCost?: T['CP'] | null;
 }
+
+type GP2Types3 = [
+  never,
+  'CWE',
+  'NM',
+  'CP',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CP',
+  'CWE',
+  'CP',
+  'NM',
+];
 
 interface GP2Object3<T extends HL7TypeMap> {
   RevenueCode?: T['CWE'] | null;
@@ -17227,6 +27093,67 @@ interface GP2Object3<T extends HL7TypeMap> {
   CoPayAmount?: T['CP'] | null;
   PayRatePerServiceUnit?: number | string | null;
 }
+
+type GT1Types7 = [
+  never,
+  'SI',
+  'CX',
+  'XPN',
+  'XPN',
+  'XAD',
+  'XTN',
+  'XTN',
+  'DTM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ST',
+  'DT',
+  'DT',
+  'NM',
+  'XPN',
+  'XAD',
+  'XTN',
+  'CX',
+  'CWE',
+  'XON',
+  'ID',
+  'CWE',
+  'DTM',
+  'ID',
+  'CWE',
+  'CP',
+  'NM',
+  'CX',
+  'CWE',
+  'DT',
+  'DT',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'CWE',
+  'CWE',
+  'XPN',
+  'CWE',
+  'CWE',
+  'XPN',
+  'XTN',
+  'CWE',
+  'CWE',
+  'ST',
+  'JCC',
+  'XON',
+  'CWE',
+  'CWE',
+  'FC',
+  'CWE',
+  'ST',
+  'CWE',
+];
 
 interface GT1Object7<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -17320,6 +27247,40 @@ type IAMFields2 =
   | 29
   | 30;
 
+type IAMTypes3 = [
+  never,
+  'SI',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ST',
+  'CNE',
+  'EI',
+  'ST',
+  'CWE',
+  'CWE',
+  'DT',
+  'ST',
+  'DTM',
+  'XPN',
+  'CWE',
+  'CWE',
+  'CWE',
+  'XCN',
+  'XON',
+  'DTM',
+  'XCN',
+  'DTM',
+  'XCN',
+  'DTM',
+  'XCN',
+  'DTM',
+  'CWE',
+  'XON',
+  'XON',
+  'XON',
+];
+
 interface IAMObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
   AllergenTypeCode?: T['CWE'] | null;
@@ -17354,6 +27315,8 @@ interface IAMObject3<T extends HL7TypeMap> {
 }
 
 type IARFields1 = 1 | 2 | 3 | 4;
+
+type IARTypes1 = [never, 'CWE', 'CWE', 'CWE', 'ST'];
 
 interface IARObject1<T extends HL7TypeMap> {
   AllergyReactionCode?: T['CWE'] | null;
@@ -17415,6 +27378,64 @@ type IN1Fields6 =
   | 53
   | 54;
 
+type IN1Types7 = [
+  never,
+  'SI',
+  'CWE',
+  'CX',
+  'XON',
+  'XAD',
+  'XPN',
+  'XTN',
+  'ST',
+  'XON',
+  'CX',
+  'XON',
+  'DT',
+  'DT',
+  'AUI',
+  'CWE',
+  'XPN',
+  'CWE',
+  'DTM',
+  'XAD',
+  'CWE',
+  'CWE',
+  'ST',
+  'ID',
+  'DT',
+  'ID',
+  'DT',
+  'CWE',
+  'ST',
+  'DTM',
+  'XCN',
+  'CWE',
+  'CWE',
+  'NM',
+  'NM',
+  'CWE',
+  'ST',
+  'CP',
+  never,
+  'NM',
+  never,
+  never,
+  'CWE',
+  'CWE',
+  'XAD',
+  'ST',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CX',
+  'CWE',
+  'DT',
+  'ST',
+  'CWE',
+  'CX',
+];
+
 interface IN1Object7<T extends HL7TypeMap> {
   SetID?: number | string | null;
   HealthPlanID?: T['CWE'] | null;
@@ -17468,6 +27489,82 @@ interface IN1Object7<T extends HL7TypeMap> {
   VIPIndicator?: T['CWE'] | null;
   ExternalHealthPlanIdentifiers?: T['CX'][] | null;
 }
+
+type IN2Types5 = [
+  never,
+  'CX',
+  'ST',
+  'XCN',
+  'CWE',
+  'CWE',
+  'ST',
+  'XPN',
+  'ST',
+  'XPN',
+  'ST',
+  'CWE',
+  'ST',
+  'ST',
+  'CWE',
+  'CWE',
+  'CWE',
+  'DT',
+  'ID',
+  'ID',
+  'ID',
+  'ST',
+  'XPN',
+  'ST',
+  'CWE',
+  'CX',
+  'CX',
+  'CWE',
+  'RMC',
+  'PTA',
+  'DDI',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'CWE',
+  'CWE',
+  'XPN',
+  'CWE',
+  'CWE',
+  'CWE',
+  'DT',
+  'DT',
+  'ST',
+  'JCC',
+  'CWE',
+  'XPN',
+  'XTN',
+  'CWE',
+  'XPN',
+  'XTN',
+  'CWE',
+  'DT',
+  'DT',
+  'CWE',
+  'XTN',
+  'CWE',
+  'CWE',
+  'CX',
+  'CWE',
+  'XTN',
+  'XTN',
+  'CWE',
+  'ID',
+  'ID',
+  'ID',
+  'XON',
+  'XON',
+  'CWE',
+  'CWE',
+];
 
 interface IN2Object5<T extends HL7TypeMap> {
   InsuredSEmployeeID?: T['CX'][] | null;
@@ -17544,6 +27641,35 @@ interface IN2Object5<T extends HL7TypeMap> {
   PatientSRelationshipToInsured?: T['CWE'] | null;
 }
 
+type IN3Types6 = [
+  never,
+  'SI',
+  'CX',
+  'XCN',
+  'ID',
+  'MOP',
+  'DTM',
+  'DTM',
+  'XCN',
+  'DT',
+  'DT',
+  'DTN',
+  'CWE',
+  'DTM',
+  'XCN',
+  'ST',
+  'XTN',
+  'CWE',
+  'CWE',
+  'XTN',
+  'ICD',
+  'ST',
+  'DT',
+  'CWE',
+  'CWE',
+  'XCN',
+];
+
 interface IN3Object6<T extends HL7TypeMap> {
   SetID?: number | string | null;
   CertificationNumber?: T['CX'] | null;
@@ -17593,6 +27719,30 @@ type INVFields3 =
   | 19
   | 20;
 
+type INVTypes4 = [
+  never,
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'CWE',
+  'DTM',
+  'DTM',
+  never,
+  'CWE',
+  'ST',
+  'CWE',
+  'CWE',
+  'CQ',
+  'CQ',
+];
+
 interface INVObject4<T extends HL7TypeMap> {
   SubstanceIdentifier?: T['CWE'] | null;
   SubstanceStatus?: T['CWE'][] | null;
@@ -17614,6 +27764,39 @@ interface INVObject4<T extends HL7TypeMap> {
   OnBoardStabilityTime?: T['CQ'] | null;
   TargetValue?: T['CQ'] | null;
 }
+
+type ITMTypes2 = [
+  never,
+  'EI',
+  'ST',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CNE',
+  'EI',
+  'ST',
+  'ST',
+  'CWE',
+  'CNE',
+  'CWE',
+  'CP',
+  'CNE',
+  'CWE',
+  'XON',
+  'CNE',
+  'CWE',
+  'CWE',
+  'NM',
+  'MO',
+  'CNE',
+  'CNE',
+  'CNE',
+  'EI',
+  'CNE',
+  'CNE',
+  'CNE',
+  'CWE',
+];
 
 interface ITMObject2<T extends HL7TypeMap> {
   ItemIdentifier?: T['EI'] | null;
@@ -17646,6 +27829,40 @@ interface ITMObject2<T extends HL7TypeMap> {
   ProcedureCodeModifier?: T['CNE'][] | null;
   SpecialHandlingCode?: T['CWE'] | null;
 }
+
+type IVCTypes2 = [
+  never,
+  'EI',
+  'EI',
+  'EI',
+  'CWE',
+  'CWE',
+  'CWE',
+  'DTM',
+  'CP',
+  'ST',
+  'XON',
+  'XON',
+  'XCN',
+  'ID',
+  'DTM',
+  'ST',
+  'CP',
+  'CP',
+  'CP',
+  'XCN',
+  'CX',
+  'CP',
+  'CP',
+  'CP',
+  'NM',
+  'CWE',
+  'ST',
+  'ST',
+  'CWE',
+  'CWE',
+  'ST',
+];
 
 interface IVCObject2<T extends HL7TypeMap> {
   ProviderInvoiceNumber?: T['EI'] | null;
@@ -17680,6 +27897,22 @@ interface IVCObject2<T extends HL7TypeMap> {
   SalesTaxID?: string | null;
 }
 
+type LDPTypes5 = [
+  never,
+  'PL',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'DTM',
+  'DTM',
+  'ST',
+  'VH',
+  'XTN',
+  'CWE',
+];
+
 interface LDPObject4<T extends HL7TypeMap> {
   PrimaryKeyValueLDP?: T['PL'] | null;
   LocationDepartment?: T['CWE'] | null;
@@ -17695,6 +27928,19 @@ interface LDPObject4<T extends HL7TypeMap> {
   LocationCostCenter?: T['CWE'] | null;
 }
 
+type LOCTypes5 = [
+  never,
+  'PL',
+  'ST',
+  'CWE',
+  'XON',
+  'XAD',
+  'XTN',
+  'CWE',
+  'CWE',
+  'CWE',
+];
+
 interface LOCObject5<T extends HL7TypeMap> {
   PrimaryKeyValueLOC?: T['PL'] | null;
   LocationDescription?: string | null;
@@ -17709,6 +27955,8 @@ interface LOCObject5<T extends HL7TypeMap> {
 
 type MRGFields4 = 1 | 3 | 5 | 6 | 7;
 
+type MRGTypes5 = [never, 'CX', never, 'CX', never, 'CX', 'CX', 'XPN'];
+
 interface MRGObject5<T extends HL7TypeMap> {
   PriorPatientIdentifierList?: T['CX'][] | null;
   PriorPatientAccountNumber?: T['CX'] | null;
@@ -17718,6 +27966,8 @@ interface MRGObject5<T extends HL7TypeMap> {
 }
 
 type MSAFields4 = 1 | 2 | 4 | 7 | 8;
+
+type MSATypes5 = [never, 'ID', 'ST', never, 'NM', never, never, 'NM', 'ID'];
 
 interface MSAObject4<T extends HL7TypeMap> {
   AcknowledgmentCode?: string | null;
@@ -17770,6 +28020,51 @@ type NK1Fields5 =
   | 40
   | 41;
 
+type NK1Types7 = [
+  never,
+  'SI',
+  'XPN',
+  'CWE',
+  'XAD',
+  'XTN',
+  'XTN',
+  'CWE',
+  'DT',
+  'DT',
+  'ST',
+  'JCC',
+  'CX',
+  'XON',
+  'CWE',
+  'CWE',
+  'DTM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'CWE',
+  'CWE',
+  'XPN',
+  'CWE',
+  'CWE',
+  'CWE',
+  'XPN',
+  'XTN',
+  'XAD',
+  'CX',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ST',
+  'ST',
+  'CWE',
+  'XTN',
+  'XTN',
+];
+
 interface NK1Object7<T extends HL7TypeMap> {
   SetID?: number | string | null;
   Name?: T['XPN'][] | null;
@@ -17814,10 +28109,14 @@ interface NK1Object7<T extends HL7TypeMap> {
   ContactPersonSTelecommunicationInformation?: T['XTN'] | null;
 }
 
+type NPUTypes4 = [never, 'PL', 'CWE'];
+
 interface NPUObject4<T extends HL7TypeMap> {
   BedLocation?: T['PL'] | null;
   BedStatus?: T['CWE'] | null;
 }
+
+type NSCTypes5 = [never, 'CWE', 'ST', 'ST', 'HD', 'HD', 'ST', 'ST', 'HD', 'HD'];
 
 interface NSCObject4<T extends HL7TypeMap> {
   ApplicationChangeType?: T['CWE'] | null;
@@ -17880,6 +28179,63 @@ type OBRFields7 =
   | 51
   | 52
   | 53;
+
+type OBRTypes9 = [
+  never,
+  'SI',
+  'EI',
+  'EI',
+  'CWE',
+  never,
+  never,
+  'DTM',
+  'DTM',
+  'CQ',
+  'XCN',
+  'ID',
+  'CWE',
+  'ST',
+  never,
+  never,
+  'XCN',
+  'XTN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'DTM',
+  'MOC',
+  'ID',
+  'ID',
+  'PRL',
+  never,
+  'XCN',
+  'EIP',
+  'ID',
+  'CWE',
+  'NDL',
+  'NDL',
+  'NDL',
+  'NDL',
+  'DTM',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'ID',
+  'CWE',
+  'CNE',
+  'CNE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'EI',
+  'EI',
+  'CX',
+];
 
 interface OBRObject9<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -17960,6 +28316,36 @@ type OBXFields7 =
   | 25
   | 26;
 
+type OBXTypes7 = [
+  never,
+  'SI',
+  'ID',
+  'CWE',
+  'ST',
+  'VARIES',
+  'CWE',
+  'ST',
+  'CWE',
+  'NM',
+  'ID',
+  'ID',
+  'DTM',
+  'ST',
+  'DTM',
+  'CWE',
+  'XCN',
+  'CWE',
+  'EI',
+  'DTM',
+  'CWE',
+  'EI',
+  'CNE',
+  'XON',
+  'XAD',
+  'XCN',
+  'ID',
+];
+
 interface OBXObject9<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ValueType?: string | null;
@@ -17988,6 +28374,57 @@ interface OBXObject9<T extends HL7TypeMap> {
   PerformingOrganizationMedicalDirector?: T['XCN'] | null;
   PatientResultsReleaseCategory?: string | null;
 }
+
+type OM1Types6 = [
+  never,
+  'NM',
+  'CWE',
+  'ID',
+  'ID',
+  'CWE',
+  'TX',
+  'CWE',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ID',
+  'CWE',
+  'CWE',
+  'ID',
+  'CWE',
+  'XTN',
+  'CWE',
+  'CWE',
+  'ST',
+  'DTM',
+  'DTM',
+  'NM',
+  'NM',
+  'ID',
+  'ID',
+  'CWE',
+  'XAD',
+  'XTN',
+  'CWE',
+  'CWE',
+  'TX',
+  'CWE',
+  'CWE',
+  'TX',
+  'CWE',
+  'TX',
+  'CWE',
+  'TX',
+  'ST',
+  'TX',
+  'CWE',
+  'CWE',
+  'TX',
+  'CWE',
+  'CWE',
+  'CWE',
+];
 
 interface OM1Object6<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
@@ -18038,6 +28475,34 @@ interface OM1Object6<T extends HL7TypeMap> {
   TargetAnatomicSiteOfTest?: T['CWE'] | null;
   ModalityOfImagingMeasurement?: T['CWE'] | null;
 }
+
+type OM7Types3 = [
+  never,
+  'NM',
+  'CWE',
+  'CWE',
+  'TX',
+  'ST',
+  'DTM',
+  'DTM',
+  'NM',
+  'CWE',
+  'CWE',
+  'ID',
+  'CWE',
+  'DTM',
+  'DTM',
+  'NM',
+  'CWE',
+  'NM',
+  'CWE',
+  'DTM',
+  'XCN',
+  'PL',
+  'CWE',
+  'ID',
+  'CWE',
+];
 
 interface OM7Object3<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
@@ -18100,6 +28565,43 @@ type ORCFields7 =
   | 32
   | 33;
 
+type ORCTypes9 = [
+  never,
+  'ID',
+  'EI',
+  'EI',
+  'EI',
+  'ID',
+  'ID',
+  never,
+  'EIP',
+  'DTM',
+  'XCN',
+  'XCN',
+  'XCN',
+  'PL',
+  'XTN',
+  'DTM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'XCN',
+  'CWE',
+  'XON',
+  'XAD',
+  'XTN',
+  'XAD',
+  'CWE',
+  'CWE',
+  'DTM',
+  'CWE',
+  'CWE',
+  'CNE',
+  'CWE',
+  'DT',
+  'CX',
+];
+
 interface ORCObject9<T extends HL7TypeMap> {
   OrderControl?: string | null;
   PlacerOrderNumber?: T['EI'] | null;
@@ -18137,6 +28639,23 @@ interface ORCObject9<T extends HL7TypeMap> {
 
 type ORGFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
 
+type ORGTypes3 = [
+  never,
+  'SI',
+  'CWE',
+  'CWE',
+  'ID',
+  'CX',
+  'CWE',
+  'CWE',
+  'CWE',
+  'DR',
+  'CWE',
+  'ID',
+  'ID',
+  'CWE',
+];
+
 interface ORGObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
   OrganizationUnitCode?: T['CWE'] | null;
@@ -18155,6 +28674,8 @@ interface ORGObject3<T extends HL7TypeMap> {
 
 type PACFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
+type PACTypes1 = [never, 'SI', 'EI', 'EI', 'NA', 'CWE', 'CWE', 'CWE', 'CWE'];
+
 interface PACObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   PackageID?: T['EI'] | null;
@@ -18166,12 +28687,41 @@ interface PACObject1<T extends HL7TypeMap> {
   PackageRiskCode?: T['CWE'][] | null;
 }
 
+type PCETypes2 = [never, 'SI', 'CX', 'CWE', 'CP'];
+
 interface PCEObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   CostCenterAccountNumber?: T['CX'] | null;
   TransactionCode?: T['CWE'] | null;
   TransactionAmountUnit?: T['CP'] | null;
 }
+
+type PCRTypes3 = [
+  never,
+  'CWE',
+  'IS',
+  'CWE',
+  'CQ',
+  'DTM',
+  'DTM',
+  'DTM',
+  'DTM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ST',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'DTM',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+];
 
 interface PCRObject3<T extends HL7TypeMap> {
   ImplicatedProduct?: T['CWE'] | null;
@@ -18221,6 +28771,32 @@ type PD1Fields4 =
   | 20
   | 21
   | 22;
+
+type PD1Types4 = [
+  never,
+  'CWE',
+  'CWE',
+  'XON',
+  never,
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'CX',
+  'CWE',
+  'ID',
+  'DT',
+  'XON',
+  'CWE',
+  'CWE',
+  'DT',
+  'DT',
+  'CWE',
+  'CWE',
+  'CWE',
+  'DT',
+];
 
 interface PD1Object5<T extends HL7TypeMap> {
   LivingDependency?: T['CWE'][] | null;
@@ -18281,6 +28857,50 @@ type PIDFields6 =
   | 39
   | 40;
 
+type PIDTypes8 = [
+  never,
+  'SI',
+  never,
+  'CX',
+  never,
+  'XPN',
+  'XPN',
+  'DTM',
+  'CWE',
+  never,
+  'CWE',
+  'XAD',
+  never,
+  'XTN',
+  'XTN',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CX',
+  never,
+  never,
+  'CX',
+  'CWE',
+  'ST',
+  'ID',
+  'NM',
+  'CWE',
+  'CWE',
+  never,
+  'DTM',
+  'ID',
+  'ID',
+  'CWE',
+  'DTM',
+  'HD',
+  'CWE',
+  'CWE',
+  'ST',
+  'CWE',
+  'CWE',
+  'XTN',
+];
+
 interface PIDObject8<T extends HL7TypeMap> {
   SetID?: number | string | null;
   PatientIdentifierList?: T['CX'][] | null;
@@ -18339,6 +28959,35 @@ type PR1Fields8 =
   | 24
   | 25;
 
+type PR1Types8 = [
+  never,
+  'SI',
+  never,
+  'CNE',
+  never,
+  'DTM',
+  'CWE',
+  'NM',
+  never,
+  'CWE',
+  'NM',
+  never,
+  never,
+  'CWE',
+  'NM',
+  'CWE',
+  'CNE',
+  'CWE',
+  'CWE',
+  'EI',
+  'ID',
+  'CWE',
+  'CWE',
+  'PL',
+  'ID',
+  'EI',
+];
+
 interface PR1Object8<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ProcedureCode?: T['CNE'] | null;
@@ -18362,6 +29011,22 @@ interface PR1Object8<T extends HL7TypeMap> {
   ParentProcedureID?: T['EI'] | null;
 }
 
+type PRATypes5 = [
+  never,
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'SPD',
+  'PLN',
+  'PIP',
+  'DT',
+  'CWE',
+  'DT',
+  'CWE',
+  'SI',
+];
+
 interface PRAObject5<T extends HL7TypeMap> {
   PrimaryKeyValuePRA?: T['CWE'] | null;
   PractitionerGroup?: T['CWE'][] | null;
@@ -18376,6 +29041,28 @@ interface PRAObject5<T extends HL7TypeMap> {
   GovernmentReimbursementBillingEligibility?: T['CWE'][] | null;
   SetID?: number | string | null;
 }
+
+type PRCTypes4 = [
+  never,
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CP',
+  'ST',
+  'NM',
+  'NM',
+  'MO',
+  'MO',
+  'DTM',
+  'DTM',
+  'CWE',
+  'CWE',
+  'ID',
+  'ID',
+  'MO',
+  'CWE',
+];
 
 interface PRCObject4<T extends HL7TypeMap> {
   PrimaryKeyValuePRC?: T['CWE'] | null;
@@ -18401,6 +29088,25 @@ interface PRCObject4<T extends HL7TypeMap> {
 type PRTFields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
 
+type PRTTypes1 = [
+  never,
+  'EI',
+  'ID',
+  'CWE',
+  'CWE',
+  'XCN',
+  'CWE',
+  'CWE',
+  'XON',
+  'PL',
+  'EI',
+  'DTM',
+  'DTM',
+  'CWE',
+  'XAD',
+  'XTN',
+];
+
 interface PRTObject1<T extends HL7TypeMap> {
   ParticipationInstanceID?: T['EI'] | null;
   ActionCode?: string | null;
@@ -18418,6 +29124,58 @@ interface PRTObject1<T extends HL7TypeMap> {
   ParticipationAddress?: T['XAD'][] | null;
   ParticipantTelecommunicationAddress?: T['XTN'][] | null;
 }
+
+type PSLTypes2 = [
+  never,
+  'EI',
+  'EI',
+  'SI',
+  'EI',
+  'EI',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ST',
+  'DTM',
+  'DTM',
+  'CQ',
+  'CP',
+  'NM',
+  'CP',
+  'CP',
+  'CWE',
+  'ST',
+  'EI',
+  'CWE',
+  'ID',
+  'CWE',
+  'CP',
+  'NM',
+  'CX',
+  'DR',
+  'NM',
+  'NM',
+  'XCN',
+  'XCN',
+  'CWE',
+  'CWE',
+  'CWE',
+  'NM',
+  'CP',
+  'NM',
+  'NM',
+  'CP',
+  'NM',
+  'CP',
+  'NM',
+  'NM',
+  'CP',
+  'CP',
+  'NM',
+  'ID',
+  'ID',
+  'ST',
+];
 
 interface PSLObject2<T extends HL7TypeMap> {
   ProviderProductServiceLineItemNumber?: T['EI'] | null;
@@ -18524,6 +29282,64 @@ type PV1Fields4 =
   | 53
   | 54;
 
+type PV1Types6 = [
+  never,
+  'SI',
+  'CWE',
+  'PL',
+  'CWE',
+  'CX',
+  'PL',
+  'XCN',
+  'XCN',
+  'XCN',
+  'CWE',
+  'PL',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'XCN',
+  'CWE',
+  'CX',
+  'FC',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'DT',
+  'NM',
+  'NM',
+  'CWE',
+  'CWE',
+  'DT',
+  'CWE',
+  'NM',
+  'NM',
+  'CWE',
+  'DT',
+  'CWE',
+  'DLD',
+  'CWE',
+  'CWE',
+  never,
+  'CWE',
+  'PL',
+  'PL',
+  'DTM',
+  'DTM',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'CX',
+  'CWE',
+  never,
+  'ST',
+  'CX',
+];
+
 interface PV1Object7<T extends HL7TypeMap> {
   SetID?: number | string | null;
   PatientClass?: T['CWE'] | null;
@@ -18579,6 +29395,60 @@ interface PV1Object7<T extends HL7TypeMap> {
   ServiceEpisodeIdentifier?: T['CX'] | null;
 }
 
+type PV2Types7 = [
+  never,
+  'PL',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ST',
+  'ST',
+  'CWE',
+  'DTM',
+  'DTM',
+  'NM',
+  'NM',
+  'ST',
+  'XCN',
+  'DT',
+  'ID',
+  'CWE',
+  'DT',
+  'CWE',
+  'ID',
+  'NM',
+  'CWE',
+  'ID',
+  'XON',
+  'CWE',
+  'CWE',
+  'DT',
+  'CWE',
+  'DT',
+  'DT',
+  'CWE',
+  'CWE',
+  'ID',
+  'DTM',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'DT',
+  'DTM',
+  'DTM',
+  'CWE',
+  'DT',
+];
+
 interface PV2Object7<T extends HL7TypeMap> {
   PriorPendingLocation?: T['PL'] | null;
   AccommodationCode?: T['CWE'] | null;
@@ -18632,6 +29502,8 @@ interface PV2Object7<T extends HL7TypeMap> {
   AdvanceDirectiveLastVerifiedDate?: string | null;
 }
 
+type PYETypes2 = [never, 'SI', 'CWE', 'CWE', 'XON', 'XPN', 'XAD', 'CWE'];
+
 interface PYEObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   PayeeType?: T['CWE'] | null;
@@ -18642,9 +29514,15 @@ interface PYEObject2<T extends HL7TypeMap> {
   PaymentMethod?: T['CWE'] | null;
 }
 
+type QRDTypes6 = [never];
+
 interface QRDObject6<T extends HL7TypeMap> {}
 
+type QRFTypes6 = [never];
+
 interface QRFObject6<T extends HL7TypeMap> {}
+
+type QRITypes3 = [never, 'NM', 'CWE', 'CWE'];
 
 interface QRIObject3<T extends HL7TypeMap> {
   CandidateConfidence?: number | string | null;
@@ -18653,6 +29531,24 @@ interface QRIObject3<T extends HL7TypeMap> {
 }
 
 type ROLFields4 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
+type ROLTypes4 = [
+  never,
+  'EI',
+  'ID',
+  'CWE',
+  'XCN',
+  'DTM',
+  'DTM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'XAD',
+  'XTN',
+  'PL',
+  'XON',
+];
 
 interface ROLObject5<T extends HL7TypeMap> {
   RoleInstanceID?: T['EI'] | null;
@@ -18670,6 +29566,20 @@ interface ROLObject5<T extends HL7TypeMap> {
   PersonSLocation?: T['PL'] | null;
   Organization?: T['XON'] | null;
 }
+
+type RQDTypes4 = [
+  never,
+  'SI',
+  'CWE',
+  'CWE',
+  'CWE',
+  'NM',
+  'CWE',
+  'CX',
+  'CWE',
+  'CWE',
+  'DT',
+];
 
 interface RQDObject3<T extends HL7TypeMap> {
   RequisitionLineNumber?: number | string | null;
@@ -18719,6 +29629,44 @@ type RXDFields5 =
   | 32
   | 33
   | 34;
+
+type RXDTypes7 = [
+  never,
+  'NM',
+  'CWE',
+  'DTM',
+  'NM',
+  'CWE',
+  'CWE',
+  'ST',
+  'NM',
+  'ST',
+  'XCN',
+  'ID',
+  'CQ',
+  'LA2',
+  'ID',
+  'CWE',
+  'NM',
+  'CWE',
+  'ST',
+  'DTM',
+  'CWE',
+  'CWE',
+  'NM',
+  'CWE',
+  'ID',
+  'CWE',
+  'CWE',
+  'CWE',
+  'NM',
+  'CWE',
+  'CWE',
+  'XAD',
+  'ID',
+  'CWE',
+  'XTN',
+];
 
 interface RXDObject7<T extends HL7TypeMap> {
   DispenseSubIDCounter?: number | string | null;
@@ -18802,6 +29750,55 @@ type RXEFields5 =
   | 44
   | 45;
 
+type RXETypes7 = [
+  never,
+  never,
+  'CWE',
+  'NM',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  never,
+  'ID',
+  'NM',
+  'CWE',
+  'NM',
+  'XCN',
+  'XCN',
+  'ST',
+  'NM',
+  'NM',
+  'DTM',
+  'CQ',
+  'ID',
+  'CWE',
+  'ST',
+  'ST',
+  'CWE',
+  'NM',
+  'CWE',
+  'CWE',
+  'NM',
+  'CWE',
+  'ID',
+  'CWE',
+  'DTM',
+  'NM',
+  'CWE',
+  'CWE',
+  'ID',
+  'CWE',
+  'CWE',
+  'NM',
+  'CWE',
+  'XAD',
+  'PL',
+  'XAD',
+  'ID',
+  'XTN',
+];
+
 interface RXEObject7<T extends HL7TypeMap> {
   GiveCode?: T['CWE'] | null;
   GiveAmountMinimum?: number | string | null;
@@ -18879,6 +29876,40 @@ type RXGFields5 =
   | 29
   | 30;
 
+type RXGTypes6 = [
+  never,
+  'NM',
+  'NM',
+  never,
+  'CWE',
+  'NM',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'LA2',
+  'ID',
+  'CWE',
+  'ST',
+  'ST',
+  'CWE',
+  'NM',
+  'CWE',
+  'ST',
+  'DTM',
+  'CWE',
+  'CWE',
+  'NM',
+  'CWE',
+  'CWE',
+  'ID',
+  'CWE',
+  'XAD',
+  'PL',
+  'XAD',
+];
+
 interface RXGObject6<T extends HL7TypeMap> {
   GiveSubIDCounter?: number | string | null;
   DispenseSubIDCounter?: number | string | null;
@@ -18949,6 +29980,46 @@ type RXOFields7 =
   | 34
   | 35
   | 36;
+
+type RXOTypes7 = [
+  never,
+  'CWE',
+  'NM',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'LA1',
+  'ID',
+  'CWE',
+  'NM',
+  'CWE',
+  'NM',
+  'XCN',
+  'XCN',
+  'ID',
+  'ST',
+  'NM',
+  'CWE',
+  'CWE',
+  'ST',
+  'CWE',
+  'CQ',
+  'CWE',
+  'NM',
+  'CWE',
+  'ID',
+  'NM',
+  'EI',
+  'EI',
+  'CNE',
+  'CWE',
+  'XAD',
+  'PL',
+  'XAD',
+  'XTN',
+];
 
 interface RXOObject7<T extends HL7TypeMap> {
   RequestedGiveCode?: T['CWE'] | null;
@@ -19034,6 +30105,54 @@ type SACFields2 =
   | 43
   | 44;
 
+type SACTypes4 = [
+  never,
+  'EI',
+  'EI',
+  'EI',
+  'EI',
+  'EI',
+  never,
+  'DTM',
+  'CWE',
+  'CWE',
+  'EI',
+  'NA',
+  'CWE',
+  'EI',
+  'NA',
+  'CWE',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'CWE',
+  'NM',
+  'NM',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'SN',
+  'CWE',
+  'SN',
+  'NM',
+  'CWE',
+  'NM',
+  'CWE',
+  'NM',
+  'CWE',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+];
+
 interface SACObject4<T extends HL7TypeMap> {
   ExternalAccessionIdentifier?: T['EI'] | null;
   AccessionIdentifier?: T['EI'] | null;
@@ -19107,6 +30226,37 @@ type SCHFields3 =
   | 26
   | 27;
 
+type SCHTypes4 = [
+  never,
+  'EI',
+  'EI',
+  'NM',
+  'EI',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  never,
+  'CNE',
+  never,
+  'XCN',
+  'XTN',
+  'XAD',
+  'PL',
+  'XCN',
+  'XTN',
+  'XAD',
+  'PL',
+  'XCN',
+  'XTN',
+  'PL',
+  'EI',
+  'EI',
+  'CWE',
+  'EI',
+  'EI',
+];
+
 interface SCHObject5<T extends HL7TypeMap> {
   PlacerAppointmentID?: T['EI'] | null;
   FillerAppointmentID?: T['EI'] | null;
@@ -19135,6 +30285,8 @@ interface SCHObject5<T extends HL7TypeMap> {
   FillerOrderNumber?: T['EI'][] | null;
 }
 
+type SDDTypes2 = [never, 'EI', 'EI', 'ST', 'CWE', 'CWE', 'NM', 'ST'];
+
 interface SDDObject2<T extends HL7TypeMap> {
   LotNumber?: T['EI'] | null;
   DeviceNumber?: T['EI'] | null;
@@ -19146,6 +30298,21 @@ interface SDDObject2<T extends HL7TypeMap> {
 }
 
 type SHPFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+
+type SHPTypes1 = [
+  never,
+  'EI',
+  'EI',
+  'CWE',
+  'DTM',
+  'TX',
+  'CWE',
+  'CWE',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+];
 
 interface SHPObject1<T extends HL7TypeMap> {
   ShipmentID?: T['EI'] | null;
@@ -19194,6 +30361,42 @@ type SPMFields2 =
   | 30
   | 31
   | 32;
+
+type SPMTypes3 = [
+  never,
+  'SI',
+  'EIP',
+  'EIP',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CQ',
+  'NM',
+  'ST',
+  'CWE',
+  'CWE',
+  'DR',
+  'DTM',
+  'DTM',
+  'ID',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CQ',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CX',
+  'CX',
+  'EI',
+];
 
 interface SPMObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -19273,6 +30476,51 @@ type STFFields6 =
   | 40
   | 41;
 
+type STFTypes7 = [
+  never,
+  'CWE',
+  'CX',
+  'XPN',
+  'CWE',
+  'CWE',
+  'DTM',
+  'ID',
+  'CWE',
+  'CWE',
+  'XTN',
+  'XAD',
+  'DIN',
+  'DIN',
+  'CWE',
+  'ST',
+  'CWE',
+  'CWE',
+  'ST',
+  'JCC',
+  'CWE',
+  'ID',
+  'DLN',
+  'ID',
+  'DT',
+  'DT',
+  'DT',
+  'CWE',
+  'CWE',
+  'ID',
+  'CWE',
+  'DTM',
+  'ID',
+  'CWE',
+  'DR',
+  'DT',
+  'CWE',
+  'ID',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ED',
+];
+
 interface STFObject7<T extends HL7TypeMap> {
   PrimaryKeyValueSTF?: T['CWE'] | null;
   StaffIdentifierList?: T['CX'][] | null;
@@ -19319,6 +30567,24 @@ interface STFObject7<T extends HL7TypeMap> {
 
 type TCCFields2 = 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
 
+type TCCTypes3 = [
+  never,
+  'CWE',
+  'EI',
+  never,
+  'SN',
+  'SN',
+  'SN',
+  'SN',
+  'NM',
+  'ID',
+  'ID',
+  'ID',
+  'SN',
+  'CWE',
+  'CWE',
+];
+
 interface TCCObject3<T extends HL7TypeMap> {
   UniversalServiceIdentifier?: T['CWE'] | null;
   EquipmentTestApplicationIdentifier?: T['EI'] | null;
@@ -19363,6 +30629,36 @@ type TXAFields2 =
   | 25
   | 26;
 
+type TXATypes3 = [
+  never,
+  'SI',
+  'CWE',
+  'ID',
+  'DTM',
+  'XCN',
+  'DTM',
+  'DTM',
+  'DTM',
+  'XCN',
+  'XCN',
+  'XCN',
+  'EI',
+  'EI',
+  'EI',
+  'EI',
+  'ST',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ST',
+  'PPN',
+  'XCN',
+  'CWE',
+  'ST',
+  'DTM',
+];
+
 interface TXAObject4<T extends HL7TypeMap> {
   SetID?: number | string | null;
   DocumentType?: T['CWE'] | null;
@@ -19392,7 +30688,30 @@ interface TXAObject4<T extends HL7TypeMap> {
   AgreedDueDateTime?: string | null;
 }
 
+type UB1Types6 = [never];
+
 interface UB1Object6<T extends HL7TypeMap> {}
+
+type UB2Types4 = [
+  never,
+  'SI',
+  'ST',
+  'CWE',
+  'ST',
+  'ST',
+  'UVC',
+  'OCD',
+  'OSP',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'NM',
+];
 
 interface UB2Object4<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -19414,9 +30733,327 @@ interface UB2Object4<T extends HL7TypeMap> {
   SpecialVisitCount?: number | string | null;
 }
 
+type URDTypes4 = [never];
+
 interface URDObject5<T extends HL7TypeMap> {}
 
+type URSTypes5 = [never];
+
 interface URSObject5<T extends HL7TypeMap> {}
+
+type CFComps5 = [
+  never,
+  'ST',
+  'FT',
+  'ID',
+  'ST',
+  'FT',
+  'ID',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'FT',
+  'ID',
+  'ST',
+  'ST',
+  'ST',
+  'DTM',
+  'ST',
+  'ST',
+  'DTM',
+  'ST',
+  'ST',
+  'DTM',
+];
+
+type CNEComps4 = [
+  never,
+  'ST',
+  'ST',
+  'ID',
+  'ST',
+  'ST',
+  'ID',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ID',
+  'ST',
+  'ST',
+  'ST',
+  'DTM',
+  'ST',
+  'ST',
+  'DTM',
+  'ST',
+  'ST',
+  'DTM',
+];
+
+type CSUComps3 = [
+  never,
+  'NM',
+  'ST',
+  'ST',
+  'ID',
+  'ST',
+  'ST',
+  'ID',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ID',
+  'ST',
+  'ST',
+  'ST',
+  'DTM',
+  'ST',
+  'ST',
+  'DTM',
+  'ST',
+  'ST',
+  'ST',
+];
+
+type CWEComps4 = [
+  never,
+  'ST',
+  'ST',
+  'ID',
+  'ST',
+  'ST',
+  'ID',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ID',
+  'ST',
+  'ST',
+  'ST',
+  'DTM',
+  'ST',
+  'ST',
+  'DTM',
+  'ST',
+  'ST',
+  'DTM',
+];
+
+type CXComps5 = [
+  never,
+  'ST',
+  'ST',
+  'ID',
+  'HD',
+  'ID',
+  'HD',
+  'DT',
+  'DT',
+  'CWE',
+  'CWE',
+  'ST',
+  'ID',
+];
+
+type DLNComps2 = [never, 'ST', 'CWE', 'DT'];
+
+type DTNComps2 = [never, 'CWE', 'NM'];
+
+type FCComps3 = [never, 'CWE', 'DTM'];
+
+type ICDComps3 = [never, 'CWE', 'ID', 'DTM'];
+
+type JCCComps3 = [never, 'CWE', 'CWE', 'TX'];
+
+type PLComps4 = [
+  never,
+  'HD',
+  'HD',
+  'HD',
+  'HD',
+  'IS',
+  'IS',
+  'HD',
+  'HD',
+  'ST',
+  'EI',
+  'HD',
+];
+
+type PLNComps2 = [never, 'ST', 'CWE', 'ST', 'DT'];
+
+type PPNComps6 = [
+  never,
+  'ST',
+  'FN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  never,
+  'CWE',
+  'HD',
+  'ID',
+  'ST',
+  'ID',
+  'ID',
+  'HD',
+  'DTM',
+  'ID',
+  'CWE',
+  never,
+  'ID',
+  'DTM',
+  'DTM',
+  'ST',
+  'CWE',
+  'CWE',
+  'ST',
+  'ID',
+];
+
+type PTAComps3 = [never, 'CWE', 'CWE', never, 'MOP'];
+
+type RFRComps3 = [never, 'NR', 'CWE', 'NR', 'NR', 'ST', 'ST', 'TX'];
+
+type RIComps2 = [never, 'CWE', 'ST'];
+
+type RMCComps3 = [never, 'CWE', 'CWE', never, 'MOP'];
+
+type RPTComps2 = [
+  never,
+  'CWE',
+  'ID',
+  'NM',
+  'NM',
+  'NM',
+  'CWE',
+  'ID',
+  'ID',
+  'NM',
+  'CWE',
+  'GTS',
+];
+
+type UVCComps3 = [never, 'CWE', 'MO', 'NM', 'CWE'];
+
+type XADComps6 = [
+  never,
+  'SAD',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ID',
+  'ID',
+  'ST',
+  'CWE',
+  'CWE',
+  'ID',
+  never,
+  'DTM',
+  'DTM',
+  'CWE',
+  'ID',
+  'ID',
+  'ID',
+  'ST',
+  'ST',
+  'NM',
+  'CWE',
+  'EI',
+];
+
+type XCNComps6 = [
+  never,
+  'ST',
+  'FN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  never,
+  'CWE',
+  'HD',
+  'ID',
+  'ST',
+  'ID',
+  'ID',
+  'HD',
+  'ID',
+  'CWE',
+  never,
+  'ID',
+  'DTM',
+  'DTM',
+  'ST',
+  'CWE',
+  'CWE',
+  'ST',
+  'ID',
+];
+
+type XONComps4 = [
+  never,
+  'ST',
+  'CWE',
+  never,
+  'NM',
+  'ID',
+  'HD',
+  'ID',
+  'HD',
+  'ID',
+  'ST',
+];
+
+type XPNComps6 = [
+  never,
+  'FN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  never,
+  'ID',
+  'ID',
+  'CWE',
+  never,
+  'ID',
+  'DTM',
+  'DTM',
+  'ST',
+  'ST',
+];
+
+type XTNComps4 = [
+  never,
+  never,
+  'ID',
+  'ID',
+  'ST',
+  'SNM',
+  'SNM',
+  'SNM',
+  'SNM',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'DTM',
+  'DTM',
+  'CWE',
+  'CWE',
+  'EI',
+  'NM',
+];
 
 type HL7Types_2_7_1 = {
   AD: ADObject1;
@@ -19543,6 +31180,64 @@ type OBRFields8 =
   | 52
   | 53
   | 54;
+
+type OBRTypes10 = [
+  never,
+  'SI',
+  'EI',
+  'EI',
+  'CWE',
+  never,
+  never,
+  'DTM',
+  'DTM',
+  'CQ',
+  'XCN',
+  'ID',
+  'CWE',
+  'CWE',
+  never,
+  never,
+  'XCN',
+  'XTN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'DTM',
+  'MOC',
+  'ID',
+  'ID',
+  'PRL',
+  never,
+  'XCN',
+  'EIP',
+  'ID',
+  'CWE',
+  'NDL',
+  'NDL',
+  'NDL',
+  'NDL',
+  'DTM',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'ID',
+  'CWE',
+  'CNE',
+  'CNE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'EI',
+  'EI',
+  'CX',
+  'EIP',
+];
 
 interface OBRObject10<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -19681,6 +31376,23 @@ type HL7Types_2_8 = {
 
 type ACCFields6 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
 
+type ACCTypes7 = [
+  never,
+  'DTM',
+  'CWE',
+  'ST',
+  'CWE',
+  'ID',
+  'ID',
+  'XCN',
+  'ST',
+  'ST',
+  'ID',
+  'XAD',
+  'NM',
+  'EI',
+];
+
 interface ACCObject8<T extends HL7TypeMap> {
   AccidentDateTime?: string | null;
   AccidentCode?: T['CWE'] | null;
@@ -19696,6 +31408,35 @@ interface ACCObject8<T extends HL7TypeMap> {
   DegreeOfPatientLiability?: number | string | null;
   AccidentIdentifier?: T['EI'][] | null;
 }
+
+type ARQTypes4 = [
+  never,
+  'EI',
+  'EI',
+  'NM',
+  'EIP',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'NM',
+  'CNE',
+  'DR',
+  'ST',
+  'RI',
+  'ST',
+  'XCN',
+  'XTN',
+  'XAD',
+  'PL',
+  'XCN',
+  'XTN',
+  'PL',
+  'EI',
+  'EI',
+  'EI',
+  'EI',
+];
 
 interface ARQObject5<T extends HL7TypeMap> {
   PlacerAppointmentID?: T['EI'] | null;
@@ -19756,6 +31497,39 @@ type AUTFields3 =
   | 28
   | 29;
 
+type AUTTypes4 = [
+  never,
+  'CWE',
+  'CWE',
+  'ST',
+  'DTM',
+  'DTM',
+  'EI',
+  'CP',
+  'CQ',
+  'CQ',
+  'DTM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'DTM',
+  'CWE',
+  'ST',
+  'CQ',
+  'CQ',
+  'CQ',
+  'CWE',
+  'MO',
+  'XON',
+  'XCN',
+  'ST',
+  'DTM',
+  'XTN',
+  'ST',
+  'ID',
+];
+
 interface AUTObject4<T extends HL7TypeMap> {
   AuthorizingPayorPlanID?: T['CWE'] | null;
   AuthorizingPayorCompanyID?: T['CWE'] | null;
@@ -19810,6 +31584,30 @@ type BTXFields2 =
   | 19
   | 20;
 
+type BTXTypes3 = [
+  never,
+  'SI',
+  'EI',
+  'CNE',
+  'CNE',
+  'CWE',
+  'XON',
+  'EI',
+  'NM',
+  'NM',
+  'CWE',
+  'CWE',
+  'ID',
+  'DTM',
+  'XCN',
+  'XCN',
+  'DTM',
+  'DTM',
+  'CWE',
+  'CWE',
+  'EI',
+];
+
 interface BTXObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
   BCDonationID?: T['EI'] | null;
@@ -19835,6 +31633,22 @@ interface BTXObject3<T extends HL7TypeMap> {
 
 type BUIFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
+type BUITypes1 = [
+  never,
+  'SI',
+  'EI',
+  'CWE',
+  'NM',
+  'CNE',
+  'NM',
+  'CNE',
+  'ST',
+  'ST',
+  'XON',
+  'NR',
+  'CNE',
+];
+
 interface BUIObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   BloodUnitIdentifier?: T['EI'] | null;
@@ -19851,6 +31665,8 @@ interface BUIObject1<T extends HL7TypeMap> {
 }
 
 type CDOFields1 = 1 | 2 | 3 | 4;
+
+type CDOTypes1 = [never, 'SI', 'ID', 'CQ', 'CQ'];
 
 interface CDOObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -19893,6 +31709,43 @@ type DONFields1 =
   | 31
   | 32
   | 33;
+
+type DONTypes1 = [
+  never,
+  'EI',
+  'CNE',
+  'DTM',
+  'DTM',
+  'NM',
+  'CNE',
+  'CNE',
+  'CNE',
+  'ID',
+  'CNE',
+  'DTM',
+  'CNE',
+  'CNE',
+  'CNE',
+  'ID',
+  'XPN',
+  'DTM',
+  'XON',
+  'DTM',
+  'XPN',
+  'CNE',
+  'CNE',
+  'XPN',
+  'XPN',
+  'ST',
+  'ST',
+  'ID',
+  'XPN',
+  'DTM',
+  'NM',
+  'EI',
+  'XCN',
+  'XCN',
+];
 
 interface DONObject1<T extends HL7TypeMap> {
   DonationIdentificationNumberDIN?: T['EI'] | null;
@@ -19992,6 +31845,65 @@ type IN1Fields7 =
   | 54
   | 55;
 
+type IN1Types8 = [
+  never,
+  'SI',
+  'CWE',
+  'CX',
+  'XON',
+  'XAD',
+  'XPN',
+  'XTN',
+  'ST',
+  'XON',
+  'CX',
+  'XON',
+  'DT',
+  'DT',
+  'AUI',
+  'CWE',
+  'XPN',
+  'CWE',
+  'DTM',
+  'XAD',
+  'CWE',
+  'CWE',
+  'ST',
+  'ID',
+  'DT',
+  'ID',
+  'DT',
+  'CWE',
+  'ST',
+  'DTM',
+  'XCN',
+  'CWE',
+  'CWE',
+  'NM',
+  'NM',
+  'CWE',
+  'ST',
+  'CP',
+  never,
+  'NM',
+  never,
+  never,
+  'CWE',
+  'CWE',
+  'XAD',
+  'ST',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CX',
+  'CWE',
+  'DT',
+  'ST',
+  'CWE',
+  'CX',
+  'ID',
+];
+
 interface IN1Object8<T extends HL7TypeMap> {
   SetID?: number | string | null;
   HealthPlanID?: T['CWE'] | null;
@@ -20076,6 +31988,37 @@ type IN3Fields2 =
   | 26
   | 27;
 
+type IN3Types7 = [
+  never,
+  'SI',
+  'CX',
+  'XCN',
+  'ID',
+  'MOP',
+  'DTM',
+  'DTM',
+  'XCN',
+  'DT',
+  'DT',
+  'DTN',
+  'CWE',
+  'DTM',
+  'XCN',
+  'ST',
+  'XTN',
+  'CWE',
+  'CWE',
+  'XTN',
+  'ICD',
+  'ST',
+  'DT',
+  'CWE',
+  'CWE',
+  'XCN',
+  'CWE',
+  'CWE',
+];
+
 interface IN3Object7<T extends HL7TypeMap> {
   SetID?: number | string | null;
   CertificationNumber?: T['CX'] | null;
@@ -20140,6 +32083,43 @@ type ITMFields2 =
   | 31
   | 32
   | 33;
+
+type ITMTypes3 = [
+  never,
+  'EI',
+  'ST',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CNE',
+  'EI',
+  'ST',
+  'ST',
+  'CWE',
+  'CNE',
+  'CWE',
+  'CP',
+  'CNE',
+  'CWE',
+  'XON',
+  'CNE',
+  'CWE',
+  'CWE',
+  'NM',
+  'MO',
+  'CNE',
+  'CNE',
+  'CNE',
+  'EI',
+  'CNE',
+  'CNE',
+  'CNE',
+  'CWE',
+  'CNE',
+  'CNE',
+  'EI',
+  'CWE',
+];
 
 interface ITMObject3<T extends HL7TypeMap> {
   ItemIdentifier?: T['EI'] | null;
@@ -20214,6 +32194,38 @@ type OBXFields8 =
   | 26
   | 27
   | 28;
+
+type OBXTypes8 = [
+  never,
+  'SI',
+  'ID',
+  'CWE',
+  'ST',
+  'VARIES',
+  'CWE',
+  'ST',
+  'CWE',
+  'NM',
+  'ID',
+  'ID',
+  'DTM',
+  'ST',
+  'DTM',
+  'CWE',
+  'XCN',
+  'CWE',
+  'EI',
+  'DTM',
+  'CWE',
+  'EI',
+  'CNE',
+  'XON',
+  'XAD',
+  'XCN',
+  'ID',
+  'CWE',
+  'CWE',
+];
 
 interface OBXObject10<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -20299,6 +32311,61 @@ type OM1Fields3 =
   | 50
   | 51;
 
+type OM1Types7 = [
+  never,
+  'NM',
+  'CWE',
+  'ID',
+  'ID',
+  'CWE',
+  'TX',
+  'CWE',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ID',
+  'CWE',
+  'CWE',
+  'ID',
+  'CWE',
+  'XTN',
+  'CWE',
+  'CWE',
+  'ST',
+  'DTM',
+  'DTM',
+  'NM',
+  'NM',
+  'ID',
+  'ID',
+  'CWE',
+  'XAD',
+  'XTN',
+  'CWE',
+  'CWE',
+  'TX',
+  'CWE',
+  'CWE',
+  'TX',
+  'CWE',
+  'TX',
+  'CWE',
+  'TX',
+  'ST',
+  'TX',
+  'CWE',
+  'CWE',
+  'TX',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'ID',
+  'CWE',
+  'ST',
+];
+
 interface OM1Object7<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
   ProducerSServiceTestObservationID?: T['CWE'] | null;
@@ -20373,6 +32440,28 @@ type OM4Fields3 =
   | 17
   | 18;
 
+type OM4Types5 = [
+  never,
+  'NM',
+  'ID',
+  'TX',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'TX',
+  'TX',
+  'CQ',
+  'CQ',
+  'TX',
+  'ID',
+  'CQ',
+  'CWE',
+  'ID',
+  'NM',
+  'CWE',
+];
+
 interface OM4Object6<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
   DerivedSpecimen?: string | null;
@@ -20429,6 +32518,44 @@ type ORCFields8 =
   | 33
   | 34;
 
+type ORCTypes10 = [
+  never,
+  'ID',
+  'EI',
+  'EI',
+  'EIP',
+  'ID',
+  'ID',
+  never,
+  'EIP',
+  'DTM',
+  'XCN',
+  'XCN',
+  'XCN',
+  'PL',
+  'XTN',
+  'DTM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'XCN',
+  'CWE',
+  'XON',
+  'XAD',
+  'XTN',
+  'XAD',
+  'CWE',
+  'CWE',
+  'DTM',
+  'CWE',
+  'CWE',
+  'CNE',
+  'CWE',
+  'DT',
+  'CX',
+  'CWE',
+];
+
 interface ORCObject10<T extends HL7TypeMap> {
   OrderControl?: string | null;
   PlacerOrderNumber?: T['EI'] | null;
@@ -20466,6 +32593,8 @@ interface ORCObject10<T extends HL7TypeMap> {
 }
 
 type PKGFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
+type PKGTypes2 = [never, 'SI', 'CWE', 'CNE', 'NM', 'CP', 'CP', 'DTM', 'CWE'];
 
 interface PKGObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -20560,6 +32689,35 @@ type RF1Fields3 =
   | 24
   | 25;
 
+type RF1Types3 = [
+  never,
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'EI',
+  'DTM',
+  'DTM',
+  'DTM',
+  'CWE',
+  'EI',
+  'CWE',
+  'DTM',
+  'ST',
+  'CQ',
+  'CQ',
+  'CQ',
+  'MO',
+  'XON',
+  'XCN',
+  'ST',
+  'DTM',
+  'XTN',
+  'ST',
+  'ID',
+];
+
 interface RF1Object3<T extends HL7TypeMap> {
   ReferralStatus?: T['CWE'] | null;
   ReferralPriority?: T['CWE'] | null;
@@ -20618,6 +32776,39 @@ type RXAFields5 =
   | 28
   | 29;
 
+type RXATypes6 = [
+  never,
+  'NM',
+  'NM',
+  'DTM',
+  'DTM',
+  'CWE',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'XCN',
+  never,
+  'ST',
+  'NM',
+  'CWE',
+  'ST',
+  'DTM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'ID',
+  'DTM',
+  'NM',
+  'CWE',
+  'CWE',
+  'ID',
+  'PL',
+  'XAD',
+  'EI',
+];
+
 interface RXAObject6<T extends HL7TypeMap> {
   GiveSubIDCounter?: number | string | null;
   AdministrationSubIDCounter?: number | string | null;
@@ -20650,6 +32841,21 @@ interface RXAObject6<T extends HL7TypeMap> {
 }
 
 type RXCFields5 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+
+type RXCTypes6 = [
+  never,
+  'ID',
+  'CWE',
+  'NM',
+  'CWE',
+  'NM',
+  'CWE',
+  'CWE',
+  'NM',
+  'CWE',
+  'NM',
+  'CWE',
+];
 
 interface RXCObject6<T extends HL7TypeMap> {
   RXComponentType?: string | null;
@@ -20700,6 +32906,45 @@ type RXDFields6 =
   | 33
   | 34
   | 35;
+
+type RXDTypes8 = [
+  never,
+  'NM',
+  'CWE',
+  'DTM',
+  'NM',
+  'CWE',
+  'CWE',
+  'ST',
+  'NM',
+  'ST',
+  'XCN',
+  'ID',
+  'CQ',
+  never,
+  'ID',
+  'CWE',
+  'NM',
+  'CWE',
+  'ST',
+  'DTM',
+  'CWE',
+  'CWE',
+  'NM',
+  'CWE',
+  'ID',
+  'CWE',
+  'CWE',
+  'CWE',
+  'NM',
+  'CWE',
+  'CWE',
+  'XAD',
+  'ID',
+  'CWE',
+  'XTN',
+  'EI',
+];
 
 interface RXDObject8<T extends HL7TypeMap> {
   DispenseSubIDCounter?: number | string | null;
@@ -20770,6 +33015,43 @@ type RXGFields6 =
   | 31
   | 32
   | 33;
+
+type RXGTypes7 = [
+  never,
+  'NM',
+  'NM',
+  never,
+  'CWE',
+  'NM',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  never,
+  'ID',
+  'CWE',
+  'ST',
+  'ST',
+  'CWE',
+  'NM',
+  'CWE',
+  'ST',
+  'DTM',
+  'CWE',
+  'CWE',
+  'NM',
+  'CWE',
+  'CWE',
+  'ID',
+  'CWE',
+  'XAD',
+  'PL',
+  'XAD',
+  'EI',
+  'NM',
+  'CWE',
+];
 
 interface RXGObject7<T extends HL7TypeMap> {
   GiveSubIDCounter?: number | string | null;
@@ -20843,6 +33125,46 @@ type RXOFields8 =
   | 35
   | 36;
 
+type RXOTypes8 = [
+  never,
+  'CWE',
+  'NM',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  never,
+  'ID',
+  'CWE',
+  'NM',
+  'CWE',
+  'NM',
+  'XCN',
+  'XCN',
+  'ID',
+  'ST',
+  'NM',
+  'CWE',
+  'CWE',
+  'ST',
+  'CWE',
+  'CQ',
+  'CWE',
+  'NM',
+  'CWE',
+  'ID',
+  'NM',
+  'EI',
+  'EI',
+  'CNE',
+  'CWE',
+  'XAD',
+  'PL',
+  'XAD',
+  'XTN',
+];
+
 interface RXOObject8<T extends HL7TypeMap> {
   RequestedGiveCode?: T['CWE'] | null;
   RequestedGiveAmountMinimum?: number | string | null;
@@ -20905,6 +33227,32 @@ type RXVFields1 =
   | 21
   | 22;
 
+type RXVTypes1 = [
+  never,
+  'SI',
+  'ID',
+  'NM',
+  'CWE',
+  'NM',
+  'CWE',
+  'ID',
+  'NM',
+  'CWE',
+  'NM',
+  'CWE',
+  'NM',
+  'CWE',
+  'NM',
+  'CWE',
+  'CQ',
+  'CQ',
+  'CWE',
+  'CWE',
+  'NM',
+  'CWE',
+  'ID',
+];
+
 interface RXVObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   BolusType?: string | null;
@@ -20929,6 +33277,37 @@ interface RXVObject1<T extends HL7TypeMap> {
   SyringeSizeUnits?: T['CWE'] | null;
   ActionCode?: string | null;
 }
+
+type SCHTypes5 = [
+  never,
+  'EI',
+  'EI',
+  'NM',
+  'EIP',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  never,
+  'CNE',
+  never,
+  'XCN',
+  'XTN',
+  'XAD',
+  'PL',
+  'XCN',
+  'XTN',
+  'XAD',
+  'PL',
+  'XCN',
+  'XTN',
+  'PL',
+  'EI',
+  'EI',
+  'CWE',
+  'EI',
+  'EI',
+];
 
 interface SCHObject6<T extends HL7TypeMap> {
   PlacerAppointmentID?: T['EI'] | null;
@@ -20960,6 +33339,8 @@ interface SCHObject6<T extends HL7TypeMap> {
 
 type SGHFields1 = 1 | 2;
 
+type SGHTypes1 = [never, 'SI', 'ST'];
+
 interface SGHObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SegmentGroupName?: string | null;
@@ -20967,12 +33348,33 @@ interface SGHObject1<T extends HL7TypeMap> {
 
 type SGTFields1 = 1 | 2;
 
+type SGTTypes1 = [never, 'SI', 'ST'];
+
 interface SGTObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SegmentGroupName?: string | null;
 }
 
 type TCCFields3 = 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
+
+type TCCTypes4 = [
+  never,
+  'CWE',
+  'EI',
+  never,
+  'SN',
+  'SN',
+  'SN',
+  'SN',
+  'NM',
+  'ID',
+  'ID',
+  'ID',
+  'SN',
+  'CWE',
+  'CWE',
+  'CWE',
+];
 
 interface TCCObject4<T extends HL7TypeMap> {
   UniversalServiceIdentifier?: T['CWE'] | null;
@@ -20990,6 +33392,20 @@ interface TCCObject4<T extends HL7TypeMap> {
   ProcessingType?: T['CWE'] | null;
   TestCriticality?: T['CWE'] | null;
 }
+
+type XONComps5 = [
+  never,
+  'ST',
+  'CWE',
+  never,
+  never,
+  never,
+  'HD',
+  'ID',
+  'HD',
+  'ID',
+  'ST',
+];
 
 type HL7Types_2_8_1 = {
   AD: ADObject1;
@@ -21095,6 +33511,39 @@ type OBXFields9 =
   | 28
   | 29;
 
+type OBXTypes9 = [
+  never,
+  'SI',
+  'ID',
+  'CWE',
+  'ST',
+  'VARIES',
+  'CWE',
+  'ST',
+  'CWE',
+  'NM',
+  'ID',
+  'ID',
+  'DTM',
+  'ST',
+  'DTM',
+  'CWE',
+  'XCN',
+  'CWE',
+  'EI',
+  'DTM',
+  'CWE',
+  'EI',
+  'CNE',
+  'XON',
+  'XAD',
+  'XCN',
+  'ID',
+  'CWE',
+  'CWE',
+  'ID',
+];
+
 interface OBXObject11<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ValueType?: string | null;
@@ -21184,6 +33633,65 @@ type OM1Fields4 =
   | 54
   | 55;
 
+type OM1Types8 = [
+  never,
+  'NM',
+  'CWE',
+  'ID',
+  'ID',
+  'CWE',
+  'TX',
+  'CWE',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ID',
+  'CWE',
+  'CWE',
+  'ID',
+  'CWE',
+  'XTN',
+  'CWE',
+  'CWE',
+  'ST',
+  'DTM',
+  'DTM',
+  'NM',
+  'NM',
+  'ID',
+  'ID',
+  'CWE',
+  'XAD',
+  'XTN',
+  'CWE',
+  'CWE',
+  'TX',
+  'CWE',
+  'CWE',
+  'TX',
+  'CWE',
+  'TX',
+  'CWE',
+  'TX',
+  'ST',
+  'TX',
+  'CWE',
+  'CWE',
+  'TX',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'ID',
+  'CWE',
+  'ST',
+  'CWE',
+  'TX',
+  'TX',
+  'CWE',
+];
+
 interface OM1Object8<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
   ProducerSServiceTestObservationID?: T['CWE'] | null;
@@ -21267,6 +33775,35 @@ type RF1Fields4 =
   | 23
   | 24
   | 25;
+
+type RF1Types4 = [
+  never,
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'EI',
+  'DTM',
+  'DTM',
+  'DTM',
+  'CWE',
+  'EI',
+  'CWE',
+  'DTM',
+  'ST',
+  'CQ',
+  'CQ',
+  'CQ',
+  never,
+  'XON',
+  'XCN',
+  'ST',
+  'DTM',
+  'XTN',
+  'ST',
+  'ID',
+];
 
 interface RF1Object4<T extends HL7TypeMap> {
   ReferralStatus?: T['CWE'] | null;
@@ -21391,6 +33928,8 @@ type HL7Types_2_8_2 = {
 
 type DPSFields1 = 1 | 2 | 3 | 4 | 5;
 
+type DPSTypes1 = [never, 'CWE', 'CWE', 'DTM', 'DTM', 'CNE'];
+
 interface DPSObject1<T extends HL7TypeMap> {
   DiagnosisCodeMCP?: T['CWE'] | null;
   ProcedureCode?: T['CWE'][] | null;
@@ -21400,6 +33939,8 @@ interface DPSObject1<T extends HL7TypeMap> {
 }
 
 type MCPFields1 = 1 | 2 | 3 | 4 | 5;
+
+type MCPTypes1 = [never, 'SI', 'CWE', 'MO', 'MO', 'ST'];
 
 interface MCPObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -21440,6 +33981,40 @@ type OBXFields10 =
   | 28
   | 29
   | 30;
+
+type OBXTypes10 = [
+  never,
+  'SI',
+  'ID',
+  'CWE',
+  'OG',
+  'VARIES',
+  'CWE',
+  'ST',
+  'CWE',
+  'NM',
+  'ID',
+  'ID',
+  'DTM',
+  'ST',
+  'DTM',
+  'CWE',
+  'XCN',
+  'CWE',
+  'EI',
+  'DTM',
+  'CWE',
+  'EI',
+  'CNE',
+  'XON',
+  'XAD',
+  'XCN',
+  'ID',
+  'CWE',
+  'CWE',
+  'ID',
+  'ID',
+];
 
 interface OBXObject12<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -21535,6 +34110,69 @@ type OM1Fields5 =
   | 58
   | 59;
 
+type OM1Types9 = [
+  never,
+  'NM',
+  'CWE',
+  'ID',
+  'ID',
+  'CWE',
+  'TX',
+  'CWE',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ID',
+  'CWE',
+  'CWE',
+  'ID',
+  'CWE',
+  'XTN',
+  'CWE',
+  'CWE',
+  'ST',
+  'DTM',
+  'DTM',
+  'NM',
+  'NM',
+  'ID',
+  'ID',
+  'CWE',
+  'XAD',
+  'XTN',
+  'CWE',
+  'CWE',
+  'TX',
+  'CWE',
+  'CWE',
+  'TX',
+  'CWE',
+  'TX',
+  'CWE',
+  'TX',
+  'ST',
+  'TX',
+  'CWE',
+  'CWE',
+  'TX',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'ID',
+  'CWE',
+  'ST',
+  'CWE',
+  'TX',
+  'TX',
+  'CWE',
+  'CWE',
+  'CQ',
+  'CWE',
+  'NR',
+];
+
 interface OM1Object9<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
   ProducerSServiceTestObservationID?: T['CWE'] | null;
@@ -21600,6 +34238,23 @@ interface OM1Object9<T extends HL7TypeMap> {
 
 type OMCFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
 
+type OMCTypes1 = [
+  never,
+  'NM',
+  'ID',
+  'EI',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'ST',
+  'VARIES',
+  'ID',
+  'CWE',
+  'NM',
+  'NM',
+];
+
 interface OMCObject1<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
   SegmentActionCode?: string | null;
@@ -21641,6 +34296,34 @@ type PM1Fields1 =
   | 22
   | 23
   | 24;
+
+type PM1Types1 = [
+  never,
+  'CWE',
+  'CX',
+  'XON',
+  'XAD',
+  'XPN',
+  'XTN',
+  'ST',
+  'XON',
+  'DT',
+  'DT',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ST',
+  'ST',
+];
 
 interface PM1Object1<T extends HL7TypeMap> {
   HealthPlanID?: T['CWE'] | null;
@@ -21693,6 +34376,32 @@ type PRTFields2 =
   | 21
   | 22;
 
+type PRTTypes2 = [
+  never,
+  'EI',
+  'ID',
+  'CWE',
+  'CWE',
+  'XCN',
+  'CWE',
+  'CWE',
+  'XON',
+  'PL',
+  'EI',
+  'DTM',
+  'DTM',
+  'CWE',
+  'XAD',
+  'XTN',
+  'EI',
+  'DTM',
+  'DTM',
+  'ST',
+  'ST',
+  'EI',
+  'CNE',
+];
+
 interface PRTObject2<T extends HL7TypeMap> {
   ParticipationInstanceID?: T['EI'] | null;
   ActionCode?: string | null;
@@ -21717,6 +34426,10 @@ interface PRTObject2<T extends HL7TypeMap> {
   DeviceDonationIdentification?: T['EI'] | null;
   DeviceType?: T['CNE'] | null;
 }
+
+type OGComps1 = [never, 'ST', 'NM', 'NM', 'ST'];
+
+type PRLComps3 = [never, 'CWE', 'OG', 'TX'];
 
 interface MAComponents1 {
   SampleYFromChannel1?: number | string | null;
@@ -21896,6 +34609,36 @@ type ARQFields3 =
   | 25
   | 26;
 
+type ARQTypes5 = [
+  never,
+  'EI',
+  'EI',
+  'NM',
+  'EI',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'NM',
+  'CNE',
+  'DR',
+  'ST',
+  'RI',
+  'ST',
+  'XCN',
+  'XTN',
+  'XAD',
+  'PL',
+  'XCN',
+  'XTN',
+  'PL',
+  'EI',
+  'EI',
+  'EI',
+  'EI',
+  'EIP',
+];
+
 interface ARQObject6<T extends HL7TypeMap> {
   PlacerAppointmentID?: T['EI'] | null;
   FillerAppointmentID?: T['EI'] | null;
@@ -21927,6 +34670,20 @@ interface ARQObject6<T extends HL7TypeMap> {
 
 type ARVFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
+type ARVTypes2 = [
+  never,
+  'SI',
+  'CNE',
+  'CWE',
+  'CWE',
+  'ST',
+  'DR',
+  'CWE',
+  'CWE',
+  'ERL',
+  'EI',
+];
+
 interface ARVObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   AccessRestrictionActionCode?: T['CNE'] | null;
@@ -21942,6 +34699,27 @@ interface ARVObject2<T extends HL7TypeMap> {
 
 type BHSFields3 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17;
+
+type BHSTypes4 = [
+  never,
+  'ST',
+  'ST',
+  'HD',
+  'HD',
+  'HD',
+  'HD',
+  'DTM',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'HD',
+  'HD',
+  'CWE',
+  'CWE',
+  'ST',
+];
 
 interface BHSObject5<T extends HL7TypeMap> {
   BatchFieldSeparator?: string | null;
@@ -21986,6 +34764,32 @@ type BPXFields2 =
   | 20
   | 21
   | 22;
+
+type BPXTypes3 = [
+  never,
+  'SI',
+  'CWE',
+  'ID',
+  'DTM',
+  'EI',
+  'CNE',
+  'CNE',
+  'CWE',
+  'XON',
+  'EI',
+  'CNE',
+  'CNE',
+  'DTM',
+  'NM',
+  'NM',
+  'CWE',
+  'EI',
+  'PL',
+  'XAD',
+  'XCN',
+  'XCN',
+  'ID',
+];
 
 interface BPXObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -22035,6 +34839,31 @@ type BTXFields3 =
   | 20
   | 21;
 
+type BTXTypes4 = [
+  never,
+  'SI',
+  'EI',
+  'CNE',
+  'CNE',
+  'CWE',
+  'XON',
+  'EI',
+  'NM',
+  'NM',
+  'CWE',
+  'CWE',
+  'ID',
+  'DTM',
+  'XCN',
+  'XCN',
+  'DTM',
+  'DTM',
+  'CWE',
+  'CWE',
+  'EI',
+  'ID',
+];
+
 interface BTXObject4<T extends HL7TypeMap> {
   SetID?: number | string | null;
   BCDonationID?: T['EI'] | null;
@@ -22061,6 +34890,23 @@ interface BTXObject4<T extends HL7TypeMap> {
 
 type BUIFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
 
+type BUITypes2 = [
+  never,
+  'SI',
+  'EI',
+  'CWE',
+  'NM',
+  'CNE',
+  'NM',
+  'CNE',
+  'ST',
+  'ST',
+  'XON',
+  'NR',
+  'CNE',
+  'ID',
+];
+
 interface BUIObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   BloodUnitIdentifier?: T['EI'] | null;
@@ -22079,6 +34925,27 @@ interface BUIObject2<T extends HL7TypeMap> {
 
 type CSRFields2 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17;
+
+type CSRTypes3 = [
+  never,
+  'EI',
+  'EI',
+  'CWE',
+  'CX',
+  'CX',
+  'DTM',
+  'XCN',
+  'XCN',
+  'DTM',
+  'CWE',
+  'DTM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'DTM',
+  'CWE',
+  'ID',
+];
 
 interface CSRObject4<T extends HL7TypeMap> {
   SponsorStudyID?: T['EI'] | null;
@@ -22101,6 +34968,8 @@ interface CSRObject4<T extends HL7TypeMap> {
 }
 
 type CTIFields2 = 1 | 2 | 3 | 4;
+
+type CTITypes3 = [never, 'EI', 'CWE', 'CWE', 'ID'];
 
 interface CTIObject3<T extends HL7TypeMap> {
   SponsorStudyID?: T['EI'] | null;
@@ -22132,6 +35001,31 @@ type CTRFields1 =
   | 20
   | 21;
 
+type CTRTypes1 = [
+  never,
+  'EI',
+  'ST',
+  'CWE',
+  'DTM',
+  'DTM',
+  'XPN',
+  'XPN',
+  'CWE',
+  'CWE',
+  'CNE',
+  'DTM',
+  'CNE',
+  'XON',
+  'MOP',
+  'MOP',
+  'XON',
+  'XON',
+  'CWE',
+  'ST',
+  'CWE',
+  'EI',
+];
+
 interface CTRObject1<T extends HL7TypeMap> {
   ContractIdentifier?: T['EI'] | null;
   ContractDescription?: string | null;
@@ -22158,6 +35052,27 @@ interface CTRObject1<T extends HL7TypeMap> {
 
 type DEVFields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17;
+
+type DEVTypes1 = [
+  never,
+  'ID',
+  'EI',
+  'CNE',
+  'CNE',
+  'XON',
+  'ST',
+  'ST',
+  'ST',
+  'EI',
+  'ST',
+  'ST',
+  'DTM',
+  'DTM',
+  'CWE',
+  'EI',
+  'ST',
+  'CNE',
+];
 
 interface DEVObject1<T extends HL7TypeMap> {
   ActionCode?: string | null;
@@ -22215,6 +35130,44 @@ type DONFields2 =
   | 33
   | 34;
 
+type DONTypes2 = [
+  never,
+  'EI',
+  'CNE',
+  'DTM',
+  'DTM',
+  'NM',
+  'CNE',
+  'CNE',
+  'CNE',
+  'ID',
+  'CNE',
+  'DTM',
+  'CNE',
+  'CNE',
+  'CNE',
+  'ID',
+  'XPN',
+  'DTM',
+  'XON',
+  'DTM',
+  'XPN',
+  'CNE',
+  'CNE',
+  'XPN',
+  'XPN',
+  'ST',
+  'ST',
+  'ID',
+  'XPN',
+  'DTM',
+  'NM',
+  'EI',
+  'XCN',
+  'XCN',
+  'ID',
+];
+
 interface DONObject2<T extends HL7TypeMap> {
   DonationIdentificationNumberDIN?: T['EI'] | null;
   DonationType?: T['CNE'] | null;
@@ -22254,12 +35207,16 @@ interface DONObject2<T extends HL7TypeMap> {
 
 type DSTFields1 = 1 | 2;
 
+type DSTTypes1 = [never, 'CWE', 'CWE'];
+
 interface DSTObject1<T extends HL7TypeMap> {
   Destination?: T['CWE'] | null;
   Route?: T['CWE'][] | null;
 }
 
 type EQUFields2 = 1 | 2 | 3 | 4 | 5 | 6;
+
+type EQUTypes3 = [never, 'EI', 'DTM', 'CWE', 'CWE', 'CWE', 'DTM'];
 
 interface EQUObject4<T extends HL7TypeMap> {
   EquipmentInstanceIdentifier?: T['EI'][] | null;
@@ -22272,6 +35229,27 @@ interface EQUObject4<T extends HL7TypeMap> {
 
 type FHSFields3 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17;
+
+type FHSTypes4 = [
+  never,
+  'ST',
+  'ST',
+  'HD',
+  'HD',
+  'HD',
+  'HD',
+  'DTM',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'HD',
+  'HD',
+  'CWE',
+  'CWE',
+  'ST',
+];
 
 interface FHSObject5<T extends HL7TypeMap> {
   FileFieldSeparator?: string | null;
@@ -22348,6 +35326,66 @@ type FT1Fields8 =
   | 54
   | 55
   | 56;
+
+type FT1Types8 = [
+  never,
+  'SI',
+  'CX',
+  'ST',
+  'DR',
+  'DTM',
+  'CWE',
+  'CWE',
+  never,
+  never,
+  'NM',
+  'CP',
+  'CP',
+  'CWE',
+  'CWE',
+  'CP',
+  'PL',
+  'CWE',
+  'CWE',
+  'CWE',
+  'XCN',
+  'XCN',
+  'CP',
+  'EI',
+  'XCN',
+  'CNE',
+  'CNE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CX',
+  'SI',
+  'XON',
+  'XON',
+  'CWE',
+  'ST',
+  'CWE',
+  'CWE',
+  'CX',
+  'CX',
+  'CWE',
+  'CWE',
+  'ST',
+  'CQ',
+  'CWE',
+  'CWE',
+  'NM',
+  'DT',
+  'DT',
+  'DT',
+  'NM',
+  'MO',
+  'MO',
+  'CWE',
+  'ID',
+  'CWE',
+  'CWE',
+];
 
 interface FT1Object8<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -22481,6 +35519,83 @@ type IN2Fields3 =
   | 72
   | 73;
 
+type IN2Types6 = [
+  never,
+  'CX',
+  'ST',
+  'XCN',
+  'CWE',
+  'CWE',
+  'ST',
+  'XPN',
+  'ST',
+  'XPN',
+  'ST',
+  'CWE',
+  'ST',
+  'ST',
+  'CWE',
+  'CWE',
+  'CWE',
+  'DT',
+  'ID',
+  'ID',
+  'ID',
+  'ST',
+  'XPN',
+  'ST',
+  'CWE',
+  'CX',
+  'CX',
+  'CWE',
+  'RMC',
+  'PTA',
+  'DDI',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'CWE',
+  'CWE',
+  'XPN',
+  'CWE',
+  'CWE',
+  'CWE',
+  'DT',
+  'DT',
+  'ST',
+  'JCC',
+  'CWE',
+  'XPN',
+  'XTN',
+  'CWE',
+  'XPN',
+  'XTN',
+  'CWE',
+  'DT',
+  'DT',
+  'CWE',
+  'XTN',
+  'CWE',
+  'CWE',
+  'CX',
+  'CWE',
+  'XTN',
+  'XTN',
+  'CWE',
+  'ID',
+  'ID',
+  'ID',
+  'XON',
+  'XON',
+  'CWE',
+  'CWE',
+  'CP',
+];
+
 interface IN2Object6<T extends HL7TypeMap> {
   InsuredSEmployeeID?: T['CX'][] | null;
   InsuredSSocialSecurityNumber?: string | null;
@@ -22590,6 +35705,41 @@ type IN3Fields3 =
   | 30
   | 31;
 
+type IN3Types8 = [
+  never,
+  'SI',
+  'CX',
+  'XCN',
+  'ID',
+  'MOP',
+  'DTM',
+  'DTM',
+  'XCN',
+  'DT',
+  'DT',
+  'DTN',
+  'CWE',
+  'DTM',
+  'XCN',
+  'ST',
+  'XTN',
+  'CWE',
+  'CWE',
+  'XTN',
+  'ICD',
+  'ST',
+  'DT',
+  'CWE',
+  'CWE',
+  'XCN',
+  'CWE',
+  'CWE',
+  'DTM',
+  'CWE',
+  'CWE',
+  'ST',
+];
+
 interface IN3Object8<T extends HL7TypeMap> {
   SetID?: number | string | null;
   CertificationNumber?: T['CX'] | null;
@@ -22647,6 +35797,32 @@ type INVFields4 =
   | 21
   | 22;
 
+type INVTypes5 = [
+  never,
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'CWE',
+  'DTM',
+  'DTM',
+  never,
+  'CWE',
+  'ST',
+  'CWE',
+  'CWE',
+  'CQ',
+  'CQ',
+  'CWE',
+  'CQ',
+];
+
 interface INVObject5<T extends HL7TypeMap> {
   SubstanceIdentifier?: T['CWE'] | null;
   SubstanceStatus?: T['CWE'][] | null;
@@ -22672,6 +35848,20 @@ interface INVObject5<T extends HL7TypeMap> {
 }
 
 type IPCFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+
+type IPCTypes3 = [
+  never,
+  'EI',
+  'EI',
+  'EI',
+  'EI',
+  'CWE',
+  'CWE',
+  'EI',
+  'CWE',
+  'ST',
+  'ID',
+];
 
 interface IPCObject3<T extends HL7TypeMap> {
   AccessionIdentifier?: T['EI'] | null;
@@ -22725,6 +35915,48 @@ type ITMFields3 =
   | 36
   | 37
   | 38;
+
+type ITMTypes4 = [
+  never,
+  'EI',
+  'ST',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CNE',
+  'EI',
+  'ST',
+  'ST',
+  'CWE',
+  'CNE',
+  'CWE',
+  'CP',
+  'CNE',
+  'CWE',
+  'XON',
+  'CNE',
+  'CWE',
+  'CWE',
+  'NM',
+  'MO',
+  'CNE',
+  'CNE',
+  'CNE',
+  'EI',
+  'CNE',
+  'CNE',
+  'CNE',
+  'CWE',
+  'CNE',
+  'CNE',
+  'EI',
+  'CWE',
+  'DR',
+  'XPN',
+  'XTN',
+  'ST',
+  'ID',
+];
 
 interface ITMObject4<T extends HL7TypeMap> {
   ItemIdentifier?: T['EI'] | null;
@@ -22797,6 +36029,38 @@ type MSHFields7 =
   | 27
   | 28;
 
+type MSHTypes8 = [
+  never,
+  'ST',
+  'ST',
+  'HD',
+  'HD',
+  'HD',
+  'HD',
+  'DTM',
+  'ST',
+  'MSG',
+  'ST',
+  'PT',
+  'VID',
+  'NM',
+  'ST',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'CWE',
+  'ID',
+  'EI',
+  'XON',
+  'XON',
+  'HD',
+  'HD',
+  'CWE',
+  'CWE',
+  'ST',
+];
+
 interface MSHObject8<T extends HL7TypeMap> {
   FieldSeparator?: string | null;
   EncodingCharacters?: string | null;
@@ -22868,6 +36132,51 @@ type NK1Fields6 =
   | 40
   | 41;
 
+type NK1Types8 = [
+  never,
+  'SI',
+  'XPN',
+  'CWE',
+  'XAD',
+  never,
+  never,
+  'CWE',
+  'DT',
+  'DT',
+  'ST',
+  'JCC',
+  'CX',
+  'XON',
+  'CWE',
+  'CWE',
+  'DTM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'CWE',
+  'CWE',
+  'XPN',
+  'CWE',
+  'CWE',
+  'CWE',
+  'XPN',
+  never,
+  'XAD',
+  'CX',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ST',
+  'ST',
+  'CWE',
+  'XTN',
+  'XTN',
+];
+
 interface NK1Object8<T extends HL7TypeMap> {
   SetID?: number | string | null;
   Name?: T['XPN'][] | null;
@@ -22910,6 +36219,19 @@ interface NK1Object8<T extends HL7TypeMap> {
 }
 
 type NTEFields4 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+
+type NTETypes5 = [
+  never,
+  'SI',
+  'ID',
+  'FT',
+  'CWE',
+  'XCN',
+  'DTM',
+  'DTM',
+  'DTM',
+  'CWE',
+];
 
 interface NTEObject4<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -22967,6 +36289,65 @@ type OBRFields9 =
   | 53
   | 54
   | 55;
+
+type OBRTypes11 = [
+  never,
+  'SI',
+  'EI',
+  'EI',
+  'CWE',
+  never,
+  never,
+  'DTM',
+  'DTM',
+  'CQ',
+  'XCN',
+  'ID',
+  'CWE',
+  'CWE',
+  never,
+  never,
+  never,
+  'XTN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  'DTM',
+  'MOC',
+  'ID',
+  'ID',
+  'PRL',
+  never,
+  never,
+  'EIP',
+  'ID',
+  'CWE',
+  never,
+  never,
+  never,
+  never,
+  'DTM',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'ID',
+  'CWE',
+  'CNE',
+  'CNE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  never,
+  'EI',
+  'EI',
+  'CX',
+  'EIP',
+  'ID',
+];
 
 interface OBRObject11<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -23049,6 +36430,43 @@ type OBXFields11 =
   | 32
   | 33;
 
+type OBXTypes11 = [
+  never,
+  'SI',
+  'ID',
+  'CWE',
+  'OG',
+  'VARIES',
+  'CWE',
+  'ST',
+  'CWE',
+  'NM',
+  'ID',
+  'ID',
+  'DTM',
+  'ST',
+  'DTM',
+  'CWE',
+  'XCN',
+  'CWE',
+  'EI',
+  'DTM',
+  'CWE',
+  'EI',
+  'CNE',
+  'XON',
+  'XAD',
+  'XCN',
+  'ID',
+  'CWE',
+  'CWE',
+  'ID',
+  'ID',
+  'ID',
+  'CWE',
+  'EIP',
+];
+
 interface OBXObject13<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ValueType?: string | null;
@@ -23087,6 +36505,8 @@ interface OBXObject13<T extends HL7TypeMap> {
 
 type OH1Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
+type OH1Types1 = [never, 'SI', 'ID', 'CWE', 'DT', 'DT', 'DT', 'EI'];
+
 interface OH1Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ActionCode?: string | null;
@@ -23117,6 +36537,28 @@ type OH2Fields1 =
   | 17
   | 18;
 
+type OH2Types1 = [
+  never,
+  'SI',
+  'ID',
+  'DT',
+  'CWE',
+  'CWE',
+  'CWE',
+  'DT',
+  'DT',
+  'CWE',
+  'NM',
+  'NM',
+  'XON',
+  'XAD',
+  'CWE',
+  'ST',
+  'FT',
+  'EI',
+  'CWE',
+];
+
 interface OH2Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ActionCode?: string | null;
@@ -23140,6 +36582,8 @@ interface OH2Object1<T extends HL7TypeMap> {
 
 type OH3Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
+type OH3Types1 = [never, 'SI', 'ID', 'CWE', 'CWE', 'NM', 'DT', 'DT', 'EI'];
+
 interface OH3Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ActionCode?: string | null;
@@ -23153,6 +36597,8 @@ interface OH3Object1<T extends HL7TypeMap> {
 
 type OH4Fields1 = 1 | 2 | 3 | 4 | 5 | 6;
 
+type OH4Types1 = [never, 'SI', 'ID', 'DT', 'DT', 'DT', 'EI'];
+
 interface OH4Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ActionCode?: string | null;
@@ -23161,6 +36607,23 @@ interface OH4Object1<T extends HL7TypeMap> {
   EnteredDate?: string | null;
   CombatZoneUniqueIdentifier?: T['EI'] | null;
 }
+
+type OMCTypes2 = [
+  never,
+  'NM',
+  'ID',
+  'EI',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'ST',
+  'ID',
+  'ID',
+  'CWE',
+  'NM',
+  'NM',
+];
 
 type ORCFields9 =
   | 1
@@ -23189,6 +36652,48 @@ type ORCFields9 =
   | 36
   | 37
   | 38;
+
+type ORCTypes11 = [
+  never,
+  'ID',
+  'EI',
+  'EI',
+  'EI',
+  'ID',
+  'ID',
+  never,
+  'EIP',
+  'DTM',
+  never,
+  never,
+  never,
+  'PL',
+  'XTN',
+  'DTM',
+  'CWE',
+  never,
+  never,
+  never,
+  'CWE',
+  never,
+  never,
+  never,
+  never,
+  'CWE',
+  'CWE',
+  'DTM',
+  'CWE',
+  'CWE',
+  'CNE',
+  never,
+  'DT',
+  'CX',
+  'CWE',
+  'ID',
+  'DR',
+  'DTM',
+  'EI',
+];
 
 interface ORCObject11<T extends HL7TypeMap> {
   OrderControl?: string | null;
@@ -23220,6 +36725,19 @@ interface ORCObject11<T extends HL7TypeMap> {
 }
 
 type PACFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+
+type PACTypes2 = [
+  never,
+  'SI',
+  'EI',
+  'EI',
+  'NA',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+];
 
 interface PACObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -23256,6 +36774,33 @@ type PD1Fields5 =
   | 21
   | 22
   | 23;
+
+type PD1Types5 = [
+  never,
+  'CWE',
+  'CWE',
+  'XON',
+  never,
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  'CX',
+  'CWE',
+  'ID',
+  'DT',
+  'XON',
+  'CWE',
+  'CWE',
+  'DT',
+  'DT',
+  'CWE',
+  'CWE',
+  'CWE',
+  'DT',
+  'DT',
+];
 
 interface PD1Object6<T extends HL7TypeMap> {
   LivingDependency?: T['CWE'][] | null;
@@ -23315,6 +36860,50 @@ type PIDFields7 =
   | 39
   | 40;
 
+type PIDTypes9 = [
+  never,
+  'SI',
+  never,
+  'CX',
+  never,
+  'XPN',
+  'XPN',
+  'DTM',
+  'CWE',
+  never,
+  'CWE',
+  'XAD',
+  never,
+  never,
+  never,
+  'CWE',
+  'CWE',
+  'CWE',
+  'CX',
+  never,
+  never,
+  'CX',
+  'CWE',
+  'ST',
+  'ID',
+  'NM',
+  'CWE',
+  'CWE',
+  never,
+  'DTM',
+  'ID',
+  'ID',
+  'CWE',
+  'DTM',
+  'HD',
+  'CWE',
+  'CWE',
+  'ST',
+  'CWE',
+  'CWE',
+  'XTN',
+];
+
 interface PIDObject9<T extends HL7TypeMap> {
   SetID?: number | string | null;
   PatientIdentifierList?: T['CX'][] | null;
@@ -23350,6 +36939,21 @@ interface PIDObject9<T extends HL7TypeMap> {
 }
 
 type PKGFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+
+type PKGTypes3 = [
+  never,
+  'SI',
+  'CWE',
+  'CNE',
+  'NM',
+  'CP',
+  'CP',
+  'DTM',
+  'CWE',
+  'MO',
+  'NM',
+  'EI',
+];
 
 interface PKGObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -23390,6 +36994,34 @@ type PRTFields3 =
   | 22
   | 23
   | 24;
+
+type PRTTypes3 = [
+  never,
+  'EI',
+  'ID',
+  'CWE',
+  'CWE',
+  'XCN',
+  'CWE',
+  'CWE',
+  'XON',
+  'PL',
+  'EI',
+  'DTM',
+  'DTM',
+  'CWE',
+  'XAD',
+  'XTN',
+  'EI',
+  'DTM',
+  'DTM',
+  'ST',
+  'ST',
+  'EI',
+  'CNE',
+  'CWE',
+  'PLN',
+];
 
 interface PRTObject3<T extends HL7TypeMap> {
   ParticipationInstanceID?: T['EI'] | null;
@@ -23499,6 +37131,28 @@ type RELFields2 =
   | 17
   | 18;
 
+type RELTypes2 = [
+  never,
+  'SI',
+  'CWE',
+  'EI',
+  'EI',
+  'EI',
+  'EI',
+  'XCN',
+  'XON',
+  'XAD',
+  'XTN',
+  'DR',
+  'ID',
+  'CWE',
+  'NM',
+  'NM',
+  'ID',
+  'ID',
+  'ID',
+];
+
 interface RELObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   RelationshipType?: T['CWE'] | null;
@@ -23519,6 +37173,8 @@ interface RELObject2<T extends HL7TypeMap> {
   SourceInformationInstanceObjectType?: string | null;
   TargetInformationInstanceObjectType?: string | null;
 }
+
+type ROLTypes5 = [never];
 
 interface ROLObject6<T extends HL7TypeMap> {}
 
@@ -23552,6 +37208,43 @@ type RXGFields7 =
   | 31
   | 32
   | 33;
+
+type RXGTypes8 = [
+  never,
+  'NM',
+  'NM',
+  never,
+  'CWE',
+  'NM',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+  never,
+  'ID',
+  'CWE',
+  'ST',
+  'ST',
+  'CWE',
+  'NM',
+  'CWE',
+  'ST',
+  'DTM',
+  'CWE',
+  'CWE',
+  'NM',
+  'CWE',
+  'CWE',
+  'ID',
+  never,
+  never,
+  'PL',
+  'XAD',
+  'EI',
+  'NM',
+  'CWE',
+];
 
 interface RXGObject8<T extends HL7TypeMap> {
   GiveSubIDCounter?: number | string | null;
@@ -23621,6 +37314,46 @@ type RXOFields9 =
   | 34
   | 35
   | 36;
+
+type RXOTypes9 = [
+  never,
+  'CWE',
+  'NM',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  never,
+  'ID',
+  'CWE',
+  'NM',
+  'CWE',
+  'NM',
+  never,
+  'XCN',
+  'ID',
+  'ST',
+  'NM',
+  'CWE',
+  'CWE',
+  'ST',
+  'CWE',
+  'CQ',
+  'CWE',
+  'NM',
+  'CWE',
+  'ID',
+  'NM',
+  'EI',
+  'EI',
+  'CNE',
+  'CWE',
+  'XAD',
+  'PL',
+  'XAD',
+  'XTN',
+];
 
 interface RXOObject9<T extends HL7TypeMap> {
   RequestedGiveCode?: T['CWE'] | null;
@@ -23709,6 +37442,59 @@ type SACFields3 =
   | 48
   | 49;
 
+type SACTypes5 = [
+  never,
+  'EI',
+  'EI',
+  'EI',
+  'EI',
+  'EI',
+  never,
+  'DTM',
+  'CWE',
+  'CWE',
+  'EI',
+  'NA',
+  'CWE',
+  'EI',
+  'NA',
+  'CWE',
+  'NM',
+  'NM',
+  'NM',
+  'NM',
+  'CWE',
+  'NM',
+  'NM',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'SN',
+  'CWE',
+  'SN',
+  'NM',
+  'CWE',
+  'NM',
+  'CWE',
+  'NM',
+  'CWE',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CQ',
+  'CQ',
+  'CWE',
+  'CWE',
+  'CWE',
+];
+
 interface SACObject5<T extends HL7TypeMap> {
   ExternalAccessionIdentifier?: T['EI'] | null;
   AccessionIdentifier?: T['EI'] | null;
@@ -23788,6 +37574,38 @@ type SCHFields4 =
   | 27
   | 28;
 
+type SCHTypes6 = [
+  never,
+  'EI',
+  'EI',
+  'NM',
+  'EI',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  never,
+  'CNE',
+  never,
+  'XCN',
+  'XTN',
+  'XAD',
+  'PL',
+  'XCN',
+  'XTN',
+  'XAD',
+  'PL',
+  'XCN',
+  'XTN',
+  'PL',
+  'EI',
+  'EI',
+  'CWE',
+  'EI',
+  'EI',
+  'EIP',
+];
+
 interface SCHObject7<T extends HL7TypeMap> {
   PlacerAppointmentID?: T['EI'] | null;
   FillerAppointmentID?: T['EI'] | null;
@@ -23818,6 +37636,22 @@ interface SCHObject7<T extends HL7TypeMap> {
 }
 
 type SHPFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type SHPTypes2 = [
+  never,
+  'EI',
+  'EI',
+  'CWE',
+  'DTM',
+  'TX',
+  'CWE',
+  'CWE',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'ID',
+];
 
 interface SHPObject2<T extends HL7TypeMap> {
   ShipmentID?: T['EI'] | null;
@@ -23871,6 +37705,45 @@ type SPMFields3 =
   | 34
   | 35;
 
+type SPMTypes4 = [
+  never,
+  'SI',
+  'EIP',
+  'EIP',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CQ',
+  'NM',
+  'ST',
+  'CWE',
+  'CWE',
+  'DR',
+  'DTM',
+  'DTM',
+  'ID',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CQ',
+  'NM',
+  'CWE',
+  'CWE',
+  'CWE',
+  'CX',
+  'CX',
+  'EI',
+  'DTM',
+  'DTM',
+  'ID',
+];
+
 interface SPMObject4<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SpecimenID?: T['EIP'] | null;
@@ -23910,6 +37783,21 @@ interface SPMObject4<T extends HL7TypeMap> {
 }
 
 type TCDFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+
+type TCDTypes3 = [
+  never,
+  'CWE',
+  'SN',
+  'SN',
+  'SN',
+  'SN',
+  'ID',
+  'ID',
+  'CWE',
+  'CQ',
+  'NM',
+  'CWE',
+];
 
 interface TCDObject3<T extends HL7TypeMap> {
   UniversalServiceIdentifier?: T['CWE'] | null;
@@ -23955,6 +37843,38 @@ type TXAFields3 =
   | 27
   | 28;
 
+type TXATypes4 = [
+  never,
+  'SI',
+  'CWE',
+  'ID',
+  'DTM',
+  'XCN',
+  'DTM',
+  'DTM',
+  'DTM',
+  'XCN',
+  'XCN',
+  'XCN',
+  'EI',
+  'EI',
+  'EI',
+  'EI',
+  'ST',
+  'ID',
+  'ID',
+  'ID',
+  'ID',
+  'ST',
+  'PPN',
+  'XCN',
+  'CWE',
+  'ST',
+  'DTM',
+  'HD',
+  'CWE',
+];
+
 interface TXAObject5<T extends HL7TypeMap> {
   SetID?: number | string | null;
   DocumentType?: T['CWE'] | null;
@@ -23988,6 +37908,21 @@ interface TXAObject5<T extends HL7TypeMap> {
 
 type VNDFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
 
+type VNDTypes2 = [
+  never,
+  'SI',
+  'EI',
+  'ST',
+  'EI',
+  'CNE',
+  'EI',
+  'XCN',
+  'MOP',
+  'EI',
+  'ST',
+  'CWE',
+];
+
 interface VNDObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   VendorIdentifier?: T['EI'] | null;
@@ -24004,10 +37939,48 @@ interface VNDObject2<T extends HL7TypeMap> {
 
 type ZL7Fields1 = 1 | 2;
 
+type ZL7Types2 = [never, 'NM', 'NM'];
+
 interface ZL7Object2<T extends HL7TypeMap> {
   DisplaySortKey?: number | string | null;
   DisplaySortKey2?: number | string | null;
 }
+
+type ERLComps2 = [never, 'ST', 'SI', 'SI', 'SI', 'SI', 'SI'];
+
+type MAComps3 = [never, 'NM', 'NM', 'NM', 'NM', 'MA'];
+
+type NAComps2 = [never, 'NM', 'NM', 'NM', 'NM', 'NA'];
+
+type PPNComps7 = [
+  never,
+  'ST',
+  'FN',
+  'ST',
+  'ST',
+  'ST',
+  'ST',
+  never,
+  never,
+  'HD',
+  'ID',
+  'ST',
+  'ID',
+  'ID',
+  'HD',
+  'DTM',
+  'ID',
+  'CWE',
+  never,
+  'ID',
+  'DTM',
+  'DTM',
+  'ST',
+  'CWE',
+  'CWE',
+  'ST',
+  'ID',
+];
 
 /** Each version's composite data types as objects, by type name */
 export interface HL7VersionTypes {
@@ -28142,6 +42115,3243 @@ export interface HL7VersionSegmentFields {
   };
   [version: `${number}.${number}`]: { [segment: string]: number };
   [version: `${number}.${number}.${number}`]: { [segment: string]: number };
+}
+
+/**
+ * Each version's segment field types and data type component types, for
+ * checking paths (see HL7CheckedPath): segments.DG1[3] is DG1-3's type,
+ * types.CWE[1] the type of its first component; a primitive's only
+ * component is itself.
+ */
+export interface HL7VersionPathTypes {
+  '2.1': {
+    types: {
+      CE: CEComps1;
+      FT: [never, 'FT'];
+      TX: [never, 'TX'];
+      COMP_ID_DIGIT: [never, 'COMP_ID_DIGIT'];
+      COMP_ID_NAME: [never, 'COMP_ID_NAME'];
+      COMP_QUANT: [never, 'COMP_QUANT'];
+      DT: [never, 'DT'];
+      ID: [never, 'ID'];
+      NM: [never, 'NM'];
+      SET_ID: [never, 'SET_ID'];
+      SI: [never, 'SI'];
+      ST: [never, 'ST'];
+      TM: [never, 'TM'];
+      TN: [never, 'TN'];
+      IS: [never, 'IS'];
+      XON: XONComps1;
+      XCN: XCNComps1;
+      CX: CXComps1;
+      HD: HDComps1;
+    };
+    segments: {
+      ACC: ACCTypes1;
+      ADD: ADDTypes1;
+      BHS: BHSTypes1;
+      BLG: BLGTypes1;
+      BTS: BTSTypes1;
+      DG1: DG1Types1;
+      DSC: DSCTypes1;
+      DSP: DSPTypes1;
+      ERR: ERRTypes1;
+      EVN: EVNTypes1;
+      FHS: FHSTypes1;
+      FT1: FT1Types1;
+      FTS: FTSTypes1;
+      GT1: GT1Types1;
+      IN1: IN1Types1;
+      MRG: MRGTypes1;
+      MSA: MSATypes1;
+      MSH: MSHTypes1;
+      NCK: NCKTypes1;
+      NK1: NK1Types1;
+      NPU: NPUTypes1;
+      NSC: NSCTypes1;
+      NST: NSTTypes1;
+      NTE: NTETypes1;
+      OBR: OBRTypes1;
+      OBX: OBXTypes1;
+      ORC: ORCTypes1;
+      ORO: OROTypes1;
+      PID: PIDTypes1;
+      PR1: PR1Types1;
+      PV1: PV1Types1;
+      QRD: QRDTypes1;
+      QRF: QRFTypes1;
+      RX1: RX1Types1;
+      UB1: UB1Types1;
+      URD: URDTypes1;
+      URS: URSTypes1;
+      PD1: PD1Types1;
+    };
+  };
+  '2.2': {
+    types: {
+      AD: ADComps1;
+      CE: CEComps1;
+      CK_ACCOUNT_NO: CK_ACCOUNT_NOComps1;
+      CK_PAT_ID: CK_PAT_IDComps1;
+      CM_ABS_RANGE: CM_ABS_RANGEComps1;
+      CM_AUI: CM_AUIComps1;
+      CM_BATCH_TOTAL: CM_BATCH_TOTALComps1;
+      CM_CCD: CM_CCDComps1;
+      CM_DDI: CM_DDIComps1;
+      CM_DIN: CM_DINComps1;
+      CM_DLD: CM_DLDComps1;
+      CM_DLT: CM_DLTComps1;
+      CM_DTN: CM_DTNComps1;
+      CM_EIP: CM_EIPComps1;
+      CM_ELD: CM_ELDComps1;
+      CM_FILLER: CM_FILLERComps1;
+      CM_FINANCE: CM_FINANCEComps1;
+      CM_GROUP_ID: CM_GROUP_IDComps1;
+      CM_INTERNAL_LOCATION: CM_INTERNAL_LOCATIONComps1;
+      CM_JOB_CODE: CM_JOB_CODEComps1;
+      CM_LA1: CM_LA1Comps1;
+      CM_LICENSE_NO: CM_LICENSE_NOComps1;
+      CM_MOC: CM_MOCComps1;
+      CM_MSG: CM_MSGComps1;
+      CM_NDL: CM_NDLComps1;
+      CM_OCD: CM_OCDComps1;
+      CM_OSP: CM_OSPComps1;
+      CM_PAT_ID: CM_PAT_IDComps1;
+      CM_PAT_ID_0192: CM_PAT_ID_0192Comps1;
+      CM_PCF: CM_PCFComps1;
+      CM_PEN: CM_PENComps1;
+      CM_PIP: CM_PIPComps1;
+      CM_PLACER: CM_PLACERComps1;
+      CM_PLN: CM_PLNComps1;
+      CM_POSITION: CM_POSITIONComps1;
+      CM_PRACTITIONER: CM_PRACTITIONERComps1;
+      CM_PTA: CM_PTAComps1;
+      CM_RANGE: CM_RANGEComps1;
+      CM_RFR: CM_RFRComps1;
+      CM_RI: CM_RIComps1;
+      CM_RMC: CM_RMCComps1;
+      CM_SPD: CM_SPDComps1;
+      CM_SPS: CM_SPSComps1;
+      CM_UVC: CM_UVCComps1;
+      CM_VR: CM_VRComps1;
+      CN_PERSON: CN_PERSONComps1;
+      CN_PHYSICIAN: CN_PHYSICIANComps1;
+      CQ_QUANTITY: CQ_QUANTITYComps1;
+      FT: [never, 'FT'];
+      PN: PNComps1;
+      TQ: TQComps1;
+      TS: TSComps1;
+      TX: [never, 'TX'];
+      COMP_ID_DIGIT: [never, 'COMP_ID_DIGIT'];
+      COMP_ID_NAME: [never, 'COMP_ID_NAME'];
+      CQ_COMP_QUANT: [never, 'CQ_COMP_QUANT'];
+      DT: [never, 'DT'];
+      ID: [never, 'ID'];
+      NM: [never, 'NM'];
+      SI: [never, 'SI'];
+      ST: [never, 'ST'];
+      TM: [never, 'TM'];
+      TN: [never, 'TN'];
+      CN: CNComps1;
+      CQ: CQComps1;
+      CM_PARENT_RESULT: CM_PARENT_RESULTComps1;
+    };
+    segments: {
+      ACC: ACCTypes1;
+      ADD: ADDTypes1;
+      AL1: AL1Types1;
+      BHS: BHSTypes1;
+      BLG: BLGTypes2;
+      BTS: BTSTypes2;
+      DG1: DG1Types2;
+      DSC: DSCTypes1;
+      DSP: DSPTypes1;
+      ERR: ERRTypes2;
+      EVN: EVNTypes2;
+      FHS: FHSTypes1;
+      FT1: FT1Types2;
+      FTS: FTSTypes2;
+      GT1: GT1Types2;
+      IN1: IN1Types2;
+      IN2: IN2Types1;
+      IN3: IN3Types1;
+      MFA: MFATypes1;
+      MFE: MFETypes1;
+      MFI: MFITypes1;
+      MRG: MRGTypes2;
+      MSA: MSATypes2;
+      MSH: MSHTypes2;
+      NCK: NCKTypes1;
+      NK1: NK1Types2;
+      NPU: NPUTypes2;
+      NSC: NSCTypes1;
+      NST: NSTTypes1;
+      NTE: NTETypes2;
+      OBR: OBRTypes2;
+      OBX: OBXTypes2;
+      ODS: ODSTypes1;
+      ODT: ODTTypes1;
+      OM1: OM1Types1;
+      OM2: OM2Types1;
+      OM3: OM3Types1;
+      OM4: OM4Types1;
+      OM5: OM5Types1;
+      OM6: OM6Types1;
+      ORC: ORCTypes2;
+      PID: PIDTypes2;
+      PR1: PR1Types2;
+      PRA: PRATypes1;
+      PV1: PV1Types2;
+      PV2: PV2Types1;
+      QRD: QRDTypes2;
+      QRF: QRFTypes2;
+      RQ1: RQ1Types1;
+      RQD: RQDTypes1;
+      RXA: RXATypes1;
+      RXC: RXCTypes1;
+      RXD: RXDTypes1;
+      RXE: RXETypes1;
+      RXG: RXGTypes1;
+      RXO: RXOTypes1;
+      RXR: RXRTypes1;
+      STF: STFTypes1;
+      UB1: UB1Types2;
+      UB2: UB2Types1;
+      URD: URDTypes1;
+      URS: URSTypes2;
+    };
+  };
+  '2.3': {
+    types: {
+      AD: ADComps2;
+      CD: CDComps1;
+      CE: CEComps2;
+      CF: CFComps1;
+      CK: CKComps1;
+      CM_ABS_RANGE: CM_ABS_RANGEComps1;
+      CM_AUI: CM_AUIComps2;
+      CM_CCD: CM_CCDComps1;
+      CM_DDI: CM_DDIComps2;
+      CM_DIN: CM_DINComps1;
+      CM_DLD: CM_DLDComps1;
+      CM_DLT: CM_DLTComps1;
+      CM_DTN: CM_DTNComps2;
+      CM_EIP: CM_EIPComps2;
+      CM_ELD: CM_ELDComps1;
+      CM_LA1: CM_LA1Comps2;
+      CM_MOC: CM_MOCComps2;
+      CM_MSG: CM_MSGComps1;
+      CM_NDL: CM_NDLComps2;
+      CM_OCD: CM_OCDComps2;
+      CM_OSP: CM_OSPComps2;
+      CM_PCF: CM_PCFComps2;
+      CM_PEN: CM_PENComps2;
+      CM_PI: CM_PIComps1;
+      CM_PIP: CM_PIPComps1;
+      CM_PLN: CM_PLNComps2;
+      CM_PRL: CM_PRLComps1;
+      CM_PTA: CM_PTAComps2;
+      CM_RANGE: CM_RANGEComps1;
+      CM_RFR: CM_RFRComps2;
+      CM_RI: CM_RIComps2;
+      CM_RMC: CM_RMCComps2;
+      CM_SPD: CM_SPDComps1;
+      CM_SPS: CM_SPSComps2;
+      CM_UVC: CM_UVCComps2;
+      CM_VR: CM_VRComps1;
+      CM_WVI: CM_WVIComps1;
+      CN: CNComps2;
+      CP: CPComps1;
+      CQ: CQComps2;
+      CX: CXComps1;
+      DLN: DLNComps1;
+      DR: DRComps1;
+      ED: EDComps1;
+      EI: EIComps1;
+      FC: FCComps1;
+      FT: [never, 'FT'];
+      HD: HDComps1;
+      JCC: JCCComps1;
+      MA: MAComps1;
+      MO: MOComps1;
+      NA: NAComps1;
+      PL: PLComps1;
+      PPN: PPNComps1;
+      PT: PTComps1;
+      QIP: QIPComps1;
+      QSC: QSCComps1;
+      RCD: RCDComps1;
+      RI: RIComps1;
+      RP: RPComps1;
+      SCV: SCVComps1;
+      SN: SNComps1;
+      TQ: TQComps2;
+      TS: TSComps1;
+      TX: [never, 'TX'];
+      VH: VHComps1;
+      XAD: XADComps1;
+      XCN: XCNComps1;
+      XON: XONComps1;
+      XPN: XPNComps1;
+      XTN: XTNComps1;
+      DT: [never, 'DT'];
+      ID: [never, 'ID'];
+      IS: [never, 'IS'];
+      NM: [never, 'NM'];
+      SI: [never, 'SI'];
+      ST: [never, 'ST'];
+      TM: [never, 'TM'];
+      TN: [never, 'TN'];
+    };
+    segments: {
+      ACC: ACCTypes2;
+      ADD: ADDTypes1;
+      AIG: AIGTypes1;
+      AIL: AILTypes1;
+      AIP: AIPTypes1;
+      AIS: AISTypes1;
+      AL1: AL1Types1;
+      APR: APRTypes1;
+      ARQ: ARQTypes1;
+      AUT: AUTTypes1;
+      BHS: BHSTypes1;
+      BLG: BLGTypes2;
+      BTS: BTSTypes3;
+      CDM: CDMTypes1;
+      CM0: CM0Types1;
+      CM1: CM1Types1;
+      CM2: CM2Types1;
+      CSP: CSPTypes1;
+      CSR: CSRTypes1;
+      CSS: CSSTypes1;
+      CTD: CTDTypes1;
+      CTI: CTITypes1;
+      DB1: DB1Types1;
+      DG1: DG1Types3;
+      DRG: DRGTypes1;
+      DSC: DSCTypes1;
+      DSP: DSPTypes1;
+      EQL: EQLTypes1;
+      ERQ: ERQTypes1;
+      ERR: ERRTypes2;
+      EVN: EVNTypes3;
+      FAC: FACTypes1;
+      FHS: FHSTypes1;
+      FT1: FT1Types3;
+      FTS: FTSTypes2;
+      GOL: GOLTypes1;
+      GT1: GT1Types3;
+      IN1: IN1Types3;
+      IN2: IN2Types2;
+      IN3: IN3Types2;
+      LCC: LCCTypes1;
+      LCH: LCHTypes1;
+      LDP: LDPTypes1;
+      LOC: LOCTypes1;
+      LRL: LRLTypes1;
+      MFA: MFATypes1;
+      MFE: MFETypes1;
+      MFI: MFITypes2;
+      MRG: MRGTypes3;
+      MSA: MSATypes2;
+      MSH: MSHTypes3;
+      NCK: NCKTypes1;
+      NK1: NK1Types3;
+      NPU: NPUTypes3;
+      NSC: NSCTypes2;
+      NST: NSTTypes1;
+      NTE: NTETypes2;
+      OBR: OBRTypes3;
+      OBX: OBXTypes3;
+      ODS: ODSTypes1;
+      ODT: ODTTypes1;
+      OM1: OM1Types2;
+      OM2: OM2Types2;
+      OM3: OM3Types2;
+      OM4: OM4Types2;
+      OM5: OM5Types2;
+      OM6: OM6Types2;
+      ORC: ORCTypes3;
+      PCR: PCRTypes1;
+      PD1: PD1Types1;
+      PDC: PDCTypes1;
+      PEO: PEOTypes1;
+      PES: PESTypes1;
+      PID: PIDTypes3;
+      PR1: PR1Types3;
+      PRA: PRATypes1;
+      PRB: PRBTypes1;
+      PRC: PRCTypes1;
+      PRD: PRDTypes1;
+      PSH: PSHTypes1;
+      PTH: PTHTypes1;
+      PV1: PV1Types3;
+      PV2: PV2Types2;
+      QAK: QAKTypes1;
+      QRD: QRDTypes3;
+      QRF: QRFTypes3;
+      RDF: RDFTypes1;
+      RDT: RDTTypes1;
+      RF1: RF1Types1;
+      RGS: RGSTypes1;
+      ROL: ROLTypes1;
+      RQ1: RQ1Types2;
+      RQD: RQDTypes1;
+      RXA: RXATypes2;
+      RXC: RXCTypes2;
+      RXD: RXDTypes2;
+      RXE: RXETypes2;
+      RXG: RXGTypes2;
+      RXO: RXOTypes2;
+      RXR: RXRTypes1;
+      SCH: SCHTypes1;
+      SPR: SPRTypes1;
+      STF: STFTypes2;
+      TXA: TXATypes1;
+      UB1: UB1Types3;
+      UB2: UB2Types2;
+      URD: URDTypes2;
+      URS: URSTypes3;
+      VAR: VARTypes1;
+      VTQ: VTQTypes1;
+    };
+  };
+  '2.3.1': {
+    types: {
+      AD: ADComps2;
+      AUI: AUIComps1;
+      CCD: CCDComps1;
+      CCP: CCPComps1;
+      CD: CDComps2;
+      CE: CEComps3;
+      CF: CFComps2;
+      CK: CKComps2;
+      CN: CNComps3;
+      CNE: CNEComps1;
+      CNS: CNSComps1;
+      CP: CPComps1;
+      CQ: CQComps2;
+      CSU: CSUComps1;
+      CWE: CWEComps1;
+      CX: CXComps2;
+      DDI: DDIComps1;
+      DIN: DINComps1;
+      DLD: DLDComps1;
+      DLN: DLNComps1;
+      DLT: DLTComps1;
+      DR: DRComps1;
+      DTN: DTNComps1;
+      ED: EDComps1;
+      EI: EIComps1;
+      EIP: EIPComps1;
+      ELD: ELDComps1;
+      FC: FCComps1;
+      FN: FNComps1;
+      FT: [never, 'FT'];
+      HD: HDComps1;
+      JCC: JCCComps1;
+      LA1: LA1Comps1;
+      LA2: LA2Comps1;
+      MA: MAComps1;
+      MO: MOComps1;
+      MOC: MOCComps1;
+      MOP: MOPComps1;
+      MSG: MSGComps1;
+      NA: NAComps1;
+      NDL: NDLComps1;
+      NR: NRComps1;
+      OCD: OCDComps1;
+      OSD: OSDComps1;
+      OSP: OSPComps1;
+      PCF: PCFComps1;
+      PI: PIComps1;
+      PIP: PIPComps1;
+      PL: PLComps2;
+      PLN: PLNComps1;
+      PN: PNComps2;
+      PPN: PPNComps2;
+      PRL: PRLComps1;
+      PT: PTComps2;
+      PTA: PTAComps1;
+      QIP: QIPComps1;
+      QSC: QSCComps1;
+      RCD: RCDComps1;
+      RFR: RFRComps1;
+      RI: RIComps1;
+      RMC: RMCComps1;
+      RP: RPComps1;
+      SCV: SCVComps2;
+      SN: SNComps1;
+      SPD: SPDComps1;
+      SPS: SPSComps1;
+      TQ: TQComps3;
+      TS: TSComps1;
+      TX: [never, 'TX'];
+      TX_CHALLENGE: TX_CHALLENGEComps1;
+      UVC: UVCComps1;
+      VH: VHComps1;
+      VID: VIDComps1;
+      VR: VRComps1;
+      WVI: WVIComps1;
+      WVS: WVSComps1;
+      XAD: XADComps2;
+      XCN: XCNComps2;
+      XON: XONComps2;
+      XPN: XPNComps2;
+      XTN: XTNComps1;
+      DT: [never, 'DT'];
+      ID: [never, 'ID'];
+      IS: [never, 'IS'];
+      NM: [never, 'NM'];
+      SI: [never, 'SI'];
+      ST: [never, 'ST'];
+      TM: [never, 'TM'];
+      TN: [never, 'TN'];
+    };
+    segments: {
+      ACC: ACCTypes2;
+      ADD: ADDTypes1;
+      AIG: AIGTypes1;
+      AIL: AILTypes1;
+      AIP: AIPTypes1;
+      AIS: AISTypes1;
+      AL1: AL1Types2;
+      APR: APRTypes1;
+      ARQ: ARQTypes1;
+      AUT: AUTTypes1;
+      BHS: BHSTypes1;
+      BLG: BLGTypes3;
+      BTS: BTSTypes3;
+      CDM: CDMTypes2;
+      CM0: CM0Types2;
+      CM1: CM1Types1;
+      CM2: CM2Types1;
+      CSP: CSPTypes1;
+      CSR: CSRTypes1;
+      CSS: CSSTypes1;
+      CTD: CTDTypes2;
+      CTI: CTITypes1;
+      DB1: DB1Types1;
+      DG1: DG1Types4;
+      DRG: DRGTypes1;
+      DSC: DSCTypes1;
+      DSP: DSPTypes1;
+      EQL: EQLTypes1;
+      ERQ: ERQTypes1;
+      ERR: ERRTypes3;
+      EVN: EVNTypes4;
+      FAC: FACTypes1;
+      FHS: FHSTypes1;
+      FT1: FT1Types4;
+      FTS: FTSTypes2;
+      GOL: GOLTypes1;
+      GT1: GT1Types4;
+      IN1: IN1Types4;
+      IN2: IN2Types3;
+      IN3: IN3Types3;
+      LCC: LCCTypes1;
+      LCH: LCHTypes1;
+      LDP: LDPTypes2;
+      LOC: LOCTypes2;
+      LRL: LRLTypes1;
+      MFA: MFATypes2;
+      MFE: MFETypes2;
+      MFI: MFITypes2;
+      MRG: MRGTypes4;
+      MSA: MSATypes2;
+      MSH: MSHTypes4;
+      NCK: NCKTypes1;
+      NK1: NK1Types4;
+      NPU: NPUTypes3;
+      NSC: NSCTypes3;
+      NST: NSTTypes1;
+      NTE: NTETypes3;
+      OBR: OBRTypes4;
+      OBX: OBXTypes3;
+      ODS: ODSTypes1;
+      ODT: ODTTypes1;
+      OM1: OM1Types3;
+      OM2: OM2Types3;
+      OM3: OM3Types2;
+      OM4: OM4Types2;
+      OM5: OM5Types2;
+      OM6: OM6Types2;
+      ORC: ORCTypes4;
+      PCR: PCRTypes1;
+      PD1: PD1Types1;
+      PDC: PDCTypes1;
+      PEO: PEOTypes1;
+      PES: PESTypes1;
+      PID: PIDTypes4;
+      PR1: PR1Types4;
+      PRA: PRATypes2;
+      PRB: PRBTypes1;
+      PRC: PRCTypes2;
+      PRD: PRDTypes2;
+      PSH: PSHTypes1;
+      PTH: PTHTypes1;
+      PV1: PV1Types4;
+      PV2: PV2Types3;
+      QAK: QAKTypes1;
+      QRD: QRDTypes4;
+      QRF: QRFTypes3;
+      RDF: RDFTypes1;
+      RDT: RDTTypes1;
+      RF1: RF1Types1;
+      RGS: RGSTypes1;
+      ROL: ROLTypes1;
+      RQ1: RQ1Types2;
+      RQD: RQDTypes2;
+      RXA: RXATypes3;
+      RXC: RXCTypes2;
+      RXD: RXDTypes3;
+      RXE: RXETypes3;
+      RXG: RXGTypes3;
+      RXO: RXOTypes3;
+      RXR: RXRTypes2;
+      SCH: SCHTypes1;
+      SPR: SPRTypes1;
+      STF: STFTypes3;
+      TXA: TXATypes1;
+      UB1: UB1Types4;
+      UB2: UB2Types3;
+      URD: URDTypes2;
+      URS: URSTypes3;
+      VAR: VARTypes1;
+      VTQ: VTQTypes1;
+    };
+  };
+  '2.4': {
+    types: {
+      AD: ADComps2;
+      AUI: AUIComps2;
+      CCD: CCDComps1;
+      CCP: CCPComps1;
+      CD: CDComps2;
+      CE: CEComps4;
+      CF: CFComps3;
+      CK: CKComps2;
+      CN: CNComps4;
+      CNE: CNEComps2;
+      CNN: CNNComps1;
+      CP: CPComps1;
+      CQ: CQComps2;
+      CSU: CSUComps1;
+      CWE: CWEComps2;
+      CX: CXComps3;
+      DDI: DDIComps1;
+      DIN: DINComps1;
+      DLD: DLDComps2;
+      DLN: DLNComps1;
+      DLT: DLTComps1;
+      DR: DRComps1;
+      DTN: DTNComps1;
+      ED: EDComps1;
+      EI: EIComps1;
+      EIP: EIPComps1;
+      ELD: ELDComps1;
+      FC: FCComps1;
+      FN: FNComps2;
+      FT: [never, 'FT'];
+      HD: HDComps1;
+      JCC: JCCComps1;
+      LA1: LA1Comps1;
+      LA2: LA2Comps1;
+      MA: MAComps1;
+      MO: MOComps1;
+      MOC: MOCComps1;
+      MOP: MOPComps1;
+      MSG: MSGComps1;
+      NA: NAComps1;
+      NDL: NDLComps2;
+      NR: NRComps1;
+      OCD: OCDComps2;
+      OSD: OSDComps1;
+      OSP: OSPComps1;
+      PCF: PCFComps1;
+      PI: PIComps1;
+      PIP: PIPComps1;
+      PL: PLComps2;
+      PLN: PLNComps1;
+      PN: PNComps2;
+      PPN: PPNComps3;
+      PRL: PRLComps1;
+      PT: PTComps2;
+      PTA: PTAComps1;
+      QIP: QIPComps1;
+      QSC: QSCComps1;
+      RCD: RCDComps1;
+      RFR: RFRComps1;
+      RI: RIComps1;
+      RMC: RMCComps1;
+      RP: RPComps1;
+      SAD: SADComps1;
+      SCV: SCVComps1;
+      SN: SNComps1;
+      SPD: SPDComps1;
+      SPS: SPSComps1;
+      SRT: SRTComps1;
+      TQ: TQComps4;
+      TS: TSComps1;
+      TX: [never, 'TX'];
+      TX_CHALLENGE: TX_CHALLENGEComps1;
+      UVC: UVCComps1;
+      VH: VHComps1;
+      VID: VIDComps1;
+      VR: VRComps1;
+      WVI: WVIComps1;
+      WVS: WVSComps1;
+      XAD: XADComps3;
+      XCN: XCNComps3;
+      XON: XONComps2;
+      XPN: XPNComps3;
+      XTN: XTNComps1;
+      DT: [never, 'DT'];
+      ID: [never, 'ID'];
+      IS: [never, 'IS'];
+      NM: [never, 'NM'];
+      SI: [never, 'SI'];
+      ST: [never, 'ST'];
+      TM: [never, 'TM'];
+      TN: [never, 'TN'];
+    };
+    segments: {
+      ABS: ABSTypes1;
+      ACC: ACCTypes3;
+      ADD: ADDTypes1;
+      AFF: AFFTypes1;
+      AIG: AIGTypes1;
+      AIL: AILTypes1;
+      AIP: AIPTypes1;
+      AIS: AISTypes2;
+      AL1: AL1Types3;
+      APR: APRTypes1;
+      ARQ: ARQTypes2;
+      AUT: AUTTypes1;
+      BHS: BHSTypes1;
+      BLC: BLCTypes1;
+      BLG: BLGTypes3;
+      BTS: BTSTypes3;
+      CDM: CDMTypes2;
+      CM0: CM0Types2;
+      CM1: CM1Types1;
+      CM2: CM2Types1;
+      CNS: CNSTypes1;
+      CSP: CSPTypes1;
+      CSR: CSRTypes1;
+      CSS: CSSTypes1;
+      CTD: CTDTypes2;
+      CTI: CTITypes1;
+      DB1: DB1Types1;
+      DG1: DG1Types4;
+      DRG: DRGTypes2;
+      DSC: DSCTypes2;
+      DSP: DSPTypes1;
+      ECD: ECDTypes1;
+      ECR: ECRTypes1;
+      EDU: EDUTypes1;
+      EQL: EQLTypes1;
+      EQP: EQPTypes1;
+      EQU: EQUTypes1;
+      ERQ: ERQTypes1;
+      ERR: ERRTypes3;
+      EVN: EVNTypes5;
+      FAC: FACTypes1;
+      FHS: FHSTypes1;
+      FT1: FT1Types4;
+      FTS: FTSTypes2;
+      GOL: GOLTypes1;
+      GP1: GP1Types1;
+      GP2: GP2Types1;
+      GT1: GT1Types4;
+      IAM: IAMTypes1;
+      IN1: IN1Types4;
+      IN2: IN2Types3;
+      IN3: IN3Types3;
+      INV: INVTypes1;
+      ISD: ISDTypes1;
+      LAN: LANTypes1;
+      LCC: LCCTypes2;
+      LCH: LCHTypes1;
+      LDP: LDPTypes3;
+      LOC: LOCTypes3;
+      LRL: LRLTypes1;
+      MFA: MFATypes2;
+      MFE: MFETypes2;
+      MFI: MFITypes2;
+      MRG: MRGTypes4;
+      MSA: MSATypes2;
+      MSH: MSHTypes5;
+      NCK: NCKTypes1;
+      NDS: NDSTypes1;
+      NK1: NK1Types4;
+      NPU: NPUTypes3;
+      NSC: NSCTypes4;
+      NST: NSTTypes1;
+      NTE: NTETypes3;
+      OBR: OBRTypes5;
+      OBX: OBXTypes4;
+      ODS: ODSTypes1;
+      ODT: ODTTypes1;
+      OM1: OM1Types3;
+      OM2: OM2Types3;
+      OM3: OM3Types2;
+      OM4: OM4Types2;
+      OM5: OM5Types2;
+      OM6: OM6Types2;
+      OM7: OM7Types1;
+      ORC: ORCTypes5;
+      ORG: ORGTypes1;
+      PCR: PCRTypes1;
+      PD1: PD1Types2;
+      PDA: PDATypes1;
+      PDC: PDCTypes1;
+      PEO: PEOTypes1;
+      PES: PESTypes1;
+      PID: PIDTypes5;
+      PR1: PR1Types5;
+      PRA: PRATypes3;
+      PRB: PRBTypes1;
+      PRC: PRCTypes2;
+      PRD: PRDTypes2;
+      PSH: PSHTypes1;
+      PTH: PTHTypes1;
+      PV1: PV1Types4;
+      PV2: PV2Types4;
+      QAK: QAKTypes2;
+      QID: QIDTypes1;
+      QPD: QPDTypes1;
+      QRD: QRDTypes4;
+      QRF: QRFTypes4;
+      QRI: QRITypes1;
+      RCP: RCPTypes1;
+      RDF: RDFTypes1;
+      RDT: RDTTypes1;
+      RF1: RF1Types1;
+      RGS: RGSTypes1;
+      RMI: RMITypes1;
+      ROL: ROLTypes2;
+      RQ1: RQ1Types2;
+      RQD: RQDTypes2;
+      RXA: RXATypes3;
+      RXC: RXCTypes3;
+      RXD: RXDTypes4;
+      RXE: RXETypes4;
+      RXG: RXGTypes3;
+      RXO: RXOTypes4;
+      RXR: RXRTypes2;
+      SAC: SACTypes1;
+      SCH: SCHTypes2;
+      SID: SIDTypes1;
+      SPR: SPRTypes1;
+      STF: STFTypes4;
+      TCC: TCCTypes1;
+      TCD: TCDTypes1;
+      TXA: TXATypes1;
+      UB1: UB1Types4;
+      UB2: UB2Types3;
+      URD: URDTypes2;
+      URS: URSTypes3;
+      VAR: VARTypes1;
+      VTQ: VTQTypes1;
+    };
+  };
+  '2.5': {
+    types: {
+      AD: ADComps2;
+      AUI: AUIComps2;
+      CCD: CCDComps1;
+      CCP: CCPComps1;
+      CD: CDComps2;
+      CE: CEComps5;
+      CF: CFComps4;
+      CNE: CNEComps3;
+      CNN: CNNComps1;
+      CP: CPComps1;
+      CQ: CQComps2;
+      CSU: CSUComps2;
+      CWE: CWEComps3;
+      CX: CXComps4;
+      DDI: DDIComps2;
+      DIN: DINComps1;
+      DLD: DLDComps1;
+      DLN: DLNComps1;
+      DLT: DLTComps2;
+      DR: DRComps1;
+      DTN: DTNComps1;
+      ED: EDComps2;
+      EI: EIComps1;
+      EIP: EIPComps1;
+      ELD: ELDComps1;
+      ERL: ERLComps1;
+      FC: FCComps1;
+      FN: FNComps2;
+      FT: [never, 'FT'];
+      HD: HDComps1;
+      ICD: ICDComps1;
+      JCC: JCCComps2;
+      LA1: LA1Comps1;
+      LA2: LA2Comps1;
+      MA: MAComps1;
+      MO: MOComps1;
+      MOC: MOCComps1;
+      MOP: MOPComps2;
+      MSG: MSGComps1;
+      NA: NAComps1;
+      NDL: NDLComps2;
+      NR: NRComps1;
+      OCD: OCDComps3;
+      OSD: OSDComps1;
+      OSP: OSPComps2;
+      PIP: PIPComps1;
+      PL: PLComps3;
+      PLN: PLNComps1;
+      PPN: PPNComps4;
+      PRL: PRLComps1;
+      PT: PTComps2;
+      PTA: PTAComps2;
+      QIP: QIPComps1;
+      QSC: QSCComps1;
+      RCD: RCDComps2;
+      RFR: RFRComps2;
+      RI: RIComps1;
+      RMC: RMCComps2;
+      RP: RPComps1;
+      RPT: RPTComps1;
+      SAD: SADComps1;
+      SCV: SCVComps3;
+      SN: SNComps1;
+      SPD: SPDComps1;
+      SPS: SPSComps2;
+      SRT: SRTComps1;
+      TQ: TQComps4;
+      TS: TSComps2;
+      TX: [never, 'TX'];
+      UVC: UVCComps2;
+      VH: VHComps1;
+      VID: VIDComps1;
+      VR: VRComps1;
+      WVI: WVIComps1;
+      WVS: WVSComps1;
+      XAD: XADComps4;
+      XCN: XCNComps4;
+      XON: XONComps3;
+      XPN: XPNComps4;
+      XTN: XTNComps2;
+      DT: [never, 'DT'];
+      DTM: [never, 'DTM'];
+      GTS: [never, 'GTS'];
+      ID: [never, 'ID'];
+      IS: [never, 'IS'];
+      NM: [never, 'NM'];
+      SI: [never, 'SI'];
+      ST: [never, 'ST'];
+      TM: [never, 'TM'];
+    };
+    segments: {
+      ABS: ABSTypes1;
+      ACC: ACCTypes4;
+      ADD: ADDTypes1;
+      AFF: AFFTypes1;
+      AIG: AIGTypes1;
+      AIL: AILTypes1;
+      AIP: AIPTypes1;
+      AIS: AISTypes2;
+      AL1: AL1Types4;
+      APR: APRTypes1;
+      ARQ: ARQTypes2;
+      AUT: AUTTypes1;
+      BHS: BHSTypes2;
+      BLC: BLCTypes1;
+      BLG: BLGTypes4;
+      BPO: BPOTypes1;
+      BPX: BPXTypes1;
+      BTS: BTSTypes3;
+      BTX: BTXTypes1;
+      CDM: CDMTypes3;
+      CER: CERTypes1;
+      CM0: CM0Types2;
+      CM1: CM1Types1;
+      CM2: CM2Types1;
+      CNS: CNSTypes1;
+      CON: CONTypes1;
+      CSP: CSPTypes1;
+      CSR: CSRTypes1;
+      CSS: CSSTypes1;
+      CTD: CTDTypes3;
+      CTI: CTITypes1;
+      DB1: DB1Types1;
+      DG1: DG1Types5;
+      DRG: DRGTypes2;
+      DSC: DSCTypes2;
+      DSP: DSPTypes1;
+      ECD: ECDTypes2;
+      ECR: ECRTypes2;
+      EDU: EDUTypes2;
+      EQL: EQLTypes1;
+      EQP: EQPTypes1;
+      EQU: EQUTypes1;
+      ERQ: ERQTypes1;
+      ERR: ERRTypes4;
+      EVN: EVNTypes5;
+      FAC: FACTypes1;
+      FHS: FHSTypes2;
+      FT1: FT1Types5;
+      FTS: FTSTypes2;
+      GOL: GOLTypes1;
+      GP1: GP1Types1;
+      GP2: GP2Types1;
+      GT1: GT1Types5;
+      IAM: IAMTypes1;
+      IIM: IIMTypes1;
+      IN1: IN1Types5;
+      IN2: IN2Types3;
+      IN3: IN3Types4;
+      INV: INVTypes2;
+      IPC: IPCTypes1;
+      ISD: ISDTypes1;
+      LAN: LANTypes1;
+      LCC: LCCTypes2;
+      LCH: LCHTypes1;
+      LDP: LDPTypes3;
+      LOC: LOCTypes3;
+      LRL: LRLTypes1;
+      MFA: MFATypes3;
+      MFE: MFETypes2;
+      MFI: MFITypes2;
+      MRG: MRGTypes4;
+      MSA: MSATypes2;
+      MSH: MSHTypes6;
+      NCK: NCKTypes1;
+      NDS: NDSTypes1;
+      NK1: NK1Types5;
+      NPU: NPUTypes3;
+      NSC: NSCTypes4;
+      NST: NSTTypes1;
+      NTE: NTETypes3;
+      OBR: OBRTypes6;
+      OBX: OBXTypes4;
+      ODS: ODSTypes1;
+      ODT: ODTTypes1;
+      OM1: OM1Types4;
+      OM2: OM2Types4;
+      OM3: OM3Types2;
+      OM4: OM4Types3;
+      OM5: OM5Types2;
+      OM6: OM6Types2;
+      OM7: OM7Types1;
+      ORC: ORCTypes6;
+      ORG: ORGTypes1;
+      OVR: OVRTypes1;
+      PCR: PCRTypes1;
+      PD1: PD1Types2;
+      PDA: PDATypes1;
+      PDC: PDCTypes1;
+      PEO: PEOTypes1;
+      PES: PESTypes1;
+      PID: PIDTypes6;
+      PR1: PR1Types6;
+      PRA: PRATypes3;
+      PRB: PRBTypes1;
+      PRC: PRCTypes2;
+      PRD: PRDTypes3;
+      PSH: PSHTypes1;
+      PTH: PTHTypes1;
+      PV1: PV1Types4;
+      PV2: PV2Types5;
+      QAK: QAKTypes2;
+      QID: QIDTypes1;
+      QPD: QPDTypes1;
+      QRD: QRDTypes4;
+      QRF: QRFTypes4;
+      QRI: QRITypes1;
+      RCP: RCPTypes1;
+      RDF: RDFTypes1;
+      RDT: RDTTypes1;
+      RF1: RF1Types1;
+      RGS: RGSTypes1;
+      RMI: RMITypes1;
+      ROL: ROLTypes2;
+      RQ1: RQ1Types2;
+      RQD: RQDTypes2;
+      RXA: RXATypes4;
+      RXC: RXCTypes4;
+      RXD: RXDTypes5;
+      RXE: RXETypes5;
+      RXG: RXGTypes4;
+      RXO: RXOTypes5;
+      RXR: RXRTypes3;
+      SAC: SACTypes2;
+      SCH: SCHTypes2;
+      SFT: SFTTypes1;
+      SID: SIDTypes1;
+      SPM: SPMTypes1;
+      SPR: SPRTypes1;
+      STF: STFTypes5;
+      TCC: TCCTypes1;
+      TCD: TCDTypes1;
+      TQ1: TQ1Types1;
+      TQ2: TQ2Types1;
+      TXA: TXATypes1;
+      UB1: UB1Types4;
+      UB2: UB2Types3;
+      URD: URDTypes2;
+      URS: URSTypes3;
+      VAR: VARTypes1;
+      VTQ: VTQTypes1;
+      ED: EDTypes1;
+    };
+  };
+  '2.5.1': {
+    types: {
+      AD: ADComps2;
+      AUI: AUIComps2;
+      CCD: CCDComps1;
+      CCP: CCPComps1;
+      CD: CDComps2;
+      CE: CEComps5;
+      CF: CFComps4;
+      CNE: CNEComps3;
+      CNN: CNNComps1;
+      CP: CPComps1;
+      CQ: CQComps2;
+      CSU: CSUComps2;
+      CWE: CWEComps3;
+      CX: CXComps4;
+      DDI: DDIComps2;
+      DIN: DINComps1;
+      DLD: DLDComps1;
+      DLN: DLNComps1;
+      DLT: DLTComps2;
+      DR: DRComps1;
+      DTN: DTNComps1;
+      ED: EDComps2;
+      EI: EIComps1;
+      EIP: EIPComps1;
+      ELD: ELDComps1;
+      ERL: ERLComps1;
+      FC: FCComps1;
+      FN: FNComps2;
+      FT: [never, 'FT'];
+      HD: HDComps1;
+      ICD: ICDComps1;
+      JCC: JCCComps2;
+      LA1: LA1Comps1;
+      LA2: LA2Comps1;
+      MA: MAComps1;
+      MO: MOComps1;
+      MOC: MOCComps1;
+      MOP: MOPComps2;
+      MSG: MSGComps1;
+      NA: NAComps1;
+      NDL: NDLComps2;
+      NR: NRComps1;
+      OCD: OCDComps3;
+      OSD: OSDComps1;
+      OSP: OSPComps2;
+      PIP: PIPComps1;
+      PL: PLComps3;
+      PLN: PLNComps1;
+      PPN: PPNComps4;
+      PRL: PRLComps1;
+      PT: PTComps2;
+      PTA: PTAComps2;
+      QIP: QIPComps1;
+      QSC: QSCComps1;
+      RCD: RCDComps2;
+      RFR: RFRComps2;
+      RI: RIComps1;
+      RMC: RMCComps2;
+      RP: RPComps1;
+      RPT: RPTComps1;
+      SAD: SADComps1;
+      SCV: SCVComps3;
+      SN: SNComps1;
+      SPD: SPDComps1;
+      SPS: SPSComps2;
+      SRT: SRTComps1;
+      TQ: TQComps4;
+      TS: TSComps2;
+      TX: [never, 'TX'];
+      UVC: UVCComps2;
+      VH: VHComps1;
+      VID: VIDComps1;
+      VR: VRComps1;
+      WVI: WVIComps1;
+      WVS: WVSComps1;
+      XAD: XADComps4;
+      XCN: XCNComps4;
+      XON: XONComps3;
+      XPN: XPNComps4;
+      XTN: XTNComps2;
+      DT: [never, 'DT'];
+      DTM: [never, 'DTM'];
+      GTS: [never, 'GTS'];
+      ID: [never, 'ID'];
+      IS: [never, 'IS'];
+      NM: [never, 'NM'];
+      SI: [never, 'SI'];
+      ST: [never, 'ST'];
+      TM: [never, 'TM'];
+    };
+    segments: {
+      ABS: ABSTypes1;
+      ACC: ACCTypes4;
+      ADD: ADDTypes1;
+      AFF: AFFTypes1;
+      AIG: AIGTypes1;
+      AIL: AILTypes1;
+      AIP: AIPTypes1;
+      AIS: AISTypes2;
+      AL1: AL1Types4;
+      APR: APRTypes1;
+      ARQ: ARQTypes2;
+      AUT: AUTTypes1;
+      BHS: BHSTypes2;
+      BLC: BLCTypes1;
+      BLG: BLGTypes4;
+      BPO: BPOTypes1;
+      BPX: BPXTypes1;
+      BTS: BTSTypes3;
+      BTX: BTXTypes1;
+      CDM: CDMTypes3;
+      CER: CERTypes1;
+      CM0: CM0Types2;
+      CM1: CM1Types1;
+      CM2: CM2Types1;
+      CNS: CNSTypes1;
+      CON: CONTypes1;
+      CSP: CSPTypes1;
+      CSR: CSRTypes1;
+      CSS: CSSTypes1;
+      CTD: CTDTypes3;
+      CTI: CTITypes1;
+      DB1: DB1Types1;
+      DG1: DG1Types5;
+      DRG: DRGTypes2;
+      DSC: DSCTypes2;
+      DSP: DSPTypes1;
+      ECD: ECDTypes2;
+      ECR: ECRTypes2;
+      EDU: EDUTypes2;
+      EQL: EQLTypes1;
+      EQP: EQPTypes1;
+      EQU: EQUTypes1;
+      ERQ: ERQTypes1;
+      ERR: ERRTypes4;
+      EVN: EVNTypes5;
+      FAC: FACTypes1;
+      FHS: FHSTypes2;
+      FT1: FT1Types5;
+      FTS: FTSTypes2;
+      GOL: GOLTypes1;
+      GP1: GP1Types1;
+      GP2: GP2Types1;
+      GT1: GT1Types5;
+      IAM: IAMTypes1;
+      IIM: IIMTypes1;
+      IN1: IN1Types5;
+      IN2: IN2Types3;
+      IN3: IN3Types4;
+      INV: INVTypes2;
+      IPC: IPCTypes1;
+      ISD: ISDTypes1;
+      LAN: LANTypes1;
+      LCC: LCCTypes2;
+      LCH: LCHTypes1;
+      LDP: LDPTypes3;
+      LOC: LOCTypes3;
+      LRL: LRLTypes1;
+      MFA: MFATypes3;
+      MFE: MFETypes2;
+      MFI: MFITypes2;
+      MRG: MRGTypes4;
+      MSA: MSATypes3;
+      MSH: MSHTypes6;
+      NCK: NCKTypes1;
+      NDS: NDSTypes1;
+      NK1: NK1Types5;
+      NPU: NPUTypes3;
+      NSC: NSCTypes4;
+      NST: NSTTypes1;
+      NTE: NTETypes3;
+      OBR: OBRTypes7;
+      OBX: OBXTypes5;
+      ODS: ODSTypes1;
+      ODT: ODTTypes1;
+      OM1: OM1Types4;
+      OM2: OM2Types4;
+      OM3: OM3Types2;
+      OM4: OM4Types3;
+      OM5: OM5Types2;
+      OM6: OM6Types2;
+      OM7: OM7Types1;
+      ORC: ORCTypes7;
+      ORG: ORGTypes1;
+      OVR: OVRTypes1;
+      PCR: PCRTypes1;
+      PD1: PD1Types2;
+      PDA: PDATypes1;
+      PDC: PDCTypes1;
+      PEO: PEOTypes1;
+      PES: PESTypes1;
+      PID: PIDTypes6;
+      PR1: PR1Types6;
+      PRA: PRATypes3;
+      PRB: PRBTypes1;
+      PRC: PRCTypes2;
+      PRD: PRDTypes3;
+      PSH: PSHTypes1;
+      PTH: PTHTypes1;
+      PV1: PV1Types4;
+      PV2: PV2Types5;
+      QAK: QAKTypes2;
+      QID: QIDTypes1;
+      QPD: QPDTypes1;
+      QRD: QRDTypes4;
+      QRF: QRFTypes4;
+      QRI: QRITypes1;
+      RCP: RCPTypes1;
+      RDF: RDFTypes1;
+      RDT: RDTTypes1;
+      RF1: RF1Types1;
+      RGS: RGSTypes1;
+      RMI: RMITypes1;
+      ROL: ROLTypes2;
+      RQ1: RQ1Types2;
+      RQD: RQDTypes2;
+      RXA: RXATypes4;
+      RXC: RXCTypes4;
+      RXD: RXDTypes5;
+      RXE: RXETypes5;
+      RXG: RXGTypes4;
+      RXO: RXOTypes5;
+      RXR: RXRTypes3;
+      SAC: SACTypes2;
+      SCH: SCHTypes2;
+      SFT: SFTTypes1;
+      SID: SIDTypes1;
+      SPM: SPMTypes1;
+      SPR: SPRTypes1;
+      STF: STFTypes5;
+      TCC: TCCTypes1;
+      TCD: TCDTypes1;
+      TQ1: TQ1Types1;
+      TQ2: TQ2Types1;
+      TXA: TXATypes1;
+      UB1: UB1Types4;
+      UB2: UB2Types3;
+      URD: URDTypes2;
+      URS: URSTypes3;
+      VAR: VARTypes1;
+      VTQ: VTQTypes1;
+      ED: EDTypes1;
+    };
+  };
+  '2.6': {
+    types: {
+      AD: ADComps2;
+      AUI: AUIComps2;
+      CCD: CCDComps2;
+      CCP: CCPComps1;
+      CD: CDComps2;
+      CF: CFComps4;
+      CNE: CNEComps3;
+      CNN: CNNComps1;
+      CP: CPComps2;
+      CQ: CQComps3;
+      CSU: CSUComps2;
+      CWE: CWEComps3;
+      CX: CXComps4;
+      DDI: DDIComps2;
+      DIN: DINComps2;
+      DLD: DLDComps3;
+      DLN: DLNComps1;
+      DLT: DLTComps2;
+      DR: DRComps2;
+      DTN: DTNComps1;
+      ED: EDComps2;
+      EI: EIComps1;
+      EIP: EIPComps1;
+      ELD: ELDComps2;
+      ERL: ERLComps1;
+      FC: FCComps2;
+      FN: FNComps2;
+      FT: [never, 'FT'];
+      HD: HDComps1;
+      ICD: ICDComps2;
+      JCC: JCCComps2;
+      LA1: LA1Comps1;
+      LA2: LA2Comps1;
+      MA: MAComps2;
+      MO: MOComps1;
+      MOC: MOCComps2;
+      MOP: MOPComps2;
+      MSG: MSGComps1;
+      NA: NAComps1;
+      NDL: NDLComps3;
+      NR: NRComps1;
+      OCD: OCDComps3;
+      OSD: OSDComps1;
+      OSP: OSPComps2;
+      PIP: PIPComps2;
+      PL: PLComps3;
+      PLN: PLNComps1;
+      PPN: PPNComps5;
+      PRL: PRLComps2;
+      PT: PTComps2;
+      PTA: PTAComps2;
+      QIP: QIPComps1;
+      QSC: QSCComps1;
+      RCD: RCDComps2;
+      RFR: RFRComps2;
+      RI: RIComps1;
+      RMC: RMCComps2;
+      RP: RPComps1;
+      RPT: RPTComps1;
+      SAD: SADComps1;
+      SCV: SCVComps3;
+      SN: SNComps1;
+      SPD: SPDComps1;
+      SPS: SPSComps2;
+      SRT: SRTComps1;
+      TQ: TQComps5;
+      TX: [never, 'TX'];
+      UVC: UVCComps2;
+      VH: VHComps1;
+      VID: VIDComps2;
+      VR: VRComps1;
+      WVI: WVIComps1;
+      WVS: WVSComps1;
+      XAD: XADComps5;
+      XCN: XCNComps5;
+      XON: XONComps3;
+      XPN: XPNComps5;
+      XTN: XTNComps3;
+      DT: [never, 'DT'];
+      DTM: [never, 'DTM'];
+      GTS: [never, 'GTS'];
+      ID: [never, 'ID'];
+      IS: [never, 'IS'];
+      NM: [never, 'NM'];
+      SI: [never, 'SI'];
+      ST: [never, 'ST'];
+      TM: [never, 'TM'];
+    };
+    segments: {
+      ABS: ABSTypes2;
+      ACC: ACCTypes5;
+      ADD: ADDTypes1;
+      ADJ: ADJTypes1;
+      AFF: AFFTypes1;
+      AIG: AIGTypes2;
+      AIL: AILTypes2;
+      AIP: AIPTypes2;
+      AIS: AISTypes3;
+      AL1: AL1Types5;
+      APR: APRTypes1;
+      ARQ: ARQTypes3;
+      ARV: ARVTypes1;
+      AUT: AUTTypes2;
+      BHS: BHSTypes3;
+      BLC: BLCTypes2;
+      BLG: BLGTypes4;
+      BPO: BPOTypes2;
+      BPX: BPXTypes2;
+      BTS: BTSTypes3;
+      BTX: BTXTypes2;
+      CDM: CDMTypes4;
+      CER: CERTypes2;
+      CM0: CM0Types2;
+      CM1: CM1Types2;
+      CM2: CM2Types2;
+      CNS: CNSTypes2;
+      CON: CONTypes2;
+      CSP: CSPTypes2;
+      CSR: CSRTypes2;
+      CSS: CSSTypes2;
+      CTD: CTDTypes4;
+      CTI: CTITypes2;
+      DB1: DB1Types1;
+      DG1: DG1Types6;
+      DMI: DMITypes1;
+      DRG: DRGTypes3;
+      DSC: DSCTypes2;
+      DSP: DSPTypes1;
+      ECD: ECDTypes3;
+      ECR: ECRTypes3;
+      ED: EDTypes2;
+      EDU: EDUTypes3;
+      EQP: EQPTypes2;
+      EQU: EQUTypes2;
+      ERR: ERRTypes4;
+      EVN: EVNTypes6;
+      FAC: FACTypes1;
+      FHS: FHSTypes3;
+      FT1: FT1Types6;
+      FTS: FTSTypes2;
+      GOL: GOLTypes2;
+      GP1: GP1Types1;
+      GP2: GP2Types2;
+      GT1: GT1Types6;
+      Hxx: HxxTypes1;
+      IAM: IAMTypes2;
+      IIM: IIMTypes2;
+      ILT: ILTTypes1;
+      IN1: IN1Types6;
+      IN2: IN2Types4;
+      IN3: IN3Types5;
+      INV: INVTypes3;
+      IPC: IPCTypes2;
+      IPR: IPRTypes1;
+      ISD: ISDTypes2;
+      ITM: ITMTypes1;
+      IVC: IVCTypes1;
+      IVT: IVTTypes1;
+      LAN: LANTypes2;
+      LCC: LCCTypes3;
+      LCH: LCHTypes2;
+      LDP: LDPTypes4;
+      LOC: LOCTypes4;
+      LRL: LRLTypes2;
+      MFA: MFATypes4;
+      MFE: MFETypes3;
+      MFI: MFITypes3;
+      MRG: MRGTypes4;
+      MSA: MSATypes4;
+      MSH: MSHTypes7;
+      NCK: NCKTypes2;
+      NDS: NDSTypes2;
+      NK1: NK1Types6;
+      NPU: NPUTypes3;
+      NSC: NSCTypes4;
+      NST: NSTTypes2;
+      NTE: NTETypes4;
+      OBR: OBRTypes8;
+      OBX: OBXTypes6;
+      ODS: ODSTypes2;
+      ODT: ODTTypes2;
+      OM1: OM1Types5;
+      OM2: OM2Types5;
+      OM3: OM3Types3;
+      OM4: OM4Types4;
+      OM5: OM5Types3;
+      OM6: OM6Types2;
+      OM7: OM7Types2;
+      ORC: ORCTypes8;
+      ORG: ORGTypes2;
+      OVR: OVRTypes1;
+      PCE: PCETypes1;
+      PCR: PCRTypes2;
+      PD1: PD1Types3;
+      PDA: PDATypes2;
+      PDC: PDCTypes2;
+      PEO: PEOTypes2;
+      PES: PESTypes2;
+      PID: PIDTypes7;
+      PKG: PKGTypes1;
+      PMT: PMTTypes1;
+      PR1: PR1Types7;
+      PRA: PRATypes4;
+      PRB: PRBTypes2;
+      PRC: PRCTypes3;
+      PRD: PRDTypes4;
+      PSG: PSGTypes1;
+      PSH: PSHTypes2;
+      PSL: PSLTypes1;
+      PSS: PSSTypes1;
+      PTH: PTHTypes2;
+      PV1: PV1Types5;
+      PV2: PV2Types6;
+      PYE: PYETypes1;
+      QAK: QAKTypes3;
+      QID: QIDTypes2;
+      QPD: QPDTypes2;
+      QRD: QRDTypes5;
+      QRF: QRFTypes5;
+      QRI: QRITypes2;
+      RCP: RCPTypes2;
+      RDF: RDFTypes1;
+      RDT: RDTTypes1;
+      REL: RELTypes1;
+      RF1: RF1Types2;
+      RFI: RFITypes1;
+      RGS: RGSTypes2;
+      RMI: RMITypes2;
+      ROL: ROLTypes3;
+      RQ1: RQ1Types3;
+      RQD: RQDTypes3;
+      RXA: RXATypes5;
+      RXC: RXCTypes5;
+      RXD: RXDTypes6;
+      RXE: RXETypes6;
+      RXG: RXGTypes5;
+      RXO: RXOTypes6;
+      RXR: RXRTypes4;
+      SAC: SACTypes3;
+      SCD: SCDTypes1;
+      SCH: SCHTypes3;
+      SCP: SCPTypes1;
+      SDD: SDDTypes1;
+      SFT: SFTTypes2;
+      SID: SIDTypes2;
+      SLT: SLTTypes1;
+      SPM: SPMTypes2;
+      STF: STFTypes6;
+      STZ: STZTypes1;
+      TCC: TCCTypes2;
+      TCD: TCDTypes2;
+      TQ1: TQ1Types2;
+      TQ2: TQ2Types1;
+      TXA: TXATypes2;
+      UAC: UACTypes1;
+      UB1: UB1Types5;
+      UB2: UB2Types3;
+      URD: URDTypes3;
+      URS: URSTypes4;
+      VAR: VARTypes2;
+      VND: VNDTypes1;
+      ZL7: ZL7Types1;
+      Zxx: ZxxTypes1;
+    };
+  };
+  '2.7': {
+    types: {
+      AD: ADComps2;
+      AUI: AUIComps2;
+      CCD: CCDComps2;
+      CCP: CCPComps1;
+      CD: CDComps2;
+      CF: CFComps5;
+      CNE: CNEComps4;
+      CNN: CNNComps1;
+      CP: CPComps2;
+      CQ: CQComps3;
+      CSU: CSUComps3;
+      CWE: CWEComps4;
+      CX: CXComps5;
+      DDI: DDIComps2;
+      DIN: DINComps2;
+      DLD: DLDComps3;
+      DLN: DLNComps2;
+      DLT: DLTComps2;
+      DR: DRComps2;
+      DTN: DTNComps2;
+      ED: EDComps2;
+      EI: EIComps1;
+      EIP: EIPComps1;
+      ERL: ERLComps1;
+      FC: FCComps3;
+      FN: FNComps2;
+      FT: [never, 'FT'];
+      HD: HDComps1;
+      ICD: ICDComps3;
+      JCC: JCCComps3;
+      LA1: LA1Comps1;
+      LA2: LA2Comps1;
+      MA: MAComps2;
+      MO: MOComps1;
+      MOC: MOCComps2;
+      MOP: MOPComps2;
+      MSG: MSGComps1;
+      NA: NAComps1;
+      NDL: NDLComps3;
+      NR: NRComps1;
+      OCD: OCDComps3;
+      OSP: OSPComps2;
+      PIP: PIPComps2;
+      PL: PLComps4;
+      PLN: PLNComps2;
+      PPN: PPNComps6;
+      PRL: PRLComps2;
+      PT: PTComps2;
+      PTA: PTAComps3;
+      QIP: QIPComps1;
+      QSC: QSCComps1;
+      RCD: RCDComps2;
+      RFR: RFRComps3;
+      RI: RIComps2;
+      RMC: RMCComps3;
+      RP: RPComps1;
+      RPT: RPTComps2;
+      SAD: SADComps1;
+      SCV: SCVComps3;
+      SN: SNComps1;
+      SPD: SPDComps1;
+      SRT: SRTComps1;
+      TX: [never, 'TX'];
+      UVC: UVCComps3;
+      VH: VHComps1;
+      VID: VIDComps2;
+      VR: VRComps1;
+      WVI: WVIComps1;
+      WVS: WVSComps1;
+      XAD: XADComps6;
+      XCN: XCNComps6;
+      XON: XONComps4;
+      XPN: XPNComps6;
+      XTN: XTNComps4;
+      DT: [never, 'DT'];
+      DTM: [never, 'DTM'];
+      GTS: [never, 'GTS'];
+      ID: [never, 'ID'];
+      IS: [never, 'IS'];
+      NM: [never, 'NM'];
+      SI: [never, 'SI'];
+      SNM: [never, 'SNM'];
+      ST: [never, 'ST'];
+      TM: [never, 'TM'];
+    };
+    segments: {
+      ABS: ABSTypes2;
+      ACC: ACCTypes6;
+      ADD: ADDTypes1;
+      ADJ: ADJTypes2;
+      AFF: AFFTypes1;
+      AIG: AIGTypes3;
+      AIL: AILTypes3;
+      AIP: AIPTypes3;
+      AIS: AISTypes4;
+      AL1: AL1Types6;
+      APR: APRTypes1;
+      ARQ: ARQTypes3;
+      ARV: ARVTypes1;
+      AUT: AUTTypes3;
+      BHS: BHSTypes3;
+      BLC: BLCTypes2;
+      BLG: BLGTypes4;
+      BPO: BPOTypes2;
+      BPX: BPXTypes2;
+      BTS: BTSTypes3;
+      BTX: BTXTypes2;
+      CDM: CDMTypes5;
+      CER: CERTypes3;
+      CM0: CM0Types2;
+      CM1: CM1Types2;
+      CM2: CM2Types2;
+      CNS: CNSTypes2;
+      CON: CONTypes3;
+      CSP: CSPTypes2;
+      CSR: CSRTypes2;
+      CSS: CSSTypes2;
+      CTD: CTDTypes4;
+      CTI: CTITypes2;
+      DB1: DB1Types2;
+      DG1: DG1Types7;
+      DMI: DMITypes1;
+      DRG: DRGTypes4;
+      DSC: DSCTypes2;
+      DSP: DSPTypes1;
+      ECD: ECDTypes4;
+      ECR: ECRTypes3;
+      EDU: EDUTypes4;
+      EQP: EQPTypes2;
+      EQU: EQUTypes2;
+      ERR: ERRTypes5;
+      EVN: EVNTypes7;
+      FAC: FACTypes1;
+      FHS: FHSTypes3;
+      FT1: FT1Types7;
+      FTS: FTSTypes2;
+      GOL: GOLTypes3;
+      GP1: GP1Types2;
+      GP2: GP2Types3;
+      GT1: GT1Types7;
+      Hxx: HxxTypes1;
+      IAM: IAMTypes3;
+      IAR: IARTypes1;
+      IIM: IIMTypes2;
+      ILT: ILTTypes1;
+      IN1: IN1Types7;
+      IN2: IN2Types5;
+      IN3: IN3Types6;
+      INV: INVTypes4;
+      IPC: IPCTypes2;
+      IPR: IPRTypes1;
+      ISD: ISDTypes2;
+      ITM: ITMTypes2;
+      IVC: IVCTypes2;
+      IVT: IVTTypes1;
+      LAN: LANTypes2;
+      LCC: LCCTypes3;
+      LCH: LCHTypes2;
+      LDP: LDPTypes5;
+      LOC: LOCTypes5;
+      LRL: LRLTypes2;
+      MFA: MFATypes4;
+      MFE: MFETypes3;
+      MFI: MFITypes3;
+      MRG: MRGTypes5;
+      MSA: MSATypes5;
+      MSH: MSHTypes7;
+      NCK: NCKTypes2;
+      NDS: NDSTypes2;
+      NK1: NK1Types7;
+      NPU: NPUTypes4;
+      NSC: NSCTypes5;
+      NST: NSTTypes2;
+      NTE: NTETypes4;
+      OBR: OBRTypes9;
+      OBX: OBXTypes7;
+      ODS: ODSTypes2;
+      ODT: ODTTypes2;
+      OM1: OM1Types6;
+      OM2: OM2Types5;
+      OM3: OM3Types3;
+      OM4: OM4Types4;
+      OM5: OM5Types3;
+      OM6: OM6Types2;
+      OM7: OM7Types3;
+      ORC: ORCTypes9;
+      ORG: ORGTypes3;
+      OVR: OVRTypes1;
+      PAC: PACTypes1;
+      PCE: PCETypes2;
+      PCR: PCRTypes3;
+      PD1: PD1Types4;
+      PDA: PDATypes2;
+      PDC: PDCTypes2;
+      PEO: PEOTypes2;
+      PES: PESTypes2;
+      PID: PIDTypes8;
+      PKG: PKGTypes1;
+      PMT: PMTTypes1;
+      PR1: PR1Types8;
+      PRA: PRATypes5;
+      PRB: PRBTypes2;
+      PRC: PRCTypes4;
+      PRD: PRDTypes4;
+      PRT: PRTTypes1;
+      PSG: PSGTypes1;
+      PSH: PSHTypes2;
+      PSL: PSLTypes2;
+      PSS: PSSTypes1;
+      PTH: PTHTypes2;
+      PV1: PV1Types6;
+      PV2: PV2Types7;
+      PYE: PYETypes2;
+      QAK: QAKTypes3;
+      QID: QIDTypes2;
+      QPD: QPDTypes2;
+      QRD: QRDTypes6;
+      QRF: QRFTypes6;
+      QRI: QRITypes3;
+      RCP: RCPTypes2;
+      RDF: RDFTypes1;
+      RDT: RDTTypes1;
+      REL: RELTypes1;
+      RF1: RF1Types2;
+      RFI: RFITypes1;
+      RGS: RGSTypes2;
+      RMI: RMITypes2;
+      ROL: ROLTypes4;
+      RQ1: RQ1Types3;
+      RQD: RQDTypes4;
+      RXA: RXATypes5;
+      RXC: RXCTypes5;
+      RXD: RXDTypes7;
+      RXE: RXETypes7;
+      RXG: RXGTypes6;
+      RXO: RXOTypes7;
+      RXR: RXRTypes4;
+      SAC: SACTypes4;
+      SCD: SCDTypes1;
+      SCH: SCHTypes4;
+      SCP: SCPTypes1;
+      SDD: SDDTypes2;
+      SFT: SFTTypes2;
+      SHP: SHPTypes1;
+      SID: SIDTypes2;
+      SLT: SLTTypes1;
+      SPM: SPMTypes3;
+      STF: STFTypes7;
+      STZ: STZTypes1;
+      TCC: TCCTypes3;
+      TCD: TCDTypes2;
+      TQ1: TQ1Types2;
+      TQ2: TQ2Types1;
+      TXA: TXATypes3;
+      UAC: UACTypes1;
+      UB1: UB1Types6;
+      UB2: UB2Types4;
+      URD: URDTypes4;
+      URS: URSTypes5;
+      VAR: VARTypes2;
+      VND: VNDTypes1;
+      ZL7: ZL7Types1;
+      Zxx: ZxxTypes1;
+    };
+  };
+  '2.7.1': {
+    types: {
+      AD: ADComps2;
+      AUI: AUIComps2;
+      CCD: CCDComps2;
+      CCP: CCPComps1;
+      CD: CDComps2;
+      CF: CFComps5;
+      CNE: CNEComps4;
+      CNN: CNNComps1;
+      CP: CPComps2;
+      CQ: CQComps3;
+      CSU: CSUComps3;
+      CWE: CWEComps4;
+      CX: CXComps5;
+      DDI: DDIComps2;
+      DIN: DINComps2;
+      DLD: DLDComps3;
+      DLN: DLNComps2;
+      DLT: DLTComps2;
+      DR: DRComps2;
+      DTN: DTNComps2;
+      ED: EDComps2;
+      EI: EIComps1;
+      EIP: EIPComps1;
+      ERL: ERLComps1;
+      FC: FCComps3;
+      FN: FNComps2;
+      FT: [never, 'FT'];
+      HD: HDComps1;
+      ICD: ICDComps3;
+      JCC: JCCComps3;
+      LA1: LA1Comps1;
+      LA2: LA2Comps1;
+      MA: MAComps2;
+      MO: MOComps1;
+      MOC: MOCComps2;
+      MOP: MOPComps2;
+      MSG: MSGComps1;
+      NA: NAComps1;
+      NDL: NDLComps3;
+      NR: NRComps1;
+      OCD: OCDComps3;
+      OSP: OSPComps2;
+      PIP: PIPComps2;
+      PL: PLComps4;
+      PLN: PLNComps2;
+      PPN: PPNComps6;
+      PRL: PRLComps2;
+      PT: PTComps2;
+      PTA: PTAComps3;
+      QIP: QIPComps1;
+      QSC: QSCComps1;
+      RCD: RCDComps2;
+      RFR: RFRComps3;
+      RI: RIComps2;
+      RMC: RMCComps3;
+      RP: RPComps1;
+      RPT: RPTComps2;
+      SAD: SADComps1;
+      SCV: SCVComps3;
+      SN: SNComps1;
+      SPD: SPDComps1;
+      SRT: SRTComps1;
+      TX: [never, 'TX'];
+      UVC: UVCComps3;
+      VH: VHComps1;
+      VID: VIDComps2;
+      VR: VRComps1;
+      WVI: WVIComps1;
+      WVS: WVSComps1;
+      XAD: XADComps6;
+      XCN: XCNComps6;
+      XON: XONComps4;
+      XPN: XPNComps6;
+      XTN: XTNComps4;
+      DT: [never, 'DT'];
+      DTM: [never, 'DTM'];
+      GTS: [never, 'GTS'];
+      ID: [never, 'ID'];
+      IS: [never, 'IS'];
+      NM: [never, 'NM'];
+      SI: [never, 'SI'];
+      SNM: [never, 'SNM'];
+      ST: [never, 'ST'];
+      TM: [never, 'TM'];
+    };
+    segments: {
+      ABS: ABSTypes2;
+      ACC: ACCTypes6;
+      ADD: ADDTypes1;
+      ADJ: ADJTypes2;
+      AFF: AFFTypes1;
+      AIG: AIGTypes3;
+      AIL: AILTypes3;
+      AIP: AIPTypes3;
+      AIS: AISTypes4;
+      AL1: AL1Types6;
+      APR: APRTypes1;
+      ARQ: ARQTypes3;
+      ARV: ARVTypes1;
+      AUT: AUTTypes3;
+      BHS: BHSTypes3;
+      BLC: BLCTypes2;
+      BLG: BLGTypes4;
+      BPO: BPOTypes2;
+      BPX: BPXTypes2;
+      BTS: BTSTypes3;
+      BTX: BTXTypes2;
+      CDM: CDMTypes5;
+      CER: CERTypes3;
+      CM0: CM0Types2;
+      CM1: CM1Types2;
+      CM2: CM2Types2;
+      CNS: CNSTypes2;
+      CON: CONTypes3;
+      CSP: CSPTypes2;
+      CSR: CSRTypes2;
+      CSS: CSSTypes2;
+      CTD: CTDTypes4;
+      CTI: CTITypes2;
+      DB1: DB1Types2;
+      DG1: DG1Types7;
+      DMI: DMITypes1;
+      DRG: DRGTypes4;
+      DSC: DSCTypes2;
+      DSP: DSPTypes1;
+      ECD: ECDTypes4;
+      ECR: ECRTypes3;
+      EDU: EDUTypes4;
+      EQP: EQPTypes2;
+      EQU: EQUTypes2;
+      ERR: ERRTypes5;
+      EVN: EVNTypes7;
+      FAC: FACTypes1;
+      FHS: FHSTypes3;
+      FT1: FT1Types7;
+      FTS: FTSTypes2;
+      GOL: GOLTypes3;
+      GP1: GP1Types2;
+      GP2: GP2Types3;
+      GT1: GT1Types7;
+      Hxx: HxxTypes1;
+      IAM: IAMTypes3;
+      IAR: IARTypes1;
+      IIM: IIMTypes2;
+      ILT: ILTTypes1;
+      IN1: IN1Types7;
+      IN2: IN2Types5;
+      IN3: IN3Types6;
+      INV: INVTypes4;
+      IPC: IPCTypes2;
+      IPR: IPRTypes1;
+      ISD: ISDTypes2;
+      ITM: ITMTypes2;
+      IVC: IVCTypes2;
+      IVT: IVTTypes1;
+      LAN: LANTypes2;
+      LCC: LCCTypes3;
+      LCH: LCHTypes2;
+      LDP: LDPTypes5;
+      LOC: LOCTypes5;
+      LRL: LRLTypes2;
+      MFA: MFATypes4;
+      MFE: MFETypes3;
+      MFI: MFITypes3;
+      MRG: MRGTypes5;
+      MSA: MSATypes5;
+      MSH: MSHTypes7;
+      NCK: NCKTypes2;
+      NDS: NDSTypes2;
+      NK1: NK1Types7;
+      NPU: NPUTypes4;
+      NSC: NSCTypes5;
+      NST: NSTTypes2;
+      NTE: NTETypes4;
+      OBR: OBRTypes10;
+      OBX: OBXTypes7;
+      ODS: ODSTypes2;
+      ODT: ODTTypes2;
+      OM1: OM1Types6;
+      OM2: OM2Types5;
+      OM3: OM3Types3;
+      OM4: OM4Types4;
+      OM5: OM5Types3;
+      OM6: OM6Types2;
+      OM7: OM7Types3;
+      ORC: ORCTypes9;
+      ORG: ORGTypes3;
+      OVR: OVRTypes1;
+      PAC: PACTypes1;
+      PCE: PCETypes2;
+      PCR: PCRTypes3;
+      PD1: PD1Types4;
+      PDA: PDATypes2;
+      PDC: PDCTypes2;
+      PEO: PEOTypes2;
+      PES: PESTypes2;
+      PID: PIDTypes8;
+      PKG: PKGTypes1;
+      PMT: PMTTypes1;
+      PR1: PR1Types8;
+      PRA: PRATypes5;
+      PRB: PRBTypes2;
+      PRC: PRCTypes4;
+      PRD: PRDTypes4;
+      PRT: PRTTypes1;
+      PSG: PSGTypes1;
+      PSH: PSHTypes2;
+      PSL: PSLTypes2;
+      PSS: PSSTypes1;
+      PTH: PTHTypes2;
+      PV1: PV1Types6;
+      PV2: PV2Types7;
+      PYE: PYETypes2;
+      QAK: QAKTypes3;
+      QID: QIDTypes2;
+      QPD: QPDTypes2;
+      QRD: QRDTypes6;
+      QRF: QRFTypes6;
+      QRI: QRITypes3;
+      RCP: RCPTypes2;
+      RDF: RDFTypes1;
+      RDT: RDTTypes1;
+      REL: RELTypes1;
+      RF1: RF1Types2;
+      RFI: RFITypes1;
+      RGS: RGSTypes2;
+      RMI: RMITypes2;
+      ROL: ROLTypes4;
+      RQ1: RQ1Types3;
+      RQD: RQDTypes4;
+      RXA: RXATypes5;
+      RXC: RXCTypes5;
+      RXD: RXDTypes7;
+      RXE: RXETypes7;
+      RXG: RXGTypes6;
+      RXO: RXOTypes7;
+      RXR: RXRTypes4;
+      SAC: SACTypes4;
+      SCD: SCDTypes1;
+      SCH: SCHTypes4;
+      SCP: SCPTypes1;
+      SDD: SDDTypes2;
+      SFT: SFTTypes2;
+      SHP: SHPTypes1;
+      SID: SIDTypes2;
+      SLT: SLTTypes1;
+      SPM: SPMTypes3;
+      STF: STFTypes7;
+      STZ: STZTypes1;
+      TCC: TCCTypes3;
+      TCD: TCDTypes2;
+      TQ1: TQ1Types2;
+      TQ2: TQ2Types1;
+      TXA: TXATypes3;
+      UAC: UACTypes1;
+      UB1: UB1Types6;
+      UB2: UB2Types4;
+      URD: URDTypes4;
+      URS: URSTypes5;
+      VAR: VARTypes2;
+      VND: VNDTypes1;
+      ZL7: ZL7Types1;
+      Zxx: ZxxTypes1;
+    };
+  };
+  '2.8': {
+    types: {
+      AD: ADComps2;
+      AUI: AUIComps2;
+      CCD: CCDComps2;
+      CCP: CCPComps1;
+      CD: CDComps2;
+      CF: CFComps5;
+      CNE: CNEComps4;
+      CNN: CNNComps1;
+      CP: CPComps2;
+      CQ: CQComps3;
+      CSU: CSUComps3;
+      CWE: CWEComps4;
+      CX: CXComps5;
+      DDI: DDIComps2;
+      DIN: DINComps2;
+      DLD: DLDComps3;
+      DLN: DLNComps2;
+      DLT: DLTComps2;
+      DR: DRComps2;
+      DTN: DTNComps2;
+      ED: EDComps2;
+      EI: EIComps1;
+      EIP: EIPComps1;
+      ERL: ERLComps1;
+      FC: FCComps3;
+      FN: FNComps2;
+      FT: [never, 'FT'];
+      HD: HDComps1;
+      ICD: ICDComps3;
+      JCC: JCCComps3;
+      MA: MAComps2;
+      MO: MOComps1;
+      MOC: MOCComps2;
+      MOP: MOPComps2;
+      MSG: MSGComps1;
+      NA: NAComps1;
+      NDL: NDLComps3;
+      NR: NRComps1;
+      OCD: OCDComps3;
+      OSP: OSPComps2;
+      PIP: PIPComps2;
+      PL: PLComps4;
+      PLN: PLNComps2;
+      PPN: PPNComps6;
+      PRL: PRLComps2;
+      PT: PTComps2;
+      PTA: PTAComps3;
+      QIP: QIPComps1;
+      QSC: QSCComps1;
+      RCD: RCDComps2;
+      RFR: RFRComps3;
+      RI: RIComps2;
+      RMC: RMCComps3;
+      RP: RPComps1;
+      RPT: RPTComps2;
+      SAD: SADComps1;
+      SCV: SCVComps3;
+      SN: SNComps1;
+      SPD: SPDComps1;
+      SRT: SRTComps1;
+      TX: [never, 'TX'];
+      UVC: UVCComps3;
+      VH: VHComps1;
+      VID: VIDComps2;
+      VR: VRComps1;
+      WVI: WVIComps1;
+      WVS: WVSComps1;
+      XAD: XADComps6;
+      XCN: XCNComps6;
+      XON: XONComps5;
+      XPN: XPNComps6;
+      XTN: XTNComps4;
+      DT: [never, 'DT'];
+      DTM: [never, 'DTM'];
+      GTS: [never, 'GTS'];
+      ID: [never, 'ID'];
+      IS: [never, 'IS'];
+      NM: [never, 'NM'];
+      SI: [never, 'SI'];
+      SNM: [never, 'SNM'];
+      ST: [never, 'ST'];
+      TM: [never, 'TM'];
+    };
+    segments: {
+      ABS: ABSTypes2;
+      ACC: ACCTypes7;
+      ADD: ADDTypes1;
+      ADJ: ADJTypes2;
+      AFF: AFFTypes1;
+      AIG: AIGTypes3;
+      AIL: AILTypes3;
+      AIP: AIPTypes3;
+      AIS: AISTypes4;
+      AL1: AL1Types6;
+      APR: APRTypes1;
+      ARQ: ARQTypes4;
+      ARV: ARVTypes1;
+      AUT: AUTTypes4;
+      BHS: BHSTypes3;
+      BLC: BLCTypes2;
+      BLG: BLGTypes4;
+      BPO: BPOTypes2;
+      BPX: BPXTypes2;
+      BTS: BTSTypes3;
+      BTX: BTXTypes3;
+      BUI: BUITypes1;
+      CDM: CDMTypes5;
+      CDO: CDOTypes1;
+      CER: CERTypes3;
+      CM0: CM0Types2;
+      CM1: CM1Types2;
+      CM2: CM2Types2;
+      CNS: CNSTypes2;
+      CON: CONTypes3;
+      CSP: CSPTypes2;
+      CSR: CSRTypes2;
+      CSS: CSSTypes2;
+      CTD: CTDTypes4;
+      CTI: CTITypes2;
+      DB1: DB1Types2;
+      DG1: DG1Types7;
+      DMI: DMITypes1;
+      DON: DONTypes1;
+      DRG: DRGTypes4;
+      DSC: DSCTypes2;
+      DSP: DSPTypes1;
+      ECD: ECDTypes4;
+      ECR: ECRTypes3;
+      EDU: EDUTypes4;
+      EQP: EQPTypes2;
+      EQU: EQUTypes2;
+      ERR: ERRTypes5;
+      EVN: EVNTypes7;
+      FAC: FACTypes1;
+      FHS: FHSTypes3;
+      FT1: FT1Types7;
+      FTS: FTSTypes2;
+      GOL: GOLTypes3;
+      GP1: GP1Types2;
+      GP2: GP2Types3;
+      GT1: GT1Types7;
+      Hxx: HxxTypes1;
+      IAM: IAMTypes3;
+      IAR: IARTypes1;
+      IIM: IIMTypes2;
+      ILT: ILTTypes1;
+      IN1: IN1Types8;
+      IN2: IN2Types5;
+      IN3: IN3Types7;
+      INV: INVTypes4;
+      IPC: IPCTypes2;
+      IPR: IPRTypes1;
+      ISD: ISDTypes2;
+      ITM: ITMTypes3;
+      IVC: IVCTypes2;
+      IVT: IVTTypes1;
+      LAN: LANTypes2;
+      LCC: LCCTypes3;
+      LCH: LCHTypes2;
+      LDP: LDPTypes5;
+      LOC: LOCTypes5;
+      LRL: LRLTypes2;
+      MFA: MFATypes4;
+      MFE: MFETypes3;
+      MFI: MFITypes3;
+      MRG: MRGTypes5;
+      MSA: MSATypes5;
+      MSH: MSHTypes7;
+      NCK: NCKTypes2;
+      NDS: NDSTypes2;
+      NK1: NK1Types7;
+      NPU: NPUTypes4;
+      NSC: NSCTypes5;
+      NST: NSTTypes2;
+      NTE: NTETypes4;
+      OBR: OBRTypes10;
+      OBX: OBXTypes8;
+      ODS: ODSTypes2;
+      ODT: ODTTypes2;
+      OM1: OM1Types7;
+      OM2: OM2Types5;
+      OM3: OM3Types3;
+      OM4: OM4Types5;
+      OM5: OM5Types3;
+      OM6: OM6Types2;
+      OM7: OM7Types3;
+      ORC: ORCTypes10;
+      ORG: ORGTypes3;
+      OVR: OVRTypes1;
+      PAC: PACTypes1;
+      PCE: PCETypes2;
+      PCR: PCRTypes3;
+      PD1: PD1Types4;
+      PDA: PDATypes2;
+      PDC: PDCTypes2;
+      PEO: PEOTypes2;
+      PES: PESTypes2;
+      PID: PIDTypes8;
+      PKG: PKGTypes2;
+      PMT: PMTTypes1;
+      PR1: PR1Types8;
+      PRA: PRATypes5;
+      PRB: PRBTypes2;
+      PRC: PRCTypes4;
+      PRD: PRDTypes4;
+      PRT: PRTTypes1;
+      PSG: PSGTypes1;
+      PSH: PSHTypes2;
+      PSL: PSLTypes2;
+      PSS: PSSTypes1;
+      PTH: PTHTypes2;
+      PV1: PV1Types6;
+      PV2: PV2Types7;
+      PYE: PYETypes2;
+      QAK: QAKTypes3;
+      QID: QIDTypes2;
+      QPD: QPDTypes2;
+      QRD: QRDTypes6;
+      QRF: QRFTypes6;
+      QRI: QRITypes3;
+      RCP: RCPTypes2;
+      RDF: RDFTypes1;
+      RDT: RDTTypes1;
+      REL: RELTypes1;
+      RF1: RF1Types3;
+      RFI: RFITypes1;
+      RGS: RGSTypes2;
+      RMI: RMITypes2;
+      ROL: ROLTypes4;
+      RQ1: RQ1Types3;
+      RQD: RQDTypes4;
+      RXA: RXATypes6;
+      RXC: RXCTypes6;
+      RXD: RXDTypes8;
+      RXE: RXETypes7;
+      RXG: RXGTypes7;
+      RXO: RXOTypes8;
+      RXR: RXRTypes4;
+      RXV: RXVTypes1;
+      SAC: SACTypes4;
+      SCD: SCDTypes1;
+      SCH: SCHTypes5;
+      SCP: SCPTypes1;
+      SDD: SDDTypes2;
+      SFT: SFTTypes2;
+      SGH: SGHTypes1;
+      SGT: SGTTypes1;
+      SHP: SHPTypes1;
+      SID: SIDTypes2;
+      SLT: SLTTypes1;
+      SPM: SPMTypes3;
+      STF: STFTypes7;
+      STZ: STZTypes1;
+      TCC: TCCTypes4;
+      TCD: TCDTypes2;
+      TQ1: TQ1Types2;
+      TQ2: TQ2Types1;
+      TXA: TXATypes3;
+      UAC: UACTypes1;
+      UB1: UB1Types6;
+      UB2: UB2Types4;
+      URD: URDTypes4;
+      URS: URSTypes5;
+      VAR: VARTypes2;
+      VND: VNDTypes1;
+      ZL7: ZL7Types1;
+      Zxx: ZxxTypes1;
+    };
+  };
+  '2.8.1': {
+    types: {
+      AD: ADComps2;
+      AUI: AUIComps2;
+      CCD: CCDComps2;
+      CCP: CCPComps1;
+      CD: CDComps2;
+      CF: CFComps5;
+      CNE: CNEComps4;
+      CNN: CNNComps1;
+      CP: CPComps2;
+      CQ: CQComps3;
+      CSU: CSUComps3;
+      CWE: CWEComps4;
+      CX: CXComps5;
+      DDI: DDIComps2;
+      DIN: DINComps2;
+      DLD: DLDComps3;
+      DLN: DLNComps2;
+      DLT: DLTComps2;
+      DR: DRComps2;
+      DTN: DTNComps2;
+      ED: EDComps2;
+      EI: EIComps1;
+      EIP: EIPComps1;
+      ERL: ERLComps1;
+      FC: FCComps3;
+      FN: FNComps2;
+      FT: [never, 'FT'];
+      HD: HDComps1;
+      ICD: ICDComps3;
+      JCC: JCCComps3;
+      MA: MAComps2;
+      MO: MOComps1;
+      MOC: MOCComps2;
+      MOP: MOPComps2;
+      MSG: MSGComps1;
+      NA: NAComps1;
+      NDL: NDLComps3;
+      NR: NRComps1;
+      OCD: OCDComps3;
+      OSP: OSPComps2;
+      PIP: PIPComps2;
+      PL: PLComps4;
+      PLN: PLNComps2;
+      PPN: PPNComps6;
+      PRL: PRLComps2;
+      PT: PTComps2;
+      PTA: PTAComps3;
+      QIP: QIPComps1;
+      QSC: QSCComps1;
+      RCD: RCDComps2;
+      RFR: RFRComps3;
+      RI: RIComps2;
+      RMC: RMCComps3;
+      RP: RPComps1;
+      RPT: RPTComps2;
+      SAD: SADComps1;
+      SCV: SCVComps3;
+      SN: SNComps1;
+      SPD: SPDComps1;
+      SRT: SRTComps1;
+      TX: [never, 'TX'];
+      UVC: UVCComps3;
+      VH: VHComps1;
+      VID: VIDComps2;
+      VR: VRComps1;
+      WVI: WVIComps1;
+      WVS: WVSComps1;
+      XAD: XADComps6;
+      XCN: XCNComps6;
+      XON: XONComps5;
+      XPN: XPNComps6;
+      XTN: XTNComps4;
+      DT: [never, 'DT'];
+      DTM: [never, 'DTM'];
+      GTS: [never, 'GTS'];
+      ID: [never, 'ID'];
+      IS: [never, 'IS'];
+      NM: [never, 'NM'];
+      SI: [never, 'SI'];
+      SNM: [never, 'SNM'];
+      ST: [never, 'ST'];
+      TM: [never, 'TM'];
+    };
+    segments: {
+      ABS: ABSTypes2;
+      ACC: ACCTypes7;
+      ADD: ADDTypes1;
+      ADJ: ADJTypes2;
+      AFF: AFFTypes1;
+      AIG: AIGTypes3;
+      AIL: AILTypes3;
+      AIP: AIPTypes3;
+      AIS: AISTypes4;
+      AL1: AL1Types6;
+      APR: APRTypes1;
+      ARQ: ARQTypes4;
+      ARV: ARVTypes1;
+      AUT: AUTTypes4;
+      BHS: BHSTypes3;
+      BLC: BLCTypes2;
+      BLG: BLGTypes4;
+      BPO: BPOTypes2;
+      BPX: BPXTypes2;
+      BTS: BTSTypes3;
+      BTX: BTXTypes3;
+      BUI: BUITypes1;
+      CDM: CDMTypes5;
+      CDO: CDOTypes1;
+      CER: CERTypes3;
+      CM0: CM0Types2;
+      CM1: CM1Types2;
+      CM2: CM2Types2;
+      CNS: CNSTypes2;
+      CON: CONTypes3;
+      CSP: CSPTypes2;
+      CSR: CSRTypes2;
+      CSS: CSSTypes2;
+      CTD: CTDTypes4;
+      CTI: CTITypes2;
+      DB1: DB1Types2;
+      DG1: DG1Types7;
+      DMI: DMITypes1;
+      DON: DONTypes1;
+      DRG: DRGTypes4;
+      DSC: DSCTypes2;
+      DSP: DSPTypes1;
+      ECD: ECDTypes4;
+      ECR: ECRTypes3;
+      EDU: EDUTypes4;
+      EQP: EQPTypes2;
+      EQU: EQUTypes2;
+      ERR: ERRTypes5;
+      EVN: EVNTypes7;
+      FAC: FACTypes1;
+      FHS: FHSTypes3;
+      FT1: FT1Types7;
+      FTS: FTSTypes2;
+      GOL: GOLTypes3;
+      GP1: GP1Types2;
+      GP2: GP2Types3;
+      GT1: GT1Types7;
+      Hxx: HxxTypes1;
+      IAM: IAMTypes3;
+      IAR: IARTypes1;
+      IIM: IIMTypes2;
+      ILT: ILTTypes1;
+      IN1: IN1Types8;
+      IN2: IN2Types5;
+      IN3: IN3Types7;
+      INV: INVTypes4;
+      IPC: IPCTypes2;
+      IPR: IPRTypes1;
+      ISD: ISDTypes2;
+      ITM: ITMTypes3;
+      IVC: IVCTypes2;
+      IVT: IVTTypes1;
+      LAN: LANTypes2;
+      LCC: LCCTypes3;
+      LCH: LCHTypes2;
+      LDP: LDPTypes5;
+      LOC: LOCTypes5;
+      LRL: LRLTypes2;
+      MFA: MFATypes4;
+      MFE: MFETypes3;
+      MFI: MFITypes3;
+      MRG: MRGTypes5;
+      MSA: MSATypes5;
+      MSH: MSHTypes7;
+      NCK: NCKTypes2;
+      NDS: NDSTypes2;
+      NK1: NK1Types7;
+      NPU: NPUTypes4;
+      NSC: NSCTypes5;
+      NST: NSTTypes2;
+      NTE: NTETypes4;
+      OBR: OBRTypes10;
+      OBX: OBXTypes9;
+      ODS: ODSTypes2;
+      ODT: ODTTypes2;
+      OM1: OM1Types8;
+      OM2: OM2Types5;
+      OM3: OM3Types3;
+      OM4: OM4Types5;
+      OM5: OM5Types3;
+      OM6: OM6Types2;
+      OM7: OM7Types3;
+      ORC: ORCTypes10;
+      ORG: ORGTypes3;
+      OVR: OVRTypes1;
+      PAC: PACTypes1;
+      PCE: PCETypes2;
+      PCR: PCRTypes3;
+      PD1: PD1Types4;
+      PDA: PDATypes2;
+      PDC: PDCTypes2;
+      PEO: PEOTypes2;
+      PES: PESTypes2;
+      PID: PIDTypes8;
+      PKG: PKGTypes2;
+      PMT: PMTTypes1;
+      PR1: PR1Types8;
+      PRA: PRATypes5;
+      PRB: PRBTypes2;
+      PRC: PRCTypes4;
+      PRD: PRDTypes4;
+      PRT: PRTTypes1;
+      PSG: PSGTypes1;
+      PSH: PSHTypes2;
+      PSL: PSLTypes2;
+      PSS: PSSTypes1;
+      PTH: PTHTypes2;
+      PV1: PV1Types6;
+      PV2: PV2Types7;
+      PYE: PYETypes2;
+      QAK: QAKTypes3;
+      QID: QIDTypes2;
+      QPD: QPDTypes2;
+      QRD: QRDTypes6;
+      QRF: QRFTypes6;
+      QRI: QRITypes3;
+      RCP: RCPTypes2;
+      RDF: RDFTypes1;
+      RDT: RDTTypes1;
+      REL: RELTypes1;
+      RF1: RF1Types4;
+      RFI: RFITypes1;
+      RGS: RGSTypes2;
+      RMI: RMITypes2;
+      ROL: ROLTypes4;
+      RQ1: RQ1Types3;
+      RQD: RQDTypes4;
+      RXA: RXATypes6;
+      RXC: RXCTypes6;
+      RXD: RXDTypes8;
+      RXE: RXETypes7;
+      RXG: RXGTypes7;
+      RXO: RXOTypes8;
+      RXR: RXRTypes4;
+      RXV: RXVTypes1;
+      SAC: SACTypes4;
+      SCD: SCDTypes1;
+      SCH: SCHTypes5;
+      SCP: SCPTypes1;
+      SDD: SDDTypes2;
+      SFT: SFTTypes2;
+      SGH: SGHTypes1;
+      SGT: SGTTypes1;
+      SHP: SHPTypes1;
+      SID: SIDTypes2;
+      SLT: SLTTypes1;
+      SPM: SPMTypes3;
+      STF: STFTypes7;
+      STZ: STZTypes1;
+      TCC: TCCTypes4;
+      TCD: TCDTypes2;
+      TQ1: TQ1Types2;
+      TQ2: TQ2Types1;
+      TXA: TXATypes3;
+      UAC: UACTypes1;
+      UB1: UB1Types6;
+      UB2: UB2Types4;
+      URD: URDTypes4;
+      URS: URSTypes5;
+      VAR: VARTypes2;
+      VND: VNDTypes1;
+      ZL7: ZL7Types1;
+      Zxx: ZxxTypes1;
+    };
+  };
+  '2.8.2': {
+    types: {
+      AD: ADComps2;
+      AUI: AUIComps2;
+      CCD: CCDComps2;
+      CCP: CCPComps1;
+      CD: CDComps2;
+      CF: CFComps5;
+      CNE: CNEComps4;
+      CNN: CNNComps1;
+      CP: CPComps2;
+      CQ: CQComps3;
+      CSU: CSUComps3;
+      CWE: CWEComps4;
+      CX: CXComps5;
+      DDI: DDIComps2;
+      DIN: DINComps2;
+      DLD: DLDComps3;
+      DLN: DLNComps2;
+      DLT: DLTComps2;
+      DR: DRComps2;
+      DTN: DTNComps2;
+      ED: EDComps2;
+      EI: EIComps1;
+      EIP: EIPComps1;
+      ERL: ERLComps1;
+      FC: FCComps3;
+      FN: FNComps2;
+      FT: [never, 'FT'];
+      HD: HDComps1;
+      ICD: ICDComps3;
+      JCC: JCCComps3;
+      MA: MAComps2;
+      MO: MOComps1;
+      MOC: MOCComps2;
+      MOP: MOPComps2;
+      MSG: MSGComps1;
+      NA: NAComps1;
+      NDL: NDLComps3;
+      NR: NRComps1;
+      OCD: OCDComps3;
+      OG: OGComps1;
+      OSP: OSPComps2;
+      PIP: PIPComps2;
+      PL: PLComps4;
+      PLN: PLNComps2;
+      PPN: PPNComps6;
+      PRL: PRLComps3;
+      PT: PTComps2;
+      PTA: PTAComps3;
+      QIP: QIPComps1;
+      QSC: QSCComps1;
+      RCD: RCDComps2;
+      RFR: RFRComps3;
+      RI: RIComps2;
+      RMC: RMCComps3;
+      RP: RPComps1;
+      RPT: RPTComps2;
+      SAD: SADComps1;
+      SCV: SCVComps3;
+      SN: SNComps1;
+      SPD: SPDComps1;
+      SRT: SRTComps1;
+      TX: [never, 'TX'];
+      UVC: UVCComps3;
+      VH: VHComps1;
+      VID: VIDComps2;
+      VR: VRComps1;
+      WVI: WVIComps1;
+      WVS: WVSComps1;
+      XAD: XADComps6;
+      XCN: XCNComps6;
+      XON: XONComps5;
+      XPN: XPNComps6;
+      XTN: XTNComps4;
+      DT: [never, 'DT'];
+      DTM: [never, 'DTM'];
+      GTS: [never, 'GTS'];
+      ID: [never, 'ID'];
+      IS: [never, 'IS'];
+      NM: [never, 'NM'];
+      SI: [never, 'SI'];
+      SNM: [never, 'SNM'];
+      ST: [never, 'ST'];
+      TM: [never, 'TM'];
+    };
+    segments: {
+      ABS: ABSTypes2;
+      ACC: ACCTypes7;
+      ADD: ADDTypes1;
+      ADJ: ADJTypes2;
+      AFF: AFFTypes1;
+      AIG: AIGTypes3;
+      AIL: AILTypes3;
+      AIP: AIPTypes3;
+      AIS: AISTypes4;
+      AL1: AL1Types6;
+      APR: APRTypes1;
+      ARQ: ARQTypes4;
+      ARV: ARVTypes1;
+      AUT: AUTTypes4;
+      BHS: BHSTypes3;
+      BLC: BLCTypes2;
+      BLG: BLGTypes4;
+      BPO: BPOTypes2;
+      BPX: BPXTypes2;
+      BTS: BTSTypes3;
+      BTX: BTXTypes3;
+      BUI: BUITypes1;
+      CDM: CDMTypes5;
+      CDO: CDOTypes1;
+      CER: CERTypes3;
+      CM0: CM0Types2;
+      CM1: CM1Types2;
+      CM2: CM2Types2;
+      CNS: CNSTypes2;
+      CON: CONTypes3;
+      CSP: CSPTypes2;
+      CSR: CSRTypes2;
+      CSS: CSSTypes2;
+      CTD: CTDTypes4;
+      CTI: CTITypes2;
+      DB1: DB1Types2;
+      DG1: DG1Types7;
+      DMI: DMITypes1;
+      DON: DONTypes1;
+      DPS: DPSTypes1;
+      DRG: DRGTypes4;
+      DSC: DSCTypes2;
+      DSP: DSPTypes1;
+      ECD: ECDTypes4;
+      ECR: ECRTypes3;
+      EDU: EDUTypes4;
+      EQP: EQPTypes2;
+      EQU: EQUTypes2;
+      ERR: ERRTypes5;
+      EVN: EVNTypes7;
+      FAC: FACTypes1;
+      FHS: FHSTypes3;
+      FT1: FT1Types7;
+      FTS: FTSTypes2;
+      GOL: GOLTypes3;
+      GP1: GP1Types2;
+      GP2: GP2Types3;
+      GT1: GT1Types7;
+      Hxx: HxxTypes1;
+      IAM: IAMTypes3;
+      IAR: IARTypes1;
+      IIM: IIMTypes2;
+      ILT: ILTTypes1;
+      IN1: IN1Types8;
+      IN2: IN2Types5;
+      IN3: IN3Types7;
+      INV: INVTypes4;
+      IPC: IPCTypes2;
+      IPR: IPRTypes1;
+      ISD: ISDTypes2;
+      ITM: ITMTypes3;
+      IVC: IVCTypes2;
+      IVT: IVTTypes1;
+      LAN: LANTypes2;
+      LCC: LCCTypes3;
+      LCH: LCHTypes2;
+      LDP: LDPTypes5;
+      LOC: LOCTypes5;
+      LRL: LRLTypes2;
+      MCP: MCPTypes1;
+      MFA: MFATypes4;
+      MFE: MFETypes3;
+      MFI: MFITypes3;
+      MRG: MRGTypes5;
+      MSA: MSATypes5;
+      MSH: MSHTypes7;
+      NCK: NCKTypes2;
+      NDS: NDSTypes2;
+      NK1: NK1Types7;
+      NPU: NPUTypes4;
+      NSC: NSCTypes5;
+      NST: NSTTypes2;
+      NTE: NTETypes4;
+      OBR: OBRTypes10;
+      OBX: OBXTypes10;
+      ODS: ODSTypes2;
+      ODT: ODTTypes2;
+      OM1: OM1Types9;
+      OM2: OM2Types5;
+      OM3: OM3Types3;
+      OM4: OM4Types5;
+      OM5: OM5Types3;
+      OM6: OM6Types2;
+      OM7: OM7Types3;
+      OMC: OMCTypes1;
+      ORC: ORCTypes10;
+      ORG: ORGTypes3;
+      OVR: OVRTypes1;
+      PAC: PACTypes1;
+      PCE: PCETypes2;
+      PCR: PCRTypes3;
+      PD1: PD1Types4;
+      PDA: PDATypes2;
+      PDC: PDCTypes2;
+      PEO: PEOTypes2;
+      PES: PESTypes2;
+      PID: PIDTypes8;
+      PKG: PKGTypes2;
+      PM1: PM1Types1;
+      PMT: PMTTypes1;
+      PR1: PR1Types8;
+      PRA: PRATypes5;
+      PRB: PRBTypes2;
+      PRC: PRCTypes4;
+      PRD: PRDTypes4;
+      PRT: PRTTypes2;
+      PSG: PSGTypes1;
+      PSH: PSHTypes2;
+      PSL: PSLTypes2;
+      PSS: PSSTypes1;
+      PTH: PTHTypes2;
+      PV1: PV1Types6;
+      PV2: PV2Types7;
+      PYE: PYETypes2;
+      QAK: QAKTypes3;
+      QID: QIDTypes2;
+      QPD: QPDTypes2;
+      QRD: QRDTypes6;
+      QRF: QRFTypes6;
+      QRI: QRITypes3;
+      RCP: RCPTypes2;
+      RDF: RDFTypes1;
+      RDT: RDTTypes1;
+      REL: RELTypes1;
+      RF1: RF1Types3;
+      RFI: RFITypes1;
+      RGS: RGSTypes2;
+      RMI: RMITypes2;
+      ROL: ROLTypes4;
+      RQ1: RQ1Types3;
+      RQD: RQDTypes4;
+      RXA: RXATypes6;
+      RXC: RXCTypes6;
+      RXD: RXDTypes8;
+      RXE: RXETypes7;
+      RXG: RXGTypes7;
+      RXO: RXOTypes8;
+      RXR: RXRTypes4;
+      RXV: RXVTypes1;
+      SAC: SACTypes4;
+      SCD: SCDTypes1;
+      SCH: SCHTypes5;
+      SCP: SCPTypes1;
+      SDD: SDDTypes2;
+      SFT: SFTTypes2;
+      SGH: SGHTypes1;
+      SGT: SGTTypes1;
+      SHP: SHPTypes1;
+      SID: SIDTypes2;
+      SLT: SLTTypes1;
+      SPM: SPMTypes3;
+      STF: STFTypes7;
+      STZ: STZTypes1;
+      TCC: TCCTypes4;
+      TCD: TCDTypes2;
+      TQ1: TQ1Types2;
+      TQ2: TQ2Types1;
+      TXA: TXATypes3;
+      UAC: UACTypes1;
+      UB1: UB1Types6;
+      UB2: UB2Types4;
+      URD: URDTypes4;
+      URS: URSTypes5;
+      VAR: VARTypes2;
+      VND: VNDTypes1;
+      ZL7: ZL7Types1;
+      Zxx: ZxxTypes1;
+    };
+  };
+  '2.9': {
+    types: {
+      AD: ADComps2;
+      AUI: AUIComps2;
+      CCD: CCDComps2;
+      CCP: CCPComps1;
+      CD: CDComps2;
+      CF: CFComps5;
+      CNE: CNEComps4;
+      CNN: CNNComps1;
+      CP: CPComps2;
+      CQ: CQComps3;
+      CSU: CSUComps3;
+      CWE: CWEComps4;
+      CX: CXComps5;
+      DDI: DDIComps2;
+      DIN: DINComps2;
+      DLD: DLDComps3;
+      DLN: DLNComps2;
+      DLT: DLTComps2;
+      DR: DRComps2;
+      DTN: DTNComps2;
+      ED: EDComps2;
+      EI: EIComps1;
+      EIP: EIPComps1;
+      ERL: ERLComps2;
+      FC: FCComps3;
+      FN: FNComps2;
+      HD: HDComps1;
+      ICD: ICDComps3;
+      JCC: JCCComps3;
+      MA: MAComps3;
+      MO: MOComps1;
+      MOC: MOCComps2;
+      MOP: MOPComps2;
+      MSG: MSGComps1;
+      NA: NAComps2;
+      NDL: NDLComps3;
+      NR: NRComps1;
+      OCD: OCDComps3;
+      OG: OGComps1;
+      OSP: OSPComps2;
+      PIP: PIPComps2;
+      PL: PLComps4;
+      PLN: PLNComps2;
+      PPN: PPNComps7;
+      PRL: PRLComps2;
+      PT: PTComps2;
+      PTA: PTAComps3;
+      QIP: QIPComps1;
+      QSC: QSCComps1;
+      RCD: RCDComps2;
+      RFR: RFRComps3;
+      RI: RIComps2;
+      RMC: RMCComps3;
+      RP: RPComps1;
+      RPT: RPTComps2;
+      SAD: SADComps1;
+      SCV: SCVComps3;
+      SN: SNComps1;
+      SPD: SPDComps1;
+      SRT: SRTComps1;
+      UVC: UVCComps3;
+      VH: VHComps1;
+      VID: VIDComps2;
+      VR: VRComps1;
+      WVI: WVIComps1;
+      WVS: WVSComps1;
+      XAD: XADComps6;
+      XCN: XCNComps6;
+      XON: XONComps5;
+      XPN: XPNComps6;
+      XTN: XTNComps4;
+      DT: [never, 'DT'];
+      DTM: [never, 'DTM'];
+      FT: [never, 'FT'];
+      GTS: [never, 'GTS'];
+      ID: [never, 'ID'];
+      IS: [never, 'IS'];
+      NM: [never, 'NM'];
+      SI: [never, 'SI'];
+      SNM: [never, 'SNM'];
+      ST: [never, 'ST'];
+      TM: [never, 'TM'];
+      TX: [never, 'TX'];
+    };
+    segments: {
+      ABS: ABSTypes2;
+      ACC: ACCTypes7;
+      ADD: ADDTypes1;
+      ADJ: ADJTypes2;
+      AFF: AFFTypes1;
+      AIG: AIGTypes3;
+      AIL: AILTypes3;
+      AIP: AIPTypes3;
+      AIS: AISTypes4;
+      AL1: AL1Types6;
+      APR: APRTypes1;
+      ARQ: ARQTypes5;
+      ARV: ARVTypes2;
+      AUT: AUTTypes4;
+      BHS: BHSTypes4;
+      BLC: BLCTypes2;
+      BLG: BLGTypes4;
+      BPO: BPOTypes2;
+      BPX: BPXTypes3;
+      BTS: BTSTypes3;
+      BTX: BTXTypes4;
+      BUI: BUITypes2;
+      CDM: CDMTypes5;
+      CDO: CDOTypes1;
+      CER: CERTypes3;
+      CM0: CM0Types2;
+      CM1: CM1Types2;
+      CM2: CM2Types2;
+      CNS: CNSTypes2;
+      CON: CONTypes3;
+      CSP: CSPTypes2;
+      CSR: CSRTypes3;
+      CSS: CSSTypes2;
+      CTD: CTDTypes4;
+      CTI: CTITypes3;
+      CTR: CTRTypes1;
+      DB1: DB1Types2;
+      DEV: DEVTypes1;
+      DG1: DG1Types7;
+      DMI: DMITypes1;
+      DON: DONTypes2;
+      DPS: DPSTypes1;
+      DRG: DRGTypes4;
+      DSC: DSCTypes2;
+      DSP: DSPTypes1;
+      DST: DSTTypes1;
+      ECD: ECDTypes4;
+      ECR: ECRTypes3;
+      EDU: EDUTypes4;
+      EQP: EQPTypes2;
+      EQU: EQUTypes3;
+      ERR: ERRTypes5;
+      EVN: EVNTypes7;
+      FAC: FACTypes1;
+      FHS: FHSTypes4;
+      FT1: FT1Types8;
+      FTS: FTSTypes2;
+      GOL: GOLTypes3;
+      GP1: GP1Types2;
+      GP2: GP2Types3;
+      GT1: GT1Types7;
+      Hxx: HxxTypes1;
+      IAM: IAMTypes3;
+      IAR: IARTypes1;
+      IIM: IIMTypes2;
+      ILT: ILTTypes1;
+      IN1: IN1Types8;
+      IN2: IN2Types6;
+      IN3: IN3Types8;
+      INV: INVTypes5;
+      IPC: IPCTypes3;
+      IPR: IPRTypes1;
+      ISD: ISDTypes2;
+      ITM: ITMTypes4;
+      IVC: IVCTypes2;
+      IVT: IVTTypes1;
+      LAN: LANTypes2;
+      LCC: LCCTypes3;
+      LCH: LCHTypes2;
+      LDP: LDPTypes5;
+      LOC: LOCTypes5;
+      LRL: LRLTypes2;
+      MCP: MCPTypes1;
+      MFA: MFATypes4;
+      MFE: MFETypes3;
+      MFI: MFITypes3;
+      MRG: MRGTypes5;
+      MSA: MSATypes5;
+      MSH: MSHTypes8;
+      NCK: NCKTypes2;
+      NDS: NDSTypes2;
+      NK1: NK1Types8;
+      NPU: NPUTypes4;
+      NSC: NSCTypes5;
+      NST: NSTTypes2;
+      NTE: NTETypes5;
+      OBR: OBRTypes11;
+      OBX: OBXTypes11;
+      ODS: ODSTypes2;
+      ODT: ODTTypes2;
+      OH1: OH1Types1;
+      OH2: OH2Types1;
+      OH3: OH3Types1;
+      OH4: OH4Types1;
+      OM1: OM1Types9;
+      OM2: OM2Types5;
+      OM3: OM3Types3;
+      OM4: OM4Types5;
+      OM5: OM5Types3;
+      OM6: OM6Types2;
+      OM7: OM7Types3;
+      OMC: OMCTypes2;
+      ORC: ORCTypes11;
+      ORG: ORGTypes3;
+      OVR: OVRTypes1;
+      PAC: PACTypes2;
+      PCE: PCETypes2;
+      PCR: PCRTypes3;
+      PD1: PD1Types5;
+      PDA: PDATypes2;
+      PDC: PDCTypes2;
+      PEO: PEOTypes2;
+      PES: PESTypes2;
+      PID: PIDTypes9;
+      PKG: PKGTypes3;
+      PM1: PM1Types1;
+      PMT: PMTTypes1;
+      PR1: PR1Types8;
+      PRA: PRATypes5;
+      PRB: PRBTypes2;
+      PRC: PRCTypes4;
+      PRD: PRDTypes4;
+      PRT: PRTTypes3;
+      PSG: PSGTypes1;
+      PSH: PSHTypes2;
+      PSL: PSLTypes2;
+      PSS: PSSTypes1;
+      PTH: PTHTypes2;
+      PV1: PV1Types6;
+      PV2: PV2Types7;
+      PYE: PYETypes2;
+      QAK: QAKTypes3;
+      QID: QIDTypes2;
+      QPD: QPDTypes2;
+      QRD: QRDTypes6;
+      QRF: QRFTypes6;
+      QRI: QRITypes3;
+      RCP: RCPTypes2;
+      RDF: RDFTypes1;
+      RDT: RDTTypes1;
+      REL: RELTypes2;
+      RF1: RF1Types3;
+      RFI: RFITypes1;
+      RGS: RGSTypes2;
+      RMI: RMITypes2;
+      ROL: ROLTypes5;
+      RQ1: RQ1Types3;
+      RQD: RQDTypes4;
+      RXA: RXATypes6;
+      RXC: RXCTypes6;
+      RXD: RXDTypes8;
+      RXE: RXETypes7;
+      RXG: RXGTypes8;
+      RXO: RXOTypes9;
+      RXR: RXRTypes4;
+      RXV: RXVTypes1;
+      SAC: SACTypes5;
+      SCD: SCDTypes1;
+      SCH: SCHTypes6;
+      SCP: SCPTypes1;
+      SDD: SDDTypes2;
+      SFT: SFTTypes2;
+      SGH: SGHTypes1;
+      SGT: SGTTypes1;
+      SHP: SHPTypes2;
+      SID: SIDTypes2;
+      SLT: SLTTypes1;
+      SPM: SPMTypes4;
+      STF: STFTypes7;
+      STZ: STZTypes1;
+      TCC: TCCTypes4;
+      TCD: TCDTypes3;
+      TQ1: TQ1Types2;
+      TQ2: TQ2Types1;
+      TXA: TXATypes4;
+      UAC: UACTypes1;
+      UB1: UB1Types6;
+      UB2: UB2Types4;
+      URD: URDTypes4;
+      URS: URSTypes5;
+      VAR: VARTypes2;
+      VND: VNDTypes2;
+      ZL7: ZL7Types2;
+      Zxx: ZxxTypes1;
+    };
+  };
+  [version: `${number}.${number}`]: { types: {}; segments: {} };
+  [version: `${number}.${number}.${number}`]: { types: {}; segments: {} };
 }
 
 /** The field positions segment S has in version V: HL7SegmentField<'2.6', 'DG1'> */

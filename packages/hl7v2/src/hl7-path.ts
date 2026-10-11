@@ -1,4 +1,4 @@
-import type { HL7SegmentField } from 'hl7v2-dictionary';
+import type { HL7SegmentField, HL7VersionPathTypes } from 'hl7v2-dictionary';
 import type { HL7Message } from './hl7-message.js';
 import { HL7MessageNode } from './hl7-message-node.js';
 import type { HL7Segment } from './hl7-segment.js';
@@ -36,36 +36,105 @@ type PathSegment<S extends string> = S extends `.${infer T}`
     ? N
     : S;
 
-/* The field number of a path's last step, without its repetition */
-type PathField<F extends string> = F extends `${infer N}-${string}`
-  ? PathField<N>
-  : F extends `${infer N}(${string}`
-    ? N
-    : F;
+/* A field step without its repetition: "5(2)" -> "5" */
+type PathField<F extends string> = F extends `${infer N}(${string}` ? N : F;
 
-/* [segment, field] of a path: "/PATIENT/PID(1)-5(2)-1" -> ["PID", "5"] */
+/* [field, component, sub-component] of what follows the segment */
+type PathParts<R extends string> =
+  R extends `${infer F}-${infer C}-${infer Sub}`
+    ? [PathField<F>, C, Sub]
+    : R extends `${infer F}-${infer C}`
+      ? [PathField<F>, C, undefined]
+      : [PathField<R>, undefined, undefined];
+
+/* [segment, field, component, sub-component] of a path:
+ * "/PATIENT/PID(1)-5(2)-1-2" -> ["PID", "5", "1", "2"] */
 type PathTarget<P extends string> = P extends `${string}/${infer Rest}`
   ? PathTarget<Rest>
   : P extends `${infer S}-${infer Rest}`
-    ? [PathSegment<S>, PathField<Rest>]
-    : [PathSegment<P>, undefined];
+    ? [PathSegment<S>, ...PathParts<Rest>]
+    : [PathSegment<P>, undefined, undefined, undefined];
+
+type Types<V extends keyof HL7VersionPathTypes> =
+  HL7VersionPathTypes[V]['types'];
+
+/* The type of component C of data type T, or unknown where not defined */
+type ComponentType<
+  V extends keyof HL7VersionPathTypes,
+  T,
+  C,
+> = T extends keyof Types<V>
+  ? C extends keyof Types<V>[T]
+    ? Types<V>[T][C]
+    : unknown
+  : unknown;
+
+/* OK when data type T of version V has component C (a primitive has one,
+ * itself); a type the version does not define takes any */
+type CheckComponent<
+  V extends keyof HL7VersionPathTypes,
+  T,
+  C extends string | undefined,
+  OK,
+  Where extends string,
+> = C extends string
+  ? T extends keyof Types<V>
+    ? C extends Exclude<keyof Types<V>[T], '0'>
+      ? OK
+      : `${Where}: ${T & string} has no component ${C} in ${V & string}`
+    : OK
+  : OK;
+
+/* A path's component and sub-component checked against its field's type */
+type CheckParts<
+  V extends keyof HL7VersionPathTypes,
+  P extends string,
+  S extends string,
+  F extends string,
+  C extends string | undefined,
+  Sub extends string | undefined,
+> = S extends keyof HL7VersionPathTypes[V]['segments']
+  ? F extends keyof HL7VersionPathTypes[V]['segments'][S]
+    ? CheckComponent<
+        V,
+        HL7VersionPathTypes[V]['segments'][S][F],
+        C,
+        CheckComponent<
+          V,
+          ComponentType<V, HL7VersionPathTypes[V]['segments'][S][F], C>,
+          Sub,
+          P,
+          `${S}-${F}-${C}`
+        >,
+        `${S}-${F}`
+      >
+    : P
+  : P;
 
 /**
  * A path checked against version V when the compiler knows both: P itself
- * when its field is one the version defines for the segment, otherwise a
- * message saying it is not - "DG1-2 is not a field of DG1 in 2.6" - for the
- * compiler to report. A path only known at run time, an untyped message's
- * path or a Z segment's is taken as it is.
+ * when its field is one the version defines for the segment, and its
+ * component and sub-component ones the field's data type has; otherwise a
+ * message saying what is not - "DG1-2 is not a field of DG1 in 2.6",
+ * "PID-5-99: XPN has no component 99 in 2.6" - for the compiler to report.
+ * A field of a type the version does not define (OBX-5's VARIES) takes any
+ * component. A path only known at run time, an untyped message's path or a
+ * Z segment's is taken as it is.
  */
 export type HL7CheckedPath<
   V extends HL7Message['version'],
   P extends string,
 > = string extends P
   ? string
-  : PathTarget<P> extends [infer S extends string, infer F]
+  : PathTarget<P> extends [
+        infer S extends string,
+        infer F,
+        infer C extends string | undefined,
+        infer Sub extends string | undefined,
+      ]
     ? F extends `${infer N extends number}`
       ? N extends HL7SegmentField<V, S>
-        ? P
+        ? CheckParts<V, P, S, F & string, C, Sub>
         : `${S}-${N} is not a field of ${S} in ${V}`
       : P
     : P;

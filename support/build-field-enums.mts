@@ -292,6 +292,38 @@ function generateVersionedObjects() {
   const fieldMaps: string[] = [];
   const fieldAliases = new Map<string, string>();
   const fieldAliasCount = new Map<string, number>();
+  const pathMaps: string[] = [];
+  /* A type with no components is a primitive - a single component - only
+   * when no version gives it components (2.1's PN has none, the standard's
+   * has), and VARIES, CM and NUL are anything; those take any component */
+  const compositeSomewhere = new Set(
+    versions.flatMap(v =>
+      Object.entries<any>(dictionaries[v].types)
+        .filter(([, def]) => def.fields)
+        .map(([t]) => t),
+    ),
+  );
+  const unchecked = (t: string) =>
+    compositeSomewhere.has(t) || /^(VARIES|CM.*|NUL|escapeType)$/.test(t);
+  /** A tuple alias, declared once per distinct tuple: [never, 'SI', 'CWE'] */
+  const tuples = new Map<string, string>();
+  const tupleOf = (base: string, items: Record<string, string>) => {
+    const max = Math.max(0, ...Object.keys(items).map(Number));
+    const parts = ['never'];
+    for (let i = 1; i <= max; i++) {
+      parts.push(items[i] ? `'${items[i]}'` : 'never');
+    }
+    const tuple = `[${parts.join(', ')}]`;
+    let name = tuples.get(`${base}:${tuple}`);
+    if (!name) {
+      const n = (counters.get(base) ?? 0) + 1;
+      counters.set(base, n);
+      name = `${base}${n}`;
+      tuples.set(`${base}:${tuple}`, name);
+      declarations.push(`type ${name} = ${tuple};`, '');
+    }
+    return name;
+  };
   for (const version of versions) {
     const d = dictionaries[version];
     const composite = (t: string) => !!d.types[t]?.fields;
@@ -329,6 +361,7 @@ function generateVersionedObjects() {
     typeMaps.push(`  '${version}': ${mapName};`);
     const segLines: string[] = [];
     const fieldLines: string[] = [];
+    const segTypeLines: string[] = [];
     for (const [s, def] of Object.entries<any>(d.segments)) {
       const fieldPositions = Object.keys(def.fields)
         .map(Number)
@@ -345,6 +378,14 @@ function generateVersionedObjects() {
         }
         fieldLines.push(`    ${s}: ${alias};`);
       }
+      segTypeLines.push(
+        `      ${s}: ${tupleOf(
+          `${s}Types`,
+          Object.fromEntries(
+            Object.entries<any>(def.fields).map(([pos, f]) => [pos, f.type]),
+          ),
+        )};`,
+      );
       const names = memberNames(
         'segment-fields',
         `${s.toLowerCase()}-segment.enum`,
@@ -359,6 +400,28 @@ function generateVersionedObjects() {
       );
     }
     segmentMaps.push(`  '${version}': {`, ...segLines, '  };');
+    const compLines: string[] = [];
+    for (const [t, def] of Object.entries<any>(d.types)) {
+      if (!def.fields && unchecked(t)) continue;
+      const items: Record<string, string> = def.fields
+        ? Object.fromEntries(
+            Object.entries<any>(def.fields).map(([pos, f]) => [pos, f.type]),
+          )
+        : { 1: t };
+      compLines.push(
+        `      '${t}': ${def.fields ? tupleOf(`${safe(t)}Comps`, items) : `[never, '${t}']`};`,
+      );
+    }
+    pathMaps.push(
+      `  '${version}': {`,
+      '    types: {',
+      ...compLines,
+      '    };',
+      '    segments: {',
+      ...segTypeLines,
+      '    };',
+      '  };',
+    );
     fieldMaps.push(
       `  '${version}': {`,
       ...fieldLines,
@@ -407,6 +470,18 @@ function generateVersionedObjects() {
     ...fieldMaps,
     '  [version: `${number}.${number}`]: { [segment: string]: number };',
     '  [version: `${number}.${number}.${number}`]: { [segment: string]: number };',
+    '}',
+    '',
+    '/**',
+    " * Each version's segment field types and data type component types, for",
+    " * checking paths (see HL7CheckedPath): segments.DG1[3] is DG1-3's type,",
+    " * types.CWE[1] the type of its first component; a primitive's only",
+    ' * component is itself.',
+    ' */',
+    'export interface HL7VersionPathTypes {',
+    ...pathMaps,
+    '  [version: `${number}.${number}`]: { types: {}; segments: {} };',
+    '  [version: `${number}.${number}.${number}`]: { types: {}; segments: {} };',
     '}',
     '',
     "/** The field positions segment S has in version V: HL7SegmentField<'2.6', 'DG1'> */",

@@ -222,12 +222,16 @@ dg1.field(DG1Segment.DiagnosisCodingMethod); // compile error: DG1-2 is withdraw
 dg1.field(2); // the same, by number
 ```
 
-Paths are checked the same way, groups, repetitions and components aside:
+Paths are checked the same way, through groups and repetitions:
 
 ```typescript
 msg26.get('DG1-2'); // compile error: "DG1-2 is not a field of DG1 in 2.6"
 msg26.set('/PATIENT/DG1(1)-2-1', 'x'); // the same
+msg26.get('PID-5-15'); // compile error: "PID-5: XPN has no component 15 in 2.6"
+msg26.get('PID-8-2'); // compile error: a primitive's only component is itself
 ```
+
+Components and sub-components are checked against the field's data type in that version. A field whose type takes anything (OBX-5's VARIES) takes any component.
 
 Any field or path is taken where the version or the segment is not typed - a message read without a version, a Z segment. A path held in a `string` is not checked; for a field position known only at run time, use the segment untyped: `const seg: HL7Segment = msg.getSegment('DG1')!`.
 

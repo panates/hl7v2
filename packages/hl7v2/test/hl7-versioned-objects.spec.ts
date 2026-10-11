@@ -143,4 +143,26 @@ describe('hl7v2:versioned objects', () => {
     expect(HL7Message.parse(ADT25).get('DG1-2')).toBeUndefined();
     expect(msg.get('ZPI-99')).toBeUndefined();
   });
+
+  it("should take only the components a field's type has in a path", () => {
+    const msg = new HL7Message('2.6');
+    msg.set('PID-5-1-1', 'Doe').set('PID-5(1)-2', 'Jo');
+    msg.set('PID-3(1)-4-2', '1.2.3');
+    expect(msg.get('PID-5-1')).toEqual('Doe');
+    expect(msg.get('PID-3(1)-4-2')).toEqual('1.2.3');
+    // @ts-expect-error - "PID-5: XPN has no component 15 in 2.6"
+    msg.get('PID-5-15');
+    // @ts-expect-error - "PID-5-1: FN has no component 9 in 2.6"
+    msg.get('PID-5-1-9');
+    // @ts-expect-error - a primitive's only component is itself
+    msg.get('PID-8-2');
+    // @ts-expect-error - in groups too
+    msg.get('/PATIENT/PID-3-4-9');
+    /* OBX-5 is VARIES: any component */
+    expect(msg.get('OBX-5-7-3')).toBeUndefined();
+    /* MSH-9 became a composite in 2.3 */
+    // @ts-expect-error - "MSH-9: ID has no component 3 in 2.1"
+    new HL7Message('2.1').get('MSH-9-3');
+    expect(new HL7Message('2.5').get('MSH-9-3')).toBeUndefined();
+  });
 });
