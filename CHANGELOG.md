@@ -1,6 +1,15 @@
 # Changelog
 
-<!-- rman:documented-up-to 2a6ed4df8d263ab5aaad4995977bb3a9878951f0 -->
+<!-- rman:documented-up-to 3594903aff4d8d101e24b2d3c97dbcb2e80981a3 -->
+
+## v2.0.1 (2026-10-11)
+
+### 🧹 Chores
+
+- sync lockfile (246264f)
+- interoperability tests on recorded fixtures, trigger events kept in the repository (47e0002)
+
+---
 
 ## v2.0.0 (2026-10-11)
 
