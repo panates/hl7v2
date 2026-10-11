@@ -145,6 +145,11 @@ export class HL7Segment<
       fields[0] = message.fieldSeparator;
     } else fields.shift();
     for (let i = 0; i < fields.length; i++) {
+      /* MSH-2 is the encoding characters themselves, not data to split */
+      if (i === 1 && isHeaderSegment(segment.segmentType)) {
+        segment.field(2).setValue(fields[1]);
+        continue;
+      }
       segment.field(i + 1).fromHL7String(fields[i], options);
     }
     return segment;

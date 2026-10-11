@@ -557,14 +557,18 @@ Custom error class for HL7-related errors.
 - `hl7ErrorCode?: number`: HL7 standard error code.
 - `severity?: 'E' | 'W' | 'I'`: Error severity (Error, Warning, Information).
 - `segmentType?: string`: Segment where the error occurred.
+- `segmentSequence?: number`: The segment's occurrence among the message's segments of its type, from 1 (ERL-2).
 - `fieldPosition?: number`: Field position where the error occurred.
+- `repetitionIndex?: number`: The field's repetition, from 0 (written to ERL-4 from 1).
+
+In a NAK (`createNak()`), ERR-3 carries the code as HAPI HL7v2 writes it - `101^Required field missing^HL70357`, the error's text as its original text - and MSA-3 the first error's text.
 
 ---
 
 ##### .hl7Escape()
 
 Escapes a string for use in an HL7 message, with the message's own delimiters.
-Control characters are written as hexadecimal data (`\X0D\`), so a CR, VT or FS in a value cannot end a segment or an MLLP frame.
+Control characters are written as HAPI HL7v2 writes them: a CR as `\X000d\` - the one hexadecimal sequence HAPI reads - so it cannot end a segment, a LF or tab as it is, and the rest (a VT or FS would end an MLLP frame) as hexadecimal data (`\X0B\`). Reading, `\X0D\` and every other hexadecimal sequence are taken too.
 Highlighting (`\H\`, `\N\`), formatting (`\.br\`), character set switches (`\Cxxyy\`, `\Mxxyyzz\`), locally defined (`\Zxx\`) and hexadecimal (`\Xdd\`) sequences already in the value pass through unchanged, as HAPI HL7v2 writes them.
 `hl7Escape(value: string, message?: HL7Message): string`
 example

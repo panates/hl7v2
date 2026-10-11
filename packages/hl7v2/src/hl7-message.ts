@@ -152,6 +152,16 @@ export class HL7Message<V extends HL7Version = HL7Version> {
   clear(version?: HL7Version) {
     this._clear(version);
     const msh: HL7Segment = this.addSegment('MSH');
+    /* MSH-1 and MSH-2 read as the delimiters, as HAPI gives them */
+    msh.field(MSHSegment.FieldSeparator).setValue(this.fieldSeparator);
+    msh
+      .field(MSHSegment.EncodingCharacters)
+      .setValue(
+        this.componentSeparator +
+          this.repetitionSeparator +
+          this.escapeCharacter +
+          this.subComponentSeparator,
+      );
     msh.field(MSHSegment.DateTimeOfMessage).setValue(new Date());
     msh.field(MSHSegment.MessageControlID).setValue(uid(8));
     /** Required; production, as HAPI's initQuickstart fills it */
@@ -528,6 +538,10 @@ export class HL7Message<V extends HL7Version = HL7Version> {
       .field(MSHSegment.MessageType)
       .comp(2)
       .setValue(this._header.field(MSHSegment.MessageType).getValue(2));
+    /* The message structure, ACK - from 2.5, as HAPI writes it */
+    if (atLeast(this.version, '2.5')) {
+      msh.field(MSHSegment.MessageType).comp(3).setValue('ACK');
+    }
     msh
       .field(MSHSegment.MessageControlID)
       .setValue(String(Date.now() + uid(5)));
@@ -611,7 +625,12 @@ export class HL7Message<V extends HL7Version = HL7Version> {
     const fields = this.dictionary.segments.ERR?.fields || {};
 
     if (fields['3']) {
-      errSegment.field(ERRSegment.HL7ErrorCode).setValue(code);
+      /* ERR-3 a CWE of table 0357, the error's text its original text */
+      const hl7Code = errSegment.field(ERRSegment.HL7ErrorCode);
+      hl7Code.setValue(code, 1);
+      if (HL7_ERROR_CODES[code]) hl7Code.setValue(HL7_ERROR_CODES[code], 2);
+      hl7Code.setValue('HL70357', 3);
+      hl7Code.setValue(text, 9);
       errSegment.field(ERRSegment.Severity).setValue(e?.severity || 'E');
       const appCode = e?.appErrorCode ?? (error as any)?.code;
       if (appCode != null) {
@@ -652,6 +671,8 @@ export class HL7Message<V extends HL7Version = HL7Version> {
     codeComponent.setValue(code, 1);
     codeComponent.setValue(HL7_ERROR_CODES[code] ?? text, 2);
     codeComponent.setValue('HL70357', 3);
+    /* The error's text as the code's alternate text, as HAPI writes it */
+    codeComponent.setValue(text, 5);
   }
 
   protected _clear(version?: HL7Version) {
@@ -806,4 +827,15 @@ function headerEnd(input: string | Buffer): number {
   const lf = input.indexOf(LF);
   if (lf >= 0 && lf < limit) return lf;
   return limit;
+}
+
+/** Whether version a is b or later, part by part: 2.10 is after 2.9 */
+function atLeast(a: string, b: string): boolean {
+  const x = a.split('.').map(Number);
+  const y = b.split('.').map(Number);
+  for (let i = 0; i < Math.max(x.length, y.length); i++) {
+    const d = (x[i] || 0) - (y[i] || 0);
+    if (d) return d > 0;
+  }
+  return true;
 }

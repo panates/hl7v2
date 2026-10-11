@@ -124,11 +124,14 @@ describe('hl7v2:conformance', () => {
       expect(hl7UnEscape('line 1\\X000d\\line 2')).toEqual('line 1\rline 2');
     });
 
-    it('Should write control characters as hexadecimal data', () => {
-      /* raw, a VT or FS would end the MLLP frame and a CR the segment */
-      expect(hl7Escape('a\x0bb\x1cc\rd\x7fe')).toEqual(
-        'a\\X0B\\b\\X1C\\c\\X0D\\d\\X7F\\e',
+    it('Should write control characters as HAPI writes them', () => {
+      /* raw, a VT or FS would end the MLLP frame: hexadecimal data */
+      expect(hl7Escape('a\x0bb\x1cc\x7fe')).toEqual(
+        'a\\X0B\\b\\X1C\\c\\X7F\\e',
       );
+      /* a CR in HAPI's form, the only hexadecimal data HAPI reads; LF and tab raw */
+      expect(hl7Escape('a\rb\nc\td')).toEqual('a\\X000d\\b\nc\td');
+      expect(hl7UnEscape(hl7Escape('a\r\nb'))).toEqual('a\r\nb');
     });
 
     it('Should pass hexadecimal data in a value through when writing', () => {
@@ -304,8 +307,9 @@ describe('hl7v2:conformance', () => {
         expect(msh.field(MSHSegment.ProcessingID).toHL7String()).toEqual('T');
         expect(msh.field(MSHSegment.VersionID).toHL7String()).toEqual('2.5');
         expect(response.charset).toEqual('8859/9');
+        /* MSH-9-3, the structure: ACK from 2.5, as HAPI writes it */
         expect(msh.field(MSHSegment.MessageType).toHL7String()).toEqual(
-          'ACK^A01',
+          'ACK^A01^ACK',
         );
         expect(
           response
@@ -399,7 +403,10 @@ describe('hl7v2:conformance', () => {
 
     it('Should lay ERR out as 2.5 and later define it', () => {
       const err = request('2.5').createNak([located]).getSegment('ERR')!;
-      expect(err.toHL7String()).toEqual('ERR||PID^1^5|101|E');
+      /* ERR-3 a CWE of table 0357, the text its original text, as HAPI writes it */
+      expect(err.toHL7String()).toEqual(
+        'ERR||PID^1^5|101^Required field missing^HL70357^^^^^^Required field missing|E',
+      );
     });
 
     it('Should put everything in ERR-1 before 2.5', () => {
@@ -407,7 +414,7 @@ describe('hl7v2:conformance', () => {
         const err = request(version).createNak([located]).getSegment('ERR')!;
         expect([version, err.toHL7String()]).toEqual([
           version,
-          'ERR|PID^1^5^101&Required field missing&HL70357',
+          'ERR|PID^1^5^101&Required field missing&HL70357&&Required field missing',
         ]);
       }
       /* 2.1 and 2.2: ERR-1 is the code alone */

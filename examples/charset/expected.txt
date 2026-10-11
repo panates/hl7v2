@@ -12,4 +12,5 @@ ANSI   : Şahin (as windows-1254)
 -- Escaping
 Written: NTE|||Dose: 5 mg \F\ twice a day \S\ after meals \T\ water
 Read   : Dose: 5 mg | twice a day ^ after meals & water
-Written: NTE|||First line\X0A\Second line
+Written: "NTE|||First line\\X000d\\\nSecond line"
+Read   : "First line\r\nSecond line"

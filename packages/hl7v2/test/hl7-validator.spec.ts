@@ -54,7 +54,7 @@ describe('hl7v2:validate', () => {
       ]);
       /* ERL-4 counts repetitions from 1: the second is 2 */
       expect(nak.getSegment('ERR')!.toHL7String()).toEqual(
-        'ERR||PID^1^3^2|102|E',
+        'ERR||PID^1^3^2|102^Data type error^HL70357^^^^^^Bad identifier|E',
       );
     });
 
@@ -178,7 +178,9 @@ describe('hl7v2:validate', () => {
     const msg = HL7Message.parse([MSH, 'EVN||20250101', 'PID|1'].join('\r'));
     const nak = msg.createNak(msg.validate());
     expect(nak.segments.filter(s => s.segmentType === 'ERR').length).toEqual(3);
-    expect(nak.getSegment('ERR')!.toHL7String()).toEqual('ERR||PID^1^3|101|E');
+    expect(nak.getSegment('ERR')!.toHL7String()).toEqual(
+      'ERR||PID^1^3|101^Required field missing^HL70357^^^^^^PID-3 (Patient Identifier List) is required|E',
+    );
   });
 
   describe('tables', () => {

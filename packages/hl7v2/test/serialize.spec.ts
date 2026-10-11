@@ -57,7 +57,7 @@ describe('hl7v2:serialize', () => {
     const seg = msg.addSegment('ADD');
     seg.field(1).setValue('|^~\\&abc\x09\x10d');
     expect(seg.toHL7String()).toStrictEqual(
-      'ADD|\\F\\\\S\\\\R\\\\E\\\\T\\abc\\X0910\\d',
+      'ADD|\\F\\\\S\\\\R\\\\E\\\\T\\abc\t\\X10\\d',
     );
   });
 

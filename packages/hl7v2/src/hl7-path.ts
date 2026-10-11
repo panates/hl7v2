@@ -1,7 +1,7 @@
 import type { HL7SegmentField, HL7VersionPathTypes } from 'hl7v2-dictionary';
 import type { HL7Message } from './hl7-message.js';
 import { HL7MessageNode } from './hl7-message-node.js';
-import type { HL7Segment } from './hl7-segment.js';
+import { HL7Segment } from './hl7-segment.js';
 
 /**
  * A location in a message, written as HAPI HL7v2's Terser writes it:
@@ -225,19 +225,135 @@ export function setPathValue(
   value: any,
 ): void {
   const path = parseHL7Path(pathText);
-  let segment = findPathSegment(message, path);
-  if (!segment) {
-    const count = message.segments.filter(
-      s => s.segmentType === path.segment,
-    ).length;
-    if (path.groups.length || path.segmentIndex !== count) {
-      throw new Error(`No segment at "${pathText}" to set`);
-    }
-    segment = message.addSegment(path.segment);
-  }
   if (!path.field) throw new Error(`"${pathText}" names no field to set`);
+  const segment =
+    findPathSegment(message, path) ?? addPathSegment(message, path, pathText);
   segment
     .field(path.field)
     .repetition(path.repetition)
     .setValue(value, path.component, path.subComponent);
+}
+
+/**
+ * Adds the segment a path names, where the message structure puts it, as
+ * Terser.set() does: a missing NK1 goes before PV1 in an ADT_A01, a new
+ * /ORDER_OBSERVATION(1)/OBSERVATION(1)/OBX after that order's last
+ * observation. Only the next repetition can be added - a path skipping one
+ * is refused - and only a segment that, added, is where the path says: one
+ * that would not start the group it is to be in is refused too.
+ */
+function addPathSegment(
+  message: HL7Message<any>,
+  path: HL7Path,
+  pathText: string,
+): HL7Segment {
+  const refuse = () => new Error(`No segment at "${pathText}" to set`);
+  /* The deepest node of the path that is there, and what comes below it */
+  let node: HL7MessageNode = message.buildStructureTree();
+  let defs = structureOf(message);
+  let depth = 0;
+  for (; depth < path.groups.length; depth++) {
+    const group = path.groups[depth];
+    const next = node.getNode(group.name, group.index);
+    if (!next) break;
+    node = next;
+    defs = itemOf(defs, group.name)?.segments;
+  }
+  /* Only the next repetition: none skipped */
+  const missingGroup = path.groups[depth];
+  if (missingGroup) {
+    const count = node.items.filter(
+      x => x instanceof HL7MessageNode && x.is(missingGroup.name),
+    ).length;
+    if (missingGroup.index !== count) throw refuse();
+  } else {
+    const count = node.items.filter(
+      x => x instanceof HL7Segment && x.segmentType === path.segment,
+    ).length;
+    if (path.segmentIndex !== count) throw refuse();
+  }
+
+  /* After the last item the structure puts before it, in that node */
+  const order = (name: string) => indexOf(defs, name);
+  const target = order(missingGroup?.name ?? path.segment);
+  let at: number;
+  if (target < 0 || !defs) {
+    /* Not in the structure - a Z segment, an unknown message: at the end */
+    const last = lastSegmentOf(node);
+    at = last ? message.segments.indexOf(last) + 1 : message.segments.length;
+  } else {
+    let before: HL7Segment | undefined;
+    for (const item of node.items) {
+      const name = item instanceof HL7Segment ? item.segmentType : item.name;
+      const o = order(name);
+      if (o >= 0 && o <= target) before = lastSegmentOf(item) ?? before;
+    }
+    const first = firstSegmentOf(node);
+    at = before
+      ? message.segments.indexOf(before) + 1
+      : first
+        ? message.segments.indexOf(first)
+        : message.segments.length;
+  }
+  const segment = message.addSegment(path.segment, at);
+  /* Where the path says, or not added at all */
+  if (findPathSegment(message, path) !== segment) {
+    message.segments.splice(message.segments.indexOf(segment), 1);
+    throw refuse();
+  }
+  return segment;
+}
+
+type Definitions = Record<string, any> | undefined;
+
+function structureOf(message: HL7Message<any>): Definitions {
+  const name = message.structureName ?? message.messageType.replace('^', '_');
+  return message.dictionary.messages?.[name]?.segments;
+}
+
+/* The item of a definition a group or segment name is - its own name, an
+ * alias, a repeated segment's type - looking into choices */
+function itemOf(defs: Definitions, name: string): any {
+  for (const [key, def] of Object.entries<any>(defs || {})) {
+    if (def.choice) {
+      const inner = itemOf(def.segments, name);
+      if (inner) return inner;
+      continue;
+    }
+    if (key === name || def.segment === name || def.aliases?.includes(name))
+      return def;
+  }
+}
+
+/* The position of a name's first item in a definition, -1 when not there */
+function indexOf(defs: Definitions, name: string): number {
+  let best = -1;
+  for (const [key, def] of Object.entries<any>(defs || {})) {
+    const hit = def.choice
+      ? itemOf(def.segments, name)
+      : key === name || def.segment === name || def.aliases?.includes(name);
+    const idx = def.idx ?? 0;
+    if (hit && (best < 0 || idx < best)) best = idx;
+  }
+  return best;
+}
+
+function firstSegmentOf(
+  item: HL7Segment | HL7MessageNode,
+): HL7Segment | undefined {
+  if (item instanceof HL7Segment) return item;
+  for (const x of item.items) {
+    const s = firstSegmentOf(x);
+    if (s) return s;
+  }
+}
+
+function lastSegmentOf(
+  item: HL7Segment | HL7MessageNode,
+): HL7Segment | undefined {
+  if (item instanceof HL7Segment) return item;
+  for (let i = item.items.length - 1; i >= 0; i--) {
+    const s = lastSegmentOf(item.items[i]);
+    if (s) return s;
+  }
 }

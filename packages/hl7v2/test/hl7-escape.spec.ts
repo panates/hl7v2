@@ -22,8 +22,9 @@ describe('hl7v2:hl7Escape', () => {
     expect(hl7Escape('\\')).toEqual('\\E\\');
   });
 
-  it('Should escape control characters', () => {
-    expect(hl7Escape(String.fromCharCode(9))).toEqual('\\X09\\');
+  it('Should escape control characters, but tab and LF', () => {
+    expect(hl7Escape(String.fromCharCode(9))).toEqual('\t');
+    expect(hl7Escape(String.fromCharCode(0x16))).toEqual('\\X16\\');
   });
 
   it('Should escape character', () => {

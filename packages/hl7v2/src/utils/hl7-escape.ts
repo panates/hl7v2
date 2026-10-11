@@ -16,7 +16,10 @@ import { resolveHL7Encoding } from './hl7-charset.js';
  *
  * - \F\ \S\ \T\ \R\ \E\ stand for the message's own delimiters.
  * - \Xdddd\ is hexadecimal data: the bytes, in the message's character set.
- *   HAPI's own form for a carriage return, \X000d\, is read as one.
+ *   HAPI's own form for a carriage return, \X000d\, is read as one - and
+ *   written for one, since HAPI reads no other hexadecimal data: a value
+ *   with \X0D\ reaches a HAPI receiver as those five characters. A LF or tab
+ *   is written as it is, as HAPI writes it.
  * - \H\ \N\ (highlighting), \.xx\ (formatting), \Cxxyy\ \Mxxyyzz\ (character
  *   set switches) and \Zxx\ (locally defined) are instructions to the
  *   receiver, not data: they are kept as they are, and written back unchanged.
@@ -76,15 +79,26 @@ export function hl7Escape(value: string | null, message?: HL7Message): string {
     if (preserved) return preserved;
     if (delimiter) return e + codes[delimiter] + e;
     /**
-     * Control characters go as hexadecimal data: raw, a VT or FS would end the
-     * MLLP frame and a CR the segment
+     * Control characters, as HAPI writes them: a CR as \X000d\ - HAPI's form,
+     * the one HAPI reads back - a LF or tab as it is. The rest go as
+     * hexadecimal data: raw, a VT or FS would end the MLLP frame.
      */
-    return (
-      e +
-      'X' +
-      iconv.encode(x, hexEncodingOf(message)).toString('hex').toUpperCase() +
-      e
-    );
+    let out = '';
+    for (const c of x) {
+      if (c === '\r') out += e + 'X000d' + e;
+      else if (c === '\n' || c === '\t') out += c;
+      else {
+        out +=
+          e +
+          'X' +
+          iconv
+            .encode(c, hexEncodingOf(message))
+            .toString('hex')
+            .toUpperCase() +
+          e;
+      }
+    }
+    return out;
   });
 }
 
