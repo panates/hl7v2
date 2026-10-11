@@ -3,7 +3,7 @@
   "description": "Enhanced acknowledgment mode (MSH-15/16): accept and application acknowledgments",
   "version": "0.0.0",
   "private": true,
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "type": "module",
   "scripts": {
     "start": "node --no-experimental-strip-types --import ../register.mjs src/index.ts"

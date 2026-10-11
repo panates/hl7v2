@@ -3,7 +3,7 @@
   "description": "Batch files (FHS/BHS ... BTS/FTS): reading, processing and writing messages in bulk",
   "version": "0.0.0",
   "private": true,
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "type": "module",
   "scripts": {
     "start": "node --no-experimental-strip-types --import ../register.mjs src/index.ts"

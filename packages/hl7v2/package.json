@@ -3,7 +3,7 @@
   "description": "HL7 v2 parser, serializer, validator for NodeJS",
   "version": "1.9.0",
   "author": "Panates",
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "private": true,
   "dependencies": {
     "any-ascii": "^0.3.3",

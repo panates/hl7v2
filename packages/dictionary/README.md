@@ -72,7 +72,7 @@ Built the first time a version is used; definitions shared between versions and 
 
 ## License
 
-Available under [MIT](LICENSE) license. The HL7 v2 XML schemas the data is generated from are licensed by HL7 and are not part of this package's source.
+Available under the [BSD 3-Clause](LICENSE) license. The HL7 v2 XML schemas the data is generated from are licensed by HL7 and are not part of this package's source.
 
 [npm-image]: https://img.shields.io/npm/v/hl7v2-dictionary.svg
 [npm-url]: https://npmjs.org/package/hl7v2-dictionary

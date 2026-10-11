@@ -119,7 +119,7 @@ Report bugs and discuss features on the [GitHub issues](https://github.com/panat
 
 ## License
 
-Available under [MIT](LICENSE) license.
+Available under the [BSD 3-Clause](LICENSE) license.
 
 [npm-image]: https://img.shields.io/npm/v/hl7v2.svg
 [npm-url]: https://npmjs.org/package/hl7v2

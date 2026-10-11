@@ -3,7 +3,7 @@
   "description": "MLLP over TLS: a server and a client with certificates",
   "version": "0.0.0",
   "private": true,
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "type": "module",
   "scripts": {
     "start": "node --no-experimental-strip-types --import ../register.mjs src/index.ts"

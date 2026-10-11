@@ -95,7 +95,7 @@ const client = Hl7Client.createTlsClient({ host: 'localhost', port: 2575, ca: ce
 
 ## License
 
-Available under [MIT](LICENSE) license.
+Available under the [BSD 3-Clause](LICENSE) license.
 
 [npm-image]: https://img.shields.io/npm/v/hl7v2-net.svg
 [npm-url]: https://npmjs.org/package/hl7v2-net

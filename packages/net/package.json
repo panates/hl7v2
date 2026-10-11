@@ -3,7 +3,7 @@
   "description": "HL7 v2 server/client for NodeJS",
   "version": "1.9.0",
   "author": "Panates",
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "private": true,
   "dependencies": {
     "backoff": "^2.5.0",
