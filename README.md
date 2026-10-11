@@ -31,7 +31,7 @@ When you open an issue please provide the version of the NodeJS.
 
 ## Node Compatibility
 
-- node >= 18.x
+- node >= 20.x
 
 ### License
 

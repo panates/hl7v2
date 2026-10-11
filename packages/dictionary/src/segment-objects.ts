@@ -1155,25 +1155,25 @@ export interface XTNObject {
 }
 
 export interface ADComponents {
-  StreetAddress?: number | string | null;
-  OtherDesignation?: number | string | null;
-  City?: number | string | null;
-  StateOrProvince?: number | string | null;
-  ZipOrPostalCode?: number | string | null;
-  Country?: number | string | null;
-  AddressType?: number | string | null;
-  OtherGeographicDesignation?: number | string | null;
+  StreetAddress?: string | null;
+  OtherDesignation?: string | null;
+  City?: string | null;
+  StateOrProvince?: string | null;
+  ZipOrPostalCode?: string | null;
+  Country?: string | null;
+  AddressType?: string | null;
+  OtherGeographicDesignation?: string | null;
 }
 
 export interface AUIComponents {
-  AuthorizationNumber?: number | string | null;
-  Date?: number | string | null;
-  Source?: number | string | null;
+  AuthorizationNumber?: string | null;
+  Date?: string | null;
+  Source?: string | null;
 }
 
 export interface CCDComponents {
-  InvocationEvent?: number | string | null;
-  DateTime?: number | string | null;
+  InvocationEvent?: string | null;
+  DateTime?: string | null;
 }
 
 export interface CCPComponents {
@@ -1183,80 +1183,80 @@ export interface CCPComponents {
 }
 
 export interface CDComponents {
-  ChannelIdentifier?: number | string | null;
-  WaveformSource?: number | string | null;
-  ChannelSensitivityAndUnits?: number | string | null;
-  ChannelCalibrationParameters?: number | string | null;
+  ChannelIdentifier?: string | null;
+  WaveformSource?: string | null;
+  ChannelSensitivityAndUnits?: string | null;
+  ChannelCalibrationParameters?: string | null;
   ChannelSamplingFrequency?: number | string | null;
-  MinimumAndMaximumDataValues?: number | string | null;
+  MinimumAndMaximumDataValues?: string | null;
 }
 
 export interface CEComponents {
-  Identifier?: number | string | null;
-  Text?: number | string | null;
-  NameOfCodingSystem?: number | string | null;
-  AlternateIdentifier?: number | string | null;
-  AlternateText?: number | string | null;
-  NameOfAlternateCodingSystem?: number | string | null;
+  Identifier?: string | null;
+  Text?: string | null;
+  NameOfCodingSystem?: string | null;
+  AlternateIdentifier?: string | null;
+  AlternateText?: string | null;
+  NameOfAlternateCodingSystem?: string | null;
 }
 
 export interface CFComponents {
-  Identifier?: number | string | null;
-  FormattedText?: number | string | null;
-  NameOfCodingSystem?: number | string | null;
-  AlternateIdentifier?: number | string | null;
-  AlternateFormattedText?: number | string | null;
-  NameOfAlternateCodingSystem?: number | string | null;
-  CodingSystemVersionID?: number | string | null;
-  AlternateCodingSystemVersionID?: number | string | null;
-  OriginalText?: number | string | null;
-  SecondAlternateIdentifier?: number | string | null;
-  SecondAlternateFormattedText?: number | string | null;
-  NameOfSecondAlternateCodingSystem?: number | string | null;
-  SecondAlternateCodingSystemVersionID?: number | string | null;
-  CodingSystemOID?: number | string | null;
-  ValueSetOID?: number | string | null;
-  ValueSetVersionID?: number | string | null;
-  AlternateCodingSystemOID?: number | string | null;
-  AlternateValueSetOID?: number | string | null;
-  AlternateValueSetVersionID?: number | string | null;
-  SecondAlternateCodingSystemOID?: number | string | null;
-  SecondAlternateValueSetOID?: number | string | null;
-  SecondAlternateValueSetVersionID?: number | string | null;
+  Identifier?: string | null;
+  FormattedText?: string | null;
+  NameOfCodingSystem?: string | null;
+  AlternateIdentifier?: string | null;
+  AlternateFormattedText?: string | null;
+  NameOfAlternateCodingSystem?: string | null;
+  CodingSystemVersionID?: string | null;
+  AlternateCodingSystemVersionID?: string | null;
+  OriginalText?: string | null;
+  SecondAlternateIdentifier?: string | null;
+  SecondAlternateFormattedText?: string | null;
+  NameOfSecondAlternateCodingSystem?: string | null;
+  SecondAlternateCodingSystemVersionID?: string | null;
+  CodingSystemOID?: string | null;
+  ValueSetOID?: string | null;
+  ValueSetVersionID?: string | null;
+  AlternateCodingSystemOID?: string | null;
+  AlternateValueSetOID?: string | null;
+  AlternateValueSetVersionID?: string | null;
+  SecondAlternateCodingSystemOID?: string | null;
+  SecondAlternateValueSetOID?: string | null;
+  SecondAlternateValueSetVersionID?: string | null;
 }
 
 export interface CKComponents {
   IDNumber?: number | string | null;
   CheckDigit?: number | string | null;
-  CodeIdentifyingTheCheckDigitSchemeEmployed?: number | string | null;
-  AssigningAuthority?: number | string | null;
+  CodeIdentifyingTheCheckDigitSchemeEmployed?: string | null;
+  AssigningAuthority?: string | null;
 }
 
 export interface CK_ACCOUNT_NOComponents {
   AccountNumber?: number | string | null;
   CheckDigit?: number | string | null;
-  CheckDigitScheme?: number | string | null;
-  FacilityID?: number | string | null;
+  CheckDigitScheme?: string | null;
+  FacilityID?: string | null;
 }
 
 export interface CK_PAT_IDComponents {
-  PatientID?: number | string | null;
+  PatientID?: string | null;
   CheckDigit?: number | string | null;
-  CheckDigitScheme?: number | string | null;
-  FacilityID?: number | string | null;
+  CheckDigitScheme?: string | null;
+  FacilityID?: string | null;
 }
 
 export interface CM_ABS_RANGEComponents {
-  Range?: number | string | null;
+  Range?: string | null;
   NumericChange?: number | string | null;
   PercentPerChange?: number | string | null;
   Days?: number | string | null;
 }
 
 export interface CM_AUIComponents {
-  AuthorizationNumber?: number | string | null;
-  Date?: number | string | null;
-  Source?: number | string | null;
+  AuthorizationNumber?: string | null;
+  Date?: string | null;
+  Source?: string | null;
 }
 
 export interface CM_BATCH_TOTALComponents {
@@ -1265,8 +1265,8 @@ export interface CM_BATCH_TOTALComponents {
 }
 
 export interface CM_CCDComponents {
-  WhenToChargeCode?: number | string | null;
-  DateTime?: number | string | null;
+  WhenToChargeCode?: string | null;
+  DateTime?: string | null;
 }
 
 export interface CM_DDIComponents {
@@ -1276,446 +1276,446 @@ export interface CM_DDIComponents {
 }
 
 export interface CM_DINComponents {
-  Date?: number | string | null;
-  InstitutionName?: number | string | null;
+  Date?: string | null;
+  InstitutionName?: string | null;
 }
 
 export interface CM_DLDComponents {
-  DischargeLocation?: number | string | null;
-  EffectiveDate?: number | string | null;
+  DischargeLocation?: string | null;
+  EffectiveDate?: string | null;
 }
 
 export interface CM_DLTComponents {
-  Range?: number | string | null;
+  Range?: string | null;
   NumericThreshold?: number | string | null;
-  Change?: number | string | null;
+  Change?: string | null;
   LengthOfTimeDays?: number | string | null;
 }
 
 export interface CM_DTNComponents {
-  DayType?: number | string | null;
+  DayType?: string | null;
   NumberOfDays?: number | string | null;
 }
 
 export interface CM_EIPComponents {
-  ParentSPlacerOrderNumber?: number | string | null;
-  ParentSFillerOrderNumber?: number | string | null;
+  ParentSPlacerOrderNumber?: string | null;
+  ParentSFillerOrderNumber?: string | null;
 }
 
 export interface CM_ELDComponents {
-  SegmentID?: number | string | null;
+  SegmentID?: string | null;
   Sequence?: number | string | null;
   FieldPosition?: number | string | null;
-  CodeIdentifyingError?: number | string | null;
+  CodeIdentifyingError?: string | null;
 }
 
 export interface CM_FILLERComponents {
-  UniqueFillerId?: number | string | null;
-  FillerApplicationID?: number | string | null;
+  UniqueFillerId?: string | null;
+  FillerApplicationID?: string | null;
 }
 
 export interface CM_FINANCEComponents {
-  FinancialClassID?: number | string | null;
-  EffectiveDate?: number | string | null;
+  FinancialClassID?: string | null;
+  EffectiveDate?: string | null;
 }
 
 export interface CM_GROUP_IDComponents {
-  UniqueGroupId?: number | string | null;
-  PlacerApplicationId?: number | string | null;
+  UniqueGroupId?: string | null;
+  PlacerApplicationId?: string | null;
 }
 
 export interface CM_INTERNAL_LOCATIONComponents {
-  NurseUnit?: number | string | null;
-  Room?: number | string | null;
-  Bed?: number | string | null;
-  FacilityID?: number | string | null;
-  BedStatus?: number | string | null;
-  Etage?: number | string | null;
-  Klinik?: number | string | null;
-  Zentrum?: number | string | null;
+  NurseUnit?: string | null;
+  Room?: string | null;
+  Bed?: string | null;
+  FacilityID?: string | null;
+  BedStatus?: string | null;
+  Etage?: string | null;
+  Klinik?: string | null;
+  Zentrum?: string | null;
 }
 
 export interface CM_JOB_CODEComponents {
-  JobCode?: number | string | null;
-  EmployeeClassification?: number | string | null;
+  JobCode?: string | null;
+  EmployeeClassification?: string | null;
 }
 
 export interface CM_LA1Components {
-  PointOfCare?: number | string | null;
-  Room?: number | string | null;
-  Bed?: number | string | null;
-  Facility?: number | string | null;
-  LocationStatus?: number | string | null;
-  PersonLocationType?: number | string | null;
-  Building?: number | string | null;
-  Floor?: number | string | null;
-  StreetAddress?: number | string | null;
-  OtherDesignation?: number | string | null;
-  City?: number | string | null;
-  StateOrProvince?: number | string | null;
-  ZipOrPostalCode?: number | string | null;
-  Country?: number | string | null;
-  AddressType?: number | string | null;
-  OtherGeographicDesignation?: number | string | null;
+  PointOfCare?: string | null;
+  Room?: string | null;
+  Bed?: string | null;
+  Facility?: string | null;
+  LocationStatus?: string | null;
+  PersonLocationType?: string | null;
+  Building?: string | null;
+  Floor?: string | null;
+  StreetAddress?: string | null;
+  OtherDesignation?: string | null;
+  City?: string | null;
+  StateOrProvince?: string | null;
+  ZipOrPostalCode?: string | null;
+  Country?: string | null;
+  AddressType?: string | null;
+  OtherGeographicDesignation?: string | null;
 }
 
 export interface CM_LICENSE_NOComponents {
-  LicenseNumber?: number | string | null;
-  IssuingStateProvinceCountry?: number | string | null;
+  LicenseNumber?: string | null;
+  IssuingStateProvinceCountry?: string | null;
 }
 
 export interface CM_MOCComponents {
-  DollarAmount?: number | string | null;
-  ChargeCode?: number | string | null;
+  DollarAmount?: string | null;
+  ChargeCode?: string | null;
 }
 
 export interface CM_MSGComponents {
-  MessageType?: number | string | null;
-  TriggerEvent?: number | string | null;
+  MessageType?: string | null;
+  TriggerEvent?: string | null;
 }
 
 export interface CM_NDLComponents {
-  OPName?: number | string | null;
-  StartDateTime?: number | string | null;
-  EndDateTime?: number | string | null;
-  PointOfCare?: number | string | null;
-  Room?: number | string | null;
-  Bed?: number | string | null;
-  Facility?: number | string | null;
-  LocationStatus?: number | string | null;
-  PersonLocationType?: number | string | null;
-  Building?: number | string | null;
-  Floor?: number | string | null;
+  OPName?: string | null;
+  StartDateTime?: string | null;
+  EndDateTime?: string | null;
+  PointOfCare?: string | null;
+  Room?: string | null;
+  Bed?: string | null;
+  Facility?: string | null;
+  LocationStatus?: string | null;
+  PersonLocationType?: string | null;
+  Building?: string | null;
+  Floor?: string | null;
 }
 
 export interface CM_OCDComponents {
-  OccurrenceCode?: number | string | null;
-  OccurrenceDate?: number | string | null;
+  OccurrenceCode?: string | null;
+  OccurrenceDate?: string | null;
 }
 
 export interface CM_OSPComponents {
-  OccurrenceSpanCode?: number | string | null;
-  OccurrenceSpanStartDate?: number | string | null;
-  OccurrenceSpanStopDate?: number | string | null;
+  OccurrenceSpanCode?: string | null;
+  OccurrenceSpanStartDate?: string | null;
+  OccurrenceSpanStopDate?: string | null;
 }
 
 export interface CM_PARENT_RESULTComponents {
-  ObservationIdentifier?: number | string | null;
-  SubID?: number | string | null;
-  Result?: number | string | null;
+  ObservationIdentifier?: string | null;
+  SubID?: string | null;
+  Result?: string | null;
 }
 
 export interface CM_PAT_IDComponents {
-  IDNumber?: number | string | null;
+  IDNumber?: string | null;
   CheckDigit?: number | string | null;
-  CheckDigitScheme?: number | string | null;
-  FacilityID?: number | string | null;
-  Type?: number | string | null;
+  CheckDigitScheme?: string | null;
+  FacilityID?: string | null;
+  Type?: string | null;
 }
 
 export interface CM_PAT_ID_0192Components {
-  IDNumber?: number | string | null;
+  IDNumber?: string | null;
   CheckDigit?: number | string | null;
-  CheckDigitScheme?: number | string | null;
-  FacilityID?: number | string | null;
-  Type?: number | string | null;
+  CheckDigitScheme?: string | null;
+  FacilityID?: string | null;
+  Type?: string | null;
 }
 
 export interface CM_PCFComponents {
-  PreCertificationPatientType?: number | string | null;
-  PreCertificationRequired?: number | string | null;
-  PreCertificationWindwow?: number | string | null;
+  PreCertificationPatientType?: string | null;
+  PreCertificationRequired?: string | null;
+  PreCertificationWindwow?: string | null;
 }
 
 export interface CM_PENComponents {
-  PenaltyType?: number | string | null;
+  PenaltyType?: string | null;
   PenaltyAmount?: number | string | null;
 }
 
 export interface CM_PIComponents {
-  IDNumber?: number | string | null;
-  TypeOfIDNumber?: number | string | null;
-  OtherQualifyingInfo?: number | string | null;
+  IDNumber?: string | null;
+  TypeOfIDNumber?: string | null;
+  OtherQualifyingInfo?: string | null;
 }
 
 export interface CM_PIPComponents {
-  Privilege?: number | string | null;
-  PrivilegeClass?: number | string | null;
-  ExpirationDate?: number | string | null;
-  ActivationDate?: number | string | null;
+  Privilege?: string | null;
+  PrivilegeClass?: string | null;
+  ExpirationDate?: string | null;
+  ActivationDate?: string | null;
 }
 
 export interface CM_PLACERComponents {
-  UniquePlacerId?: number | string | null;
-  PlacerApplication?: number | string | null;
+  UniquePlacerId?: string | null;
+  PlacerApplication?: string | null;
 }
 
 export interface CM_PLNComponents {
-  IDNumber?: number | string | null;
-  TypeOfIDNumber?: number | string | null;
-  StateOtherQualifyingInfo?: number | string | null;
-  ExpirationDate?: number | string | null;
+  IDNumber?: string | null;
+  TypeOfIDNumber?: string | null;
+  StateOtherQualifyingInfo?: string | null;
+  ExpirationDate?: string | null;
 }
 
 export interface CM_POSITIONComponents {
-  Saal?: number | string | null;
-  Tisch?: number | string | null;
-  Stuhl?: number | string | null;
+  Saal?: string | null;
+  Tisch?: string | null;
+  Stuhl?: string | null;
 }
 
 export interface CM_PRACTITIONERComponents {
-  ProcedurePractitionerID?: number | string | null;
-  ProcedurePractitionerType?: number | string | null;
+  ProcedurePractitionerID?: string | null;
+  ProcedurePractitionerType?: string | null;
 }
 
 export interface CM_PRLComponents {
-  OBX3ObservationIdentifierOfParentResult?: number | string | null;
-  OBX4SubIDOfParentResult?: number | string | null;
-  PartOfOBX5ObservationResultFromParent?: number | string | null;
+  OBX3ObservationIdentifierOfParentResult?: string | null;
+  OBX4SubIDOfParentResult?: string | null;
+  PartOfOBX5ObservationResultFromParent?: string | null;
 }
 
 export interface CM_PTAComponents {
-  PolicyType?: number | string | null;
-  AmountClass?: number | string | null;
+  PolicyType?: string | null;
+  AmountClass?: string | null;
   Amount?: number | string | null;
 }
 
 export interface CM_RANGEComponents {
-  LowValue?: number | string | null;
-  HighValue?: number | string | null;
+  LowValue?: string | null;
+  HighValue?: string | null;
 }
 
 export interface CM_RFRComponents {
-  ReferenceRange?: number | string | null;
-  Sex?: number | string | null;
-  AgeRange?: number | string | null;
-  AgeGestation?: number | string | null;
-  Species?: number | string | null;
-  RaceSubspecies?: number | string | null;
-  Conditions?: number | string | null;
+  ReferenceRange?: string | null;
+  Sex?: string | null;
+  AgeRange?: string | null;
+  AgeGestation?: string | null;
+  Species?: string | null;
+  RaceSubspecies?: string | null;
+  Conditions?: string | null;
 }
 
 export interface CM_RIComponents {
-  RepeatPattern?: number | string | null;
-  ExplicitTimeInterval?: number | string | null;
+  RepeatPattern?: string | null;
+  ExplicitTimeInterval?: string | null;
 }
 
 export interface CM_RMCComponents {
-  RoomType?: number | string | null;
-  AmountType?: number | string | null;
+  RoomType?: string | null;
+  AmountType?: string | null;
   CoverageAmount?: number | string | null;
 }
 
 export interface CM_SPDComponents {
-  SpecialtyName?: number | string | null;
-  GoverningBoard?: number | string | null;
-  EligibleOrCertified?: number | string | null;
-  DateOfCertification?: number | string | null;
+  SpecialtyName?: string | null;
+  GoverningBoard?: string | null;
+  EligibleOrCertified?: string | null;
+  DateOfCertification?: string | null;
 }
 
 export interface CM_SPSComponents {
-  SpecimenSourceNameOrCode?: number | string | null;
-  Additives?: number | string | null;
-  Freetext?: number | string | null;
-  BodySite?: number | string | null;
-  SiteModifier?: number | string | null;
-  CollectionModifierMethodCode?: number | string | null;
+  SpecimenSourceNameOrCode?: string | null;
+  Additives?: string | null;
+  Freetext?: string | null;
+  BodySite?: string | null;
+  SiteModifier?: string | null;
+  CollectionModifierMethodCode?: string | null;
 }
 
 export interface CM_UVCComponents {
-  ValueCode?: number | string | null;
+  ValueCode?: string | null;
   ValueAmount?: number | string | null;
 }
 
 export interface CM_VRComponents {
-  FirstDataCodeValue?: number | string | null;
-  LastDataCodeCalue?: number | string | null;
+  FirstDataCodeValue?: string | null;
+  LastDataCodeCalue?: string | null;
 }
 
 export interface CM_WVIComponents {
   ChannelNumber?: number | string | null;
-  ChannelName?: number | string | null;
+  ChannelName?: string | null;
 }
 
 export interface CNComponents {
-  IDNumber?: number | string | null;
-  FamilyName?: number | string | null;
-  GivenName?: number | string | null;
-  SecondAndFurtherGivenNamesOrInitialsThereof?: number | string | null;
-  Suffix?: number | string | null;
-  Prefix?: number | string | null;
-  Degree?: number | string | null;
-  SourceTable?: number | string | null;
-  AssigningAuthority?: number | string | null;
-  Telefon?: number | string | null;
-  Faxnummer?: number | string | null;
-  OnlineNummer?: number | string | null;
-  EMail?: number | string | null;
+  IDNumber?: string | null;
+  FamilyName?: string | null;
+  GivenName?: string | null;
+  SecondAndFurtherGivenNamesOrInitialsThereof?: string | null;
+  Suffix?: string | null;
+  Prefix?: string | null;
+  Degree?: string | null;
+  SourceTable?: string | null;
+  AssigningAuthority?: string | null;
+  Telefon?: string | null;
+  Faxnummer?: string | null;
+  OnlineNummer?: string | null;
+  EMail?: string | null;
 }
 
 export interface CN_PERSONComponents {
-  IDNumber?: number | string | null;
-  FamilyName?: number | string | null;
-  GivenName?: number | string | null;
-  MiddleInitialOrName?: number | string | null;
-  Suffix?: number | string | null;
-  Prefix?: number | string | null;
-  Degree?: number | string | null;
-  SourceTableId?: number | string | null;
+  IDNumber?: string | null;
+  FamilyName?: string | null;
+  GivenName?: string | null;
+  MiddleInitialOrName?: string | null;
+  Suffix?: string | null;
+  Prefix?: string | null;
+  Degree?: string | null;
+  SourceTableId?: string | null;
 }
 
 export interface CN_PHYSICIANComponents {
-  PhysicianID?: number | string | null;
-  FamiliyName?: number | string | null;
-  GivenName?: number | string | null;
-  MiddleInitialOrName?: number | string | null;
-  SuffixEGJROrIII?: number | string | null;
-  PrefixEGDR?: number | string | null;
-  DegreeEGMD?: number | string | null;
-  SourceTableId?: number | string | null;
-  Adresse?: number | string | null;
-  Telefon?: number | string | null;
-  Faxnummer?: number | string | null;
-  OnlineNummer?: number | string | null;
-  EMail?: number | string | null;
+  PhysicianID?: string | null;
+  FamiliyName?: string | null;
+  GivenName?: string | null;
+  MiddleInitialOrName?: string | null;
+  SuffixEGJROrIII?: string | null;
+  PrefixEGDR?: string | null;
+  DegreeEGMD?: string | null;
+  SourceTableId?: string | null;
+  Adresse?: string | null;
+  Telefon?: string | null;
+  Faxnummer?: string | null;
+  OnlineNummer?: string | null;
+  EMail?: string | null;
 }
 
 export interface CNEComponents {
-  Identifier?: number | string | null;
-  Text?: number | string | null;
-  NameOfCodingSystem?: number | string | null;
-  AlternateIdentifier?: number | string | null;
-  AlternateText?: number | string | null;
-  NameOfAlternateCodingSystem?: number | string | null;
-  CodingSystemVersionID?: number | string | null;
-  AlternateCodingSystemVersionID?: number | string | null;
-  OriginalText?: number | string | null;
-  SecondAlternateIdentifier?: number | string | null;
-  SecondAlternateText?: number | string | null;
-  NameOfSecondAlternateCodingSystem?: number | string | null;
-  SecondAlternateCodingSystemVersionID?: number | string | null;
-  CodingSystemOID?: number | string | null;
-  ValueSetOID?: number | string | null;
-  ValueSetVersionID?: number | string | null;
-  AlternateCodingSystemOID?: number | string | null;
-  AlternateValueSetOID?: number | string | null;
-  AlternateValueSetVersionID?: number | string | null;
-  SecondAlternateCodingSystemOID?: number | string | null;
-  SecondAlternateValueSetOID?: number | string | null;
-  SecondAlternateValueSetVersionID?: number | string | null;
+  Identifier?: string | null;
+  Text?: string | null;
+  NameOfCodingSystem?: string | null;
+  AlternateIdentifier?: string | null;
+  AlternateText?: string | null;
+  NameOfAlternateCodingSystem?: string | null;
+  CodingSystemVersionID?: string | null;
+  AlternateCodingSystemVersionID?: string | null;
+  OriginalText?: string | null;
+  SecondAlternateIdentifier?: string | null;
+  SecondAlternateText?: string | null;
+  NameOfSecondAlternateCodingSystem?: string | null;
+  SecondAlternateCodingSystemVersionID?: string | null;
+  CodingSystemOID?: string | null;
+  ValueSetOID?: string | null;
+  ValueSetVersionID?: string | null;
+  AlternateCodingSystemOID?: string | null;
+  AlternateValueSetOID?: string | null;
+  AlternateValueSetVersionID?: string | null;
+  SecondAlternateCodingSystemOID?: string | null;
+  SecondAlternateValueSetOID?: string | null;
+  SecondAlternateValueSetVersionID?: string | null;
 }
 
 export interface CNNComponents {
-  IDNumber?: number | string | null;
-  FamilyName?: number | string | null;
-  GivenName?: number | string | null;
-  SecondAndFurtherGivenNamesOrInitialsThereof?: number | string | null;
-  Suffix?: number | string | null;
-  Prefix?: number | string | null;
-  Degree?: number | string | null;
-  SourceTable?: number | string | null;
-  AssigningAuthorityNamespaceID?: number | string | null;
-  AssigningAuthorityUniversalID?: number | string | null;
-  AssigningAuthorityUniversalIDType?: number | string | null;
+  IDNumber?: string | null;
+  FamilyName?: string | null;
+  GivenName?: string | null;
+  SecondAndFurtherGivenNamesOrInitialsThereof?: string | null;
+  Suffix?: string | null;
+  Prefix?: string | null;
+  Degree?: string | null;
+  SourceTable?: string | null;
+  AssigningAuthorityNamespaceID?: string | null;
+  AssigningAuthorityUniversalID?: string | null;
+  AssigningAuthorityUniversalIDType?: string | null;
 }
 
 export interface CNSComponents {
-  IDNumber?: number | string | null;
-  FamilyName?: number | string | null;
-  GivenName?: number | string | null;
-  SecondAndFurtherGivenNamesOrInitialsThereof?: number | string | null;
-  Suffix?: number | string | null;
-  Prefix?: number | string | null;
-  Degree?: number | string | null;
-  SourceTable?: number | string | null;
-  AssigningAuthorityNamespaceID?: number | string | null;
-  AssigningAuthorityUniversalID?: number | string | null;
-  AssigningAuthorityUniversalIDType?: number | string | null;
+  IDNumber?: string | null;
+  FamilyName?: string | null;
+  GivenName?: string | null;
+  SecondAndFurtherGivenNamesOrInitialsThereof?: string | null;
+  Suffix?: string | null;
+  Prefix?: string | null;
+  Degree?: string | null;
+  SourceTable?: string | null;
+  AssigningAuthorityNamespaceID?: string | null;
+  AssigningAuthorityUniversalID?: string | null;
+  AssigningAuthorityUniversalIDType?: string | null;
 }
 
 export interface CPComponents {
-  Price?: number | string | null;
-  PriceType?: number | string | null;
+  Price?: string | null;
+  PriceType?: string | null;
   FromValue?: number | string | null;
   ToValue?: number | string | null;
-  RangeUnits?: number | string | null;
-  RangeType?: number | string | null;
+  RangeUnits?: string | null;
+  RangeType?: string | null;
 }
 
 export interface CQComponents {
   Quantity?: number | string | null;
-  Units?: number | string | null;
+  Units?: string | null;
 }
 
 export interface CQ_QUANTITYComponents {
-  Quantity?: number | string | null;
-  Units?: number | string | null;
+  Quantity?: string | null;
+  Units?: string | null;
 }
 
 export interface CSUComponents {
   ChannelSensitivity?: number | string | null;
-  UnitOfMeasureIdentifier?: number | string | null;
-  UnitOfMeasureDescription?: number | string | null;
-  UnitOfMeasureCodingSystem?: number | string | null;
-  AlternateUnitOfMeasureIdentifier?: number | string | null;
-  AlternateUnitOfMeasureDescription?: number | string | null;
-  AlternateUnitOfMeasureCodingSystem?: number | string | null;
-  UnitOfMeasureCodingSystemVersionID?: number | string | null;
-  AlternateUnitOfMeasureCodingSystemVersionID?: number | string | null;
-  OriginalText?: number | string | null;
-  SecondAlternateUnitOfMeasureIdentifier?: number | string | null;
-  SecondAlternateUnitOfMeasureText?: number | string | null;
-  NameOfSecondAlternateUnitOfMeasureCodingSystem?: number | string | null;
-  SecondAlternateUnitOfMeasureCodingSystemVersionID?: number | string | null;
-  UnitOfMeasureCodingSystemOID?: number | string | null;
-  UnitOfMeasureValueSetOID?: number | string | null;
-  UnitOfMeasureValueSetVersionID?: number | string | null;
-  AlternateUnitOfMeasureCodingSystemOID?: number | string | null;
-  AlternateUnitOfMeasureValueSetOID?: number | string | null;
-  AlternateUnitOfMeasureValueSetVersionID?: number | string | null;
-  AlternateUnitOfMeasureCodingSystemOID2?: number | string | null;
-  AlternateUnitOfMeasureValueSetOID2?: number | string | null;
-  AlternateUnitOfMeasureValueSetVersionID2?: number | string | null;
+  UnitOfMeasureIdentifier?: string | null;
+  UnitOfMeasureDescription?: string | null;
+  UnitOfMeasureCodingSystem?: string | null;
+  AlternateUnitOfMeasureIdentifier?: string | null;
+  AlternateUnitOfMeasureDescription?: string | null;
+  AlternateUnitOfMeasureCodingSystem?: string | null;
+  UnitOfMeasureCodingSystemVersionID?: string | null;
+  AlternateUnitOfMeasureCodingSystemVersionID?: string | null;
+  OriginalText?: string | null;
+  SecondAlternateUnitOfMeasureIdentifier?: string | null;
+  SecondAlternateUnitOfMeasureText?: string | null;
+  NameOfSecondAlternateUnitOfMeasureCodingSystem?: string | null;
+  SecondAlternateUnitOfMeasureCodingSystemVersionID?: string | null;
+  UnitOfMeasureCodingSystemOID?: string | null;
+  UnitOfMeasureValueSetOID?: string | null;
+  UnitOfMeasureValueSetVersionID?: string | null;
+  AlternateUnitOfMeasureCodingSystemOID?: string | null;
+  AlternateUnitOfMeasureValueSetOID?: string | null;
+  AlternateUnitOfMeasureValueSetVersionID?: string | null;
+  AlternateUnitOfMeasureCodingSystemOID2?: string | null;
+  AlternateUnitOfMeasureValueSetOID2?: string | null;
+  AlternateUnitOfMeasureValueSetVersionID2?: string | null;
 }
 
 export interface CWEComponents {
-  Identifier?: number | string | null;
-  Text?: number | string | null;
-  NameOfCodingSystem?: number | string | null;
-  AlternateIdentifier?: number | string | null;
-  AlternateText?: number | string | null;
-  NameOfAlternateCodingSystem?: number | string | null;
-  CodingSystemVersionID?: number | string | null;
-  AlternateCodingSystemVersionID?: number | string | null;
-  OriginalText?: number | string | null;
-  SecondAlternateIdentifier?: number | string | null;
-  SecondAlternateText?: number | string | null;
-  NameOfSecondAlternateCodingSystem?: number | string | null;
-  SecondAlternateCodingSystemVersionID?: number | string | null;
-  CodingSystemOID?: number | string | null;
-  ValueSetOID?: number | string | null;
-  ValueSetVersionID?: number | string | null;
-  AlternateCodingSystemOID?: number | string | null;
-  AlternateValueSetOID?: number | string | null;
-  AlternateValueSetVersionID?: number | string | null;
-  SecondAlternateCodingSystemOID?: number | string | null;
-  SecondAlternateValueSetOID?: number | string | null;
-  SecondAlternateValueSetVersionID?: number | string | null;
+  Identifier?: string | null;
+  Text?: string | null;
+  NameOfCodingSystem?: string | null;
+  AlternateIdentifier?: string | null;
+  AlternateText?: string | null;
+  NameOfAlternateCodingSystem?: string | null;
+  CodingSystemVersionID?: string | null;
+  AlternateCodingSystemVersionID?: string | null;
+  OriginalText?: string | null;
+  SecondAlternateIdentifier?: string | null;
+  SecondAlternateText?: string | null;
+  NameOfSecondAlternateCodingSystem?: string | null;
+  SecondAlternateCodingSystemVersionID?: string | null;
+  CodingSystemOID?: string | null;
+  ValueSetOID?: string | null;
+  ValueSetVersionID?: string | null;
+  AlternateCodingSystemOID?: string | null;
+  AlternateValueSetOID?: string | null;
+  AlternateValueSetVersionID?: string | null;
+  SecondAlternateCodingSystemOID?: string | null;
+  SecondAlternateValueSetOID?: string | null;
+  SecondAlternateValueSetVersionID?: string | null;
 }
 
 export interface CXComponents {
-  IDNumber?: number | string | null;
+  IDNumber?: string | null;
   IdentifierCheckDigit?: number | string | null;
-  CheckDigitScheme?: number | string | null;
-  AssigningAuthority?: number | string | null;
-  IdentifierTypeCode?: number | string | null;
-  AssigningFacility?: number | string | null;
-  EffectiveDate?: number | string | null;
-  ExpirationDate?: number | string | null;
-  AssigningJurisdiction?: number | string | null;
-  AssigningAgencyOrDepartment?: number | string | null;
-  SecurityCheck?: number | string | null;
-  SecurityCheckScheme?: number | string | null;
+  CheckDigitScheme?: string | null;
+  AssigningAuthority?: string | null;
+  IdentifierTypeCode?: string | null;
+  AssigningFacility?: string | null;
+  EffectiveDate?: string | null;
+  ExpirationDate?: string | null;
+  AssigningJurisdiction?: string | null;
+  AssigningAgencyOrDepartment?: string | null;
+  SecurityCheck?: string | null;
+  SecurityCheckScheme?: string | null;
 }
 
 export interface DDIComponents {
@@ -1725,67 +1725,67 @@ export interface DDIComponents {
 }
 
 export interface DINComponents {
-  Date?: number | string | null;
-  InstitutionName?: number | string | null;
+  Date?: string | null;
+  InstitutionName?: string | null;
 }
 
 export interface DLDComponents {
-  DischargeToLocation?: number | string | null;
-  EffectiveDate?: number | string | null;
+  DischargeToLocation?: string | null;
+  EffectiveDate?: string | null;
 }
 
 export interface DLNComponents {
-  LicenseNumber?: number | string | null;
-  IssuingStateProvinceCountry?: number | string | null;
-  ExpirationDate?: number | string | null;
+  LicenseNumber?: string | null;
+  IssuingStateProvinceCountry?: string | null;
+  ExpirationDate?: string | null;
 }
 
 export interface DLTComponents {
-  NormalRange?: number | string | null;
+  NormalRange?: string | null;
   NumericThreshold?: number | string | null;
-  ChangeComputation?: number | string | null;
+  ChangeComputation?: string | null;
   DaysRetained?: number | string | null;
 }
 
 export interface DRComponents {
-  RangeStartDateTime?: number | string | null;
-  RangeEndDateTime?: number | string | null;
+  RangeStartDateTime?: string | null;
+  RangeEndDateTime?: string | null;
 }
 
 export interface DTNComponents {
-  DayType?: number | string | null;
+  DayType?: string | null;
   NumberOfDays?: number | string | null;
 }
 
 export interface EDComponents {
-  SourceApplication?: number | string | null;
-  TypeOfData?: number | string | null;
-  DataSubtype?: number | string | null;
-  Encoding?: number | string | null;
-  Data?: number | string | null;
+  SourceApplication?: string | null;
+  TypeOfData?: string | null;
+  DataSubtype?: string | null;
+  Encoding?: string | null;
+  Data?: string | null;
 }
 
 export interface EIComponents {
-  EntityIdentifier?: number | string | null;
-  NamespaceID?: number | string | null;
-  UniversalID?: number | string | null;
-  UniversalIDType?: number | string | null;
+  EntityIdentifier?: string | null;
+  NamespaceID?: string | null;
+  UniversalID?: string | null;
+  UniversalIDType?: string | null;
 }
 
 export interface EIPComponents {
-  PlacerAssignedIdentifier?: number | string | null;
-  FillerAssignedIdentifier?: number | string | null;
+  PlacerAssignedIdentifier?: string | null;
+  FillerAssignedIdentifier?: string | null;
 }
 
 export interface ELDComponents {
-  SegmentID?: number | string | null;
+  SegmentID?: string | null;
   SegmentSequence?: number | string | null;
   FieldPosition?: number | string | null;
-  CodeIdentifyingError?: number | string | null;
+  CodeIdentifyingError?: string | null;
 }
 
 export interface ERLComponents {
-  SegmentID?: number | string | null;
+  SegmentID?: string | null;
   SegmentSequence?: number | string | null;
   FieldPosition?: number | string | null;
   FieldRepetition?: number | string | null;
@@ -1794,65 +1794,65 @@ export interface ERLComponents {
 }
 
 export interface FCComponents {
-  FinancialClassCode?: number | string | null;
-  EffectiveDate?: number | string | null;
+  FinancialClassCode?: string | null;
+  EffectiveDate?: string | null;
 }
 
 export interface FNComponents {
-  Surname?: number | string | null;
-  OwnSurnamePrefix?: number | string | null;
-  OwnSurname?: number | string | null;
-  SurnamePrefixFromPartnerSpouse?: number | string | null;
-  SurnameFromPartnerSpouse?: number | string | null;
+  Surname?: string | null;
+  OwnSurnamePrefix?: string | null;
+  OwnSurname?: string | null;
+  SurnamePrefixFromPartnerSpouse?: string | null;
+  SurnameFromPartnerSpouse?: string | null;
 }
 
 export interface HDComponents {
-  NamespaceID?: number | string | null;
-  UniversalID?: number | string | null;
-  UniversalIDType?: number | string | null;
+  NamespaceID?: string | null;
+  UniversalID?: string | null;
+  UniversalIDType?: string | null;
 }
 
 export interface ICDComponents {
-  CertificationPatientType?: number | string | null;
-  CertificationRequired?: number | string | null;
-  DateTimeCertificationRequired?: number | string | null;
+  CertificationPatientType?: string | null;
+  CertificationRequired?: string | null;
+  DateTimeCertificationRequired?: string | null;
 }
 
 export interface JCCComponents {
-  JobCode?: number | string | null;
-  JobClass?: number | string | null;
-  JobDescriptionText?: number | string | null;
+  JobCode?: string | null;
+  JobClass?: string | null;
+  JobDescriptionText?: string | null;
 }
 
 export interface LA1Components {
-  PointOfCare?: number | string | null;
-  Room?: number | string | null;
-  Bed?: number | string | null;
-  Facility?: number | string | null;
-  LocationStatus?: number | string | null;
-  PatientLocationType?: number | string | null;
-  Building?: number | string | null;
-  Floor?: number | string | null;
-  Address?: number | string | null;
+  PointOfCare?: string | null;
+  Room?: string | null;
+  Bed?: string | null;
+  Facility?: string | null;
+  LocationStatus?: string | null;
+  PatientLocationType?: string | null;
+  Building?: string | null;
+  Floor?: string | null;
+  Address?: string | null;
 }
 
 export interface LA2Components {
-  PointOfCare?: number | string | null;
-  Room?: number | string | null;
-  Bed?: number | string | null;
-  Facility?: number | string | null;
-  LocationStatus?: number | string | null;
-  PatientLocationType?: number | string | null;
-  Building?: number | string | null;
-  Floor?: number | string | null;
-  StreetAddress?: number | string | null;
-  OtherDesignation?: number | string | null;
-  City?: number | string | null;
-  StateOrProvince?: number | string | null;
-  ZipOrPostalCode?: number | string | null;
-  Country?: number | string | null;
-  AddressType?: number | string | null;
-  OtherGeographicDesignation?: number | string | null;
+  PointOfCare?: string | null;
+  Room?: string | null;
+  Bed?: string | null;
+  Facility?: string | null;
+  LocationStatus?: string | null;
+  PatientLocationType?: string | null;
+  Building?: string | null;
+  Floor?: string | null;
+  StreetAddress?: string | null;
+  OtherDesignation?: string | null;
+  City?: string | null;
+  StateOrProvince?: string | null;
+  ZipOrPostalCode?: string | null;
+  Country?: string | null;
+  AddressType?: string | null;
+  OtherGeographicDesignation?: string | null;
 }
 
 export interface MAComponents {
@@ -1866,24 +1866,24 @@ export interface MAComponents {
 
 export interface MOComponents {
   Quantity?: number | string | null;
-  Denomination?: number | string | null;
+  Denomination?: string | null;
 }
 
 export interface MOCComponents {
-  MonetaryAmount?: number | string | null;
-  ChargeCode?: number | string | null;
+  MonetaryAmount?: string | null;
+  ChargeCode?: string | null;
 }
 
 export interface MOPComponents {
-  MoneyOrPercentageIndicator?: number | string | null;
+  MoneyOrPercentageIndicator?: string | null;
   MoneyOrPercentageQuantity?: number | string | null;
-  MonetaryDenomination?: number | string | null;
+  MonetaryDenomination?: string | null;
 }
 
 export interface MSGComponents {
-  MessageCode?: number | string | null;
-  TriggerEvent?: number | string | null;
-  MessageStructure?: number | string | null;
+  MessageCode?: string | null;
+  TriggerEvent?: string | null;
+  MessageStructure?: string | null;
 }
 
 export interface NAComponents {
@@ -1891,21 +1891,21 @@ export interface NAComponents {
   Value2?: number | string | null;
   Value3?: number | string | null;
   Value4?: number | string | null;
-  Value5?: number | string | null;
+  Value5?: string | null;
 }
 
 export interface NDLComponents {
-  Name?: number | string | null;
-  StartDateTime?: number | string | null;
-  EndDateTime?: number | string | null;
-  PointOfCare?: number | string | null;
-  Room?: number | string | null;
-  Bed?: number | string | null;
-  Facility?: number | string | null;
-  LocationStatus?: number | string | null;
-  PatientLocationType?: number | string | null;
-  Building?: number | string | null;
-  Floor?: number | string | null;
+  Name?: string | null;
+  StartDateTime?: string | null;
+  EndDateTime?: string | null;
+  PointOfCare?: string | null;
+  Room?: string | null;
+  Bed?: string | null;
+  Facility?: string | null;
+  LocationStatus?: string | null;
+  PatientLocationType?: string | null;
+  Building?: string | null;
+  Floor?: string | null;
 }
 
 export interface NRComponents {
@@ -1914,398 +1914,398 @@ export interface NRComponents {
 }
 
 export interface OCDComponents {
-  OccurrenceCode?: number | string | null;
-  OccurrenceDate?: number | string | null;
+  OccurrenceCode?: string | null;
+  OccurrenceDate?: string | null;
 }
 
 export interface OGComponents {
-  OriginalSubIdentifier?: number | string | null;
+  OriginalSubIdentifier?: string | null;
   Group?: number | string | null;
   Sequence?: number | string | null;
-  Identifier?: number | string | null;
+  Identifier?: string | null;
 }
 
 export interface OSDComponents {
-  SequenceResultsFlag?: number | string | null;
-  PlacerOrderNumberEntityIdentifier?: number | string | null;
-  PlacerOrderNumberNamespaceID?: number | string | null;
-  FillerOrderNumberEntityIdentifier?: number | string | null;
-  FillerOrderNumberNamespaceID?: number | string | null;
-  SequenceConditionValue?: number | string | null;
+  SequenceResultsFlag?: string | null;
+  PlacerOrderNumberEntityIdentifier?: string | null;
+  PlacerOrderNumberNamespaceID?: string | null;
+  FillerOrderNumberEntityIdentifier?: string | null;
+  FillerOrderNumberNamespaceID?: string | null;
+  SequenceConditionValue?: string | null;
   MaximumNumberOfRepeats?: number | string | null;
-  PlacerOrderNumberUniversalID?: number | string | null;
-  PlacerOrderNumberUniversalIDType?: number | string | null;
-  FillerOrderNumberUniversalID?: number | string | null;
-  FillerOrderNumberUniversalIDType?: number | string | null;
+  PlacerOrderNumberUniversalID?: string | null;
+  PlacerOrderNumberUniversalIDType?: string | null;
+  FillerOrderNumberUniversalID?: string | null;
+  FillerOrderNumberUniversalIDType?: string | null;
 }
 
 export interface OSPComponents {
-  OccurrenceSpanCode?: number | string | null;
-  OccurrenceSpanStartDate?: number | string | null;
-  OccurrenceSpanStopDate?: number | string | null;
+  OccurrenceSpanCode?: string | null;
+  OccurrenceSpanStartDate?: string | null;
+  OccurrenceSpanStopDate?: string | null;
 }
 
 export interface PCFComponents {
-  PreCertificationPatientType?: number | string | null;
-  PreCertificationRequired?: number | string | null;
-  PreCertificationWindow?: number | string | null;
+  PreCertificationPatientType?: string | null;
+  PreCertificationRequired?: string | null;
+  PreCertificationWindow?: string | null;
 }
 
 export interface PIComponents {
-  IDNumber?: number | string | null;
-  TypeOfIDNumber?: number | string | null;
-  OtherQualifyingInfo?: number | string | null;
+  IDNumber?: string | null;
+  TypeOfIDNumber?: string | null;
+  OtherQualifyingInfo?: string | null;
 }
 
 export interface PIPComponents {
-  Privilege?: number | string | null;
-  PrivilegeClass?: number | string | null;
-  ExpirationDate?: number | string | null;
-  ActivationDate?: number | string | null;
-  Facility?: number | string | null;
+  Privilege?: string | null;
+  PrivilegeClass?: string | null;
+  ExpirationDate?: string | null;
+  ActivationDate?: string | null;
+  Facility?: string | null;
 }
 
 export interface PLComponents {
-  PointOfCare?: number | string | null;
-  Room?: number | string | null;
-  Bed?: number | string | null;
-  Facility?: number | string | null;
-  LocationStatus?: number | string | null;
-  PersonLocationType?: number | string | null;
-  Building?: number | string | null;
-  Floor?: number | string | null;
-  LocationDescription?: number | string | null;
-  ComprehensiveLocationIdentifier?: number | string | null;
-  AssigningAuthorityForLocation?: number | string | null;
+  PointOfCare?: string | null;
+  Room?: string | null;
+  Bed?: string | null;
+  Facility?: string | null;
+  LocationStatus?: string | null;
+  PersonLocationType?: string | null;
+  Building?: string | null;
+  Floor?: string | null;
+  LocationDescription?: string | null;
+  ComprehensiveLocationIdentifier?: string | null;
+  AssigningAuthorityForLocation?: string | null;
 }
 
 export interface PLNComponents {
-  IDNumber?: number | string | null;
-  TypeOfIDNumber?: number | string | null;
-  StateOtherQualifyingInformation?: number | string | null;
-  ExpirationDate?: number | string | null;
+  IDNumber?: string | null;
+  TypeOfIDNumber?: string | null;
+  StateOtherQualifyingInformation?: string | null;
+  ExpirationDate?: string | null;
 }
 
 export interface PNComponents {
-  FamilyName?: number | string | null;
-  GivenName?: number | string | null;
-  SecondAndFurtherGivenNamesOrInitialsThereof?: number | string | null;
-  Suffix?: number | string | null;
-  Prefix?: number | string | null;
-  Degree?: number | string | null;
+  FamilyName?: string | null;
+  GivenName?: string | null;
+  SecondAndFurtherGivenNamesOrInitialsThereof?: string | null;
+  Suffix?: string | null;
+  Prefix?: string | null;
+  Degree?: string | null;
 }
 
 export interface PPNComponents {
-  PersonIdentifier?: number | string | null;
-  FamilyName?: number | string | null;
-  GivenName?: number | string | null;
-  SecondAndFurtherGivenNamesOrInitialsThereof?: number | string | null;
-  Suffix?: number | string | null;
-  Prefix?: number | string | null;
-  Degree?: number | string | null;
-  SourceTable?: number | string | null;
-  AssigningAuthority?: number | string | null;
-  NameTypeCode?: number | string | null;
-  IdentifierCheckDigit?: number | string | null;
-  CheckDigitScheme?: number | string | null;
-  IdentifierTypeCode?: number | string | null;
-  AssigningFacility?: number | string | null;
-  DateTimeActionPerformed?: number | string | null;
-  NameRepresentationCode?: number | string | null;
-  NameContext?: number | string | null;
-  NameValidityRange?: number | string | null;
-  NameAssemblyOrder?: number | string | null;
-  EffectiveDate?: number | string | null;
-  ExpirationDate?: number | string | null;
-  ProfessionalSuffix?: number | string | null;
-  AssigningJurisdiction?: number | string | null;
-  AssigningAgencyOrDepartment?: number | string | null;
-  SecurityCheck?: number | string | null;
-  SecurityCheckScheme?: number | string | null;
+  PersonIdentifier?: string | null;
+  FamilyName?: string | null;
+  GivenName?: string | null;
+  SecondAndFurtherGivenNamesOrInitialsThereof?: string | null;
+  Suffix?: string | null;
+  Prefix?: string | null;
+  Degree?: string | null;
+  SourceTable?: string | null;
+  AssigningAuthority?: string | null;
+  NameTypeCode?: string | null;
+  IdentifierCheckDigit?: string | null;
+  CheckDigitScheme?: string | null;
+  IdentifierTypeCode?: string | null;
+  AssigningFacility?: string | null;
+  DateTimeActionPerformed?: string | null;
+  NameRepresentationCode?: string | null;
+  NameContext?: string | null;
+  NameValidityRange?: string | null;
+  NameAssemblyOrder?: string | null;
+  EffectiveDate?: string | null;
+  ExpirationDate?: string | null;
+  ProfessionalSuffix?: string | null;
+  AssigningJurisdiction?: string | null;
+  AssigningAgencyOrDepartment?: string | null;
+  SecurityCheck?: string | null;
+  SecurityCheckScheme?: string | null;
 }
 
 export interface PRLComponents {
-  ParentObservationIdentifier?: number | string | null;
-  ParentObservationSubIdentifier?: number | string | null;
-  ParentObservationValueDescriptor?: number | string | null;
+  ParentObservationIdentifier?: string | null;
+  ParentObservationSubIdentifier?: string | null;
+  ParentObservationValueDescriptor?: string | null;
 }
 
 export interface PTComponents {
-  ProcessingID?: number | string | null;
-  ProcessingMode?: number | string | null;
+  ProcessingID?: string | null;
+  ProcessingMode?: string | null;
 }
 
 export interface PTAComponents {
-  PolicyType?: number | string | null;
-  AmountClass?: number | string | null;
+  PolicyType?: string | null;
+  AmountClass?: string | null;
   MoneyOrPercentageQuantity?: number | string | null;
-  MoneyOrPercentage?: number | string | null;
+  MoneyOrPercentage?: string | null;
 }
 
 export interface QIPComponents {
-  SegmentFieldName?: number | string | null;
-  Values?: number | string | null;
+  SegmentFieldName?: string | null;
+  Values?: string | null;
 }
 
 export interface QSCComponents {
-  SegmentFieldName?: number | string | null;
-  RelationalOperator?: number | string | null;
-  Value?: number | string | null;
-  RelationalConjunction?: number | string | null;
+  SegmentFieldName?: string | null;
+  RelationalOperator?: string | null;
+  Value?: string | null;
+  RelationalConjunction?: string | null;
 }
 
 export interface RCDComponents {
-  SegmentFieldName?: number | string | null;
-  HL7DataType?: number | string | null;
+  SegmentFieldName?: string | null;
+  HL7DataType?: string | null;
   MaximumColumnWidth?: number | string | null;
 }
 
 export interface RFRComponents {
-  NumericRange?: number | string | null;
-  AdministrativeSex?: number | string | null;
-  AgeRange?: number | string | null;
-  GestationalAgeRange?: number | string | null;
-  Species?: number | string | null;
-  RaceSubspecies?: number | string | null;
-  Conditions?: number | string | null;
+  NumericRange?: string | null;
+  AdministrativeSex?: string | null;
+  AgeRange?: string | null;
+  GestationalAgeRange?: string | null;
+  Species?: string | null;
+  RaceSubspecies?: string | null;
+  Conditions?: string | null;
 }
 
 export interface RIComponents {
-  RepeatPattern?: number | string | null;
-  ExplicitTimeInterval?: number | string | null;
+  RepeatPattern?: string | null;
+  ExplicitTimeInterval?: string | null;
 }
 
 export interface RMCComponents {
-  RoomType?: number | string | null;
-  AmountType?: number | string | null;
+  RoomType?: string | null;
+  AmountType?: string | null;
   CoverageAmount?: number | string | null;
-  MoneyOrPercentage?: number | string | null;
+  MoneyOrPercentage?: string | null;
 }
 
 export interface RPComponents {
-  Pointer?: number | string | null;
-  ApplicationID?: number | string | null;
-  TypeOfData?: number | string | null;
-  Subtype?: number | string | null;
+  Pointer?: string | null;
+  ApplicationID?: string | null;
+  TypeOfData?: string | null;
+  Subtype?: string | null;
 }
 
 export interface RPTComponents {
-  RepeatPatternCode?: number | string | null;
-  CalendarAlignment?: number | string | null;
+  RepeatPatternCode?: string | null;
+  CalendarAlignment?: string | null;
   PhaseRangeBeginValue?: number | string | null;
   PhaseRangeEndValue?: number | string | null;
   PeriodQuantity?: number | string | null;
-  PeriodUnits?: number | string | null;
-  InstitutionSpecifiedTime?: number | string | null;
-  Event?: number | string | null;
+  PeriodUnits?: string | null;
+  InstitutionSpecifiedTime?: string | null;
+  Event?: string | null;
   EventOffsetQuantity?: number | string | null;
-  EventOffsetUnits?: number | string | null;
-  GeneralTimingSpecification?: number | string | null;
+  EventOffsetUnits?: string | null;
+  GeneralTimingSpecification?: string | null;
 }
 
 export interface SADComponents {
-  StreetOrMailingAddress?: number | string | null;
-  StreetName?: number | string | null;
-  DwellingNumber?: number | string | null;
+  StreetOrMailingAddress?: string | null;
+  StreetName?: string | null;
+  DwellingNumber?: string | null;
 }
 
 export interface SCVComponents {
-  ParameterClass?: number | string | null;
-  ParameterValue?: number | string | null;
+  ParameterClass?: string | null;
+  ParameterValue?: string | null;
 }
 
 export interface SNComponents {
-  Comparator?: number | string | null;
+  Comparator?: string | null;
   Num1?: number | string | null;
-  SeparatorSuffix?: number | string | null;
+  SeparatorSuffix?: string | null;
   Num2?: number | string | null;
 }
 
 export interface SPDComponents {
-  SpecialtyName?: number | string | null;
-  GoverningBoard?: number | string | null;
-  EligibleOrCertified?: number | string | null;
-  DateOfCertification?: number | string | null;
+  SpecialtyName?: string | null;
+  GoverningBoard?: string | null;
+  EligibleOrCertified?: string | null;
+  DateOfCertification?: string | null;
 }
 
 export interface SPSComponents {
-  SpecimenSourceNameOrCode?: number | string | null;
-  Additives?: number | string | null;
-  SpecimenCollectionMethod?: number | string | null;
-  BodySite?: number | string | null;
-  SiteModifier?: number | string | null;
-  CollectionMethodModifierCode?: number | string | null;
-  SpecimenRole?: number | string | null;
+  SpecimenSourceNameOrCode?: string | null;
+  Additives?: string | null;
+  SpecimenCollectionMethod?: string | null;
+  BodySite?: string | null;
+  SiteModifier?: string | null;
+  CollectionMethodModifierCode?: string | null;
+  SpecimenRole?: string | null;
 }
 
 export interface SRTComponents {
-  SortByField?: number | string | null;
-  Sequencing?: number | string | null;
+  SortByField?: string | null;
+  Sequencing?: string | null;
 }
 
 export interface TQComponents {
-  Quantity?: number | string | null;
-  Interval?: number | string | null;
-  Duration?: number | string | null;
-  StartDateTime?: number | string | null;
-  EndDateTime?: number | string | null;
-  Priority?: number | string | null;
-  Condition?: number | string | null;
-  Text?: number | string | null;
-  Conjunction?: number | string | null;
-  OrderSequencing?: number | string | null;
-  OccurrenceDuration?: number | string | null;
+  Quantity?: string | null;
+  Interval?: string | null;
+  Duration?: string | null;
+  StartDateTime?: string | null;
+  EndDateTime?: string | null;
+  Priority?: string | null;
+  Condition?: string | null;
+  Text?: string | null;
+  Conjunction?: string | null;
+  OrderSequencing?: string | null;
+  OccurrenceDuration?: string | null;
   TotalOccurrences?: number | string | null;
 }
 
 export interface TSComponents {
-  Time?: number | string | null;
-  DegreeOfPrecision?: number | string | null;
+  Time?: string | null;
+  DegreeOfPrecision?: string | null;
 }
 
 export interface TX_CHALLENGEComponents {
-  Field?: number | string | null;
-  Field2?: number | string | null;
+  Field?: string | null;
+  Field2?: string | null;
 }
 
 export interface UVCComponents {
-  ValueCode?: number | string | null;
+  ValueCode?: string | null;
   ValueAmount?: number | string | null;
   NonMonetaryValueAmountQuantity?: number | string | null;
-  NonMonetaryValueAmountUnits?: number | string | null;
+  NonMonetaryValueAmountUnits?: string | null;
 }
 
 export interface VHComponents {
-  StartDayRange?: number | string | null;
-  EndDayRange?: number | string | null;
-  StartHourRange?: number | string | null;
-  EndHourRange?: number | string | null;
+  StartDayRange?: string | null;
+  EndDayRange?: string | null;
+  StartHourRange?: string | null;
+  EndHourRange?: string | null;
 }
 
 export interface VIDComponents {
-  VersionID?: number | string | null;
-  InternationalizationCode?: number | string | null;
-  InternationalVersionID?: number | string | null;
+  VersionID?: string | null;
+  InternationalizationCode?: string | null;
+  InternationalVersionID?: string | null;
 }
 
 export interface VRComponents {
-  FirstDataCodeValue?: number | string | null;
-  LastDataCodeValue?: number | string | null;
+  FirstDataCodeValue?: string | null;
+  LastDataCodeValue?: string | null;
 }
 
 export interface WVIComponents {
   ChannelNumber?: number | string | null;
-  ChannelName?: number | string | null;
+  ChannelName?: string | null;
 }
 
 export interface WVSComponents {
-  SourceOneName?: number | string | null;
-  SourceTwoName?: number | string | null;
+  SourceOneName?: string | null;
+  SourceTwoName?: string | null;
 }
 
 export interface XADComponents {
-  StreetAddress?: number | string | null;
-  OtherDesignation?: number | string | null;
-  City?: number | string | null;
-  StateOrProvince?: number | string | null;
-  ZipOrPostalCode?: number | string | null;
-  Country?: number | string | null;
-  AddressType?: number | string | null;
-  OtherGeographicDesignation?: number | string | null;
-  CountyParishCode?: number | string | null;
-  CensusTract?: number | string | null;
-  AddressRepresentationCode?: number | string | null;
-  AddressValidityRange?: number | string | null;
-  EffectiveDate?: number | string | null;
-  ExpirationDate?: number | string | null;
-  ExpirationReason?: number | string | null;
-  TemporaryIndicator?: number | string | null;
-  BadAddressIndicator?: number | string | null;
-  AddressUsage?: number | string | null;
-  Addressee?: number | string | null;
-  Comment?: number | string | null;
+  StreetAddress?: string | null;
+  OtherDesignation?: string | null;
+  City?: string | null;
+  StateOrProvince?: string | null;
+  ZipOrPostalCode?: string | null;
+  Country?: string | null;
+  AddressType?: string | null;
+  OtherGeographicDesignation?: string | null;
+  CountyParishCode?: string | null;
+  CensusTract?: string | null;
+  AddressRepresentationCode?: string | null;
+  AddressValidityRange?: string | null;
+  EffectiveDate?: string | null;
+  ExpirationDate?: string | null;
+  ExpirationReason?: string | null;
+  TemporaryIndicator?: string | null;
+  BadAddressIndicator?: string | null;
+  AddressUsage?: string | null;
+  Addressee?: string | null;
+  Comment?: string | null;
   PreferenceOrder?: number | string | null;
-  ProtectionCode?: number | string | null;
-  AddressIdentifier?: number | string | null;
+  ProtectionCode?: string | null;
+  AddressIdentifier?: string | null;
 }
 
 export interface XCNComponents {
-  PersonIdentifier?: number | string | null;
-  FamilyName?: number | string | null;
-  GivenName?: number | string | null;
-  SecondAndFurtherGivenNamesOrInitialsThereof?: number | string | null;
-  Suffix?: number | string | null;
-  Prefix?: number | string | null;
-  Degree?: number | string | null;
-  SourceTable?: number | string | null;
-  AssigningAuthority?: number | string | null;
-  NameTypeCode?: number | string | null;
-  IdentifierCheckDigit?: number | string | null;
-  CheckDigitScheme?: number | string | null;
-  IdentifierTypeCode?: number | string | null;
-  AssigningFacility?: number | string | null;
-  NameRepresentationCode?: number | string | null;
-  NameContext?: number | string | null;
-  NameValidityRange?: number | string | null;
-  NameAssemblyOrder?: number | string | null;
-  EffectiveDate?: number | string | null;
-  ExpirationDate?: number | string | null;
-  ProfessionalSuffix?: number | string | null;
-  AssigningJurisdiction?: number | string | null;
-  AssigningAgencyOrDepartment?: number | string | null;
-  SecurityCheck?: number | string | null;
-  SecurityCheckScheme?: number | string | null;
+  PersonIdentifier?: string | null;
+  FamilyName?: string | null;
+  GivenName?: string | null;
+  SecondAndFurtherGivenNamesOrInitialsThereof?: string | null;
+  Suffix?: string | null;
+  Prefix?: string | null;
+  Degree?: string | null;
+  SourceTable?: string | null;
+  AssigningAuthority?: string | null;
+  NameTypeCode?: string | null;
+  IdentifierCheckDigit?: string | null;
+  CheckDigitScheme?: string | null;
+  IdentifierTypeCode?: string | null;
+  AssigningFacility?: string | null;
+  NameRepresentationCode?: string | null;
+  NameContext?: string | null;
+  NameValidityRange?: string | null;
+  NameAssemblyOrder?: string | null;
+  EffectiveDate?: string | null;
+  ExpirationDate?: string | null;
+  ProfessionalSuffix?: string | null;
+  AssigningJurisdiction?: string | null;
+  AssigningAgencyOrDepartment?: string | null;
+  SecurityCheck?: string | null;
+  SecurityCheckScheme?: string | null;
 }
 
 export interface XONComponents {
-  OrganizationName?: number | string | null;
-  OrganizationNameTypeCode?: number | string | null;
+  OrganizationName?: string | null;
+  OrganizationNameTypeCode?: string | null;
   IDNumber?: number | string | null;
   IdentifierCheckDigit?: number | string | null;
-  CheckDigitScheme?: number | string | null;
-  AssigningAuthority?: number | string | null;
-  IdentifierTypeCode?: number | string | null;
-  AssigningFacility?: number | string | null;
-  NameRepresentationCode?: number | string | null;
-  OrganizationIdentifier?: number | string | null;
+  CheckDigitScheme?: string | null;
+  AssigningAuthority?: string | null;
+  IdentifierTypeCode?: string | null;
+  AssigningFacility?: string | null;
+  NameRepresentationCode?: string | null;
+  OrganizationIdentifier?: string | null;
 }
 
 export interface XPNComponents {
-  FamilyName?: number | string | null;
-  GivenName?: number | string | null;
-  SecondAndFurtherGivenNamesOrInitialsThereof?: number | string | null;
-  Suffix?: number | string | null;
-  Prefix?: number | string | null;
-  Degree?: number | string | null;
-  NameTypeCode?: number | string | null;
-  NameRepresentationCode?: number | string | null;
-  NameContext?: number | string | null;
-  NameValidityRange?: number | string | null;
-  NameAssemblyOrder?: number | string | null;
-  EffectiveDate?: number | string | null;
-  ExpirationDate?: number | string | null;
-  ProfessionalSuffix?: number | string | null;
-  CalledBy?: number | string | null;
+  FamilyName?: string | null;
+  GivenName?: string | null;
+  SecondAndFurtherGivenNamesOrInitialsThereof?: string | null;
+  Suffix?: string | null;
+  Prefix?: string | null;
+  Degree?: string | null;
+  NameTypeCode?: string | null;
+  NameRepresentationCode?: string | null;
+  NameContext?: string | null;
+  NameValidityRange?: string | null;
+  NameAssemblyOrder?: string | null;
+  EffectiveDate?: string | null;
+  ExpirationDate?: string | null;
+  ProfessionalSuffix?: string | null;
+  CalledBy?: string | null;
 }
 
 export interface XTNComponents {
-  TelephoneNumber?: number | string | null;
-  TelecommunicationUseCode?: number | string | null;
-  TelecommunicationEquipmentType?: number | string | null;
-  CommunicationAddress?: number | string | null;
+  TelephoneNumber?: string | null;
+  TelecommunicationUseCode?: string | null;
+  TelecommunicationEquipmentType?: string | null;
+  CommunicationAddress?: string | null;
   CountryCode?: number | string | null;
   AreaCityCode?: number | string | null;
   LocalNumber?: number | string | null;
   Extension?: number | string | null;
-  AnyText?: number | string | null;
-  ExtensionPrefix?: number | string | null;
-  SpeedDialCode?: number | string | null;
-  UnformattedTelephoneNumber?: number | string | null;
-  EffectiveStartDate?: number | string | null;
-  ExpirationDate?: number | string | null;
-  ExpirationReason?: number | string | null;
-  ProtectionCode?: number | string | null;
-  SharedTelecommunicationIdentifier?: number | string | null;
+  AnyText?: string | null;
+  ExtensionPrefix?: string | null;
+  SpeedDialCode?: string | null;
+  UnformattedTelephoneNumber?: string | null;
+  EffectiveStartDate?: string | null;
+  ExpirationDate?: string | null;
+  ExpirationReason?: string | null;
+  ProtectionCode?: string | null;
+  SharedTelecommunicationIdentifier?: string | null;
   PreferenceOrder?: number | string | null;
 }
 

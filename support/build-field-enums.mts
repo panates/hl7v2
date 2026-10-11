@@ -220,11 +220,13 @@ function generateObjects() {
   )) {
     const names = memberNames('type-fields', `${name.toLowerCase()}-type.enum`);
     lines.push(`export interface ${safe(name)}Components {`);
-    for (const [pos] of [...fields].sort((a, b) => a[0] - b[0])) {
+    for (const [pos, f] of [...fields].sort((a, b) => a[0] - b[0])) {
       const key = names.get(pos) ?? String(pos);
-      lines.push(
-        `  ${/^\d/.test(key) ? `'${key}'` : key}?: number | string | null;`,
-      );
+      /* A sub-component is a number only where some version makes it one */
+      const type = [...f.types].some(t => NUMERIC.has(t))
+        ? 'number | string'
+        : 'string';
+      lines.push(`  ${/^\d/.test(key) ? `'${key}'` : key}?: ${type} | null;`);
     }
     lines.push('}', '');
   }
