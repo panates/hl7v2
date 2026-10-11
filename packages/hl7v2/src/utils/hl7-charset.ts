@@ -2,8 +2,7 @@ import anyAscii from 'any-ascii';
 import iconv from 'iconv-lite';
 
 /**
- * HL7 table 0211 (MSH-18) values mapped to iconv-lite encoding names, as HAPI
- * HL7v2 maps them (`ca.uhn.hl7v2.llp.HL7Charsets`).
+ * HL7 table 0211 (MSH-18) values mapped to iconv-lite encoding names.
  * A value not listed here is tried as an encoding name as-is.
  */
 export const HL7_CHARSET_ENCODINGS: Record<string, string> = {
@@ -26,7 +25,7 @@ export const HL7_CHARSET_ENCODINGS: Record<string, string> = {
   'KS X 1001': 'EUC-KR',
   'CNS 11643-1992': 'EUC-TW',
   'BIG-5': 'Big5',
-  /* Deprecated in HL7 and ambiguous; HAPI and Apache Camel both read it as UTF-8 */
+  /* Deprecated in HL7 and ambiguous; read as UTF-8, as other HL7 systems read it */
   UNICODE: 'utf8',
   'UNICODE UTF-8': 'utf8',
   /* With a byte order mark, as Java's UTF-16/UTF-32 write them; a BOM selects the byte order on decode */
@@ -59,7 +58,7 @@ const BYTE_ORDER_MARKS: [bytes: number[], encoding: string][] = [
 
 /**
  * Detects a byte order mark at the start of a message (after an optional
- * MLLP start block), as HAPI's `CharSetUtil` does. A message encoded in
+ * MLLP start block). A message encoded in
  * UTF-16 or UTF-32 can only be recognized this way: its MSH segment cannot be
  * read before its encoding is known.
  * Returns the encoding and the payload without the start block, the BOM and
@@ -135,7 +134,7 @@ export function encodeHL7String(
 ): Buffer {
   const encoding = resolveHL7Encoding(charset, defaultCharset);
   const canonical = encoding.toLowerCase().replace(/[^a-z0-9]/g, '');
-  /* UTF-16 as Java writes it: big-endian after a BOM (FE FF), as HAPI sends it */
+  /* UTF-16 as Java writes it: big-endian after a BOM (FE FF) */
   if (canonical === 'utf16') {
     return Buffer.concat([
       Buffer.from([0xfe, 0xff]),

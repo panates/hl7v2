@@ -1,13 +1,12 @@
 /**
  * Compares the dictionaries with HL7's own v2 XML schemas - the source they
- * are generated from (support/build-dictionary.mts) - and notes beside every
- * difference what HAPI HL7v2 says, a second reading of the same HL7 database.
+ * are generated from (support/build-dictionary.mts).
  *
  *   npm run build                      # the dictionaries are read from the build
  *   node support/compare-dictionary.mts [report.md]
  *
- * See support/hl7-sources.mts for where the schemas go. Nothing from either
- * reference is copied by this script.
+ * See support/hl7-sources.mts for where the schemas go. Nothing from them is
+ * copied by this script.
  *
  * Compared: segments (field types, required, repetition, length, table), data
  * types (component types, tables) and message structures (segment order,
@@ -18,14 +17,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {
   eventsFor,
-  HAPI_VERSION,
-  hapiSourceDir,
   normalizeType,
   readSchemas,
   root,
   type SchemaField,
   type SchemaNode,
-  SOURCES,
   versionsWithSchemas,
 } from './hl7-sources.mts';
 
@@ -94,87 +90,6 @@ function schemaDefinitions(version: string): Definitions {
   };
 }
 
-/* ---------------------------------------------------------------- HAPI */
-
-const SEGMENT_FIELD =
-  /this\.add\((\w+)\.class,\s*(true|false),\s*(-?\d+),\s*(-?\d+),\s*new Object\[\]\{\s*getMessage\(\)(?:,\s*(?:new Integer\()?(\d+)\)?)?\s*\}/g;
-const COMPONENT =
-  /data\[(\d+)\]\s*=\s*new (\w+)\(getMessage\(\)(?:,\s*(\d+))?\)/g;
-/* The fourth argument marks a choice element: one of consecutive segments */
-const STRUCTURE_ITEM =
-  /this\.add\((\w+)\.class,\s*(true|false),\s*(true|false)(?:,\s*(true|false))?\)/g;
-
-function readJava(dir: string): Record<string, string> {
-  if (!fs.existsSync(dir)) return {};
-  const out: Record<string, string> = {};
-  for (const f of fs.readdirSync(dir)) {
-    if (f.endsWith('.java')) {
-      out[f.slice(0, -5)] = fs.readFileSync(path.join(dir, f), 'utf8');
-    }
-  }
-  return out;
-}
-
-function hapiDefinitions(version: string): Definitions | undefined {
-  const dir = hapiSourceDir(version);
-  if (!dir) return;
-  const base = path.join(dir, 'ca/uhn/hl7v2/model', SOURCES[version][2]!);
-  const segments: Definitions['segments'] = {};
-  for (const [name, src] of Object.entries(
-    readJava(path.join(base, 'segment')),
-  )) {
-    segments[name] = [...src.matchAll(SEGMENT_FIELD)].map(m => ({
-      type: m[1],
-      required: m[2] === 'true',
-      rep: Number(m[3]),
-      len: Number(m[4]) > 0 ? Number(m[4]) : undefined,
-      table: Number(m[5]) > 0 ? Number(m[5]) : undefined,
-    }));
-  }
-  const types: Definitions['types'] = {};
-  for (const [name, src] of Object.entries(
-    readJava(path.join(base, 'datatype')),
-  )) {
-    const comps = [...src.matchAll(COMPONENT)];
-    types[name] = comps.length
-      ? comps
-          .sort((a, b) => Number(a[1]) - Number(b[1]))
-          .map(m => ({
-            type: m[2],
-            required: false,
-            rep: 1,
-            table: Number(m[3]) > 0 ? Number(m[3]) : undefined,
-          }))
-      : null;
-  }
-  const groups = readJava(path.join(base, 'group'));
-  const structure = (src: string): StructureItem[] => {
-    const items: StructureItem[] = [];
-    for (const m of src.matchAll(STRUCTURE_ITEM)) {
-      const required = m[2] === 'true';
-      const repeating = m[3] === 'true';
-      if (m[4] === 'true') {
-        const last = items[items.length - 1];
-        if (last?.choice) last.choice.push(m[1]);
-        else items.push({ choice: [m[1]], required, repeating });
-        continue;
-      }
-      const item: StructureItem = { required, repeating };
-      if (groups[m[1]]) item.group = structure(groups[m[1]]);
-      else item.segment = m[1];
-      items.push(item);
-    }
-    return items;
-  };
-  const messages: Definitions['messages'] = {};
-  for (const [name, src] of Object.entries(
-    readJava(path.join(base, 'message')),
-  )) {
-    messages[name] = structure(src);
-  }
-  return { segments, types, messages };
-}
-
 /* ---------------------------------------------------------------- ours */
 
 const { dictionaries } = await import(
@@ -240,13 +155,6 @@ const repText = (x: number) => (x === 0 ? '*' : String(x));
 const reqText = (x: boolean) => (x ? 'R' : 'O');
 const show = (x: unknown) => (x === undefined ? '-' : String(x));
 
-/** What HAPI says about the same thing, and whether it sides with HL7's schema */
-function hapiSays(official: unknown, ours: unknown, hapi: unknown): string {
-  if (show(hapi) === show(official)) return ' (HAPI agrees with HL7)';
-  if (show(hapi) === show(ours)) return ' (HAPI agrees with ours)';
-  return ` (HAPI: ${show(hapi)})`;
-}
-
 const sameType = (ours: string, official: string) => {
   const a = ours.toUpperCase();
   const b = normalizeType(official).toUpperCase();
@@ -260,13 +168,11 @@ function compareFields(
   name: string,
   ours: (Field | undefined)[],
   official: (Field | undefined)[],
-  hapi?: (Field | undefined)[],
 ) {
   const n = Math.max(ours.length, official.length);
   for (let i = 0; i < n; i++) {
     const o = ours[i];
     const s = official[i];
-    const h = hapi?.[i];
     const at = `${name}.${i + 1}`;
     if (!o || !s) {
       const only = o || s;
@@ -279,21 +185,18 @@ function compareFields(
       }
       continue;
     }
-    const note = (a: unknown, b: unknown, c: unknown) =>
-      hapi ? hapiSays(b, a, c) : '';
     if (!sameType(o.type, s.type)) {
       add(
         findings,
         `${kind} field type`,
-        `${at}: ours ${o.type} / HL7 ${s.type}` + note(o.type, s.type, h?.type),
+        `${at}: ours ${o.type} / HL7 ${s.type}`,
       );
     }
     if (s.table !== undefined && o.table !== s.table) {
       add(
         findings,
         `${kind} field table`,
-        `${at}: ours ${show(o.table)} / HL7 ${s.table}` +
-          note(o.table, s.table, h?.table),
+        `${at}: ours ${show(o.table)} / HL7 ${s.table}`,
       );
     }
     if (kind === 'type') continue;
@@ -338,7 +241,6 @@ const signature = (items: StructureItem[]): string =>
 function compare(
   ours: Definitions,
   official: Definitions,
-  hapi: Definitions | undefined,
   events: Record<string, string>,
 ): Findings {
   const findings: Findings = {};
@@ -350,14 +252,7 @@ function compare(
   }
   for (const [name, fields] of Object.entries(ours.segments)) {
     if (official.segments[name]) {
-      compareFields(
-        findings,
-        'segment',
-        name,
-        fields,
-        official.segments[name],
-        hapi?.segments[name],
-      );
+      compareFields(findings, 'segment', name, fields, official.segments[name]);
     }
   }
   for (const name of Object.keys(official.types)) {
@@ -376,14 +271,7 @@ function compare(
         `${name}: ours ${comps ? 'composite' : 'primitive'} / HL7 ${s ? 'composite' : 'primitive'}`,
       );
     } else if (comps && s) {
-      compareFields(
-        findings,
-        'type',
-        name,
-        comps,
-        s,
-        hapi?.types[name] ?? undefined,
-      );
+      compareFields(findings, 'type', name, comps, s);
     }
   }
   /* Ours is keyed by trigger event too (ADT_A04); HL7's schemas by structure */
@@ -401,13 +289,10 @@ function compare(
     const a = signature(items);
     const b = signature(official.messages[struct]);
     if (a === b) continue;
-    const h = hapi?.messages[struct];
-    const c = h && signature(h);
     add(
       findings,
       'message structure',
       `${name}${struct !== name ? ` (structure ${struct})` : ''}` +
-        (c ? hapiSays(b, a, c) : '') +
         `\n      ours: ${a}\n      HL7:  ${b}`,
     );
   }
@@ -427,7 +312,6 @@ for (const version of versions) {
   const findings = compare(
     ourDefinitions(version),
     schemaDefinitions(version),
-    hapiDefinitions(version),
     eventsFor(version),
   );
   summary[version] = Object.fromEntries(
@@ -448,8 +332,7 @@ const categories = [
 ].sort();
 let report =
   '# Dictionary compared with the HL7 v2 XML schemas\n\n' +
-  'Generated by `support/compare-dictionary.mts`. Each line reads "ours / HL7"; ' +
-  `HAPI HL7v2 ${HAPI_VERSION}'s reading is noted where it has the version.\n\n`;
+  'Generated by `support/compare-dictionary.mts`. Each line reads "ours / HL7".\n\n';
 if (categories.length) {
   report +=
     `| category | ${versions.join(' | ')} |\n` +

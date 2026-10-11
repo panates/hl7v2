@@ -10,48 +10,50 @@ import {
 } from '../src/index.js';
 
 /*
- * The library against HAPI HL7v2: hapi/cases.json run through HAPI gave
- * hapi/expected.json (support/hapi-oracle, `npm run hapi:expected`); the
- * same cases run here must give the same.
+ * Interoperability: interop/expected.json is what another, widely deployed
+ * HL7 v2 implementation gives for the cases of interop/cases.json; the same
+ * cases run here must give the same.
  *
  * Where the library differs on purpose, it is listed: SYSTEMATIC for what
  * holds in every case, DIFFERENCES for single values. A listed difference
  * that is gone fails too - take it off the list.
  */
 
-const dir = new URL('./hapi/', import.meta.url);
+const dir = new URL('./interop/', import.meta.url);
 const cases = JSON.parse(readFileSync(new URL('cases.json', dir), 'utf8'));
-const hapi = JSON.parse(readFileSync(new URL('expected.json', dir), 'utf8'));
+const expected = JSON.parse(
+  readFileSync(new URL('expected.json', dir), 'utf8'),
+);
 
 /** Values the library gives on purpose otherwise, by "kind/case/item" */
 const DIFFERENCES: Record<string, string> = {
   'read/escapes in values/NTE(1)-3':
-    'hexadecimal data is read as the standard has it; HAPI reads only its own \\X000d\\',
+    'hexadecimal data is read as the standard has it; the other reads only its own \\X000d\\',
   'read/escapes in values/NTE(5)-3':
-    'an escape character without its pair is kept; HAPI drops it',
+    'an escape character without its pair is kept; the other drops it',
   'read/escapes in values/encoded': 'the two above, written back',
   'read/null and empty values/PID-3':
-    'HL7 null ("") is given as null; HAPI gives the two quotes',
+    'HL7 null ("") is given as null; the other gives the two quotes',
   'read/null and empty values/PID-5': 'HL7 null, as above',
   'read/null and empty values/PID-5-1': 'HL7 null, as above',
   'read/null and empty values/PID-13': 'HL7 null, as above',
   'read/segments split by LF':
-    'segments split by LF are read; HAPI takes CR only',
+    'segments split by LF are read; the other takes CR only',
   'read/oru 2.5.1: groups and segment repetitions/OBX(1)-5':
-    'without groups SEG(n) is the n-th of the message; HAPI fails',
+    'without groups SEG(n) is the n-th of the message; the other fails',
   'read/oru 2.5.1: groups and segment repetitions/OBX(2)-5': 'as above',
   'read/oru 2.5.1: groups and segment repetitions/OBR(1)-4-2': 'as above',
   'read/oru 2.3: RESPONSE group/OBX(2)-5': 'as above',
   'read/oru 2.5.1: groups and segment repetitions/NTE-3':
-    "without groups a segment is the message's first of its type; HAPI's /. looks only in the first place the structure has one",
+    "without groups a segment is the message's first of its type; the other looks only in the first place the structure has one",
   'read/orm 2.5: orders and order details/ORC(1)-2-1':
-    'without groups SEG(n) is the n-th of the message; HAPI fails',
+    'without groups SEG(n) is the n-th of the message; the other fails',
   'read/mdm 2.6: document with text/OBX(1)-5': 'as above',
   'read/dft 2.4: charges/FT1(1)-7-2': 'as above',
   'read/dft 2.4: charges/FT1(1)-10': 'as above',
   'read/rsp 2.5.1: query response/PID(1)-3-1': 'as above',
   'nak/2.1 error/segments':
-    "2.1's ERR-1 is an ID in the standard: the code alone; HAPI writes 2.2's ELD",
+    "2.1's ERR-1 is an ID in the standard: the code alone; the other writes 2.2's ELD",
   'charset/msh-18 8859/1/bytes':
     'what the character set cannot hold is transliterated (Ş as S); Java writes ?',
   'charset/msh-18 8859/1/PID-5-1': 'as above, read back',
@@ -60,9 +62,9 @@ const DIFFERENCES: Record<string, string> = {
   'charset/msh-18 ASCII/PID-5-1': 'as above, read back',
   'charset/msh-18 ASCII/PID-5-2': 'as above, read back',
   'charset/msh-18 UNICODE UTF-32':
-    'UTF-32 is written with a BOM and read back; HAPI writes none and cannot read what it wrote',
+    'UTF-32 is written with a BOM and read back; the other writes none and cannot read what it wrote',
   'escape/delimiters and text/a\\b':
-    'an escape character without its pair is kept; HAPI drops it',
+    'an escape character without its pair is kept; the other drops it',
   'escape/delimiters and text/end\\': 'as above',
   'escape/delimiters and text/\\X41\\':
     'hexadecimal data is read; a value all of it is binary (a Buffer)',
@@ -76,13 +78,13 @@ const DIFFERENCES: Record<string, string> = {
 /**
  * Differences in every acknowledgment, made the same before comparing:
  * - MSH-18: the library names the character set it writes the answer in;
- *   HAPI leaves it empty.
+ *   the other leaves it empty.
  * - MSA-3: the library puts the first error's text there (kept for the
- *   receivers reading it, though 2.5 deprecates it); HAPI none from 2.5, the
- *   code's description before.
+ *   receivers reading it, though 2.5 deprecates it); the other none from 2.5,
+ *   the code's description before.
  * - ERR-1 (before 2.5), ELD-2: the library gives the segment's sequence, as
- *   the standard has it; HAPI leaves it empty.
- * - The error's text: HAPI adds the location to it (" at PID(1)-3(0)").
+ *   the standard has it; the other leaves it empty.
+ * - The error's text: the other adds the location to it (" at PID(1)-3(0)").
  */
 const SYSTEMATIC = {
   fields: (f: Record<string, any>) => ({ ...f, 'MSH-18': undefined }),
@@ -114,21 +116,17 @@ function compare(key: string, ours: any, theirs: any) {
   expect({ key, value: ours }).toEqual({ key, value: theirs });
 }
 
-const ACK_FIELDS = Object.keys(Object.values<any>(hapi.ack)[0].fields);
+const ACK_FIELDS = Object.keys(Object.values<any>(expected.ack)[0].fields);
 const fieldsOf = (ack: HL7Message) =>
   Object.fromEntries(ACK_FIELDS.map(f => [f, str(ack.get(f))]));
 const bodyOf = (ack: HL7Message) =>
   ack.toHL7String().split('\r').filter(Boolean).slice(1);
 
-describe('hl7v2:hapi', () => {
-  it('should be run against what HAPI 2.6.0 gave', () => {
-    expect(hapi.hapi).toEqual('2.6.0');
-  });
-
+describe('hl7v2:interop', () => {
   describe('read', () => {
     for (const c of cases.read) {
       it(c.name, () => {
-        const h = hapi.read[c.name];
+        const h = expected.read[c.name];
         const key = `read/${c.name}`;
         if (h.error) {
           compare(key, 'read', h.error);
@@ -169,7 +167,7 @@ describe('hl7v2:hapi', () => {
         compare(
           `write/${c.name}`,
           msg.toHL7String().replace(/\r$/, ''),
-          hapi.write[c.name].encoded.replace(/\r$/, ''),
+          expected.write[c.name].encoded.replace(/\r$/, ''),
         );
       });
     }
@@ -179,7 +177,7 @@ describe('hl7v2:hapi', () => {
     const msg = new HL7Message('2.5');
     for (const c of cases.escape) {
       it(c.name, () => {
-        const h = hapi.escape[c.name];
+        const h = expected.escape[c.name];
         c.values.forEach((value: string, i: number) => {
           const key = `escape/${c.name}/${value}`;
           expect({ key, escaped: hl7Escape(value, msg) }).toEqual({
@@ -195,7 +193,7 @@ describe('hl7v2:hapi', () => {
   describe('ack', () => {
     for (const c of cases.ack) {
       it(c.name, () => {
-        const h = hapi.ack[c.name];
+        const h = expected.ack[c.name];
         const ack = HL7Message.parse(text(c)).createAck();
         compare(
           `ack/${c.name}/fields`,
@@ -214,7 +212,7 @@ describe('hl7v2:hapi', () => {
   describe('nak', () => {
     for (const c of cases.nak) {
       it(c.name, () => {
-        const h = hapi.nak[c.name];
+        const h = expected.nak[c.name];
         const e = c.error;
         const error = new HL7Error(e.text, {
           hl7ErrorCode: e.code,
@@ -222,7 +220,7 @@ describe('hl7v2:hapi', () => {
           segmentType: e.segment,
           segmentSequence: e.segmentRepetition,
           fieldPosition: e.field,
-          /* HAPI's repetitions count from 1, repetitionIndex from 0 */
+          /* The cases' repetitions count from 1, repetitionIndex from 0 */
           repetitionIndex:
             e.fieldRepetition != null ? e.fieldRepetition - 1 : undefined,
           componentPosition: e.component,
@@ -246,7 +244,7 @@ describe('hl7v2:hapi', () => {
   describe('charset', () => {
     for (const c of cases.charset) {
       it(c.name, () => {
-        const h = hapi.charset[c.name];
+        const h = expected.charset[c.name];
         const key = `charset/${c.name}`;
         const bytes = HL7Message.parse(text(c)).toBuffer();
         if (h.error) {
@@ -265,16 +263,16 @@ describe('hl7v2:hapi', () => {
 
   describe('validate', () => {
     /*
-     * HAPI's default validation checks less than the library's - primitive
+     * The other's validation checks less than the library's - primitive
      * formats, and parsing stops at the first - and reports every finding
-     * as 207: what HAPI finds, by where, the library must find too
+     * as 207: what it finds, by where, the library must find too
      */
     for (const c of cases.validate) {
       it(c.name, () => {
         const ours = HL7Message.parse(text(c)).validate();
-        for (const e of hapi.validate[c.name]) {
+        for (const e of expected.validate[c.name]) {
           const key = `validate/${c.name}/${e.segment ?? '?'}-${e.field ?? '?'}`;
-          /* Without a location, by the value HAPI names */
+          /* Without a location, by the value it names */
           const value = /Primitive value '([^']*)'/.exec(e.message)?.[1];
           const found = ours.some(
             o =>
@@ -300,14 +298,14 @@ describe('hl7v2:hapi', () => {
             type: m.messageType,
             patient: str(m.get('PID-3-1')),
           })),
-          hapi.batch[c.name],
+          expected.batch[c.name],
         );
       });
     }
   });
 
   describe('structure', () => {
-    /* Each segment's path through the groups, as HAPI walks its message */
+    /* Each segment's path through the groups */
     const paths = (node: HL7MessageNode, path: string, out: string[]) => {
       const seen = new Map<string, number>();
       for (const item of node.items) {
@@ -325,7 +323,7 @@ describe('hl7v2:hapi', () => {
         compare(
           `structure/${c.name}`,
           paths(tree, '', []),
-          hapi.structure[c.name],
+          expected.structure[c.name],
         );
       });
     }

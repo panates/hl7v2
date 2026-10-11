@@ -21,8 +21,7 @@ export class Hl7Component {
   declare protected _data?: Hl7SubComponent;
   /**
    * Sub-components a primitive component received beyond its first, kept as
-   * received (HL7-encoded) so the message serializes back unchanged - as HAPI
-   * keeps them as extra components
+   * received (HL7-encoded) so the message serializes back unchanged
    */
   protected _extra?: string[];
   declare protected _definition: HL7FieldDefinition;

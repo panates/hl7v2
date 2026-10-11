@@ -26,5 +26,5 @@
 !.vscode/launch.json
 !.vscode/extensions.json
 
-# Written by HAPI (npm run hapi:expected)
-packages/hl7v2/test/hapi/expected.json
+# Recorded fixture, kept byte for byte
+packages/hl7v2/test/interop/expected.json

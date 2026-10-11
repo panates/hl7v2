@@ -332,7 +332,7 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
   /**
    * The server's identity on an acknowledgment it sends: MSH-3 and MSH-4
    * from applicationName and facilityName, when given - otherwise they are
-   * the received MSH-5 and MSH-6, as HAPI answers
+   * the received MSH-5 and MSH-6
    */
   protected _identify(message: HL7Message) {
     if (!message.messageType.startsWith('ACK')) return;

@@ -12,18 +12,17 @@ import { resolveHL7Encoding } from './hl7-charset.js';
 
 /*
  * Escape sequences (HL7 v2 chapter 2, "Use of escape sequences in text
- * fields"), handled as HAPI HL7v2's DefaultEscaping handles them:
+ * fields"):
  *
  * - \F\ \S\ \T\ \R\ \E\ stand for the message's own delimiters.
  * - \Xdddd\ is hexadecimal data: the bytes, in the message's character set.
- *   HAPI's own form for a carriage return, \X000d\, is read as one - and
- *   written for one, since HAPI reads no other hexadecimal data: a value
- *   with \X0D\ reaches a HAPI receiver as those five characters. A LF or tab
- *   is written as it is, as HAPI writes it.
+ *   A carriage return is written as \X000d\, the form HL7 systems commonly
+ *   read as one; some read no other hexadecimal data, and would take \X0D\
+ *   as those five characters. A LF or tab is written as it is.
  * - \H\ \N\ (highlighting), \.xx\ (formatting), \Cxxyy\ \Mxxyyzz\ (character
  *   set switches) and \Zxx\ (locally defined) are instructions to the
  *   receiver, not data: they are kept as they are, and written back unchanged.
- * - Any other sequence gives its content, as HAPI drops the escape characters.
+ * - Any other sequence gives its content, without the escape characters.
  */
 
 interface Delimiters {
@@ -79,8 +78,8 @@ export function hl7Escape(value: string | null, message?: HL7Message): string {
     if (preserved) return preserved;
     if (delimiter) return e + codes[delimiter] + e;
     /**
-     * Control characters, as HAPI writes them: a CR as \X000d\ - HAPI's form,
-     * the one HAPI reads back - a LF or tab as it is. The rest go as
+     * Control characters: a CR as \X000d\ - the form HL7 systems commonly
+     * read back - a LF or tab as it is. The rest go as
      * hexadecimal data: raw, a VT or FS would end the MLLP frame.
      */
     let out = '';
@@ -134,7 +133,7 @@ export function hl7UnEscape(value: string, message?: HL7Message) {
 
 /**
  * Escape sequences kept as they are: \H\, \N\, and \.xx\, \Cxx\, \Mxx\,
- * \Zxx\ up to the next escape character - the same set HAPI leaves alone.
+ * \Zxx\ up to the next escape character.
  * \Xdddd\ is not among them on reading, since it is data; written, a value
  * that already holds one passes through like the others.
  */

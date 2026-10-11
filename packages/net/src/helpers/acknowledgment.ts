@@ -17,9 +17,9 @@ import type { HL7Socket } from '../hl7-socket.js';
  * - MSH-15 asks for an accept (commit) acknowledgment, sent on receipt,
  *   before processing: CA when the message is accepted, CE when it is not
  *   (an error in it), CR when it is rejected (unsupported type, event,
- *   processing ID or version). Empty, none is sent, as HAPI HL7v2 sends none.
+ *   processing ID or version). Empty, none is sent.
  * - MSH-16 asks for the application acknowledgment, sent after processing.
- *   Empty, it is sent, as in original mode and as HAPI sends it.
+ *   Empty, it is sent, as in original mode.
  */
 
 export type HL7AckCondition = 'AL' | 'NE' | 'ER' | 'SU' | '';

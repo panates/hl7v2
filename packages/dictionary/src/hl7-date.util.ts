@@ -7,8 +7,7 @@
  *
  * A value read from a message is kept as written - its precision and its
  * time zone offset are part of it - and only checked. A Date is written in
- * local time with its offset (20250102060405.678+0300), as HAPI HL7v2 writes
- * it; without an offset the standard reads a time as the sender's local time.
+ * local time with its offset (20250102060405.678+0300); without an offset the standard reads a time as the sender's local time.
  */
 
 const DT = /^(\d{4})(?:(\d{2})(?:(\d{2}))?)?$/;

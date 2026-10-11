@@ -1,5 +1,4 @@
 {
-  "hapi": "2.6.0",
   "read": {
     "adt 2.5: components, sub-components, repetitions": {
       "values": {
@@ -955,45 +954,45 @@
         "segment": "EVN",
         "field": 2,
         "component": -1,
-        "message": "ca.uhn.hl7v2.validation.ValidationException: Validation failed: Primitive value '2025-03-01' requires to be empty or a HL7 datetime string at EVN-2(0)"
+        "message": "Validation failed: Primitive value '2025-03-01' requires to be empty or a HL7 datetime string at EVN-2(0)"
       }
     ],
     "too long": [],
     "bad time and timestamp": [
       {
         "code": 207,
-        "message": "ca.uhn.hl7v2.validation.ValidationException: Validation failed: Primitive value '25:61' requires to be empty or a HL7 time string"
+        "message": "Validation failed: Primitive value '25:61' requires to be empty or a HL7 time string"
       }
     ],
     "2.3 bad id": [],
     "obx-5 TM by OBX-2": [
       {
         "code": 207,
-        "message": "ca.uhn.hl7v2.validation.ValidationException: Validation failed: Primitive value '25:61' requires to be empty or a HL7 time string"
+        "message": "Validation failed: Primitive value '25:61' requires to be empty or a HL7 time string"
       }
     ],
     "obx-5 NM by OBX-2": [
       {
         "code": 207,
-        "message": "ca.uhn.hl7v2.validation.ValidationException: Validation failed: Primitive value '12a' requires to be empty or a number with optional decimal digits"
+        "message": "Validation failed: Primitive value '12a' requires to be empty or a number with optional decimal digits"
       }
     ],
     "obx-5 decimal comma": [
       {
         "code": 207,
-        "message": "ca.uhn.hl7v2.validation.ValidationException: Validation failed: Primitive value '12,5' requires to be empty or a number with optional decimal digits"
+        "message": "Validation failed: Primitive value '12,5' requires to be empty or a number with optional decimal digits"
       }
     ],
     "obx-5 DT by OBX-2": [
       {
         "code": 207,
-        "message": "ca.uhn.hl7v2.validation.ValidationException: Validation failed: Primitive value '2025-01-01' requires to be empty or a date string (YYYY[MM[DD]])"
+        "message": "Validation failed: Primitive value '2025-01-01' requires to be empty or a date string (YYYY[MM[DD]])"
       }
     ],
     "obx-5 TS component": [
       {
         "code": 207,
-        "message": "ca.uhn.hl7v2.validation.ValidationException: Validation failed: Primitive value '2025x' requires to be empty or a HL7 datetime string"
+        "message": "Validation failed: Primitive value '2025x' requires to be empty or a HL7 datetime string"
       }
     ],
     "obx-5 good values": [],
@@ -1003,7 +1002,7 @@
         "segment": "PID",
         "field": 1,
         "component": -1,
-        "message": "ca.uhn.hl7v2.validation.ValidationException: Validation failed: Primitive value '-1' requires to be empty or a non-negative integer (0,1,2,...) at PID-1(0)"
+        "message": "Validation failed: Primitive value '-1' requires to be empty or a non-negative integer (0,1,2,...) at PID-1(0)"
       }
     ]
   },
