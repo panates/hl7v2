@@ -339,9 +339,9 @@ function generateVersionedObjects() {
     const composite = (t: string) => !!d.types[t]?.fields;
     const componentsOf = (t: string) => {
       const names = memberNames('type-fields', `${t.toLowerCase()}-type.enum`);
-      const body = Object.keys(d.types[t].fields).map(
-        pos =>
-          `  ${key(names.get(Number(pos)) ?? pos)}?: number | string | null;`,
+      const body = Object.entries<any>(d.types[t].fields).map(
+        ([pos, f]) =>
+          `  ${key(names.get(Number(pos)) ?? pos)}?: ${prim(f.type)} | null;`,
       );
       return shapeOf(`${safe(t)}Components`, false, body);
     };
