@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { expect } from 'expect';
+import * as dictionary from '../src/index.js';
 import {
   dictionaries,
   findNearestHL7Version,
@@ -222,6 +223,38 @@ describe('dictionary:dictionaries', () => {
         expect(diffs).toEqual([]);
       });
     }
+  });
+
+  describe('field enums', () => {
+    it('should name every field and component of every version', () => {
+      const missing: string[] = [];
+      for (const version of VERSIONS) {
+        for (const [kind, suffix] of [
+          ['segments', 'Segment'],
+          ['types', 'Type'],
+        ] as const) {
+          for (const [name, def] of Object.entries<any>(
+            dictionaries[version][kind],
+          )) {
+            const e = (dictionary as any)[name + suffix];
+            for (const pos of Object.keys(def.fields || {})) {
+              if (!e || e[Number(pos)] === undefined) {
+                missing.push(`${version} ${name}${suffix}[${pos}]`);
+              }
+            }
+          }
+        }
+      }
+      expect(missing).toEqual([]);
+    });
+
+    it('should keep the names code already uses', () => {
+      expect(dictionary.PIDSegment.PatientName).toEqual(5);
+      expect(dictionary.MSHSegment.CharacterSet).toEqual(18);
+      expect(dictionary.CXType.IDNumber).toEqual(1);
+      /* added from 2.8 on */
+      expect(dictionary.MSHSegment.SecurityClassificationTag).toEqual(26);
+    });
   });
 
   describe('sharing', () => {

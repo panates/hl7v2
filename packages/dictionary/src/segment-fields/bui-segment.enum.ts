@@ -1,0 +1,15 @@
+export enum BUISegment {
+  SetID = 1,
+  BloodUnitIdentifier = 2,
+  BloodUnitType = 3,
+  BloodUnitWeight = 4,
+  WeightUnits = 5,
+  BloodUnitVolume = 6,
+  VolumeUnits = 7,
+  ContainerCatalogNumber = 8,
+  ContainerLotNumber = 9,
+  ContainerManufacturer = 10,
+  TransportTemperature = 11,
+  TransportTemperatureUnits = 12,
+  ActionCode = 13,
+}

@@ -13,4 +13,7 @@ export enum FHSSegment {
   ReferenceFileControlID = 12,
   FileSendingNetworkAddress = 13,
   FileReceivingNetworkAddress = 14,
+  SecurityClassificationTag = 15,
+  SecurityHandlingInstructions = 16,
+  SpecialAccessRestrictionInstructions = 17,
 }

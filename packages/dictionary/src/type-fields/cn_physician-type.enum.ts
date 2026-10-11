@@ -1,0 +1,15 @@
+export enum CN_PHYSICIANType {
+  PhysicianID = 1,
+  FamiliyName = 2,
+  GivenName = 3,
+  MiddleInitialOrName = 4,
+  SuffixEGJROrIII = 5,
+  PrefixEGDR = 6,
+  DegreeEGMD = 7,
+  SourceTableId = 8,
+  Adresse = 9,
+  Telefon = 10,
+  Faxnummer = 11,
+  OnlineNummer = 12,
+  EMail = 13,
+}

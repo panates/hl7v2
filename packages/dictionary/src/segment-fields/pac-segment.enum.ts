@@ -7,4 +7,5 @@ export enum PACSegment {
   PackageCondition = 6,
   PackageHandlingCode = 7,
   PackageRiskCode = 8,
+  ActionCode = 9,
 }

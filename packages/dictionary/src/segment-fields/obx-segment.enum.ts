@@ -25,4 +25,11 @@ export enum OBXSegment {
   PerformingOrganizationAddress = 24,
   PerformingOrganizationMedicalDirector = 25,
   PatientResultsReleaseCategory = 26,
+  RootCause = 27,
+  LocalProcessControl = 28,
+  ObservationType = 29,
+  ObservationSubType = 30,
+  ActionCode = 31,
+  ObservationValueAbsentReason = 32,
+  ObservationRelatedSpecimenIdentifier = 33,
 }

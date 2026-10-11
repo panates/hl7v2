@@ -53,4 +53,5 @@ export enum OBRSegment {
   ParentObservationGroupID = 52,
   AlternatePlacerOrderNumber = 53,
   ParentOrder = 54,
+  ActionCode = 55,
 }

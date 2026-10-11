@@ -8,4 +8,5 @@ export enum IPCSegment {
   ScheduledStationName = 7,
   ScheduledProcedureStepLocation = 8,
   ScheduledStationAETitle = 9,
+  ActionCode = 10,
 }

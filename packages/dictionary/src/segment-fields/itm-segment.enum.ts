@@ -28,4 +28,13 @@ export enum ITMSegment {
   ProcedureCode = 27,
   ProcedureCodeModifier = 28,
   SpecialHandlingCode = 29,
+  HazardousIndicator = 30,
+  SterileIndicator = 31,
+  MaterialDataSafetySheetNumber = 32,
+  UnitedNationsStandardProductsAndServicesCodeUNSPSC = 33,
+  ContractDate = 34,
+  ManufacturerContactName = 35,
+  ManufacturerContactInformation = 36,
+  ClassOfTrade = 37,
+  FieldLevelEventCode = 38,
 }

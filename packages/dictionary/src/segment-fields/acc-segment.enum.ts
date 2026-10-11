@@ -11,4 +11,5 @@ export enum ACCSegment {
   PoliceNotifiedIndicator = 10,
   AccidentAddress = 11,
   DegreeOfPatientLiability = 12,
+  AccidentIdentifier = 13,
 }

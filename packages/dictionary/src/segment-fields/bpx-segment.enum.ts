@@ -20,4 +20,5 @@ export enum BPXSegment {
   BPActualDispensedToAddress = 19,
   BPDispensedToReceiver = 20,
   BPDispensingIndividual = 21,
+  ActionCode = 22,
 }

@@ -25,4 +25,6 @@ export enum TXASegment {
   FolderAssignment = 24,
   DocumentTitle = 25,
   AgreedDueDateTime = 26,
+  CreatingFacility = 27,
+  CreatingSpecialty = 28,
 }

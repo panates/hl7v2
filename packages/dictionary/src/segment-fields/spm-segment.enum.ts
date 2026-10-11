@@ -31,4 +31,7 @@ export enum SPMSegment {
   AccessionID = 30,
   OtherSpecimenID = 31,
   ShipmentID = 32,
+  CultureStartDateTime = 33,
+  CultureFinalDateTime = 34,
+  ActionCode = 35,
 }

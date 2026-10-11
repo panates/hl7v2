@@ -14,4 +14,13 @@ export enum PRTSegment {
   ParticipationQualitativeDuration = 13,
   ParticipationAddress = 14,
   ParticipantTelecommunicationAddress = 15,
+  UDIDeviceIdentifier = 16,
+  DeviceManufactureDate = 17,
+  DeviceExpiryDate = 18,
+  DeviceLotNumber = 19,
+  DeviceSerialNumber = 20,
+  DeviceDonationIdentification = 21,
+  DeviceType = 22,
+  PreferredMethodOfContact = 23,
+  ContactIdentifiers = 24,
 }

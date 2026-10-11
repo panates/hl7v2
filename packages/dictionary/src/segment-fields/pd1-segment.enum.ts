@@ -21,4 +21,5 @@ export enum PD1Segment {
   MilitaryRankGrade = 20,
   MilitaryStatus = 21,
   AdvanceDirectiveLastVerifiedDate = 22,
+  RetirementDate = 23,
 }

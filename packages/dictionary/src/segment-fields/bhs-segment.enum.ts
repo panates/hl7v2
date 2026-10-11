@@ -13,4 +13,7 @@ export enum BHSSegment {
   ReferenceBatchControlID = 12,
   BatchSendingNetworkAddress = 13,
   BatchReceivingNetworkAddress = 14,
+  SecurityClassificationTag = 15,
+  SecurityHandlingInstructions = 16,
+  SpecialAccessRestrictionInstructions = 17,
 }

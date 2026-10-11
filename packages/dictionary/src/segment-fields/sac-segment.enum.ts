@@ -43,4 +43,9 @@ export enum SACSegment {
   ArtificialBlood = 42,
   SpecialHandlingCode = 43,
   OtherEnvironmentalFactors = 44,
+  ContainerLength = 45,
+  ContainerWidth = 46,
+  ContainerForm = 47,
+  ContainerMaterial = 48,
+  ContainerCommonName = 49,
 }

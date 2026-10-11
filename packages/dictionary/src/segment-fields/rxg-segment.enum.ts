@@ -29,4 +29,7 @@ export enum RXGSegment {
   DispenseToPharmacyAddress = 28,
   DeliverToPatientLocation = 29,
   DeliverToAddress = 30,
+  GiveTagIdentifier = 31,
+  DispenseAmount = 32,
+  DispenseUnits = 33,
 }

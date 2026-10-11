@@ -10,4 +10,5 @@ export enum SHPSegment {
   ShipmentCondition = 9,
   ShipmentHandlingCode = 10,
   ShipmentRiskCode = 11,
+  ActionCode = 12,
 }

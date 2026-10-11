@@ -27,4 +27,5 @@ export enum RXASegment {
   PharmacyOrderType = 26,
   AdministerAt = 27,
   AdministeredAtAddress = 28,
+  AdministeredTagIdentifier = 29,
 }

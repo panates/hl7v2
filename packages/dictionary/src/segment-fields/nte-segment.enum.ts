@@ -7,4 +7,5 @@ export enum NTESegment {
   EnteredDateTime = 6,
   EffectiveStartDate = 7,
   ExpirationDate = 8,
+  CodedComment = 9,
 }

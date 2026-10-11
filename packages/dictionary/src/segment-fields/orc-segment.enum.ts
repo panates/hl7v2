@@ -32,4 +32,9 @@ export enum ORCSegment {
   ParentUniversalServiceIdentifier = 31,
   AdvancedBeneficiaryNoticeDate = 32,
   AlternatePlacerOrderNumber = 33,
+  OrderWorkflowProfile = 34,
+  ActionCode = 35,
+  OrderStatusDateRange = 36,
+  OrderCreationDateTime = 37,
+  FillerOrderGroupNumber = 38,
 }
