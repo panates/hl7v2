@@ -45,7 +45,7 @@ export interface HL7ValidateOptions {
  * greedily, without backtracking.
  */
 export function validateMessage(
-  message: HL7Message,
+  message: HL7Message<any>,
   options?: HL7ValidateOptions,
 ): HL7Error[] {
   const errors: HL7Error[] = [];
@@ -209,7 +209,7 @@ function checkValue(
 
 type Definitions = Record<string, HL7MessageSegmentsDefinition>;
 
-function validateStructure(message: HL7Message, errors: HL7Error[]) {
+function validateStructure(message: HL7Message<any>, errors: HL7Error[]) {
   const name = message.structureName;
   const definition = name && message.dictionary.messages[name];
   if (!definition || !definition.segments) return;

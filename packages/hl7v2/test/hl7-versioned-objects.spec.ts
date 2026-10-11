@@ -1,8 +1,10 @@
 import { expect } from 'expect';
 import {
+  DG1Segment,
   type HL7DataTypeObject,
   HL7Error,
   HL7Message,
+  HL7Segment,
   type HL7SegmentObject,
   MSHSegment,
 } from '../src/index.js';
@@ -84,5 +86,42 @@ describe('hl7v2:versioned objects', () => {
     assertType<Equal<typeof pid, HL7SegmentObject<'2.5', 'PID'>>>();
     expect(pid.SetID).toEqual(1);
     expect(() => msg.asVersion('2.7')).toThrow(HL7Error);
+  });
+
+  it("should take only the version's fields in field()", () => {
+    const msg = new HL7Message('2.6');
+    const dg1 = msg.addSegment('DG1');
+    dg1.field(DG1Segment.DiagnosisCodeDG1).setValue('I10');
+    dg1.field(3);
+    // @ts-expect-error - DG1-2 (Diagnosis Coding Method) is withdrawn in 2.6
+    dg1.field(DG1Segment.DiagnosisCodingMethod);
+    // @ts-expect-error - by number too
+    dg1.field(2);
+    // @ts-expect-error - MSH-26 came in 2.9
+    new HL7Message('2.5').header.field(26);
+    new HL7Message('2.9').header.field(MSHSegment.SecurityClassificationTag);
+    expect(msg.get('DG1-3')).toEqual('I10');
+  });
+
+  it('should take any field where the version or segment is not typed', () => {
+    /* untyped message, a version with no typed objects, a Z segment */
+    HL7Message.parse(ADT25).addSegment('DG1').field(2);
+    new HL7Message('2.5.2').addSegment('DG1').field(2);
+    new HL7Message('2.6').addSegment('ZPI').field(99);
+    /* a position known only at run time: the segment untyped */
+    const pos: number = 2;
+    const seg: HL7Segment = new HL7Message('2.6').addSegment('DG1');
+    expect(seg.field(pos).position).toEqual(2);
+  });
+
+  it('should assign a typed message where any message is taken', () => {
+    const typed = new HL7Message('2.6');
+    const messages: HL7Message[] = [
+      typed,
+      HL7Message.parse(ADT25, { version: '2.5' }),
+    ];
+    const header: HL7Segment = typed.header;
+    expect(messages.length).toEqual(2);
+    expect(header.segmentType).toEqual('MSH');
   });
 });

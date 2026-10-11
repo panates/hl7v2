@@ -20,13 +20,19 @@ export function isHeaderSegment(segmentType: string): boolean {
   );
 }
 
-export class HL7Segment {
+/**
+ * A segment. P is the field positions field() takes: any number, or for a
+ * message whose version the compiler knows, the fields that version defines -
+ * getSegment('DG1') of a 2.6 message leaves out DG1-2, withdrawn in 2.6 (see
+ * HL7MessageSegment).
+ */
+export class HL7Segment<P extends number = number> {
   declare protected _fields: HL7Field[];
   declare protected _definition: HL7SegmentDefinition;
-  message: HL7Message;
+  message: HL7Message<any>;
   segmentType: string = '';
 
-  constructor(message: HL7Message, segmentType: string) {
+  constructor(message: HL7Message<any>, segmentType: string) {
     this.message = message;
     this.segmentType = segmentType;
     this._definition = this.message.dictionary.segments[this.segmentType] || {
@@ -51,7 +57,7 @@ export class HL7Segment {
     this._fields = [];
   }
 
-  field(fieldPos: number): HL7Field {
+  field(fieldPos: P): HL7Field {
     if (fieldPos < 1) throw new Error('Invalid field position');
     let field = this._fields[fieldPos - 1];
     if (!field) {
@@ -110,7 +116,7 @@ export class HL7Segment {
   }
 
   static parse(
-    message: HL7Message,
+    message: HL7Message<any>,
     input: string,
     options?: Hl7SegmentParseOptions,
   ): HL7Segment {

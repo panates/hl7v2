@@ -213,6 +213,17 @@ type PID25 = HL7SegmentObject<'2.5', 'PID'>;
 type XPN27 = HL7DataTypeObject<'2.7', 'XPN'>;
 ```
 
+Segments of such a message take only that version's fields:
+
+```typescript
+const dg1 = new HL7Message('2.6').addSegment('DG1');
+dg1.field(DG1Segment.DiagnosisCodeDG1); // fine
+dg1.field(DG1Segment.DiagnosisCodingMethod); // compile error: DG1-2 is withdrawn in 2.6
+dg1.field(2); // the same, by number
+```
+
+Any field is taken where the version or the segment is not typed - a message read without a version, a Z segment. For a position known only at run time, use the segment untyped: `const seg: HL7Segment = msg.getSegment('DG1')!`.
+
 A version is matched as it is read: 2.5.2 is a 2.5.1 message. Without a version the types unite every version, as above. The version types are generated as flat interfaces, one per distinct shape and shared by the versions defining it the same; types only.
 
 ### HL7BatchFile / HL7Batch

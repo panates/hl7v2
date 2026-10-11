@@ -74,7 +74,7 @@ export function parseHL7Path(path: string): HL7Path {
 
 /** The segment a path names, or undefined when the message has none there */
 export function findPathSegment(
-  message: HL7Message,
+  message: HL7Message<any>,
   path: HL7Path,
 ): HL7Segment | undefined {
   if (!path.groups.length) {
@@ -93,7 +93,7 @@ export function findPathSegment(
  * component's, ending at a component its first sub-component's, as Terser.get
  * reads it; undefined where there is none.
  */
-export function getPathValue(message: HL7Message, pathText: string): any {
+export function getPathValue(message: HL7Message<any>, pathText: string): any {
   const path = parseHL7Path(pathText);
   const segment = findPathSegment(message, path);
   if (!segment) return;
@@ -109,7 +109,7 @@ export function getPathValue(message: HL7Message, pathText: string): any {
  * PID(1) when there is one PID. Through groups the segment must exist.
  */
 export function setPathValue(
-  message: HL7Message,
+  message: HL7Message<any>,
   pathText: string,
   value: any,
 ): void {

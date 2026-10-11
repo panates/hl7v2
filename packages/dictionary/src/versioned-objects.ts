@@ -69,15 +69,21 @@ type HL7Types_2_1 = {
   HD: HDObject1;
 };
 
+type ACCFields1 = 1 | 2 | 3;
+
 interface ACCObject1<T extends HL7TypeMap> {
   AccidentDateTime?: string | null;
   AccidentCode?: string | null;
   AccidentLocation?: string | null;
 }
 
+type ADDFields1 = 1;
+
 interface ADDObject1<T extends HL7TypeMap> {
   AddendumContinuationPointer?: string | null;
 }
+
+type BHSFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 interface BHSObject1<T extends HL7TypeMap> {
   BatchFieldSeparator?: string | null;
@@ -94,17 +100,23 @@ interface BHSObject1<T extends HL7TypeMap> {
   ReferenceBatchControlID?: string | null;
 }
 
+type BLGFields1 = 1 | 2 | 3;
+
 interface BLGObject1<T extends HL7TypeMap> {
   WhenToCharge?: string | null;
   ChargeType?: string | null;
   AccountID?: string | null;
 }
 
+type BTSFields1 = 1 | 2 | 3;
+
 interface BTSObject1<T extends HL7TypeMap> {
   BatchMessageCount?: string | null;
   BatchComment?: string | null;
   BatchTotals?: string | null;
 }
+
+type DG1Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
 
 interface DG1Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -123,9 +135,13 @@ interface DG1Object1<T extends HL7TypeMap> {
   GrouperVersionAndType?: string | null;
 }
 
+type DSCFields1 = 1;
+
 interface DSCObject1<T extends HL7TypeMap> {
   ContinuationPointer?: string | null;
 }
+
+type DSPFields1 = 1 | 2 | 3 | 4 | 5;
 
 interface DSPObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -135,9 +151,13 @@ interface DSPObject1<T extends HL7TypeMap> {
   ResultID?: string | null;
 }
 
+type ERRFields1 = 1;
+
 interface ERRObject1<T extends HL7TypeMap> {
   ErrorCodeAndLocation?: string[] | null;
 }
+
+type EVNFields1 = 1 | 2 | 3 | 4;
 
 interface EVNObject1<T extends HL7TypeMap> {
   EventTypeCode?: string | null;
@@ -145,6 +165,8 @@ interface EVNObject1<T extends HL7TypeMap> {
   DateTimePlannedEvent?: string | null;
   EventReasonCode?: string | null;
 }
+
+type FHSFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 interface FHSObject1<T extends HL7TypeMap> {
   FileFieldSeparator?: string | null;
@@ -160,6 +182,30 @@ interface FHSObject1<T extends HL7TypeMap> {
   FileControlID?: string | null;
   ReferenceFileControlID?: string | null;
 }
+
+type FT1Fields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22;
 
 interface FT1Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -186,10 +232,34 @@ interface FT1Object1<T extends HL7TypeMap> {
   UnitCost?: number | string | null;
 }
 
+type FTSFields1 = 1 | 2;
+
 interface FTSObject1<T extends HL7TypeMap> {
   FileBatchCount?: string | null;
   FileTrailerComment?: string | null;
 }
+
+type GT1Fields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20;
 
 interface GT1Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -213,6 +283,52 @@ interface GT1Object1<T extends HL7TypeMap> {
   GuarantorEmployeeIDNumber?: string | null;
   GuarantorEmploymentStatus?: string | null;
 }
+
+type IN1Fields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44;
 
 interface IN1Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -261,11 +377,15 @@ interface IN1Object1<T extends HL7TypeMap> {
   InsuredSEmployerSAddress?: string | null;
 }
 
+type MRGFields1 = 1 | 2 | 3;
+
 interface MRGObject1<T extends HL7TypeMap> {
   PriorPatientIdentifierList?: string | null;
   PriorAlternatePatientID?: string | null;
   PriorPatientAccountNumber?: string | null;
 }
+
+type MSAFields1 = 1 | 2 | 3 | 4 | 5;
 
 interface MSAObject1<T extends HL7TypeMap> {
   AcknowledgmentCode?: string | null;
@@ -274,6 +394,8 @@ interface MSAObject1<T extends HL7TypeMap> {
   ExpectedSequenceNumber?: number | string | null;
   DelayedAcknowledgmentType?: string | null;
 }
+
+type MSHFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
 
 interface MSHObject1<T extends HL7TypeMap> {
   FieldSeparator?: string | null;
@@ -292,9 +414,13 @@ interface MSHObject1<T extends HL7TypeMap> {
   ContinuationPointer?: string | null;
 }
 
+type NCKFields1 = 1;
+
 interface NCKObject1<T extends HL7TypeMap> {
   SystemDateTime?: string | null;
 }
+
+type NK1Fields1 = 1 | 2 | 3 | 4 | 5;
 
 interface NK1Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -304,10 +430,14 @@ interface NK1Object1<T extends HL7TypeMap> {
   PhoneNumber?: string[] | null;
 }
 
+type NPUFields1 = 1 | 2;
+
 interface NPUObject1<T extends HL7TypeMap> {
   BedLocation?: string | null;
   BedStatus?: string | null;
 }
+
+type NSCFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
 interface NSCObject1<T extends HL7TypeMap> {
   ApplicationChangeType?: string | null;
@@ -320,6 +450,9 @@ interface NSCObject1<T extends HL7TypeMap> {
   NewApplication?: string | null;
   NewFacility?: string | null;
 }
+
+type NSTFields1 =
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
 
 interface NSTObject1<T extends HL7TypeMap> {
   StatisticsAvailable?: string | null;
@@ -339,11 +472,51 @@ interface NSTObject1<T extends HL7TypeMap> {
   ApplicationControlLevelErrors?: number | string | null;
 }
 
+type NTEFields1 = 1 | 2 | 3;
+
 interface NTEObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SourceOfComment?: string | null;
   Comment?: string[] | null;
 }
+
+type OBRFields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36;
 
 interface OBRObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -384,6 +557,8 @@ interface OBRObject1<T extends HL7TypeMap> {
   ScheduledDateTime?: string | null;
 }
 
+type OBXFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
 interface OBXObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ValueType?: string | null;
@@ -398,6 +573,8 @@ interface OBXObject1<T extends HL7TypeMap> {
   ObservationResultStatus?: string | null;
   EffectiveDateOfReferenceRange?: string | null;
 }
+
+type ORCFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
 
 interface ORCObject1<T extends HL7TypeMap> {
   OrderControl?: string | null;
@@ -416,12 +593,36 @@ interface ORCObject1<T extends HL7TypeMap> {
   CallBackPhoneNumber?: string[] | null;
 }
 
+type OROFields1 = 1 | 2 | 3 | 4;
+
 interface OROObject1<T extends HL7TypeMap> {
   OrderItemId?: T['CE'] | null;
   SubstituteAllowed?: string | null;
   ResultsCopiesTo?: string[] | null;
   StockLocation?: string | null;
 }
+
+type PIDFields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20;
 
 interface PIDObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -446,6 +647,8 @@ interface PIDObject1<T extends HL7TypeMap> {
   DriverSLicenseNumberPatient?: string | null;
 }
 
+type PR1Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
+
 interface PR1Object1<T extends HL7TypeMap> {
   SetID?: (number | string)[] | null;
   ProcedureCodingMethod?: string | null;
@@ -461,6 +664,57 @@ interface PR1Object1<T extends HL7TypeMap> {
   ProcedurePractitioner?: string | null;
   ConsentCode?: string | null;
 }
+
+type PV1Fields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47
+  | 48
+  | 49;
 
 interface PV1Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -514,6 +768,8 @@ interface PV1Object1<T extends HL7TypeMap> {
   TotalPayments?: number | string | null;
 }
 
+type QRDFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
 interface QRDObject1<T extends HL7TypeMap> {
   QueryDateTime?: string | null;
   QueryFormatCode?: string | null;
@@ -529,6 +785,8 @@ interface QRDObject1<T extends HL7TypeMap> {
   QueryResultsLevel?: string | null;
 }
 
+type QRFFields1 = 1 | 2 | 3 | 4 | 5;
+
 interface QRFObject1<T extends HL7TypeMap> {
   WhereSubjectFilter?: string[] | null;
   WhenDataStartDateTime?: string | null;
@@ -536,6 +794,38 @@ interface QRFObject1<T extends HL7TypeMap> {
   WhatUserQualifier?: string[] | null;
   OtherQRYSubjectFilter?: string[] | null;
 }
+
+type RX1Fields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30;
 
 interface RX1Object1<T extends HL7TypeMap> {
   UNUSED?: string | null;
@@ -570,6 +860,31 @@ interface RX1Object1<T extends HL7TypeMap> {
   Instructions?: string[] | null;
 }
 
+type UB1Fields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23;
+
 interface UB1Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   BloodDeductible?: string | null;
@@ -596,6 +911,8 @@ interface UB1Object1<T extends HL7TypeMap> {
   UB82Locator45?: string | null;
 }
 
+type URDFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
 interface URDObject1<T extends HL7TypeMap> {
   RUDateTime?: string | null;
   ReportPriority?: string | null;
@@ -606,6 +923,8 @@ interface URDObject1<T extends HL7TypeMap> {
   RUResultsLevel?: string | null;
 }
 
+type URSFields1 = 1 | 2 | 3 | 4 | 5;
+
 interface URSObject1<T extends HL7TypeMap> {
   RUWhereSubjectDefinition?: string[] | null;
   RUWhenDataStartDateTime?: string | null;
@@ -613,6 +932,8 @@ interface URSObject1<T extends HL7TypeMap> {
   RUWhatUserQualifier?: string[] | null;
   RUOtherResultsSubjectDefinition?: string[] | null;
 }
+
+type PD1Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 interface PD1Object1<T extends HL7TypeMap> {
   LivingDependency?: string | null;
@@ -1115,6 +1436,8 @@ interface ACCObject2<T extends HL7TypeMap> {
   AccidentLocation?: string | null;
 }
 
+type AL1Fields1 = 1 | 2 | 3 | 4 | 5 | 6;
+
 interface AL1Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   AllergenTypeCode?: string | null;
@@ -1151,6 +1474,9 @@ interface BTSObject2<T extends HL7TypeMap> {
   BatchTotals?: T['CM_BATCH_TOTAL'][] | null;
 }
 
+type DG1Fields2 =
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
+
 interface DG1Object2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   DiagnosisCodingMethod?: string | null;
@@ -1174,6 +1500,8 @@ interface ERRObject2<T extends HL7TypeMap> {
   ErrorCodeAndLocation?: T['CM_ELD'][] | null;
 }
 
+type EVNFields2 = 1 | 2 | 3 | 4 | 5;
+
 interface EVNObject2<T extends HL7TypeMap> {
   EventTypeCode?: string | null;
   RecordedDateTime?: T['TS'] | null;
@@ -1196,6 +1524,31 @@ interface FHSObject2<T extends HL7TypeMap> {
   FileControlID?: string | null;
   ReferenceFileControlID?: string | null;
 }
+
+type FT1Fields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23;
 
 interface FT1Object2<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -1228,6 +1581,29 @@ interface FTSObject2<T extends HL7TypeMap> {
   FileTrailerComment?: string | null;
 }
 
+type GT1Fields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21;
+
 interface GT1Object2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   GuarantorNumber?: string | null;
@@ -1251,6 +1627,54 @@ interface GT1Object2<T extends HL7TypeMap> {
   GuarantorEmploymentStatus?: string | null;
   GuarantorOrganizationName?: string | null;
 }
+
+type IN1Fields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46;
 
 interface IN1Object2<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -1301,6 +1725,38 @@ interface IN1Object2<T extends HL7TypeMap> {
   PriorInsurancePlanID?: string | null;
 }
 
+type IN2Fields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30;
+
 interface IN2Object1<T extends HL7TypeMap> {
   InsuredSEmployeeID?: string | null;
   InsuredSSocialSecurityNumber?: string | null;
@@ -1334,6 +1790,33 @@ interface IN2Object1<T extends HL7TypeMap> {
   DailyDeductible?: T['CM_DDI'] | null;
 }
 
+type IN3Fields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25;
+
 interface IN3Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   CertificationNumber?: string | null;
@@ -1362,6 +1845,8 @@ interface IN3Object1<T extends HL7TypeMap> {
   SecondOpinionPhysician?: T['CN'] | null;
 }
 
+type MFAFields1 = 1 | 2 | 3 | 4 | 5;
+
 interface MFAObject1<T extends HL7TypeMap> {
   RecordLevelEventCode?: string | null;
   MFNControlID?: string | null;
@@ -1370,12 +1855,16 @@ interface MFAObject1<T extends HL7TypeMap> {
   PrimaryKeyValueMFA?: T['CE'][] | null;
 }
 
+type MFEFields1 = 1 | 2 | 3 | 4;
+
 interface MFEObject1<T extends HL7TypeMap> {
   RecordLevelEventCode?: string | null;
   MFNControlID?: string | null;
   EffectiveDateTime?: T['TS'] | null;
   PrimaryKeyValueMFE?: T['CE'][] | null;
 }
+
+type MFIFields1 = 1 | 2 | 3 | 4 | 5 | 6;
 
 interface MFIObject1<T extends HL7TypeMap> {
   MasterFileIdentifier?: T['CE'] | null;
@@ -1386,12 +1875,16 @@ interface MFIObject1<T extends HL7TypeMap> {
   ResponseLevelCode?: string | null;
 }
 
+type MRGFields2 = 1 | 2 | 3 | 4;
+
 interface MRGObject2<T extends HL7TypeMap> {
   PriorPatientIdentifierList?: T['CM_PAT_ID'] | null;
   PriorAlternatePatientID?: T['CM_PAT_ID'] | null;
   PriorPatientAccountNumber?: string | null;
   PriorPatientID?: string | null;
 }
+
+type MSAFields2 = 1 | 2 | 3 | 4 | 5 | 6;
 
 interface MSAObject2<T extends HL7TypeMap> {
   AcknowledgmentCode?: string | null;
@@ -1401,6 +1894,9 @@ interface MSAObject2<T extends HL7TypeMap> {
   DelayedAcknowledgmentType?: string | null;
   ErrorCondition?: T['CE'] | null;
 }
+
+type MSHFields2 =
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17;
 
 interface MSHObject2<T extends HL7TypeMap> {
   FieldSeparator?: string | null;
@@ -1425,6 +1921,8 @@ interface MSHObject2<T extends HL7TypeMap> {
 interface NCKObject2<T extends HL7TypeMap> {
   SystemDateTime?: T['TS'] | null;
 }
+
+type NK1Fields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
 
 interface NK1Object2<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -1504,6 +2002,9 @@ interface OBRObject2<T extends HL7TypeMap> {
   ScheduledDateTime?: T['TS'] | null;
 }
 
+type OBXFields2 =
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
+
 interface OBXObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ValueType?: string | null;
@@ -1523,6 +2024,8 @@ interface OBXObject2<T extends HL7TypeMap> {
   ResponsibleObserver?: T['CN'] | null;
 }
 
+type ODSFields1 = 1 | 2 | 3 | 4;
+
 interface ODSObject1<T extends HL7TypeMap> {
   Type?: string | null;
   ServicePeriod?: T['CE'][] | null;
@@ -1530,11 +2033,57 @@ interface ODSObject1<T extends HL7TypeMap> {
   TextInstruction?: string[] | null;
 }
 
+type ODTFields1 = 1 | 2 | 3;
+
 interface ODTObject1<T extends HL7TypeMap> {
   TrayType?: T['CE'] | null;
   ServicePeriod?: T['CE'][] | null;
   TextInstruction?: string[] | null;
 }
+
+type OM1Fields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42;
 
 interface OM1Object1<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: string | null;
@@ -1581,6 +2130,8 @@ interface OM1Object1<T extends HL7TypeMap> {
   KindOfQuantityObserved?: string | null;
 }
 
+type OM2Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+
 interface OM2Object1<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: string | null;
   UnitsOfMeasure?: number | string | null;
@@ -1595,6 +2146,8 @@ interface OM2Object1<T extends HL7TypeMap> {
   MinimumMeaningfulIncrements2?: number | string | null;
 }
 
+type OM3Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
 interface OM3Object1<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: string | null;
   PreferredCodingSystem?: number | string | null;
@@ -1605,6 +2158,9 @@ interface OM3Object1<T extends HL7TypeMap> {
   ValueType?: T['CE'] | null;
   DataType?: string | null;
 }
+
+type OM4Fields1 =
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
 
 interface OM4Object1<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: string | null;
@@ -1624,6 +2180,8 @@ interface OM4Object1<T extends HL7TypeMap> {
   SpecimenRetentionTime2?: T['CQ'] | null;
 }
 
+type OM5Fields1 = 1 | 2 | 3 | 4;
+
 interface OM5Object1<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: string | null;
   TestObservationsIncludedWithinAnOrderedTestBattery?: number | string | null;
@@ -1631,11 +2189,34 @@ interface OM5Object1<T extends HL7TypeMap> {
   ObservationIDSuffixes2?: string | null;
 }
 
+type OM6Fields1 = 1 | 2 | 3;
+
 interface OM6Object1<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: string | null;
   DerivationRule?: number | string | null;
   DerivationRule2?: string | null;
 }
+
+type ORCFields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19;
 
 interface ORCObject2<T extends HL7TypeMap> {
   OrderControl?: string | null;
@@ -1658,6 +2239,35 @@ interface ORCObject2<T extends HL7TypeMap> {
   EnteringDevice?: T['CE'] | null;
   ActionBy?: T['CN'] | null;
 }
+
+type PIDFields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27;
 
 interface PIDObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -1689,6 +2299,8 @@ interface PIDObject2<T extends HL7TypeMap> {
   VeteransMilitaryStatus?: string | null;
 }
 
+type PR1Fields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
 interface PR1Object2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ProcedureCodingMethod?: string[] | null;
@@ -1706,6 +2318,8 @@ interface PR1Object2<T extends HL7TypeMap> {
   ProcedurePriority?: number | string | null;
 }
 
+type PRAFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
 interface PRAObject1<T extends HL7TypeMap> {
   PrimaryKeyValuePRA?: string | null;
   PractitionerGroup?: T['CE'][] | null;
@@ -1715,6 +2329,58 @@ interface PRAObject1<T extends HL7TypeMap> {
   PractitionerIDNumbers?: T['CM_PLN'][] | null;
   Privileges?: T['CM_PIP'][] | null;
 }
+
+type PV1Fields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47
+  | 48
+  | 49
+  | 50;
 
 interface PV1Object2<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -1769,6 +2435,8 @@ interface PV1Object2<T extends HL7TypeMap> {
   AlternateVisitID?: T['CM_PAT_ID_0192'] | null;
 }
 
+type PV2Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+
 interface PV2Object1<T extends HL7TypeMap> {
   PriorPendingLocation?: T['CM_INTERNAL_LOCATION'] | null;
   AccommodationCode?: T['CE'] | null;
@@ -1796,6 +2464,8 @@ interface QRDObject2<T extends HL7TypeMap> {
   QueryResultsLevel?: string | null;
 }
 
+type QRFFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
 interface QRFObject2<T extends HL7TypeMap> {
   WhereSubjectFilter?: string[] | null;
   WhenDataStartDateTime?: T['TS'] | null;
@@ -1807,6 +2477,8 @@ interface QRFObject2<T extends HL7TypeMap> {
   DateTimeSelectionQualifier?: string[] | null;
 }
 
+type RQ1Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
 interface RQ1Object1<T extends HL7TypeMap> {
   AnticipatedPrice?: number | string | null;
   ManufacturerIdentifier?: T['CE'] | null;
@@ -1816,6 +2488,8 @@ interface RQ1Object1<T extends HL7TypeMap> {
   Taxable?: string | null;
   SubstituteAllowed?: string | null;
 }
+
+type RQDFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
 interface RQDObject1<T extends HL7TypeMap> {
   RequisitionLineNumber?: number | string | null;
@@ -1829,6 +2503,8 @@ interface RQDObject1<T extends HL7TypeMap> {
   DeliverToID?: T['CE'] | null;
   DateNeeded?: string | null;
 }
+
+type RXAFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 interface RXAObject1<T extends HL7TypeMap> {
   GiveSubIDCounter?: number | string | null;
@@ -1845,12 +2521,17 @@ interface RXAObject1<T extends HL7TypeMap> {
   AdministeredPer?: string | null;
 }
 
+type RXCFields1 = 1 | 2 | 3 | 4;
+
 interface RXCObject1<T extends HL7TypeMap> {
   RXComponentType?: string | null;
   ComponentCode?: T['CE'] | null;
   ComponentAmount?: number | string | null;
   ComponentUnits?: T['CE'] | null;
 }
+
+type RXDFields1 =
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
 
 interface RXDObject1<T extends HL7TypeMap> {
   DispenseSubIDCounter?: number | string | null;
@@ -1869,6 +2550,32 @@ interface RXDObject1<T extends HL7TypeMap> {
   NeedsHumanReview?: string | null;
   PharmacyTreatmentSupplierSSpecialDispensingInstructions?: T['CE'] | null;
 }
+
+type RXEFields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24;
 
 interface RXEObject1<T extends HL7TypeMap> {
   QuantityTiming?: T['TQ'][] | null;
@@ -1897,6 +2604,9 @@ interface RXEObject1<T extends HL7TypeMap> {
   GiveRateUnits?: T['CE'] | null;
 }
 
+type RXGFields1 =
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
+
 interface RXGObject1<T extends HL7TypeMap> {
   GiveSubIDCounter?: number | string | null;
   DispenseSubIDCounter?: number | string | null;
@@ -1916,6 +2626,9 @@ interface RXGObject1<T extends HL7TypeMap> {
   GiveRateAmount?: T['CE'] | null;
   GiveRateUnits?: T['CE'] | null;
 }
+
+type RXOFields1 =
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17;
 
 interface RXOObject1<T extends HL7TypeMap> {
   RequestedGiveCode?: T['CE'] | null;
@@ -1937,12 +2650,17 @@ interface RXOObject1<T extends HL7TypeMap> {
   RequestedGivePer?: string | null;
 }
 
+type RXRFields1 = 1 | 2 | 3 | 4;
+
 interface RXRObject1<T extends HL7TypeMap> {
   Route?: T['CE'] | null;
   AdministrationSite?: T['CE'] | null;
   AdministrationDevice?: T['CE'] | null;
   AdministrationMethod?: T['CE'] | null;
 }
+
+type STFFields1 =
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
 
 interface STFObject1<T extends HL7TypeMap> {
   PrimaryKeyValueSTF?: T['CE'] | null;
@@ -1989,6 +2707,9 @@ interface UB1Object2<T extends HL7TypeMap> {
   UB82Locator45?: string | null;
 }
 
+type UB2Fields1 =
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
+
 interface UB2Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   CoInsurance?: string | null;
@@ -2017,6 +2738,8 @@ interface URDObject2<T extends HL7TypeMap> {
   RUDisplayPrintLocations?: string[] | null;
   RUResultsLevel?: string | null;
 }
+
+type URSFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
 interface URSObject2<T extends HL7TypeMap> {
   RUWhereSubjectDefinition?: string[] | null;
@@ -2467,6 +3190,8 @@ type HL7Types_2_3 = {
   XTN: XTNObject1;
 };
 
+type ACCFields2 = 1 | 2 | 3 | 4 | 5 | 6;
+
 interface ACCObject3<T extends HL7TypeMap> {
   AccidentDateTime?: T['TS'] | null;
   AccidentCode?: T['CE'] | null;
@@ -2475,6 +3200,8 @@ interface ACCObject3<T extends HL7TypeMap> {
   AccidentJobRelatedIndicator?: string | null;
   AccidentDeathIndicator?: string | null;
 }
+
+type AIGFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
 
 interface AIGObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -2493,6 +3220,8 @@ interface AIGObject1<T extends HL7TypeMap> {
   FillerStatusCode?: T['CE'] | null;
 }
 
+type AILFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
 interface AILObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SegmentActionCode?: string | null;
@@ -2507,6 +3236,8 @@ interface AILObject1<T extends HL7TypeMap> {
   AllowSubstitutionCode?: string | null;
   FillerStatusCode?: T['CE'] | null;
 }
+
+type AIPFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 interface AIPObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -2523,6 +3254,8 @@ interface AIPObject1<T extends HL7TypeMap> {
   FillerStatusCode?: T['CE'] | null;
 }
 
+type AISFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+
 interface AISObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SegmentActionCode?: string | null;
@@ -2536,6 +3269,8 @@ interface AISObject1<T extends HL7TypeMap> {
   FillerStatusCode?: T['CE'] | null;
 }
 
+type APRFields1 = 1 | 2 | 3 | 4 | 5;
+
 interface APRObject1<T extends HL7TypeMap> {
   TimeSelectionCriteria?: T['SCV'][] | null;
   ResourceSelectionCriteria?: T['SCV'][] | null;
@@ -2543,6 +3278,31 @@ interface APRObject1<T extends HL7TypeMap> {
   SlotSpacingCriteria?: number | string | null;
   FillerOverrideCriteria?: T['SCV'][] | null;
 }
+
+type ARQFields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23;
 
 interface ARQObject1<T extends HL7TypeMap> {
   PlacerAppointmentID?: T['EI'] | null;
@@ -2570,6 +3330,8 @@ interface ARQObject1<T extends HL7TypeMap> {
   ParentFillerAppointmentID?: T['EI'] | null;
 }
 
+type AUTFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+
 interface AUTObject1<T extends HL7TypeMap> {
   AuthorizingPayorPlanID?: T['CE'] | null;
   AuthorizingPayorCompanyID?: T['CE'] | null;
@@ -2595,6 +3357,8 @@ interface BTSObject3<T extends HL7TypeMap> {
   BatchTotals?: (number | string)[] | null;
 }
 
+type CDMFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
+
 interface CDMObject1<T extends HL7TypeMap> {
   PrimaryKeyValueCDM?: T['CE'] | null;
   ChargeCodeAlias?: T['CE'][] | null;
@@ -2611,6 +3375,8 @@ interface CDMObject1<T extends HL7TypeMap> {
   RoomFeeIndicator?: string | null;
 }
 
+type CM0Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+
 interface CM0Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SponsorStudyID?: T['EI'] | null;
@@ -2625,11 +3391,15 @@ interface CM0Object1<T extends HL7TypeMap> {
   ContactSAddress?: T['XAD'] | null;
 }
 
+type CM1Fields1 = 1 | 2 | 3;
+
 interface CM1Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   StudyPhaseIdentifier?: T['CE'] | null;
   DescriptionOfStudyPhase?: string | null;
 }
+
+type CM2Fields1 = 1 | 2 | 3 | 4;
 
 interface CM2Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -2638,12 +3408,17 @@ interface CM2Object1<T extends HL7TypeMap> {
   EventsScheduledThisTimePoint?: T['CE'][] | null;
 }
 
+type CSPFields1 = 1 | 2 | 3 | 4;
+
 interface CSPObject1<T extends HL7TypeMap> {
   StudyPhaseIdentifier?: T['CE'] | null;
   DateTimeStudyPhaseBegan?: T['TS'] | null;
   DateTimeStudyPhaseEnded?: T['TS'] | null;
   StudyPhaseEvaluability?: T['CE'] | null;
 }
+
+type CSRFields1 =
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
 
 interface CSRObject1<T extends HL7TypeMap> {
   SponsorStudyID?: T['EI'] | null;
@@ -2664,11 +3439,15 @@ interface CSRObject1<T extends HL7TypeMap> {
   ReasonEndedStudy?: T['CE'] | null;
 }
 
+type CSSFields1 = 1 | 2 | 3;
+
 interface CSSObject1<T extends HL7TypeMap> {
   StudyScheduledTimePoint?: T['CE'] | null;
   StudyScheduledPatientTimePoint?: T['TS'] | null;
   StudyQualityControlCodes?: T['CE'][] | null;
 }
+
+type CTDFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
 interface CTDObject1<T extends HL7TypeMap> {
   ContactRole?: T['CE'] | null;
@@ -2680,11 +3459,15 @@ interface CTDObject1<T extends HL7TypeMap> {
   ContactIdentifiers?: T['CM_PI'][] | null;
 }
 
+type CTIFields1 = 1 | 2 | 3;
+
 interface CTIObject1<T extends HL7TypeMap> {
   SponsorStudyID?: T['EI'] | null;
   StudyPhaseIdentifier?: T['CE'] | null;
   StudyScheduledTimePoint?: T['CE'] | null;
 }
+
+type DB1Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
 interface DB1Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -2696,6 +3479,27 @@ interface DB1Object1<T extends HL7TypeMap> {
   DisabilityReturnToWorkDate?: string | null;
   DisabilityUnableToWorkDate?: string | null;
 }
+
+type DG1Fields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19;
 
 interface DG1Object3<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -2719,6 +3523,8 @@ interface DG1Object3<T extends HL7TypeMap> {
   AttestationDateTime?: T['TS'] | null;
 }
 
+type DRGFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+
 interface DRGObject1<T extends HL7TypeMap> {
   DiagnosticRelatedGroup?: T['CE'] | null;
   DRGAssignedDateTime?: T['TS'] | null;
@@ -2732,6 +3538,8 @@ interface DRGObject1<T extends HL7TypeMap> {
   ConfidentialIndicator?: string | null;
 }
 
+type EQLFields1 = 1 | 2 | 3 | 4;
+
 interface EQLObject1<T extends HL7TypeMap> {
   QueryTag?: string | null;
   QueryResponseFormatCode?: string | null;
@@ -2739,11 +3547,15 @@ interface EQLObject1<T extends HL7TypeMap> {
   EQLQueryStatement?: string | null;
 }
 
+type ERQFields1 = 1 | 2 | 3;
+
 interface ERQObject1<T extends HL7TypeMap> {
   QueryTag?: string | null;
   EventIdentifier?: T['CE'] | null;
   InputParameterList?: T['QIP'][] | null;
 }
+
+type EVNFields3 = 1 | 2 | 3 | 4 | 5 | 6;
 
 interface EVNObject3<T extends HL7TypeMap> {
   EventTypeCode?: string | null;
@@ -2753,6 +3565,8 @@ interface EVNObject3<T extends HL7TypeMap> {
   OperatorID?: T['CN'] | null;
   EventOccurred?: T['TS'] | null;
 }
+
+type FACFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 interface FACObject1<T extends HL7TypeMap> {
   FacilityIDFAC?: T['EI'][] | null;
@@ -2768,6 +3582,33 @@ interface FACObject1<T extends HL7TypeMap> {
   SignatureAuthorityAddress?: T['XAD'] | null;
   SignatureAuthorityTelecommunication?: T['XTN'] | null;
 }
+
+type FT1Fields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25;
 
 interface FT1Object3<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -2797,6 +3638,29 @@ interface FT1Object3<T extends HL7TypeMap> {
   ProcedureCode?: T['CE'] | null;
 }
 
+type GOLFields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21;
+
 interface GOLObject1<T extends HL7TypeMap> {
   ActionCode?: string | null;
   ActionDateTime?: T['TS'] | null;
@@ -2820,6 +3684,63 @@ interface GOLObject1<T extends HL7TypeMap> {
   GoalTargetType?: T['CE'][] | null;
   GoalTargetName?: T['XPN'][] | null;
 }
+
+type GT1Fields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47
+  | 48
+  | 49
+  | 50
+  | 51
+  | 52
+  | 53
+  | 54
+  | 55;
 
 interface GT1Object3<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -2879,6 +3800,57 @@ interface GT1Object3<T extends HL7TypeMap> {
   GuarantorRace?: string | null;
 }
 
+type IN1Fields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47
+  | 48
+  | 49;
+
 interface IN1Object3<T extends HL7TypeMap> {
   SetID?: number | string | null;
   HealthPlanID?: T['CE'] | null;
@@ -2930,6 +3902,80 @@ interface IN1Object3<T extends HL7TypeMap> {
   Handicap?: string | null;
   InsuredSIDNumber?: T['CX'] | null;
 }
+
+type IN2Fields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47
+  | 48
+  | 49
+  | 50
+  | 51
+  | 52
+  | 53
+  | 54
+  | 55
+  | 56
+  | 57
+  | 58
+  | 59
+  | 60
+  | 61
+  | 62
+  | 63
+  | 64
+  | 65
+  | 66
+  | 67
+  | 68
+  | 69
+  | 70
+  | 71
+  | 72;
 
 interface IN2Object2<T extends HL7TypeMap> {
   InsuredSEmployeeID?: T['CX'] | null;
@@ -3034,12 +4080,16 @@ interface IN3Object2<T extends HL7TypeMap> {
   SecondOpinionPhysician?: T['XCN'][] | null;
 }
 
+type LCCFields1 = 1 | 2 | 3 | 4;
+
 interface LCCObject1<T extends HL7TypeMap> {
   PrimaryKeyValueLCC?: T['PL'] | null;
   LocationDepartment?: string | null;
   AccommodationType?: T['CE'][] | null;
   ChargeCode?: T['CE'][] | null;
 }
+
+type LCHFields1 = 1 | 2 | 3 | 4 | 5;
 
 interface LCHObject1<T extends HL7TypeMap> {
   PrimaryKeyValueLCH?: T['PL'] | null;
@@ -3048,6 +4098,8 @@ interface LCHObject1<T extends HL7TypeMap> {
   LocationCharacteristicID?: T['CE'] | null;
   LocationCharacteristicValueLCH?: T['CE'] | null;
 }
+
+type LDPFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
 
 interface LDPObject1<T extends HL7TypeMap> {
   PrimaryKeyValueLDP?: T['PL'] | null;
@@ -3063,6 +4115,8 @@ interface LDPObject1<T extends HL7TypeMap> {
   ContactPhone?: T['XTN'] | null;
 }
 
+type LOCFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
 interface LOCObject1<T extends HL7TypeMap> {
   PrimaryKeyValueLOC?: T['PL'] | null;
   LocationDescription?: string | null;
@@ -3073,6 +4127,8 @@ interface LOCObject1<T extends HL7TypeMap> {
   LicenseNumber?: T['CE'][] | null;
   LocationEquipment?: string[] | null;
 }
+
+type LRLFields1 = 1 | 2 | 3 | 4 | 5 | 6;
 
 interface LRLObject1<T extends HL7TypeMap> {
   PrimaryKeyValueLRL?: T['PL'] | null;
@@ -3092,6 +4148,8 @@ interface MFIObject2<T extends HL7TypeMap> {
   ResponseLevelCode?: string | null;
 }
 
+type MRGFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
 interface MRGObject3<T extends HL7TypeMap> {
   PriorPatientIdentifierList?: T['CX'][] | null;
   PriorAlternatePatientID?: T['CX'][] | null;
@@ -3101,6 +4159,27 @@ interface MRGObject3<T extends HL7TypeMap> {
   PriorAlternateVisitID?: T['CX'] | null;
   PriorPatientName?: T['CX'] | null;
 }
+
+type MSHFields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19;
 
 interface MSHObject3<T extends HL7TypeMap> {
   FieldSeparator?: string | null;
@@ -3123,6 +4202,45 @@ interface MSHObject3<T extends HL7TypeMap> {
   CharacterSet?: string | null;
   PrincipalLanguageOfMessage?: T['CE'] | null;
 }
+
+type NK1Fields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37;
 
 interface NK1Object3<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -3169,6 +4287,8 @@ interface NPUObject3<T extends HL7TypeMap> {
   BedStatus?: string | null;
 }
 
+type NSCFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
 interface NSCObject2<T extends HL7TypeMap> {
   ApplicationChangeType?: string | null;
   CurrentCPU?: string | null;
@@ -3179,6 +4299,51 @@ interface NSCObject2<T extends HL7TypeMap> {
   NewFileserver?: string | null;
   NewApplication?: string | null;
 }
+
+type OBRFields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43;
 
 interface OBRObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -3226,6 +4391,9 @@ interface OBRObject3<T extends HL7TypeMap> {
   PlannedPatientTransportComment?: T['CE'][] | null;
 }
 
+type OBXFields3 =
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17;
+
 interface OBXObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ValueType?: string | null;
@@ -3258,6 +4426,55 @@ interface ODTObject2<T extends HL7TypeMap> {
   ServicePeriod?: T['CE'][] | null;
   TextInstruction?: string | null;
 }
+
+type OM1Fields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47;
 
 interface OM1Object2<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
@@ -3309,6 +4526,8 @@ interface OM1Object2<T extends HL7TypeMap> {
   ModalityOfImagingMeasurement?: T['CE'] | null;
 }
 
+type OM2Fields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+
 interface OM2Object2<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
   UnitsOfMeasure?: T['CE'] | null;
@@ -3322,6 +4541,8 @@ interface OM2Object2<T extends HL7TypeMap> {
   MinimumMeaningfulIncrements?: number | string | null;
 }
 
+type OM3Fields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
 interface OM3Object2<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
   PreferredCodingSystem?: T['CE'] | null;
@@ -3331,6 +4552,8 @@ interface OM3Object2<T extends HL7TypeMap> {
   CriticalTextCodesForCategoricalObservations?: T['CE'] | null;
   ValueType?: string | null;
 }
+
+type OM4Fields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
 
 interface OM4Object2<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
@@ -3349,11 +4572,15 @@ interface OM4Object2<T extends HL7TypeMap> {
   SpecimenRetentionTime?: T['CQ'] | null;
 }
 
+type OM5Fields2 = 1 | 2 | 3;
+
 interface OM5Object2<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
   TestObservationsIncludedWithinAnOrderedTestBattery?: T['CE'][] | null;
   ObservationIDSuffixes?: string | null;
 }
+
+type OM6Fields2 = 1 | 2;
 
 interface OM6Object2<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
@@ -3382,6 +4609,31 @@ interface ORCObject3<T extends HL7TypeMap> {
   ActionBy?: T['XCN'] | null;
 }
 
+type PCRFields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23;
+
 interface PCRObject1<T extends HL7TypeMap> {
   ImplicatedProduct?: T['CE'] | null;
   GenericProduct?: string | null;
@@ -3408,6 +4660,9 @@ interface PCRObject1<T extends HL7TypeMap> {
   IndirectExposureMechanism?: string[] | null;
 }
 
+type PDCFields1 =
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
+
 interface PDCObject1<T extends HL7TypeMap> {
   ManufacturerDistributor?: T['XON'] | null;
   Country?: T['CE'] | null;
@@ -3425,6 +4680,33 @@ interface PDCObject1<T extends HL7TypeMap> {
   DateFirstMarketed?: T['TS'] | null;
   DateLastMarketed?: T['TS'] | null;
 }
+
+type PEOFields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25;
 
 interface PEOObject1<T extends HL7TypeMap> {
   EventIdentifiersUsed?: T['CE'][] | null;
@@ -3454,6 +4736,8 @@ interface PEOObject1<T extends HL7TypeMap> {
   PrimaryObserverSIdentityMayBeDivulged?: string | null;
 }
 
+type PESFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
+
 interface PESObject1<T extends HL7TypeMap> {
   SenderOrganizationName?: T['XON'] | null;
   SenderIndividualName?: T['XCN'][] | null;
@@ -3469,6 +4753,38 @@ interface PESObject1<T extends HL7TypeMap> {
   EventReportSource?: string | null;
   EventReportedTo?: string[] | null;
 }
+
+type PIDFields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30;
 
 interface PIDObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -3503,6 +4819,9 @@ interface PIDObject3<T extends HL7TypeMap> {
   PatientDeathIndicator?: string | null;
 }
 
+type PR1Fields3 =
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
+
 interface PR1Object3<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ProcedureCodingMethod?: string | null;
@@ -3520,6 +4839,33 @@ interface PR1Object3<T extends HL7TypeMap> {
   ProcedurePriority?: number | string | null;
   AssociatedDiagnosisCode?: T['CE'] | null;
 }
+
+type PRBFields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25;
 
 interface PRBObject1<T extends HL7TypeMap> {
   ActionCode?: string | null;
@@ -3549,6 +4895,26 @@ interface PRBObject1<T extends HL7TypeMap> {
   SecuritySensitivity?: T['CE'] | null;
 }
 
+type PRCFields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18;
+
 interface PRCObject1<T extends HL7TypeMap> {
   PrimaryKeyValuePRC?: T['CE'] | null;
   FacilityIDPRC?: T['EI'][] | null;
@@ -3570,6 +4936,8 @@ interface PRCObject1<T extends HL7TypeMap> {
   ChargeOnIndicator?: string | null;
 }
 
+type PRDFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+
 interface PRDObject1<T extends HL7TypeMap> {
   ProviderRole?: T['CE'][] | null;
   ProviderName?: T['XPN'][] | null;
@@ -3581,6 +4949,8 @@ interface PRDObject1<T extends HL7TypeMap> {
   EffectiveStartDateOfProviderRole?: T['TS'] | null;
   EffectiveEndDateOfProviderRole?: T['TS'] | null;
 }
+
+type PSHFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
 
 interface PSHObject1<T extends HL7TypeMap> {
   ReportType?: string | null;
@@ -3600,6 +4970,8 @@ interface PSHObject1<T extends HL7TypeMap> {
     (number | string)[] | null;
 }
 
+type PTHFields1 = 1 | 2 | 3 | 4 | 5 | 6;
+
 interface PTHObject1<T extends HL7TypeMap> {
   ActionCode?: string | null;
   PathwayID?: T['CE'] | null;
@@ -3608,6 +4980,60 @@ interface PTHObject1<T extends HL7TypeMap> {
   PathwayLifeCycleStatus?: T['CE'] | null;
   ChangePathwayLifeCycleStatusDateTime?: T['TS'] | null;
 }
+
+type PV1Fields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47
+  | 48
+  | 49
+  | 50
+  | 51
+  | 52;
 
 interface PV1Object3<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -3664,6 +5090,45 @@ interface PV1Object3<T extends HL7TypeMap> {
   OtherHealthcareProvider?: T['XCN'][] | null;
 }
 
+type PV2Fields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37;
+
 interface PV2Object2<T extends HL7TypeMap> {
   PriorPendingLocation?: T['PL'] | null;
   AccommodationCode?: T['CE'] | null;
@@ -3704,6 +5169,8 @@ interface PV2Object2<T extends HL7TypeMap> {
   BabyDetainedIndicator?: string | null;
 }
 
+type QAKFields1 = 1 | 2;
+
 interface QAKObject1<T extends HL7TypeMap> {
   QueryTag?: string | null;
   QueryResponseStatus?: string | null;
@@ -3724,6 +5191,8 @@ interface QRDObject3<T extends HL7TypeMap> {
   QueryResultsLevel?: string | null;
 }
 
+type QRFFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+
 interface QRFObject3<T extends HL7TypeMap> {
   WhereSubjectFilter?: string[] | null;
   WhenDataStartDateTime?: T['TS'] | null;
@@ -3736,14 +5205,20 @@ interface QRFObject3<T extends HL7TypeMap> {
   WhenQuantityTimingQualifier?: T['TQ'] | null;
 }
 
+type RDFFields1 = 1 | 2;
+
 interface RDFObject1<T extends HL7TypeMap> {
   NumberOfColumnsPerRow?: number | string | null;
   ColumnDescription?: T['RCD'][] | null;
 }
 
+type RDTFields1 = 1;
+
 interface RDTObject1<T extends HL7TypeMap> {
   ColumnValue?: string | null;
 }
+
+type RF1Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
 
 interface RF1Object1<T extends HL7TypeMap> {
   ReferralStatus?: T['CE'] | null;
@@ -3759,11 +5234,15 @@ interface RF1Object1<T extends HL7TypeMap> {
   ExternalReferralIdentifier?: T['EI'][] | null;
 }
 
+type RGSFields1 = 1 | 2 | 3;
+
 interface RGSObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SegmentActionCode?: string | null;
   ResourceGroupID?: T['CE'] | null;
 }
+
+type ROLFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
 interface ROLObject1<T extends HL7TypeMap> {
   RoleInstanceID?: T['EI'] | null;
@@ -3785,6 +5264,30 @@ interface RQ1Object2<T extends HL7TypeMap> {
   Taxable?: string | null;
   SubstituteAllowed?: string | null;
 }
+
+type RXAFields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22;
 
 interface RXAObject2<T extends HL7TypeMap> {
   GiveSubIDCounter?: string | null;
@@ -3811,6 +5314,8 @@ interface RXAObject2<T extends HL7TypeMap> {
   SystemEntryDateTime?: T['TS'] | null;
 }
 
+type RXCFields2 = 1 | 2 | 3 | 4 | 5 | 6;
+
 interface RXCObject2<T extends HL7TypeMap> {
   RXComponentType?: string | null;
   ComponentCode?: T['CE'] | null;
@@ -3819,6 +5324,32 @@ interface RXCObject2<T extends HL7TypeMap> {
   ComponentStrength?: number | string | null;
   ComponentStrengthUnits?: T['CE'] | null;
 }
+
+type RXDFields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24;
 
 interface RXDObject2<T extends HL7TypeMap> {
   DispenseSubIDCounter?: number | string | null;
@@ -3846,6 +5377,38 @@ interface RXDObject2<T extends HL7TypeMap> {
   DispensePackageSizeUnit?: T['CE'] | null;
   DispensePackageMethod?: string | null;
 }
+
+type RXEFields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30;
 
 interface RXEObject2<T extends HL7TypeMap> {
   QuantityTiming?: T['TQ'] | null;
@@ -3880,6 +5443,30 @@ interface RXEObject2<T extends HL7TypeMap> {
   DispensePackageMethod?: string | null;
 }
 
+type RXGFields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22;
+
 interface RXGObject2<T extends HL7TypeMap> {
   GiveSubIDCounter?: string | null;
   DispenseSubIDCounter?: number | string | null;
@@ -3905,6 +5492,30 @@ interface RXGObject2<T extends HL7TypeMap> {
   Indication?: T['CE'] | null;
 }
 
+type RXOFields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22;
+
 interface RXOObject2<T extends HL7TypeMap> {
   RequestedGiveCode?: T['CE'] | null;
   RequestedGiveAmountMinimum?: number | string | null;
@@ -3929,6 +5540,33 @@ interface RXOObject2<T extends HL7TypeMap> {
   RequestedGiveRateAmount?: string | null;
   RequestedGiveRateUnits?: T['CE'] | null;
 }
+
+type SCHFields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25;
 
 interface SCHObject1<T extends HL7TypeMap> {
   PlacerAppointmentID?: T['EI'] | null;
@@ -3958,12 +5596,42 @@ interface SCHObject1<T extends HL7TypeMap> {
   FillerStatusCode?: T['CE'] | null;
 }
 
+type SPRFields1 = 1 | 2 | 3 | 4;
+
 interface SPRObject1<T extends HL7TypeMap> {
   QueryTag?: string | null;
   QueryResponseFormatCode?: string | null;
   StoredProcedureName?: T['CE'] | null;
   InputParameterList?: T['QIP'][] | null;
 }
+
+type STFFields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26;
 
 interface STFObject2<T extends HL7TypeMap> {
   PrimaryKeyValueSTF?: T['CE'] | null;
@@ -3993,6 +5661,31 @@ interface STFObject2<T extends HL7TypeMap> {
   DateLastDMVReview?: string | null;
   DateNextDMVReview?: string | null;
 }
+
+type TXAFields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23;
 
 interface TXAObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -4046,6 +5739,9 @@ interface UB1Object3<T extends HL7TypeMap> {
   UB82Locator45?: string | null;
 }
 
+type UB2Fields2 =
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17;
+
 interface UB2Object2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   CoInsurance?: string | null;
@@ -4076,6 +5772,8 @@ interface URDObject3<T extends HL7TypeMap> {
   RUResultsLevel?: string | null;
 }
 
+type URSFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+
 interface URSObject3<T extends HL7TypeMap> {
   RUWhereSubjectDefinition?: string[] | null;
   RUWhenDataStartDateTime?: T['TS'] | null;
@@ -4088,6 +5786,8 @@ interface URSObject3<T extends HL7TypeMap> {
   RUQuantityTimingQualifier?: T['TQ'] | null;
 }
 
+type VARFields1 = 1 | 2 | 3 | 4 | 5 | 6;
+
 interface VARObject1<T extends HL7TypeMap> {
   VarianceInstanceID?: T['EI'] | null;
   DocumentedDateTime?: T['TS'] | null;
@@ -4096,6 +5796,8 @@ interface VARObject1<T extends HL7TypeMap> {
   VarianceClassification?: T['CE'] | null;
   VarianceDescription?: string[] | null;
 }
+
+type VTQFields1 = 1 | 2 | 3 | 4 | 5;
 
 interface VTQObject1<T extends HL7TypeMap> {
   QueryTag?: string | null;
@@ -4834,6 +6536,34 @@ interface FACObject2<T extends HL7TypeMap> {
   SignatureAuthorityTelecommunication?: T['XTN'] | null;
 }
 
+type FT1Fields4 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26;
+
 interface FT1Object4<T extends HL7TypeMap> {
   SetID?: number | string | null;
   TransactionID?: string | null;
@@ -5096,6 +6826,8 @@ interface LRLObject2<T extends HL7TypeMap> {
   PatientLocationRelationshipValue?: T['PL'] | null;
 }
 
+type MFAFields2 = 1 | 2 | 3 | 4 | 5 | 6;
+
 interface MFAObject2<T extends HL7TypeMap> {
   RecordLevelEventCode?: string | null;
   MFNControlID?: string | null;
@@ -5104,6 +6836,8 @@ interface MFAObject2<T extends HL7TypeMap> {
   PrimaryKeyValueMFA?: T['CE'][] | null;
   PrimaryKeyValueTypeMFA?: string[] | null;
 }
+
+type MFEFields2 = 1 | 2 | 3 | 4 | 5;
 
 interface MFEObject2<T extends HL7TypeMap> {
   RecordLevelEventCode?: string | null;
@@ -5122,6 +6856,28 @@ interface MRGObject4<T extends HL7TypeMap> {
   PriorAlternateVisitID?: T['CX'] | null;
   PriorPatientName?: T['XPN'][] | null;
 }
+
+type MSHFields4 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20;
 
 interface MSHObject4<T extends HL7TypeMap> {
   FieldSeparator?: string | null;
@@ -5186,12 +6942,61 @@ interface NK1Object4<T extends HL7TypeMap> {
   ContactPersonSocialSecurityNumber?: string | null;
 }
 
+type NTEFields2 = 1 | 2 | 3 | 4;
+
 interface NTEObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SourceOfComment?: string | null;
   Comment?: string[] | null;
   CommentType?: T['CE'] | null;
 }
+
+type OBRFields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45;
 
 interface OBRObject4<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -5341,6 +7146,32 @@ interface OM4Object3<T extends HL7TypeMap> {
   SpecimenRetentionTime?: T['CQ'] | null;
 }
 
+type ORCFields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24;
+
 interface ORCObject4<T extends HL7TypeMap> {
   OrderControl?: string | null;
   PlacerOrderNumber?: T['EI'] | null;
@@ -5478,6 +7309,9 @@ interface PIDObject4<T extends HL7TypeMap> {
   PatientDeathIndicator?: string | null;
 }
 
+type PR1Fields4 =
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
+
 interface PR1Object4<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ProcedureCodingMethod?: string | null;
@@ -5496,6 +7330,8 @@ interface PR1Object4<T extends HL7TypeMap> {
   AssociatedDiagnosisCode?: T['CE'] | null;
   ProcedureCodeModifier?: T['CE'][] | null;
 }
+
+type PRAFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
 interface PRAObject2<T extends HL7TypeMap> {
   PrimaryKeyValuePRA?: T['CE'] | null;
@@ -5773,6 +7609,31 @@ interface RXGObject3<T extends HL7TypeMap> {
   Indication?: T['CE'][] | null;
 }
 
+type RXOFields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23;
+
 interface RXOObject3<T extends HL7TypeMap> {
   RequestedGiveCode?: T['CE'] | null;
   RequestedGiveAmountMinimum?: number | string | null;
@@ -5798,6 +7659,8 @@ interface RXOObject3<T extends HL7TypeMap> {
   RequestedGiveRateUnits?: T['CE'] | null;
   TotalDailyDose?: T['CQ'] | null;
 }
+
+type RXRFields2 = 1 | 2 | 3 | 4 | 5;
 
 interface RXRObject2<T extends HL7TypeMap> {
   Route?: T['CE'] | null;
@@ -6219,6 +8082,8 @@ type HL7Types_2_4 = {
   XTN: XTNObject1;
 };
 
+type ABSFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
 interface ABSObject1<T extends HL7TypeMap> {
   DischargeCareProvider?: T['XCN'] | null;
   TransferMedicalServiceCode?: T['CE'] | null;
@@ -6236,6 +8101,8 @@ interface ABSObject1<T extends HL7TypeMap> {
   StillbornIndicator?: string | null;
 }
 
+type ACCFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+
 interface ACCObject4<T extends HL7TypeMap> {
   AccidentDateTime?: T['TS'] | null;
   AccidentCode?: T['CE'] | null;
@@ -6249,6 +8116,8 @@ interface ACCObject4<T extends HL7TypeMap> {
   PoliceNotifiedIndicator?: string | null;
 }
 
+type AFFFields1 = 1 | 2 | 3 | 4 | 5;
+
 interface AFFObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ProfessionalOrganization?: T['XON'] | null;
@@ -6256,6 +8125,8 @@ interface AFFObject1<T extends HL7TypeMap> {
   ProfessionalOrganizationAffiliationDateRange?: T['DR'][] | null;
   ProfessionalAffiliationAdditionalInformation?: string | null;
 }
+
+type AISFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 interface AISObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -6280,6 +8151,33 @@ interface AL1Object3<T extends HL7TypeMap> {
   AllergyReactionCode?: string[] | null;
   IdentificationDate?: string | null;
 }
+
+type ARQFields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25;
 
 interface ARQObject3<T extends HL7TypeMap> {
   PlacerAppointmentID?: T['EI'] | null;
@@ -6309,10 +8207,14 @@ interface ARQObject3<T extends HL7TypeMap> {
   FillerOrderNumber?: T['EI'][] | null;
 }
 
+type BLCFields1 = 1 | 2;
+
 interface BLCObject1<T extends HL7TypeMap> {
   BloodProductCode?: T['CE'] | null;
   BloodAmount?: T['CQ'] | null;
 }
+
+type CNSFields1 = 1 | 2 | 3 | 4 | 5 | 6;
 
 interface CNSObject2<T extends HL7TypeMap> {
   StartingNotificationReferenceNumber?: number | string | null;
@@ -6322,6 +8224,8 @@ interface CNSObject2<T extends HL7TypeMap> {
   StartingNotificationCode?: T['CE'] | null;
   EndingNotificationCode?: T['CE'] | null;
 }
+
+type DRGFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
 
 interface DRGObject2<T extends HL7TypeMap> {
   DiagnosticRelatedGroup?: T['CE'] | null;
@@ -6337,10 +8241,14 @@ interface DRGObject2<T extends HL7TypeMap> {
   DRGTransferType?: string | null;
 }
 
+type DSCFields2 = 1 | 2;
+
 interface DSCObject2<T extends HL7TypeMap> {
   ContinuationPointer?: string | null;
   ContinuationStyle?: string | null;
 }
+
+type ECDFields1 = 1 | 2 | 3 | 4 | 5;
 
 interface ECDObject1<T extends HL7TypeMap> {
   ReferenceCommandNumber?: number | string | null;
@@ -6350,11 +8258,15 @@ interface ECDObject1<T extends HL7TypeMap> {
   Parameters?: string[] | null;
 }
 
+type ECRFields1 = 1 | 2 | 3;
+
 interface ECRObject1<T extends HL7TypeMap> {
   CommandResponse?: T['CE'] | null;
   DateTimeCompleted?: T['TS'] | null;
   CommandResponseParameters?: string[] | null;
 }
+
+type EDUFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
 interface EDUObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -6367,6 +8279,8 @@ interface EDUObject1<T extends HL7TypeMap> {
   SchoolAddress?: T['XAD'] | null;
 }
 
+type EQPFields1 = 1 | 2 | 3 | 4 | 5;
+
 interface EQPObject1<T extends HL7TypeMap> {
   EventType?: T['CE'] | null;
   FileName?: string | null;
@@ -6375,6 +8289,8 @@ interface EQPObject1<T extends HL7TypeMap> {
   TransactionData?: string | null;
 }
 
+type EQUFields1 = 1 | 2 | 3 | 4 | 5;
+
 interface EQUObject1<T extends HL7TypeMap> {
   EquipmentInstanceIdentifier?: T['EI'] | null;
   EventDateTime?: T['TS'] | null;
@@ -6382,6 +8298,8 @@ interface EQUObject1<T extends HL7TypeMap> {
   LocalRemoteControlState?: T['CE'] | null;
   AlertLevel?: T['CE'] | null;
 }
+
+type EVNFields4 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
 interface EVNObject5<T extends HL7TypeMap> {
   EventTypeCode?: string | null;
@@ -6393,6 +8311,8 @@ interface EVNObject5<T extends HL7TypeMap> {
   EventFacility?: T['HD'] | null;
 }
 
+type GP1Fields1 = 1 | 2 | 3 | 4 | 5;
+
 interface GP1Object1<T extends HL7TypeMap> {
   TypeOfBillCode?: string | null;
   RevenueCode?: string[] | null;
@@ -6400,6 +8320,8 @@ interface GP1Object1<T extends HL7TypeMap> {
   OCEEditsPerVisitCode?: string[] | null;
   OutlierCost?: T['CP'] | null;
 }
+
+type GP2Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
 
 interface GP2Object1<T extends HL7TypeMap> {
   RevenueCode?: string | null;
@@ -6417,6 +8339,28 @@ interface GP2Object1<T extends HL7TypeMap> {
   CoPayAmount?: T['CP'] | null;
   PayRatePerServiceUnit?: number | string | null;
 }
+
+type IAMFields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20;
 
 interface IAMObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -6441,6 +8385,26 @@ interface IAMObject1<T extends HL7TypeMap> {
   StatusedAtDateTime?: T['TS'] | null;
 }
 
+type INVFields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18;
+
 interface INVObject1<T extends HL7TypeMap> {
   SubstanceIdentifier?: T['CE'] | null;
   SubstanceStatus?: T['CE'][] | null;
@@ -6462,11 +8426,15 @@ interface INVObject1<T extends HL7TypeMap> {
   SupplierIdentifier?: T['CE'] | null;
 }
 
+type ISDFields1 = 1 | 2 | 3;
+
 interface ISDObject1<T extends HL7TypeMap> {
   ReferenceInteractionNumber?: number | string | null;
   InteractionTypeIdentifier?: T['CE'] | null;
   InteractionActiveState?: T['CE'] | null;
 }
+
+type LANFields1 = 1 | 2 | 3 | 4;
 
 interface LANObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -6481,6 +8449,8 @@ interface LCCObject2<T extends HL7TypeMap> {
   AccommodationType?: T['CE'][] | null;
   ChargeCode?: T['CE'][] | null;
 }
+
+type LDPFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 interface LDPObject2<T extends HL7TypeMap> {
   PrimaryKeyValueLDP?: T['PL'] | null;
@@ -6497,6 +8467,8 @@ interface LDPObject2<T extends HL7TypeMap> {
   LocationCostCenter?: T['CE'] | null;
 }
 
+type LOCFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+
 interface LOCObject3<T extends HL7TypeMap> {
   PrimaryKeyValueLOC?: T['PL'] | null;
   LocationDescription?: string | null;
@@ -6508,6 +8480,29 @@ interface LOCObject3<T extends HL7TypeMap> {
   LocationEquipment?: string[] | null;
   LocationServiceCode?: string | null;
 }
+
+type MSHFields5 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21;
 
 interface MSHObject5<T extends HL7TypeMap> {
   FieldSeparator?: string | null;
@@ -6533,6 +8528,8 @@ interface MSHObject5<T extends HL7TypeMap> {
   MessageProfileIdentifier?: string[] | null;
 }
 
+type NDSFields1 = 1 | 2 | 3 | 4;
+
 interface NDSObject1<T extends HL7TypeMap> {
   NotificationReferenceNumber?: number | string | null;
   NotificationDateTime?: T['TS'] | null;
@@ -6551,6 +8548,55 @@ interface NSCObject3<T extends HL7TypeMap> {
   NewApplication?: T['HD'] | null;
   NewFacility?: T['HD'] | null;
 }
+
+type OBRFields4 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47;
 
 interface OBRObject5<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -6602,6 +8648,27 @@ interface OBRObject5<T extends HL7TypeMap> {
   FillerSupplementalServiceInformation?: T['CE'][] | null;
 }
 
+type OBXFields4 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19;
+
 interface OBXObject5<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ValueType?: string | null;
@@ -6623,6 +8690,32 @@ interface OBXObject5<T extends HL7TypeMap> {
   EquipmentInstanceIdentifier?: T['EI'][] | null;
   DateTimeOfTheAnalysis?: T['TS'] | null;
 }
+
+type OM7Fields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24;
 
 interface OM7Object1<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
@@ -6650,6 +8743,33 @@ interface OM7Object1<T extends HL7TypeMap> {
   SpecialOrderIndicator?: string | null;
   PrimaryKeyValueCDM?: T['CE'][] | null;
 }
+
+type ORCFields4 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25;
 
 interface ORCObject5<T extends HL7TypeMap> {
   OrderControl?: string | null;
@@ -6679,6 +8799,8 @@ interface ORCObject5<T extends HL7TypeMap> {
   OrderStatusModifier?: T['CWE'] | null;
 }
 
+type ORGFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
 interface ORGObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   OrganizationUnitCode?: T['CE'] | null;
@@ -6693,6 +8815,29 @@ interface ORGObject1<T extends HL7TypeMap> {
   BoardApprovalIndicator?: string | null;
   PrimaryCarePhysicianIndicator?: string | null;
 }
+
+type PD1Fields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21;
 
 interface PD1Object3<T extends HL7TypeMap> {
   LivingDependency?: string[] | null;
@@ -6718,6 +8863,8 @@ interface PD1Object3<T extends HL7TypeMap> {
   MilitaryStatus?: string | null;
 }
 
+type PDAFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+
 interface PDAObject1<T extends HL7TypeMap> {
   DeathCauseCode?: T['CE'][] | null;
   DeathLocation?: T['PL'] | null;
@@ -6729,6 +8876,46 @@ interface PDAObject1<T extends HL7TypeMap> {
   AutopsyPerformedBy?: T['XCN'] | null;
   CoronerIndicator?: string | null;
 }
+
+type PIDFields4 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38;
 
 interface PIDObject5<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -6771,6 +8958,26 @@ interface PIDObject5<T extends HL7TypeMap> {
   ProductionClassCode?: T['CE'] | null;
 }
 
+type PR1Fields5 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18;
+
 interface PR1Object5<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ProcedureCodingMethod?: string | null;
@@ -6791,6 +8998,8 @@ interface PR1Object5<T extends HL7TypeMap> {
   ProcedureDRGType?: string | null;
   TissueTypeCode?: T['CE'][] | null;
 }
+
+type PRAFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 interface PRAObject3<T extends HL7TypeMap> {
   PrimaryKeyValuePRA?: T['CE'] | null;
@@ -6862,6 +9071,55 @@ interface PV1Object5<T extends HL7TypeMap> {
   OtherHealthcareProvider?: T['XCN'][] | null;
 }
 
+type PV2Fields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47;
+
 interface PV2Object4<T extends HL7TypeMap> {
   PriorPendingLocation?: T['PL'] | null;
   AccommodationCode?: T['CE'] | null;
@@ -6912,6 +9170,8 @@ interface PV2Object4<T extends HL7TypeMap> {
   ExpectedLOAReturnDateTime?: T['TS'] | null;
 }
 
+type QAKFields2 = 1 | 2 | 3 | 4 | 5 | 6;
+
 interface QAKObject2<T extends HL7TypeMap> {
   QueryTag?: string | null;
   QueryResponseStatus?: string | null;
@@ -6921,16 +9181,22 @@ interface QAKObject2<T extends HL7TypeMap> {
   HitsRemaining?: number | string | null;
 }
 
+type QIDFields1 = 1 | 2;
+
 interface QIDObject1<T extends HL7TypeMap> {
   QueryTag?: string | null;
   MessageQueryName?: T['CE'] | null;
 }
+
+type QPDFields1 = 1 | 2 | 3;
 
 interface QPDObject1<T extends HL7TypeMap> {
   MessageQueryName?: T['CE'] | null;
   QueryTag?: string | null;
   UserParameters?: string | null;
 }
+
+type QRFFields4 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
 interface QRFObject4<T extends HL7TypeMap> {
   WhereSubjectFilter?: string[] | null;
@@ -6945,11 +9211,15 @@ interface QRFObject4<T extends HL7TypeMap> {
   SearchConfidenceThreshold?: number | string | null;
 }
 
+type QRIFields1 = 1 | 2 | 3;
+
 interface QRIObject1<T extends HL7TypeMap> {
   CandidateConfidence?: number | string | null;
   MatchReasonCode?: string[] | null;
   AlgorithmDescriptor?: T['CE'] | null;
 }
+
+type RCPFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
 interface RCPObject1<T extends HL7TypeMap> {
   QueryPriority?: string | null;
@@ -6961,11 +9231,15 @@ interface RCPObject1<T extends HL7TypeMap> {
   SegmentGroupInclusion?: string[] | null;
 }
 
+type RMIFields1 = 1 | 2 | 3;
+
 interface RMIObject1<T extends HL7TypeMap> {
   RiskManagementIncidentCode?: T['CE'] | null;
   DateTimeIncident?: T['TS'] | null;
   IncidentTypeCode?: T['CE'] | null;
 }
+
+type ROLFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 interface ROLObject3<T extends HL7TypeMap> {
   RoleInstanceID?: T['EI'] | null;
@@ -6982,6 +9256,8 @@ interface ROLObject3<T extends HL7TypeMap> {
   Phone?: T['XTN'][] | null;
 }
 
+type RXCFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
 interface RXCObject3<T extends HL7TypeMap> {
   RXComponentType?: string | null;
   ComponentCode?: T['CE'] | null;
@@ -6991,6 +9267,35 @@ interface RXCObject3<T extends HL7TypeMap> {
   ComponentStrengthUnits?: T['CE'] | null;
   SupplementaryCode?: T['CE'][] | null;
 }
+
+type RXDFields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27;
 
 interface RXDObject4<T extends HL7TypeMap> {
   DispenseSubIDCounter?: number | string | null;
@@ -7021,6 +9326,39 @@ interface RXDObject4<T extends HL7TypeMap> {
   InitiatingLocation?: T['CE'] | null;
   PackagingAssemblyLocation?: T['CE'] | null;
 }
+
+type RXEFields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31;
 
 interface RXEObject4<T extends HL7TypeMap> {
   QuantityTiming?: T['TQ'] | null;
@@ -7056,6 +9394,32 @@ interface RXEObject4<T extends HL7TypeMap> {
   SupplementaryCode?: T['CE'][] | null;
 }
 
+type RXOFields4 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24;
+
 interface RXOObject4<T extends HL7TypeMap> {
   RequestedGiveCode?: T['CE'] | null;
   RequestedGiveAmountMinimum?: number | string | null;
@@ -7082,6 +9446,52 @@ interface RXOObject4<T extends HL7TypeMap> {
   TotalDailyDose?: T['CQ'] | null;
   SupplementaryCode?: T['CE'][] | null;
 }
+
+type SACFields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44;
 
 interface SACObject1<T extends HL7TypeMap> {
   ExternalAccessionIdentifier?: T['EI'] | null;
@@ -7130,6 +9540,35 @@ interface SACObject1<T extends HL7TypeMap> {
   OtherEnvironmentalFactors?: T['CE'][] | null;
 }
 
+type SCHFields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27;
+
 interface SCHObject3<T extends HL7TypeMap> {
   PlacerAppointmentID?: T['EI'] | null;
   FillerAppointmentID?: T['EI'] | null;
@@ -7160,12 +9599,45 @@ interface SCHObject3<T extends HL7TypeMap> {
   FillerOrderNumber?: T['EI'][] | null;
 }
 
+type SIDFields1 = 1 | 2 | 3 | 4;
+
 interface SIDObject1<T extends HL7TypeMap> {
   ApplicationMethodIdentifier?: T['CE'] | null;
   SubstanceLotNumber?: string | null;
   SubstanceContainerIdentifier?: string | null;
   SubstanceManufacturerIdentifier?: T['CE'] | null;
 }
+
+type STFFields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29;
 
 interface STFObject4<T extends HL7TypeMap> {
   PrimaryKeyValueSTF?: T['CE'] | null;
@@ -7199,6 +9671,8 @@ interface STFObject4<T extends HL7TypeMap> {
   ReActivationApprovalIndicator?: string | null;
 }
 
+type TCCFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
 interface TCCObject1<T extends HL7TypeMap> {
   UniversalServiceIdentifier?: T['CE'] | null;
   EquipmentTestApplicationIdentifier?: T['EI'] | null;
@@ -7215,6 +9689,8 @@ interface TCCObject1<T extends HL7TypeMap> {
   Units?: T['CE'] | null;
   ProcessingType?: T['CE'] | null;
 }
+
+type TCDFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
 interface TCDObject1<T extends HL7TypeMap> {
   UniversalServiceIdentifier?: T['CE'] | null;
@@ -7572,6 +10048,8 @@ type HL7Types_2_5 = {
   XTN: XTNObject2;
 };
 
+type ACCFields4 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+
 interface ACCObject5<T extends HL7TypeMap> {
   AccidentDateTime?: T['TS'] | null;
   AccidentCode?: T['CE'] | null;
@@ -7625,12 +10103,16 @@ interface BHSObject3<T extends HL7TypeMap> {
   ReferenceBatchControlID?: string | null;
 }
 
+type BLGFields2 = 1 | 2 | 3 | 4;
+
 interface BLGObject5<T extends HL7TypeMap> {
   WhenToCharge?: T['CCD'] | null;
   ChargeType?: string | null;
   AccountID?: T['CX'] | null;
   ChargeTypeReason?: T['CWE'] | null;
 }
+
+type BPOFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
 
 interface BPOObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -7648,6 +10130,29 @@ interface BPOObject1<T extends HL7TypeMap> {
   BPIndicationForUse?: T['CWE'][] | null;
   BPInformedConsentIndicator?: string | null;
 }
+
+type BPXFields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21;
 
 interface BPXObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -7672,6 +10177,27 @@ interface BPXObject1<T extends HL7TypeMap> {
   BPDispensedToReceiver?: T['XCN'] | null;
   BPDispensingIndividual?: T['XCN'] | null;
 }
+
+type BTXFields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19;
 
 interface BTXObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -7711,6 +10237,39 @@ interface CDMObject3<T extends HL7TypeMap> {
   RoomFeeIndicator?: string | null;
 }
 
+type CERFields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31;
+
 interface CERObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SerialNumber?: string | null;
@@ -7744,6 +10303,33 @@ interface CERObject1<T extends HL7TypeMap> {
   RevocationReasonCode?: T['CE'] | null;
   CertificateStatusCode?: T['CWE'] | null;
 }
+
+type CONFields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25;
 
 interface CONObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -7783,6 +10369,29 @@ interface CTDObject3<T extends HL7TypeMap> {
   ContactIdentifiers?: T['PLN'][] | null;
 }
 
+type DG1Fields4 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21;
+
 interface DG1Object5<T extends HL7TypeMap> {
   SetID?: number | string | null;
   DiagnosisCodingMethod?: string | null;
@@ -7807,6 +10416,8 @@ interface DG1Object5<T extends HL7TypeMap> {
   DiagnosisActionCode?: string | null;
 }
 
+type EDUFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+
 interface EDUObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   AcademicDegree?: string | null;
@@ -7818,6 +10429,8 @@ interface EDUObject2<T extends HL7TypeMap> {
   SchoolAddress?: T['XAD'] | null;
   MajorFieldOfStudy?: T['CWE'][] | null;
 }
+
+type ERRFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 interface ERRObject4<T extends HL7TypeMap> {
   ErrorCodeAndLocation?: T['ELD'][] | null;
@@ -7848,6 +10461,39 @@ interface FHSObject3<T extends HL7TypeMap> {
   FileControlID?: string | null;
   ReferenceFileControlID?: string | null;
 }
+
+type FT1Fields5 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31;
 
 interface FT1Object5<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -7882,6 +10528,65 @@ interface FT1Object5<T extends HL7TypeMap> {
   PaymentReferenceID?: T['CX'] | null;
   TransactionReferenceKey?: (number | string)[] | null;
 }
+
+type GT1Fields4 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47
+  | 48
+  | 49
+  | 50
+  | 51
+  | 52
+  | 53
+  | 54
+  | 55
+  | 56
+  | 57;
 
 interface GT1Object5<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -7943,6 +10648,9 @@ interface GT1Object5<T extends HL7TypeMap> {
   VIPIndicator?: string | null;
 }
 
+type IIMFields1 =
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
+
 interface IIMObject1<T extends HL7TypeMap> {
   PrimaryKeyValueIIM?: T['CWE'] | null;
   ServiceItemCode?: T['CWE'] | null;
@@ -7960,6 +10668,61 @@ interface IIMObject1<T extends HL7TypeMap> {
   ProcedureCode?: T['CE'] | null;
   ProcedureCodeModifier?: T['CE'][] | null;
 }
+
+type IN1Fields4 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47
+  | 48
+  | 49
+  | 50
+  | 51
+  | 52
+  | 53;
 
 interface IN1Object5<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -8045,6 +10808,28 @@ interface IN3Object4<T extends HL7TypeMap> {
   SecondOpinionPhysician?: T['XCN'][] | null;
 }
 
+type INVFields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20;
+
 interface INVObject2<T extends HL7TypeMap> {
   SubstanceIdentifier?: T['CE'] | null;
   SubstanceStatus?: T['CE'][] | null;
@@ -8067,6 +10852,8 @@ interface INVObject2<T extends HL7TypeMap> {
   OnBoardStabilityTime?: T['CQ'] | null;
   TargetValue?: T['CQ'] | null;
 }
+
+type IPCFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
 interface IPCObject1<T extends HL7TypeMap> {
   AccessionIdentifier?: T['EI'] | null;
@@ -8113,6 +10900,47 @@ interface MSHObject6<T extends HL7TypeMap> {
   MessageProfileIdentifier?: T['EI'][] | null;
 }
 
+type NK1Fields4 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39;
+
 interface NK1Object5<T extends HL7TypeMap> {
   SetID?: number | string | null;
   Name?: T['XPN'][] | null;
@@ -8154,6 +10982,57 @@ interface NK1Object5<T extends HL7TypeMap> {
   NextOfKinBirthPlace?: string | null;
   VIPIndicator?: string | null;
 }
+
+type OBRFields5 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47
+  | 48
+  | 49;
 
 interface OBRObject6<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -8319,6 +11198,38 @@ interface OM4Object4<T extends HL7TypeMap> {
   SpecimenRetentionTime?: T['CQ'] | null;
 }
 
+type ORCFields5 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30;
+
 interface ORCObject6<T extends HL7TypeMap> {
   OrderControl?: string | null;
   PlacerOrderNumber?: T['EI'] | null;
@@ -8352,6 +11263,8 @@ interface ORCObject6<T extends HL7TypeMap> {
   EntererAuthorizationMode?: T['CNE'] | null;
 }
 
+type OVRFields1 = 1 | 2 | 3 | 4 | 5;
+
 interface OVRObject1<T extends HL7TypeMap> {
   BusinessRuleOverrideType?: T['CWE'] | null;
   BusinessRuleOverrideCode?: T['CWE'] | null;
@@ -8359,6 +11272,47 @@ interface OVRObject1<T extends HL7TypeMap> {
   OverrideEnteredBy?: T['XCN'] | null;
   OverrideAuthorizedBy?: T['XCN'] | null;
 }
+
+type PIDFields5 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39;
 
 interface PIDObject6<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -8402,6 +11356,28 @@ interface PIDObject6<T extends HL7TypeMap> {
   TribalCitizenship?: T['CWE'][] | null;
 }
 
+type PR1Fields6 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20;
+
 interface PR1Object6<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ProcedureCodingMethod?: string | null;
@@ -8436,6 +11412,57 @@ interface PRDObject3<T extends HL7TypeMap> {
   EffectiveStartDateOfProviderRole?: T['TS'] | null;
   EffectiveEndDateOfProviderRole?: T['TS'] | null;
 }
+
+type PV2Fields4 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47
+  | 48
+  | 49;
 
 interface PV2Object5<T extends HL7TypeMap> {
   PriorPendingLocation?: T['PL'] | null;
@@ -8489,6 +11516,34 @@ interface PV2Object5<T extends HL7TypeMap> {
   NotifyClergyCode?: string[] | null;
 }
 
+type RXAFields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26;
+
 interface RXAObject4<T extends HL7TypeMap> {
   GiveSubIDCounter?: number | string | null;
   AdministrationSubIDCounter?: number | string | null;
@@ -8518,6 +11573,8 @@ interface RXAObject4<T extends HL7TypeMap> {
   PharmacyOrderType?: string | null;
 }
 
+type RXCFields4 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+
 interface RXCObject4<T extends HL7TypeMap> {
   RXComponentType?: string | null;
   ComponentCode?: T['CE'] | null;
@@ -8529,6 +11586,41 @@ interface RXCObject4<T extends HL7TypeMap> {
   ComponentDrugStrengthVolume?: number | string | null;
   ComponentDrugStrengthVolumeUnits?: T['CWE'] | null;
 }
+
+type RXDFields4 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33;
 
 interface RXDObject5<T extends HL7TypeMap> {
   DispenseSubIDCounter?: number | string | null;
@@ -8565,6 +11657,52 @@ interface RXDObject5<T extends HL7TypeMap> {
   PharmacyOrderType?: string | null;
   DispenseType?: T['CWE'] | null;
 }
+
+type RXEFields4 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44;
 
 interface RXEObject5<T extends HL7TypeMap> {
   QuantityTiming?: T['TQ'] | null;
@@ -8613,6 +11751,34 @@ interface RXEObject5<T extends HL7TypeMap> {
   PharmacyOrderType?: string | null;
 }
 
+type RXGFields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26;
+
 interface RXGObject4<T extends HL7TypeMap> {
   GiveSubIDCounter?: number | string | null;
   DispenseSubIDCounter?: number | string | null;
@@ -8642,6 +11808,36 @@ interface RXGObject4<T extends HL7TypeMap> {
   GiveBarcodeIdentifier?: T['CWE'] | null;
   PharmacyOrderType?: string | null;
 }
+
+type RXOFields5 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28;
 
 interface RXOObject5<T extends HL7TypeMap> {
   RequestedGiveCode?: T['CE'] | null;
@@ -8673,6 +11869,8 @@ interface RXOObject5<T extends HL7TypeMap> {
   PharmacyOrderType?: string | null;
   DispensingInterval?: number | string | null;
 }
+
+type RXRFields3 = 1 | 2 | 3 | 4 | 5 | 6;
 
 interface RXRObject3<T extends HL7TypeMap> {
   Route?: T['CE'] | null;
@@ -8730,6 +11928,8 @@ interface SACObject2<T extends HL7TypeMap> {
   OtherEnvironmentalFactors?: T['CE'][] | null;
 }
 
+type SFTFields1 = 1 | 2 | 3 | 4 | 5 | 6;
+
 interface SFTObject1<T extends HL7TypeMap> {
   SoftwareVendorOrganization?: T['XON'] | null;
   SoftwareCertifiedVersionOrReleaseNumber?: string | null;
@@ -8738,6 +11938,37 @@ interface SFTObject1<T extends HL7TypeMap> {
   SoftwareProductInformation?: string | null;
   SoftwareInstallDate?: T['TS'] | null;
 }
+
+type SPMFields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29;
 
 interface SPMObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -8770,6 +12001,46 @@ interface SPMObject1<T extends HL7TypeMap> {
   ContainerCondition?: T['CWE'] | null;
   SpecimenChildRole?: T['CWE'] | null;
 }
+
+type STFFields4 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38;
 
 interface STFObject5<T extends HL7TypeMap> {
   PrimaryKeyValueSTF?: T['CE'] | null;
@@ -8812,6 +12083,8 @@ interface STFObject5<T extends HL7TypeMap> {
   InactiveReasonCode?: T['CWE'] | null;
 }
 
+type TQ1Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
 interface TQ1Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   Quantity?: T['CQ'] | null;
@@ -8829,6 +12102,8 @@ interface TQ1Object1<T extends HL7TypeMap> {
   TotalOccurrences?: number | string | null;
 }
 
+type TQ2Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+
 interface TQ2Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SequenceResultsFlag?: string | null;
@@ -8841,6 +12116,8 @@ interface TQ2Object1<T extends HL7TypeMap> {
   CyclicGroupMaximumNumberOfRepeats?: number | string | null;
   SpecialServiceRequestRelationship?: string | null;
 }
+
+type EDFields1 = 1;
 
 interface EDObject2<T extends HL7TypeMap> {
   Data?: string | null;
@@ -8927,6 +12204,58 @@ type HL7Types_2_5_1 = {
   XTN: XTNObject2;
 };
 
+type OBRFields6 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47
+  | 48
+  | 49
+  | 50;
+
 interface OBRObject7<T extends HL7TypeMap> {
   SetID?: number | string | null;
   PlacerOrderNumber?: T['EI'] | null;
@@ -8980,6 +12309,30 @@ interface OBRObject7<T extends HL7TypeMap> {
   ParentUniversalServiceIdentifier?: T['CWE'] | null;
 }
 
+type OBXFields5 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22;
+
 interface OBXObject7<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ValueType?: string | null;
@@ -9004,6 +12357,39 @@ interface OBXObject7<T extends HL7TypeMap> {
   ObservationInstanceIdentifier?: T['XAD'] | null;
   MoodCode?: T['XCN'] | null;
 }
+
+type ORCFields6 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31;
 
 interface ORCObject7<T extends HL7TypeMap> {
   OrderControl?: string | null;
@@ -9378,6 +12764,9 @@ interface ACCObject6<T extends HL7TypeMap> {
   AccidentAddress?: T['XAD'] | null;
 }
 
+type ADJFields1 =
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
+
 interface ADJObject1<T extends HL7TypeMap> {
   ProviderAdjustmentNumber?: T['EI'] | null;
   PayerAdjustmentNumber?: T['EI'] | null;
@@ -9495,6 +12884,8 @@ interface ARQObject4<T extends HL7TypeMap> {
   FillerOrderNumber?: T['EI'][] | null;
 }
 
+type ARVFields1 = 1 | 2 | 3 | 4 | 5 | 6;
+
 interface ARVObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   AccessRestrictionActionCode?: T['CNE'] | null;
@@ -9516,6 +12907,8 @@ interface AUTObject2<T extends HL7TypeMap> {
   AuthorizedNumberOfTreatments?: number | string | null;
   ProcessDate?: string | null;
 }
+
+type BHSFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
 
 interface BHSObject4<T extends HL7TypeMap> {
   BatchFieldSeparator?: string | null;
@@ -9750,6 +13143,9 @@ interface CTIObject2<T extends HL7TypeMap> {
   StudyScheduledTimePoint?: T['CWE'] | null;
 }
 
+type DG1Fields5 =
+  1 | 3 | 5 | 6 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26;
+
 interface DG1Object6<T extends HL7TypeMap> {
   SetID?: number | string | null;
   DiagnosisCodeDG1?: T['CWE'] | null;
@@ -9769,6 +13165,8 @@ interface DG1Object6<T extends HL7TypeMap> {
   PresentOnAdmissionPOAIndicator?: string | null;
 }
 
+type DMIFields1 = 1 | 2 | 3 | 4 | 5;
+
 interface DMIObject1<T extends HL7TypeMap> {
   DiagnosticRelatedGroup?: T['CNE'] | null;
   MajorDiagnosticCategory?: T['CNE'] | null;
@@ -9776,6 +13174,41 @@ interface DMIObject1<T extends HL7TypeMap> {
   AverageLengthOfStay?: number | string | null;
   RelativeWeight?: number | string | null;
 }
+
+type DRGFields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33;
 
 interface DRGObject3<T extends HL7TypeMap> {
   DiagnosticRelatedGroup?: T['CNE'] | null;
@@ -9867,6 +13300,8 @@ interface EVNObject6<T extends HL7TypeMap> {
   EventFacility?: T['HD'] | null;
 }
 
+type FHSFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
 interface FHSObject4<T extends HL7TypeMap> {
   FileFieldSeparator?: string | null;
   FileEncodingCharacters?: string | null;
@@ -9883,6 +13318,37 @@ interface FHSObject4<T extends HL7TypeMap> {
   FileSendingNetworkAddress?: T['HD'] | null;
   FileReceivingNetworkAddress?: T['HD'] | null;
 }
+
+type FT1Fields6 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31;
 
 interface FT1Object6<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -9915,6 +13381,30 @@ interface FT1Object6<T extends HL7TypeMap> {
   PaymentReferenceID?: T['CX'] | null;
   TransactionReferenceKey?: (number | string)[] | null;
 }
+
+type GOLFields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22;
 
 interface GOLObject2<T extends HL7TypeMap> {
   ActionCode?: string | null;
@@ -10061,6 +13551,8 @@ interface IIMObject2<T extends HL7TypeMap> {
   ProcedureCodeModifier?: T['CNE'][] | null;
 }
 
+type ILTFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+
 interface ILTObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   InventoryLotNumber?: string | null;
@@ -10073,6 +13565,58 @@ interface ILTObject1<T extends HL7TypeMap> {
   InventoryOnHandQuantity?: number | string | null;
   InventoryOnHandQuantityUnit?: T['CWE'] | null;
 }
+
+type IN1Fields5 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 39
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47
+  | 48
+  | 49
+  | 50
+  | 51
+  | 52
+  | 53;
 
 interface IN1Object6<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -10265,6 +13809,8 @@ interface IPCObject2<T extends HL7TypeMap> {
   ScheduledStationAETitle?: string | null;
 }
 
+type IPRFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
 interface IPRObject1<T extends HL7TypeMap> {
   IPRIdentifier?: T['EI'] | null;
   ProviderCrossReferenceIdentifier?: T['EI'] | null;
@@ -10281,6 +13827,37 @@ interface ISDObject2<T extends HL7TypeMap> {
   InteractionTypeIdentifier?: T['CWE'] | null;
   InteractionActiveState?: T['CWE'] | null;
 }
+
+type ITMFields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29;
 
 interface ITMObject1<T extends HL7TypeMap> {
   ItemIdentifier?: T['EI'] | null;
@@ -10314,6 +13891,38 @@ interface ITMObject1<T extends HL7TypeMap> {
   SpecialHandlingCode?: T['CWE'] | null;
 }
 
+type IVCFields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30;
+
 interface IVCObject1<T extends HL7TypeMap> {
   ProviderInvoiceNumber?: T['EI'] | null;
   PayerInvoiceNumber?: T['EI'] | null;
@@ -10346,6 +13955,34 @@ interface IVCObject1<T extends HL7TypeMap> {
   PayerTaxStatus?: string | null;
   SalesTaxID?: string | null;
 }
+
+type IVTFields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26;
 
 interface IVTObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -10443,6 +14080,8 @@ interface MFAObject4<T extends HL7TypeMap> {
   PrimaryKeyValueTypeMFA?: string[] | null;
 }
 
+type MFEFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
 interface MFEObject3<T extends HL7TypeMap> {
   RecordLevelEventCode?: string | null;
   MFNControlID?: string | null;
@@ -10462,6 +14101,8 @@ interface MFIObject3<T extends HL7TypeMap> {
   ResponseLevelCode?: string | null;
 }
 
+type MSAFields3 = 1 | 2 | 3 | 4 | 6 | 7 | 8;
+
 interface MSAObject3<T extends HL7TypeMap> {
   AcknowledgmentCode?: string | null;
   MessageControlID?: string | null;
@@ -10471,6 +14112,33 @@ interface MSAObject3<T extends HL7TypeMap> {
   MessageWaitingNumber?: number | string | null;
   MessageWaitingPriority?: string | null;
 }
+
+type MSHFields6 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25;
 
 interface MSHObject7<T extends HL7TypeMap> {
   FieldSeparator?: string | null;
@@ -10549,6 +14217,8 @@ interface NK1Object6<T extends HL7TypeMap> {
   VIPIndicator?: string | null;
 }
 
+type NTEFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
 interface NTEObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SourceOfComment?: string | null;
@@ -10612,6 +14282,33 @@ interface OBRObject8<T extends HL7TypeMap> {
   ResultHandling?: string | null;
   ParentUniversalServiceIdentifier?: T['CWE'] | null;
 }
+
+type OBXFields6 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25;
 
 interface OBXObject8<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -10826,6 +14523,8 @@ interface ORGObject2<T extends HL7TypeMap> {
   PrimaryCarePhysicianIndicator?: string | null;
 }
 
+type PCEFields1 = 1 | 2 | 3 | 4;
+
 interface PCEObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   CostCenterAccountNumber?: string | null;
@@ -10858,6 +14557,30 @@ interface PCRObject2<T extends HL7TypeMap> {
   EventCausalityObservations?: string[] | null;
   IndirectExposureMechanism?: string[] | null;
 }
+
+type PD1Fields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22;
 
 interface PD1Object4<T extends HL7TypeMap> {
   LivingDependency?: string[] | null;
@@ -11000,6 +14723,8 @@ interface PIDObject7<T extends HL7TypeMap> {
   TribalCitizenship?: T['CWE'][] | null;
 }
 
+type PKGFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
 interface PKGObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   PackagingUnits?: T['CWE'] | null;
@@ -11009,6 +14734,8 @@ interface PKGObject1<T extends HL7TypeMap> {
   FutureItemPrice?: T['CP'] | null;
   FutureItemPriceEffectiveDate?: string | null;
 }
+
+type PMTFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 interface PMTObject1<T extends HL7TypeMap> {
   PaymentRemittanceAdviceNumber?: T['EI'] | null;
@@ -11024,6 +14751,9 @@ interface PMTObject1<T extends HL7TypeMap> {
   PaymentOrganization?: T['XON'] | null;
   ESRCodeLine?: string | null;
 }
+
+type PR1Fields7 =
+  1 | 3 | 5 | 6 | 7 | 9 | 10 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22;
 
 interface PR1Object7<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -11059,6 +14789,36 @@ interface PRAObject4<T extends HL7TypeMap> {
   GovernmentReimbursementBillingEligibility?: T['CWE'][] | null;
   SetID?: number | string | null;
 }
+
+type PRBFields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28;
 
 interface PRBObject2<T extends HL7TypeMap> {
   ActionCode?: string | null;
@@ -11112,6 +14872,8 @@ interface PRCObject3<T extends HL7TypeMap> {
   ChargeOnIndicator?: string | null;
 }
 
+type PRDFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
 interface PRDObject4<T extends HL7TypeMap> {
   ProviderRole?: T['CWE'][] | null;
   ProviderName?: T['XPN'][] | null;
@@ -11128,6 +14890,8 @@ interface PRDObject4<T extends HL7TypeMap> {
   ProviderOrganizationCommunicationInformation?: T['XTN'][] | null;
   ProviderOrganizationMethodOfContact?: T['CWE'] | null;
 }
+
+type PSGFields1 = 1 | 2 | 3 | 4 | 5 | 6;
 
 interface PSGObject1<T extends HL7TypeMap> {
   ProviderProductServiceGroupNumber?: T['EI'] | null;
@@ -11155,6 +14919,56 @@ interface PSHObject2<T extends HL7TypeMap> {
   NumberOfProductExperienceReportsFiledByDistributor?:
     (number | string)[] | null;
 }
+
+type PSLFields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47
+  | 48;
 
 interface PSLObject1<T extends HL7TypeMap> {
   ProviderProductServiceLineItemNumber?: T['EI'] | null;
@@ -11207,6 +15021,8 @@ interface PSLObject1<T extends HL7TypeMap> {
   Comment?: string | null;
 }
 
+type PSSFields1 = 1 | 2 | 3 | 4 | 5;
+
 interface PSSObject1<T extends HL7TypeMap> {
   ProviderProductServiceSectionNumber?: T['EI'] | null;
   PayerProductServiceSectionNumber?: T['EI'] | null;
@@ -11214,6 +15030,8 @@ interface PSSObject1<T extends HL7TypeMap> {
   BilledAmount?: T['CP'] | null;
   SectionDescriptionOrHeading?: string | null;
 }
+
+type PTHFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
 interface PTHObject2<T extends HL7TypeMap> {
   ActionCode?: string | null;
@@ -11280,6 +15098,58 @@ interface PV1Object6<T extends HL7TypeMap> {
   OtherHealthcareProvider?: T['XCN'][] | null;
 }
 
+type PV2Fields5 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47
+  | 48
+  | 49
+  | 50;
+
 interface PV2Object6<T extends HL7TypeMap> {
   PriorPendingLocation?: T['PL'] | null;
   AccommodationCode?: T['CWE'] | null;
@@ -11332,6 +15202,8 @@ interface PV2Object6<T extends HL7TypeMap> {
   NotifyClergyCode?: string[] | null;
   AdvanceDirectiveLastVerifiedDate?: string | null;
 }
+
+type PYEFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
 interface PYEObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -11407,6 +15279,9 @@ interface RCPObject2<T extends HL7TypeMap> {
   SegmentGroupInclusion?: string[] | null;
 }
 
+type RELFields1 =
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
+
 interface RELObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   RelationshipType?: T['CWE'] | null;
@@ -11426,6 +15301,8 @@ interface RELObject1<T extends HL7TypeMap> {
   SeparabilityIndicator?: string | null;
 }
 
+type RF1Fields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
 interface RF1Object2<T extends HL7TypeMap> {
   ReferralStatus?: T['CWE'] | null;
   ReferralPriority?: T['CWE'] | null;
@@ -11440,6 +15317,8 @@ interface RF1Object2<T extends HL7TypeMap> {
   ExternalReferralIdentifier?: T['EI'][] | null;
   ReferralDocumentationCompletionStatus?: T['CWE'] | null;
 }
+
+type RFIFields1 = 1 | 2 | 3 | 4;
 
 interface RFIObject1<T extends HL7TypeMap> {
   RequestDate?: string | null;
@@ -11459,6 +15338,8 @@ interface RMIObject2<T extends HL7TypeMap> {
   DateTimeIncident?: string | null;
   IncidentTypeCode?: T['CWE'] | null;
 }
+
+type ROLFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
 
 interface ROLObject4<T extends HL7TypeMap> {
   RoleInstanceID?: T['EI'] | null;
@@ -11498,6 +15379,36 @@ interface RQDObject2<T extends HL7TypeMap> {
   DeliverToID?: T['CWE'] | null;
   DateNeeded?: string | null;
 }
+
+type RXAFields4 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28;
 
 interface RXAObject5<T extends HL7TypeMap> {
   GiveSubIDCounter?: number | string | null;
@@ -11625,6 +15536,38 @@ interface RXEObject6<T extends HL7TypeMap> {
   PharmacyOrderType?: string | null;
 }
 
+type RXGFields4 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30;
+
 interface RXGObject5<T extends HL7TypeMap> {
   GiveSubIDCounter?: number | string | null;
   DispenseSubIDCounter?: number | string | null;
@@ -11658,6 +15601,43 @@ interface RXGObject5<T extends HL7TypeMap> {
   DeliverToPatientLocation?: T['PL'] | null;
   DeliverToAddress?: T['XAD'] | null;
 }
+
+type RXOFields6 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35;
 
 interface RXOObject6<T extends HL7TypeMap> {
   RequestedGiveCode?: T['CWE'] | null;
@@ -11753,6 +15733,45 @@ interface SACObject3<T extends HL7TypeMap> {
   OtherEnvironmentalFactors?: T['CWE'][] | null;
 }
 
+type SCDFields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37;
+
 interface SCDObject1<T extends HL7TypeMap> {
   CycleStartTime?: string | null;
   CycleCount?: number | string | null;
@@ -11823,6 +15842,8 @@ interface SCHObject4<T extends HL7TypeMap> {
   FillerOrderNumber?: T['EI'][] | null;
 }
 
+type SCPFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
 interface SCPObject1<T extends HL7TypeMap> {
   NumberOfDecontaminationSterilizationDevices?: number | string | null;
   LaborCalculationType?: T['CWE'] | null;
@@ -11833,6 +15854,8 @@ interface SCPObject1<T extends HL7TypeMap> {
   DeviceType?: T['CWE'] | null;
   LotControl?: T['CWE'] | null;
 }
+
+type SDDFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
 interface SDDObject1<T extends HL7TypeMap> {
   LotNumber?: T['EI'] | null;
@@ -11859,6 +15882,8 @@ interface SIDObject2<T extends HL7TypeMap> {
   SubstanceContainerIdentifier?: string | null;
   SubstanceManufacturerIdentifier?: T['CWE'] | null;
 }
+
+type SLTFields1 = 1 | 2 | 3 | 4 | 5;
 
 interface SLTObject1<T extends HL7TypeMap> {
   DeviceNumber?: T['EI'] | null;
@@ -11899,6 +15924,47 @@ interface SPMObject2<T extends HL7TypeMap> {
   ContainerCondition?: T['CWE'] | null;
   SpecimenChildRole?: T['CWE'] | null;
 }
+
+type STFFields5 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39;
 
 interface STFObject6<T extends HL7TypeMap> {
   PrimaryKeyValueSTF?: T['CWE'] | null;
@@ -11941,6 +16007,8 @@ interface STFObject6<T extends HL7TypeMap> {
   InactiveReasonCode?: T['CWE'] | null;
   GenericResourceTypeOrCategory?: T['CWE'][] | null;
 }
+
+type STZFields1 = 1 | 2 | 3 | 4;
 
 interface STZObject1<T extends HL7TypeMap> {
   SterilizationType?: T['CWE'] | null;
@@ -12020,10 +16088,36 @@ interface TXAObject3<T extends HL7TypeMap> {
   DistributedCopies?: T['XCN'][] | null;
 }
 
+type UACFields1 = 1 | 2;
+
 interface UACObject1<T extends HL7TypeMap> {
   UserAuthenticationCredentialTypeCode?: T['CWE'] | null;
   UserAuthenticationCredential?: T['ED'] | null;
 }
+
+type UB1Fields2 =
+  | 1
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23;
 
 interface UB1Object5<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -12080,6 +16174,8 @@ interface VARObject3<T extends HL7TypeMap> {
   VarianceClassification?: T['CWE'] | null;
   VarianceDescription?: string[] | null;
 }
+
+type VNDFields1 = 1 | 2 | 3 | 4 | 5;
 
 interface VNDObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -12657,6 +16753,8 @@ type HL7Types_2_7 = {
   XTN: XTNObject4;
 };
 
+type ACCFields5 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
 interface ACCObject7<T extends HL7TypeMap> {
   AccidentDateTime?: string | null;
   AccidentCode?: T['CWE'] | null;
@@ -12752,6 +16850,8 @@ interface AISObject4<T extends HL7TypeMap> {
   FillerSupplementalServiceInformation?: T['CWE'][] | null;
 }
 
+type AL1Fields2 = 1 | 2 | 3 | 4 | 5;
+
 interface AL1Object6<T extends HL7TypeMap> {
   SetID?: number | string | null;
   AllergenTypeCode?: T['CWE'] | null;
@@ -12759,6 +16859,8 @@ interface AL1Object6<T extends HL7TypeMap> {
   AllergySeverityCode?: T['CWE'] | null;
   AllergyReactionCode?: string[] | null;
 }
+
+type AUTFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 interface AUTObject3<T extends HL7TypeMap> {
   AuthorizingPayorPlanID?: T['CWE'] | null;
@@ -12919,6 +17021,8 @@ interface DRGObject4<T extends HL7TypeMap> {
   StatusAdmission?: T['CWE'] | null;
 }
 
+type ECDFields2 = 1 | 2 | 3 | 5;
+
 interface ECDObject3<T extends HL7TypeMap> {
   ReferenceCommandNumber?: number | string | null;
   RemoteControlCommand?: T['CWE'] | null;
@@ -12938,6 +17042,8 @@ interface EDUObject4<T extends HL7TypeMap> {
   MajorFieldOfStudy?: T['CWE'][] | null;
 }
 
+type ERRFields3 = 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
 interface ERRObject5<T extends HL7TypeMap> {
   ErrorLocation?: T['ERL'][] | null;
   HL7ErrorCode?: T['CWE'] | null;
@@ -12952,6 +17058,8 @@ interface ERRObject5<T extends HL7TypeMap> {
   HelpDeskContactPoint?: T['XTN'][] | null;
 }
 
+type EVNFields5 = 2 | 3 | 4 | 5 | 6 | 7;
+
 interface EVNObject7<T extends HL7TypeMap> {
   RecordedDateTime?: string | null;
   DateTimePlannedEvent?: string | null;
@@ -12960,6 +17068,49 @@ interface EVNObject7<T extends HL7TypeMap> {
   EventOccurred?: string | null;
   EventFacility?: T['HD'] | null;
 }
+
+type FT1Fields7 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43;
 
 interface FT1Object7<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -13004,6 +17155,29 @@ interface FT1Object7<T extends HL7TypeMap> {
   PrescriptionNumber?: string | null;
   NDCQtyAndUOM?: T['CQ'] | null;
 }
+
+type GOLFields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22;
 
 interface GOLObject3<T extends HL7TypeMap> {
   ActionCode?: string | null;
@@ -13114,6 +17288,38 @@ interface GT1Object7<T extends HL7TypeMap> {
   VIPIndicator?: T['CWE'] | null;
 }
 
+type IAMFields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30;
+
 interface IAMObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
   AllergenTypeCode?: T['CWE'] | null;
@@ -13147,12 +17353,67 @@ interface IAMObject3<T extends HL7TypeMap> {
   InactivatedByOrganization?: T['XON'] | null;
 }
 
+type IARFields1 = 1 | 2 | 3 | 4;
+
 interface IARObject1<T extends HL7TypeMap> {
   AllergyReactionCode?: T['CWE'] | null;
   AllergySeverityCode?: T['CWE'] | null;
   SensitivityToCausativeAgentCode?: T['CWE'] | null;
   Management?: string | null;
 }
+
+type IN1Fields6 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 39
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47
+  | 48
+  | 49
+  | 50
+  | 51
+  | 52
+  | 53
+  | 54;
 
 interface IN1Object7<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -13311,6 +17572,27 @@ interface IN3Object6<T extends HL7TypeMap> {
   SecondOpinionPhysician?: T['XCN'][] | null;
 }
 
+type INVFields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20;
+
 interface INVObject4<T extends HL7TypeMap> {
   SubstanceIdentifier?: T['CWE'] | null;
   SubstanceStatus?: T['CWE'][] | null;
@@ -13425,6 +17707,8 @@ interface LOCObject5<T extends HL7TypeMap> {
   LocationServiceCode?: T['CWE'] | null;
 }
 
+type MRGFields4 = 1 | 3 | 5 | 6 | 7;
+
 interface MRGObject5<T extends HL7TypeMap> {
   PriorPatientIdentifierList?: T['CX'][] | null;
   PriorPatientAccountNumber?: T['CX'] | null;
@@ -13433,6 +17717,8 @@ interface MRGObject5<T extends HL7TypeMap> {
   PriorPatientName?: T['XPN'][] | null;
 }
 
+type MSAFields4 = 1 | 2 | 4 | 7 | 8;
+
 interface MSAObject4<T extends HL7TypeMap> {
   AcknowledgmentCode?: string | null;
   MessageControlID?: string | null;
@@ -13440,6 +17726,49 @@ interface MSAObject4<T extends HL7TypeMap> {
   MessageWaitingNumber?: number | string | null;
   MessageWaitingPriority?: string | null;
 }
+
+type NK1Fields5 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41;
 
 interface NK1Object7<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -13502,6 +17831,56 @@ interface NSCObject4<T extends HL7TypeMap> {
   NewFacility?: T['HD'] | null;
 }
 
+type OBRFields7 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47
+  | 48
+  | 49
+  | 50
+  | 51
+  | 52
+  | 53;
+
 interface OBRObject9<T extends HL7TypeMap> {
   SetID?: number | string | null;
   PlacerOrderNumber?: T['EI'] | null;
@@ -13552,6 +17931,34 @@ interface OBRObject9<T extends HL7TypeMap> {
   ParentObservationGroupID?: T['EI'] | null;
   AlternatePlacerOrderNumber?: T['CX'][] | null;
 }
+
+type OBXFields7 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26;
 
 interface OBXObject9<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -13659,6 +18066,40 @@ interface OM7Object3<T extends HL7TypeMap> {
   PrimaryKeyValueCDM?: T['CWE'][] | null;
 }
 
+type ORCFields7 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33;
+
 interface ORCObject9<T extends HL7TypeMap> {
   OrderControl?: string | null;
   PlacerOrderNumber?: T['EI'] | null;
@@ -13694,6 +18135,8 @@ interface ORCObject9<T extends HL7TypeMap> {
   AlternatePlacerOrderNumber?: T['CX'][] | null;
 }
 
+type ORGFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
+
 interface ORGObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
   OrganizationUnitCode?: T['CWE'] | null;
@@ -13709,6 +18152,8 @@ interface ORGObject3<T extends HL7TypeMap> {
   PrimaryCarePhysicianIndicator?: string | null;
   CostCenterCode?: T['CWE'][] | null;
 }
+
+type PACFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
 interface PACObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -13754,6 +18199,29 @@ interface PCRObject3<T extends HL7TypeMap> {
   IndirectExposureMechanism?: string[] | null;
 }
 
+type PD1Fields4 =
+  | 1
+  | 2
+  | 3
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22;
+
 interface PD1Object5<T extends HL7TypeMap> {
   LivingDependency?: T['CWE'][] | null;
   LivingArrangement?: T['CWE'] | null;
@@ -13777,6 +18245,41 @@ interface PD1Object5<T extends HL7TypeMap> {
   MilitaryStatus?: T['CWE'] | null;
   AdvanceDirectiveLastVerifiedDate?: string | null;
 }
+
+type PIDFields6 =
+  | 1
+  | 3
+  | 5
+  | 6
+  | 7
+  | 8
+  | 10
+  | 11
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40;
 
 interface PIDObject8<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -13813,6 +18316,28 @@ interface PIDObject8<T extends HL7TypeMap> {
   TribalCitizenship?: T['CWE'][] | null;
   PatientTelecommunicationInformation?: T['XTN'][] | null;
 }
+
+type PR1Fields8 =
+  | 1
+  | 3
+  | 5
+  | 6
+  | 7
+  | 9
+  | 10
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25;
 
 interface PR1Object8<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -13872,6 +18397,9 @@ interface PRCObject4<T extends HL7TypeMap> {
   Cost?: T['MO'] | null;
   ChargeOnIndicator?: T['CWE'] | null;
 }
+
+type PRTFields1 =
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
 
 interface PRTObject1<T extends HL7TypeMap> {
   ParticipationInstanceID?: T['EI'] | null;
@@ -13941,6 +18469,60 @@ interface PSLObject2<T extends HL7TypeMap> {
   Validation?: string | null;
   Comment?: string | null;
 }
+
+type PV1Fields4 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47
+  | 48
+  | 49
+  | 50
+  | 51
+  | 53
+  | 54;
 
 interface PV1Object7<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -14070,6 +18652,8 @@ interface QRIObject3<T extends HL7TypeMap> {
   AlgorithmDescriptor?: T['CWE'] | null;
 }
 
+type ROLFields4 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
 interface ROLObject5<T extends HL7TypeMap> {
   RoleInstanceID?: T['EI'] | null;
   ActionCode?: string | null;
@@ -14099,6 +18683,42 @@ interface RQDObject3<T extends HL7TypeMap> {
   DeliverToID?: T['CWE'] | null;
   DateNeeded?: string | null;
 }
+
+type RXDFields5 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34;
 
 interface RXDObject7<T extends HL7TypeMap> {
   DispenseSubIDCounter?: number | string | null;
@@ -14136,6 +18756,51 @@ interface RXDObject7<T extends HL7TypeMap> {
   DispenseType?: T['CWE'] | null;
   PharmacyPhoneNumber?: T['XTN'][] | null;
 }
+
+type RXEFields5 =
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45;
 
 interface RXEObject7<T extends HL7TypeMap> {
   GiveCode?: T['CWE'] | null;
@@ -14183,6 +18848,37 @@ interface RXEObject7<T extends HL7TypeMap> {
   PharmacyPhoneNumber?: T['XTN'][] | null;
 }
 
+type RXGFields5 =
+  | 1
+  | 2
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30;
+
 interface RXGObject6<T extends HL7TypeMap> {
   GiveSubIDCounter?: number | string | null;
   DispenseSubIDCounter?: number | string | null;
@@ -14215,6 +18911,44 @@ interface RXGObject6<T extends HL7TypeMap> {
   DeliverToPatientLocation?: T['PL'] | null;
   DeliverToAddress?: T['XAD'] | null;
 }
+
+type RXOFields7 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36;
 
 interface RXOObject7<T extends HL7TypeMap> {
   RequestedGiveCode?: T['CWE'] | null;
@@ -14254,6 +18988,51 @@ interface RXOObject7<T extends HL7TypeMap> {
   DeliverToAddress?: T['XAD'] | null;
   PharmacyPhoneNumber?: T['XTN'][] | null;
 }
+
+type SACFields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44;
 
 interface SACObject4<T extends HL7TypeMap> {
   ExternalAccessionIdentifier?: T['EI'] | null;
@@ -14301,6 +19080,33 @@ interface SACObject4<T extends HL7TypeMap> {
   OtherEnvironmentalFactors?: T['CWE'][] | null;
 }
 
+type SCHFields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 10
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27;
+
 interface SCHObject5<T extends HL7TypeMap> {
   PlacerAppointmentID?: T['EI'] | null;
   FillerAppointmentID?: T['EI'] | null;
@@ -14339,6 +19145,8 @@ interface SDDObject2<T extends HL7TypeMap> {
   OperatorName?: string | null;
 }
 
+type SHPFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+
 interface SHPObject1<T extends HL7TypeMap> {
   ShipmentID?: T['EI'] | null;
   InternalShipmentID?: T['EI'][] | null;
@@ -14352,6 +19160,40 @@ interface SHPObject1<T extends HL7TypeMap> {
   ShipmentHandlingCode?: T['CWE'][] | null;
   ShipmentRiskCode?: T['CWE'][] | null;
 }
+
+type SPMFields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32;
 
 interface SPMObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -14387,6 +19229,49 @@ interface SPMObject3<T extends HL7TypeMap> {
   OtherSpecimenID?: T['CX'][] | null;
   ShipmentID?: T['EI'] | null;
 }
+
+type STFFields6 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41;
 
 interface STFObject7<T extends HL7TypeMap> {
   PrimaryKeyValueSTF?: T['CWE'] | null;
@@ -14432,6 +19317,8 @@ interface STFObject7<T extends HL7TypeMap> {
   Signature?: T['ED'] | null;
 }
 
+type TCCFields2 = 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
 interface TCCObject3<T extends HL7TypeMap> {
   UniversalServiceIdentifier?: T['CWE'] | null;
   EquipmentTestApplicationIdentifier?: T['EI'] | null;
@@ -14447,6 +19334,34 @@ interface TCCObject3<T extends HL7TypeMap> {
   Units?: T['CWE'] | null;
   ProcessingType?: T['CWE'] | null;
 }
+
+type TXAFields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26;
 
 interface TXAObject4<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -14577,6 +19492,57 @@ type HL7Types_2_7_1 = {
   XPN: XPNObject6;
   XTN: XTNObject4;
 };
+
+type OBRFields8 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47
+  | 48
+  | 49
+  | 50
+  | 51
+  | 52
+  | 53
+  | 54;
 
 interface OBRObject10<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -14713,6 +19679,8 @@ type HL7Types_2_8 = {
   XTN: XTNObject4;
 };
 
+type ACCFields6 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
+
 interface ACCObject8<T extends HL7TypeMap> {
   AccidentDateTime?: string | null;
   AccidentCode?: T['CWE'] | null;
@@ -14757,6 +19725,37 @@ interface ARQObject5<T extends HL7TypeMap> {
   FillerOrderNumber?: T['EI'][] | null;
 }
 
+type AUTFields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29;
+
 interface AUTObject4<T extends HL7TypeMap> {
   AuthorizingPayorPlanID?: T['CWE'] | null;
   AuthorizingPayorCompanyID?: T['CWE'] | null;
@@ -14789,6 +19788,28 @@ interface AUTObject4<T extends HL7TypeMap> {
   ActionCode?: string | null;
 }
 
+type BTXFields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20;
+
 interface BTXObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
   BCDonationID?: T['EI'] | null;
@@ -14812,6 +19833,8 @@ interface BTXObject3<T extends HL7TypeMap> {
   BPUniqueID?: T['EI'] | null;
 }
 
+type BUIFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
 interface BUIObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   BloodUnitIdentifier?: T['EI'] | null;
@@ -14827,12 +19850,49 @@ interface BUIObject1<T extends HL7TypeMap> {
   TransportTemperatureUnits?: T['CNE'] | null;
 }
 
+type CDOFields1 = 1 | 2 | 3 | 4;
+
 interface CDOObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ActionCode?: string | null;
   CumulativeDosageLimit?: T['CQ'] | null;
   CumulativeDosageLimitTimeInterval?: T['CQ'] | null;
 }
+
+type DONFields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33;
 
 interface DONObject1<T extends HL7TypeMap> {
   DonationIdentificationNumberDIN?: T['EI'] | null;
@@ -14877,6 +19937,60 @@ interface EQUObject3<T extends HL7TypeMap> {
   LocalRemoteControlState?: T['CWE'] | null;
   AlertLevel?: T['CWE'] | null;
 }
+
+type IN1Fields7 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 39
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47
+  | 48
+  | 49
+  | 50
+  | 51
+  | 52
+  | 53
+  | 54
+  | 55;
 
 interface IN1Object8<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -14933,6 +20047,35 @@ interface IN1Object8<T extends HL7TypeMap> {
   InsuranceActionCode?: string | null;
 }
 
+type IN3Fields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27;
+
 interface IN3Object7<T extends HL7TypeMap> {
   SetID?: number | string | null;
   CertificationNumber?: T['CX'] | null;
@@ -14962,6 +20105,41 @@ interface IN3Object7<T extends HL7TypeMap> {
   CertificationType?: T['CWE'] | null;
   CertificationCategory?: T['CWE'] | null;
 }
+
+type ITMFields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33;
 
 interface ITMObject3<T extends HL7TypeMap> {
   ItemIdentifier?: T['EI'] | null;
@@ -15007,6 +20185,36 @@ interface MRGObject6<T extends HL7TypeMap> {
   PriorPatientName?: T['XPN'][] | null;
 }
 
+type OBXFields8 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28;
+
 interface OBXObject10<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ValueType?: string | null;
@@ -15037,6 +20245,59 @@ interface OBXObject10<T extends HL7TypeMap> {
   RootCause?: T['CWE'] | null;
   LocalProcessControl?: T['CWE'][] | null;
 }
+
+type OM1Fields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47
+  | 48
+  | 49
+  | 50
+  | 51;
 
 interface OM1Object7<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
@@ -15092,6 +20353,26 @@ interface OM1Object7<T extends HL7TypeMap> {
   OtherNames51?: string[] | null;
 }
 
+type OM4Fields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18;
+
 interface OM4Object6<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
   DerivedSpecimen?: string | null;
@@ -15112,6 +20393,41 @@ interface OM4Object6<T extends HL7TypeMap> {
   PreferredSpecimenAttribtureSequenceID?: number | string | null;
   TaxonomicClassificationCode?: T['CWE'][] | null;
 }
+
+type ORCFields8 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34;
 
 interface ORCObject10<T extends HL7TypeMap> {
   OrderControl?: string | null;
@@ -15148,6 +20464,8 @@ interface ORCObject10<T extends HL7TypeMap> {
   AlternatePlacerOrderNumber?: T['CX'][] | null;
   OrderWorkflowProfile?: T['CWE'][] | null;
 }
+
+type PKGFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
 interface PKGObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -15215,6 +20533,33 @@ interface PV1Object8<T extends HL7TypeMap> {
   ServiceEpisodeIdentifier?: T['CX'] | null;
 }
 
+type RF1Fields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25;
+
 interface RF1Object3<T extends HL7TypeMap> {
   ReferralStatus?: T['CWE'] | null;
   ReferralPriority?: T['CWE'] | null;
@@ -15242,6 +20587,36 @@ interface RF1Object3<T extends HL7TypeMap> {
   Comment?: string | null;
   ActionCode?: string | null;
 }
+
+type RXAFields5 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29;
 
 interface RXAObject6<T extends HL7TypeMap> {
   GiveSubIDCounter?: number | string | null;
@@ -15274,6 +20649,8 @@ interface RXAObject6<T extends HL7TypeMap> {
   AdministeredTagIdentifier?: T['EI'][] | null;
 }
 
+type RXCFields5 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+
 interface RXCObject6<T extends HL7TypeMap> {
   RXComponentType?: string | null;
   ComponentCode?: T['CWE'] | null;
@@ -15287,6 +20664,42 @@ interface RXCObject6<T extends HL7TypeMap> {
   DispenseAmount?: number | string | null;
   DispenseUnits?: T['CWE'] | null;
 }
+
+type RXDFields6 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35;
 
 interface RXDObject8<T extends HL7TypeMap> {
   DispenseSubIDCounter?: number | string | null;
@@ -15325,6 +20738,39 @@ interface RXDObject8<T extends HL7TypeMap> {
   DispenseTagIdentifier?: T['EI'][] | null;
 }
 
+type RXGFields6 =
+  | 1
+  | 2
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33;
+
 interface RXGObject7<T extends HL7TypeMap> {
   GiveSubIDCounter?: number | string | null;
   DispenseSubIDCounter?: number | string | null;
@@ -15359,6 +20805,43 @@ interface RXGObject7<T extends HL7TypeMap> {
   DispenseAmount?: number | string | null;
   DispenseUnits?: T['CWE'] | null;
 }
+
+type RXOFields8 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36;
 
 interface RXOObject8<T extends HL7TypeMap> {
   RequestedGiveCode?: T['CWE'] | null;
@@ -15397,6 +20880,30 @@ interface RXOObject8<T extends HL7TypeMap> {
   DeliverToAddress?: T['XAD'] | null;
   PharmacyPhoneNumber?: T['XTN'][] | null;
 }
+
+type RXVFields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22;
 
 interface RXVObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -15451,15 +20958,21 @@ interface SCHObject6<T extends HL7TypeMap> {
   FillerOrderNumber?: T['EI'][] | null;
 }
 
+type SGHFields1 = 1 | 2;
+
 interface SGHObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SegmentGroupName?: string | null;
 }
 
+type SGTFields1 = 1 | 2;
+
 interface SGTObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SegmentGroupName?: string | null;
 }
+
+type TCCFields3 = 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
 
 interface TCCObject4<T extends HL7TypeMap> {
   UniversalServiceIdentifier?: T['CWE'] | null;
@@ -15551,6 +21064,37 @@ type HL7Types_2_8_1 = {
   XTN: XTNObject4;
 };
 
+type OBXFields9 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29;
+
 interface OBXObject11<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ValueType?: string | null;
@@ -15582,6 +21126,63 @@ interface OBXObject11<T extends HL7TypeMap> {
   LocalProcessControl?: T['CWE'][] | null;
   ObservationType?: string | null;
 }
+
+type OM1Fields4 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47
+  | 48
+  | 49
+  | 50
+  | 51
+  | 52
+  | 53
+  | 54
+  | 55;
 
 interface OM1Object8<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
@@ -15640,6 +21241,32 @@ interface OM1Object8<T extends HL7TypeMap> {
   SpecialInstructions?: string | null;
   TestCategory?: T['CWE'][] | null;
 }
+
+type RF1Fields4 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25;
 
 interface RF1Object4<T extends HL7TypeMap> {
   ReferralStatus?: T['CWE'] | null;
@@ -15762,6 +21389,8 @@ type HL7Types_2_8_2 = {
   XTN: XTNObject4;
 };
 
+type DPSFields1 = 1 | 2 | 3 | 4 | 5;
+
 interface DPSObject1<T extends HL7TypeMap> {
   DiagnosisCodeMCP?: T['CWE'] | null;
   ProcedureCode?: T['CWE'][] | null;
@@ -15770,6 +21399,8 @@ interface DPSObject1<T extends HL7TypeMap> {
   TypeOfLimitation?: T['CNE'] | null;
 }
 
+type MCPFields1 = 1 | 2 | 3 | 4 | 5;
+
 interface MCPObject1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ProducerSServiceTestObservationID?: T['CWE'] | null;
@@ -15777,6 +21408,38 @@ interface MCPObject1<T extends HL7TypeMap> {
   UniversalServicePriceRangeHighValue?: T['MO'] | null;
   ReasonForUniversalServiceCostRange?: string | null;
 }
+
+type OBXFields10 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30;
 
 interface OBXObject12<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -15810,6 +21473,67 @@ interface OBXObject12<T extends HL7TypeMap> {
   ObservationType?: string | null;
   ObservationSubType?: string | null;
 }
+
+type OM1Fields5 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47
+  | 48
+  | 49
+  | 50
+  | 51
+  | 52
+  | 53
+  | 54
+  | 55
+  | 56
+  | 57
+  | 58
+  | 59;
 
 interface OM1Object9<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
@@ -15874,6 +21598,8 @@ interface OM1Object9<T extends HL7TypeMap> {
   AgeRestriction?: T['NR'][] | null;
 }
 
+type OMCFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
+
 interface OMCObject1<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
   SegmentActionCode?: string | null;
@@ -15889,6 +21615,32 @@ interface OMCObject1<T extends HL7TypeMap> {
   CharacterLimit?: number | string | null;
   NumberOfDecimals?: number | string | null;
 }
+
+type PM1Fields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24;
 
 interface PM1Object1<T extends HL7TypeMap> {
   HealthPlanID?: T['CWE'] | null;
@@ -15916,6 +21668,30 @@ interface PM1Object1<T extends HL7TypeMap> {
   PolicyNumberPattern?: string | null;
   GroupNumberPattern?: string | null;
 }
+
+type PRTFields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22;
 
 interface PRTObject2<T extends HL7TypeMap> {
   ParticipationInstanceID?: T['EI'] | null;
@@ -16092,6 +21868,34 @@ interface ADJObject3<T extends HL7TypeMap> {
   ResponsibleOrganization?: T['XON'] | null;
 }
 
+type ARQFields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26;
+
 interface ARQObject6<T extends HL7TypeMap> {
   PlacerAppointmentID?: T['EI'] | null;
   FillerAppointmentID?: T['EI'] | null;
@@ -16121,6 +21925,8 @@ interface ARQObject6<T extends HL7TypeMap> {
   AlternatePlacerOrderGroupNumber?: T['EIP'] | null;
 }
 
+type ARVFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+
 interface ARVObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   AccessRestrictionActionCode?: T['CNE'] | null;
@@ -16133,6 +21939,9 @@ interface ARVObject2<T extends HL7TypeMap> {
   AccessRestrictionMessageLocation?: T['ERL'][] | null;
   AccessRestrictionInstanceIdentifier?: T['EI'] | null;
 }
+
+type BHSFields3 =
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17;
 
 interface BHSObject5<T extends HL7TypeMap> {
   BatchFieldSeparator?: string | null;
@@ -16153,6 +21962,30 @@ interface BHSObject5<T extends HL7TypeMap> {
   SecurityHandlingInstructions?: T['CWE'][] | null;
   SpecialAccessRestrictionInstructions?: string[] | null;
 }
+
+type BPXFields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22;
 
 interface BPXObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -16179,6 +22012,29 @@ interface BPXObject3<T extends HL7TypeMap> {
   ActionCode?: string | null;
 }
 
+type BTXFields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21;
+
 interface BTXObject4<T extends HL7TypeMap> {
   SetID?: number | string | null;
   BCDonationID?: T['EI'] | null;
@@ -16203,6 +22059,8 @@ interface BTXObject4<T extends HL7TypeMap> {
   ActionCode?: string | null;
 }
 
+type BUIFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
+
 interface BUIObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   BloodUnitIdentifier?: T['EI'] | null;
@@ -16218,6 +22076,9 @@ interface BUIObject2<T extends HL7TypeMap> {
   TransportTemperatureUnits?: T['CNE'] | null;
   ActionCode?: string | null;
 }
+
+type CSRFields2 =
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17;
 
 interface CSRObject4<T extends HL7TypeMap> {
   SponsorStudyID?: T['EI'] | null;
@@ -16239,12 +22100,37 @@ interface CSRObject4<T extends HL7TypeMap> {
   ActionCode?: string | null;
 }
 
+type CTIFields2 = 1 | 2 | 3 | 4;
+
 interface CTIObject3<T extends HL7TypeMap> {
   SponsorStudyID?: T['EI'] | null;
   StudyPhaseIdentifier?: T['CWE'] | null;
   StudyScheduledTimePoint?: T['CWE'] | null;
   ActionCode?: string | null;
 }
+
+type CTRFields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21;
 
 interface CTRObject1<T extends HL7TypeMap> {
   ContractIdentifier?: T['EI'] | null;
@@ -16270,6 +22156,9 @@ interface CTRObject1<T extends HL7TypeMap> {
   AssociatedContractID?: T['EI'] | null;
 }
 
+type DEVFields1 =
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17;
+
 interface DEVObject1<T extends HL7TypeMap> {
   ActionCode?: string | null;
   UniqueDeviceIdentifier?: T['EI'] | null;
@@ -16289,6 +22178,42 @@ interface DEVObject1<T extends HL7TypeMap> {
   SoftwareVersionNumber?: string | null;
   ImplantationStatus?: T['CNE'] | null;
 }
+
+type DONFields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34;
 
 interface DONObject2<T extends HL7TypeMap> {
   DonationIdentificationNumberDIN?: T['EI'] | null;
@@ -16327,10 +22252,14 @@ interface DONObject2<T extends HL7TypeMap> {
   ActionCode?: string | null;
 }
 
+type DSTFields1 = 1 | 2;
+
 interface DSTObject1<T extends HL7TypeMap> {
   Destination?: T['CWE'] | null;
   Route?: T['CWE'][] | null;
 }
+
+type EQUFields2 = 1 | 2 | 3 | 4 | 5 | 6;
 
 interface EQUObject4<T extends HL7TypeMap> {
   EquipmentInstanceIdentifier?: T['EI'][] | null;
@@ -16340,6 +22269,9 @@ interface EQUObject4<T extends HL7TypeMap> {
   AlertLevel?: T['CWE'] | null;
   ExpectedDateTimeOfTheNextStatusChange?: string | null;
 }
+
+type FHSFields3 =
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17;
 
 interface FHSObject5<T extends HL7TypeMap> {
   FileFieldSeparator?: string | null;
@@ -16360,6 +22292,62 @@ interface FHSObject5<T extends HL7TypeMap> {
   SecurityHandlingInstructions?: T['CWE'][] | null;
   SpecialAccessRestrictionInstructions?: string[] | null;
 }
+
+type FT1Fields8 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47
+  | 48
+  | 49
+  | 50
+  | 51
+  | 52
+  | 53
+  | 54
+  | 55
+  | 56;
 
 interface FT1Object8<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -16417,6 +22405,81 @@ interface FT1Object8<T extends HL7TypeMap> {
   DMEConditionIndicatorCode?: T['CWE'][] | null;
   ServiceReasonCode?: T['CWE'] | null;
 }
+
+type IN2Fields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47
+  | 48
+  | 49
+  | 50
+  | 51
+  | 52
+  | 53
+  | 54
+  | 55
+  | 56
+  | 57
+  | 58
+  | 59
+  | 60
+  | 61
+  | 62
+  | 63
+  | 64
+  | 65
+  | 66
+  | 67
+  | 68
+  | 69
+  | 70
+  | 71
+  | 72
+  | 73;
 
 interface IN2Object6<T extends HL7TypeMap> {
   InsuredSEmployeeID?: T['CX'][] | null;
@@ -16494,6 +22557,39 @@ interface IN2Object6<T extends HL7TypeMap> {
   CoPayAmount?: T['CP'] | null;
 }
 
+type IN3Fields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31;
+
 interface IN3Object8<T extends HL7TypeMap> {
   SetID?: number | string | null;
   CertificationNumber?: T['CX'] | null;
@@ -16528,6 +22624,29 @@ interface IN3Object8<T extends HL7TypeMap> {
   OnlineVerificationResultCheckDigit?: string | null;
 }
 
+type INVFields4 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22;
+
 interface INVObject5<T extends HL7TypeMap> {
   SubstanceIdentifier?: T['CWE'] | null;
   SubstanceStatus?: T['CWE'][] | null;
@@ -16552,6 +22671,8 @@ interface INVObject5<T extends HL7TypeMap> {
   EquipmentStateIndicatorValue?: T['CQ'] | null;
 }
 
+type IPCFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+
 interface IPCObject3<T extends HL7TypeMap> {
   AccessionIdentifier?: T['EI'] | null;
   RequestedProcedureID?: T['EI'] | null;
@@ -16564,6 +22685,46 @@ interface IPCObject3<T extends HL7TypeMap> {
   ScheduledStationAETitle?: string | null;
   ActionCode?: string | null;
 }
+
+type ITMFields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38;
 
 interface ITMObject4<T extends HL7TypeMap> {
   ItemIdentifier?: T['EI'] | null;
@@ -16606,6 +22767,36 @@ interface ITMObject4<T extends HL7TypeMap> {
   FieldLevelEventCode?: string | null;
 }
 
+type MSHFields7 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28;
+
 interface MSHObject8<T extends HL7TypeMap> {
   FieldSeparator?: string | null;
   EncodingCharacters?: string | null;
@@ -16636,6 +22827,46 @@ interface MSHObject8<T extends HL7TypeMap> {
   SecurityHandlingInstructions?: T['CWE'][] | null;
   SpecialAccessRestrictionInstructions?: string[] | null;
 }
+
+type NK1Fields6 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41;
 
 interface NK1Object8<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -16678,6 +22909,8 @@ interface NK1Object8<T extends HL7TypeMap> {
   ContactPersonSTelecommunicationInformation?: T['XTN'] | null;
 }
 
+type NTEFields4 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+
 interface NTEObject4<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SourceOfComment?: string | null;
@@ -16689,6 +22922,51 @@ interface NTEObject4<T extends HL7TypeMap> {
   ExpirationDate?: string | null;
   CodedComment?: T['CWE'][] | null;
 }
+
+type OBRFields9 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 29
+  | 30
+  | 31
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47
+  | 48
+  | 49
+  | 51
+  | 52
+  | 53
+  | 54
+  | 55;
 
 interface OBRObject11<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -16736,6 +23014,41 @@ interface OBRObject11<T extends HL7TypeMap> {
   ActionCode?: string | null;
 }
 
+type OBXFields11 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33;
+
 interface OBXObject13<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ValueType?: string | null;
@@ -16772,6 +23085,8 @@ interface OBXObject13<T extends HL7TypeMap> {
   ObservationRelatedSpecimenIdentifier?: T['EIP'][] | null;
 }
 
+type OH1Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
 interface OH1Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ActionCode?: string | null;
@@ -16781,6 +23096,26 @@ interface OH1Object1<T extends HL7TypeMap> {
   EnteredDate?: string | null;
   EmploymentStatusUniqueIdentifier?: T['EI'] | null;
 }
+
+type OH2Fields1 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18;
 
 interface OH2Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -16803,6 +23138,8 @@ interface OH2Object1<T extends HL7TypeMap> {
   CurrentJobIndicator?: T['CWE'] | null;
 }
 
+type OH3Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
 interface OH3Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ActionCode?: string | null;
@@ -16814,6 +23151,8 @@ interface OH3Object1<T extends HL7TypeMap> {
   WorkUniqueIdentifier?: T['EI'] | null;
 }
 
+type OH4Fields1 = 1 | 2 | 3 | 4 | 5 | 6;
+
 interface OH4Object1<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ActionCode?: string | null;
@@ -16822,6 +23161,34 @@ interface OH4Object1<T extends HL7TypeMap> {
   EnteredDate?: string | null;
   CombatZoneUniqueIdentifier?: T['EI'] | null;
 }
+
+type ORCFields9 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 8
+  | 9
+  | 13
+  | 14
+  | 15
+  | 16
+  | 20
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38;
 
 interface ORCObject11<T extends HL7TypeMap> {
   OrderControl?: string | null;
@@ -16852,6 +23219,8 @@ interface ORCObject11<T extends HL7TypeMap> {
   FillerOrderGroupNumber?: T['EI'] | null;
 }
 
+type PACFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+
 interface PACObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   PackageID?: T['EI'] | null;
@@ -16863,6 +23232,30 @@ interface PACObject2<T extends HL7TypeMap> {
   PackageRiskCode?: T['CWE'][] | null;
   ActionCode?: string | null;
 }
+
+type PD1Fields5 =
+  | 1
+  | 2
+  | 3
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23;
 
 interface PD1Object6<T extends HL7TypeMap> {
   LivingDependency?: T['CWE'][] | null;
@@ -16888,6 +23281,39 @@ interface PD1Object6<T extends HL7TypeMap> {
   AdvanceDirectiveLastVerifiedDate?: string | null;
   RetirementDate?: string | null;
 }
+
+type PIDFields7 =
+  | 1
+  | 3
+  | 5
+  | 6
+  | 7
+  | 8
+  | 10
+  | 11
+  | 15
+  | 16
+  | 17
+  | 18
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40;
 
 interface PIDObject9<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -16923,6 +23349,8 @@ interface PIDObject9<T extends HL7TypeMap> {
   PatientTelecommunicationInformation?: T['XTN'][] | null;
 }
 
+type PKGFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+
 interface PKGObject3<T extends HL7TypeMap> {
   SetID?: number | string | null;
   PackagingUnits?: T['CWE'] | null;
@@ -16936,6 +23364,32 @@ interface PKGObject3<T extends HL7TypeMap> {
   QuantityOfEach?: number | string | null;
   VendorCatalogNumber?: T['EI'] | null;
 }
+
+type PRTFields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24;
 
 interface PRTObject3<T extends HL7TypeMap> {
   ParticipationInstanceID?: T['EI'] | null;
@@ -17025,6 +23479,26 @@ interface PYEObject3<T extends HL7TypeMap> {
   PaymentMethod?: T['CWE'] | null;
 }
 
+type RELFields2 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18;
+
 interface RELObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   RelationshipType?: T['CWE'] | null;
@@ -17047,6 +23521,37 @@ interface RELObject2<T extends HL7TypeMap> {
 }
 
 interface ROLObject6<T extends HL7TypeMap> {}
+
+type RXGFields7 =
+  | 1
+  | 2
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33;
 
 interface RXGObject8<T extends HL7TypeMap> {
   GiveSubIDCounter?: number | string | null;
@@ -17080,6 +23585,42 @@ interface RXGObject8<T extends HL7TypeMap> {
   DispenseAmount?: number | string | null;
   DispenseUnits?: T['CWE'] | null;
 }
+
+type RXOFields9 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36;
 
 interface RXOObject9<T extends HL7TypeMap> {
   RequestedGiveCode?: T['CWE'] | null;
@@ -17117,6 +23658,56 @@ interface RXOObject9<T extends HL7TypeMap> {
   DeliverToAddress?: T['XAD'] | null;
   PharmacyPhoneNumber?: T['XTN'][] | null;
 }
+
+type SACFields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35
+  | 36
+  | 37
+  | 38
+  | 39
+  | 40
+  | 41
+  | 42
+  | 43
+  | 44
+  | 45
+  | 46
+  | 47
+  | 48
+  | 49;
 
 interface SACObject5<T extends HL7TypeMap> {
   ExternalAccessionIdentifier?: T['EI'] | null;
@@ -17169,6 +23760,34 @@ interface SACObject5<T extends HL7TypeMap> {
   ContainerCommonName?: T['CWE'] | null;
 }
 
+type SCHFields4 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 10
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28;
+
 interface SCHObject7<T extends HL7TypeMap> {
   PlacerAppointmentID?: T['EI'] | null;
   FillerAppointmentID?: T['EI'] | null;
@@ -17198,6 +23817,8 @@ interface SCHObject7<T extends HL7TypeMap> {
   AlternatePlacerOrderGroupNumber?: T['EIP'] | null;
 }
 
+type SHPFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
 interface SHPObject2<T extends HL7TypeMap> {
   ShipmentID?: T['EI'] | null;
   InternalShipmentID?: T['EI'][] | null;
@@ -17212,6 +23833,43 @@ interface SHPObject2<T extends HL7TypeMap> {
   ShipmentRiskCode?: T['CWE'][] | null;
   ActionCode?: string | null;
 }
+
+type SPMFields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28
+  | 29
+  | 30
+  | 31
+  | 32
+  | 33
+  | 34
+  | 35;
 
 interface SPMObject4<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -17251,6 +23909,8 @@ interface SPMObject4<T extends HL7TypeMap> {
   ActionCode?: string | null;
 }
 
+type TCDFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+
 interface TCDObject3<T extends HL7TypeMap> {
   UniversalServiceIdentifier?: T['CWE'] | null;
   AutoDilutionFactor?: T['SN'] | null;
@@ -17264,6 +23924,36 @@ interface TCDObject3<T extends HL7TypeMap> {
   PoolSize?: number | string | null;
   AutoDilutionType?: T['CWE'] | null;
 }
+
+type TXAFields3 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24
+  | 25
+  | 26
+  | 27
+  | 28;
 
 interface TXAObject5<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -17296,6 +23986,8 @@ interface TXAObject5<T extends HL7TypeMap> {
   CreatingSpecialty?: T['CWE'] | null;
 }
 
+type VNDFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+
 interface VNDObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   VendorIdentifier?: T['EI'] | null;
@@ -17309,6 +24001,8 @@ interface VNDObject2<T extends HL7TypeMap> {
   ClassOfTrade?: string[] | null;
   PricingTierLevel?: T['CWE'] | null;
 }
+
+type ZL7Fields1 = 1 | 2;
 
 interface ZL7Object2<T extends HL7TypeMap> {
   DisplaySortKey?: number | string | null;
@@ -19414,3 +26108,2044 @@ export type HL7DataTypeObject<
   V extends HL7TypedVersion,
   T extends keyof HL7VersionTypes[V],
 > = HL7VersionTypes[V][T];
+
+/**
+ * The field positions each version's segments have, for HL7Segment.field():
+ * DG1Segment.DiagnosisCodingMethod (2) is not one of 2.6's DG1. A segment or
+ * version with no definitions here takes any number.
+ */
+export interface HL7VersionSegmentFields {
+  '2.1': {
+    ACC: ACCFields1;
+    ADD: ADDFields1;
+    BHS: BHSFields1;
+    BLG: BLGFields1;
+    BTS: BTSFields1;
+    DG1: DG1Fields1;
+    DSC: DSCFields1;
+    DSP: DSPFields1;
+    ERR: ERRFields1;
+    EVN: EVNFields1;
+    FHS: FHSFields1;
+    FT1: FT1Fields1;
+    FTS: FTSFields1;
+    GT1: GT1Fields1;
+    IN1: IN1Fields1;
+    MRG: MRGFields1;
+    MSA: MSAFields1;
+    MSH: MSHFields1;
+    NCK: NCKFields1;
+    NK1: NK1Fields1;
+    NPU: NPUFields1;
+    NSC: NSCFields1;
+    NST: NSTFields1;
+    NTE: NTEFields1;
+    OBR: OBRFields1;
+    OBX: OBXFields1;
+    ORC: ORCFields1;
+    ORO: OROFields1;
+    PID: PIDFields1;
+    PR1: PR1Fields1;
+    PV1: PV1Fields1;
+    QRD: QRDFields1;
+    QRF: QRFFields1;
+    RX1: RX1Fields1;
+    UB1: UB1Fields1;
+    URD: URDFields1;
+    URS: URSFields1;
+    PD1: PD1Fields1;
+    [segment: string]: number;
+  };
+  '2.2': {
+    ACC: ACCFields1;
+    ADD: ADDFields1;
+    AL1: AL1Fields1;
+    BHS: BHSFields1;
+    BLG: BLGFields1;
+    BTS: BTSFields1;
+    DG1: DG1Fields2;
+    DSC: DSCFields1;
+    DSP: DSPFields1;
+    ERR: ERRFields1;
+    EVN: EVNFields2;
+    FHS: FHSFields1;
+    FT1: FT1Fields2;
+    FTS: FTSFields1;
+    GT1: GT1Fields2;
+    IN1: IN1Fields2;
+    IN2: IN2Fields1;
+    IN3: IN3Fields1;
+    MFA: MFAFields1;
+    MFE: MFEFields1;
+    MFI: MFIFields1;
+    MRG: MRGFields2;
+    MSA: MSAFields2;
+    MSH: MSHFields2;
+    NCK: NCKFields1;
+    NK1: NK1Fields2;
+    NPU: NPUFields1;
+    NSC: NSCFields1;
+    NST: NSTFields1;
+    NTE: NTEFields1;
+    OBR: OBRFields1;
+    OBX: OBXFields2;
+    ODS: ODSFields1;
+    ODT: ODTFields1;
+    OM1: OM1Fields1;
+    OM2: OM2Fields1;
+    OM3: OM3Fields1;
+    OM4: OM4Fields1;
+    OM5: OM5Fields1;
+    OM6: OM6Fields1;
+    ORC: ORCFields2;
+    PID: PIDFields2;
+    PR1: PR1Fields2;
+    PRA: PRAFields1;
+    PV1: PV1Fields2;
+    PV2: PV2Fields1;
+    QRD: QRDFields1;
+    QRF: QRFFields2;
+    RQ1: RQ1Fields1;
+    RQD: RQDFields1;
+    RXA: RXAFields1;
+    RXC: RXCFields1;
+    RXD: RXDFields1;
+    RXE: RXEFields1;
+    RXG: RXGFields1;
+    RXO: RXOFields1;
+    RXR: RXRFields1;
+    STF: STFFields1;
+    UB1: UB1Fields1;
+    UB2: UB2Fields1;
+    URD: URDFields1;
+    URS: URSFields2;
+    [segment: string]: number;
+  };
+  '2.3': {
+    ACC: ACCFields2;
+    ADD: ADDFields1;
+    AIG: AIGFields1;
+    AIL: AILFields1;
+    AIP: AIPFields1;
+    AIS: AISFields1;
+    AL1: AL1Fields1;
+    APR: APRFields1;
+    ARQ: ARQFields1;
+    AUT: AUTFields1;
+    BHS: BHSFields1;
+    BLG: BLGFields1;
+    BTS: BTSFields1;
+    CDM: CDMFields1;
+    CM0: CM0Fields1;
+    CM1: CM1Fields1;
+    CM2: CM2Fields1;
+    CSP: CSPFields1;
+    CSR: CSRFields1;
+    CSS: CSSFields1;
+    CTD: CTDFields1;
+    CTI: CTIFields1;
+    DB1: DB1Fields1;
+    DG1: DG1Fields3;
+    DRG: DRGFields1;
+    DSC: DSCFields1;
+    DSP: DSPFields1;
+    EQL: EQLFields1;
+    ERQ: ERQFields1;
+    ERR: ERRFields1;
+    EVN: EVNFields3;
+    FAC: FACFields1;
+    FHS: FHSFields1;
+    FT1: FT1Fields3;
+    FTS: FTSFields1;
+    GOL: GOLFields1;
+    GT1: GT1Fields3;
+    IN1: IN1Fields3;
+    IN2: IN2Fields2;
+    IN3: IN3Fields1;
+    LCC: LCCFields1;
+    LCH: LCHFields1;
+    LDP: LDPFields1;
+    LOC: LOCFields1;
+    LRL: LRLFields1;
+    MFA: MFAFields1;
+    MFE: MFEFields1;
+    MFI: MFIFields1;
+    MRG: MRGFields3;
+    MSA: MSAFields2;
+    MSH: MSHFields3;
+    NCK: NCKFields1;
+    NK1: NK1Fields3;
+    NPU: NPUFields1;
+    NSC: NSCFields2;
+    NST: NSTFields1;
+    NTE: NTEFields1;
+    OBR: OBRFields2;
+    OBX: OBXFields3;
+    ODS: ODSFields1;
+    ODT: ODTFields1;
+    OM1: OM1Fields2;
+    OM2: OM2Fields2;
+    OM3: OM3Fields2;
+    OM4: OM4Fields2;
+    OM5: OM5Fields2;
+    OM6: OM6Fields2;
+    ORC: ORCFields2;
+    PCR: PCRFields1;
+    PD1: PD1Fields1;
+    PDC: PDCFields1;
+    PEO: PEOFields1;
+    PES: PESFields1;
+    PID: PIDFields3;
+    PR1: PR1Fields3;
+    PRA: PRAFields1;
+    PRB: PRBFields1;
+    PRC: PRCFields1;
+    PRD: PRDFields1;
+    PSH: PSHFields1;
+    PTH: PTHFields1;
+    PV1: PV1Fields3;
+    PV2: PV2Fields2;
+    QAK: QAKFields1;
+    QRD: QRDFields1;
+    QRF: QRFFields3;
+    RDF: RDFFields1;
+    RDT: RDTFields1;
+    RF1: RF1Fields1;
+    RGS: RGSFields1;
+    ROL: ROLFields1;
+    RQ1: RQ1Fields1;
+    RQD: RQDFields1;
+    RXA: RXAFields2;
+    RXC: RXCFields2;
+    RXD: RXDFields2;
+    RXE: RXEFields2;
+    RXG: RXGFields2;
+    RXO: RXOFields2;
+    RXR: RXRFields1;
+    SCH: SCHFields1;
+    SPR: SPRFields1;
+    STF: STFFields2;
+    TXA: TXAFields1;
+    UB1: UB1Fields1;
+    UB2: UB2Fields2;
+    URD: URDFields1;
+    URS: URSFields3;
+    VAR: VARFields1;
+    VTQ: VTQFields1;
+    [segment: string]: number;
+  };
+  '2.3.1': {
+    ACC: ACCFields2;
+    ADD: ADDFields1;
+    AIG: AIGFields1;
+    AIL: AILFields1;
+    AIP: AIPFields1;
+    AIS: AISFields1;
+    AL1: AL1Fields1;
+    APR: APRFields1;
+    ARQ: ARQFields1;
+    AUT: AUTFields1;
+    BHS: BHSFields1;
+    BLG: BLGFields1;
+    BTS: BTSFields1;
+    CDM: CDMFields1;
+    CM0: CM0Fields1;
+    CM1: CM1Fields1;
+    CM2: CM2Fields1;
+    CSP: CSPFields1;
+    CSR: CSRFields1;
+    CSS: CSSFields1;
+    CTD: CTDFields1;
+    CTI: CTIFields1;
+    DB1: DB1Fields1;
+    DG1: DG1Fields3;
+    DRG: DRGFields1;
+    DSC: DSCFields1;
+    DSP: DSPFields1;
+    EQL: EQLFields1;
+    ERQ: ERQFields1;
+    ERR: ERRFields1;
+    EVN: EVNFields3;
+    FAC: FACFields1;
+    FHS: FHSFields1;
+    FT1: FT1Fields4;
+    FTS: FTSFields1;
+    GOL: GOLFields1;
+    GT1: GT1Fields3;
+    IN1: IN1Fields3;
+    IN2: IN2Fields2;
+    IN3: IN3Fields1;
+    LCC: LCCFields1;
+    LCH: LCHFields1;
+    LDP: LDPFields1;
+    LOC: LOCFields1;
+    LRL: LRLFields1;
+    MFA: MFAFields2;
+    MFE: MFEFields2;
+    MFI: MFIFields1;
+    MRG: MRGFields3;
+    MSA: MSAFields2;
+    MSH: MSHFields4;
+    NCK: NCKFields1;
+    NK1: NK1Fields3;
+    NPU: NPUFields1;
+    NSC: NSCFields1;
+    NST: NSTFields1;
+    NTE: NTEFields2;
+    OBR: OBRFields3;
+    OBX: OBXFields3;
+    ODS: ODSFields1;
+    ODT: ODTFields1;
+    OM1: OM1Fields2;
+    OM2: OM2Fields2;
+    OM3: OM3Fields2;
+    OM4: OM4Fields2;
+    OM5: OM5Fields2;
+    OM6: OM6Fields2;
+    ORC: ORCFields3;
+    PCR: PCRFields1;
+    PD1: PD1Fields1;
+    PDC: PDCFields1;
+    PEO: PEOFields1;
+    PES: PESFields1;
+    PID: PIDFields3;
+    PR1: PR1Fields4;
+    PRA: PRAFields2;
+    PRB: PRBFields1;
+    PRC: PRCFields1;
+    PRD: PRDFields1;
+    PSH: PSHFields1;
+    PTH: PTHFields1;
+    PV1: PV1Fields3;
+    PV2: PV2Fields2;
+    QAK: QAKFields1;
+    QRD: QRDFields1;
+    QRF: QRFFields3;
+    RDF: RDFFields1;
+    RDT: RDTFields1;
+    RF1: RF1Fields1;
+    RGS: RGSFields1;
+    ROL: ROLFields1;
+    RQ1: RQ1Fields1;
+    RQD: RQDFields1;
+    RXA: RXAFields2;
+    RXC: RXCFields2;
+    RXD: RXDFields2;
+    RXE: RXEFields2;
+    RXG: RXGFields2;
+    RXO: RXOFields3;
+    RXR: RXRFields2;
+    SCH: SCHFields1;
+    SPR: SPRFields1;
+    STF: STFFields2;
+    TXA: TXAFields1;
+    UB1: UB1Fields1;
+    UB2: UB2Fields2;
+    URD: URDFields1;
+    URS: URSFields3;
+    VAR: VARFields1;
+    VTQ: VTQFields1;
+    [segment: string]: number;
+  };
+  '2.4': {
+    ABS: ABSFields1;
+    ACC: ACCFields3;
+    ADD: ADDFields1;
+    AFF: AFFFields1;
+    AIG: AIGFields1;
+    AIL: AILFields1;
+    AIP: AIPFields1;
+    AIS: AISFields2;
+    AL1: AL1Fields1;
+    APR: APRFields1;
+    ARQ: ARQFields2;
+    AUT: AUTFields1;
+    BHS: BHSFields1;
+    BLC: BLCFields1;
+    BLG: BLGFields1;
+    BTS: BTSFields1;
+    CDM: CDMFields1;
+    CM0: CM0Fields1;
+    CM1: CM1Fields1;
+    CM2: CM2Fields1;
+    CNS: CNSFields1;
+    CSP: CSPFields1;
+    CSR: CSRFields1;
+    CSS: CSSFields1;
+    CTD: CTDFields1;
+    CTI: CTIFields1;
+    DB1: DB1Fields1;
+    DG1: DG1Fields3;
+    DRG: DRGFields2;
+    DSC: DSCFields2;
+    DSP: DSPFields1;
+    ECD: ECDFields1;
+    ECR: ECRFields1;
+    EDU: EDUFields1;
+    EQL: EQLFields1;
+    EQP: EQPFields1;
+    EQU: EQUFields1;
+    ERQ: ERQFields1;
+    ERR: ERRFields1;
+    EVN: EVNFields4;
+    FAC: FACFields1;
+    FHS: FHSFields1;
+    FT1: FT1Fields4;
+    FTS: FTSFields1;
+    GOL: GOLFields1;
+    GP1: GP1Fields1;
+    GP2: GP2Fields1;
+    GT1: GT1Fields3;
+    IAM: IAMFields1;
+    IN1: IN1Fields3;
+    IN2: IN2Fields2;
+    IN3: IN3Fields1;
+    INV: INVFields1;
+    ISD: ISDFields1;
+    LAN: LANFields1;
+    LCC: LCCFields1;
+    LCH: LCHFields1;
+    LDP: LDPFields2;
+    LOC: LOCFields2;
+    LRL: LRLFields1;
+    MFA: MFAFields2;
+    MFE: MFEFields2;
+    MFI: MFIFields1;
+    MRG: MRGFields3;
+    MSA: MSAFields2;
+    MSH: MSHFields5;
+    NCK: NCKFields1;
+    NDS: NDSFields1;
+    NK1: NK1Fields3;
+    NPU: NPUFields1;
+    NSC: NSCFields1;
+    NST: NSTFields1;
+    NTE: NTEFields2;
+    OBR: OBRFields4;
+    OBX: OBXFields4;
+    ODS: ODSFields1;
+    ODT: ODTFields1;
+    OM1: OM1Fields2;
+    OM2: OM2Fields2;
+    OM3: OM3Fields2;
+    OM4: OM4Fields2;
+    OM5: OM5Fields2;
+    OM6: OM6Fields2;
+    OM7: OM7Fields1;
+    ORC: ORCFields4;
+    ORG: ORGFields1;
+    PCR: PCRFields1;
+    PD1: PD1Fields2;
+    PDA: PDAFields1;
+    PDC: PDCFields1;
+    PEO: PEOFields1;
+    PES: PESFields1;
+    PID: PIDFields4;
+    PR1: PR1Fields5;
+    PRA: PRAFields3;
+    PRB: PRBFields1;
+    PRC: PRCFields1;
+    PRD: PRDFields1;
+    PSH: PSHFields1;
+    PTH: PTHFields1;
+    PV1: PV1Fields3;
+    PV2: PV2Fields3;
+    QAK: QAKFields2;
+    QID: QIDFields1;
+    QPD: QPDFields1;
+    QRD: QRDFields1;
+    QRF: QRFFields4;
+    QRI: QRIFields1;
+    RCP: RCPFields1;
+    RDF: RDFFields1;
+    RDT: RDTFields1;
+    RF1: RF1Fields1;
+    RGS: RGSFields1;
+    RMI: RMIFields1;
+    ROL: ROLFields2;
+    RQ1: RQ1Fields1;
+    RQD: RQDFields1;
+    RXA: RXAFields2;
+    RXC: RXCFields3;
+    RXD: RXDFields3;
+    RXE: RXEFields3;
+    RXG: RXGFields2;
+    RXO: RXOFields4;
+    RXR: RXRFields2;
+    SAC: SACFields1;
+    SCH: SCHFields2;
+    SID: SIDFields1;
+    SPR: SPRFields1;
+    STF: STFFields3;
+    TCC: TCCFields1;
+    TCD: TCDFields1;
+    TXA: TXAFields1;
+    UB1: UB1Fields1;
+    UB2: UB2Fields2;
+    URD: URDFields1;
+    URS: URSFields3;
+    VAR: VARFields1;
+    VTQ: VTQFields1;
+    [segment: string]: number;
+  };
+  '2.5': {
+    ABS: ABSFields1;
+    ACC: ACCFields4;
+    ADD: ADDFields1;
+    AFF: AFFFields1;
+    AIG: AIGFields1;
+    AIL: AILFields1;
+    AIP: AIPFields1;
+    AIS: AISFields2;
+    AL1: AL1Fields1;
+    APR: APRFields1;
+    ARQ: ARQFields2;
+    AUT: AUTFields1;
+    BHS: BHSFields1;
+    BLC: BLCFields1;
+    BLG: BLGFields2;
+    BPO: BPOFields1;
+    BPX: BPXFields1;
+    BTS: BTSFields1;
+    BTX: BTXFields1;
+    CDM: CDMFields1;
+    CER: CERFields1;
+    CM0: CM0Fields1;
+    CM1: CM1Fields1;
+    CM2: CM2Fields1;
+    CNS: CNSFields1;
+    CON: CONFields1;
+    CSP: CSPFields1;
+    CSR: CSRFields1;
+    CSS: CSSFields1;
+    CTD: CTDFields1;
+    CTI: CTIFields1;
+    DB1: DB1Fields1;
+    DG1: DG1Fields4;
+    DRG: DRGFields2;
+    DSC: DSCFields2;
+    DSP: DSPFields1;
+    ECD: ECDFields1;
+    ECR: ECRFields1;
+    EDU: EDUFields2;
+    EQL: EQLFields1;
+    EQP: EQPFields1;
+    EQU: EQUFields1;
+    ERQ: ERQFields1;
+    ERR: ERRFields2;
+    EVN: EVNFields4;
+    FAC: FACFields1;
+    FHS: FHSFields1;
+    FT1: FT1Fields5;
+    FTS: FTSFields1;
+    GOL: GOLFields1;
+    GP1: GP1Fields1;
+    GP2: GP2Fields1;
+    GT1: GT1Fields4;
+    IAM: IAMFields1;
+    IIM: IIMFields1;
+    IN1: IN1Fields4;
+    IN2: IN2Fields2;
+    IN3: IN3Fields1;
+    INV: INVFields2;
+    IPC: IPCFields1;
+    ISD: ISDFields1;
+    LAN: LANFields1;
+    LCC: LCCFields1;
+    LCH: LCHFields1;
+    LDP: LDPFields2;
+    LOC: LOCFields2;
+    LRL: LRLFields1;
+    MFA: MFAFields2;
+    MFE: MFEFields2;
+    MFI: MFIFields1;
+    MRG: MRGFields3;
+    MSA: MSAFields2;
+    MSH: MSHFields5;
+    NCK: NCKFields1;
+    NDS: NDSFields1;
+    NK1: NK1Fields4;
+    NPU: NPUFields1;
+    NSC: NSCFields1;
+    NST: NSTFields1;
+    NTE: NTEFields2;
+    OBR: OBRFields5;
+    OBX: OBXFields4;
+    ODS: ODSFields1;
+    ODT: ODTFields1;
+    OM1: OM1Fields2;
+    OM2: OM2Fields2;
+    OM3: OM3Fields2;
+    OM4: OM4Fields2;
+    OM5: OM5Fields2;
+    OM6: OM6Fields2;
+    OM7: OM7Fields1;
+    ORC: ORCFields5;
+    ORG: ORGFields1;
+    OVR: OVRFields1;
+    PCR: PCRFields1;
+    PD1: PD1Fields2;
+    PDA: PDAFields1;
+    PDC: PDCFields1;
+    PEO: PEOFields1;
+    PES: PESFields1;
+    PID: PIDFields5;
+    PR1: PR1Fields6;
+    PRA: PRAFields3;
+    PRB: PRBFields1;
+    PRC: PRCFields1;
+    PRD: PRDFields1;
+    PSH: PSHFields1;
+    PTH: PTHFields1;
+    PV1: PV1Fields3;
+    PV2: PV2Fields4;
+    QAK: QAKFields2;
+    QID: QIDFields1;
+    QPD: QPDFields1;
+    QRD: QRDFields1;
+    QRF: QRFFields4;
+    QRI: QRIFields1;
+    RCP: RCPFields1;
+    RDF: RDFFields1;
+    RDT: RDTFields1;
+    RF1: RF1Fields1;
+    RGS: RGSFields1;
+    RMI: RMIFields1;
+    ROL: ROLFields2;
+    RQ1: RQ1Fields1;
+    RQD: RQDFields1;
+    RXA: RXAFields3;
+    RXC: RXCFields4;
+    RXD: RXDFields4;
+    RXE: RXEFields4;
+    RXG: RXGFields3;
+    RXO: RXOFields5;
+    RXR: RXRFields3;
+    SAC: SACFields1;
+    SCH: SCHFields2;
+    SFT: SFTFields1;
+    SID: SIDFields1;
+    SPM: SPMFields1;
+    SPR: SPRFields1;
+    STF: STFFields4;
+    TCC: TCCFields1;
+    TCD: TCDFields1;
+    TQ1: TQ1Fields1;
+    TQ2: TQ2Fields1;
+    TXA: TXAFields1;
+    UB1: UB1Fields1;
+    UB2: UB2Fields2;
+    URD: URDFields1;
+    URS: URSFields3;
+    VAR: VARFields1;
+    VTQ: VTQFields1;
+    ED: EDFields1;
+    [segment: string]: number;
+  };
+  '2.5.1': {
+    ABS: ABSFields1;
+    ACC: ACCFields4;
+    ADD: ADDFields1;
+    AFF: AFFFields1;
+    AIG: AIGFields1;
+    AIL: AILFields1;
+    AIP: AIPFields1;
+    AIS: AISFields2;
+    AL1: AL1Fields1;
+    APR: APRFields1;
+    ARQ: ARQFields2;
+    AUT: AUTFields1;
+    BHS: BHSFields1;
+    BLC: BLCFields1;
+    BLG: BLGFields2;
+    BPO: BPOFields1;
+    BPX: BPXFields1;
+    BTS: BTSFields1;
+    BTX: BTXFields1;
+    CDM: CDMFields1;
+    CER: CERFields1;
+    CM0: CM0Fields1;
+    CM1: CM1Fields1;
+    CM2: CM2Fields1;
+    CNS: CNSFields1;
+    CON: CONFields1;
+    CSP: CSPFields1;
+    CSR: CSRFields1;
+    CSS: CSSFields1;
+    CTD: CTDFields1;
+    CTI: CTIFields1;
+    DB1: DB1Fields1;
+    DG1: DG1Fields4;
+    DRG: DRGFields2;
+    DSC: DSCFields2;
+    DSP: DSPFields1;
+    ECD: ECDFields1;
+    ECR: ECRFields1;
+    EDU: EDUFields2;
+    EQL: EQLFields1;
+    EQP: EQPFields1;
+    EQU: EQUFields1;
+    ERQ: ERQFields1;
+    ERR: ERRFields2;
+    EVN: EVNFields4;
+    FAC: FACFields1;
+    FHS: FHSFields1;
+    FT1: FT1Fields5;
+    FTS: FTSFields1;
+    GOL: GOLFields1;
+    GP1: GP1Fields1;
+    GP2: GP2Fields1;
+    GT1: GT1Fields4;
+    IAM: IAMFields1;
+    IIM: IIMFields1;
+    IN1: IN1Fields4;
+    IN2: IN2Fields2;
+    IN3: IN3Fields1;
+    INV: INVFields2;
+    IPC: IPCFields1;
+    ISD: ISDFields1;
+    LAN: LANFields1;
+    LCC: LCCFields1;
+    LCH: LCHFields1;
+    LDP: LDPFields2;
+    LOC: LOCFields2;
+    LRL: LRLFields1;
+    MFA: MFAFields2;
+    MFE: MFEFields2;
+    MFI: MFIFields1;
+    MRG: MRGFields3;
+    MSA: MSAFields2;
+    MSH: MSHFields5;
+    NCK: NCKFields1;
+    NDS: NDSFields1;
+    NK1: NK1Fields4;
+    NPU: NPUFields1;
+    NSC: NSCFields1;
+    NST: NSTFields1;
+    NTE: NTEFields2;
+    OBR: OBRFields6;
+    OBX: OBXFields5;
+    ODS: ODSFields1;
+    ODT: ODTFields1;
+    OM1: OM1Fields2;
+    OM2: OM2Fields2;
+    OM3: OM3Fields2;
+    OM4: OM4Fields2;
+    OM5: OM5Fields2;
+    OM6: OM6Fields2;
+    OM7: OM7Fields1;
+    ORC: ORCFields6;
+    ORG: ORGFields1;
+    OVR: OVRFields1;
+    PCR: PCRFields1;
+    PD1: PD1Fields2;
+    PDA: PDAFields1;
+    PDC: PDCFields1;
+    PEO: PEOFields1;
+    PES: PESFields1;
+    PID: PIDFields5;
+    PR1: PR1Fields6;
+    PRA: PRAFields3;
+    PRB: PRBFields1;
+    PRC: PRCFields1;
+    PRD: PRDFields1;
+    PSH: PSHFields1;
+    PTH: PTHFields1;
+    PV1: PV1Fields3;
+    PV2: PV2Fields4;
+    QAK: QAKFields2;
+    QID: QIDFields1;
+    QPD: QPDFields1;
+    QRD: QRDFields1;
+    QRF: QRFFields4;
+    QRI: QRIFields1;
+    RCP: RCPFields1;
+    RDF: RDFFields1;
+    RDT: RDTFields1;
+    RF1: RF1Fields1;
+    RGS: RGSFields1;
+    RMI: RMIFields1;
+    ROL: ROLFields2;
+    RQ1: RQ1Fields1;
+    RQD: RQDFields1;
+    RXA: RXAFields3;
+    RXC: RXCFields4;
+    RXD: RXDFields4;
+    RXE: RXEFields4;
+    RXG: RXGFields3;
+    RXO: RXOFields5;
+    RXR: RXRFields3;
+    SAC: SACFields1;
+    SCH: SCHFields2;
+    SFT: SFTFields1;
+    SID: SIDFields1;
+    SPM: SPMFields1;
+    SPR: SPRFields1;
+    STF: STFFields4;
+    TCC: TCCFields1;
+    TCD: TCDFields1;
+    TQ1: TQ1Fields1;
+    TQ2: TQ2Fields1;
+    TXA: TXAFields1;
+    UB1: UB1Fields1;
+    UB2: UB2Fields2;
+    URD: URDFields1;
+    URS: URSFields3;
+    VAR: VARFields1;
+    VTQ: VTQFields1;
+    ED: EDFields1;
+    [segment: string]: number;
+  };
+  '2.6': {
+    ABS: ABSFields1;
+    ACC: ACCFields4;
+    ADD: ADDFields1;
+    ADJ: ADJFields1;
+    AFF: AFFFields1;
+    AIG: AIGFields1;
+    AIL: AILFields1;
+    AIP: AIPFields1;
+    AIS: AISFields2;
+    AL1: AL1Fields1;
+    APR: APRFields1;
+    ARQ: ARQFields2;
+    ARV: ARVFields1;
+    AUT: AUTFields1;
+    BHS: BHSFields2;
+    BLC: BLCFields1;
+    BLG: BLGFields2;
+    BPO: BPOFields1;
+    BPX: BPXFields1;
+    BTS: BTSFields1;
+    BTX: BTXFields1;
+    CDM: CDMFields1;
+    CER: CERFields1;
+    CM0: CM0Fields1;
+    CM1: CM1Fields1;
+    CM2: CM2Fields1;
+    CNS: CNSFields1;
+    CON: CONFields1;
+    CSP: CSPFields1;
+    CSR: CSRFields1;
+    CSS: CSSFields1;
+    CTD: CTDFields1;
+    CTI: CTIFields1;
+    DB1: DB1Fields1;
+    DG1: DG1Fields5;
+    DMI: DMIFields1;
+    DRG: DRGFields3;
+    DSC: DSCFields2;
+    DSP: DSPFields1;
+    ECD: ECDFields1;
+    ECR: ECRFields1;
+    EDU: EDUFields2;
+    EQP: EQPFields1;
+    EQU: EQUFields1;
+    ERR: ERRFields2;
+    EVN: EVNFields4;
+    FAC: FACFields1;
+    FHS: FHSFields2;
+    FT1: FT1Fields6;
+    FTS: FTSFields1;
+    GOL: GOLFields2;
+    GP1: GP1Fields1;
+    GP2: GP2Fields1;
+    GT1: GT1Fields4;
+    IAM: IAMFields1;
+    IIM: IIMFields1;
+    ILT: ILTFields1;
+    IN1: IN1Fields5;
+    IN2: IN2Fields2;
+    IN3: IN3Fields1;
+    INV: INVFields2;
+    IPC: IPCFields1;
+    IPR: IPRFields1;
+    ISD: ISDFields1;
+    ITM: ITMFields1;
+    IVC: IVCFields1;
+    IVT: IVTFields1;
+    LAN: LANFields1;
+    LCC: LCCFields1;
+    LCH: LCHFields1;
+    LDP: LDPFields2;
+    LOC: LOCFields2;
+    LRL: LRLFields1;
+    MFA: MFAFields2;
+    MFE: MFEFields3;
+    MFI: MFIFields1;
+    MRG: MRGFields3;
+    MSA: MSAFields3;
+    MSH: MSHFields6;
+    NCK: NCKFields1;
+    NDS: NDSFields1;
+    NK1: NK1Fields4;
+    NPU: NPUFields1;
+    NSC: NSCFields1;
+    NST: NSTFields1;
+    NTE: NTEFields3;
+    OBR: OBRFields6;
+    OBX: OBXFields6;
+    ODS: ODSFields1;
+    ODT: ODTFields1;
+    OM1: OM1Fields2;
+    OM2: OM2Fields2;
+    OM3: OM3Fields2;
+    OM4: OM4Fields2;
+    OM5: OM5Fields2;
+    OM6: OM6Fields2;
+    OM7: OM7Fields1;
+    ORC: ORCFields6;
+    ORG: ORGFields1;
+    OVR: OVRFields1;
+    PCE: PCEFields1;
+    PCR: PCRFields1;
+    PD1: PD1Fields3;
+    PDA: PDAFields1;
+    PDC: PDCFields1;
+    PEO: PEOFields1;
+    PES: PESFields1;
+    PID: PIDFields5;
+    PKG: PKGFields1;
+    PMT: PMTFields1;
+    PR1: PR1Fields7;
+    PRA: PRAFields3;
+    PRB: PRBFields2;
+    PRC: PRCFields1;
+    PRD: PRDFields2;
+    PSG: PSGFields1;
+    PSH: PSHFields1;
+    PSL: PSLFields1;
+    PSS: PSSFields1;
+    PTH: PTHFields2;
+    PV1: PV1Fields3;
+    PV2: PV2Fields5;
+    PYE: PYEFields1;
+    QAK: QAKFields2;
+    QID: QIDFields1;
+    QPD: QPDFields1;
+    QRD: QRDFields1;
+    QRF: QRFFields4;
+    QRI: QRIFields1;
+    RCP: RCPFields1;
+    RDF: RDFFields1;
+    RDT: RDTFields1;
+    REL: RELFields1;
+    RF1: RF1Fields2;
+    RFI: RFIFields1;
+    RGS: RGSFields1;
+    RMI: RMIFields1;
+    ROL: ROLFields3;
+    RQ1: RQ1Fields1;
+    RQD: RQDFields1;
+    RXA: RXAFields4;
+    RXC: RXCFields4;
+    RXD: RXDFields4;
+    RXE: RXEFields4;
+    RXG: RXGFields4;
+    RXO: RXOFields6;
+    RXR: RXRFields3;
+    SAC: SACFields1;
+    SCD: SCDFields1;
+    SCH: SCHFields2;
+    SCP: SCPFields1;
+    SDD: SDDFields1;
+    SFT: SFTFields1;
+    SID: SIDFields1;
+    SLT: SLTFields1;
+    SPM: SPMFields1;
+    STF: STFFields5;
+    STZ: STZFields1;
+    TCC: TCCFields1;
+    TCD: TCDFields1;
+    TQ1: TQ1Fields1;
+    TQ2: TQ2Fields1;
+    TXA: TXAFields1;
+    UAC: UACFields1;
+    UB1: UB1Fields2;
+    UB2: UB2Fields2;
+    URD: URDFields1;
+    URS: URSFields3;
+    VAR: VARFields1;
+    VND: VNDFields1;
+    [segment: string]: number;
+  };
+  '2.7': {
+    ABS: ABSFields1;
+    ACC: ACCFields5;
+    ADD: ADDFields1;
+    ADJ: ADJFields1;
+    AFF: AFFFields1;
+    AIG: AIGFields1;
+    AIL: AILFields1;
+    AIP: AIPFields1;
+    AIS: AISFields2;
+    AL1: AL1Fields2;
+    APR: APRFields1;
+    ARQ: ARQFields2;
+    ARV: ARVFields1;
+    AUT: AUTFields2;
+    BHS: BHSFields2;
+    BLC: BLCFields1;
+    BLG: BLGFields2;
+    BPO: BPOFields1;
+    BPX: BPXFields1;
+    BTS: BTSFields1;
+    BTX: BTXFields1;
+    CDM: CDMFields1;
+    CER: CERFields1;
+    CM0: CM0Fields1;
+    CM1: CM1Fields1;
+    CM2: CM2Fields1;
+    CNS: CNSFields1;
+    CON: CONFields1;
+    CSP: CSPFields1;
+    CSR: CSRFields1;
+    CSS: CSSFields1;
+    CTD: CTDFields1;
+    CTI: CTIFields1;
+    DB1: DB1Fields1;
+    DG1: DG1Fields5;
+    DMI: DMIFields1;
+    DRG: DRGFields3;
+    DSC: DSCFields2;
+    DSP: DSPFields1;
+    ECD: ECDFields2;
+    ECR: ECRFields1;
+    EDU: EDUFields2;
+    EQP: EQPFields1;
+    EQU: EQUFields1;
+    ERR: ERRFields3;
+    EVN: EVNFields5;
+    FAC: FACFields1;
+    FHS: FHSFields2;
+    FT1: FT1Fields7;
+    FTS: FTSFields1;
+    GOL: GOLFields3;
+    GP1: GP1Fields1;
+    GP2: GP2Fields1;
+    GT1: GT1Fields4;
+    IAM: IAMFields2;
+    IAR: IARFields1;
+    IIM: IIMFields1;
+    ILT: ILTFields1;
+    IN1: IN1Fields6;
+    IN2: IN2Fields2;
+    IN3: IN3Fields1;
+    INV: INVFields3;
+    IPC: IPCFields1;
+    IPR: IPRFields1;
+    ISD: ISDFields1;
+    ITM: ITMFields1;
+    IVC: IVCFields1;
+    IVT: IVTFields1;
+    LAN: LANFields1;
+    LCC: LCCFields1;
+    LCH: LCHFields1;
+    LDP: LDPFields2;
+    LOC: LOCFields2;
+    LRL: LRLFields1;
+    MFA: MFAFields2;
+    MFE: MFEFields3;
+    MFI: MFIFields1;
+    MRG: MRGFields4;
+    MSA: MSAFields4;
+    MSH: MSHFields6;
+    NCK: NCKFields1;
+    NDS: NDSFields1;
+    NK1: NK1Fields5;
+    NPU: NPUFields1;
+    NSC: NSCFields1;
+    NST: NSTFields1;
+    NTE: NTEFields3;
+    OBR: OBRFields7;
+    OBX: OBXFields7;
+    ODS: ODSFields1;
+    ODT: ODTFields1;
+    OM1: OM1Fields2;
+    OM2: OM2Fields2;
+    OM3: OM3Fields2;
+    OM4: OM4Fields2;
+    OM5: OM5Fields2;
+    OM6: OM6Fields2;
+    OM7: OM7Fields1;
+    ORC: ORCFields7;
+    ORG: ORGFields2;
+    OVR: OVRFields1;
+    PAC: PACFields1;
+    PCE: PCEFields1;
+    PCR: PCRFields1;
+    PD1: PD1Fields4;
+    PDA: PDAFields1;
+    PDC: PDCFields1;
+    PEO: PEOFields1;
+    PES: PESFields1;
+    PID: PIDFields6;
+    PKG: PKGFields1;
+    PMT: PMTFields1;
+    PR1: PR1Fields8;
+    PRA: PRAFields3;
+    PRB: PRBFields2;
+    PRC: PRCFields1;
+    PRD: PRDFields2;
+    PRT: PRTFields1;
+    PSG: PSGFields1;
+    PSH: PSHFields1;
+    PSL: PSLFields1;
+    PSS: PSSFields1;
+    PTH: PTHFields2;
+    PV1: PV1Fields4;
+    PV2: PV2Fields5;
+    PYE: PYEFields1;
+    QAK: QAKFields2;
+    QID: QIDFields1;
+    QPD: QPDFields1;
+    QRI: QRIFields1;
+    RCP: RCPFields1;
+    RDF: RDFFields1;
+    RDT: RDTFields1;
+    REL: RELFields1;
+    RF1: RF1Fields2;
+    RFI: RFIFields1;
+    RGS: RGSFields1;
+    RMI: RMIFields1;
+    ROL: ROLFields4;
+    RQ1: RQ1Fields1;
+    RQD: RQDFields1;
+    RXA: RXAFields4;
+    RXC: RXCFields4;
+    RXD: RXDFields5;
+    RXE: RXEFields5;
+    RXG: RXGFields5;
+    RXO: RXOFields7;
+    RXR: RXRFields3;
+    SAC: SACFields2;
+    SCD: SCDFields1;
+    SCH: SCHFields3;
+    SCP: SCPFields1;
+    SDD: SDDFields1;
+    SFT: SFTFields1;
+    SHP: SHPFields1;
+    SID: SIDFields1;
+    SLT: SLTFields1;
+    SPM: SPMFields2;
+    STF: STFFields6;
+    STZ: STZFields1;
+    TCC: TCCFields2;
+    TCD: TCDFields1;
+    TQ1: TQ1Fields1;
+    TQ2: TQ2Fields1;
+    TXA: TXAFields2;
+    UAC: UACFields1;
+    UB2: UB2Fields2;
+    VAR: VARFields1;
+    VND: VNDFields1;
+    [segment: string]: number;
+  };
+  '2.7.1': {
+    ABS: ABSFields1;
+    ACC: ACCFields5;
+    ADD: ADDFields1;
+    ADJ: ADJFields1;
+    AFF: AFFFields1;
+    AIG: AIGFields1;
+    AIL: AILFields1;
+    AIP: AIPFields1;
+    AIS: AISFields2;
+    AL1: AL1Fields2;
+    APR: APRFields1;
+    ARQ: ARQFields2;
+    ARV: ARVFields1;
+    AUT: AUTFields2;
+    BHS: BHSFields2;
+    BLC: BLCFields1;
+    BLG: BLGFields2;
+    BPO: BPOFields1;
+    BPX: BPXFields1;
+    BTS: BTSFields1;
+    BTX: BTXFields1;
+    CDM: CDMFields1;
+    CER: CERFields1;
+    CM0: CM0Fields1;
+    CM1: CM1Fields1;
+    CM2: CM2Fields1;
+    CNS: CNSFields1;
+    CON: CONFields1;
+    CSP: CSPFields1;
+    CSR: CSRFields1;
+    CSS: CSSFields1;
+    CTD: CTDFields1;
+    CTI: CTIFields1;
+    DB1: DB1Fields1;
+    DG1: DG1Fields5;
+    DMI: DMIFields1;
+    DRG: DRGFields3;
+    DSC: DSCFields2;
+    DSP: DSPFields1;
+    ECD: ECDFields2;
+    ECR: ECRFields1;
+    EDU: EDUFields2;
+    EQP: EQPFields1;
+    EQU: EQUFields1;
+    ERR: ERRFields3;
+    EVN: EVNFields5;
+    FAC: FACFields1;
+    FHS: FHSFields2;
+    FT1: FT1Fields7;
+    FTS: FTSFields1;
+    GOL: GOLFields3;
+    GP1: GP1Fields1;
+    GP2: GP2Fields1;
+    GT1: GT1Fields4;
+    IAM: IAMFields2;
+    IAR: IARFields1;
+    IIM: IIMFields1;
+    ILT: ILTFields1;
+    IN1: IN1Fields6;
+    IN2: IN2Fields2;
+    IN3: IN3Fields1;
+    INV: INVFields3;
+    IPC: IPCFields1;
+    IPR: IPRFields1;
+    ISD: ISDFields1;
+    ITM: ITMFields1;
+    IVC: IVCFields1;
+    IVT: IVTFields1;
+    LAN: LANFields1;
+    LCC: LCCFields1;
+    LCH: LCHFields1;
+    LDP: LDPFields2;
+    LOC: LOCFields2;
+    LRL: LRLFields1;
+    MFA: MFAFields2;
+    MFE: MFEFields3;
+    MFI: MFIFields1;
+    MRG: MRGFields4;
+    MSA: MSAFields4;
+    MSH: MSHFields6;
+    NCK: NCKFields1;
+    NDS: NDSFields1;
+    NK1: NK1Fields5;
+    NPU: NPUFields1;
+    NSC: NSCFields1;
+    NST: NSTFields1;
+    NTE: NTEFields3;
+    OBR: OBRFields8;
+    OBX: OBXFields7;
+    ODS: ODSFields1;
+    ODT: ODTFields1;
+    OM1: OM1Fields2;
+    OM2: OM2Fields2;
+    OM3: OM3Fields2;
+    OM4: OM4Fields2;
+    OM5: OM5Fields2;
+    OM6: OM6Fields2;
+    OM7: OM7Fields1;
+    ORC: ORCFields7;
+    ORG: ORGFields2;
+    OVR: OVRFields1;
+    PAC: PACFields1;
+    PCE: PCEFields1;
+    PCR: PCRFields1;
+    PD1: PD1Fields4;
+    PDA: PDAFields1;
+    PDC: PDCFields1;
+    PEO: PEOFields1;
+    PES: PESFields1;
+    PID: PIDFields6;
+    PKG: PKGFields1;
+    PMT: PMTFields1;
+    PR1: PR1Fields8;
+    PRA: PRAFields3;
+    PRB: PRBFields2;
+    PRC: PRCFields1;
+    PRD: PRDFields2;
+    PRT: PRTFields1;
+    PSG: PSGFields1;
+    PSH: PSHFields1;
+    PSL: PSLFields1;
+    PSS: PSSFields1;
+    PTH: PTHFields2;
+    PV1: PV1Fields4;
+    PV2: PV2Fields5;
+    PYE: PYEFields1;
+    QAK: QAKFields2;
+    QID: QIDFields1;
+    QPD: QPDFields1;
+    QRI: QRIFields1;
+    RCP: RCPFields1;
+    RDF: RDFFields1;
+    RDT: RDTFields1;
+    REL: RELFields1;
+    RF1: RF1Fields2;
+    RFI: RFIFields1;
+    RGS: RGSFields1;
+    RMI: RMIFields1;
+    ROL: ROLFields4;
+    RQ1: RQ1Fields1;
+    RQD: RQDFields1;
+    RXA: RXAFields4;
+    RXC: RXCFields4;
+    RXD: RXDFields5;
+    RXE: RXEFields5;
+    RXG: RXGFields5;
+    RXO: RXOFields7;
+    RXR: RXRFields3;
+    SAC: SACFields2;
+    SCD: SCDFields1;
+    SCH: SCHFields3;
+    SCP: SCPFields1;
+    SDD: SDDFields1;
+    SFT: SFTFields1;
+    SHP: SHPFields1;
+    SID: SIDFields1;
+    SLT: SLTFields1;
+    SPM: SPMFields2;
+    STF: STFFields6;
+    STZ: STZFields1;
+    TCC: TCCFields2;
+    TCD: TCDFields1;
+    TQ1: TQ1Fields1;
+    TQ2: TQ2Fields1;
+    TXA: TXAFields2;
+    UAC: UACFields1;
+    UB2: UB2Fields2;
+    VAR: VARFields1;
+    VND: VNDFields1;
+    [segment: string]: number;
+  };
+  '2.8': {
+    ABS: ABSFields1;
+    ACC: ACCFields6;
+    ADD: ADDFields1;
+    ADJ: ADJFields1;
+    AFF: AFFFields1;
+    AIG: AIGFields1;
+    AIL: AILFields1;
+    AIP: AIPFields1;
+    AIS: AISFields2;
+    AL1: AL1Fields2;
+    APR: APRFields1;
+    ARQ: ARQFields2;
+    ARV: ARVFields1;
+    AUT: AUTFields3;
+    BHS: BHSFields2;
+    BLC: BLCFields1;
+    BLG: BLGFields2;
+    BPO: BPOFields1;
+    BPX: BPXFields1;
+    BTS: BTSFields1;
+    BTX: BTXFields2;
+    BUI: BUIFields1;
+    CDM: CDMFields1;
+    CDO: CDOFields1;
+    CER: CERFields1;
+    CM0: CM0Fields1;
+    CM1: CM1Fields1;
+    CM2: CM2Fields1;
+    CNS: CNSFields1;
+    CON: CONFields1;
+    CSP: CSPFields1;
+    CSR: CSRFields1;
+    CSS: CSSFields1;
+    CTD: CTDFields1;
+    CTI: CTIFields1;
+    DB1: DB1Fields1;
+    DG1: DG1Fields5;
+    DMI: DMIFields1;
+    DON: DONFields1;
+    DRG: DRGFields3;
+    DSC: DSCFields2;
+    DSP: DSPFields1;
+    ECD: ECDFields2;
+    ECR: ECRFields1;
+    EDU: EDUFields2;
+    EQP: EQPFields1;
+    EQU: EQUFields1;
+    ERR: ERRFields3;
+    EVN: EVNFields5;
+    FAC: FACFields1;
+    FHS: FHSFields2;
+    FT1: FT1Fields7;
+    FTS: FTSFields1;
+    GOL: GOLFields3;
+    GP1: GP1Fields1;
+    GP2: GP2Fields1;
+    GT1: GT1Fields4;
+    IAM: IAMFields2;
+    IAR: IARFields1;
+    IIM: IIMFields1;
+    ILT: ILTFields1;
+    IN1: IN1Fields7;
+    IN2: IN2Fields2;
+    IN3: IN3Fields2;
+    INV: INVFields3;
+    IPC: IPCFields1;
+    IPR: IPRFields1;
+    ISD: ISDFields1;
+    ITM: ITMFields2;
+    IVC: IVCFields1;
+    IVT: IVTFields1;
+    LAN: LANFields1;
+    LCC: LCCFields1;
+    LCH: LCHFields1;
+    LDP: LDPFields2;
+    LOC: LOCFields2;
+    LRL: LRLFields1;
+    MFA: MFAFields2;
+    MFE: MFEFields3;
+    MFI: MFIFields1;
+    MRG: MRGFields4;
+    MSA: MSAFields4;
+    MSH: MSHFields6;
+    NCK: NCKFields1;
+    NDS: NDSFields1;
+    NK1: NK1Fields5;
+    NPU: NPUFields1;
+    NSC: NSCFields1;
+    NST: NSTFields1;
+    NTE: NTEFields3;
+    OBR: OBRFields8;
+    OBX: OBXFields8;
+    ODS: ODSFields1;
+    ODT: ODTFields1;
+    OM1: OM1Fields3;
+    OM2: OM2Fields2;
+    OM3: OM3Fields2;
+    OM4: OM4Fields3;
+    OM5: OM5Fields2;
+    OM6: OM6Fields2;
+    OM7: OM7Fields1;
+    ORC: ORCFields8;
+    ORG: ORGFields2;
+    OVR: OVRFields1;
+    PAC: PACFields1;
+    PCE: PCEFields1;
+    PCR: PCRFields1;
+    PD1: PD1Fields4;
+    PDA: PDAFields1;
+    PDC: PDCFields1;
+    PEO: PEOFields1;
+    PES: PESFields1;
+    PID: PIDFields6;
+    PKG: PKGFields2;
+    PMT: PMTFields1;
+    PR1: PR1Fields8;
+    PRA: PRAFields3;
+    PRB: PRBFields2;
+    PRC: PRCFields1;
+    PRD: PRDFields2;
+    PRT: PRTFields1;
+    PSG: PSGFields1;
+    PSH: PSHFields1;
+    PSL: PSLFields1;
+    PSS: PSSFields1;
+    PTH: PTHFields2;
+    PV1: PV1Fields4;
+    PV2: PV2Fields5;
+    PYE: PYEFields1;
+    QAK: QAKFields2;
+    QID: QIDFields1;
+    QPD: QPDFields1;
+    QRI: QRIFields1;
+    RCP: RCPFields1;
+    RDF: RDFFields1;
+    RDT: RDTFields1;
+    REL: RELFields1;
+    RF1: RF1Fields3;
+    RFI: RFIFields1;
+    RGS: RGSFields1;
+    RMI: RMIFields1;
+    ROL: ROLFields4;
+    RQ1: RQ1Fields1;
+    RQD: RQDFields1;
+    RXA: RXAFields5;
+    RXC: RXCFields5;
+    RXD: RXDFields6;
+    RXE: RXEFields5;
+    RXG: RXGFields6;
+    RXO: RXOFields8;
+    RXR: RXRFields3;
+    RXV: RXVFields1;
+    SAC: SACFields2;
+    SCD: SCDFields1;
+    SCH: SCHFields3;
+    SCP: SCPFields1;
+    SDD: SDDFields1;
+    SFT: SFTFields1;
+    SGH: SGHFields1;
+    SGT: SGTFields1;
+    SHP: SHPFields1;
+    SID: SIDFields1;
+    SLT: SLTFields1;
+    SPM: SPMFields2;
+    STF: STFFields6;
+    STZ: STZFields1;
+    TCC: TCCFields3;
+    TCD: TCDFields1;
+    TQ1: TQ1Fields1;
+    TQ2: TQ2Fields1;
+    TXA: TXAFields2;
+    UAC: UACFields1;
+    UB2: UB2Fields2;
+    VAR: VARFields1;
+    VND: VNDFields1;
+    [segment: string]: number;
+  };
+  '2.8.1': {
+    ABS: ABSFields1;
+    ACC: ACCFields6;
+    ADD: ADDFields1;
+    ADJ: ADJFields1;
+    AFF: AFFFields1;
+    AIG: AIGFields1;
+    AIL: AILFields1;
+    AIP: AIPFields1;
+    AIS: AISFields2;
+    AL1: AL1Fields2;
+    APR: APRFields1;
+    ARQ: ARQFields2;
+    ARV: ARVFields1;
+    AUT: AUTFields3;
+    BHS: BHSFields2;
+    BLC: BLCFields1;
+    BLG: BLGFields2;
+    BPO: BPOFields1;
+    BPX: BPXFields1;
+    BTS: BTSFields1;
+    BTX: BTXFields2;
+    BUI: BUIFields1;
+    CDM: CDMFields1;
+    CDO: CDOFields1;
+    CER: CERFields1;
+    CM0: CM0Fields1;
+    CM1: CM1Fields1;
+    CM2: CM2Fields1;
+    CNS: CNSFields1;
+    CON: CONFields1;
+    CSP: CSPFields1;
+    CSR: CSRFields1;
+    CSS: CSSFields1;
+    CTD: CTDFields1;
+    CTI: CTIFields1;
+    DB1: DB1Fields1;
+    DG1: DG1Fields5;
+    DMI: DMIFields1;
+    DON: DONFields1;
+    DRG: DRGFields3;
+    DSC: DSCFields2;
+    DSP: DSPFields1;
+    ECD: ECDFields2;
+    ECR: ECRFields1;
+    EDU: EDUFields2;
+    EQP: EQPFields1;
+    EQU: EQUFields1;
+    ERR: ERRFields3;
+    EVN: EVNFields5;
+    FAC: FACFields1;
+    FHS: FHSFields2;
+    FT1: FT1Fields7;
+    FTS: FTSFields1;
+    GOL: GOLFields3;
+    GP1: GP1Fields1;
+    GP2: GP2Fields1;
+    GT1: GT1Fields4;
+    IAM: IAMFields2;
+    IAR: IARFields1;
+    IIM: IIMFields1;
+    ILT: ILTFields1;
+    IN1: IN1Fields7;
+    IN2: IN2Fields2;
+    IN3: IN3Fields2;
+    INV: INVFields3;
+    IPC: IPCFields1;
+    IPR: IPRFields1;
+    ISD: ISDFields1;
+    ITM: ITMFields2;
+    IVC: IVCFields1;
+    IVT: IVTFields1;
+    LAN: LANFields1;
+    LCC: LCCFields1;
+    LCH: LCHFields1;
+    LDP: LDPFields2;
+    LOC: LOCFields2;
+    LRL: LRLFields1;
+    MFA: MFAFields2;
+    MFE: MFEFields3;
+    MFI: MFIFields1;
+    MRG: MRGFields4;
+    MSA: MSAFields4;
+    MSH: MSHFields6;
+    NCK: NCKFields1;
+    NDS: NDSFields1;
+    NK1: NK1Fields5;
+    NPU: NPUFields1;
+    NSC: NSCFields1;
+    NST: NSTFields1;
+    NTE: NTEFields3;
+    OBR: OBRFields8;
+    OBX: OBXFields9;
+    ODS: ODSFields1;
+    ODT: ODTFields1;
+    OM1: OM1Fields4;
+    OM2: OM2Fields2;
+    OM3: OM3Fields2;
+    OM4: OM4Fields3;
+    OM5: OM5Fields2;
+    OM6: OM6Fields2;
+    OM7: OM7Fields1;
+    ORC: ORCFields8;
+    ORG: ORGFields2;
+    OVR: OVRFields1;
+    PAC: PACFields1;
+    PCE: PCEFields1;
+    PCR: PCRFields1;
+    PD1: PD1Fields4;
+    PDA: PDAFields1;
+    PDC: PDCFields1;
+    PEO: PEOFields1;
+    PES: PESFields1;
+    PID: PIDFields6;
+    PKG: PKGFields2;
+    PMT: PMTFields1;
+    PR1: PR1Fields8;
+    PRA: PRAFields3;
+    PRB: PRBFields2;
+    PRC: PRCFields1;
+    PRD: PRDFields2;
+    PRT: PRTFields1;
+    PSG: PSGFields1;
+    PSH: PSHFields1;
+    PSL: PSLFields1;
+    PSS: PSSFields1;
+    PTH: PTHFields2;
+    PV1: PV1Fields4;
+    PV2: PV2Fields5;
+    PYE: PYEFields1;
+    QAK: QAKFields2;
+    QID: QIDFields1;
+    QPD: QPDFields1;
+    QRI: QRIFields1;
+    RCP: RCPFields1;
+    RDF: RDFFields1;
+    RDT: RDTFields1;
+    REL: RELFields1;
+    RF1: RF1Fields4;
+    RFI: RFIFields1;
+    RGS: RGSFields1;
+    RMI: RMIFields1;
+    ROL: ROLFields4;
+    RQ1: RQ1Fields1;
+    RQD: RQDFields1;
+    RXA: RXAFields5;
+    RXC: RXCFields5;
+    RXD: RXDFields6;
+    RXE: RXEFields5;
+    RXG: RXGFields6;
+    RXO: RXOFields8;
+    RXR: RXRFields3;
+    RXV: RXVFields1;
+    SAC: SACFields2;
+    SCD: SCDFields1;
+    SCH: SCHFields3;
+    SCP: SCPFields1;
+    SDD: SDDFields1;
+    SFT: SFTFields1;
+    SGH: SGHFields1;
+    SGT: SGTFields1;
+    SHP: SHPFields1;
+    SID: SIDFields1;
+    SLT: SLTFields1;
+    SPM: SPMFields2;
+    STF: STFFields6;
+    STZ: STZFields1;
+    TCC: TCCFields3;
+    TCD: TCDFields1;
+    TQ1: TQ1Fields1;
+    TQ2: TQ2Fields1;
+    TXA: TXAFields2;
+    UAC: UACFields1;
+    UB2: UB2Fields2;
+    VAR: VARFields1;
+    VND: VNDFields1;
+    [segment: string]: number;
+  };
+  '2.8.2': {
+    ABS: ABSFields1;
+    ACC: ACCFields6;
+    ADD: ADDFields1;
+    ADJ: ADJFields1;
+    AFF: AFFFields1;
+    AIG: AIGFields1;
+    AIL: AILFields1;
+    AIP: AIPFields1;
+    AIS: AISFields2;
+    AL1: AL1Fields2;
+    APR: APRFields1;
+    ARQ: ARQFields2;
+    ARV: ARVFields1;
+    AUT: AUTFields3;
+    BHS: BHSFields2;
+    BLC: BLCFields1;
+    BLG: BLGFields2;
+    BPO: BPOFields1;
+    BPX: BPXFields1;
+    BTS: BTSFields1;
+    BTX: BTXFields2;
+    BUI: BUIFields1;
+    CDM: CDMFields1;
+    CDO: CDOFields1;
+    CER: CERFields1;
+    CM0: CM0Fields1;
+    CM1: CM1Fields1;
+    CM2: CM2Fields1;
+    CNS: CNSFields1;
+    CON: CONFields1;
+    CSP: CSPFields1;
+    CSR: CSRFields1;
+    CSS: CSSFields1;
+    CTD: CTDFields1;
+    CTI: CTIFields1;
+    DB1: DB1Fields1;
+    DG1: DG1Fields5;
+    DMI: DMIFields1;
+    DON: DONFields1;
+    DPS: DPSFields1;
+    DRG: DRGFields3;
+    DSC: DSCFields2;
+    DSP: DSPFields1;
+    ECD: ECDFields2;
+    ECR: ECRFields1;
+    EDU: EDUFields2;
+    EQP: EQPFields1;
+    EQU: EQUFields1;
+    ERR: ERRFields3;
+    EVN: EVNFields5;
+    FAC: FACFields1;
+    FHS: FHSFields2;
+    FT1: FT1Fields7;
+    FTS: FTSFields1;
+    GOL: GOLFields3;
+    GP1: GP1Fields1;
+    GP2: GP2Fields1;
+    GT1: GT1Fields4;
+    IAM: IAMFields2;
+    IAR: IARFields1;
+    IIM: IIMFields1;
+    ILT: ILTFields1;
+    IN1: IN1Fields7;
+    IN2: IN2Fields2;
+    IN3: IN3Fields2;
+    INV: INVFields3;
+    IPC: IPCFields1;
+    IPR: IPRFields1;
+    ISD: ISDFields1;
+    ITM: ITMFields2;
+    IVC: IVCFields1;
+    IVT: IVTFields1;
+    LAN: LANFields1;
+    LCC: LCCFields1;
+    LCH: LCHFields1;
+    LDP: LDPFields2;
+    LOC: LOCFields2;
+    LRL: LRLFields1;
+    MCP: MCPFields1;
+    MFA: MFAFields2;
+    MFE: MFEFields3;
+    MFI: MFIFields1;
+    MRG: MRGFields4;
+    MSA: MSAFields4;
+    MSH: MSHFields6;
+    NCK: NCKFields1;
+    NDS: NDSFields1;
+    NK1: NK1Fields5;
+    NPU: NPUFields1;
+    NSC: NSCFields1;
+    NST: NSTFields1;
+    NTE: NTEFields3;
+    OBR: OBRFields8;
+    OBX: OBXFields10;
+    ODS: ODSFields1;
+    ODT: ODTFields1;
+    OM1: OM1Fields5;
+    OM2: OM2Fields2;
+    OM3: OM3Fields2;
+    OM4: OM4Fields3;
+    OM5: OM5Fields2;
+    OM6: OM6Fields2;
+    OM7: OM7Fields1;
+    OMC: OMCFields1;
+    ORC: ORCFields8;
+    ORG: ORGFields2;
+    OVR: OVRFields1;
+    PAC: PACFields1;
+    PCE: PCEFields1;
+    PCR: PCRFields1;
+    PD1: PD1Fields4;
+    PDA: PDAFields1;
+    PDC: PDCFields1;
+    PEO: PEOFields1;
+    PES: PESFields1;
+    PID: PIDFields6;
+    PKG: PKGFields2;
+    PM1: PM1Fields1;
+    PMT: PMTFields1;
+    PR1: PR1Fields8;
+    PRA: PRAFields3;
+    PRB: PRBFields2;
+    PRC: PRCFields1;
+    PRD: PRDFields2;
+    PRT: PRTFields2;
+    PSG: PSGFields1;
+    PSH: PSHFields1;
+    PSL: PSLFields1;
+    PSS: PSSFields1;
+    PTH: PTHFields2;
+    PV1: PV1Fields4;
+    PV2: PV2Fields5;
+    PYE: PYEFields1;
+    QAK: QAKFields2;
+    QID: QIDFields1;
+    QPD: QPDFields1;
+    QRI: QRIFields1;
+    RCP: RCPFields1;
+    RDF: RDFFields1;
+    RDT: RDTFields1;
+    REL: RELFields1;
+    RF1: RF1Fields3;
+    RFI: RFIFields1;
+    RGS: RGSFields1;
+    RMI: RMIFields1;
+    ROL: ROLFields4;
+    RQ1: RQ1Fields1;
+    RQD: RQDFields1;
+    RXA: RXAFields5;
+    RXC: RXCFields5;
+    RXD: RXDFields6;
+    RXE: RXEFields5;
+    RXG: RXGFields6;
+    RXO: RXOFields8;
+    RXR: RXRFields3;
+    RXV: RXVFields1;
+    SAC: SACFields2;
+    SCD: SCDFields1;
+    SCH: SCHFields3;
+    SCP: SCPFields1;
+    SDD: SDDFields1;
+    SFT: SFTFields1;
+    SGH: SGHFields1;
+    SGT: SGTFields1;
+    SHP: SHPFields1;
+    SID: SIDFields1;
+    SLT: SLTFields1;
+    SPM: SPMFields2;
+    STF: STFFields6;
+    STZ: STZFields1;
+    TCC: TCCFields3;
+    TCD: TCDFields1;
+    TQ1: TQ1Fields1;
+    TQ2: TQ2Fields1;
+    TXA: TXAFields2;
+    UAC: UACFields1;
+    UB2: UB2Fields2;
+    VAR: VARFields1;
+    VND: VNDFields1;
+    [segment: string]: number;
+  };
+  '2.9': {
+    ABS: ABSFields1;
+    ACC: ACCFields6;
+    ADD: ADDFields1;
+    ADJ: ADJFields1;
+    AFF: AFFFields1;
+    AIG: AIGFields1;
+    AIL: AILFields1;
+    AIP: AIPFields1;
+    AIS: AISFields2;
+    AL1: AL1Fields2;
+    APR: APRFields1;
+    ARQ: ARQFields3;
+    ARV: ARVFields2;
+    AUT: AUTFields3;
+    BHS: BHSFields3;
+    BLC: BLCFields1;
+    BLG: BLGFields2;
+    BPO: BPOFields1;
+    BPX: BPXFields2;
+    BTS: BTSFields1;
+    BTX: BTXFields3;
+    BUI: BUIFields2;
+    CDM: CDMFields1;
+    CDO: CDOFields1;
+    CER: CERFields1;
+    CM0: CM0Fields1;
+    CM1: CM1Fields1;
+    CM2: CM2Fields1;
+    CNS: CNSFields1;
+    CON: CONFields1;
+    CSP: CSPFields1;
+    CSR: CSRFields2;
+    CSS: CSSFields1;
+    CTD: CTDFields1;
+    CTI: CTIFields2;
+    CTR: CTRFields1;
+    DB1: DB1Fields1;
+    DEV: DEVFields1;
+    DG1: DG1Fields5;
+    DMI: DMIFields1;
+    DON: DONFields2;
+    DPS: DPSFields1;
+    DRG: DRGFields3;
+    DSC: DSCFields2;
+    DSP: DSPFields1;
+    DST: DSTFields1;
+    ECD: ECDFields2;
+    ECR: ECRFields1;
+    EDU: EDUFields2;
+    EQP: EQPFields1;
+    EQU: EQUFields2;
+    ERR: ERRFields3;
+    EVN: EVNFields5;
+    FAC: FACFields1;
+    FHS: FHSFields3;
+    FT1: FT1Fields8;
+    FTS: FTSFields1;
+    GOL: GOLFields3;
+    GP1: GP1Fields1;
+    GP2: GP2Fields1;
+    GT1: GT1Fields4;
+    IAM: IAMFields2;
+    IAR: IARFields1;
+    IIM: IIMFields1;
+    ILT: ILTFields1;
+    IN1: IN1Fields7;
+    IN2: IN2Fields3;
+    IN3: IN3Fields3;
+    INV: INVFields4;
+    IPC: IPCFields2;
+    IPR: IPRFields1;
+    ISD: ISDFields1;
+    ITM: ITMFields3;
+    IVC: IVCFields1;
+    IVT: IVTFields1;
+    LAN: LANFields1;
+    LCC: LCCFields1;
+    LCH: LCHFields1;
+    LDP: LDPFields2;
+    LOC: LOCFields2;
+    LRL: LRLFields1;
+    MCP: MCPFields1;
+    MFA: MFAFields2;
+    MFE: MFEFields3;
+    MFI: MFIFields1;
+    MRG: MRGFields4;
+    MSA: MSAFields4;
+    MSH: MSHFields7;
+    NCK: NCKFields1;
+    NDS: NDSFields1;
+    NK1: NK1Fields6;
+    NPU: NPUFields1;
+    NSC: NSCFields1;
+    NST: NSTFields1;
+    NTE: NTEFields4;
+    OBR: OBRFields9;
+    OBX: OBXFields11;
+    ODS: ODSFields1;
+    ODT: ODTFields1;
+    OH1: OH1Fields1;
+    OH2: OH2Fields1;
+    OH3: OH3Fields1;
+    OH4: OH4Fields1;
+    OM1: OM1Fields5;
+    OM2: OM2Fields2;
+    OM3: OM3Fields2;
+    OM4: OM4Fields3;
+    OM5: OM5Fields2;
+    OM6: OM6Fields2;
+    OM7: OM7Fields1;
+    OMC: OMCFields1;
+    ORC: ORCFields9;
+    ORG: ORGFields2;
+    OVR: OVRFields1;
+    PAC: PACFields2;
+    PCE: PCEFields1;
+    PCR: PCRFields1;
+    PD1: PD1Fields5;
+    PDA: PDAFields1;
+    PDC: PDCFields1;
+    PEO: PEOFields1;
+    PES: PESFields1;
+    PID: PIDFields7;
+    PKG: PKGFields3;
+    PM1: PM1Fields1;
+    PMT: PMTFields1;
+    PR1: PR1Fields8;
+    PRA: PRAFields3;
+    PRB: PRBFields2;
+    PRC: PRCFields1;
+    PRD: PRDFields2;
+    PRT: PRTFields3;
+    PSG: PSGFields1;
+    PSH: PSHFields1;
+    PSL: PSLFields1;
+    PSS: PSSFields1;
+    PTH: PTHFields2;
+    PV1: PV1Fields4;
+    PV2: PV2Fields5;
+    PYE: PYEFields1;
+    QAK: QAKFields2;
+    QID: QIDFields1;
+    QPD: QPDFields1;
+    QRI: QRIFields1;
+    RCP: RCPFields1;
+    RDF: RDFFields1;
+    RDT: RDTFields1;
+    REL: RELFields2;
+    RF1: RF1Fields3;
+    RFI: RFIFields1;
+    RGS: RGSFields1;
+    RMI: RMIFields1;
+    RQ1: RQ1Fields1;
+    RQD: RQDFields1;
+    RXA: RXAFields5;
+    RXC: RXCFields5;
+    RXD: RXDFields6;
+    RXE: RXEFields5;
+    RXG: RXGFields7;
+    RXO: RXOFields9;
+    RXR: RXRFields3;
+    RXV: RXVFields1;
+    SAC: SACFields3;
+    SCD: SCDFields1;
+    SCH: SCHFields4;
+    SCP: SCPFields1;
+    SDD: SDDFields1;
+    SFT: SFTFields1;
+    SGH: SGHFields1;
+    SGT: SGTFields1;
+    SHP: SHPFields2;
+    SID: SIDFields1;
+    SLT: SLTFields1;
+    SPM: SPMFields3;
+    STF: STFFields6;
+    STZ: STZFields1;
+    TCC: TCCFields3;
+    TCD: TCDFields2;
+    TQ1: TQ1Fields1;
+    TQ2: TQ2Fields1;
+    TXA: TXAFields3;
+    UAC: UACFields1;
+    UB2: UB2Fields2;
+    VAR: VARFields1;
+    VND: VNDFields2;
+    ZL7: ZL7Fields1;
+    [segment: string]: number;
+  };
+  [version: `${number}.${number}`]: { [segment: string]: number };
+  [version: `${number}.${number}.${number}`]: { [segment: string]: number };
+}
+
+/** The field positions segment S has in version V: HL7SegmentField<'2.6', 'DG1'> */
+export type HL7SegmentField<
+  V extends keyof HL7VersionSegmentFields,
+  S extends string,
+> = HL7VersionSegmentFields[V][S];

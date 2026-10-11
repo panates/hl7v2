@@ -2,6 +2,7 @@ import process from 'node:process';
 import type {
   AcknowledgmentCode,
   HL7Dictionary,
+  HL7SegmentField,
   HL7SegmentObjects,
   HL7TypedVersion,
   HL7VersionSegments,
@@ -62,6 +63,16 @@ export type HL7MessageSegmentObject<
   : HL7SegmentObjects[K];
 
 /**
+ * A segment of a message of version V: field() takes only the fields the
+ * version defines for S when V is a version with typed objects, otherwise
+ * any number
+ */
+export type HL7MessageSegment<
+  V extends HL7Version,
+  S extends string,
+> = HL7Segment<HL7SegmentField<V, S> & number>;
+
+/**
  * An HL7 v2 message. V is its version when known to the compiler -
  * new HL7Message('2.5'), HL7Message.parse(text, { version: '2.5' }) - which
  * types getSegmentObject() by that version's definitions.
@@ -96,8 +107,13 @@ export class HL7Message<V extends HL7Version = HL7Version> {
     return this._segments;
   }
 
-  get header(): HL7Segment {
+  get header(): HL7MessageSegment<V, 'MSH'> {
     return this.getSegment('MSH')!;
+  }
+
+  /** MSH for the class's own use, its fields by any number */
+  protected get _header(): HL7Segment {
+    return this.getSegment('MSH') as HL7Segment;
   }
 
   get version(): HL7Version {
@@ -105,7 +121,7 @@ export class HL7Message<V extends HL7Version = HL7Version> {
   }
 
   get messageType(): string {
-    const f = this.header.field(MSHSegment.MessageType);
+    const f = this._header.field(MSHSegment.MessageType);
     if (!f) return '';
     return f.getValue(1) + '^' + (f.getValue(2) || '');
   }
@@ -115,7 +131,7 @@ export class HL7Message<V extends HL7Version = HL7Version> {
    * repetition of MSH-18
    */
   get charset(): string | undefined {
-    const field = this.header?.field(MSHSegment.CharacterSet);
+    const field = this._header?.field(MSHSegment.CharacterSet);
     if (!field) return;
     for (const rep of field.repetitions) {
       const value = rep.getValue(1);
@@ -124,12 +140,12 @@ export class HL7Message<V extends HL7Version = HL7Version> {
   }
 
   get controlId(): string {
-    return this.header.field(MSHSegment.MessageControlID).toHL7String();
+    return this._header.field(MSHSegment.MessageControlID).toHL7String();
   }
 
   clear(version?: HL7Version) {
     this._clear(version);
-    const msh = this.addSegment('MSH');
+    const msh: HL7Segment = this.addSegment('MSH');
     msh.field(MSHSegment.DateTimeOfMessage).setValue(new Date());
     msh.field(MSHSegment.MessageControlID).setValue(uid(8));
     /** Required; production, as HAPI's initQuickstart fills it */
@@ -138,8 +154,14 @@ export class HL7Message<V extends HL7Version = HL7Version> {
     msh.field(MSHSegment.CharacterSet).setValue(DEFAULT_HL7_CHARSET);
   }
 
-  addSegment(segmentType: string, index?: number): HL7Segment {
-    const segment = new HL7Segment(this, segmentType);
+  addSegment<S extends string>(
+    segmentType: S,
+    index?: number,
+  ): HL7MessageSegment<V, S> {
+    const segment = new HL7Segment(this, segmentType) as HL7MessageSegment<
+      V,
+      S
+    >;
     if (index !== undefined && index < this.segments.length) {
       this.segments.splice(index, 0, segment);
     } else {
@@ -151,17 +173,17 @@ export class HL7Message<V extends HL7Version = HL7Version> {
   /**
    * Searches for a segment of a given type
    */
-  getSegment(
-    segmentType: string,
+  getSegment<S extends string>(
+    segmentType: S,
     indexOrAfter?: number | HL7Segment,
-  ): HL7Segment | undefined {
+  ): HL7MessageSegment<V, S> | undefined {
     let k = 0;
     for (let i = 0; i < this.segments.length; i++) {
       const seg = this.segments[i];
       if (seg instanceof HL7Segment && seg.segmentType === segmentType) {
-        if (!indexOrAfter) return seg;
+        if (!indexOrAfter) return seg as HL7MessageSegment<V, S>;
         if (typeof indexOrAfter === 'number') {
-          if (indexOrAfter === k++) return seg;
+          if (indexOrAfter === k++) return seg as HL7MessageSegment<V, S>;
         } else {
           if (indexOrAfter === seg) indexOrAfter = undefined;
         }
@@ -172,17 +194,17 @@ export class HL7Message<V extends HL7Version = HL7Version> {
   /**
    * Searches for a segment of a given type in reverse order
    */
-  getSegmentFromLast(
-    segmentType: string,
+  getSegmentFromLast<S extends string>(
+    segmentType: S,
     indexOrAfter?: number | HL7Segment,
-  ): HL7Segment | undefined {
+  ): HL7MessageSegment<V, S> | undefined {
     let k = 0;
     for (let i = this.segments.length - 1; i >= 0; i--) {
       const seg = this.segments[i];
       if (seg instanceof HL7Segment && seg.segmentType === segmentType) {
-        if (!indexOrAfter) return seg;
+        if (!indexOrAfter) return seg as HL7MessageSegment<V, S>;
         if (typeof indexOrAfter === 'number') {
-          if (indexOrAfter === k++) return seg;
+          if (indexOrAfter === k++) return seg as HL7MessageSegment<V, S>;
         } else {
           if (indexOrAfter === seg) indexOrAfter = undefined;
         }
@@ -242,22 +264,26 @@ export class HL7Message<V extends HL7Version = HL7Version> {
         const segment = HL7Segment.parse(this, line, options);
         this._segments.push(segment);
       } catch (e: any) {
-        if (!this.header) {
+        if (!this._header) {
           this.addSegment('MSH');
         }
-        this.header
+        this._header
           .field(MSHSegment.SendingApplication)
           .setValue(headerItems[2]);
-        this.header.field(MSHSegment.SendingFacility).setValue(headerItems[3]);
-        this.header
+        this._header.field(MSHSegment.SendingFacility).setValue(headerItems[3]);
+        this._header
           .field(MSHSegment.ReceivingApplication)
           .setValue(headerItems[4]);
-        this.header
+        this._header
           .field(MSHSegment.ReceivingFacility)
           .setValue(headerItems[5]);
-        this.header.field(MSHSegment.EncodingCharacters).setValue(raw.encoding);
-        this.header.field(MSHSegment.MessageControlID).setValue(headerItems[9]);
-        this.header.field(MSHSegment.VersionID).setValue(raw.version);
+        this._header
+          .field(MSHSegment.EncodingCharacters)
+          .setValue(raw.encoding);
+        this._header
+          .field(MSHSegment.MessageControlID)
+          .setValue(headerItems[9]);
+        this._header.field(MSHSegment.VersionID).setValue(raw.version);
         /* c8 ignore next */
         const e1 = e instanceof HL7Error ? e : new HL7Error(e.message);
         e1.stack = e.stack;
@@ -279,7 +305,7 @@ export class HL7Message<V extends HL7Version = HL7Version> {
    */
   get structureName(): string | undefined {
     const messages = this.dictionary.messages || {};
-    const declared = this.header.field(MSHSegment.MessageType).getValue(3) as
+    const declared = this._header.field(MSHSegment.MessageType).getValue(3) as
       string | undefined;
     if (declared && messages[declared]) return declared;
     const name = this.messageType.replace('^', '_');
@@ -484,7 +510,7 @@ export class HL7Message<V extends HL7Version = HL7Version> {
     out.truncationCharacter = this.truncationCharacter;
     const msh = out.header;
     const copy = (to: number, from: number) =>
-      msh.field(to).fromHL7String(this.header.field(from).toHL7String());
+      msh.field(to).fromHL7String(this._header.field(from).toHL7String());
     copy(MSHSegment.SendingApplication, MSHSegment.ReceivingApplication);
     copy(MSHSegment.SendingFacility, MSHSegment.ReceivingFacility);
     copy(MSHSegment.ReceivingApplication, MSHSegment.SendingApplication);
@@ -495,7 +521,7 @@ export class HL7Message<V extends HL7Version = HL7Version> {
     msh
       .field(MSHSegment.MessageType)
       .comp(2)
-      .setValue(this.header.field(MSHSegment.MessageType).getValue(2));
+      .setValue(this._header.field(MSHSegment.MessageType).getValue(2));
     msh
       .field(MSHSegment.MessageControlID)
       .setValue(String(Date.now() + uid(5)));
@@ -512,7 +538,7 @@ export class HL7Message<V extends HL7Version = HL7Version> {
     msa.field(MSASegment.AcknowledgmentCode).setValue(ackCode);
     msa
       .field(MSASegment.MessageControlID)
-      .setValue(this.header.field(MSHSegment.MessageControlID).getValue());
+      .setValue(this._header.field(MSHSegment.MessageControlID).getValue());
     if (textMessage) msa.field(MSASegment.TextMessage).setValue(textMessage);
     return out;
   }
@@ -547,7 +573,7 @@ export class HL7Message<V extends HL7Version = HL7Version> {
       );
     msaSegment
       .field(MSASegment.MessageControlID)
-      .setValue(this.header.field(MSHSegment.MessageControlID).getValue());
+      .setValue(this._header.field(MSHSegment.MessageControlID).getValue());
     for (const error of errors) {
       out.addError(error);
     }
@@ -562,7 +588,8 @@ export class HL7Message<V extends HL7Version = HL7Version> {
    * (2.1, 2.2). The error's text goes to MSA-3.
    */
   addError(error: Error | string) {
-    let msaSegment = this.getSegment('MSA');
+    /* The layout is read from the dictionary, so fields go by any number */
+    let msaSegment: HL7Segment | undefined = this.getSegment('MSA');
     if (!msaSegment) msaSegment = this.addSegment('MSA');
     const text = error instanceof Error ? error.message : String(error);
     msaSegment.field(MSASegment.TextMessage).setValue(text);
@@ -572,7 +599,7 @@ export class HL7Message<V extends HL7Version = HL7Version> {
       e?.hl7ErrorCode ||
       (error instanceof Error && (error as any).hl7ErrorCode) ||
       207;
-    const errSegment = this.addSegment('ERR');
+    const errSegment: HL7Segment = this.addSegment('ERR');
     const fields = this.dictionary.segments.ERR?.fields || {};
 
     if (fields['3']) {
