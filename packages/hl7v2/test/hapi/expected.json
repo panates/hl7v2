@@ -183,6 +183,149 @@
         "ZPI-3(1)": "f"
       },
       "encoded": "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.5\rEVN|A01\rPID|1||1||X\rPV1|1|I\rZPI|a|b^c&d|e~f\r"
+    },
+    "orm 2.5: orders and order details": {
+      "values": {
+        "ORC-2-1": "ORD1",
+        "ORC(1)-2-1": "!error: Can't create repetition #1 of Structure ORC - this Structure is non-repeating so only rep 0 may be retrieved",
+        "/ORDER(1)/ORDER_DETAIL/OBR-4-2": "Basic metabolic panel",
+        "/ORDER/ORDER_DETAIL/NTE-3": "Fasting",
+        "/ORDER(1)/ORC-1": "NW",
+        "/PATIENT/PID-5-1": "Doe",
+        "/PATIENT/PATIENT_VISIT/PV1-2": "O",
+        "ORC-7-4": null
+      },
+      "encoded": "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ORM^O01^ORM_O01|C1|P|2.5\rPID|1||123^^^H^MR||Doe^John\rPV1|1|O\rORC|NW|ORD1^APP||||||^^^20250301\rOBR|1|ORD1^APP||CBC^Complete blood count^L|||20250301\rNTE|1||Fasting\rORC|NW|ORD2^APP\rOBR|1|ORD2^APP||BMP^Basic metabolic panel^L\r"
+    },
+    "siu 2.5: scheduling with resources": {
+      "values": {
+        "SCH-1-1": "10345",
+        "SCH-6": "OFFICE",
+        "SCH-11-4": "20250310090000",
+        "/PATIENT/PID-5-1": "Kaya",
+        "/RESOURCES/SERVICE/AIS-3-2": "Consultation",
+        "/RESOURCES/PERSONNEL_RESOURCE/AIP-3-2": "Doğan",
+        "AIP-4-2": "Doctor",
+        "RGS-2": "A"
+      },
+      "encoded": "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||SIU^S12^SIU_S12|C1|P|2.5\rSCH|10345^10345|2196178^2196178|||10345|OFFICE^Office visit^L|reason|OFFICE|60|m|^^60^20250310090000^20250310100000\rPID|1||42^^^H^MR||Kaya^Emre\rRGS|1|A\rAIS|1|A|70^Consultation^L|20250310090000|||60|m\rAIP|1|A|1234^Doğan^Ali|D^Doctor\r"
+    },
+    "mdm 2.6: document with text": {
+      "values": {
+        "TXA-2-2": "Consultation note",
+        "TXA-12": null,
+        "OBX-5": "First line",
+        "OBX(1)-5": "!error: Can't create repetition #1 of Structure OBX - this Structure is non-repeating so only rep 0 may be retrieved",
+        "/OBSERVATION/OBX-5": "First line",
+        "/OBSERVATION(1)/OBX-5": "Bold \\H\\text\\N\\ here.\\.br\\Next",
+        "/OBSERVATION/OBX-5(1)": "Second line"
+      },
+      "encoded": "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||MDM^T02^MDM_T02|C1|P|2.6\rEVN|T02|20250301\rPID|1||42^^^H^MR||Kaya^Emre\rPV1|1|O\rTXA|1|CN^Consultation note^HL70270|TX|20250301|||||||DOC123|||||AU\rOBX|1|TX|||First line~Second line||||||F\rOBX|2|FT|||Bold \\H\\text\\N\\ here.\\.br\\Next||||||F\r"
+    },
+    "vxu 2.5.1: immunization": {
+      "values": {
+        "/ORDER/RXA-5-2": "HEPB-PEDS",
+        "/ORDER/RXA-6": "0.5",
+        "/ORDER/RXR-2-2": "Left deltoid",
+        "/ORDER/OBSERVATION/OBX-5-2": "VFC eligible",
+        "RXA-5-1": "08",
+        "OBX-3-1": "64994-7"
+      },
+      "encoded": "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||VXU^V04^VXU_V04|C1|P|2.5.1\rPID|1||42^^^H^MR||Kaya^Emre||20200101|M\rORC|RE||197023^DCS\rRXA|0|1|20250301|20250301|08^HEPB-PEDS^CVX|0.5|mL^^UCUM||00^New record^NIP001\rRXR|C28161^Intramuscular^NCIT|LD^Left deltoid^HL70163\rOBX|1|CE|64994-7^Eligibility^LN|1|V02^VFC eligible^HL70064||||||F\r"
+    },
+    "rsp 2.5.1: query response": {
+      "values": {
+        "MSA-1": "AA",
+        "QAK-2": "OK",
+        "QAK-4": "2",
+        "QPD-3-1": "@PID.5.1",
+        "QPD-3-2": "Kaya",
+        "/QUERY_RESPONSE/PID-5-2": "Emre",
+        "/QUERY_RESPONSE(1)/PID-5-2": "Can",
+        "PID(1)-3-1": "!error: Can't create repetition #1 of Structure PID - this Structure is non-repeating so only rep 0 may be retrieved"
+      },
+      "encoded": "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||RSP^K22^RSP_K21|C1|P|2.5.1\rMSA|AA|Q1\rQAK|Q1|OK|Q22^Find candidates^HL70471|2\rQPD|Q22^Find candidates^HL70471|Q1|@PID.5.1^Kaya\rPID|1||42^^^H^MR||Kaya^Emre\rPID|2||43^^^H^MR||Kaya^Can\r"
+    },
+    "dft 2.4: charges": {
+      "values": {
+        "FT1-7-1": "71020",
+        "FT1(1)-7-2": "!error: Can't create repetition #1 of Structure FT1 - this Structure is non-repeating so only rep 0 may be retrieved",
+        "FT1(1)-10": "!error: Can't create repetition #1 of Structure FT1 - this Structure is non-repeating so only rep 0 may be retrieved",
+        "/FINANCIAL/FT1-7-2": "Chest x-ray",
+        "/FINANCIAL(1)/FT1-10": "2"
+      },
+      "encoded": "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||DFT^P03^DFT_P03|C1|P|2.4\rEVN|P03|20250301\rPID|1||42^^^H^MR||Kaya^Emre\rFT1|1|||20250301||CG|71020^Chest x-ray^CPT|||1\rFT1|2|||20250301||CG|80053^Metabolic panel^CPT|||2\r"
+    },
+    "adt a40 2.5: merge": {
+      "values": {
+        "/PATIENT/PID-3-1": "42",
+        "/PATIENT/MRG-1-1": "41",
+        "MRG-1-4": "H",
+        "MSH-9-3": "ADT_A39"
+      },
+      "encoded": "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A40^ADT_A39|C1|P|2.5\rEVN|A40|20250301\rPID|1||42^^^H^MR||Kaya^Emre\rMRG|41^^^H^MR\r"
+    },
+    "oml 2.5.1: lab order": {
+      "values": {
+        "/ORDER/ORC-2": "ORD9",
+        "/ORDER/OBSERVATION_REQUEST/OBR-4-2": "Glucose",
+        "/ORDER/OBSERVATION_REQUEST/SPECIMEN/SPM-4-2": "Serum",
+        "/PATIENT/PID-5-1": "Kaya"
+      },
+      "encoded": "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||OML^O21^OML_O21|C1|P|2.5.1\rPID|1||42^^^H^MR||Kaya^Emre\rORC|NW|ORD9\rOBR|1|ORD9||GLU^Glucose^L\rSPM|1|SP1||SER^Serum^HL70487\r"
+    },
+    "ack 2.5 read": {
+      "values": {
+        "MSA-1": "AE",
+        "MSA-2": "MSG1",
+        "MSA-3": "Error text",
+        "ERR-2-1": "PID",
+        "ERR-2-2": "1",
+        "ERR-2-3": "3",
+        "ERR-3-1": "101",
+        "ERR-3-2": "Required field missing",
+        "ERR-4": "E"
+      },
+      "encoded": "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ACK^A01^ACK|C1|P|2.5\rMSA|AE|MSG1|Error text\rERR||PID^1^3|101^Required field missing^HL70357|E\r"
+    },
+    "2.2 adt with repetitions": {
+      "values": {
+        "PID-3": "12345",
+        "PID-3(1)": "67890",
+        "PID-11-3": "Town",
+        "PID-11(1)-3": "City",
+        "PID-5-3": "Q",
+        "NK1-3": "SPO"
+      },
+      "encoded": "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A04|C1|P|2.2\rEVN|A04|19980301\rPID|||12345~67890||Smith^Jane^Q||19700101|F|||1 Main St^^Town^ST^12345~2 Side St^^City\rNK1|1|Smith^John|SPO\r"
+    },
+    "2.6 adt with XTN and CWE": {
+      "values": {
+        "PID-13-2": "PRN",
+        "PID-13(1)-4": "emre@example.com",
+        "PID-13-6": "212",
+        "PV1-10-1": "MED",
+        "PV1-10-2": "Medicine",
+        "PV1-10-3": "HL70069"
+      },
+      "encoded": "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A01^ADT_A01|C1|P|2.6\rEVN||20250301\rPID|1||42^^^H^MR||Kaya^Emre||20000101|M|||||^PRN^PH^^90^212^5551234~^NET^Internet^emre@example.com\rPV1|1|I||||||||MED^Medicine^HL70069\r"
+    },
+    "2.8 with 2.8 fields": {
+      "values": {
+        "MSH-9-3": "ADT_A01",
+        "PID-5-2": "Emre",
+        "PV1-2": "I",
+        "EVN-2": "20250301"
+      },
+      "encoded": "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A01^ADT_A01|C1|P|2.8\rEVN||20250301\rPID|1||42^^^H^MR||Kaya^Emre||20000101|M\rPV1|1|I\r"
+    },
+    "numbers as written": {
+      "values": {
+        "OBX-5": "12345678901234567890",
+        "/PATIENT_RESULT/ORDER_OBSERVATION/OBSERVATION(1)/OBX-5": "007.50",
+        "/PATIENT_RESULT/ORDER_OBSERVATION/OBSERVATION(2)/OBX-5": "12,5"
+      },
+      "encoded": "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ORU^R01^ORU_R01|C1|P|2.5\rPID|1||1^^^H^MR||X\rOBR|1|||CBC\rOBX|1|NM|X||12345678901234567890||||||F\rOBX|2|NM|X||007.50||||||F\rOBX|3|NM|X||12,5||||||F\r"
     }
   },
   "write": {
@@ -203,6 +346,21 @@
     },
     "set through groups": {
       "encoded": "MSH|^~\\&|LIS|GHH|EHR|GHH|20250302083000+0300||ORU^R01^ORU_R01|LAB00042|P|2.5.1\rPID|1||123456^^^GHH^MR||Yılmaz^Ayşe\rPV1|1|I\rORC|RE|ORD1001\rOBR|1|ORD1001|LAB1001|58410-2^CBC panel^LN\rOBX|1|NM|6690-2^Leukocytes^LN||7.2|10*3/uL^^UCUM|4.0-10.0|N|||F\rOBX|2|NM|718-7^Hemoglobin^LN||11.1|g/dL^^UCUM|12.0-16.0|L|||F\rORC|RE|ORD1002\rOBR|2|ORD1002|LAB1002|24323-8^Metabolic panel^LN\rOBX|1|NM|2345-7^Glucose^LN||140|mg/dL^^UCUM|70-99|H|||F\rNTE|1||Fasting sample.\rOBX|||||1.0\r"
+    },
+    "set in a 2.3 message": {
+      "encoded": "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A01|C1|P|2.3\rEVN|A01\rPID|1||1||Kaya||||||^^İstanbul\rPV1|1|I|^12\r"
+    },
+    "set with custom delimiters": {
+      "encoded": "MSH#$*@%#APP#FAC#####ADT$A01$ADT_A01#C1#P#2.5\rEVN#A01\rPID#1##1##a@F@b@S@c@R@d@T@e@E@f$Ayşe\r"
+    },
+    "set a new order in an ORM": {
+      "encoded": "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ORM^O01^ORM_O01|C1|P|2.5\rPID|1||123||Doe\rORC|NW|ORD1\rOBR|1|ORD1||CBC\rORC|NW|ORD2\r"
+    },
+    "set MSH fields": {
+      "encoded": "MSH|^~\\&|NEWAPP^1.2.3^ISO|FAC|RAPP|RFAC|20250301101500||ADT^A01^ADT_A01|C1|T|2.5\rEVN|A01\rPID|1||1||X\r"
+    },
+    "set a value needing every escape": {
+      "encoded": "MSH|^~\\&|APP|FAC|RAPP|RFAC|20250301101500||ADT^A01^ADT_A01|C1|P|2.5\rEVN|A01\rPID|1||1||X\rNTE|1||\\F\\\\S\\\\T\\\\R\\\\E\\ \\H\\x\\N\\ \\.br\\ end\r"
     }
   },
   "escape": {
@@ -258,6 +416,28 @@
         "a\\X000a\\b",
         "a\\X0D0A\\b",
         "\\X0d\\"
+      ]
+    },
+    "formatting and highlighting": {
+      "escaped": [
+        "\\H\\bold\\N\\",
+        "\\.br\\",
+        "\\.sp2\\",
+        "\\.in+4\\",
+        "\\C2842\\x\\C2B42\\",
+        "\\M244041\\",
+        "\\Zlocal\\",
+        "a \\.br\\ b\\F\\c"
+      ],
+      "unescaped": [
+        "\\H\\bold\\N\\",
+        "\\.br\\",
+        "\\.sp2\\",
+        "\\.in+4\\",
+        "\\C2842\\x\\C2B42\\",
+        "\\M244041\\",
+        "\\Zlocal\\",
+        "a \\.br\\ b|c"
       ]
     }
   },
@@ -349,6 +529,120 @@
         "MSH-9-3": "ACK",
         "MSH-11": "P",
         "MSH-12": "2.7",
+        "MSH-15": null,
+        "MSH-16": null,
+        "MSH-18": null
+      },
+      "segments": [
+        "MSA|AA|C1"
+      ]
+    },
+    "2.2": {
+      "fields": {
+        "MSH-3": "RAPP",
+        "MSH-4": "RFAC",
+        "MSH-5": "APP",
+        "MSH-6": "FAC",
+        "MSH-9-1": "ACK",
+        "MSH-9-2": "A01",
+        "MSH-9-3": null,
+        "MSH-11": "P",
+        "MSH-12": "2.2",
+        "MSH-15": null,
+        "MSH-16": null,
+        "MSH-18": null
+      },
+      "segments": [
+        "MSA|AA|C1"
+      ]
+    },
+    "2.4 with structure": {
+      "fields": {
+        "MSH-3": "RAPP",
+        "MSH-4": "RFAC",
+        "MSH-5": "APP",
+        "MSH-6": "FAC",
+        "MSH-9-1": "ACK",
+        "MSH-9-2": "A04",
+        "MSH-9-3": null,
+        "MSH-11": "P",
+        "MSH-12": "2.4",
+        "MSH-15": null,
+        "MSH-16": null,
+        "MSH-18": null
+      },
+      "segments": [
+        "MSA|AA|C1"
+      ]
+    },
+    "2.6": {
+      "fields": {
+        "MSH-3": "RAPP",
+        "MSH-4": "RFAC",
+        "MSH-5": "APP",
+        "MSH-6": "FAC",
+        "MSH-9-1": "ACK",
+        "MSH-9-2": "R01",
+        "MSH-9-3": "ACK",
+        "MSH-11": "P",
+        "MSH-12": "2.6",
+        "MSH-15": null,
+        "MSH-16": null,
+        "MSH-18": null
+      },
+      "segments": [
+        "MSA|AA|C1"
+      ]
+    },
+    "2.8": {
+      "fields": {
+        "MSH-3": "RAPP",
+        "MSH-4": "RFAC",
+        "MSH-5": "APP",
+        "MSH-6": "FAC",
+        "MSH-9-1": "ACK",
+        "MSH-9-2": "A08",
+        "MSH-9-3": "ACK",
+        "MSH-11": "P",
+        "MSH-12": "2.8",
+        "MSH-15": null,
+        "MSH-16": null,
+        "MSH-18": null
+      },
+      "segments": [
+        "MSA|AA|C1"
+      ]
+    },
+    "custom delimiters": {
+      "fields": {
+        "MSH-3": "RAPP",
+        "MSH-4": "RFAC",
+        "MSH-5": "APP",
+        "MSH-6": "FAC",
+        "MSH-9-1": "ACK",
+        "MSH-9-2": "A01",
+        "MSH-9-3": "ACK",
+        "MSH-11": "P",
+        "MSH-12": "2.5",
+        "MSH-15": null,
+        "MSH-16": null,
+        "MSH-18": null
+      },
+      "segments": [
+        "MSA#AA#C1"
+      ]
+    },
+    "processing id T": {
+      "fields": {
+        "MSH-3": "RAPP",
+        "MSH-4": "RFAC",
+        "MSH-5": "APP",
+        "MSH-6": "FAC",
+        "MSH-9-1": "ACK",
+        "MSH-9-2": "A01",
+        "MSH-9-3": "ACK",
+        "MSH-11": "T",
+        "MSH-12": "2.5",
         "MSH-15": null,
         "MSH-16": null,
         "MSH-18": null
@@ -518,6 +812,235 @@
         "MSA|AE|C1",
         "ERR||PID^1^3|101^Required field missing^HL70357^^^^^^PID-3 is required at PID(1)-3(0)|E"
       ]
+    },
+    "2.6 data type error with sub-component": {
+      "fields": {
+        "MSH-3": "RAPP",
+        "MSH-4": "RFAC",
+        "MSH-5": "APP",
+        "MSH-6": "FAC",
+        "MSH-9-1": "ACK",
+        "MSH-9-2": "A01",
+        "MSH-9-3": "ACK",
+        "MSH-11": "P",
+        "MSH-12": "2.6",
+        "MSH-15": null,
+        "MSH-16": null,
+        "MSH-18": null
+      },
+      "segments": [
+        "MSA|AE|C1",
+        "ERR||PID^1^3^1^4^2|102^Data type error^HL70357^^^^^^Bad at PID(1)-3(1)-4-2|E"
+      ]
+    },
+    "2.8 unsupported event": {
+      "fields": {
+        "MSH-3": "RAPP",
+        "MSH-4": "RFAC",
+        "MSH-5": "APP",
+        "MSH-6": "FAC",
+        "MSH-9-1": "ACK",
+        "MSH-9-2": "A99",
+        "MSH-9-3": "ACK",
+        "MSH-11": "P",
+        "MSH-12": "2.8",
+        "MSH-15": null,
+        "MSH-16": null,
+        "MSH-18": null
+      },
+      "segments": [
+        "MSA|AR|C1",
+        "ERR|||201^Unsupported event code^HL70357^^^^^^Unsupported event at unknown location|E"
+      ]
+    },
+    "2.5.1 segment sequence error": {
+      "fields": {
+        "MSH-3": "RAPP",
+        "MSH-4": "RFAC",
+        "MSH-5": "APP",
+        "MSH-6": "FAC",
+        "MSH-9-1": "ACK",
+        "MSH-9-2": "R01",
+        "MSH-9-3": "ACK",
+        "MSH-11": "P",
+        "MSH-12": "2.5.1",
+        "MSH-15": null,
+        "MSH-16": null,
+        "MSH-18": null
+      },
+      "segments": [
+        "MSA|AE|C1",
+        "ERR||OBX^1|100^Segment sequence error^HL70357^^^^^^PID missing at OBX(1)|E"
+      ]
+    },
+    "2.1 error": {
+      "fields": {
+        "MSH-3": "RAPP",
+        "MSH-4": "RFAC",
+        "MSH-5": "APP",
+        "MSH-6": "FAC",
+        "MSH-9-1": "ACK",
+        "MSH-9-2": "A01",
+        "MSH-9-3": null,
+        "MSH-11": "P",
+        "MSH-12": "2.1",
+        "MSH-15": null,
+        "MSH-16": null,
+        "MSH-18": null
+      },
+      "segments": [
+        "MSA|AE|C1|Application internal error",
+        "ERR|PID^^3^207&Application internal error&HL70357&&Failed at PID(1)-3(0)"
+      ]
     }
+  },
+  "charset": {
+    "msh-18 UNICODE UTF-8": {
+      "charset": "UTF-8",
+      "bytes": "4d53487c5e7e5c267c4150507c4641437c524150507c524641437c32303235303330313130313530307c7c4144545e4130385e4144545f4130317c43317c507c322e357c7c7c7c7c7c554e49434f4445205554462d380d45564e7c4130380d5049447c317c7c317c7cc59e6168696e5e47c3bc6cc59f656e20c38761c49f6c610d",
+      "values": {
+        "PID-5-1": "Şahin",
+        "PID-5-2": "Gülşen Çağla"
+      }
+    },
+    "msh-18 8859/9": {
+      "charset": "ISO-8859-9",
+      "bytes": "4d53487c5e7e5c267c4150507c4641437c524150507c524641437c32303235303330313130313530307c7c4144545e4130385e4144545f4130317c43317c507c322e357c7c7c7c7c7c383835392f390d45564e7c4130380d5049447c317c7c317c7cde6168696e5e47fc6cfe656e20c761f06c610d",
+      "values": {
+        "PID-5-1": "Şahin",
+        "PID-5-2": "Gülşen Çağla"
+      }
+    },
+    "msh-18 8859/1": {
+      "charset": "ISO-8859-1",
+      "bytes": "4d53487c5e7e5c267c4150507c4641437c524150507c524641437c32303235303330313130313530307c7c4144545e4130385e4144545f4130317c43317c507c322e357c7c7c7c7c7c383835392f310d45564e7c4130380d5049447c317c7c317c7c3f6168696e5e47fc6c3f656e20c7613f6c610d",
+      "values": {
+        "PID-5-1": "?ahin",
+        "PID-5-2": "Gül?en Ça?la"
+      }
+    },
+    "msh-18 ASCII": {
+      "charset": "US-ASCII",
+      "bytes": "4d53487c5e7e5c267c4150507c4641437c524150507c524641437c32303235303330313130313530307c7c4144545e4130385e4144545f4130317c43317c507c322e357c7c7c7c7c7c41534349490d45564e7c4130380d5049447c317c7c317c7c3f6168696e5e473f6c3f656e203f613f6c610d",
+      "values": {
+        "PID-5-1": "?ahin",
+        "PID-5-2": "G?l?en ?a?la"
+      }
+    },
+    "msh-18 empty": {
+      "charset": "UTF-8",
+      "bytes": "4d53487c5e7e5c267c4150507c4641437c524150507c524641437c32303235303330313130313530307c7c4144545e4130385e4144545f4130317c43317c507c322e350d45564e7c4130380d5049447c317c7c317c7cc59e6168696e5e47c3bc6cc59f656e20c38761c49f6c610d",
+      "values": {
+        "PID-5-1": "Şahin",
+        "PID-5-2": "Gülşen Çağla"
+      }
+    },
+    "msh-18 UNICODE UTF-16": {
+      "charset": "UTF-16",
+      "bytes": "feff004d00530048007c005e007e005c0026007c004100500050007c004600410043007c0052004100500050007c0052004600410043007c00320030003200350030003300300031003100300031003500300030007c007c004100440054005e004100300038005e004100440054005f004100300031007c00430031007c0050007c0032002e0035007c007c007c007c007c007c0055004e00490043004f004400450020005500540046002d00310036000d00450056004e007c004100300038000d005000490044007c0031007c007c0031007c007c015e006100680069006e005e004700fc006c015f0065006e002000c70061011f006c0061000d",
+      "values": {
+        "PID-5-1": "Şahin",
+        "PID-5-2": "Gülşen Çağla"
+      }
+    },
+    "msh-18 UNICODE UTF-32": {
+      "error": "EncodingNotSupportedException: Determine encoding for message. The following is the first 50 chars of the message for reference, although this may not be where the issue is: \u0000\u0000\u0000M\u0000\u0000\u0000S\u0000\u0000\u0000H\u0000\u0000\u0000|\u0000\u0000\u0000^\u0000\u0000\u0000~\u0000\u0000\u0000\\\u0000\u0000\u0000&\u0000\u0000\u0000|\u0000\u0000\u0000A\u0000\u0000\u0000P\u0000\u0000\u0000P\u0000\u0000"
+    }
+  },
+  "validate": {
+    "valid": [],
+    "bad dates and numbers": [
+      {
+        "code": 207,
+        "segment": "EVN",
+        "field": 2,
+        "component": -1,
+        "message": "ca.uhn.hl7v2.validation.ValidationException: Validation failed: Primitive value '2025-03-01' requires to be empty or a HL7 datetime string at EVN-2(0)"
+      }
+    ],
+    "too long": [],
+    "bad time and timestamp": [
+      {
+        "code": 207,
+        "message": "ca.uhn.hl7v2.validation.ValidationException: Validation failed: Primitive value '25:61' requires to be empty or a HL7 time string"
+      }
+    ],
+    "2.3 bad id": [],
+    "obx-5 TM by OBX-2": [
+      {
+        "code": 207,
+        "message": "ca.uhn.hl7v2.validation.ValidationException: Validation failed: Primitive value '25:61' requires to be empty or a HL7 time string"
+      }
+    ],
+    "obx-5 NM by OBX-2": [
+      {
+        "code": 207,
+        "message": "ca.uhn.hl7v2.validation.ValidationException: Validation failed: Primitive value '12a' requires to be empty or a number with optional decimal digits"
+      }
+    ],
+    "obx-5 decimal comma": [
+      {
+        "code": 207,
+        "message": "ca.uhn.hl7v2.validation.ValidationException: Validation failed: Primitive value '12,5' requires to be empty or a number with optional decimal digits"
+      }
+    ],
+    "obx-5 DT by OBX-2": [
+      {
+        "code": 207,
+        "message": "ca.uhn.hl7v2.validation.ValidationException: Validation failed: Primitive value '2025-01-01' requires to be empty or a date string (YYYY[MM[DD]])"
+      }
+    ],
+    "obx-5 TS component": [
+      {
+        "code": 207,
+        "message": "ca.uhn.hl7v2.validation.ValidationException: Validation failed: Primitive value '2025x' requires to be empty or a HL7 datetime string"
+      }
+    ],
+    "obx-5 good values": [],
+    "bad set id": [
+      {
+        "code": 207,
+        "segment": "PID",
+        "field": 1,
+        "component": -1,
+        "message": "ca.uhn.hl7v2.validation.ValidationException: Validation failed: Primitive value '-1' requires to be empty or a non-negative integer (0,1,2,...) at PID-1(0)"
+      }
+    ]
+  },
+  "batch": {
+    "file of batches": [
+      {
+        "controlId": "M1",
+        "type": "ADT^A04",
+        "patient": "100"
+      },
+      {
+        "controlId": "M2",
+        "type": "ADT^A08",
+        "patient": "200"
+      },
+      {
+        "controlId": "M3",
+        "type": "ADT^A01",
+        "patient": "300"
+      }
+    ],
+    "bare messages": [
+      {
+        "controlId": "M1",
+        "type": "ADT^A04",
+        "patient": "100"
+      },
+      {
+        "controlId": "M2",
+        "type": "ADT^A08",
+        "patient": "200"
+      },
+      {
+        "controlId": "M3",
+        "type": "ADT^A01",
+        "patient": "300"
+      }
+    ]
   }
 }

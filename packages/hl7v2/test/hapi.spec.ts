@@ -1,6 +1,12 @@
 import { readFileSync } from 'node:fs';
 import { expect } from 'expect';
-import { HL7Error, hl7Escape, HL7Message, hl7UnEscape } from '../src/index.js';
+import {
+  HL7BatchFile,
+  HL7Error,
+  hl7Escape,
+  HL7Message,
+  hl7UnEscape,
+} from '../src/index.js';
 
 /*
  * The library against HAPI HL7v2: hapi/cases.json run through HAPI gave
@@ -37,6 +43,23 @@ const DIFFERENCES: Record<string, string> = {
   'read/oru 2.3: RESPONSE group/OBX(2)-5': 'as above',
   'read/oru 2.5.1: groups and segment repetitions/NTE-3':
     "without groups a segment is the message's first of its type; HAPI's /. looks only in the first place the structure has one",
+  'read/orm 2.5: orders and order details/ORC(1)-2-1':
+    'without groups SEG(n) is the n-th of the message; HAPI fails',
+  'read/mdm 2.6: document with text/OBX(1)-5': 'as above',
+  'read/dft 2.4: charges/FT1(1)-7-2': 'as above',
+  'read/dft 2.4: charges/FT1(1)-10': 'as above',
+  'read/rsp 2.5.1: query response/PID(1)-3-1': 'as above',
+  'nak/2.1 error/segments':
+    "2.1's ERR-1 is an ID in the standard: the code alone; HAPI writes 2.2's ELD",
+  'charset/msh-18 8859/1/bytes':
+    'what the character set cannot hold is transliterated (Ş as S); Java writes ?',
+  'charset/msh-18 8859/1/PID-5-1': 'as above, read back',
+  'charset/msh-18 8859/1/PID-5-2': 'as above, read back',
+  'charset/msh-18 ASCII/bytes': 'as above',
+  'charset/msh-18 ASCII/PID-5-1': 'as above, read back',
+  'charset/msh-18 ASCII/PID-5-2': 'as above, read back',
+  'charset/msh-18 UNICODE UTF-32':
+    'UTF-32 is written with a BOM and read back; HAPI writes none and cannot read what it wrote',
   'escape/delimiters and text/a\\b':
     'an escape character without its pair is kept; HAPI drops it',
   'escape/delimiters and text/end\\': 'as above',
@@ -67,7 +90,7 @@ const SYSTEMATIC = {
       s
         .replace(/^(MSA\|[^|]*\|[^|]*)\|.*$/, '$1')
         .replace(/^(ERR\|[^^|]*\^)\d*(\^)/, '$1$2')
-        .replace(/ at (PID|unknown location)[^|^&]*/, ''),
+        .replace(/ at ([A-Z][A-Z0-9]{2}\(|unknown location)[^|^&]*/, ''),
     ),
 };
 
@@ -214,6 +237,69 @@ describe('hl7v2:hapi', () => {
           `nak/${c.name}/segments`,
           SYSTEMATIC.segments(bodyOf(nak)),
           SYSTEMATIC.segments(h.segments),
+        );
+      });
+    }
+  });
+
+  describe('charset', () => {
+    for (const c of cases.charset) {
+      it(c.name, () => {
+        const h = hapi.charset[c.name];
+        const key = `charset/${c.name}`;
+        const bytes = HL7Message.parse(text(c)).toBuffer();
+        if (h.error) {
+          compare(key, 'written and read', h.error);
+          expect(HL7Message.parse(bytes).get('PID-5-1')).toEqual('Şahin');
+          return;
+        }
+        compare(`${key}/bytes`, bytes.toString('hex'), h.bytes);
+        const read = HL7Message.parse(bytes);
+        for (const path of c.paths) {
+          compare(`${key}/${path}`, str(read.get(path)), h.values[path]);
+        }
+      });
+    }
+  });
+
+  describe('validate', () => {
+    /*
+     * HAPI's default validation checks less than the library's - primitive
+     * formats, and parsing stops at the first - and reports every finding
+     * as 207: what HAPI finds, by where, the library must find too
+     */
+    for (const c of cases.validate) {
+      it(c.name, () => {
+        const ours = HL7Message.parse(text(c)).validate();
+        for (const e of hapi.validate[c.name]) {
+          const key = `validate/${c.name}/${e.segment ?? '?'}-${e.field ?? '?'}`;
+          /* Without a location, by the value HAPI names */
+          const value = /Primitive value '([^']*)'/.exec(e.message)?.[1];
+          const found = ours.some(
+            o =>
+              o.hl7ErrorCode === 102 &&
+              (e.segment != null
+                ? o.segmentType === e.segment && o.fieldPosition === e.field
+                : value != null && o.message.includes(`"${value}"`)),
+          );
+          compare(key, found, true);
+        }
+      });
+    }
+  });
+
+  describe('batch', () => {
+    for (const c of cases.batch) {
+      it(c.name, () => {
+        const file = HL7BatchFile.parse(text(c));
+        compare(
+          `batch/${c.name}`,
+          file.messages.map(m => ({
+            controlId: m.controlId,
+            type: m.messageType,
+            patient: str(m.get('PID-3-1')),
+          })),
+          hapi.batch[c.name],
         );
       });
     }

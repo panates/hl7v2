@@ -11,6 +11,13 @@ import ca.uhn.hl7v2.parser.PipeParser;
 import ca.uhn.hl7v2.util.Terser;
 import ca.uhn.hl7v2.util.idgenerator.InMemoryIDGenerator;
 import ca.uhn.hl7v2.validation.impl.ValidationContextFactory;
+import ca.uhn.hl7v2.util.Hl7InputStreamMessageStringIterator;
+import ca.uhn.hl7v2.validation.CollectingValidationExceptionHandler;
+import ca.uhn.hl7v2.validation.MessageValidator;
+import ca.uhn.hl7v2.validation.ValidationException;
+import java.io.StringReader;
+import java.lang.reflect.Method;
+import java.nio.charset.Charset;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -32,6 +39,11 @@ import java.util.List;
  *   escape    DefaultEscaping.escape / unescape of values
  *   ack       generateACK(): the acknowledgment's MSH fields and MSA
  *   nak       generateACK(AE, HL7Exception): its MSA and ERR segments
+ *   charset   the bytes a message is written in, by its MSH-18
+ *             (CharSetUtil, as HAPI's MLLP layer picks it), and the values
+ *             read back from them
+ *   validate  the errors HAPI's default validation finds
+ *   batch     the messages a batch file holds (Hl7InputStreamMessageStringIterator)
  *
  * A path is the library's: one not starting with "/" is searched in the
  * whole message, which is Terser's "/.".
@@ -56,6 +68,9 @@ public class Oracle {
     out.add("escape", each(cases, "escape", Oracle::escape));
     out.add("ack", each(cases, "ack", Oracle::ack));
     out.add("nak", each(cases, "nak", Oracle::nak));
+    out.add("charset", each(cases, "charset", Oracle::charset));
+    out.add("validate", each(cases, "validate", Oracle::validate));
+    out.add("batch", each(cases, "batch", Oracle::batch));
     Files.writeString(Path.of(args[1]), gson.toJson(out) + "\n", StandardCharsets.UTF_8);
   }
 
@@ -187,5 +202,98 @@ public class Oracle {
     out.add("fields", ackFields(ack));
     out.add("segments", body(ack));
     return out;
+  }
+
+  /* CharSetUtil.checkCharset is package-private: the charset HAPI's MLLP
+   * layer reads from MSH-18, UTF-8 when there is none */
+  static Charset charsetOf(String message) throws Exception {
+    Method m = Class.forName("ca.uhn.hl7v2.llp.CharSetUtil")
+        .getDeclaredMethod("checkCharset", String.class, Charset.class);
+    m.setAccessible(true);
+    return (Charset) m.invoke(null, message, StandardCharsets.UTF_8);
+  }
+
+  static String hex(byte[] bytes) {
+    StringBuilder sb = new StringBuilder();
+    for (byte b : bytes) sb.append(String.format("%02x", b));
+    return sb.toString();
+  }
+
+  static JsonObject charset(JsonObject c) throws Exception {
+    Message msg = parser.parse(text(c));
+    String encoded = parser.encode(msg);
+    Charset charset = charsetOf(encoded);
+    byte[] bytes = encoded.getBytes(charset);
+    /* Read back: the charset from the bytes, as a receiver finds it */
+    Method m = Class.forName("ca.uhn.hl7v2.llp.CharSetUtil")
+        .getDeclaredMethod("checkCharset", byte[].class, Charset.class);
+    m.setAccessible(true);
+    Charset found = (Charset) m.invoke(null, bytes, StandardCharsets.UTF_8);
+    Terser terser = new Terser(parser.parse(new String(bytes, found)));
+    JsonObject values = new JsonObject();
+    for (JsonElement p : c.getAsJsonArray("paths")) {
+      values.addProperty(p.getAsString(), terser.get(terserPath(p.getAsString())));
+    }
+    JsonObject out = new JsonObject();
+    out.addProperty("charset", charset.name());
+    out.addProperty("bytes", hex(bytes));
+    out.add("values", values);
+    return out;
+  }
+
+  static JsonArray validate(JsonObject c) throws Exception {
+    HapiContext validating = new DefaultHapiContext();
+    validating.setValidationContext(ValidationContextFactory.defaultValidation());
+    validating.getParserConfiguration().setIdGenerator(new InMemoryIDGenerator());
+    JsonArray errors = new JsonArray();
+    Message msg;
+    try {
+      /* Parsing validates primitives as they are read: the first bad one throws */
+      msg = validating.getPipeParser().parse(text(c));
+    } catch (HL7Exception e) {
+      errors.add(error(e));
+      return errors;
+    }
+    MessageValidator validator = new MessageValidator(validating.getValidationContext(), true);
+    CollectingValidationExceptionHandler<Boolean> handler =
+        new CollectingValidationExceptionHandler<>(validating) {
+          @Override public Boolean result() { return !hasFailed(); }
+        };
+    validator.validate(msg, handler);
+    for (ValidationException e : handler.getExceptions()) errors.add(error(e));
+    return errors;
+  }
+
+  static JsonObject error(ca.uhn.hl7v2.AbstractHL7Exception e) {
+    JsonObject err = new JsonObject();
+    err.addProperty("code", e.getErrorCode());
+    Location l = e.getLocation();
+    if (l != null) {
+      err.addProperty("segment", l.getSegmentName());
+      err.addProperty("field", l.getField());
+      err.addProperty("component", l.getComponent());
+    }
+    err.addProperty("message", e.getMessage());
+    return err;
+  }
+
+  static JsonArray batch(JsonObject c) {
+    Hl7InputStreamMessageStringIterator it =
+        new Hl7InputStreamMessageStringIterator(new StringReader(text(c)));
+    JsonArray messages = new JsonArray();
+    while (it.hasNext()) {
+      String m = it.next();
+      try {
+        Terser t = new Terser(parser.parse(m));
+        JsonObject o = new JsonObject();
+        o.addProperty("controlId", t.get("/MSH-10"));
+        o.addProperty("type", t.get("/MSH-9-1") + "^" + t.get("/MSH-9-2"));
+        o.addProperty("patient", t.get("/.PID-3-1"));
+        messages.add(o);
+      } catch (Exception ex) {
+        messages.add("!error: " + ex.getMessage());
+      }
+    }
+    return messages;
   }
 }
