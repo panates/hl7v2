@@ -6,6 +6,7 @@ import type {
   HL7SegmentObjects,
   HL7TypedVersion,
   HL7VersionFieldComponents,
+  HL7VersionMessages,
   HL7VersionSegmentObjects,
   HL7VersionSegments,
 } from 'hl7v2-dictionary';
@@ -33,6 +34,7 @@ import {
 } from './constants.js';
 import { HL7_ERROR_CODES, HL7Error } from './hl7-error.js';
 import { HL7MessageNode } from './hl7-message-node.js';
+import { assignMessage, messageToObject } from './hl7-message-object.js';
 import { getPathValue, type HL7CheckedPath, setPathValue } from './hl7-path.js';
 import type {
   Hl7SegmentParseOptions,
@@ -63,6 +65,17 @@ export type HL7MessageSegmentObject<
     ? HL7VersionSegments[V][K]
     : never
   : HL7SegmentObjects[K];
+
+/**
+ * A message as an object (toObject()): the structure K's interface for a
+ * message of a version with typed objects, any object otherwise. Read by
+ * indexed access, not a condition, so a typed message stays assignable to
+ * an untyped one.
+ */
+export type HL7MessageObject<
+  V extends HL7Version,
+  K extends string,
+> = HL7VersionMessages[V][K];
 
 /**
  * A segment of a message of version V: field() takes only the fields the
@@ -352,6 +365,27 @@ export class HL7Message<V extends HL7Version = HL7Version> {
     return this.getSegment(segmentType, index)?.toObject<
       HL7MessageSegmentObject<V, K> & object
     >();
+  }
+
+  /**
+   * The message as a plain object, shaped as its structure is - segments by
+   * their IDs, groups by their names, arrays where they repeat (see
+   * hl7-message-object.ts). Typed by the structure given, for a message
+   * whose version the compiler knows: toObject<'ORU_R01'>().
+   */
+  toObject<K extends string = string>(): HL7MessageObject<V, K> {
+    return messageToObject(this) as HL7MessageObject<V, K>;
+  }
+
+  /**
+   * Sets the message from an object shaped as toObject() gives it: MSH
+   * assigned, every other segment replaced, in the structure's order
+   */
+  assign<K extends string = string>(
+    object: NoInfer<HL7MessageObject<V, K>>,
+  ): this {
+    assignMessage(this, object as Record<string, any>);
+    return this;
   }
 
   /**

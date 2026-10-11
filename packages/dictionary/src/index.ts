@@ -8,4 +8,5 @@ export * from './tables/index.js';
 export * from './type-fields/index.js';
 export * from './types.js';
 export * from './version.enum.js';
+export type * from './versioned-messages.js';
 export type * from './versioned-objects.js';

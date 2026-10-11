@@ -67,3 +67,22 @@ console.log('Second order :', msg.get(`${second}/OBR-4-2`));
 console.log('Its first OBX:', msg.get(`${second}/OBSERVATION(0)/OBX-3-2`));
 console.log('Value        :', msg.get(`${second}/OBSERVATION(0)/OBX-5`));
 console.log('Observed at  :', msg.getDate(`${second}/OBR-7`)?.toISOString());
+
+/*
+ * 3. The whole message as one object, typed by its structure: groups and
+ * segments by name, arrays where they repeat
+ */
+console.log('\n-- As an object');
+const oru = msg.toObject<'ORU_R01'>();
+for (const result of oru.PATIENT_RESULT ?? []) {
+  for (const order of result.ORDER_OBSERVATION ?? []) {
+    const values = (order.OBSERVATION ?? []).map(
+      ({ OBX }) =>
+        `${OBX?.ObservationIdentifier?.Identifier}=${OBX?.ObservationValue}`,
+    );
+    console.log(
+      `${order.OBR?.UniversalServiceIdentifier?.Identifier}:`,
+      values.join(', '),
+    );
+  }
+}

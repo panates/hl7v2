@@ -17,3 +17,7 @@ Second order : Comprehensive metabolic panel
 Its first OBX: Glucose [Mass/volume] in Serum or Plasma
 Value        : 132
 Observed at  : 2025-03-02T04:00:00.000Z
+
+-- As an object
+58410-2: 6690-2=7.2, 718-7=11.1, 777-3=250
+24323-8: 2345-7=132, 2160-0=0.9

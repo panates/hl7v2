@@ -197,6 +197,27 @@ message.getSegment('PID')!.assign<PIDObject>({
 });
 ```
 
+#### Whole messages
+
+A message as one object, shaped as its structure is - segments by their IDs, groups by their names, arrays where they repeat:
+
+```typescript
+const oru = HL7Message.parse(text, { version: '2.5.1' }).toObject<'ORU_R01'>();
+for (const result of oru.PATIENT_RESULT ?? []) {
+  const patient = result.PATIENT?.PID?.PatientName?.[0];
+  for (const order of result.ORDER_OBSERVATION ?? []) {
+    for (const { OBX, NTE } of order.OBSERVATION ?? []) {
+      console.log(OBX?.ObservationIdentifier?.Text, OBX?.ObservationValue, NTE);
+    }
+  }
+}
+
+/* And back: segments written in the structure's order */
+msg.assign<'ORU_R01'>({ PATIENT_RESULT: [{ PATIENT: { PID: {...} }, ORDER_OBSERVATION: [...] }] });
+```
+
+The type is the structure's in the message's version (`HL7MessageObject<'2.5.1', 'ORU_R01'>`), by structure or trigger event; any object for a version or structure not typed. Segments the structure has no place for - Z segments - are kept at the top level, by their IDs, as arrays. `assign()` keeps MSH's fields not given and replaces every other segment.
+
 #### By version
 
 A message whose version the compiler knows is typed by that version's own definitions - no union of versions, a field the version withdrew absent, one it brought present:
