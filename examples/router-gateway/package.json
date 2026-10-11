@@ -1,0 +1,15 @@
+{
+  "name": "hl7v2-example-router-gateway",
+  "description": "A gateway: routing received messages to other MLLP systems by type, passing on their answers",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "node --no-experimental-strip-types --import ../register.mjs src/index.ts"
+  },
+  "dependencies": {
+    "hl7v2": "*",
+    "hl7v2-net": "*"
+  }
+}

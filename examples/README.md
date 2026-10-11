@@ -11,6 +11,12 @@ Small programs showing how `hl7v2` and `hl7v2-net` are used. Each is one comment
 | [charset](charset)                     | Character sets (MSH-18): encoding to bytes, decoding them, `ANSI`; escape sequences                                   |
 | [mllp-server](mllp-server)             | An MLLP server: handlers by message type, validation, AA / AE / AR acknowledgments, errors                           |
 | [mllp-client](mllp-client)             | An MLLP client: sending messages and reading their acknowledgments; run it against `mllp-server`                     |
+| [validation](validation) | Validation: structure, fields, tables, strict parsing; errors as a NAK carries them |
+| [adt-to-json](adt-to-json) | Mapping ADT to an application's own JSON model and back, with the typed objects |
+| [batch-files](batch-files) | Batch files (FHS/BHS ... BTS/FTS): reading, processing, answering with a batch of ACKs |
+| [tls](tls) | MLLP over TLS, with a certificate the client trusts |
+| [enhanced-ack](enhanced-ack) | Enhanced acknowledgment mode (MSH-15/16): accept (CA/CE) and application (AA/AE) acknowledgments |
+| [router-gateway](router-gateway) | A gateway routing messages by type to other MLLP systems, passing their answers back |
 
 The sample messages are in [messages](messages).
 
@@ -25,7 +31,7 @@ npm start
 
 The examples import `hl7v2` and `hl7v2-net` as an application does; here those names resolve to the packages' sources (see `tsconfig.json` and `register.mjs`), so nothing needs building first. Node.js 22.6 or later.
 
-For the network examples, start the server first, then the client in another terminal:
+`tls`, `enhanced-ack` and `router-gateway` run their servers and clients in one process. For `mllp-server` and `mllp-client`, start the server first, then the client in another terminal:
 
 ```bash
 cd examples/mllp-server && npm start
