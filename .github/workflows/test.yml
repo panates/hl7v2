@@ -13,6 +13,7 @@ on:
     paths:
       - 'packages/*/src/**'
       - 'packages/*/test/**'
+      - 'examples/**'
       # `packages/*/*` rather than a brace pattern: brace expansion is not in GitHub's filter set,
       # and a filter that misses a file means the tests quietly do not run.
       - 'packages/*/*'
@@ -71,6 +72,10 @@ jobs:
         run: npm run citest
         env:
           NODE_OPTIONS: "--max_old_space_size=4096 --no-experimental-strip-types"
+
+      # The examples type-check (typed-access expects compile errors) and run cleanly
+      - name: Run examples
+        run: npm run examples
 
       - name: Send coverage to Coveralls
         uses: coverallsapp/github-action@v2

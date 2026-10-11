@@ -22,7 +22,8 @@
     "test": "mocha",
     "precover": "rman clean",
     "precitest": "rman clean",
-    "citest": "c8 mocha"
+    "citest": "c8 mocha",
+    "examples": "tsc -p examples/tsconfig.json && node examples/run-all.mjs"
   },
   "devDependencies": {
     "@panates/eslint-config-ts": "^2.3.2",

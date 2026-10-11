@@ -20,6 +20,10 @@ HL7 v2 server/client for NodeJS
 
 HL7 v2 dictionary for message parsing and serialization
 
+## [Examples](./examples/README.md)
+
+Runnable examples: reading and building messages, typed access, lab results, character sets, an MLLP server and client
+
 ## Support
 
 You can report bugs and discuss features on the [GitHub issues](https://github.com/panates/hl7v2/issues) page

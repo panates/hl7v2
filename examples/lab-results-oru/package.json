@@ -1,0 +1,14 @@
+{
+  "name": "hl7v2-example-lab-results-oru",
+  "description": "Walk an ORU^R01's groups: patients, orders and their observations",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "node --no-experimental-strip-types --import ../register.mjs src/index.ts"
+  },
+  "dependencies": {
+    "hl7v2": "*"
+  }
+}

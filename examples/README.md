@@ -1,0 +1,38 @@
+# Examples
+
+Small programs showing how `hl7v2` and `hl7v2-net` are used. Each is one commented file, `src/index.ts`, and runs with `npm start` in its folder.
+
+| Example                                 | What it shows                                                                                                        |
+| --------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| [parse-and-read](parse-and-read)       | Reading a message: paths (`PID-5-1`), typed segment objects, fields and repetitions                                   |
+| [build-message](build-message)         | Building a message from scratch, validating it, answering it with an ACK or a NAK                                    |
+| [typed-access](typed-access)           | Version-specific types: segment objects, fields and paths checked by the compiler                                     |
+| [lab-results-oru](lab-results-oru)     | An ORU^R01's groups - patients, orders, observations - as a tree and by path                                         |
+| [charset](charset)                     | Character sets (MSH-18): encoding to bytes, decoding them, `ANSI`; escape sequences                                   |
+| [mllp-server](mllp-server)             | An MLLP server: handlers by message type, validation, AA / AE / AR acknowledgments, errors                           |
+| [mllp-client](mllp-client)             | An MLLP client: sending messages and reading their acknowledgments; run it against `mllp-server`                     |
+
+The sample messages are in [messages](messages).
+
+## Running
+
+From the repository, after `npm install`:
+
+```bash
+cd examples/parse-and-read
+npm start
+```
+
+The examples import `hl7v2` and `hl7v2-net` as an application does; here those names resolve to the packages' sources (see `tsconfig.json` and `register.mjs`), so nothing needs building first. Node.js 22.6 or later.
+
+For the network examples, start the server first, then the client in another terminal:
+
+```bash
+cd examples/mllp-server && npm start
+```
+
+```bash
+cd examples/mllp-client && npm start
+```
+
+`node examples/run-all.mjs` runs them all - the client against the server - as CI does, and `npx tsc -p examples/tsconfig.json` checks their types, including the compile errors `typed-access` expects.

@@ -1,0 +1,14 @@
+{
+  "name": "hl7v2-example-typed-access",
+  "description": "Version-specific types: segment objects, fields and paths checked by the compiler",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "node --no-experimental-strip-types --import ../register.mjs src/index.ts"
+  },
+  "dependencies": {
+    "hl7v2": "*"
+  }
+}

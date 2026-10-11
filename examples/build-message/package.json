@@ -1,0 +1,14 @@
+{
+  "name": "hl7v2-example-build-message",
+  "description": "Build an HL7 message from scratch, validate it and acknowledge it",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "node --no-experimental-strip-types --import ../register.mjs src/index.ts"
+  },
+  "dependencies": {
+    "hl7v2": "*"
+  }
+}
