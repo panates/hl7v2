@@ -124,4 +124,23 @@ describe('hl7v2:versioned objects', () => {
     expect(messages.length).toEqual(2);
     expect(header.segmentType).toEqual('MSH');
   });
+
+  it("should take only the version's fields in a path", () => {
+    const msg = new HL7Message('2.6');
+    msg.set('DG1-3-1', 'I10');
+    expect(msg.get('DG1-3')).toEqual('I10');
+    // @ts-expect-error - "DG1-2 is not a field of DG1 in 2.6"
+    msg.set('DG1-2', 'I9');
+    // @ts-expect-error - with repetitions, components and groups too
+    msg.get('/PATIENT/DG1(1)-2(0)-1-2');
+    // @ts-expect-error - MSH-26 came in 2.9
+    msg.getDate('MSH-26');
+    expect(new HL7Message('2.9').get('MSH-26')).toBeUndefined();
+    /* not checked: a path known at run time, an untyped message, a Z segment */
+    const path: string = 'DG1-2';
+    /* the check is the compiler's: run anyway, the path is read */
+    expect(msg.get(path)).toEqual('I9');
+    expect(HL7Message.parse(ADT25).get('DG1-2')).toBeUndefined();
+    expect(msg.get('ZPI-99')).toBeUndefined();
+  });
 });

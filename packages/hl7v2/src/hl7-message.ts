@@ -31,7 +31,7 @@ import {
 } from './constants.js';
 import { HL7_ERROR_CODES, HL7Error } from './hl7-error.js';
 import { HL7MessageNode } from './hl7-message-node.js';
-import { getPathValue, setPathValue } from './hl7-path.js';
+import { getPathValue, type HL7CheckedPath, setPathValue } from './hl7-path.js';
 import type {
   Hl7SegmentParseOptions,
   Hl7SegmentSerializeOptions,
@@ -316,13 +316,13 @@ export class HL7Message<V extends HL7Version = HL7Version> {
    * The value at a path written as HAPI's Terser writes it - "PID-5-1",
    * "OBX(2)-5", "/PATIENT_RESULT/ORDER_OBSERVATION(1)/OBX(0)-5" (see HL7Path)
    */
-  get(path: string): any {
+  get<P extends string>(path: HL7CheckedPath<V, P>): any {
     return getPathValue(this, path);
   }
 
   /** The value at a path as a Date (see get() and Hl7Component.getDate()) */
-  getDate(path: string): Date | undefined {
-    return toDate(this.get(path));
+  getDate<P extends string>(path: HL7CheckedPath<V, P>): Date | undefined {
+    return toDate(getPathValue(this, path));
   }
 
   /**
@@ -363,7 +363,7 @@ export class HL7Message<V extends HL7Version = HL7Version> {
   }
 
   /** Sets the value at a path (see get() and HL7Path) */
-  set(path: string, value: any): this {
+  set<P extends string>(path: HL7CheckedPath<V, P>, value: any): this {
     setPathValue(this, path, value);
     return this;
   }

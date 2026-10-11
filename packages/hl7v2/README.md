@@ -222,7 +222,14 @@ dg1.field(DG1Segment.DiagnosisCodingMethod); // compile error: DG1-2 is withdraw
 dg1.field(2); // the same, by number
 ```
 
-Any field is taken where the version or the segment is not typed - a message read without a version, a Z segment. For a position known only at run time, use the segment untyped: `const seg: HL7Segment = msg.getSegment('DG1')!`.
+Paths are checked the same way, groups, repetitions and components aside:
+
+```typescript
+msg26.get('DG1-2'); // compile error: "DG1-2 is not a field of DG1 in 2.6"
+msg26.set('/PATIENT/DG1(1)-2-1', 'x'); // the same
+```
+
+Any field or path is taken where the version or the segment is not typed - a message read without a version, a Z segment. A path held in a `string` is not checked; for a field position known only at run time, use the segment untyped: `const seg: HL7Segment = msg.getSegment('DG1')!`.
 
 A version is matched as it is read: 2.5.2 is a 2.5.1 message. Without a version the types unite every version, as above. The version types are generated as flat interfaces, one per distinct shape and shared by the versions defining it the same; types only.
 

@@ -1,3 +1,4 @@
+import type { HL7SegmentField } from 'hl7v2-dictionary';
 import type { HL7Message } from './hl7-message.js';
 import { HL7MessageNode } from './hl7-message-node.js';
 import type { HL7Segment } from './hl7-segment.js';
@@ -27,6 +28,47 @@ export interface HL7Path {
   component?: number;
   subComponent?: number;
 }
+
+/* The segment of a path's last step, without its repetition */
+type PathSegment<S extends string> = S extends `.${infer T}`
+  ? PathSegment<T>
+  : S extends `${infer N}(${string}`
+    ? N
+    : S;
+
+/* The field number of a path's last step, without its repetition */
+type PathField<F extends string> = F extends `${infer N}-${string}`
+  ? PathField<N>
+  : F extends `${infer N}(${string}`
+    ? N
+    : F;
+
+/* [segment, field] of a path: "/PATIENT/PID(1)-5(2)-1" -> ["PID", "5"] */
+type PathTarget<P extends string> = P extends `${string}/${infer Rest}`
+  ? PathTarget<Rest>
+  : P extends `${infer S}-${infer Rest}`
+    ? [PathSegment<S>, PathField<Rest>]
+    : [PathSegment<P>, undefined];
+
+/**
+ * A path checked against version V when the compiler knows both: P itself
+ * when its field is one the version defines for the segment, otherwise a
+ * message saying it is not - "DG1-2 is not a field of DG1 in 2.6" - for the
+ * compiler to report. A path only known at run time, an untyped message's
+ * path or a Z segment's is taken as it is.
+ */
+export type HL7CheckedPath<
+  V extends HL7Message['version'],
+  P extends string,
+> = string extends P
+  ? string
+  : PathTarget<P> extends [infer S extends string, infer F]
+    ? F extends `${infer N extends number}`
+      ? N extends HL7SegmentField<V, S>
+        ? P
+        : `${S}-${N} is not a field of ${S} in ${V}`
+      : P
+    : P;
 
 const ITEM = /^([A-Za-z0-9_]+)(?:\((\d+)\))?$/;
 const FIELD = /^(\d+)(?:\((\d+)\))?$/;
