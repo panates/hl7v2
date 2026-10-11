@@ -7,9 +7,11 @@ import type {
   HL7Message,
   HL7ValidateOptions,
 } from 'hl7v2';
+import { MSHSegment } from 'hl7v2';
 import { AsyncEventEmitter } from 'node-events-async';
 import reconnectCore from 'reconnect-core';
 import type { StrictOmit } from 'ts-gems';
+import { uid } from 'uid';
 import { acceptMessage } from './helpers/acknowledgment.js';
 import {
   type HL7BatchAcknowledgment,
@@ -21,7 +23,11 @@ import { HL7Request } from './hl7-request.js';
 import { HL7Response } from './hl7-response.js';
 import { HL7Router } from './hl7-router.js';
 import { HL7Socket } from './hl7-socket.js';
-import type { HL7MessageFilter, HL7Middleware } from './types.js';
+import type {
+  HL7ErrorMiddleware,
+  HL7MessageFilter,
+  HL7Middleware,
+} from './types.js';
 
 export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
   protected _connectionManager: ReturnType<typeof socketReconnect>;
@@ -97,6 +103,7 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
           socket.on('send', message => this.emit('send', message));
           socket.on('sendBatch', file => this.emit('sendBatch', file));
           socket.on('data', data => this.emit('data', data));
+          socket.on('write', data => this.emit('write', data));
         } else this._socket._bindSocket(tcpSocket);
         if (reconnecting) this.emit('reconnect', tcpSocket);
         reconnecting = false;
@@ -283,6 +290,11 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
     });
   }
 
+  /** See HL7Router.onError() */
+  onError(handler: HL7Router | HL7ErrorMiddleware, priority = 0) {
+    this._router.onError(handler, priority);
+  }
+
   protected _process(
     message: HL7Message,
     batch?: HL7BatchReplies,
@@ -294,6 +306,9 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
       batch ? batch.send(m) : socket.sendMessage(m);
     if (!acceptMessage(message, send, this._options.validate))
       return Promise.resolve();
+    /* Answered by its control ID: one it lacks is given, as the server does */
+    if (!message.header.field(MSHSegment.MessageControlID).getValue())
+      message.header.field(MSHSegment.MessageControlID).setValue(uid(8));
     const req = new HL7Request(socket, message, batch);
     const res = new HL7Response(req);
     return new Promise<void>(resolve => {
@@ -309,6 +324,8 @@ export namespace Hl7Client {
   export interface Events extends HL7Socket.Events {
     reconnecting: [n: number, delay: number];
     reconnect: [socket: net.Socket];
+    /** The connection lost; with the error, when reconnecting */
+    disconnect: [error?: Error];
   }
 
   interface CommonConnectOptions {

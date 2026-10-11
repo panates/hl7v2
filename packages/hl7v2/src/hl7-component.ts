@@ -77,9 +77,9 @@ export class Hl7Component {
 
   clear() {
     this._extra = undefined;
-    if (this.field.isPrimitive) {
-      this._data!.value = undefined;
-    } else this._subComponents = [];
+    /* A primitive component - of a primitive field or of a composite one */
+    if (this._data) this._data.value = undefined;
+    else this._subComponents = [];
   }
 
   isEmpty(): boolean {
@@ -93,8 +93,13 @@ export class Hl7Component {
   }
 
   subcomp(position: number): Hl7SubComponent {
-    if (this.field.isPrimitive)
-      throw new Error('Primitive fields have no sub-component');
+    /* A primitive component's further sub-components: getValue/setValue(v, n) */
+    if (this._data) {
+      if (position === 1) return this._data;
+      throw new Error(
+        'A primitive component has no sub-components; read and write further ones with getValue(n) and setValue(value, n)',
+      );
+    }
     if (position < 1) throw new Error('Invalid sub-component position');
     let subComponent = this._subComponents![position - 1];
     if (!subComponent) {

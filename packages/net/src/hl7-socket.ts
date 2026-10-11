@@ -148,7 +148,10 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
       if (!this.connected) throw new Error('Socket is not connected');
       if (!this.socket.writable) throw new Error('Socket is not writable');
       /** Fill MSH-18 only when every repetition is empty - never rewrite what the message carries */
-      if (!message.charset) {
+      if (
+        !message.charset &&
+        message.header.definition.fields[MSHSegment.CharacterSet]
+      ) {
         message.header
           .field(MSHSegment.CharacterSet)
           .setValue(DEFAULT_HL7_CHARSET);

@@ -34,6 +34,8 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
   defaultCharset?: string;
   validate?: boolean | HL7ValidateOptions;
   batchAcknowledgment?: HL7BatchAcknowledgment;
+  applicationName?: string;
+  facilityName?: string;
   maxBufferPerSocket?: number;
   responseTimeout?: number;
 
@@ -75,6 +77,8 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
     this.defaultCharset = options?.defaultCharset;
     this.validate = options?.validate;
     this.batchAcknowledgment = options?.batchAcknowledgment;
+    this.applicationName = options?.applicationName;
+    this.facilityName = options?.facilityName;
     this._server = server;
     /**
      * A TLS server's 'connection' is the raw TCP socket, still encrypted; the
@@ -104,8 +108,9 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
   /**
    *
    */
+  /** The connections open now */
   get connections(): number {
-    return this._server.connections;
+    return this._sockets.size;
   }
 
   /**
@@ -176,8 +181,8 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
   }
 
   /**
-   * Stops the server from accepting new connections and keeps existing
-   * connections.
+   * Stops the server: no new connections; the open ones are closed - after
+   * the running handlers finish, waiting up to waitRunningHandlers ms
    */
   async close(waitRunningHandlers?: number): Promise<void> {
     if (!this.listening) return;
@@ -202,11 +207,11 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
         socket.close(waitRunningHandlers),
       ),
     );
+    /* The net server's own 'close' is the server's (see the constructor) */
     return new Promise<void>(resolve => {
       this._server.close(() => resolve());
     }).then(() => {
       delete this._closing;
-      this.emit('close');
     });
   }
 
@@ -324,6 +329,25 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
     });
   }
 
+  /**
+   * The server's identity on an acknowledgment it sends: MSH-3 and MSH-4
+   * from applicationName and facilityName, when given - otherwise they are
+   * the received MSH-5 and MSH-6, as HAPI answers
+   */
+  protected _identify(message: HL7Message) {
+    if (!message.messageType.startsWith('ACK')) return;
+    if (this.applicationName) {
+      message.header
+        .field(MSHSegment.SendingApplication)
+        .fromHL7String(this.applicationName);
+    }
+    if (this.facilityName) {
+      message.header
+        .field(MSHSegment.SendingFacility)
+        .fromHL7String(this.facilityName);
+    }
+  }
+
   /** Processes one message: accepts it, routes it, answers it */
   protected _process(
     message: HL7Message,
@@ -332,13 +356,18 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
   ): Promise<void> {
     /** A response to our own request, or any acknowledgment, is not answered */
     if (!isRoutable(message, socket)) return Promise.resolve();
-    const send = (m: HL7Message) =>
-      batch ? batch.send(m) : socket.sendMessage(m);
+    const send = (m: HL7Message) => {
+      this._identify(m);
+      if (batch) batch.send(m);
+      else socket.sendMessage(m);
+    };
     if (!acceptMessage(message, send, this.validate)) return Promise.resolve();
     return new Promise<void>(resolve => {
       if (!message.header.field(MSHSegment.MessageControlID).getValue())
         message.header.field(MSHSegment.MessageControlID).setValue(uid(8));
-      const req = new HL7Request(socket, message, batch);
+      const req = new HL7Request(socket, message, batch, m =>
+        this._identify(m),
+      );
       const res = new HL7Response(req);
       const timeoutTimer = setTimeout(() => {
         try {
@@ -381,7 +410,9 @@ export namespace HL7Server {
   }
 
   export interface Options {
+    /** MSH-3 of the acknowledgments the server sends (HD: `APP^1.2.3^ISO`); default the received MSH-5 */
     applicationName?: string;
+    /** MSH-4 of the acknowledgments the server sends; default the received MSH-6 */
     facilityName?: string;
     maxBufferPerSocket?: number;
     responseTimeout?: number;

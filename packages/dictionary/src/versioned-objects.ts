@@ -63173,15 +63173,6 @@ export type HL7DataTypeObject<
 > = HL7VersionTypes[V][T];
 
 /**
- * The field positions each version's segments have, for HL7Segment.field():
- * DG1Segment.DiagnosisCodingMethod (2) is not one of 2.6's DG1. A segment or
- * version with no definitions here takes any number.
- */
-/**
- * Each version's segment objects as HL7Segment.toObject() and assign() take
- * them; a segment or version with no definitions here, any object.
- */
-/**
  * The component positions of each version's segment fields, for
  * HL7Field.comp(): HL7VersionFieldComponents['2.6']['PID'][5] is 1 to 14,
  * XPN's. A primitive's only component is 1; a field of a type that takes
@@ -65401,6 +65392,10 @@ type Upto24 =
   | 23
   | 24;
 
+/**
+ * Each version's segment objects as HL7Segment.toObject() and assign() take
+ * them; a segment or version with no definitions here, any object.
+ */
 export interface HL7VersionSegmentObjects {
   '2.1': {
     ACC: ACCObject1<HL7Types_2_1>;
@@ -67485,6 +67480,11 @@ export interface HL7VersionSegmentObjects {
   };
 }
 
+/**
+ * The field positions each version's segments have, for HL7Segment.field():
+ * DG1Segment.DiagnosisCodingMethod (2) is not one of 2.6's DG1. A segment or
+ * version with no definitions here takes any number.
+ */
 export interface HL7VersionSegmentFields {
   '2.1': {
     ACC: ACCFields1;

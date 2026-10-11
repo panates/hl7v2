@@ -33,6 +33,7 @@ function checkParts(
   minute?: string,
   second?: string,
   offset?: string,
+  what = 'date/time',
 ) {
   const bad =
     (month && (+month < 1 || +month > 12)) ||
@@ -41,11 +42,13 @@ function checkParts(
     (minute && +minute > 59) ||
     (second && +second > 59) ||
     (offset && (+offset.substring(1, 3) > 14 || +offset.substring(3) > 59));
-  if (bad) throw new TypeError(`Value "${value}" is not a valid HL7 date/time`);
+  if (bad) throw new TypeError(`Value "${value}" is not a valid HL7 ${what}`);
 }
 
-/** A Date, or an ISO 8601 string (2025-01-02T03:04:05Z), as a Date; undefined for an HL7 value */
-/* A Date, or an ISO 8601 string given in code; HL7 text read is never one */
+/**
+ * A Date, or an ISO 8601 string (2025-01-02T03:04:05Z) given in code, as a
+ * Date; undefined for an HL7 value - and HL7 text read is never taken as ISO
+ */
 function asDate(value: Date | string, read?: boolean): Date | undefined {
   if (value instanceof Date) {
     if (isNaN(value.getTime())) throw new TypeError('Invalid Date');
@@ -141,7 +144,7 @@ export function toHL7Date(value: Date | string, read?: boolean): string {
   const v = String(value).trim();
   const m = DT.exec(v);
   if (!m) throw new TypeError(`Value "${value}" is not a valid HL7 date`);
-  checkParts(v, m[2], m[3]);
+  checkParts(v, m[2], m[3], undefined, undefined, undefined, undefined, 'date');
   return v;
 }
 
@@ -153,6 +156,6 @@ export function toHL7Time(value: Date | string, read?: boolean): string {
   const compact = !read && /^\d{2}:\d{2}/.test(v) ? v.replace(/:/g, '') : v;
   const m = TM.exec(compact);
   if (!m) throw new TypeError(`Value "${value}" is not a valid HL7 time`);
-  checkParts(compact, undefined, undefined, m[1], m[2], m[3], m[5]);
+  checkParts(compact, undefined, undefined, m[1], m[2], m[3], m[5], 'time');
   return compact;
 }

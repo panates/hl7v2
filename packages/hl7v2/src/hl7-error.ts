@@ -36,7 +36,8 @@ export class HL7Error extends Error {
 
   constructor(message: string, args?: HL7Error.ErrorArgs) {
     super(message);
-    if (args?.hl7ErrorCode) this.hl7ErrorCode = args?.hl7ErrorCode;
+    /* != null: table 0357's 0 (message accepted) is a code too */
+    if (args?.hl7ErrorCode != null) this.hl7ErrorCode = args.hl7ErrorCode;
     if (args?.ackCode) this.ackCode = args.ackCode;
     if (args?.line != null) this.line = args.line;
     if (args?.severity) this.severity = args?.severity;

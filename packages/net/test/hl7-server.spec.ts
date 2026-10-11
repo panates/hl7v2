@@ -1,4 +1,4 @@
-import net from 'node:net';
+import net, { type AddressInfo } from 'node:net';
 import { expect } from 'expect';
 import { CR, FS, HL7Message, MSASegment, MSHSegment, VT } from 'hl7v2';
 import { Hl7Client, HL7Server } from '../src/index.js';
@@ -252,5 +252,82 @@ describe('net:server', () => {
       'Message must start with (MSH) segment',
     ]);
     expect(server.listening).toBe(true);
+  });
+});
+
+describe('net:server - fixes from the API review', () => {
+  it('should sign its acknowledgments with applicationName and facilityName', async () => {
+    const server = HL7Server.createServer(undefined, {
+      applicationName: 'GATE^1.2.3^ISO',
+      facilityName: 'HOSP',
+    });
+    await server.listen(0);
+    const port = (server.address() as AddressInfo).port;
+    const client = Hl7Client.createClient({ host: 'localhost', port });
+    const msg = new HL7Message('2.5');
+    msg.header.field(MSHSegment.MessageType).fromHL7String('ADT^A01');
+    msg.header.field(MSHSegment.ReceivingApplication).setValue('OTHER');
+    const ack = await client.sendMessageWaitAck(msg);
+    expect(
+      ack.header.field(MSHSegment.SendingApplication).toHL7String(),
+    ).toEqual('GATE^1.2.3^ISO');
+    expect(ack.get('MSH-4')).toEqual('HOSP');
+    expect(server.connections).toEqual(1);
+    await client.close();
+    let closes = 0;
+    server.on('close', () => closes++);
+    await server.close();
+    expect(closes).toEqual(1);
+  });
+
+  it('should not pass on a frame over maxBufferPerSocket', async () => {
+    const server = HL7Server.createServer(undefined, {
+      maxBufferPerSocket: 200,
+    });
+    let routed = 0;
+    server.use(() => {
+      routed++;
+    });
+    server.on('error', () => undefined);
+    await server.listen(0);
+    const port = (server.address() as AddressInfo).port;
+    await new Promise<void>(resolve => {
+      const socket = net.connect({ port }, () => {
+        socket.write(
+          '\x0bMSH|^~\\&|A|B|C|D|20250101||ADT^A01|1|P|2.5\rNTE|1||' +
+            'x'.repeat(500) +
+            '\x1c\r',
+        );
+      });
+      socket.on('close', () => resolve());
+      socket.on('error', () => undefined);
+    });
+    await new Promise(resolve => setTimeout(resolve, 50));
+    expect(routed).toEqual(0);
+    await server.close();
+  });
+
+  it('should take error handlers on the client too', async () => {
+    const server = HL7Server.createServer();
+    await server.listen(0);
+    const port = (server.address() as AddressInfo).port;
+    const client = Hl7Client.createClient({ host: 'localhost', port });
+    const errors: string[] = [];
+    client.use(() => {
+      throw new Error('handler failed');
+    });
+    client.onError(err => {
+      errors.push(err.message);
+    });
+    await client.connect();
+    await new Promise(resolve => setTimeout(resolve, 50));
+    const [socket] = (server as any)._sockets as Set<any>;
+    const msg = new HL7Message('2.5');
+    msg.header.field(MSHSegment.MessageType).fromHL7String('ADT^A08');
+    const ack = await socket.sendMessageWaitAck(msg);
+    expect(ack.get('MSA-1')).toEqual('AE');
+    expect(errors).toEqual(['handler failed']);
+    await client.close();
+    await server.close();
   });
 });

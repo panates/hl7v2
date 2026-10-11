@@ -102,6 +102,8 @@ function dataType(name: string, index: number): HL7DataTypeDefinition {
     if (desc != null) d.desc = desc;
     if (fields) d.fields = fieldMap(fields, COMPONENT_CODECS[name]);
     Object.assign(d, TYPE_CODECS[name]);
+    /* TS is a primitive in 2.1 - a date/time itself, read as DTM */
+    if (name === 'TS' && !fields) Object.assign(d, TYPE_CODECS.DTM);
     def = Object.freeze(d);
     typeCache.set(key, def);
   }

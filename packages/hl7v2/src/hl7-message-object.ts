@@ -1,7 +1,8 @@
-import { hasPlaceholder, type HL7Message } from './hl7-message.js';
+import type { HL7Message } from './hl7-message.js';
 import { HL7MessageNode } from './hl7-message-node.js';
 import { assignSegment, segmentToObject } from './hl7-object.js';
 import { HL7Segment } from './hl7-segment.js';
+import { hasPlaceholder } from './utils/hl7-structure.js';
 
 /*
  * A message as a plain object, shaped as its structure is: segments by

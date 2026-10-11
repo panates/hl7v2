@@ -399,3 +399,15 @@ describe('dictionary:dictionaries', () => {
     });
   });
 });
+
+describe('dictionary:dates - error messages', () => {
+  it('should name the kind of value refused', () => {
+    const { toHL7Date, toHL7Time, toHL7DateTime } = dictionary;
+    expect(() => toHL7Date('20251302')).toThrow('not a valid HL7 date');
+    expect(() => toHL7Date('20251302')).not.toThrow('date/time');
+    expect(() => toHL7Time('2561')).toThrow('not a valid HL7 time');
+    expect(() => toHL7DateTime('20251302')).toThrow(
+      'not a valid HL7 date/time',
+    );
+  });
+});

@@ -438,3 +438,55 @@ describe('hl7v2:conformance', () => {
     });
   });
 });
+
+describe('hl7v2:conformance - fixes from the API review', () => {
+  it('Should clear a primitive component of a composite field', () => {
+    const msg = new HL7Message('2.5');
+    const name = msg.addSegment('PID').field(5);
+    name.comp(2).setValue('Ayşe');
+    name.comp(2).clear();
+    expect(name.toHL7String()).toEqual('');
+  });
+
+  it('Should keep a primitive component to its value and getValue(n)/setValue(v, n)', () => {
+    const msg = new HL7Message('2.5');
+    const given = msg.addSegment('PID').field(5).comp(2);
+    expect(given.subcomp(1).value).toBeUndefined();
+    expect(() => given.subcomp(2)).toThrow('primitive component');
+    given.setValue('extra', 2);
+    expect(given.getValue(2)).toEqual('extra');
+  });
+
+  it('Should call serializeSegment', () => {
+    const msg = HL7Message.parse(
+      'MSH|^~\\&|A|B|C|D|20250101||ADT^A01|1|P|2.5\rPID|1',
+    );
+    const out = msg.toHL7String({
+      serializeSegment: (segment, text) =>
+        segment.segmentType === 'PID' ? text + '|X' : text,
+    });
+    expect(out).toContain('PID|1|X');
+  });
+
+  it('Should keep an error code of 0', () => {
+    expect(new HL7Error('ok', { hl7ErrorCode: 0 }).hl7ErrorCode).toEqual(0);
+  });
+
+  it('Should not write MSH-18 where the version has none (2.1, 2.2)', () => {
+    for (const version of ['2.1', '2.2'] as const) {
+      const msg = new HL7Message(version);
+      expect([version, msg.header.fields.length < 18]).toEqual([version, true]);
+      expect(msg.toHL7String()).not.toContain('UNICODE');
+    }
+    expect(new HL7Message('2.3').charset).toEqual('UNICODE UTF-8');
+  });
+
+  it("Should check 2.1's TS, a primitive, as a date/time", () => {
+    const msg = HL7Message.parse(
+      'MSH|^~\\&|A|B|C|D|198808181126||ADT^A01|1|P|2.1\rEVN|A01|1988-08-18\rPID|||1||X',
+    );
+    expect(msg.validate().map(e => e.message)).toContain(
+      'EVN-2 is not a valid TS: Value "1988-08-18" is not a valid HL7 date/time',
+    );
+  });
+});

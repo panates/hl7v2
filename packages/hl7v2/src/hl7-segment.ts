@@ -116,6 +116,9 @@ export class HL7Segment<
     }
     out += serializeFields.join(fieldSeparator);
     while (out.endsWith(fieldSeparator)) out = out.substring(0, out.length - 1);
+    if (options?.serializeSegment) {
+      return options.serializeSegment(this, out, options) || '';
+    }
     return out;
   }
 

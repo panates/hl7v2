@@ -50,6 +50,7 @@ import {
   HL7_CHARSET_ENCODINGS,
   resolveHL7Encoding,
 } from './utils/hl7-charset.js';
+import { hasPlaceholder } from './utils/hl7-structure.js';
 import { toDate } from './utils/to-date.js';
 
 /**
@@ -180,7 +181,10 @@ export class HL7Message<V extends HL7Version = HL7Version> {
     /** Required; production, as HAPI's initQuickstart fills it */
     msh.field(MSHSegment.ProcessingID).setValue('P');
     msh.field(MSHSegment.VersionID).setValue(version);
-    msh.field(MSHSegment.CharacterSet).setValue(DEFAULT_HL7_CHARSET);
+    /* MSH-18 came in 2.3: 2.1 and 2.2 have no character set field */
+    if (msh.definition.fields[MSHSegment.CharacterSet]) {
+      msh.field(MSHSegment.CharacterSet).setValue(DEFAULT_HL7_CHARSET);
+    }
   }
 
   addSegment<S extends string>(
@@ -648,8 +652,8 @@ export class HL7Message<V extends HL7Version = HL7Version> {
    * Adds an ERR segment for the error, laid out as the message's version
    * defines ERR: from 2.5 the location, code and severity have fields of
    * their own (ERR-2, -3, -4); before it ERR-1 holds them all - segment,
-   * sequence, field and the coded error (2.3, 2.4), or the error code alone
-   * (2.1, 2.2). The first error's text goes to MSA-3.
+   * sequence, field and the coded error (2.2-2.4), or the error code alone
+   * (2.1, where ERR-1 is an ID). The first error's text goes to MSA-3.
    */
   addError(error: Error | string) {
     /* The layout is read from the dictionary, so fields go by any number */
@@ -885,15 +889,6 @@ function atLeast(a: string, b: string): boolean {
 }
 
 const isZSegment = (s: HL7Segment) => s.segmentType.startsWith('Z');
-
-/** Whether a structure has a place for any segment, or any Z segment */
-export function hasPlaceholder(defs: Record<string, any>): boolean {
-  return Object.entries<any>(defs).some(
-    ([key, def]) =>
-      /^any(HL7|Z)Segment$/.test(def.segment || key) ||
-      (def.segments && hasPlaceholder(def.segments)),
-  );
-}
 
 /** Puts each Z segment back after the segment before it, in that one's group */
 function putBackZSegments(tree: HL7MessageNode, segments: HL7Segment[]) {

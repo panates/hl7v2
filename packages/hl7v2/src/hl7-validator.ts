@@ -5,10 +5,11 @@ import type {
 import type { Hl7Component } from './hl7-component.js';
 import { HL7Error } from './hl7-error.js';
 import type { HL7Field } from './hl7-field.js';
-import { hasPlaceholder, type HL7Message } from './hl7-message.js';
+import type { HL7Message } from './hl7-message.js';
 import type { HL7Repetition } from './hl7-repetition.js';
 import { type HL7Segment, isHeaderSegment } from './hl7-segment.js';
 import { hl7UnEscape } from './utils/hl7-escape.js';
+import { hasPlaceholder } from './utils/hl7-structure.js';
 
 export interface HL7ValidateOptions {
   /**

@@ -8,10 +8,19 @@ export class HL7Request {
   /** The replies of the batch the message came in, when it came in one */
   readonly batch?: HL7BatchReplies;
 
-  constructor(socket: HL7Socket, message: HL7Message, batch?: HL7BatchReplies) {
+  /** Called on every answer before it is sent (the server's identity on it) */
+  protected readonly _prepare?: (message: HL7Message) => void;
+
+  constructor(
+    socket: HL7Socket,
+    message: HL7Message,
+    batch?: HL7BatchReplies,
+    prepare?: (message: HL7Message) => void,
+  ) {
     this.socket = socket;
     this.message = message;
     this.batch = batch;
+    this._prepare = prepare;
   }
 
   /**
@@ -19,6 +28,7 @@ export class HL7Request {
    * came in a batch - into the reply batch
    */
   send(message: HL7Message) {
+    this._prepare?.(message);
     if (this.batch) this.batch.send(message);
     else this.socket.sendMessage(message);
   }

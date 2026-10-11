@@ -30,7 +30,7 @@ export class HL7Dictionary {
     this.tables = args.tables || {};
   }
 
-  /** The text of a code in a table: table(1, 'F') is "Female" */
+  /** The text of a code in a table: tableValue(1, 'F') is "Female" */
   tableValue(table: number, code: string): string | undefined {
     return this.tables[table]?.values[code];
   }
