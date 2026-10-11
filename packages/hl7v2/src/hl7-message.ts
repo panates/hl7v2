@@ -727,7 +727,9 @@ export class HL7Message<V extends HL7Version = HL7Version> {
     if (!version) version = this._version || HL7Version.v2_7_1;
     this._version = version;
     const nearestVersion = findNearestHL7Version(version);
-    this._dictionary = this._dictionaries[nearestVersion];
+    /* Dictionaries given replace the default ones for their versions only */
+    this._dictionary =
+      this._dictionaries[nearestVersion] ?? defaultDictionaries[nearestVersion];
     this._segments = [];
     this.fieldSeparator = FIELD_SEPARATOR;
     this.componentSeparator = COMPONENT_SEPARATOR;

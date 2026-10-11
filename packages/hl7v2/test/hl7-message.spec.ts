@@ -1,5 +1,6 @@
 import { expect } from 'expect';
 import {
+  dictionaries,
   HL7Message,
   HL7MessageNode,
   HL7Segment,
@@ -95,5 +96,23 @@ NTE|1|L|ROUTINE RESPIRATORY FLORA
     expect((tree.items[0] as HL7Segment).segmentType).toEqual('MSH');
     expect(tree.items[1]).toBeInstanceOf(HL7MessageNode);
     expect((tree.items[1] as HL7MessageNode).name).toEqual('PATIENT_RESULT');
+  });
+
+  it('should read with a dictionary given for one version, the default ones for the others', () => {
+    const site = dictionaries['2.5'].extend({
+      segments: {
+        ZPI: { fields: { 1: { type: 'ST', desc: 'Nickname', opt: 'O' } } },
+      },
+    } as any);
+    const msg = HL7Message.parse(
+      'MSH|^~\\&|A|B|C|D|20250101||ADT^A01|1|P|2.5\rZPI|Ayşo',
+      { dictionaries: { '2.5': site } as any },
+    );
+    expect(msg.getSegment('ZPI')!.definition.fields[1].desc).toEqual(
+      'Nickname',
+    );
+    expect(new HL7Message('2.7', { '2.5': site } as any).dictionary).toBe(
+      dictionaries['2.7'],
+    );
   });
 });
