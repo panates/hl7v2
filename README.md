@@ -20,6 +20,10 @@ HL7 v2 server/client for NodeJS
 
 HL7 v2 dictionary for message parsing and serialization
 
+## [Migrating from v1 to v2](./doc/migration-v1-to-v2.md)
+
+What changed in 2.0.0 - behaviour aligned with the HL7 v2 standard and HAPI HL7v2, and the new type checks - and what to do about it
+
 ## [Examples](./examples/README.md)
 
 Runnable examples: reading and building messages, typed access, lab results, character sets, an MLLP server and client
