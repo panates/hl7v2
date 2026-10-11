@@ -60,8 +60,8 @@ msg.set('NTE-3', 'Dose: 5 mg | twice a day ^ after meals & water');
 console.log('Written:', msg.getSegment('NTE')!.toHL7String());
 console.log('Read   :', HL7Message.parse(msg.toHL7String()).get('NTE-3'));
 /*
- * Line breaks as HAPI writes them: a CR as \X000d\ - the one hexadecimal
- * sequence HAPI reads - a LF as it is. Formatting commands of FT fields -
+ * Line breaks: a CR as \X000d\ - the form HL7 systems commonly read as one -
+ * a LF as it is. Formatting commands of FT fields -
  * \.br\, \.sp\ - are not escapes: they are kept, for the receiver to render.
  */
 msg.set('NTE(1)-3', 'First line\r\nSecond line');

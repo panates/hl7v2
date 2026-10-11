@@ -1,5 +1,5 @@
 /*
- * Reading an HL7 message: by path (as HAPI's Terser reads it), as typed
+ * Reading an HL7 message: by path, as typed
  * segment objects, and field by field.
  */
 import { readFileSync } from 'node:fs';

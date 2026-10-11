@@ -6,7 +6,7 @@ This guide covers the move from **1.x** (last: 1.9.0) to **2.0.0** of the three 
 - `hl7v2-net` - MLLP server and client
 - `hl7v2-dictionary` - the HL7 v2 definitions
 
-Version 2 brings the library in line with the HL7 v2 standard and with HAPI HL7v2, the reference implementation most systems are tested against. Each behaviour below was checked against the standard and, case by case, against HAPI 2.6.0 (see `packages/hl7v2/test/hapi.spec.ts`). Many of the changes are fixes: v1 sent or read something a standard receiver would not. Where v2 deliberately differs from HAPI, it says so.
+Version 2 brings the library in line with the HL7 v2 standard, and with what other HL7 systems send and expect: each behaviour below was checked against the standard and tested case by case. Many of the changes are fixes: v1 sent or read something a standard receiver would not.
 
 **No public export was removed or renamed.** Most code keeps compiling and running. What changes is what goes over the wire, what is read from it, and - in TypeScript - what the compiler now checks for a message whose version it knows.
 
@@ -40,7 +40,7 @@ Go through these if your code does what the left column says.
 | ------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | reads date/time values (DT, DTM, TS, TM), or relies on them being normalized                      | [Dates are kept as written](#dates-are-kept-as-written)                 |
 | reads NM or SI values (numbers, set IDs)                                                          | [Numbers are read in HL7's form only](#numbers-are-read-in-hl7s-form-only) |
-| compares written messages byte by byte, or sends to a HAPI-based system                           | [Escaping](#escaping), [Line breaks](#line-breaks-in-values)            |
+| compares written messages byte by byte, or sends to other HL7 systems                              | [Escaping](#escaping), [Line breaks](#line-breaks-in-values)            |
 | sends messages in a character set other than UTF-8, or reads `MSH-18`                             | [Character sets](#character-sets)                                       |
 | parses NAKs, or reads `ERR` / `HL7Error` locations                                                | [Acknowledgments and errors](#acknowledgments-and-errors)               |
 | reads definitions from the dictionary, or changes them                                            | [The dictionary](#the-dictionary)                                       |
@@ -77,7 +77,7 @@ A `Date` given in code is still converted, and so is an ISO 8601 string given in
 
 ### OBX-5 is checked as OBX-2 says
 
-OBX-5 (`VARIES`) is now validated as the data type OBX-2 names, as HAPI reads it: `OBX|1|NM|...|12,5` is a data type error. Its value is still kept as written.
+OBX-5 (`VARIES`) is now validated as the data type OBX-2 names: `OBX|1|NM|...|12,5` is a data type error. Its value is still kept as written.
 
 ### An empty string is empty
 
@@ -89,7 +89,7 @@ OBX-5 (`VARIES`) is now validated as the data type OBX-2 names, as HAPI reads it
 
 ### Escaping
 
-Escape sequences are read as the standard and HAPI read them:
+Escape sequences are read as the standard defines them:
 
 | Sequence                                   | v1                                             | v2                                                      |
 | ------------------------------------------ | ---------------------------------------------- | ------------------------------------------------------- |
@@ -97,7 +97,7 @@ Escape sequences are read as the standard and HAPI read them:
 | `\.br\`, `\.sp\` ...                           | kept                                           | kept                                                    |
 | `\Cxxyy\`, `\Mxxyyzz\`                     | decoded as character codes (`abc\C2842\def` -> `abc(Bdef`) | kept as written - character set switches        |
 | `\Xdddd\` within text                      | the bytes, read as UTF-8 whatever the message's character set | the bytes, in the message's character set |
-| `\X000d\` (HAPI's carriage return)         | a NUL and a carriage return                    | a carriage return                                       |
+| `\X000d\` (a common form of a carriage return) | a NUL and a carriage return                    | a carriage return                                       |
 | a value that is `\Xdddd\` as a whole       | binary data (a `Buffer`)                       | binary data (a `Buffer`), as before                     |
 
 Escaping on writing uses the message's own delimiters: v1 looked for the default ones whatever `MSH-1`/`MSH-2` declared, so a message with custom delimiters had its own left unescaped.
@@ -105,10 +105,10 @@ Escaping on writing uses the message's own delimiters: v1 looked for the default
 ### Character sets
 
 - **`MSH-18` is honoured** when writing (`toBuffer()`, and on the network). v1 checked the raw value against iconv, so `8859/9` and every other HL7 name silently fell back to UTF-8.
-- What the character set cannot hold is **transliterated** - `Şahin` goes out as `Sahin` in ASCII - instead of becoming `?`. (HAPI writes `?`.)
+- What the character set cannot hold is **transliterated** - `Şahin` goes out as `Sahin` in ASCII - instead of becoming `?`.
 - `MSH-18` is read from its **first non-empty repetition** (`~UNICODE UTF-8` was read as empty, and the socket then overwrote it).
-- `UNICODE` (deprecated in table 0211) is **UTF-8**, as HAPI reads it.
-- `UNICODE UTF-16` is written **big-endian after `FE FF`**, as Java and HAPI write it; a received UTF-16/UTF-32 message is recognized by its byte order mark.
+- `UNICODE` (deprecated in table 0211) is **UTF-8**, as other HL7 systems read it.
+- `UNICODE UTF-16` is written **big-endian after `FE FF`**, as Java writes it; a received UTF-16/UTF-32 message is recognized by its byte order mark.
 - A new message's `MSH-18` is `UNICODE UTF-8`, the table 0211 value (v1 wrote `UTF-8`, which is not one).
 - A value the library does not know (`ANSI`) is read and written with `defaultCharset` (UTF-8 unless given), and a `warning` event is emitted. Map it when you know what it means:
 
@@ -120,31 +120,31 @@ HL7_CHARSET_ENCODINGS['ANSI'] = 'windows-1254';
 
 ### Segments ending in LF
 
-A message with no CR at all may end its segments in LF, as HAPI accepts. With CR present, an LF is data. (HAPI itself reads CR only; v2 reads both.)
+A message with no CR at all may end its segments in LF. With CR present, an LF is data.
 
 ## Writing messages
 
 ### Dates written with their offset
 
-A `Date` is written in local time with milliseconds and its offset - `20250601120000.123+0300` - as HAPI writes it. v1 wrote no offset, and a `Date` at midnight as a date alone.
+A `Date` is written in local time with milliseconds and its offset - `20250601120000.123+0300`. v1 wrote no offset, and a `Date` at midnight as a date alone.
 
 ### Line breaks in values
 
 | Character in a value     | v1                       | v2                                                               |
 | ------------------------ | ------------------------ | ---------------------------------------------------------------- |
-| CR                       | `\X0D\` (`\X0D0A\` for CR LF) | `\X000d\` - HAPI's form, the one hexadecimal sequence HAPI reads |
-| LF, tab                  | `\X0A\`, `\X09\`         | as they are, as HAPI writes them                                 |
+| CR                       | `\X0D\` (`\X0D0A\` for CR LF) | `\X000d\` - the form HL7 systems commonly read as a carriage return |
+| LF, tab                  | `\X0A\`, `\X09\`         | as they are                                                      |
 | other control characters | `\Xhh\`                  | `\Xhh\` (a raw VT or FS would end an MLLP frame)                 |
 
-A HAPI-based receiver (Mirth, NHapi ...) read v1's `\X0D\` as those five characters.
+Many receivers read v1's `\X0D\` as those five characters, not as a line break.
 
 ### A new message
 
-`new HL7Message()` fills `MSH-11` with `P` (it is required; HAPI fills it the same way), `MSH-18` with `UNICODE UTF-8`, and `MSH-1`/`MSH-2`.
+`new HL7Message()` fills `MSH-11` with `P` (it is required), `MSH-18` with `UNICODE UTF-8`, and `MSH-1`/`MSH-2`.
 
 ### `set()` places a new segment where the structure has it
 
-v1 appended a segment `set()` created at the end - an `NK1` set on an `ADT_A01` came after `PV1`, out of place. v2 inserts it where the message structure puts it, and creates a group's next repetition through a path, as HAPI's Terser does:
+v1 appended a segment `set()` created at the end - an `NK1` set on an `ADT_A01` came after `PV1`, out of place. v2 inserts it where the message structure puts it, and creates a group's next repetition through a path:
 
 ```typescript
 msg.set('/PATIENT_RESULT/ORDER_OBSERVATION(1)/OBSERVATION(1)/OBX-5', '140');
@@ -156,14 +156,14 @@ A path skipping a repetition, or one the structure cannot place, is refused.
 
 ### `createAck()` / `createNak()`
 
-The response header is filled as HAPI fills it: sending and receiving application and facility swapped (v1 left them empty or wrong), processing ID and character set kept, the request's delimiters used, and - from 2.5 - `MSH-9-3` set to `ACK`.
+The response header is filled from the message it answers: sending and receiving application and facility swapped (v1 left them empty or wrong), processing ID and character set kept, the request's delimiters used, and - from 2.5 - `MSH-9-3` set to `ACK`.
 
 ### NAKs
 
 | | v1 | v2 |
 | --- | --- | --- |
 | `ERR` layout | 2.5's in every version - a 2.3 receiver read no error | each version's: from 2.5 `ERR-2`/`-3`/`-4`; in 2.3/2.4 `ERR-1` as an ELD; in 2.1/2.2 the code |
-| `ERR-3` (2.5+) | the code: `101` | the full CWE, as HAPI writes it: `101^Required field missing^HL70357^^^^^^<text>` |
+| `ERR-3` (2.5+) | the code: `101` | the full CWE: `101^Required field missing^HL70357^^^^^^<text>` |
 | `ERR-1` (2.2-2.4) | empty - 2.5's layout was written instead | the location and code as an ELD, the error's text as the code's alternate text: `PID^1^3^101&Required field missing&HL70357&&<text>` |
 | acknowledgment code | always `AE` | `AR` for HL7 errors 200-203 (unsupported type, event, processing ID, version), or when an `HL7Error`'s `ackCode` says so |
 | `MSA-3` | the last error's text | the first error's text; every error still has its `ERR` |
@@ -183,7 +183,7 @@ The dictionaries are generated from HL7's v2 XML schemas (2.1 to 2.9), completed
 - a definition a version does not have is absent - `dictionaries['2.7'].types.CE` is `undefined`, a withdrawn field is gone and the fields after it keep their numbers;
 - types follow the version: 2.6's `MSH-7` is a `DTM`, not a `TS`; 2.5's `ADT_A04` has an `SFT`;
 - new versions: 2.8 with its own definitions (it served 2.7.1's), 2.8.1, 2.8.2 and 2.9;
-- a trigger event is its structure's definition (`ADT_A04` is `ADT_A01`), through HAPI's event map;
+- a trigger event is its structure's definition (`ADT_A04` is `ADT_A01`);
 - new field attributes: `item`, `minLen`, `confLen`, `truncate`; HL7 tables (`dictionary.tables`, `tableValue()`).
 
 **What to do:** code reading definitions by name should not assume one that the version does not define.
@@ -194,11 +194,11 @@ Definitions identical in several versions are one shared, frozen object. Change 
 
 ### Group names
 
-Each version keeps the standard's group names (2.3's `ORU_R01` group is `RESPONSE` again); a group lists the names other versions give it as `aliases`, and `getNode()`, `get()`/`set()` paths and routing find it by any of them. Segments repeated in one group are keyed as HAPI keys them (`ROL`, `ROL2`), with `segment` naming the type. A choice is held as one item with `choice: true`.
+Each version keeps the standard's group names (2.3's `ORU_R01` group is `RESPONSE` again); a group lists the names other versions give it as `aliases`, and `getNode()`, `get()`/`set()` paths and routing find it by any of them. Segments repeated in one group are keyed with a number (`ROL`, `ROL2`), with `segment` naming the type. A choice is held as one item with `choice: true`.
 
 ### 2.5.1's `RSP_K21`
 
-`QUERY_RESPONSE` repeats in 2.5.1's `RSP_K21` (and so in `RSP_K22`), as in 2.5 and as HAPI reads it: a find candidates response - IHE PDQ's `RSP^K22^RSP_K21` - held one patient in v1, the next ones out of place.
+`QUERY_RESPONSE` repeats in 2.5.1's `RSP_K21` (and so in `RSP_K22`), as in 2.5: a find candidates response - IHE PDQ's `RSP^K22^RSP_K21` - held one patient in v1, the next ones out of place.
 
 ### Custom codecs
 
@@ -218,7 +218,7 @@ An `ACK` - or any response to a request this side sent - is no longer routed to 
 
 ### `sendMessageWaitAck()`
 
-- Resolves with the first message whose `MSA-2` is the request's control ID, whatever its type - an application response (`ADR^A19` for `QRY^A19`) included, as HAPI's Initiator matches it. v1 waited for an `ACK` only.
+- Resolves with the first message whose `MSA-2` is the request's control ID, whatever its type - an application response (`ADR^A19` for `QRY^A19`) included. v1 waited for an `ACK` only.
 - Rejects when the connection closes, and after `responseTimeout` - which v1 never applied. `connectTimeout` and `keepAlive` are applied too.
 
 ### Enhanced acknowledgment mode
@@ -308,7 +308,7 @@ A path in a `string` variable is not checked.
 
 Not breaking - listed so you know they are there:
 
-- **Paths**: `get()`, `set()`, `getDate()` by HAPI Terser paths (`PID-5-1`, `/PATIENT_RESULT/ORDER_OBSERVATION(1)/OBX-5`).
+- **Paths**: `get()`, `set()`, `getDate()` by path (`PID-5-1`, `/PATIENT_RESULT/ORDER_OBSERVATION(1)/OBX-5`).
 - **Validation**: `validate()` - structure, required fields, data types, lengths, tables (`tables: true`).
 - **Typed objects**: segments (`getSegmentObject()`) and whole messages (`toObject<'ORU_R01'>()`), by version.
 - **Batch files**: `HL7BatchFile`, `HL7Batch`.

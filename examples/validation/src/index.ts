@@ -1,6 +1,6 @@
 /*
- * Validation: a message checked against its version's dictionary, as
- * HAPI's validation checks it. Each problem is an HL7Error carrying the HL7
+ * Validation: a message checked against its version's dictionary. Each
+ * problem is an HL7Error carrying the HL7
  * error code (table 0357) and where it is - what a NAK sends back.
  *
  *   100 segment sequence error   a required segment missing, one out of place

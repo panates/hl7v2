@@ -58,7 +58,7 @@ for (const result of nodes(tree, 'PATIENT_RESULT')) {
 }
 
 /*
- * 2. Paths through the groups, as HAPI's Terser writes them: repetitions
+ * 2. Paths through the groups: repetitions
  * of groups and segments count from 0.
  */
 console.log('\n-- By path');
