@@ -1,6 +1,93 @@
 # Changelog
 
-<!-- rman:documented-up-to 085a45e3014b75393afabf406920f2c270333c5e -->
+<!-- rman:documented-up-to 38f4f950eec1e6dd9b2917959eb03a49d237c591 -->
+
+## v1.10.0 (2026-10-11)
+
+### ✨ Features
+
+- introduce `.onError()` method to HL7Server and HL7Router for error middleware support, update README docs accordingly (cf1bdf8)
+- find message groups by the names other versions give them (5479b68)
+- **dictionary:** generate the dictionaries from HL7's v2 XML schemas, 2.1 to 2.9 (ec536df)
+- **dictionary:** field enums for every field of every version (ab3a574)
+- warn on an unknown character set, make the default one configurable (30f3437)
+- **dictionary:** element numbers, minimum and conformance lengths, truncation (09ef5bd)
+- validate messages against their version's dictionary (be8d9fa)
+- **net:** route messages by type, event or structure (ca4c7d2)
+- **net:** enhanced acknowledgment mode (MSH-15, MSH-16) (6cbc41e)
+- read and write values by path, as HAPI's Terser does (2c1ad0b)
+- batch files - FHS/BHS ... BTS/FTS (93d1214)
+- HL7 table values, and checking codes against them (65f3157)
+- typed access - segments as objects, with generated interfaces (00b8268)
+- typed access by version - flat interfaces per distinct shape (d458e2c)
+- field() takes only the fields of a typed message's version (875e161)
+- check paths against a typed message's version (ef9f26b)
+- check a path's components against its field's data type (f808ddc)
+- typed assign(), toObject() and components for a typed message (6d9d63f)
+- **net:** batches over MLLP - received, processed, answered with a batch (9832761)
+- whole messages as objects, typed by version and structure (b90e24b)
+
+### 🐛 Bug Fixes
+
+- update HL7Response error handling to emit single error instead of array (b11058c)
+- point coverage badge at dev consistently across all packages (35abc09)
+- honour MSH-18 when encoding, transliterate what the charset cannot hold (9221895)
+- map character sets as HAPI does, recognize UTF-16/UTF-32 by BOM (4a49525)
+- conformance review against HL7 v2 and HAPI HL7v2, with tests (7e6a639)
+- read and write escape sequences as the standard and HAPI do (bdc3a2c)
+- **net:** make TLS work - read the decrypted socket, wait for the handshake (b0d77df)
+- lay ERR out as each version defines it, reject with AR (2bea5e7)
+- keep HL7 date/time values as written, write Dates with their offset (6236696)
+- a value set to an empty string is empty (249f7bc)
+- locate errors as ERL does - segment occurrence and repetition from 1 (d0233b5)
+- never reinterpret a date read from HL7 text (e1bad61)
+- MSA-3 holds the first error's text, not the last (40e55ca)
+- type sub-components by their data types in version-specific objects (5fd2592)
+- write and read as HAPI does where they differed (3746f97)
+- read numbers as HL7 writes them, and check OBX-5 by OBX-2 (af0e222)
+- **dictionary:** 2.5.1's RSP_K21 repeats QUERY_RESPONSE (53e756c)
+- write UTF-16 big-endian after FE FF, as Java and HAPI do (6920cfb)
+- union object types give sub-components their own types; README asks node 20 (1cfe942)
+- match the structure around Z segments, keep them where they are (0bf34ec)
+- issues found writing the API reference (c902439)
+- dictionaries given replace the default ones for their versions only (a33c5e5)
+
+### 🔧 Refactoring
+
+- **dictionary:** complete versions from one generated file, shared and built on first use (b1404f7)
+
+### 📚 Documentation
+
+- add CLAUDE.md with graphify usage notes (63c1077)
+- examples - runnable, checked in CI, using the current API (7f80abe)
+- six more examples - validation, adt-to-json, batch-files, tls, enhanced-ack, router-gateway (d7c2ec3)
+- mllp-batch example - a batch file sent in one block, the reply batch (f6a7985)
+- migration guide from v1 to v2 (9fc424e)
+- shared documentation in doc/, package READMEs leading to it (7b5f334)
+- separate HL7 versions from the requirements (7528f5f)
+- TypeScript is not a requirement (318d71d)
+
+### 🧪 Tests
+
+- examples compare their output with the expected (8d909b1)
+- compare the library with HAPI HL7v2, case by case (ec7c98f)
+- more HAPI cases - message types, versions, charsets, validation, batches (d187cf8)
+- compare where segments are placed in the structure with HAPI (8de48d3)
+- choices in message objects, set IDs given as numbers; docs: HL7Request.send() (e46fa36)
+
+### 🧹 Chores
+
+- list all contributors, ignore local tooling directories (0cc8f17)
+- migrate to rman 2 and the shared v3 workflows (a26b6ba)
+- update dependencies, drop unused ones, use type-only imports (fa9111e)
+- **dictionary:** update valgen to 7.0.4 (e650c68)
+- compare the dictionaries with HAPI HL7v2's structures (19bef5f)
+- compare the dictionaries with HL7's own v2 XML schemas (a8b5f05)
+- update rman to 2.24.1, format the remaining files, check format in CI (dc87603)
+- license the packages under BSD 3-Clause (49bebf7)
+- leave the generated type-only files out of coverage (7007698)
+
+---
 
 ## v1.9.0 (2026-04-20)
 
