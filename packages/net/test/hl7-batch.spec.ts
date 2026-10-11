@@ -151,6 +151,20 @@ describe('net:batch', () => {
     expect(acks(reply.batches[0])).toEqual(['E1 CA', 'E1 AA']);
   });
 
+  it('should pass the messages of a reply batch through beforeResponse', async () => {
+    await start();
+    server.beforeResponse(ack => {
+      ack.set('MSA-1', ack.get('MSA-1') === 'CA' ? 'AA' : ack.get('MSA-1'));
+    });
+    server.beforeResponse((ack, ctx) =>
+      ctx.request.message.controlId === 'H2' ? null : undefined,
+    );
+    const batch = batchOf('H1', 'H2');
+    batch.messages.push(message('H3', 'H3', '|||AL|NE'));
+    const reply = await client!.sendBatchWaitAck(batch);
+    expect(acks(reply.batches[0])).toEqual(['H1 AA', 'H3 AA']);
+  });
+
   it('should answer a batch sent raw, by a sender of its own', async () => {
     await start();
     const text = [

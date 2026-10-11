@@ -31,6 +31,7 @@ import type {
   HL7ErrorMiddleware,
   HL7MessageFilter,
   HL7Middleware,
+  HL7ResponseHook,
 } from './types.js';
 
 export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
@@ -299,6 +300,11 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
     this._router.onError(handler, priority);
   }
 
+  /** See HL7Server.beforeResponse() */
+  beforeResponse(hook: HL7ResponseHook) {
+    this._router.beforeResponse(hook);
+  }
+
   protected _process(
     message: HL7Message,
     batch?: HL7BatchReplies,
@@ -306,27 +312,28 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
     const socket = this._socket!;
     /** A response to our own request, or any acknowledgment, is not answered */
     if (!isRoutable(message, socket)) return Promise.resolve();
-    const send = (m: HL7Message) =>
-      batch ? batch.send(m) : socket.sendMessage(m);
     const when = this._options.acceptAcknowledgment ?? 'receipt';
-    if (!acceptMessage(message, send, this._options.validate, when)) {
-      return Promise.resolve();
-    }
+    /* Every answer goes through the request: the hooks, then out */
+    const req = new HL7Request(socket, message, batch, {
+      acceptPending: when === 'processed' && !!ackModeOf(message).accept,
+      beforeResponse: this._router.responseHooks,
+      onError: e => this.emit('error', e),
+    });
+    const accepted = acceptMessage(
+      message,
+      (ack, error) => req.send(ack, error ? 'reject' : 'accept', error),
+      this._options.validate,
+      when,
+    );
+    if (!accepted) return req.flushed();
     /* Answered by its control ID: one it lacks is given, as the server does */
     if (!message.header.field(MSHSegment.MessageControlID).getValue())
       message.header.field(MSHSegment.MessageControlID).setValue(uid(8));
-    const req = new HL7Request(
-      socket,
-      message,
-      batch,
-      undefined,
-      when === 'processed' && !!ackModeOf(message).accept,
-    );
     const res = new HL7Response(req);
     return new Promise<void>(resolve => {
       this._router.handle(req, res, () => {
         if (res.error) this.emit('error', res.error);
-        resolve();
+        req.flushed().then(resolve);
       });
     });
   }

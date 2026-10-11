@@ -33,7 +33,7 @@ export class HL7Response {
   }
 
   get finished(): boolean {
-    return this._finished;
+    return this._finished || this.request.answered;
   }
 
   failed(error: Error) {
