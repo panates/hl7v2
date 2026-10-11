@@ -231,6 +231,16 @@ msg26.get('PID-5-15'); // compile error: "PID-5: XPN has no component 15 in 2.6"
 msg26.get('PID-8-2'); // compile error: a primitive's only component is itself
 ```
 
+The same holds for a segment's object and a field's components:
+
+```typescript
+const pid = msg26.addSegment('PID');
+pid.assign({ PatientName: [{ GivenName: 'Ayşe' }] }); // checked against 2.6's PID
+pid.toObject(); // HL7SegmentObject<'2.6', 'PID'>
+pid.field(5).getValue(15); // compile error: XPN has 14 components in 2.6
+pid.field(8).getValue(2); // compile error: PID-8 is a primitive
+```
+
 Components and sub-components are checked against the field's data type in that version. A field whose type takes anything (OBX-5's VARIES) takes any component.
 
 Any field or path is taken where the version or the segment is not typed - a message read without a version, a Z segment. A path held in a `string` is not checked; for a field position known only at run time, use the segment untyped: `const seg: HL7Segment = msg.getSegment('DG1')!`.

@@ -290,6 +290,16 @@ function generateVersionedObjects() {
   const typeMaps: string[] = [];
   const segmentMaps: string[] = [];
   const fieldMaps: string[] = [];
+  const objectMaps: string[] = [];
+  const componentMaps: string[] = [];
+  /* Component positions as a type: 1 | 2 | 3 as Upto3, declared once */
+  const uptos = new Set<number>();
+  const positionsType = (list: number[]) => {
+    const contiguous = list.every((p, i) => p === i + 1);
+    if (!contiguous) return list.join(' | ');
+    uptos.add(list.length);
+    return `Upto${list.length}`;
+  };
   const fieldAliases = new Map<string, string>();
   const fieldAliasCount = new Map<string, number>();
   const pathMaps: string[] = [];
@@ -362,6 +372,7 @@ function generateVersionedObjects() {
     const segLines: string[] = [];
     const fieldLines: string[] = [];
     const segTypeLines: string[] = [];
+    const compLinesV: string[] = [];
     for (const [s, def] of Object.entries<any>(d.segments)) {
       const fieldPositions = Object.keys(def.fields)
         .map(Number)
@@ -378,6 +389,29 @@ function generateVersionedObjects() {
         }
         fieldLines.push(`    ${s}: ${alias};`);
       }
+      /* Each field's component positions, as field().comp() takes them */
+      const compItems = Object.entries<any>(def.fields).map(([pos, f]) => {
+        const t = d.types[f.type];
+        let comps = 'number';
+        if (t?.fields) {
+          comps = positionsType(
+            Object.keys(t.fields)
+              .map(Number)
+              .sort((a, b) => a - b),
+          );
+        } else if (t && !unchecked(f.type)) comps = '1';
+        return `${pos}: ${comps}`;
+      });
+      const compBody = `{ ${[...compItems, '[field: number]: number'].join('; ')} }`;
+      let compAlias = tuples.get(`${s}Comps:${compBody}`);
+      if (!compAlias) {
+        const n = (counters.get(`${s}Comps`) ?? 0) + 1;
+        counters.set(`${s}Comps`, n);
+        compAlias = `${s}FieldComps${n}`;
+        tuples.set(`${s}Comps:${compBody}`, compAlias);
+        declarations.push(`type ${compAlias} = ${compBody};`, '');
+      }
+      compLinesV.push(`    ${s}: ${compAlias};`);
       segTypeLines.push(
         `      ${s}: ${tupleOf(
           `${s}Types`,
@@ -400,6 +434,18 @@ function generateVersionedObjects() {
       );
     }
     segmentMaps.push(`  '${version}': {`, ...segLines, '  };');
+    componentMaps.push(
+      `  '${version}': {`,
+      ...compLinesV,
+      '    [segment: string]: { [field: number]: number };',
+      '  };',
+    );
+    objectMaps.push(
+      `  '${version}': {`,
+      ...segLines,
+      '    [segment: string]: Record<string, any>;',
+      '  };',
+    );
     const compLines: string[] = [];
     for (const [t, def] of Object.entries<any>(d.types)) {
       if (!def.fields && unchecked(t)) continue;
@@ -466,6 +512,41 @@ function generateVersionedObjects() {
     " * DG1Segment.DiagnosisCodingMethod (2) is not one of 2.6's DG1. A segment or",
     ' * version with no definitions here takes any number.',
     ' */',
+    '/**',
+    " * Each version's segment objects as HL7Segment.toObject() and assign() take",
+    ' * them; a segment or version with no definitions here, any object.',
+    ' */',
+    '/**',
+    " * The component positions of each version's segment fields, for",
+    " * HL7Field.comp(): HL7VersionFieldComponents['2.6']['PID'][5] is 1 to 14,",
+    " * XPN's. A primitive's only component is 1; a field of a type that takes",
+    ' * anything (VARIES), and what is not defined here, takes any number.',
+    ' */',
+    'export interface HL7VersionFieldComponents {',
+    ...componentMaps,
+    '  [version: `${number}.${number}`]: {',
+    '    [segment: string]: { [field: number]: number };',
+    '  };',
+    '  [version: `${number}.${number}.${number}`]: {',
+    '    [segment: string]: { [field: number]: number };',
+    '  };',
+    '}',
+    '',
+    ...[...uptos]
+      .sort((a, b) => a - b)
+      .map(
+        n =>
+          `type Upto${n} = ${Array.from({ length: n }, (_, i) => i + 1).join(' | ')};`,
+      ),
+    '',
+    'export interface HL7VersionSegmentObjects {',
+    ...objectMaps,
+    '  [version: `${number}.${number}`]: { [segment: string]: Record<string, any> };',
+    '  [version: `${number}.${number}.${number}`]: {',
+    '    [segment: string]: Record<string, any>;',
+    '  };',
+    '}',
+    '',
     'export interface HL7VersionSegmentFields {',
     ...fieldMaps,
     '  [version: `${number}.${number}`]: { [segment: string]: number };',

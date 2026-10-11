@@ -71,6 +71,8 @@ type HL7Types_2_1 = {
 
 type ACCFields1 = 1 | 2 | 3;
 
+type ACCFieldComps1 = { 1: number; 2: 1; 3: 1; [field: number]: number };
+
 type ACCTypes1 = [never, 'TS', 'ID', 'ST'];
 
 interface ACCObject1<T extends HL7TypeMap> {
@@ -81,6 +83,8 @@ interface ACCObject1<T extends HL7TypeMap> {
 
 type ADDFields1 = 1;
 
+type ADDFieldComps1 = { 1: 1; [field: number]: number };
+
 type ADDTypes1 = [never, 'ST'];
 
 interface ADDObject1<T extends HL7TypeMap> {
@@ -88,6 +92,22 @@ interface ADDObject1<T extends HL7TypeMap> {
 }
 
 type BHSFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type BHSFieldComps1 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: number;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  [field: number]: number;
+};
 
 type BHSTypes1 = [
   never,
@@ -122,6 +142,8 @@ interface BHSObject1<T extends HL7TypeMap> {
 
 type BLGFields1 = 1 | 2 | 3;
 
+type BLGFieldComps1 = { 1: number; 2: 1; 3: number; [field: number]: number };
+
 type BLGTypes1 = [never, 'CM', 'ID', 'CM'];
 
 interface BLGObject1<T extends HL7TypeMap> {
@@ -132,6 +154,8 @@ interface BLGObject1<T extends HL7TypeMap> {
 
 type BTSFields1 = 1 | 2 | 3;
 
+type BTSFieldComps1 = { 1: 1; 2: 1; 3: number; [field: number]: number };
+
 type BTSTypes1 = [never, 'ST', 'ST', 'CM'];
 
 interface BTSObject1<T extends HL7TypeMap> {
@@ -141,6 +165,24 @@ interface BTSObject1<T extends HL7TypeMap> {
 }
 
 type DG1Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
+type DG1FieldComps1 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: number;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  [field: number]: number;
+};
 
 type DG1Types1 = [
   never,
@@ -179,6 +221,8 @@ interface DG1Object1<T extends HL7TypeMap> {
 
 type DSCFields1 = 1;
 
+type DSCFieldComps1 = { 1: 1; [field: number]: number };
+
 type DSCTypes1 = [never, 'ST'];
 
 interface DSCObject1<T extends HL7TypeMap> {
@@ -186,6 +230,8 @@ interface DSCObject1<T extends HL7TypeMap> {
 }
 
 type DSPFields1 = 1 | 2 | 3 | 4 | 5;
+
+type DSPFieldComps1 = { 1: 1; 2: 1; 3: 1; 4: 1; 5: 1; [field: number]: number };
 
 type DSPTypes1 = [never, 'SI', 'SI', 'TX', 'ST', 'TX'];
 
@@ -199,6 +245,8 @@ interface DSPObject1<T extends HL7TypeMap> {
 
 type ERRFields1 = 1;
 
+type ERRFieldComps1 = { 1: 1; [field: number]: number };
+
 type ERRTypes1 = [never, 'ID'];
 
 interface ERRObject1<T extends HL7TypeMap> {
@@ -206,6 +254,14 @@ interface ERRObject1<T extends HL7TypeMap> {
 }
 
 type EVNFields1 = 1 | 2 | 3 | 4;
+
+type EVNFieldComps1 = {
+  1: 1;
+  2: number;
+  3: number;
+  4: 1;
+  [field: number]: number;
+};
 
 type EVNTypes1 = [never, 'ID', 'TS', 'TS', 'ID'];
 
@@ -217,6 +273,22 @@ interface EVNObject1<T extends HL7TypeMap> {
 }
 
 type FHSFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type FHSFieldComps1 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: number;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  [field: number]: number;
+};
 
 type FHSTypes1 = [
   never,
@@ -273,6 +345,32 @@ type FT1Fields1 =
   | 21
   | 22;
 
+type FT1FieldComps1 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: number;
+  21: number;
+  22: 1;
+  [field: number]: number;
+};
+
 type FT1Types1 = [
   never,
   'SI',
@@ -326,6 +424,8 @@ interface FT1Object1<T extends HL7TypeMap> {
 
 type FTSFields1 = 1 | 2;
 
+type FTSFieldComps1 = { 1: 1; 2: 1; [field: number]: number };
+
 type FTSTypes1 = [never, 'ST', 'ST'];
 
 interface FTSObject1<T extends HL7TypeMap> {
@@ -354,6 +454,30 @@ type GT1Fields1 =
   | 18
   | 19
   | 20;
+
+type GT1FieldComps1 = {
+  1: 1;
+  2: 1;
+  3: number;
+  4: number;
+  5: number;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: number;
+  18: 1;
+  19: 1;
+  20: 1;
+  [field: number]: number;
+};
 
 type GT1Types1 = [
   never,
@@ -447,6 +571,54 @@ type IN1Fields1 =
   | 42
   | 43
   | 44;
+
+type IN1FieldComps1 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: number;
+  6: number;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: number;
+  17: 1;
+  18: 1;
+  19: number;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: 1;
+  29: 1;
+  30: number;
+  31: 1;
+  32: 1;
+  33: 1;
+  34: 1;
+  35: 1;
+  36: 1;
+  37: 1;
+  38: 1;
+  39: 1;
+  40: 1;
+  41: 1;
+  42: 1;
+  43: 1;
+  44: number;
+  [field: number]: number;
+};
 
 type IN1Types1 = [
   never,
@@ -545,6 +717,13 @@ interface IN1Object1<T extends HL7TypeMap> {
 
 type MRGFields1 = 1 | 2 | 3;
 
+type MRGFieldComps1 = {
+  1: number;
+  2: number;
+  3: number;
+  [field: number]: number;
+};
+
 type MRGTypes1 = [never, 'CK', 'CK', 'CK'];
 
 interface MRGObject1<T extends HL7TypeMap> {
@@ -554,6 +733,8 @@ interface MRGObject1<T extends HL7TypeMap> {
 }
 
 type MSAFields1 = 1 | 2 | 3 | 4 | 5;
+
+type MSAFieldComps1 = { 1: 1; 2: 1; 3: 1; 4: 1; 5: 1; [field: number]: number };
 
 type MSATypes1 = [never, 'ID', 'ST', 'ST', 'NM', 'ID'];
 
@@ -566,6 +747,24 @@ interface MSAObject1<T extends HL7TypeMap> {
 }
 
 type MSHFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
+type MSHFieldComps1 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: number;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  [field: number]: number;
+};
 
 type MSHTypes1 = [
   never,
@@ -604,6 +803,8 @@ interface MSHObject1<T extends HL7TypeMap> {
 
 type NCKFields1 = 1;
 
+type NCKFieldComps1 = { 1: number; [field: number]: number };
+
 type NCKTypes1 = [never, 'TS'];
 
 interface NCKObject1<T extends HL7TypeMap> {
@@ -611,6 +812,15 @@ interface NCKObject1<T extends HL7TypeMap> {
 }
 
 type NK1Fields1 = 1 | 2 | 3 | 4 | 5;
+
+type NK1FieldComps1 = {
+  1: 1;
+  2: number;
+  3: 1;
+  4: number;
+  5: 1;
+  [field: number]: number;
+};
 
 type NK1Types1 = [never, 'SI', 'PN', 'ST', 'AD', 'TN'];
 
@@ -624,6 +834,8 @@ interface NK1Object1<T extends HL7TypeMap> {
 
 type NPUFields1 = 1 | 2;
 
+type NPUFieldComps1 = { 1: 1; 2: 1; [field: number]: number };
+
 type NPUTypes1 = [never, 'ID', 'ID'];
 
 interface NPUObject1<T extends HL7TypeMap> {
@@ -632,6 +844,19 @@ interface NPUObject1<T extends HL7TypeMap> {
 }
 
 type NSCFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+
+type NSCFieldComps1 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  [field: number]: number;
+};
 
 type NSCTypes1 = [never, 'ID', 'ST', 'ST', 'ST', 'ST', 'ST', 'ST', 'ST', 'ST'];
 
@@ -649,6 +874,25 @@ interface NSCObject1<T extends HL7TypeMap> {
 
 type NSTFields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
+
+type NSTFieldComps1 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: number;
+  5: number;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  [field: number]: number;
+};
 
 type NSTTypes1 = [
   never,
@@ -688,6 +932,8 @@ interface NSTObject1<T extends HL7TypeMap> {
 }
 
 type NTEFields1 = 1 | 2 | 3;
+
+type NTEFieldComps1 = { 1: 1; 2: 1; 3: 1; [field: number]: number };
 
 type NTETypes1 = [never, 'SI', 'ID', 'TX'];
 
@@ -734,6 +980,46 @@ type OBRFields1 =
   | 34
   | 35
   | 36;
+
+type OBRFieldComps1 = {
+  1: 1;
+  2: number;
+  3: number;
+  4: Upto6;
+  5: 1;
+  6: number;
+  7: number;
+  8: number;
+  9: number;
+  10: number;
+  11: 1;
+  12: number;
+  13: 1;
+  14: number;
+  15: number;
+  16: number;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: number;
+  23: number;
+  24: 1;
+  25: 1;
+  26: Upto6;
+  27: number;
+  28: number;
+  29: number;
+  30: 1;
+  31: Upto6;
+  32: number;
+  33: number;
+  34: number;
+  35: number;
+  36: number;
+  [field: number]: number;
+};
 
 type OBRTypes1 = [
   never,
@@ -816,6 +1102,22 @@ interface OBRObject1<T extends HL7TypeMap> {
 
 type OBXFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
+type OBXFieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto6;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: number;
+  [field: number]: number;
+};
+
 type OBXTypes1 = [
   never,
   'SI',
@@ -848,6 +1150,24 @@ interface OBXObject1<T extends HL7TypeMap> {
 }
 
 type ORCFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
+type ORCFieldComps1 = {
+  1: 1;
+  2: number;
+  3: number;
+  4: number;
+  5: 1;
+  6: 1;
+  7: number;
+  8: number;
+  9: number;
+  10: number;
+  11: number;
+  12: number;
+  13: number;
+  14: 1;
+  [field: number]: number;
+};
 
 type ORCTypes1 = [
   never,
@@ -886,6 +1206,14 @@ interface ORCObject1<T extends HL7TypeMap> {
 
 type OROFields1 = 1 | 2 | 3 | 4;
 
+type OROFieldComps1 = {
+  1: Upto6;
+  2: 1;
+  3: number;
+  4: 1;
+  [field: number]: number;
+};
+
 type OROTypes1 = [never, 'CE', 'ID', 'CN', 'ID'];
 
 interface OROObject1<T extends HL7TypeMap> {
@@ -916,6 +1244,30 @@ type PIDFields1 =
   | 18
   | 19
   | 20;
+
+type PIDFieldComps1 = {
+  1: 1;
+  2: number;
+  3: number;
+  4: 1;
+  5: number;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: number;
+  10: 1;
+  11: number;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: number;
+  19: 1;
+  20: number;
+  [field: number]: number;
+};
 
 type PIDTypes1 = [
   never,
@@ -965,6 +1317,23 @@ interface PIDObject1<T extends HL7TypeMap> {
 }
 
 type PR1Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
+
+type PR1FieldComps1 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: number;
+  6: 1;
+  7: 1;
+  8: number;
+  9: 1;
+  10: 1;
+  11: number;
+  12: number;
+  13: 1;
+  [field: number]: number;
+};
 
 type PR1Types1 = [
   never,
@@ -1049,6 +1418,59 @@ type PV1Fields1 =
   | 47
   | 48
   | 49;
+
+type PV1FieldComps1 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: number;
+  8: number;
+  9: number;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: number;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: 1;
+  29: 1;
+  30: 1;
+  31: 1;
+  32: 1;
+  33: 1;
+  34: 1;
+  35: 1;
+  36: 1;
+  37: 1;
+  38: 1;
+  39: 1;
+  40: 1;
+  41: 1;
+  42: 1;
+  43: 1;
+  44: number;
+  45: number;
+  46: 1;
+  47: 1;
+  48: 1;
+  49: 1;
+  [field: number]: number;
+};
 
 type PV1Types1 = [
   never,
@@ -1157,6 +1579,22 @@ interface PV1Object1<T extends HL7TypeMap> {
 
 type QRDFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
+type QRDFieldComps1 = {
+  1: number;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: number;
+  7: number;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  [field: number]: number;
+};
+
 type QRDTypes1 = [
   never,
   'TS',
@@ -1189,6 +1627,15 @@ interface QRDObject1<T extends HL7TypeMap> {
 }
 
 type QRFFields1 = 1 | 2 | 3 | 4 | 5;
+
+type QRFFieldComps1 = {
+  1: 1;
+  2: number;
+  3: number;
+  4: 1;
+  5: 1;
+  [field: number]: number;
+};
 
 type QRFTypes1 = [never, 'ST', 'TS', 'TS', 'ST', 'ST'];
 
@@ -1231,6 +1678,40 @@ type RX1Fields1 =
   | 28
   | 29
   | 30;
+
+type RX1FieldComps1 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: number;
+  6: number;
+  7: 1;
+  8: 1;
+  9: number;
+  10: 1;
+  11: 1;
+  12: number;
+  13: 1;
+  14: Upto6;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: number;
+  26: 1;
+  27: 1;
+  28: 1;
+  29: 1;
+  30: 1;
+  [field: number]: number;
+};
 
 type RX1Types1 = [
   never,
@@ -1324,6 +1805,33 @@ type UB1Fields1 =
   | 22
   | 23;
 
+type UB1FieldComps1 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: number;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: 1;
+  [field: number]: number;
+};
+
 type UB1Types1 = [
   never,
   'SI',
@@ -1379,6 +1887,17 @@ interface UB1Object1<T extends HL7TypeMap> {
 
 type URDFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
+type URDFieldComps1 = {
+  1: number;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  [field: number]: number;
+};
+
 type URDTypes1 = [never, 'TS', 'ID', 'ST', 'ID', 'ST', 'ST', 'ID'];
 
 interface URDObject1<T extends HL7TypeMap> {
@@ -1393,6 +1912,15 @@ interface URDObject1<T extends HL7TypeMap> {
 
 type URSFields1 = 1 | 2 | 3 | 4 | 5;
 
+type URSFieldComps1 = {
+  1: 1;
+  2: number;
+  3: number;
+  4: 1;
+  5: 1;
+  [field: number]: number;
+};
+
 type URSTypes1 = [never, 'ST', 'TS', 'TS', 'ST', 'ST'];
 
 interface URSObject1<T extends HL7TypeMap> {
@@ -1404,6 +1932,22 @@ interface URSObject1<T extends HL7TypeMap> {
 }
 
 type PD1Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type PD1FieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto8;
+  4: Upto14;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto6;
+  11: Upto6;
+  12: 1;
+  [field: number]: number;
+};
 
 type PD1Types1 = [
   never,
@@ -1942,6 +2486,8 @@ type HL7Types_2_2 = {
   CM_PARENT_RESULT: CM_PARENT_RESULTObject1;
 };
 
+type ACCFieldComps2 = { 1: Upto2; 2: 1; 3: 1; [field: number]: number };
+
 interface ACCObject2<T extends HL7TypeMap> {
   AccidentDateTime?: T['TS'] | null;
   AccidentCode?: string | null;
@@ -1949,6 +2495,16 @@ interface ACCObject2<T extends HL7TypeMap> {
 }
 
 type AL1Fields1 = 1 | 2 | 3 | 4 | 5 | 6;
+
+type AL1FieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto6;
+  4: 1;
+  5: 1;
+  6: 1;
+  [field: number]: number;
+};
 
 type AL1Types1 = [never, 'SI', 'ID', 'CE', 'ID', 'ST', 'DT'];
 
@@ -1960,6 +2516,22 @@ interface AL1Object1<T extends HL7TypeMap> {
   AllergyReactionCode?: string | null;
   IdentificationDate?: string | null;
 }
+
+type BHSFieldComps2 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: Upto2;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  [field: number]: number;
+};
 
 interface BHSObject2<T extends HL7TypeMap> {
   BatchFieldSeparator?: string | null;
@@ -1976,6 +2548,8 @@ interface BHSObject2<T extends HL7TypeMap> {
   ReferenceBatchControlID?: string | null;
 }
 
+type BLGFieldComps2 = { 1: Upto2; 2: 1; 3: number; [field: number]: number };
+
 type BLGTypes2 = [never, 'CM_CCD', 'ID', 'CK'];
 
 interface BLGObject2<T extends HL7TypeMap> {
@@ -1983,6 +2557,8 @@ interface BLGObject2<T extends HL7TypeMap> {
   ChargeType?: string | null;
   AccountID?: string | null;
 }
+
+type BTSFieldComps2 = { 1: 1; 2: 1; 3: Upto2; [field: number]: number };
 
 type BTSTypes2 = [never, 'ST', 'ST', 'CM_BATCH_TOTAL'];
 
@@ -1994,6 +2570,26 @@ interface BTSObject2<T extends HL7TypeMap> {
 
 type DG1Fields2 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
+
+type DG1FieldComps2 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: Upto2;
+  6: 1;
+  7: Upto6;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: Upto13;
+  [field: number]: number;
+};
 
 type DG1Types2 = [
   never,
@@ -2034,6 +2630,8 @@ interface DG1Object2<T extends HL7TypeMap> {
   DiagnosingClinician?: T['CN'] | null;
 }
 
+type ERRFieldComps2 = { 1: Upto4; [field: number]: number };
+
 type ERRTypes2 = [never, 'CM_ELD'];
 
 interface ERRObject2<T extends HL7TypeMap> {
@@ -2041,6 +2639,15 @@ interface ERRObject2<T extends HL7TypeMap> {
 }
 
 type EVNFields2 = 1 | 2 | 3 | 4 | 5;
+
+type EVNFieldComps2 = {
+  1: 1;
+  2: Upto2;
+  3: Upto2;
+  4: 1;
+  5: 1;
+  [field: number]: number;
+};
 
 type EVNTypes2 = [never, 'ID', 'TS', 'TS', 'ID', 'ID'];
 
@@ -2051,6 +2658,22 @@ interface EVNObject2<T extends HL7TypeMap> {
   EventReasonCode?: string | null;
   OperatorID?: string | null;
 }
+
+type FHSFieldComps2 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: Upto2;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  [field: number]: number;
+};
 
 interface FHSObject2<T extends HL7TypeMap> {
   FileFieldSeparator?: string | null;
@@ -2091,6 +2714,33 @@ type FT1Fields2 =
   | 21
   | 22
   | 23;
+
+type FT1FieldComps2 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: Upto6;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: Upto6;
+  14: 1;
+  15: 1;
+  16: Upto8;
+  17: 1;
+  18: 1;
+  19: Upto6;
+  20: Upto13;
+  21: Upto13;
+  22: 1;
+  23: Upto2;
+  [field: number]: number;
+};
 
 type FT1Types2 = [
   never,
@@ -2174,6 +2824,31 @@ type GT1Fields2 =
   | 19
   | 20
   | 21;
+
+type GT1FieldComps2 = {
+  1: 1;
+  2: number;
+  3: Upto6;
+  4: Upto6;
+  5: Upto8;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: Upto8;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  [field: number]: number;
+};
 
 type GT1Types2 = [
   never,
@@ -2271,6 +2946,56 @@ type IN1Fields2 =
   | 44
   | 45
   | 46;
+
+type IN1FieldComps2 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: Upto8;
+  6: Upto6;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: Upto3;
+  15: 1;
+  16: Upto6;
+  17: 1;
+  18: 1;
+  19: Upto8;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: 1;
+  29: Upto2;
+  30: Upto13;
+  31: 1;
+  32: 1;
+  33: 1;
+  34: 1;
+  35: 1;
+  36: 1;
+  37: 1;
+  38: 1;
+  39: 1;
+  40: 1;
+  41: 1;
+  42: Upto6;
+  43: 1;
+  44: Upto8;
+  45: 1;
+  46: 1;
+  [field: number]: number;
+};
 
 type IN1Types2 = [
   never,
@@ -2403,6 +3128,40 @@ type IN2Fields1 =
   | 29
   | 30;
 
+type IN2FieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto13;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: Upto6;
+  8: 1;
+  9: Upto6;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: Upto6;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: Upto3;
+  29: Upto3;
+  30: Upto3;
+  [field: number]: number;
+};
+
 type IN2Types1 = [
   never,
   'ST',
@@ -2497,6 +3256,35 @@ type IN3Fields1 =
   | 24
   | 25;
 
+type IN3FieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto13;
+  4: 1;
+  5: Upto2;
+  6: Upto2;
+  7: Upto2;
+  8: Upto13;
+  9: 1;
+  10: 1;
+  11: Upto2;
+  12: Upto6;
+  13: Upto2;
+  14: Upto13;
+  15: 1;
+  16: 1;
+  17: Upto6;
+  18: Upto6;
+  19: 1;
+  20: Upto3;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: Upto13;
+  [field: number]: number;
+};
+
 type IN3Types1 = [
   never,
   'SI',
@@ -2556,6 +3344,15 @@ interface IN3Object1<T extends HL7TypeMap> {
 
 type MFAFields1 = 1 | 2 | 3 | 4 | 5;
 
+type MFAFieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto2;
+  4: Upto6;
+  5: Upto6;
+  [field: number]: number;
+};
+
 type MFATypes1 = [never, 'ID', 'ST', 'TS', 'CE', 'CE'];
 
 interface MFAObject1<T extends HL7TypeMap> {
@@ -2568,6 +3365,14 @@ interface MFAObject1<T extends HL7TypeMap> {
 
 type MFEFields1 = 1 | 2 | 3 | 4;
 
+type MFEFieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto2;
+  4: Upto6;
+  [field: number]: number;
+};
+
 type MFETypes1 = [never, 'ID', 'ST', 'TS', 'CE'];
 
 interface MFEObject1<T extends HL7TypeMap> {
@@ -2578,6 +3383,16 @@ interface MFEObject1<T extends HL7TypeMap> {
 }
 
 type MFIFields1 = 1 | 2 | 3 | 4 | 5 | 6;
+
+type MFIFieldComps1 = {
+  1: Upto6;
+  2: 1;
+  3: 1;
+  4: Upto2;
+  5: Upto2;
+  6: 1;
+  [field: number]: number;
+};
 
 type MFITypes1 = [never, 'CE', 'ID', 'ID', 'TS', 'TS', 'ID'];
 
@@ -2592,6 +3407,14 @@ interface MFIObject1<T extends HL7TypeMap> {
 
 type MRGFields2 = 1 | 2 | 3 | 4;
 
+type MRGFieldComps2 = {
+  1: Upto5;
+  2: Upto5;
+  3: number;
+  4: number;
+  [field: number]: number;
+};
+
 type MRGTypes2 = [never, 'CM_PAT_ID', 'CM_PAT_ID', 'CK', 'CK'];
 
 interface MRGObject2<T extends HL7TypeMap> {
@@ -2602,6 +3425,16 @@ interface MRGObject2<T extends HL7TypeMap> {
 }
 
 type MSAFields2 = 1 | 2 | 3 | 4 | 5 | 6;
+
+type MSAFieldComps2 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: Upto6;
+  [field: number]: number;
+};
 
 type MSATypes2 = [never, 'ID', 'ST', 'ST', 'NM', 'ID', 'CE'];
 
@@ -2616,6 +3449,27 @@ interface MSAObject2<T extends HL7TypeMap> {
 
 type MSHFields2 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17;
+
+type MSHFieldComps2 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: Upto2;
+  8: 1;
+  9: Upto2;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  [field: number]: number;
+};
 
 type MSHTypes2 = [
   never,
@@ -2658,11 +3512,30 @@ interface MSHObject2<T extends HL7TypeMap> {
   CountryCode?: string | null;
 }
 
+type NCKFieldComps2 = { 1: Upto2; [field: number]: number };
+
 interface NCKObject2<T extends HL7TypeMap> {
   SystemDateTime?: T['TS'] | null;
 }
 
 type NK1Fields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
+
+type NK1FieldComps2 = {
+  1: 1;
+  2: Upto6;
+  3: Upto6;
+  4: Upto8;
+  5: 1;
+  6: 1;
+  7: Upto6;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: Upto2;
+  12: 1;
+  13: 1;
+  [field: number]: number;
+};
 
 type NK1Types2 = [
   never,
@@ -2697,12 +3570,33 @@ interface NK1Object2<T extends HL7TypeMap> {
   OrganizationNameNK1?: string | null;
 }
 
+type NPUFieldComps2 = { 1: Upto8; 2: 1; [field: number]: number };
+
 type NPUTypes2 = [never, 'CM_INTERNAL_LOCATION', 'ID'];
 
 interface NPUObject2<T extends HL7TypeMap> {
   BedLocation?: T['CM_INTERNAL_LOCATION'] | null;
   BedStatus?: string | null;
 }
+
+type NSTFieldComps2 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: Upto2;
+  5: Upto2;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  [field: number]: number;
+};
 
 interface NSTObject2<T extends HL7TypeMap> {
   StatisticsAvailable?: string | null;
@@ -2723,6 +3617,46 @@ interface NSTObject2<T extends HL7TypeMap> {
 }
 
 type NTETypes2 = [never, 'SI', 'ID', 'FT'];
+
+type OBRFieldComps2 = {
+  1: 1;
+  2: Upto2;
+  3: Upto2;
+  4: Upto6;
+  5: 1;
+  6: Upto2;
+  7: Upto2;
+  8: Upto2;
+  9: Upto2;
+  10: Upto13;
+  11: 1;
+  12: Upto6;
+  13: 1;
+  14: Upto2;
+  15: Upto5;
+  16: Upto13;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: Upto2;
+  23: Upto2;
+  24: 1;
+  25: 1;
+  26: Upto3;
+  27: Upto10;
+  28: Upto13;
+  29: Upto2;
+  30: 1;
+  31: Upto6;
+  32: Upto4;
+  33: Upto4;
+  34: Upto4;
+  35: Upto4;
+  36: Upto2;
+  [field: number]: number;
+};
 
 type OBRTypes2 = [
   never,
@@ -2806,6 +3740,26 @@ interface OBRObject2<T extends HL7TypeMap> {
 type OBXFields2 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
 
+type OBXFieldComps2 = {
+  1: 1;
+  2: 1;
+  3: Upto6;
+  4: 1;
+  5: number;
+  6: Upto6;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: Upto2;
+  13: 1;
+  14: Upto2;
+  15: Upto6;
+  16: Upto13;
+  [field: number]: number;
+};
+
 type OBXTypes2 = [
   never,
   'SI',
@@ -2847,6 +3801,14 @@ interface OBXObject2<T extends HL7TypeMap> {
 
 type ODSFields1 = 1 | 2 | 3 | 4;
 
+type ODSFieldComps1 = {
+  1: 1;
+  2: Upto6;
+  3: Upto6;
+  4: 1;
+  [field: number]: number;
+};
+
 type ODSTypes1 = [never, 'ID', 'CE', 'CE', 'ST'];
 
 interface ODSObject1<T extends HL7TypeMap> {
@@ -2857,6 +3819,8 @@ interface ODSObject1<T extends HL7TypeMap> {
 }
 
 type ODTFields1 = 1 | 2 | 3;
+
+type ODTFieldComps1 = { 1: Upto6; 2: Upto6; 3: 1; [field: number]: number };
 
 type ODTTypes1 = [never, 'CE', 'CE', 'ST'];
 
@@ -2909,6 +3873,52 @@ type OM1Fields1 =
   | 40
   | 41
   | 42;
+
+type OM1FieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto6;
+  4: 1;
+  5: 1;
+  6: Upto6;
+  7: 1;
+  8: Upto6;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: Upto6;
+  15: Upto6;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: Upto6;
+  21: 1;
+  22: Upto2;
+  23: Upto2;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: Upto6;
+  29: Upto8;
+  30: 1;
+  31: 1;
+  32: Upto6;
+  33: 1;
+  34: Upto6;
+  35: Upto6;
+  36: 1;
+  37: Upto6;
+  38: 1;
+  39: Upto6;
+  40: 1;
+  41: 1;
+  42: 1;
+  [field: number]: number;
+};
 
 type OM1Types1 = [
   never,
@@ -3003,6 +4013,21 @@ interface OM1Object1<T extends HL7TypeMap> {
 
 type OM2Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
 
+type OM2FieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto6;
+  4: 1;
+  5: Upto6;
+  6: 1;
+  7: Upto7;
+  8: Upto2;
+  9: Upto4;
+  10: Upto4;
+  11: 1;
+  [field: number]: number;
+};
+
 type OM2Types1 = [
   never,
   'ST',
@@ -3034,6 +4059,18 @@ interface OM2Object1<T extends HL7TypeMap> {
 
 type OM3Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
+type OM3FieldComps1 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: Upto6;
+  5: Upto6;
+  6: Upto6;
+  7: Upto6;
+  8: 1;
+  [field: number]: number;
+};
+
 type OM3Types1 = [never, 'ST', 'NM', 'ID', 'CE', 'CE', 'CE', 'CE', 'ID'];
 
 interface OM3Object1<T extends HL7TypeMap> {
@@ -3049,6 +4086,25 @@ interface OM3Object1<T extends HL7TypeMap> {
 
 type OM4Fields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
+
+type OM4FieldComps1 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: Upto6;
+  7: Upto6;
+  8: Upto6;
+  9: 1;
+  10: 1;
+  11: Upto2;
+  12: Upto2;
+  13: 1;
+  14: 1;
+  15: Upto2;
+  [field: number]: number;
+};
 
 type OM4Types1 = [
   never,
@@ -3089,6 +4145,8 @@ interface OM4Object1<T extends HL7TypeMap> {
 
 type OM5Fields1 = 1 | 2 | 3 | 4;
 
+type OM5FieldComps1 = { 1: 1; 2: 1; 3: Upto6; 4: 1; [field: number]: number };
+
 type OM5Types1 = [never, 'ST', 'NM', 'CE', 'ST'];
 
 interface OM5Object1<T extends HL7TypeMap> {
@@ -3099,6 +4157,8 @@ interface OM5Object1<T extends HL7TypeMap> {
 }
 
 type OM6Fields1 = 1 | 2 | 3;
+
+type OM6FieldComps1 = { 1: 1; 2: 1; 3: 1; [field: number]: number };
 
 type OM6Types1 = [never, 'ST', 'NM', 'TX'];
 
@@ -3128,6 +4188,29 @@ type ORCFields2 =
   | 17
   | 18
   | 19;
+
+type ORCFieldComps2 = {
+  1: 1;
+  2: Upto2;
+  3: Upto2;
+  4: Upto2;
+  5: 1;
+  6: 1;
+  7: Upto10;
+  8: Upto2;
+  9: Upto2;
+  10: Upto13;
+  11: Upto13;
+  12: Upto13;
+  13: Upto3;
+  14: 1;
+  15: Upto2;
+  16: Upto6;
+  17: Upto6;
+  18: Upto6;
+  19: Upto13;
+  [field: number]: number;
+};
 
 type ORCTypes2 = [
   never,
@@ -3203,6 +4286,37 @@ type PIDFields2 =
   | 26
   | 27;
 
+type PIDFieldComps2 = {
+  1: 1;
+  2: number;
+  3: Upto5;
+  4: 1;
+  5: Upto6;
+  6: 1;
+  7: Upto2;
+  8: 1;
+  9: Upto6;
+  10: 1;
+  11: Upto8;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: number;
+  19: 1;
+  20: Upto2;
+  21: number;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: 1;
+  [field: number]: number;
+};
+
 type PIDTypes2 = [
   never,
   'SI',
@@ -3266,6 +4380,24 @@ interface PIDObject2<T extends HL7TypeMap> {
 
 type PR1Fields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
 
+type PR1FieldComps2 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: Upto2;
+  6: 1;
+  7: 1;
+  8: Upto13;
+  9: 1;
+  10: 1;
+  11: Upto13;
+  12: Upto2;
+  13: 1;
+  14: 1;
+  [field: number]: number;
+};
+
 type PR1Types2 = [
   never,
   'SI',
@@ -3302,6 +4434,17 @@ interface PR1Object2<T extends HL7TypeMap> {
 }
 
 type PRAFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
+type PRAFieldComps1 = {
+  1: 1;
+  2: Upto6;
+  3: 1;
+  4: 1;
+  5: Upto4;
+  6: Upto3;
+  7: Upto4;
+  [field: number]: number;
+};
 
 type PRATypes1 = [never, 'ST', 'CE', 'ID', 'ID', 'CM_SPD', 'CM_PLN', 'CM_PIP'];
 
@@ -3366,6 +4509,60 @@ type PV1Fields2 =
   | 48
   | 49
   | 50;
+
+type PV1FieldComps2 = {
+  1: 1;
+  2: 1;
+  3: Upto8;
+  4: 1;
+  5: 1;
+  6: Upto8;
+  7: Upto13;
+  8: Upto13;
+  9: Upto13;
+  10: 1;
+  11: Upto8;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: Upto13;
+  18: 1;
+  19: Upto5;
+  20: Upto2;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: 1;
+  29: 1;
+  30: 1;
+  31: 1;
+  32: 1;
+  33: 1;
+  34: 1;
+  35: 1;
+  36: 1;
+  37: Upto2;
+  38: 1;
+  39: 1;
+  40: 1;
+  41: 1;
+  42: Upto8;
+  43: Upto8;
+  44: Upto2;
+  45: Upto2;
+  46: 1;
+  47: 1;
+  48: 1;
+  49: 1;
+  50: Upto5;
+  [field: number]: number;
+};
 
 type PV1Types2 = [
   never,
@@ -3476,6 +4673,19 @@ interface PV1Object2<T extends HL7TypeMap> {
 
 type PV2Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
+type PV2FieldComps1 = {
+  1: Upto8;
+  2: Upto6;
+  3: Upto6;
+  4: Upto6;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  [field: number]: number;
+};
+
 type PV2Types1 = [
   never,
   'CM_INTERNAL_LOCATION',
@@ -3500,6 +4710,22 @@ interface PV2Object1<T extends HL7TypeMap> {
   ExpectedAdmitDateTime?: string | null;
   ExpectedDischargeDateTime?: string | null;
 }
+
+type QRDFieldComps2 = {
+  1: Upto2;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: Upto2;
+  7: Upto2;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: Upto2;
+  12: 1;
+  [field: number]: number;
+};
 
 type QRDTypes2 = [
   never,
@@ -3534,6 +4760,18 @@ interface QRDObject2<T extends HL7TypeMap> {
 
 type QRFFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
+type QRFFieldComps2 = {
+  1: 1;
+  2: Upto2;
+  3: Upto2;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  [field: number]: number;
+};
+
 type QRFTypes2 = [never, 'ST', 'TS', 'TS', 'ST', 'ST', 'ID', 'ID', 'ID'];
 
 interface QRFObject2<T extends HL7TypeMap> {
@@ -3549,6 +4787,17 @@ interface QRFObject2<T extends HL7TypeMap> {
 
 type RQ1Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
+type RQ1FieldComps1 = {
+  1: 1;
+  2: Upto6;
+  3: 1;
+  4: Upto6;
+  5: 1;
+  6: 1;
+  7: 1;
+  [field: number]: number;
+};
+
 type RQ1Types1 = [never, 'SI', 'CE', 'ST', 'CE', 'ST', 'ID', 'ID'];
 
 interface RQ1Object1<T extends HL7TypeMap> {
@@ -3562,6 +4811,20 @@ interface RQ1Object1<T extends HL7TypeMap> {
 }
 
 type RQDFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+
+type RQDFieldComps1 = {
+  1: 1;
+  2: Upto6;
+  3: Upto6;
+  4: Upto6;
+  5: 1;
+  6: Upto6;
+  7: 1;
+  8: 1;
+  9: Upto6;
+  10: 1;
+  [field: number]: number;
+};
 
 type RQDTypes1 = [
   never,
@@ -3591,6 +4854,22 @@ interface RQDObject1<T extends HL7TypeMap> {
 }
 
 type RXAFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type RXAFieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto2;
+  4: Upto2;
+  5: Upto6;
+  6: 1;
+  7: Upto6;
+  8: Upto6;
+  9: 1;
+  10: Upto13;
+  11: Upto2;
+  12: 1;
+  [field: number]: number;
+};
 
 type RXATypes1 = [
   never,
@@ -3625,6 +4904,14 @@ interface RXAObject1<T extends HL7TypeMap> {
 
 type RXCFields1 = 1 | 2 | 3 | 4;
 
+type RXCFieldComps1 = {
+  1: 1;
+  2: Upto6;
+  3: 1;
+  4: Upto6;
+  [field: number]: number;
+};
+
 type RXCTypes1 = [never, 'ID', 'CE', 'NM', 'CE'];
 
 interface RXCObject1<T extends HL7TypeMap> {
@@ -3636,6 +4923,25 @@ interface RXCObject1<T extends HL7TypeMap> {
 
 type RXDFields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
+
+type RXDFieldComps1 = {
+  1: 1;
+  2: Upto6;
+  3: Upto2;
+  4: 1;
+  5: Upto6;
+  6: Upto6;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto13;
+  11: 1;
+  12: Upto2;
+  13: Upto2;
+  14: 1;
+  15: Upto6;
+  [field: number]: number;
+};
 
 type RXDTypes1 = [
   never,
@@ -3700,6 +5006,34 @@ type RXEFields1 =
   | 23
   | 24;
 
+type RXEFieldComps1 = {
+  1: Upto10;
+  2: Upto6;
+  3: 1;
+  4: 1;
+  5: Upto6;
+  6: Upto6;
+  7: Upto6;
+  8: Upto2;
+  9: 1;
+  10: 1;
+  11: Upto6;
+  12: 1;
+  13: Upto13;
+  14: Upto13;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: Upto2;
+  19: Upto2;
+  20: 1;
+  21: Upto6;
+  22: 1;
+  23: Upto6;
+  24: Upto6;
+  [field: number]: number;
+};
+
 type RXETypes1 = [
   never,
   'TQ',
@@ -3758,6 +5092,26 @@ interface RXEObject1<T extends HL7TypeMap> {
 type RXGFields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
 
+type RXGFieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto10;
+  4: Upto6;
+  5: 1;
+  6: 1;
+  7: Upto6;
+  8: Upto6;
+  9: 1;
+  10: 1;
+  11: Upto2;
+  12: 1;
+  13: Upto6;
+  14: 1;
+  15: Upto6;
+  16: Upto6;
+  [field: number]: number;
+};
+
 type RXGTypes1 = [
   never,
   'NM',
@@ -3800,6 +5154,27 @@ interface RXGObject1<T extends HL7TypeMap> {
 
 type RXOFields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17;
+
+type RXOFieldComps1 = {
+  1: Upto6;
+  2: 1;
+  3: 1;
+  4: Upto6;
+  5: Upto6;
+  6: Upto6;
+  7: Upto6;
+  8: Upto2;
+  9: 1;
+  10: Upto6;
+  11: 1;
+  12: Upto6;
+  13: 1;
+  14: Upto13;
+  15: Upto13;
+  16: 1;
+  17: 1;
+  [field: number]: number;
+};
 
 type RXOTypes1 = [
   never,
@@ -3844,6 +5219,14 @@ interface RXOObject1<T extends HL7TypeMap> {
 
 type RXRFields1 = 1 | 2 | 3 | 4;
 
+type RXRFieldComps1 = {
+  1: Upto6;
+  2: Upto6;
+  3: Upto6;
+  4: Upto6;
+  [field: number]: number;
+};
+
 type RXRTypes1 = [never, 'CE', 'CE', 'CE', 'CE'];
 
 interface RXRObject1<T extends HL7TypeMap> {
@@ -3855,6 +5238,26 @@ interface RXRObject1<T extends HL7TypeMap> {
 
 type STFFields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
+
+type STFFieldComps1 = {
+  1: Upto6;
+  2: Upto6;
+  3: Upto6;
+  4: 1;
+  5: 1;
+  6: Upto2;
+  7: 1;
+  8: Upto6;
+  9: Upto6;
+  10: 1;
+  11: Upto8;
+  12: Upto2;
+  13: Upto2;
+  14: Upto6;
+  15: 1;
+  16: 1;
+  [field: number]: number;
+};
 
 type STFTypes1 = [
   never,
@@ -3894,6 +5297,33 @@ interface STFObject1<T extends HL7TypeMap> {
   EMailAddress?: string[] | null;
   PreferredMethodOfContact?: string | null;
 }
+
+type UB1FieldComps2 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto2;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: Upto2;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: 1;
+  [field: number]: number;
+};
 
 type UB1Types2 = [
   never,
@@ -3951,6 +5381,26 @@ interface UB1Object2<T extends HL7TypeMap> {
 type UB2Fields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
 
+type UB2FieldComps1 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: Upto2;
+  7: Upto2;
+  8: Upto3;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  [field: number]: number;
+};
+
 type UB2Types1 = [
   never,
   'SI',
@@ -3990,6 +5440,17 @@ interface UB2Object1<T extends HL7TypeMap> {
   UniformBilling78State?: string[] | null;
 }
 
+type URDFieldComps2 = {
+  1: Upto2;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  [field: number]: number;
+};
+
 interface URDObject2<T extends HL7TypeMap> {
   RUDateTime?: T['TS'] | null;
   ReportPriority?: string | null;
@@ -4001,6 +5462,18 @@ interface URDObject2<T extends HL7TypeMap> {
 }
 
 type URSFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
+type URSFieldComps2 = {
+  1: 1;
+  2: Upto2;
+  3: Upto2;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  [field: number]: number;
+};
 
 type URSTypes2 = [never, 'ST', 'TS', 'TS', 'ST', 'ST', 'ID', 'ID', 'ID'];
 
@@ -4613,6 +6086,16 @@ type HL7Types_2_3 = {
 
 type ACCFields2 = 1 | 2 | 3 | 4 | 5 | 6;
 
+type ACCFieldComps3 = {
+  1: Upto2;
+  2: Upto6;
+  3: 1;
+  4: Upto6;
+  5: 1;
+  6: 1;
+  [field: number]: number;
+};
+
 type ACCTypes2 = [never, 'TS', 'CE', 'ST', 'CE', 'ID', 'ID'];
 
 interface ACCObject3<T extends HL7TypeMap> {
@@ -4625,6 +6108,24 @@ interface ACCObject3<T extends HL7TypeMap> {
 }
 
 type AIGFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
+type AIGFieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto6;
+  4: Upto6;
+  5: Upto6;
+  6: 1;
+  7: Upto6;
+  8: Upto2;
+  9: 1;
+  10: Upto6;
+  11: 1;
+  12: Upto6;
+  13: 1;
+  14: Upto6;
+  [field: number]: number;
+};
 
 type AIGTypes1 = [
   never,
@@ -4663,6 +6164,22 @@ interface AIGObject1<T extends HL7TypeMap> {
 
 type AILFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
+type AILFieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto9;
+  4: Upto6;
+  5: Upto6;
+  6: Upto2;
+  7: 1;
+  8: Upto6;
+  9: 1;
+  10: Upto6;
+  11: 1;
+  12: Upto6;
+  [field: number]: number;
+};
+
 type AILTypes1 = [
   never,
   'SI',
@@ -4695,6 +6212,22 @@ interface AILObject1<T extends HL7TypeMap> {
 }
 
 type AIPFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type AIPFieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto14;
+  4: Upto6;
+  5: Upto6;
+  6: Upto2;
+  7: 1;
+  8: Upto6;
+  9: 1;
+  10: Upto6;
+  11: 1;
+  12: Upto6;
+  [field: number]: number;
+};
 
 type AIPTypes1 = [
   never,
@@ -4729,6 +6262,20 @@ interface AIPObject1<T extends HL7TypeMap> {
 
 type AISFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
+type AISFieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto6;
+  4: Upto2;
+  5: 1;
+  6: Upto6;
+  7: 1;
+  8: Upto6;
+  9: 1;
+  10: Upto6;
+  [field: number]: number;
+};
+
 type AISTypes1 = [
   never,
   'SI',
@@ -4757,6 +6304,15 @@ interface AISObject1<T extends HL7TypeMap> {
 }
 
 type APRFields1 = 1 | 2 | 3 | 4 | 5;
+
+type APRFieldComps1 = {
+  1: Upto2;
+  2: Upto2;
+  3: Upto2;
+  4: 1;
+  5: Upto2;
+  [field: number]: number;
+};
 
 type APRTypes1 = [never, 'SCV', 'SCV', 'SCV', 'NM', 'SCV'];
 
@@ -4792,6 +6348,33 @@ type ARQFields1 =
   | 21
   | 22
   | 23;
+
+type ARQFieldComps1 = {
+  1: Upto4;
+  2: Upto4;
+  3: 1;
+  4: Upto4;
+  5: Upto6;
+  6: Upto6;
+  7: Upto6;
+  8: Upto6;
+  9: 1;
+  10: Upto6;
+  11: Upto2;
+  12: 1;
+  13: Upto2;
+  14: 1;
+  15: Upto14;
+  16: Upto9;
+  17: Upto10;
+  18: Upto9;
+  19: Upto14;
+  20: Upto9;
+  21: Upto9;
+  22: Upto4;
+  23: Upto4;
+  [field: number]: number;
+};
 
 type ARQTypes1 = [
   never,
@@ -4848,6 +6431,20 @@ interface ARQObject1<T extends HL7TypeMap> {
 
 type AUTFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
+type AUTFieldComps1 = {
+  1: Upto6;
+  2: Upto6;
+  3: 1;
+  4: Upto2;
+  5: Upto2;
+  6: Upto4;
+  7: Upto6;
+  8: 1;
+  9: 1;
+  10: Upto2;
+  [field: number]: number;
+};
+
 type AUTTypes1 = [
   never,
   'CE',
@@ -4875,11 +6472,15 @@ interface AUTObject1<T extends HL7TypeMap> {
   ProcessDate?: T['TS'] | null;
 }
 
+type BLGFieldComps3 = { 1: Upto2; 2: 1; 3: Upto4; [field: number]: number };
+
 interface BLGObject3<T extends HL7TypeMap> {
   WhenToCharge?: T['CM_CCD'] | null;
   ChargeType?: string | null;
   AccountID?: T['CK'] | null;
 }
+
+type BTSFieldComps3 = { 1: 1; 2: 1; 3: 1; [field: number]: number };
 
 type BTSTypes3 = [never, 'ST', 'ST', 'NM'];
 
@@ -4890,6 +6491,23 @@ interface BTSObject3<T extends HL7TypeMap> {
 }
 
 type CDMFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
+
+type CDMFieldComps1 = {
+  1: Upto6;
+  2: Upto6;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: Upto6;
+  7: Upto6;
+  8: 1;
+  9: Upto6;
+  10: 1;
+  11: Upto4;
+  12: Upto8;
+  13: 1;
+  [field: number]: number;
+};
 
 type CDMTypes1 = [
   never,
@@ -4926,6 +6544,21 @@ interface CDMObject1<T extends HL7TypeMap> {
 
 type CM0Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
 
+type CM0FieldComps1 = {
+  1: 1;
+  2: Upto4;
+  3: Upto6;
+  4: 1;
+  5: Upto14;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto14;
+  10: Upto9;
+  11: Upto10;
+  [field: number]: number;
+};
+
 type CM0Types1 = [
   never,
   'SI',
@@ -4957,6 +6590,8 @@ interface CM0Object1<T extends HL7TypeMap> {
 
 type CM1Fields1 = 1 | 2 | 3;
 
+type CM1FieldComps1 = { 1: 1; 2: Upto6; 3: 1; [field: number]: number };
+
 type CM1Types1 = [never, 'SI', 'CE', 'ST'];
 
 interface CM1Object1<T extends HL7TypeMap> {
@@ -4966,6 +6601,14 @@ interface CM1Object1<T extends HL7TypeMap> {
 }
 
 type CM2Fields1 = 1 | 2 | 3 | 4;
+
+type CM2FieldComps1 = {
+  1: 1;
+  2: Upto6;
+  3: 1;
+  4: Upto6;
+  [field: number]: number;
+};
 
 type CM2Types1 = [never, 'SI', 'CE', 'ST', 'CE'];
 
@@ -4978,6 +6621,14 @@ interface CM2Object1<T extends HL7TypeMap> {
 
 type CSPFields1 = 1 | 2 | 3 | 4;
 
+type CSPFieldComps1 = {
+  1: Upto6;
+  2: Upto2;
+  3: Upto2;
+  4: Upto6;
+  [field: number]: number;
+};
+
 type CSPTypes1 = [never, 'CE', 'TS', 'TS', 'CE'];
 
 interface CSPObject1<T extends HL7TypeMap> {
@@ -4989,6 +6640,26 @@ interface CSPObject1<T extends HL7TypeMap> {
 
 type CSRFields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
+
+type CSRFieldComps1 = {
+  1: Upto4;
+  2: Upto4;
+  3: Upto6;
+  4: Upto6;
+  5: Upto6;
+  6: Upto2;
+  7: Upto14;
+  8: Upto14;
+  9: Upto2;
+  10: Upto6;
+  11: Upto2;
+  12: Upto6;
+  13: Upto6;
+  14: Upto6;
+  15: Upto2;
+  16: Upto6;
+  [field: number]: number;
+};
 
 type CSRTypes1 = [
   never,
@@ -5031,6 +6702,8 @@ interface CSRObject1<T extends HL7TypeMap> {
 
 type CSSFields1 = 1 | 2 | 3;
 
+type CSSFieldComps1 = { 1: Upto6; 2: Upto2; 3: Upto6; [field: number]: number };
+
 type CSSTypes1 = [never, 'CE', 'TS', 'CE'];
 
 interface CSSObject1<T extends HL7TypeMap> {
@@ -5040,6 +6713,17 @@ interface CSSObject1<T extends HL7TypeMap> {
 }
 
 type CTDFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
+type CTDFieldComps1 = {
+  1: Upto6;
+  2: Upto8;
+  3: Upto10;
+  4: Upto9;
+  5: Upto9;
+  6: Upto6;
+  7: Upto3;
+  [field: number]: number;
+};
 
 type CTDTypes1 = [never, 'CE', 'XPN', 'XAD', 'PL', 'XTN', 'CE', 'CM_PI'];
 
@@ -5055,6 +6739,8 @@ interface CTDObject1<T extends HL7TypeMap> {
 
 type CTIFields1 = 1 | 2 | 3;
 
+type CTIFieldComps1 = { 1: Upto4; 2: Upto6; 3: Upto6; [field: number]: number };
+
 type CTITypes1 = [never, 'EI', 'CE', 'CE'];
 
 interface CTIObject1<T extends HL7TypeMap> {
@@ -5064,6 +6750,18 @@ interface CTIObject1<T extends HL7TypeMap> {
 }
 
 type DB1Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
+type DB1FieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto6;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  [field: number]: number;
+};
 
 type DB1Types1 = [never, 'SI', 'IS', 'CX', 'ID', 'DT', 'DT', 'DT', 'DT'];
 
@@ -5098,6 +6796,29 @@ type DG1Fields3 =
   | 17
   | 18
   | 19;
+
+type DG1FieldComps3 = {
+  1: 1;
+  2: 1;
+  3: Upto6;
+  4: 1;
+  5: Upto2;
+  6: 1;
+  7: Upto6;
+  8: Upto6;
+  9: 1;
+  10: 1;
+  11: Upto6;
+  12: 1;
+  13: Upto6;
+  14: 1;
+  15: 1;
+  16: Upto14;
+  17: 1;
+  18: 1;
+  19: Upto2;
+  [field: number]: number;
+};
 
 type DG1Types3 = [
   never,
@@ -5146,6 +6867,20 @@ interface DG1Object3<T extends HL7TypeMap> {
 
 type DRGFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
+type DRGFieldComps1 = {
+  1: Upto6;
+  2: Upto2;
+  3: 1;
+  4: 1;
+  5: Upto6;
+  6: 1;
+  7: Upto6;
+  8: 1;
+  9: Upto6;
+  10: 1;
+  [field: number]: number;
+};
+
 type DRGTypes1 = [
   never,
   'CE',
@@ -5175,6 +6910,8 @@ interface DRGObject1<T extends HL7TypeMap> {
 
 type EQLFields1 = 1 | 2 | 3 | 4;
 
+type EQLFieldComps1 = { 1: 1; 2: 1; 3: Upto6; 4: 1; [field: number]: number };
+
 type EQLTypes1 = [never, 'ST', 'ID', 'CE', 'ST'];
 
 interface EQLObject1<T extends HL7TypeMap> {
@@ -5186,6 +6923,8 @@ interface EQLObject1<T extends HL7TypeMap> {
 
 type ERQFields1 = 1 | 2 | 3;
 
+type ERQFieldComps1 = { 1: 1; 2: Upto6; 3: Upto2; [field: number]: number };
+
 type ERQTypes1 = [never, 'ST', 'CE', 'QIP'];
 
 interface ERQObject1<T extends HL7TypeMap> {
@@ -5195,6 +6934,16 @@ interface ERQObject1<T extends HL7TypeMap> {
 }
 
 type EVNFields3 = 1 | 2 | 3 | 4 | 5 | 6;
+
+type EVNFieldComps3 = {
+  1: 1;
+  2: Upto2;
+  3: Upto2;
+  4: 1;
+  5: Upto9;
+  6: Upto2;
+  [field: number]: number;
+};
 
 type EVNTypes3 = [never, 'ID', 'TS', 'TS', 'ID', 'CN', 'TS'];
 
@@ -5208,6 +6957,22 @@ interface EVNObject3<T extends HL7TypeMap> {
 }
 
 type FACFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type FACFieldComps1 = {
+  1: Upto4;
+  2: 1;
+  3: Upto10;
+  4: Upto9;
+  5: Upto14;
+  6: 1;
+  7: Upto10;
+  8: Upto9;
+  9: Upto14;
+  10: 1;
+  11: Upto10;
+  12: Upto9;
+  [field: number]: number;
+};
 
 type FACTypes1 = [
   never,
@@ -5266,6 +7031,35 @@ type FT1Fields3 =
   | 23
   | 24
   | 25;
+
+type FT1FieldComps3 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: Upto2;
+  5: Upto2;
+  6: 1;
+  7: Upto6;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: Upto6;
+  12: Upto6;
+  13: Upto6;
+  14: Upto6;
+  15: Upto6;
+  16: Upto9;
+  17: 1;
+  18: 1;
+  19: Upto6;
+  20: Upto14;
+  21: Upto14;
+  22: 1;
+  23: Upto4;
+  24: Upto14;
+  25: Upto6;
+  [field: number]: number;
+};
 
 type FT1Types3 = [
   never,
@@ -5346,6 +7140,31 @@ type GOLFields1 =
   | 19
   | 20
   | 21;
+
+type GOLFieldComps1 = {
+  1: 1;
+  2: Upto2;
+  3: Upto6;
+  4: Upto4;
+  5: Upto4;
+  6: 1;
+  7: Upto2;
+  8: Upto2;
+  9: Upto6;
+  10: Upto6;
+  11: Upto6;
+  12: Upto2;
+  13: Upto2;
+  14: Upto2;
+  15: Upto10;
+  16: Upto6;
+  17: 1;
+  18: Upto6;
+  19: Upto2;
+  20: Upto6;
+  21: Upto8;
+  [field: number]: number;
+};
 
 type GOLTypes1 = [
   never,
@@ -5452,6 +7271,65 @@ type GT1Fields3 =
   | 53
   | 54
   | 55;
+
+type GT1FieldComps3 = {
+  1: 1;
+  2: Upto6;
+  3: Upto8;
+  4: Upto8;
+  5: Upto10;
+  6: Upto9;
+  7: Upto9;
+  8: Upto2;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: Upto8;
+  17: Upto10;
+  18: Upto9;
+  19: Upto6;
+  20: 1;
+  21: Upto8;
+  22: 1;
+  23: Upto6;
+  24: Upto2;
+  25: 1;
+  26: Upto6;
+  27: Upto6;
+  28: 1;
+  29: Upto6;
+  30: 1;
+  31: 1;
+  32: 1;
+  33: 1;
+  34: 1;
+  35: 1;
+  36: Upto6;
+  37: 1;
+  38: Upto6;
+  39: 1;
+  40: 1;
+  41: 1;
+  42: Upto8;
+  43: Upto6;
+  44: 1;
+  45: Upto8;
+  46: Upto9;
+  47: Upto6;
+  48: 1;
+  49: 1;
+  50: Upto2;
+  51: Upto8;
+  52: 1;
+  53: 1;
+  54: Upto2;
+  55: 1;
+  [field: number]: number;
+};
 
 type GT1Types3 = [
   never,
@@ -5620,6 +7498,59 @@ type IN1Fields3 =
   | 47
   | 48
   | 49;
+
+type IN1FieldComps3 = {
+  1: 1;
+  2: Upto6;
+  3: Upto6;
+  4: Upto8;
+  5: Upto10;
+  6: Upto8;
+  7: Upto9;
+  8: 1;
+  9: Upto8;
+  10: Upto6;
+  11: Upto8;
+  12: 1;
+  13: 1;
+  14: Upto3;
+  15: 1;
+  16: Upto8;
+  17: 1;
+  18: Upto2;
+  19: Upto10;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: 1;
+  29: Upto2;
+  30: Upto8;
+  31: 1;
+  32: 1;
+  33: 1;
+  34: 1;
+  35: 1;
+  36: 1;
+  37: Upto6;
+  38: Upto6;
+  39: 1;
+  40: Upto6;
+  41: Upto6;
+  42: Upto6;
+  43: 1;
+  44: Upto10;
+  45: 1;
+  46: 1;
+  47: 1;
+  48: 1;
+  49: Upto6;
+  [field: number]: number;
+};
 
 type IN1Types3 = [
   never,
@@ -5800,6 +7731,82 @@ type IN2Fields2 =
   | 71
   | 72;
 
+type IN2FieldComps2 = {
+  1: Upto6;
+  2: 1;
+  3: Upto14;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: Upto8;
+  8: 1;
+  9: Upto8;
+  10: 1;
+  11: Upto6;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: Upto8;
+  23: 1;
+  24: 1;
+  25: Upto6;
+  26: Upto6;
+  27: 1;
+  28: Upto3;
+  29: Upto3;
+  30: Upto3;
+  31: 1;
+  32: 1;
+  33: 1;
+  34: Upto6;
+  35: 1;
+  36: Upto6;
+  37: 1;
+  38: 1;
+  39: 1;
+  40: Upto8;
+  41: Upto6;
+  42: 1;
+  43: 1;
+  44: 1;
+  45: 1;
+  46: 1;
+  47: Upto2;
+  48: 1;
+  49: Upto8;
+  50: Upto9;
+  51: 1;
+  52: Upto8;
+  53: Upto9;
+  54: 1;
+  55: 1;
+  56: 1;
+  57: 1;
+  58: Upto9;
+  59: 1;
+  60: 1;
+  61: Upto6;
+  62: 1;
+  63: Upto9;
+  64: Upto9;
+  65: Upto6;
+  66: 1;
+  67: 1;
+  68: 1;
+  69: Upto8;
+  70: Upto8;
+  71: 1;
+  72: 1;
+  [field: number]: number;
+};
+
 type IN2Types2 = [
   never,
   'CX',
@@ -5951,6 +7958,35 @@ interface IN2Object2<T extends HL7TypeMap> {
   PatientSRelationshipToInsured?: string | null;
 }
 
+type IN3FieldComps2 = {
+  1: 1;
+  2: Upto6;
+  3: Upto14;
+  4: 1;
+  5: Upto2;
+  6: Upto2;
+  7: Upto2;
+  8: Upto14;
+  9: 1;
+  10: 1;
+  11: Upto2;
+  12: Upto6;
+  13: Upto2;
+  14: Upto14;
+  15: 1;
+  16: Upto9;
+  17: Upto6;
+  18: Upto6;
+  19: Upto9;
+  20: Upto3;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: Upto14;
+  [field: number]: number;
+};
+
 type IN3Types2 = [
   never,
   'SI',
@@ -6010,6 +8046,14 @@ interface IN3Object2<T extends HL7TypeMap> {
 
 type LCCFields1 = 1 | 2 | 3 | 4;
 
+type LCCFieldComps1 = {
+  1: Upto9;
+  2: 1;
+  3: Upto6;
+  4: Upto6;
+  [field: number]: number;
+};
+
 type LCCTypes1 = [never, 'PL', 'IS', 'CE', 'CE'];
 
 interface LCCObject1<T extends HL7TypeMap> {
@@ -6020,6 +8064,15 @@ interface LCCObject1<T extends HL7TypeMap> {
 }
 
 type LCHFields1 = 1 | 2 | 3 | 4 | 5;
+
+type LCHFieldComps1 = {
+  1: Upto9;
+  2: 1;
+  3: Upto4;
+  4: Upto6;
+  5: Upto6;
+  [field: number]: number;
+};
 
 type LCHTypes1 = [never, 'PL', 'ID', 'EI', 'CE', 'CE'];
 
@@ -6032,6 +8085,21 @@ interface LCHObject1<T extends HL7TypeMap> {
 }
 
 type LDPFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+
+type LDPFieldComps1 = {
+  1: Upto9;
+  2: 1;
+  3: 1;
+  4: Upto6;
+  5: 1;
+  6: 1;
+  7: Upto2;
+  8: Upto2;
+  9: 1;
+  10: Upto4;
+  11: Upto9;
+  [field: number]: number;
+};
 
 type LDPTypes1 = [
   never,
@@ -6064,6 +8132,18 @@ interface LDPObject1<T extends HL7TypeMap> {
 
 type LOCFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
+type LOCFieldComps1 = {
+  1: Upto9;
+  2: 1;
+  3: 1;
+  4: Upto8;
+  5: Upto10;
+  6: Upto9;
+  7: Upto6;
+  8: 1;
+  [field: number]: number;
+};
+
 type LOCTypes1 = [never, 'PL', 'ST', 'IS', 'XON', 'XAD', 'XTN', 'CE', 'ID'];
 
 interface LOCObject1<T extends HL7TypeMap> {
@@ -6079,6 +8159,16 @@ interface LOCObject1<T extends HL7TypeMap> {
 
 type LRLFields1 = 1 | 2 | 3 | 4 | 5 | 6;
 
+type LRLFieldComps1 = {
+  1: Upto9;
+  2: 1;
+  3: Upto4;
+  4: Upto6;
+  5: Upto8;
+  6: Upto9;
+  [field: number]: number;
+};
+
 type LRLTypes1 = [never, 'PL', 'ID', 'EI', 'CE', 'XON', 'PL'];
 
 interface LRLObject1<T extends HL7TypeMap> {
@@ -6089,6 +8179,16 @@ interface LRLObject1<T extends HL7TypeMap> {
   OrganizationalLocationRelationshipValue?: T['XON'] | null;
   PatientLocationRelationshipValue?: T['PL'] | null;
 }
+
+type MFIFieldComps2 = {
+  1: Upto6;
+  2: Upto3;
+  3: 1;
+  4: Upto2;
+  5: Upto2;
+  6: 1;
+  [field: number]: number;
+};
 
 type MFITypes2 = [never, 'CE', 'HD', 'ID', 'TS', 'TS', 'ID'];
 
@@ -6102,6 +8202,17 @@ interface MFIObject2<T extends HL7TypeMap> {
 }
 
 type MRGFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
+type MRGFieldComps3 = {
+  1: Upto6;
+  2: Upto6;
+  3: Upto6;
+  4: Upto6;
+  5: Upto6;
+  6: Upto6;
+  7: Upto6;
+  [field: number]: number;
+};
 
 type MRGTypes3 = [never, 'CX', 'CX', 'CX', 'CX', 'CX', 'CX', 'CX'];
 
@@ -6135,6 +8246,29 @@ type MSHFields3 =
   | 17
   | 18
   | 19;
+
+type MSHFieldComps3 = {
+  1: 1;
+  2: 1;
+  3: Upto3;
+  4: Upto3;
+  5: Upto3;
+  6: Upto3;
+  7: Upto2;
+  8: 1;
+  9: Upto2;
+  10: 1;
+  11: Upto2;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: Upto6;
+  [field: number]: number;
+};
 
 type MSHTypes3 = [
   never,
@@ -6220,6 +8354,47 @@ type NK1Fields3 =
   | 36
   | 37;
 
+type NK1FieldComps3 = {
+  1: 1;
+  2: Upto8;
+  3: Upto6;
+  4: Upto10;
+  5: Upto9;
+  6: Upto9;
+  7: Upto6;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: Upto2;
+  12: Upto6;
+  13: Upto8;
+  14: 1;
+  15: 1;
+  16: Upto2;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: Upto6;
+  21: 1;
+  22: Upto6;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: Upto8;
+  27: Upto6;
+  28: 1;
+  29: Upto6;
+  30: Upto8;
+  31: Upto9;
+  32: Upto10;
+  33: Upto6;
+  34: 1;
+  35: 1;
+  36: 1;
+  37: 1;
+  [field: number]: number;
+};
+
 type NK1Types3 = [
   never,
   'SI',
@@ -6301,6 +8476,8 @@ interface NK1Object3<T extends HL7TypeMap> {
   ContactPersonSocialSecurityNumber?: string | null;
 }
 
+type NPUFieldComps3 = { 1: Upto9; 2: 1; [field: number]: number };
+
 type NPUTypes3 = [never, 'PL', 'IS'];
 
 interface NPUObject3<T extends HL7TypeMap> {
@@ -6309,6 +8486,18 @@ interface NPUObject3<T extends HL7TypeMap> {
 }
 
 type NSCFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
+type NSCFieldComps2 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  [field: number]: number;
+};
 
 type NSCTypes2 = [never, 'ID', 'ST', 'ST', 'ST', 'ST', 'ST', 'ST', 'ST'];
 
@@ -6367,6 +8556,53 @@ type OBRFields2 =
   | 41
   | 42
   | 43;
+
+type OBRFieldComps3 = {
+  1: 1;
+  2: Upto4;
+  3: Upto4;
+  4: Upto6;
+  5: 1;
+  6: Upto2;
+  7: Upto2;
+  8: Upto2;
+  9: Upto2;
+  10: Upto14;
+  11: 1;
+  12: Upto6;
+  13: 1;
+  14: Upto2;
+  15: Upto6;
+  16: Upto14;
+  17: Upto9;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: Upto2;
+  23: Upto2;
+  24: 1;
+  25: 1;
+  26: Upto3;
+  27: Upto10;
+  28: Upto14;
+  29: Upto2;
+  30: 1;
+  31: Upto6;
+  32: Upto11;
+  33: Upto11;
+  34: Upto11;
+  35: Upto11;
+  36: Upto2;
+  37: 1;
+  38: Upto6;
+  39: Upto6;
+  40: Upto6;
+  41: 1;
+  42: 1;
+  43: Upto6;
+  [field: number]: number;
+};
 
 type OBRTypes3 = [
   never,
@@ -6463,6 +8699,27 @@ interface OBRObject3<T extends HL7TypeMap> {
 
 type OBXFields3 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17;
+
+type OBXFieldComps3 = {
+  1: 1;
+  2: 1;
+  3: Upto6;
+  4: 1;
+  5: number;
+  6: Upto6;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: Upto2;
+  13: 1;
+  14: Upto2;
+  15: Upto6;
+  16: Upto14;
+  17: Upto6;
+  [field: number]: number;
+};
 
 type OBXTypes3 = [
   never,
@@ -6567,6 +8824,57 @@ type OM1Fields2 =
   | 46
   | 47;
 
+type OM1FieldComps2 = {
+  1: 1;
+  2: Upto6;
+  3: 1;
+  4: 1;
+  5: Upto6;
+  6: Upto6;
+  7: Upto6;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: Upto6;
+  14: Upto6;
+  15: 1;
+  16: Upto6;
+  17: 1;
+  18: 1;
+  19: Upto6;
+  20: 1;
+  21: Upto2;
+  22: Upto2;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: Upto6;
+  28: Upto8;
+  29: 1;
+  30: 1;
+  31: Upto6;
+  32: 1;
+  33: Upto6;
+  34: Upto6;
+  35: 1;
+  36: Upto6;
+  37: 1;
+  38: Upto6;
+  39: 1;
+  40: 1;
+  41: 1;
+  42: Upto6;
+  43: Upto6;
+  44: 1;
+  45: Upto6;
+  46: Upto6;
+  47: Upto6;
+  [field: number]: number;
+};
+
 type OM1Types2 = [
   never,
   'NM',
@@ -6670,6 +8978,20 @@ interface OM1Object2<T extends HL7TypeMap> {
 
 type OM2Fields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
+type OM2FieldComps2 = {
+  1: 1;
+  2: Upto6;
+  3: 1;
+  4: Upto6;
+  5: 1;
+  6: Upto7;
+  7: Upto2;
+  8: Upto4;
+  9: Upto4;
+  10: 1;
+  [field: number]: number;
+};
+
 type OM2Types2 = [
   never,
   'NM',
@@ -6699,6 +9021,17 @@ interface OM2Object2<T extends HL7TypeMap> {
 
 type OM3Fields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
+type OM3FieldComps2 = {
+  1: 1;
+  2: Upto6;
+  3: Upto6;
+  4: Upto6;
+  5: Upto6;
+  6: Upto6;
+  7: 1;
+  [field: number]: number;
+};
+
 type OM3Types2 = [never, 'NM', 'CE', 'CE', 'CE', 'CE', 'CE', 'ID'];
 
 interface OM3Object2<T extends HL7TypeMap> {
@@ -6712,6 +9045,24 @@ interface OM3Object2<T extends HL7TypeMap> {
 }
 
 type OM4Fields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
+type OM4FieldComps2 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: Upto6;
+  6: Upto6;
+  7: Upto6;
+  8: 1;
+  9: 1;
+  10: Upto2;
+  11: Upto2;
+  12: 1;
+  13: 1;
+  14: Upto2;
+  [field: number]: number;
+};
 
 type OM4Types2 = [
   never,
@@ -6750,6 +9101,8 @@ interface OM4Object2<T extends HL7TypeMap> {
 
 type OM5Fields2 = 1 | 2 | 3;
 
+type OM5FieldComps2 = { 1: 1; 2: Upto6; 3: 1; [field: number]: number };
+
 type OM5Types2 = [never, 'NM', 'CE', 'ST'];
 
 interface OM5Object2<T extends HL7TypeMap> {
@@ -6760,12 +9113,37 @@ interface OM5Object2<T extends HL7TypeMap> {
 
 type OM6Fields2 = 1 | 2;
 
+type OM6FieldComps2 = { 1: 1; 2: 1; [field: number]: number };
+
 type OM6Types2 = [never, 'NM', 'TX'];
 
 interface OM6Object2<T extends HL7TypeMap> {
   SequenceNumberTestObservationMasterFile?: number | string | null;
   DerivationRule?: string | null;
 }
+
+type ORCFieldComps3 = {
+  1: 1;
+  2: Upto4;
+  3: Upto4;
+  4: Upto4;
+  5: 1;
+  6: 1;
+  7: Upto10;
+  8: Upto2;
+  9: Upto2;
+  10: Upto14;
+  11: Upto14;
+  12: Upto14;
+  13: Upto9;
+  14: 1;
+  15: Upto2;
+  16: Upto6;
+  17: Upto6;
+  18: Upto6;
+  19: Upto14;
+  [field: number]: number;
+};
 
 type ORCTypes3 = [
   never,
@@ -6837,6 +9215,33 @@ type PCRFields1 =
   | 22
   | 23;
 
+type PCRFieldComps1 = {
+  1: Upto6;
+  2: 1;
+  3: Upto6;
+  4: Upto2;
+  5: Upto2;
+  6: Upto2;
+  7: Upto2;
+  8: Upto2;
+  9: 1;
+  10: Upto6;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: Upto6;
+  15: Upto6;
+  16: Upto6;
+  17: 1;
+  18: Upto2;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: 1;
+  [field: number]: number;
+};
+
 type PCRTypes1 = [
   never,
   'CE',
@@ -6892,6 +9297,25 @@ interface PCRObject1<T extends HL7TypeMap> {
 
 type PDCFields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
+
+type PDCFieldComps1 = {
+  1: Upto8;
+  2: Upto6;
+  3: 1;
+  4: 1;
+  5: Upto6;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto6;
+  10: 1;
+  11: 1;
+  12: Upto2;
+  13: Upto2;
+  14: Upto2;
+  15: Upto2;
+  [field: number]: number;
+};
 
 type PDCTypes1 = [
   never,
@@ -6957,6 +9381,35 @@ type PEOFields1 =
   | 24
   | 25;
 
+type PEOFieldComps1 = {
+  1: Upto6;
+  2: Upto6;
+  3: Upto2;
+  4: Upto2;
+  5: Upto2;
+  6: Upto2;
+  7: Upto10;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: Upto6;
+  19: Upto8;
+  20: Upto10;
+  21: Upto9;
+  22: 1;
+  23: 1;
+  24: Upto2;
+  25: 1;
+  [field: number]: number;
+};
+
 type PEOTypes1 = [
   never,
   'CE',
@@ -7015,6 +9468,23 @@ interface PEOObject1<T extends HL7TypeMap> {
 }
 
 type PESFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
+
+type PESFieldComps1 = {
+  1: Upto8;
+  2: Upto14;
+  3: Upto10;
+  4: Upto9;
+  5: Upto4;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto2;
+  10: Upto2;
+  11: 1;
+  12: 1;
+  13: 1;
+  [field: number]: number;
+};
 
 type PESTypes1 = [
   never,
@@ -7080,6 +9550,40 @@ type PIDFields3 =
   | 28
   | 29
   | 30;
+
+type PIDFieldComps3 = {
+  1: 1;
+  2: Upto6;
+  3: Upto6;
+  4: Upto6;
+  5: Upto8;
+  6: Upto8;
+  7: Upto2;
+  8: 1;
+  9: Upto8;
+  10: 1;
+  11: Upto10;
+  12: 1;
+  13: Upto9;
+  14: Upto9;
+  15: Upto6;
+  16: 1;
+  17: 1;
+  18: Upto6;
+  19: 1;
+  20: Upto3;
+  21: Upto6;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: Upto6;
+  28: Upto6;
+  29: Upto2;
+  30: 1;
+  [field: number]: number;
+};
 
 type PIDTypes3 = [
   never,
@@ -7151,6 +9655,25 @@ interface PIDObject3<T extends HL7TypeMap> {
 type PR1Fields3 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
 
+type PR1FieldComps3 = {
+  1: 1;
+  2: 1;
+  3: Upto6;
+  4: 1;
+  5: Upto2;
+  6: 1;
+  7: 1;
+  8: Upto14;
+  9: 1;
+  10: 1;
+  11: Upto14;
+  12: Upto14;
+  13: Upto6;
+  14: 1;
+  15: Upto6;
+  [field: number]: number;
+};
+
 type PR1Types3 = [
   never,
   'SI',
@@ -7188,6 +9711,17 @@ interface PR1Object3<T extends HL7TypeMap> {
   AssociatedDiagnosisCode?: T['CE'] | null;
 }
 
+type PRAFieldComps2 = {
+  1: 1;
+  2: Upto6;
+  3: 1;
+  4: 1;
+  5: Upto4;
+  6: Upto4;
+  7: Upto4;
+  [field: number]: number;
+};
+
 type PRBFields1 =
   | 1
   | 2
@@ -7214,6 +9748,35 @@ type PRBFields1 =
   | 23
   | 24
   | 25;
+
+type PRBFieldComps1 = {
+  1: 1;
+  2: Upto2;
+  3: Upto6;
+  4: Upto4;
+  5: Upto4;
+  6: 1;
+  7: Upto2;
+  8: Upto2;
+  9: Upto2;
+  10: Upto6;
+  11: Upto6;
+  12: Upto6;
+  13: Upto6;
+  14: Upto6;
+  15: Upto2;
+  16: Upto2;
+  17: 1;
+  18: Upto6;
+  19: Upto6;
+  20: 1;
+  21: Upto6;
+  22: Upto6;
+  23: Upto6;
+  24: 1;
+  25: Upto6;
+  [field: number]: number;
+};
 
 type PRBTypes1 = [
   never,
@@ -7292,6 +9855,28 @@ type PRCFields1 =
   | 17
   | 18;
 
+type PRCFieldComps1 = {
+  1: Upto6;
+  2: Upto4;
+  3: Upto6;
+  4: 1;
+  5: Upto6;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto2;
+  10: Upto2;
+  11: Upto2;
+  12: Upto2;
+  13: 1;
+  14: Upto6;
+  15: 1;
+  16: 1;
+  17: Upto2;
+  18: 1;
+  [field: number]: number;
+};
+
 type PRCTypes1 = [
   never,
   'CE',
@@ -7337,6 +9922,19 @@ interface PRCObject1<T extends HL7TypeMap> {
 
 type PRDFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
+type PRDFieldComps1 = {
+  1: Upto6;
+  2: Upto8;
+  3: Upto10;
+  4: Upto9;
+  5: Upto9;
+  6: Upto6;
+  7: Upto3;
+  8: Upto2;
+  9: Upto2;
+  [field: number]: number;
+};
+
 type PRDTypes1 = [
   never,
   'CE',
@@ -7363,6 +9961,24 @@ interface PRDObject1<T extends HL7TypeMap> {
 }
 
 type PSHFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
+type PSHFieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto2;
+  4: Upto2;
+  5: Upto2;
+  6: Upto2;
+  7: Upto2;
+  8: 1;
+  9: 1;
+  10: Upto2;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  [field: number]: number;
+};
 
 type PSHTypes1 = [
   never,
@@ -7401,6 +10017,16 @@ interface PSHObject1<T extends HL7TypeMap> {
 }
 
 type PTHFields1 = 1 | 2 | 3 | 4 | 5 | 6;
+
+type PTHFieldComps1 = {
+  1: 1;
+  2: Upto6;
+  3: Upto4;
+  4: Upto2;
+  5: Upto6;
+  6: Upto2;
+  [field: number]: number;
+};
 
 type PTHTypes1 = [never, 'ID', 'CE', 'EI', 'TS', 'CE', 'TS'];
 
@@ -7466,6 +10092,62 @@ type PV1Fields3 =
   | 50
   | 51
   | 52;
+
+type PV1FieldComps3 = {
+  1: 1;
+  2: 1;
+  3: Upto9;
+  4: 1;
+  5: Upto6;
+  6: Upto9;
+  7: Upto14;
+  8: Upto14;
+  9: Upto14;
+  10: 1;
+  11: Upto9;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: Upto14;
+  18: 1;
+  19: Upto6;
+  20: Upto2;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: 1;
+  29: 1;
+  30: 1;
+  31: 1;
+  32: 1;
+  33: 1;
+  34: 1;
+  35: 1;
+  36: 1;
+  37: Upto2;
+  38: 1;
+  39: 1;
+  40: 1;
+  41: 1;
+  42: Upto9;
+  43: Upto9;
+  44: Upto2;
+  45: Upto2;
+  46: 1;
+  47: 1;
+  48: 1;
+  49: 1;
+  50: Upto6;
+  51: 1;
+  52: Upto14;
+  [field: number]: number;
+};
 
 type PV1Types3 = [
   never,
@@ -7617,6 +10299,47 @@ type PV2Fields2 =
   | 36
   | 37;
 
+type PV2FieldComps2 = {
+  1: Upto9;
+  2: Upto6;
+  3: Upto6;
+  4: Upto6;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: Upto2;
+  9: Upto2;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: Upto14;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: Upto8;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: 1;
+  29: 1;
+  30: 1;
+  31: 1;
+  32: 1;
+  33: Upto2;
+  34: 1;
+  35: 1;
+  36: 1;
+  37: 1;
+  [field: number]: number;
+};
+
 type PV2Types2 = [
   never,
   'PL',
@@ -7700,12 +10423,30 @@ interface PV2Object2<T extends HL7TypeMap> {
 
 type QAKFields1 = 1 | 2;
 
+type QAKFieldComps1 = { 1: 1; 2: 1; [field: number]: number };
+
 type QAKTypes1 = [never, 'ST', 'ID'];
 
 interface QAKObject1<T extends HL7TypeMap> {
   QueryTag?: string | null;
   QueryResponseStatus?: string | null;
 }
+
+type QRDFieldComps3 = {
+  1: Upto2;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: Upto2;
+  7: Upto2;
+  8: Upto14;
+  9: Upto6;
+  10: Upto6;
+  11: Upto2;
+  12: 1;
+  [field: number]: number;
+};
 
 type QRDTypes3 = [
   never,
@@ -7740,6 +10481,19 @@ interface QRDObject3<T extends HL7TypeMap> {
 
 type QRFFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
+type QRFFieldComps3 = {
+  1: 1;
+  2: Upto2;
+  3: Upto2;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto10;
+  [field: number]: number;
+};
+
 type QRFTypes3 = [never, 'ST', 'TS', 'TS', 'ST', 'ST', 'ID', 'ID', 'ID', 'TQ'];
 
 interface QRFObject3<T extends HL7TypeMap> {
@@ -7756,6 +10510,8 @@ interface QRFObject3<T extends HL7TypeMap> {
 
 type RDFFields1 = 1 | 2;
 
+type RDFFieldComps1 = { 1: 1; 2: Upto3; [field: number]: number };
+
 type RDFTypes1 = [never, 'NM', 'RCD'];
 
 interface RDFObject1<T extends HL7TypeMap> {
@@ -7765,6 +10521,8 @@ interface RDFObject1<T extends HL7TypeMap> {
 
 type RDTFields1 = 1;
 
+type RDTFieldComps1 = { 1: number; [field: number]: number };
+
 type RDTTypes1 = [never, 'VARIES'];
 
 interface RDTObject1<T extends HL7TypeMap> {
@@ -7772,6 +10530,21 @@ interface RDTObject1<T extends HL7TypeMap> {
 }
 
 type RF1Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+
+type RF1FieldComps1 = {
+  1: Upto6;
+  2: Upto6;
+  3: Upto6;
+  4: Upto6;
+  5: Upto6;
+  6: Upto4;
+  7: Upto2;
+  8: Upto2;
+  9: Upto2;
+  10: Upto6;
+  11: Upto4;
+  [field: number]: number;
+};
 
 type RF1Types1 = [
   never,
@@ -7804,6 +10577,8 @@ interface RF1Object1<T extends HL7TypeMap> {
 
 type RGSFields1 = 1 | 2 | 3;
 
+type RGSFieldComps1 = { 1: 1; 2: 1; 3: Upto6; [field: number]: number };
+
 type RGSTypes1 = [never, 'SI', 'ID', 'CE'];
 
 interface RGSObject1<T extends HL7TypeMap> {
@@ -7813,6 +10588,18 @@ interface RGSObject1<T extends HL7TypeMap> {
 }
 
 type ROLFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
+type ROLFieldComps1 = {
+  1: Upto4;
+  2: 1;
+  3: Upto6;
+  4: Upto14;
+  5: Upto2;
+  6: Upto2;
+  7: Upto6;
+  8: Upto6;
+  [field: number]: number;
+};
 
 type ROLTypes1 = [never, 'EI', 'ID', 'CE', 'XCN', 'TS', 'TS', 'CE', 'CE'];
 
@@ -7862,6 +10649,32 @@ type RXAFields2 =
   | 20
   | 21
   | 22;
+
+type RXAFieldComps2 = {
+  1: 1;
+  2: 1;
+  3: Upto2;
+  4: Upto2;
+  5: Upto6;
+  6: 1;
+  7: Upto6;
+  8: Upto6;
+  9: Upto6;
+  10: Upto14;
+  11: Upto16;
+  12: 1;
+  13: 1;
+  14: Upto6;
+  15: 1;
+  16: Upto2;
+  17: Upto6;
+  18: Upto6;
+  19: Upto6;
+  20: 1;
+  21: 1;
+  22: Upto2;
+  [field: number]: number;
+};
 
 type RXATypes2 = [
   never,
@@ -7916,6 +10729,16 @@ interface RXAObject2<T extends HL7TypeMap> {
 
 type RXCFields2 = 1 | 2 | 3 | 4 | 5 | 6;
 
+type RXCFieldComps2 = {
+  1: 1;
+  2: Upto6;
+  3: 1;
+  4: Upto6;
+  5: 1;
+  6: Upto6;
+  [field: number]: number;
+};
+
 type RXCTypes2 = [never, 'ID', 'CE', 'NM', 'CE', 'NM', 'CE'];
 
 interface RXCObject2<T extends HL7TypeMap> {
@@ -7952,6 +10775,34 @@ type RXDFields2 =
   | 22
   | 23
   | 24;
+
+type RXDFieldComps2 = {
+  1: 1;
+  2: Upto6;
+  3: Upto2;
+  4: 1;
+  5: Upto6;
+  6: Upto6;
+  7: 1;
+  8: 1;
+  9: Upto6;
+  10: Upto14;
+  11: 1;
+  12: Upto2;
+  13: Upto16;
+  14: 1;
+  15: Upto6;
+  16: 1;
+  17: Upto6;
+  18: 1;
+  19: Upto2;
+  20: Upto6;
+  21: Upto6;
+  22: 1;
+  23: Upto6;
+  24: 1;
+  [field: number]: number;
+};
 
 type RXDTypes2 = [
   never,
@@ -8039,6 +10890,40 @@ type RXEFields2 =
   | 28
   | 29
   | 30;
+
+type RXEFieldComps2 = {
+  1: Upto10;
+  2: Upto6;
+  3: 1;
+  4: 1;
+  5: Upto6;
+  6: Upto6;
+  7: Upto6;
+  8: Upto16;
+  9: 1;
+  10: 1;
+  11: Upto6;
+  12: 1;
+  13: Upto9;
+  14: Upto9;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: Upto2;
+  19: Upto2;
+  20: 1;
+  21: Upto6;
+  22: 1;
+  23: 1;
+  24: Upto6;
+  25: 1;
+  26: Upto6;
+  27: Upto6;
+  28: 1;
+  29: Upto6;
+  30: 1;
+  [field: number]: number;
+};
 
 type RXETypes2 = [
   never,
@@ -8131,6 +11016,32 @@ type RXGFields2 =
   | 21
   | 22;
 
+type RXGFieldComps2 = {
+  1: 1;
+  2: 1;
+  3: Upto10;
+  4: Upto6;
+  5: 1;
+  6: 1;
+  7: Upto6;
+  8: Upto6;
+  9: Upto6;
+  10: 1;
+  11: Upto16;
+  12: 1;
+  13: Upto6;
+  14: 1;
+  15: 1;
+  16: Upto6;
+  17: 1;
+  18: Upto6;
+  19: 1;
+  20: Upto2;
+  21: Upto6;
+  22: Upto6;
+  [field: number]: number;
+};
+
 type RXGTypes2 = [
   never,
   'ID',
@@ -8205,6 +11116,32 @@ type RXOFields2 =
   | 20
   | 21
   | 22;
+
+type RXOFieldComps2 = {
+  1: Upto6;
+  2: 1;
+  3: 1;
+  4: Upto6;
+  5: Upto6;
+  6: Upto6;
+  7: Upto6;
+  8: Upto16;
+  9: 1;
+  10: Upto6;
+  11: 1;
+  12: Upto6;
+  13: 1;
+  14: Upto9;
+  15: Upto9;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: Upto6;
+  20: Upto6;
+  21: 1;
+  22: Upto6;
+  [field: number]: number;
+};
 
 type RXOTypes2 = [
   never,
@@ -8284,6 +11221,35 @@ type SCHFields1 =
   | 24
   | 25;
 
+type SCHFieldComps1 = {
+  1: Upto4;
+  2: Upto4;
+  3: 1;
+  4: Upto4;
+  5: Upto6;
+  6: Upto6;
+  7: Upto6;
+  8: Upto6;
+  9: 1;
+  10: Upto6;
+  11: Upto10;
+  12: Upto14;
+  13: Upto9;
+  14: Upto10;
+  15: Upto9;
+  16: Upto14;
+  17: Upto9;
+  18: Upto10;
+  19: Upto9;
+  20: Upto14;
+  21: Upto9;
+  22: Upto9;
+  23: Upto4;
+  24: Upto4;
+  25: Upto6;
+  [field: number]: number;
+};
+
 type SCHTypes1 = [
   never,
   'EI',
@@ -8343,6 +11309,14 @@ interface SCHObject1<T extends HL7TypeMap> {
 
 type SPRFields1 = 1 | 2 | 3 | 4;
 
+type SPRFieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto6;
+  4: Upto2;
+  [field: number]: number;
+};
+
 type SPRTypes1 = [never, 'ST', 'ID', 'CE', 'QIP'];
 
 interface SPRObject1<T extends HL7TypeMap> {
@@ -8379,6 +11353,36 @@ type STFFields2 =
   | 24
   | 25
   | 26;
+
+type STFFieldComps2 = {
+  1: Upto6;
+  2: Upto6;
+  3: Upto8;
+  4: 1;
+  5: 1;
+  6: Upto2;
+  7: 1;
+  8: Upto6;
+  9: Upto6;
+  10: 1;
+  11: Upto8;
+  12: Upto2;
+  13: Upto2;
+  14: Upto6;
+  15: 1;
+  16: Upto6;
+  17: 1;
+  18: 1;
+  19: Upto2;
+  20: 1;
+  21: 1;
+  22: Upto3;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  [field: number]: number;
+};
 
 type STFTypes2 = [
   never,
@@ -8464,6 +11468,33 @@ type TXAFields1 =
   | 22
   | 23;
 
+type TXAFieldComps1 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: Upto2;
+  5: Upto14;
+  6: Upto2;
+  7: Upto2;
+  8: Upto2;
+  9: Upto14;
+  10: Upto14;
+  11: Upto14;
+  12: Upto4;
+  13: Upto4;
+  14: Upto4;
+  15: Upto4;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: Upto15;
+  23: Upto14;
+  [field: number]: number;
+};
+
 type TXATypes1 = [
   never,
   'SI',
@@ -8516,6 +11547,33 @@ interface TXAObject1<T extends HL7TypeMap> {
   AuthenticationPersonTimeStamp?: T['PPN'][] | null;
   DistributedCopies?: T['XCN'][] | null;
 }
+
+type UB1FieldComps3 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto2;
+  11: 1;
+  12: Upto6;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: Upto2;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: 1;
+  [field: number]: number;
+};
 
 type UB1Types3 = [
   never,
@@ -8573,6 +11631,27 @@ interface UB1Object3<T extends HL7TypeMap> {
 type UB2Fields2 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17;
 
+type UB2FieldComps2 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: Upto2;
+  7: Upto2;
+  8: Upto3;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  [field: number]: number;
+};
+
 type UB2Types2 = [
   never,
   'SI',
@@ -8614,6 +11693,17 @@ interface UB2Object2<T extends HL7TypeMap> {
   SpecialVisitCount?: number | string | null;
 }
 
+type URDFieldComps3 = {
+  1: Upto2;
+  2: 1;
+  3: Upto14;
+  4: Upto6;
+  5: Upto6;
+  6: 1;
+  7: 1;
+  [field: number]: number;
+};
+
 type URDTypes2 = [never, 'TS', 'ID', 'XCN', 'CE', 'CE', 'ST', 'ID'];
 
 interface URDObject3<T extends HL7TypeMap> {
@@ -8627,6 +11717,19 @@ interface URDObject3<T extends HL7TypeMap> {
 }
 
 type URSFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+
+type URSFieldComps3 = {
+  1: 1;
+  2: Upto2;
+  3: Upto2;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto10;
+  [field: number]: number;
+};
 
 type URSTypes3 = [never, 'ST', 'TS', 'TS', 'ST', 'ST', 'ID', 'ID', 'ID', 'TQ'];
 
@@ -8644,6 +11747,16 @@ interface URSObject3<T extends HL7TypeMap> {
 
 type VARFields1 = 1 | 2 | 3 | 4 | 5 | 6;
 
+type VARFieldComps1 = {
+  1: Upto4;
+  2: Upto2;
+  3: Upto2;
+  4: Upto14;
+  5: Upto6;
+  6: 1;
+  [field: number]: number;
+};
+
 type VARTypes1 = [never, 'EI', 'TS', 'TS', 'XCN', 'CE', 'ST'];
 
 interface VARObject1<T extends HL7TypeMap> {
@@ -8656,6 +11769,15 @@ interface VARObject1<T extends HL7TypeMap> {
 }
 
 type VTQFields1 = 1 | 2 | 3 | 4 | 5;
+
+type VTQFieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto6;
+  4: Upto6;
+  5: Upto4;
+  [field: number]: number;
+};
 
 type VTQTypes1 = [never, 'ST', 'ID', 'CE', 'CE', 'QSC'];
 
@@ -9426,6 +12548,22 @@ type HL7Types_2_3_1 = {
   XTN: XTNObject1;
 };
 
+type AIPFieldComps2 = {
+  1: 1;
+  2: 1;
+  3: Upto15;
+  4: Upto6;
+  5: Upto6;
+  6: Upto2;
+  7: 1;
+  8: Upto6;
+  9: 1;
+  10: Upto6;
+  11: 1;
+  12: Upto6;
+  [field: number]: number;
+};
+
 interface AIPObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SegmentActionCode?: string | null;
@@ -9451,6 +12589,33 @@ interface AL1Object2<T extends HL7TypeMap> {
   AllergyReactionCode?: string[] | null;
   IdentificationDate?: string | null;
 }
+
+type ARQFieldComps2 = {
+  1: Upto4;
+  2: Upto4;
+  3: 1;
+  4: Upto4;
+  5: Upto6;
+  6: Upto6;
+  7: Upto6;
+  8: Upto6;
+  9: 1;
+  10: Upto6;
+  11: Upto2;
+  12: 1;
+  13: Upto2;
+  14: 1;
+  15: Upto15;
+  16: Upto9;
+  17: Upto11;
+  18: Upto9;
+  19: Upto15;
+  20: Upto9;
+  21: Upto9;
+  22: Upto4;
+  23: Upto4;
+  [field: number]: number;
+};
 
 interface ARQObject2<T extends HL7TypeMap> {
   PlacerAppointmentID?: T['EI'] | null;
@@ -9478,6 +12643,8 @@ interface ARQObject2<T extends HL7TypeMap> {
   ParentFillerAppointmentID?: T['EI'] | null;
 }
 
+type BLGFieldComps4 = { 1: Upto2; 2: 1; 3: Upto6; [field: number]: number };
+
 type BLGTypes3 = [never, 'CCD', 'ID', 'CX'];
 
 interface BLGObject4<T extends HL7TypeMap> {
@@ -9485,6 +12652,23 @@ interface BLGObject4<T extends HL7TypeMap> {
   ChargeType?: string | null;
   AccountID?: T['CX'] | null;
 }
+
+type CDMFieldComps2 = {
+  1: Upto6;
+  2: Upto6;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: Upto6;
+  7: Upto6;
+  8: 1;
+  9: Upto6;
+  10: 1;
+  11: Upto4;
+  12: Upto9;
+  13: 1;
+  [field: number]: number;
+};
 
 type CDMTypes2 = [
   never,
@@ -9519,6 +12703,21 @@ interface CDMObject2<T extends HL7TypeMap> {
   RoomFeeIndicator?: string | null;
 }
 
+type CM0FieldComps2 = {
+  1: 1;
+  2: Upto4;
+  3: Upto4;
+  4: 1;
+  5: Upto15;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto15;
+  10: Upto9;
+  11: Upto11;
+  [field: number]: number;
+};
+
 type CM0Types2 = [
   never,
   'SI',
@@ -9548,6 +12747,26 @@ interface CM0Object2<T extends HL7TypeMap> {
   ContactSAddress?: T['XAD'][] | null;
 }
 
+type CSRFieldComps2 = {
+  1: Upto4;
+  2: Upto4;
+  3: Upto6;
+  4: Upto6;
+  5: Upto6;
+  6: Upto2;
+  7: Upto15;
+  8: Upto15;
+  9: Upto2;
+  10: Upto6;
+  11: Upto2;
+  12: Upto6;
+  13: Upto6;
+  14: Upto6;
+  15: Upto2;
+  16: Upto6;
+  [field: number]: number;
+};
+
 interface CSRObject2<T extends HL7TypeMap> {
   SponsorStudyID?: T['EI'] | null;
   AlternateStudyID?: T['EI'] | null;
@@ -9567,6 +12786,17 @@ interface CSRObject2<T extends HL7TypeMap> {
   ReasonEndedStudy?: T['CE'] | null;
 }
 
+type CTDFieldComps2 = {
+  1: Upto6;
+  2: Upto8;
+  3: Upto11;
+  4: Upto9;
+  5: Upto9;
+  6: Upto6;
+  7: Upto3;
+  [field: number]: number;
+};
+
 type CTDTypes2 = [never, 'CE', 'XPN', 'XAD', 'PL', 'XTN', 'CE', 'PI'];
 
 interface CTDObject2<T extends HL7TypeMap> {
@@ -9578,6 +12808,29 @@ interface CTDObject2<T extends HL7TypeMap> {
   PreferredMethodOfContact?: T['CE'] | null;
   ContactIdentifiers?: T['PI'][] | null;
 }
+
+type DG1FieldComps4 = {
+  1: 1;
+  2: 1;
+  3: Upto6;
+  4: 1;
+  5: Upto2;
+  6: 1;
+  7: Upto6;
+  8: Upto6;
+  9: 1;
+  10: 1;
+  11: Upto6;
+  12: 1;
+  13: Upto6;
+  14: 1;
+  15: 1;
+  16: Upto15;
+  17: 1;
+  18: 1;
+  19: Upto2;
+  [field: number]: number;
+};
 
 type DG1Types4 = [
   never,
@@ -9630,6 +12883,16 @@ interface ERRObject3<T extends HL7TypeMap> {
   ErrorCodeAndLocation?: T['ELD'][] | null;
 }
 
+type EVNFieldComps4 = {
+  1: 1;
+  2: Upto2;
+  3: Upto2;
+  4: 1;
+  5: Upto15;
+  6: Upto2;
+  [field: number]: number;
+};
+
 type EVNTypes4 = [never, 'ID', 'TS', 'TS', 'IS', 'XCN', 'TS'];
 
 interface EVNObject4<T extends HL7TypeMap> {
@@ -9640,6 +12903,22 @@ interface EVNObject4<T extends HL7TypeMap> {
   OperatorID?: T['XCN'][] | null;
   EventOccurred?: T['TS'] | null;
 }
+
+type FACFieldComps2 = {
+  1: Upto4;
+  2: 1;
+  3: Upto11;
+  4: Upto9;
+  5: Upto15;
+  6: 1;
+  7: Upto11;
+  8: Upto9;
+  9: Upto15;
+  10: 1;
+  11: Upto11;
+  12: Upto9;
+  [field: number]: number;
+};
 
 interface FACObject2<T extends HL7TypeMap> {
   FacilityIDFAC?: T['EI'] | null;
@@ -9683,6 +12962,36 @@ type FT1Fields4 =
   | 24
   | 25
   | 26;
+
+type FT1FieldComps4 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: Upto2;
+  5: Upto2;
+  6: 1;
+  7: Upto6;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: Upto6;
+  12: Upto6;
+  13: Upto6;
+  14: Upto6;
+  15: Upto6;
+  16: Upto9;
+  17: 1;
+  18: 1;
+  19: Upto6;
+  20: Upto15;
+  21: Upto15;
+  22: Upto6;
+  23: Upto4;
+  24: Upto15;
+  25: Upto6;
+  26: Upto6;
+  [field: number]: number;
+};
 
 type FT1Types4 = [
   never,
@@ -9742,6 +13051,90 @@ interface FT1Object4<T extends HL7TypeMap> {
   ProcedureCode?: T['CE'] | null;
   ProcedureCodeModifier?: T['CE'][] | null;
 }
+
+type GOLFieldComps2 = {
+  1: 1;
+  2: Upto2;
+  3: Upto6;
+  4: Upto4;
+  5: Upto4;
+  6: 1;
+  7: Upto2;
+  8: Upto2;
+  9: Upto6;
+  10: Upto6;
+  11: Upto6;
+  12: Upto2;
+  13: Upto2;
+  14: Upto2;
+  15: Upto12;
+  16: Upto6;
+  17: 1;
+  18: Upto6;
+  19: Upto2;
+  20: Upto6;
+  21: Upto8;
+  [field: number]: number;
+};
+
+type GT1FieldComps4 = {
+  1: 1;
+  2: Upto6;
+  3: Upto8;
+  4: Upto8;
+  5: Upto11;
+  6: Upto9;
+  7: Upto9;
+  8: Upto2;
+  9: 1;
+  10: 1;
+  11: Upto6;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: Upto8;
+  17: Upto11;
+  18: Upto9;
+  19: Upto6;
+  20: 1;
+  21: Upto9;
+  22: 1;
+  23: Upto6;
+  24: Upto2;
+  25: 1;
+  26: Upto6;
+  27: Upto6;
+  28: 1;
+  29: Upto6;
+  30: Upto6;
+  31: 1;
+  32: 1;
+  33: 1;
+  34: 1;
+  35: Upto6;
+  36: Upto6;
+  37: 1;
+  38: Upto6;
+  39: 1;
+  40: 1;
+  41: Upto6;
+  42: Upto8;
+  43: Upto6;
+  44: Upto6;
+  45: Upto8;
+  46: Upto9;
+  47: Upto6;
+  48: 1;
+  49: 1;
+  50: Upto2;
+  51: Upto9;
+  52: 1;
+  53: 1;
+  54: Upto2;
+  55: Upto6;
+  [field: number]: number;
+};
 
 type GT1Types4 = [
   never,
@@ -9860,6 +13253,59 @@ interface GT1Object4<T extends HL7TypeMap> {
   GuarantorRace?: T['CE'][] | null;
 }
 
+type IN1FieldComps4 = {
+  1: 1;
+  2: Upto6;
+  3: Upto6;
+  4: Upto9;
+  5: Upto11;
+  6: Upto8;
+  7: Upto9;
+  8: 1;
+  9: Upto9;
+  10: Upto6;
+  11: Upto9;
+  12: 1;
+  13: 1;
+  14: Upto3;
+  15: 1;
+  16: Upto8;
+  17: Upto6;
+  18: Upto2;
+  19: Upto11;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: 1;
+  29: Upto2;
+  30: Upto15;
+  31: 1;
+  32: 1;
+  33: 1;
+  34: 1;
+  35: 1;
+  36: 1;
+  37: Upto6;
+  38: Upto6;
+  39: 1;
+  40: Upto6;
+  41: Upto6;
+  42: Upto6;
+  43: 1;
+  44: Upto11;
+  45: 1;
+  46: 1;
+  47: 1;
+  48: 1;
+  49: Upto6;
+  [field: number]: number;
+};
+
 type IN1Types4 = [
   never,
   'SI',
@@ -9964,6 +13410,82 @@ interface IN1Object4<T extends HL7TypeMap> {
   Handicap?: string | null;
   InsuredSIDNumber?: T['CX'][] | null;
 }
+
+type IN2FieldComps3 = {
+  1: Upto6;
+  2: 1;
+  3: Upto15;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: Upto8;
+  8: 1;
+  9: Upto8;
+  10: 1;
+  11: Upto6;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: Upto8;
+  23: 1;
+  24: 1;
+  25: Upto6;
+  26: Upto6;
+  27: 1;
+  28: Upto3;
+  29: Upto3;
+  30: Upto3;
+  31: 1;
+  32: 1;
+  33: Upto6;
+  34: Upto6;
+  35: 1;
+  36: Upto6;
+  37: 1;
+  38: 1;
+  39: Upto6;
+  40: Upto8;
+  41: Upto6;
+  42: Upto6;
+  43: Upto6;
+  44: 1;
+  45: 1;
+  46: 1;
+  47: Upto2;
+  48: 1;
+  49: Upto8;
+  50: Upto9;
+  51: 1;
+  52: Upto8;
+  53: Upto9;
+  54: 1;
+  55: 1;
+  56: 1;
+  57: 1;
+  58: Upto9;
+  59: 1;
+  60: 1;
+  61: Upto6;
+  62: Upto6;
+  63: Upto9;
+  64: Upto9;
+  65: Upto6;
+  66: 1;
+  67: 1;
+  68: 1;
+  69: Upto9;
+  70: Upto9;
+  71: Upto6;
+  72: Upto6;
+  [field: number]: number;
+};
 
 type IN2Types3 = [
   never,
@@ -10116,6 +13638,35 @@ interface IN2Object3<T extends HL7TypeMap> {
   PatientSRelationshipToInsured?: T['CE'] | null;
 }
 
+type IN3FieldComps3 = {
+  1: 1;
+  2: Upto6;
+  3: Upto15;
+  4: 1;
+  5: Upto2;
+  6: Upto2;
+  7: Upto2;
+  8: Upto15;
+  9: 1;
+  10: 1;
+  11: Upto2;
+  12: Upto6;
+  13: Upto2;
+  14: Upto15;
+  15: 1;
+  16: Upto9;
+  17: Upto6;
+  18: Upto6;
+  19: Upto9;
+  20: Upto3;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: Upto15;
+  [field: number]: number;
+};
+
 type IN3Types3 = [
   never,
   'SI',
@@ -10188,6 +13739,18 @@ type LDPTypes2 = [
   'XTN',
 ];
 
+type LOCFieldComps2 = {
+  1: Upto9;
+  2: 1;
+  3: 1;
+  4: Upto9;
+  5: Upto11;
+  6: Upto9;
+  7: Upto6;
+  8: 1;
+  [field: number]: number;
+};
+
 type LOCTypes2 = [never, 'PL', 'ST', 'IS', 'XON', 'XAD', 'XTN', 'CE', 'IS'];
 
 interface LOCObject2<T extends HL7TypeMap> {
@@ -10201,6 +13764,16 @@ interface LOCObject2<T extends HL7TypeMap> {
   LocationEquipment?: string[] | null;
 }
 
+type LRLFieldComps2 = {
+  1: Upto9;
+  2: 1;
+  3: Upto4;
+  4: Upto6;
+  5: Upto9;
+  6: Upto9;
+  [field: number]: number;
+};
+
 interface LRLObject2<T extends HL7TypeMap> {
   PrimaryKeyValueLRL?: T['PL'] | null;
   SegmentActionCode?: string | null;
@@ -10211,6 +13784,16 @@ interface LRLObject2<T extends HL7TypeMap> {
 }
 
 type MFAFields2 = 1 | 2 | 3 | 4 | 5 | 6;
+
+type MFAFieldComps2 = {
+  1: 1;
+  2: 1;
+  3: Upto2;
+  4: Upto6;
+  5: Upto6;
+  6: 1;
+  [field: number]: number;
+};
 
 type MFATypes2 = [never, 'ID', 'ST', 'TS', 'CE', 'CE', 'ID'];
 
@@ -10225,6 +13808,15 @@ interface MFAObject2<T extends HL7TypeMap> {
 
 type MFEFields2 = 1 | 2 | 3 | 4 | 5;
 
+type MFEFieldComps2 = {
+  1: 1;
+  2: 1;
+  3: Upto2;
+  4: number;
+  5: 1;
+  [field: number]: number;
+};
+
 type MFETypes2 = [never, 'ID', 'ST', 'TS', 'VARIES', 'ID'];
 
 interface MFEObject2<T extends HL7TypeMap> {
@@ -10234,6 +13826,17 @@ interface MFEObject2<T extends HL7TypeMap> {
   PrimaryKeyValueMFE?: string[] | null;
   PrimaryKeyValueType?: string[] | null;
 }
+
+type MRGFieldComps4 = {
+  1: Upto6;
+  2: Upto6;
+  3: Upto6;
+  4: Upto6;
+  5: Upto6;
+  6: Upto6;
+  7: Upto8;
+  [field: number]: number;
+};
 
 type MRGTypes4 = [never, 'CX', 'CX', 'CX', 'CX', 'CX', 'CX', 'XPN'];
 
@@ -10268,6 +13871,30 @@ type MSHFields4 =
   | 18
   | 19
   | 20;
+
+type MSHFieldComps4 = {
+  1: 1;
+  2: 1;
+  3: Upto3;
+  4: Upto3;
+  5: Upto3;
+  6: Upto3;
+  7: Upto2;
+  8: 1;
+  9: Upto3;
+  10: 1;
+  11: Upto2;
+  12: Upto3;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: Upto6;
+  20: 1;
+  [field: number]: number;
+};
 
 type MSHTypes4 = [
   never,
@@ -10315,6 +13942,47 @@ interface MSHObject4<T extends HL7TypeMap> {
   PrincipalLanguageOfMessage?: T['CE'] | null;
   AlternateCharacterSetHandlingScheme?: string | null;
 }
+
+type NK1FieldComps4 = {
+  1: 1;
+  2: Upto8;
+  3: Upto6;
+  4: Upto11;
+  5: Upto9;
+  6: Upto9;
+  7: Upto6;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: Upto2;
+  12: Upto6;
+  13: Upto9;
+  14: Upto6;
+  15: 1;
+  16: Upto2;
+  17: 1;
+  18: 1;
+  19: Upto6;
+  20: Upto6;
+  21: 1;
+  22: Upto6;
+  23: 1;
+  24: 1;
+  25: Upto6;
+  26: Upto8;
+  27: Upto6;
+  28: Upto6;
+  29: Upto6;
+  30: Upto8;
+  31: Upto9;
+  32: Upto11;
+  33: Upto6;
+  34: 1;
+  35: Upto6;
+  36: 1;
+  37: 1;
+  [field: number]: number;
+};
 
 type NK1Types4 = [
   never,
@@ -10401,6 +14069,8 @@ type NSCTypes3 = [never, 'IS', 'ST', 'ST', 'ST', 'ST', 'ST', 'ST', 'ST', 'ST'];
 
 type NTEFields2 = 1 | 2 | 3 | 4;
 
+type NTEFieldComps2 = { 1: 1; 2: 1; 3: 1; 4: Upto6; [field: number]: number };
+
 type NTETypes3 = [never, 'SI', 'ID', 'FT', 'CE'];
 
 interface NTEObject2<T extends HL7TypeMap> {
@@ -10456,6 +14126,55 @@ type OBRFields3 =
   | 43
   | 44
   | 45;
+
+type OBRFieldComps4 = {
+  1: 1;
+  2: Upto4;
+  3: Upto4;
+  4: Upto6;
+  5: 1;
+  6: Upto2;
+  7: Upto2;
+  8: Upto2;
+  9: Upto2;
+  10: Upto15;
+  11: 1;
+  12: Upto6;
+  13: 1;
+  14: Upto2;
+  15: Upto7;
+  16: Upto15;
+  17: Upto9;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: Upto2;
+  23: Upto2;
+  24: 1;
+  25: 1;
+  26: Upto3;
+  27: Upto12;
+  28: Upto15;
+  29: Upto2;
+  30: 1;
+  31: Upto6;
+  32: Upto11;
+  33: Upto11;
+  34: Upto11;
+  35: Upto11;
+  36: Upto2;
+  37: 1;
+  38: Upto6;
+  39: Upto6;
+  40: Upto6;
+  41: 1;
+  42: 1;
+  43: Upto6;
+  44: Upto6;
+  45: Upto6;
+  [field: number]: number;
+};
 
 type OBRTypes4 = [
   never,
@@ -10554,6 +14273,27 @@ interface OBRObject4<T extends HL7TypeMap> {
   ProcedureCodeModifier?: T['CE'][] | null;
 }
 
+type OBXFieldComps4 = {
+  1: 1;
+  2: 1;
+  3: Upto6;
+  4: 1;
+  5: number;
+  6: Upto6;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: Upto2;
+  13: 1;
+  14: Upto2;
+  15: Upto6;
+  16: Upto15;
+  17: Upto6;
+  [field: number]: number;
+};
+
 interface OBXObject4<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ValueType?: string | null;
@@ -10573,6 +14313,57 @@ interface OBXObject4<T extends HL7TypeMap> {
   ResponsibleObserver?: T['XCN'][] | null;
   ObservationMethod?: T['CE'][] | null;
 }
+
+type OM1FieldComps3 = {
+  1: 1;
+  2: Upto6;
+  3: 1;
+  4: 1;
+  5: Upto6;
+  6: 1;
+  7: Upto6;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: Upto6;
+  14: Upto6;
+  15: 1;
+  16: Upto6;
+  17: Upto9;
+  18: 1;
+  19: Upto6;
+  20: 1;
+  21: Upto2;
+  22: Upto2;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: Upto6;
+  28: Upto11;
+  29: Upto9;
+  30: 1;
+  31: Upto6;
+  32: 1;
+  33: Upto6;
+  34: Upto6;
+  35: 1;
+  36: Upto6;
+  37: 1;
+  38: Upto6;
+  39: 1;
+  40: 1;
+  41: 1;
+  42: Upto6;
+  43: Upto6;
+  44: 1;
+  45: Upto6;
+  46: Upto6;
+  47: Upto6;
+  [field: number]: number;
+};
 
 type OM1Types3 = [
   never,
@@ -10675,6 +14466,20 @@ interface OM1Object3<T extends HL7TypeMap> {
   ModalityOfImagingMeasurement?: T['CE'] | null;
 }
 
+type OM2FieldComps3 = {
+  1: 1;
+  2: Upto6;
+  3: 1;
+  4: Upto6;
+  5: 1;
+  6: Upto7;
+  7: Upto2;
+  8: Upto7;
+  9: Upto4;
+  10: 1;
+  [field: number]: number;
+};
+
 type OM2Types3 = [
   never,
   'NM',
@@ -10745,6 +14550,34 @@ type ORCFields3 =
   | 23
   | 24;
 
+type ORCFieldComps4 = {
+  1: 1;
+  2: Upto4;
+  3: Upto4;
+  4: Upto4;
+  5: 1;
+  6: 1;
+  7: Upto12;
+  8: Upto2;
+  9: Upto2;
+  10: Upto15;
+  11: Upto15;
+  12: Upto15;
+  13: Upto9;
+  14: Upto9;
+  15: Upto2;
+  16: Upto6;
+  17: Upto6;
+  18: Upto6;
+  19: Upto15;
+  20: Upto6;
+  21: Upto9;
+  22: Upto11;
+  23: Upto9;
+  24: Upto11;
+  [field: number]: number;
+};
+
 type ORCTypes4 = [
   never,
   'ID',
@@ -10800,6 +14633,22 @@ interface ORCObject4<T extends HL7TypeMap> {
   OrderingProviderAddress?: T['XAD'][] | null;
 }
 
+type PD1FieldComps2 = {
+  1: 1;
+  2: 1;
+  3: Upto9;
+  4: Upto15;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto6;
+  11: Upto6;
+  12: 1;
+  [field: number]: number;
+};
+
 interface PD1Object2<T extends HL7TypeMap> {
   LivingDependency?: string[] | null;
   LivingArrangement?: string | null;
@@ -10814,6 +14663,25 @@ interface PD1Object2<T extends HL7TypeMap> {
   PublicityCode?: T['CE'] | null;
   ProtectionIndicator?: string | null;
 }
+
+type PDCFieldComps2 = {
+  1: Upto9;
+  2: Upto6;
+  3: 1;
+  4: 1;
+  5: Upto6;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto6;
+  10: 1;
+  11: 1;
+  12: Upto2;
+  13: Upto2;
+  14: Upto2;
+  15: Upto2;
+  [field: number]: number;
+};
 
 interface PDCObject2<T extends HL7TypeMap> {
   ManufacturerDistributor?: T['XON'][] | null;
@@ -10832,6 +14700,35 @@ interface PDCObject2<T extends HL7TypeMap> {
   DateFirstMarketed?: T['TS'] | null;
   DateLastMarketed?: T['TS'] | null;
 }
+
+type PEOFieldComps2 = {
+  1: Upto6;
+  2: Upto6;
+  3: Upto2;
+  4: Upto2;
+  5: Upto2;
+  6: Upto2;
+  7: Upto11;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: Upto6;
+  19: Upto8;
+  20: Upto11;
+  21: Upto9;
+  22: 1;
+  23: 1;
+  24: Upto2;
+  25: 1;
+  [field: number]: number;
+};
 
 interface PEOObject2<T extends HL7TypeMap> {
   EventIdentifiersUsed?: T['CE'][] | null;
@@ -10861,6 +14758,23 @@ interface PEOObject2<T extends HL7TypeMap> {
   PrimaryObserverSIdentityMayBeDivulged?: string | null;
 }
 
+type PESFieldComps2 = {
+  1: Upto9;
+  2: Upto15;
+  3: Upto11;
+  4: Upto9;
+  5: Upto4;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto2;
+  10: Upto2;
+  11: 1;
+  12: 1;
+  13: 1;
+  [field: number]: number;
+};
+
 interface PESObject2<T extends HL7TypeMap> {
   SenderOrganizationName?: T['XON'][] | null;
   SenderIndividualName?: T['XCN'][] | null;
@@ -10876,6 +14790,40 @@ interface PESObject2<T extends HL7TypeMap> {
   EventReportSource?: string | null;
   EventReportedTo?: string[] | null;
 }
+
+type PIDFieldComps4 = {
+  1: 1;
+  2: Upto6;
+  3: Upto6;
+  4: Upto6;
+  5: Upto8;
+  6: Upto8;
+  7: Upto2;
+  8: 1;
+  9: Upto8;
+  10: Upto6;
+  11: Upto11;
+  12: 1;
+  13: Upto9;
+  14: Upto9;
+  15: Upto6;
+  16: Upto6;
+  17: Upto6;
+  18: Upto6;
+  19: 1;
+  20: Upto3;
+  21: Upto6;
+  22: Upto6;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: Upto6;
+  27: Upto6;
+  28: Upto6;
+  29: Upto2;
+  30: 1;
+  [field: number]: number;
+};
 
 type PIDTypes4 = [
   never,
@@ -10947,6 +14895,26 @@ interface PIDObject4<T extends HL7TypeMap> {
 type PR1Fields4 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
 
+type PR1FieldComps4 = {
+  1: 1;
+  2: 1;
+  3: Upto6;
+  4: 1;
+  5: Upto2;
+  6: 1;
+  7: 1;
+  8: Upto15;
+  9: 1;
+  10: 1;
+  11: Upto15;
+  12: Upto15;
+  13: Upto6;
+  14: 1;
+  15: Upto6;
+  16: Upto6;
+  [field: number]: number;
+};
+
 type PR1Types4 = [
   never,
   'SI',
@@ -10988,6 +14956,18 @@ interface PR1Object4<T extends HL7TypeMap> {
 
 type PRAFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
+type PRAFieldComps3 = {
+  1: Upto6;
+  2: Upto6;
+  3: 1;
+  4: 1;
+  5: Upto4;
+  6: Upto4;
+  7: Upto5;
+  8: 1;
+  [field: number]: number;
+};
+
 type PRATypes2 = [never, 'CE', 'CE', 'IS', 'ID', 'SPD', 'PLN', 'PIP', 'DT'];
 
 interface PRAObject2<T extends HL7TypeMap> {
@@ -11000,6 +14980,28 @@ interface PRAObject2<T extends HL7TypeMap> {
   Privileges?: T['PIP'][] | null;
   DateEnteredPractice?: string | null;
 }
+
+type PRCFieldComps2 = {
+  1: Upto6;
+  2: Upto6;
+  3: Upto6;
+  4: 1;
+  5: Upto6;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto2;
+  10: Upto2;
+  11: Upto2;
+  12: Upto2;
+  13: 1;
+  14: Upto6;
+  15: 1;
+  16: 1;
+  17: Upto2;
+  18: 1;
+  [field: number]: number;
+};
 
 type PRCTypes2 = [
   never,
@@ -11044,6 +15046,19 @@ interface PRCObject2<T extends HL7TypeMap> {
   ChargeOnIndicator?: string | null;
 }
 
+type PRDFieldComps2 = {
+  1: Upto6;
+  2: Upto8;
+  3: Upto11;
+  4: Upto9;
+  5: Upto9;
+  6: Upto6;
+  7: Upto3;
+  8: Upto2;
+  9: Upto2;
+  [field: number]: number;
+};
+
 type PRDTypes2 = [
   never,
   'CE',
@@ -11068,6 +15083,62 @@ interface PRDObject2<T extends HL7TypeMap> {
   EffectiveStartDateOfProviderRole?: T['TS'] | null;
   EffectiveEndDateOfProviderRole?: T['TS'] | null;
 }
+
+type PV1FieldComps4 = {
+  1: 1;
+  2: 1;
+  3: Upto9;
+  4: 1;
+  5: Upto6;
+  6: Upto9;
+  7: Upto15;
+  8: Upto15;
+  9: Upto15;
+  10: 1;
+  11: Upto9;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: Upto15;
+  18: 1;
+  19: Upto6;
+  20: Upto2;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: 1;
+  29: 1;
+  30: 1;
+  31: 1;
+  32: 1;
+  33: 1;
+  34: 1;
+  35: 1;
+  36: 1;
+  37: Upto2;
+  38: Upto6;
+  39: 1;
+  40: 1;
+  41: 1;
+  42: Upto9;
+  43: Upto9;
+  44: Upto2;
+  45: Upto2;
+  46: 1;
+  47: 1;
+  48: 1;
+  49: 1;
+  50: Upto6;
+  51: 1;
+  52: Upto15;
+  [field: number]: number;
+};
 
 type PV1Types4 = [
   never,
@@ -11180,6 +15251,47 @@ interface PV1Object4<T extends HL7TypeMap> {
   OtherHealthcareProvider?: T['XCN'][] | null;
 }
 
+type PV2FieldComps3 = {
+  1: Upto9;
+  2: Upto6;
+  3: Upto6;
+  4: Upto6;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: Upto2;
+  9: Upto2;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: Upto15;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: Upto9;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: 1;
+  29: 1;
+  30: Upto6;
+  31: 1;
+  32: 1;
+  33: Upto2;
+  34: 1;
+  35: 1;
+  36: 1;
+  37: 1;
+  [field: number]: number;
+};
+
 type PV2Types3 = [
   never,
   'PL',
@@ -11261,6 +15373,22 @@ interface PV2Object3<T extends HL7TypeMap> {
   BabyDetainedIndicator?: string | null;
 }
 
+type QRDFieldComps4 = {
+  1: Upto2;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: Upto2;
+  7: Upto2;
+  8: Upto15;
+  9: Upto6;
+  10: Upto6;
+  11: Upto2;
+  12: 1;
+  [field: number]: number;
+};
+
 type QRDTypes4 = [
   never,
   'TS',
@@ -11292,6 +15420,31 @@ interface QRDObject4<T extends HL7TypeMap> {
   QueryResultsLevel?: string | null;
 }
 
+type QRFFieldComps4 = {
+  1: 1;
+  2: Upto2;
+  3: Upto2;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto12;
+  [field: number]: number;
+};
+
+type ROLFieldComps2 = {
+  1: Upto4;
+  2: 1;
+  3: Upto6;
+  4: Upto15;
+  5: Upto2;
+  6: Upto2;
+  7: Upto6;
+  8: Upto6;
+  [field: number]: number;
+};
+
 interface ROLObject2<T extends HL7TypeMap> {
   RoleInstanceID?: T['EI'] | null;
   ActionCode?: string | null;
@@ -11316,6 +15469,32 @@ type RQDTypes2 = [
   'CE',
   'DT',
 ];
+
+type RXAFieldComps3 = {
+  1: 1;
+  2: 1;
+  3: Upto2;
+  4: Upto2;
+  5: Upto6;
+  6: 1;
+  7: Upto6;
+  8: Upto6;
+  9: Upto6;
+  10: Upto15;
+  11: Upto16;
+  12: 1;
+  13: 1;
+  14: Upto6;
+  15: 1;
+  16: Upto2;
+  17: Upto6;
+  18: Upto6;
+  19: Upto6;
+  20: 1;
+  21: 1;
+  22: Upto2;
+  [field: number]: number;
+};
 
 type RXATypes3 = [
   never,
@@ -11367,6 +15546,34 @@ interface RXAObject3<T extends HL7TypeMap> {
   ActionCodeRXA?: string | null;
   SystemEntryDateTime?: T['TS'] | null;
 }
+
+type RXDFieldComps3 = {
+  1: 1;
+  2: Upto6;
+  3: Upto2;
+  4: 1;
+  5: Upto6;
+  6: Upto6;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto15;
+  11: 1;
+  12: Upto2;
+  13: Upto16;
+  14: 1;
+  15: Upto6;
+  16: 1;
+  17: Upto6;
+  18: 1;
+  19: Upto2;
+  20: Upto6;
+  21: Upto6;
+  22: 1;
+  23: Upto6;
+  24: 1;
+  [field: number]: number;
+};
 
 type RXDTypes3 = [
   never,
@@ -11422,6 +15629,40 @@ interface RXDObject3<T extends HL7TypeMap> {
   DispensePackageSizeUnit?: T['CE'] | null;
   DispensePackageMethod?: string | null;
 }
+
+type RXEFieldComps3 = {
+  1: Upto12;
+  2: Upto6;
+  3: 1;
+  4: 1;
+  5: Upto6;
+  6: Upto6;
+  7: Upto6;
+  8: Upto9;
+  9: 1;
+  10: 1;
+  11: Upto6;
+  12: 1;
+  13: Upto15;
+  14: Upto15;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: Upto2;
+  19: Upto2;
+  20: 1;
+  21: Upto6;
+  22: 1;
+  23: 1;
+  24: Upto6;
+  25: 1;
+  26: Upto6;
+  27: Upto6;
+  28: 1;
+  29: Upto6;
+  30: 1;
+  [field: number]: number;
+};
 
 type RXETypes3 = [
   never,
@@ -11489,6 +15730,32 @@ interface RXEObject3<T extends HL7TypeMap> {
   DispensePackageSizeUnit?: T['CE'] | null;
   DispensePackageMethod?: string | null;
 }
+
+type RXGFieldComps3 = {
+  1: 1;
+  2: 1;
+  3: Upto12;
+  4: Upto6;
+  5: 1;
+  6: 1;
+  7: Upto6;
+  8: Upto6;
+  9: Upto6;
+  10: 1;
+  11: Upto16;
+  12: 1;
+  13: Upto6;
+  14: 1;
+  15: 1;
+  16: Upto6;
+  17: 1;
+  18: Upto6;
+  19: 1;
+  20: Upto2;
+  21: Upto6;
+  22: Upto6;
+  [field: number]: number;
+};
 
 type RXGTypes3 = [
   never,
@@ -11567,6 +15834,33 @@ type RXOFields3 =
   | 22
   | 23;
 
+type RXOFieldComps3 = {
+  1: Upto6;
+  2: 1;
+  3: 1;
+  4: Upto6;
+  5: Upto6;
+  6: Upto6;
+  7: Upto6;
+  8: Upto9;
+  9: 1;
+  10: Upto6;
+  11: 1;
+  12: Upto6;
+  13: 1;
+  14: Upto15;
+  15: Upto15;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: Upto6;
+  20: Upto6;
+  21: 1;
+  22: Upto6;
+  23: Upto2;
+  [field: number]: number;
+};
+
 type RXOTypes3 = [
   never,
   'CE',
@@ -11622,6 +15916,15 @@ interface RXOObject3<T extends HL7TypeMap> {
 
 type RXRFields2 = 1 | 2 | 3 | 4 | 5;
 
+type RXRFieldComps2 = {
+  1: Upto6;
+  2: Upto6;
+  3: Upto6;
+  4: Upto6;
+  5: Upto6;
+  [field: number]: number;
+};
+
 type RXRTypes2 = [never, 'CE', 'CE', 'CE', 'CE', 'CE'];
 
 interface RXRObject2<T extends HL7TypeMap> {
@@ -11631,6 +15934,35 @@ interface RXRObject2<T extends HL7TypeMap> {
   AdministrationMethod?: T['CE'] | null;
   RoutingInstruction?: T['CE'] | null;
 }
+
+type SCHFieldComps2 = {
+  1: Upto4;
+  2: Upto4;
+  3: 1;
+  4: Upto4;
+  5: Upto6;
+  6: Upto6;
+  7: Upto6;
+  8: Upto6;
+  9: 1;
+  10: Upto6;
+  11: Upto12;
+  12: Upto15;
+  13: Upto9;
+  14: Upto11;
+  15: Upto9;
+  16: Upto15;
+  17: Upto9;
+  18: Upto11;
+  19: Upto9;
+  20: Upto15;
+  21: Upto9;
+  22: Upto9;
+  23: Upto4;
+  24: Upto4;
+  25: Upto6;
+  [field: number]: number;
+};
 
 interface SCHObject2<T extends HL7TypeMap> {
   PlacerAppointmentID?: T['EI'] | null;
@@ -11659,6 +15991,36 @@ interface SCHObject2<T extends HL7TypeMap> {
   ParentFillerAppointmentID?: T['EI'] | null;
   FillerStatusCode?: T['CE'] | null;
 }
+
+type STFFieldComps3 = {
+  1: Upto6;
+  2: Upto6;
+  3: Upto8;
+  4: 1;
+  5: 1;
+  6: Upto2;
+  7: 1;
+  8: Upto6;
+  9: Upto6;
+  10: Upto9;
+  11: Upto11;
+  12: Upto2;
+  13: Upto2;
+  14: Upto6;
+  15: 1;
+  16: Upto6;
+  17: Upto6;
+  18: 1;
+  19: Upto2;
+  20: 1;
+  21: 1;
+  22: Upto3;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  [field: number]: number;
+};
 
 type STFTypes3 = [
   never,
@@ -11719,6 +16081,33 @@ interface STFObject3<T extends HL7TypeMap> {
   DateNextDMVReview?: string | null;
 }
 
+type TXAFieldComps2 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: Upto2;
+  5: Upto15;
+  6: Upto2;
+  7: Upto2;
+  8: Upto2;
+  9: Upto15;
+  10: Upto15;
+  11: Upto15;
+  12: Upto4;
+  13: Upto4;
+  14: Upto4;
+  15: Upto4;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: Upto16;
+  23: Upto15;
+  [field: number]: number;
+};
+
 interface TXAObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   DocumentType?: string | null;
@@ -11744,6 +16133,33 @@ interface TXAObject2<T extends HL7TypeMap> {
   AuthenticationPersonTimeStamp?: T['PPN'][] | null;
   DistributedCopies?: T['XCN'][] | null;
 }
+
+type UB1FieldComps4 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto2;
+  11: 1;
+  12: Upto6;
+  13: Upto6;
+  14: 1;
+  15: 1;
+  16: Upto2;
+  17: Upto6;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: 1;
+  [field: number]: number;
+};
 
 type UB1Types4 = [
   never,
@@ -11838,6 +16254,40 @@ interface UB2Object3<T extends HL7TypeMap> {
   UniformBilling78State?: string[] | null;
   SpecialVisitCount?: number | string | null;
 }
+
+type URDFieldComps4 = {
+  1: Upto2;
+  2: 1;
+  3: Upto15;
+  4: Upto6;
+  5: Upto6;
+  6: 1;
+  7: 1;
+  [field: number]: number;
+};
+
+type URSFieldComps4 = {
+  1: 1;
+  2: Upto2;
+  3: Upto2;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto12;
+  [field: number]: number;
+};
+
+type VARFieldComps2 = {
+  1: Upto4;
+  2: Upto2;
+  3: Upto2;
+  4: Upto15;
+  5: Upto6;
+  6: 1;
+  [field: number]: number;
+};
 
 interface VARObject2<T extends HL7TypeMap> {
   VarianceInstanceID?: T['EI'] | null;
@@ -12357,6 +16807,24 @@ type HL7Types_2_4 = {
 
 type ABSFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
 
+type ABSFieldComps1 = {
+  1: Upto18;
+  2: Upto6;
+  3: Upto6;
+  4: Upto2;
+  5: Upto18;
+  6: Upto6;
+  7: Upto2;
+  8: Upto18;
+  9: Upto6;
+  10: 1;
+  11: Upto6;
+  12: 1;
+  13: Upto6;
+  14: 1;
+  [field: number]: number;
+};
+
 type ABSTypes1 = [
   never,
   'XCN',
@@ -12394,6 +16862,20 @@ interface ABSObject1<T extends HL7TypeMap> {
 
 type ACCFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
+type ACCFieldComps4 = {
+  1: Upto2;
+  2: Upto6;
+  3: 1;
+  4: Upto6;
+  5: 1;
+  6: 1;
+  7: Upto18;
+  8: 1;
+  9: 1;
+  10: 1;
+  [field: number]: number;
+};
+
 type ACCTypes3 = [
   never,
   'TS',
@@ -12423,6 +16905,15 @@ interface ACCObject4<T extends HL7TypeMap> {
 
 type AFFFields1 = 1 | 2 | 3 | 4 | 5;
 
+type AFFFieldComps1 = {
+  1: 1;
+  2: Upto9;
+  3: Upto12;
+  4: Upto2;
+  5: 1;
+  [field: number]: number;
+};
+
 type AFFTypes1 = [never, 'SI', 'XON', 'XAD', 'DR', 'ST'];
 
 interface AFFObject1<T extends HL7TypeMap> {
@@ -12433,7 +16924,39 @@ interface AFFObject1<T extends HL7TypeMap> {
   ProfessionalAffiliationAdditionalInformation?: string | null;
 }
 
+type AIPFieldComps3 = {
+  1: 1;
+  2: 1;
+  3: Upto18;
+  4: Upto6;
+  5: Upto6;
+  6: Upto2;
+  7: 1;
+  8: Upto6;
+  9: 1;
+  10: Upto6;
+  11: 1;
+  12: Upto6;
+  [field: number]: number;
+};
+
 type AISFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type AISFieldComps2 = {
+  1: 1;
+  2: 1;
+  3: Upto6;
+  4: Upto2;
+  5: 1;
+  6: Upto6;
+  7: 1;
+  8: Upto6;
+  9: 1;
+  10: Upto6;
+  11: Upto6;
+  12: Upto6;
+  [field: number]: number;
+};
 
 type AISTypes2 = [
   never,
@@ -12465,6 +16988,16 @@ interface AISObject2<T extends HL7TypeMap> {
   PlacerSupplementalServiceInformation?: T['CE'][] | null;
   FillerSupplementalServiceInformation?: T['CE'][] | null;
 }
+
+type AL1FieldComps2 = {
+  1: Upto6;
+  2: Upto6;
+  3: Upto6;
+  4: Upto6;
+  5: 1;
+  6: 1;
+  [field: number]: number;
+};
 
 type AL1Types3 = [never, 'CE', 'CE', 'CE', 'CE', 'ST', 'DT'];
 
@@ -12503,6 +17036,35 @@ type ARQFields2 =
   | 23
   | 24
   | 25;
+
+type ARQFieldComps3 = {
+  1: Upto4;
+  2: Upto4;
+  3: 1;
+  4: Upto4;
+  5: Upto6;
+  6: Upto6;
+  7: Upto6;
+  8: Upto6;
+  9: 1;
+  10: Upto6;
+  11: Upto2;
+  12: 1;
+  13: Upto2;
+  14: 1;
+  15: Upto18;
+  16: Upto9;
+  17: Upto12;
+  18: Upto9;
+  19: Upto18;
+  20: Upto9;
+  21: Upto9;
+  22: Upto4;
+  23: Upto4;
+  24: Upto4;
+  25: Upto4;
+  [field: number]: number;
+};
 
 type ARQTypes2 = [
   never,
@@ -12563,6 +17125,8 @@ interface ARQObject3<T extends HL7TypeMap> {
 
 type BLCFields1 = 1 | 2;
 
+type BLCFieldComps1 = { 1: Upto6; 2: Upto2; [field: number]: number };
+
 type BLCTypes1 = [never, 'CE', 'CQ'];
 
 interface BLCObject1<T extends HL7TypeMap> {
@@ -12570,7 +17134,34 @@ interface BLCObject1<T extends HL7TypeMap> {
   BloodAmount?: T['CQ'] | null;
 }
 
+type BLGFieldComps5 = { 1: Upto2; 2: 1; 3: Upto8; [field: number]: number };
+
+type CM0FieldComps3 = {
+  1: 1;
+  2: Upto4;
+  3: Upto4;
+  4: 1;
+  5: Upto18;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto18;
+  10: Upto9;
+  11: Upto12;
+  [field: number]: number;
+};
+
 type CNSFields1 = 1 | 2 | 3 | 4 | 5 | 6;
+
+type CNSFieldComps2 = {
+  1: 1;
+  2: 1;
+  3: Upto2;
+  4: Upto2;
+  5: Upto6;
+  6: Upto6;
+  [field: number]: number;
+};
 
 type CNSTypes1 = [never, 'NM', 'NM', 'TS', 'TS', 'CE', 'CE'];
 
@@ -12583,7 +17174,88 @@ interface CNSObject2<T extends HL7TypeMap> {
   EndingNotificationCode?: T['CE'] | null;
 }
 
+type CSRFieldComps3 = {
+  1: Upto4;
+  2: Upto4;
+  3: Upto6;
+  4: Upto8;
+  5: Upto8;
+  6: Upto2;
+  7: Upto18;
+  8: Upto18;
+  9: Upto2;
+  10: Upto6;
+  11: Upto2;
+  12: Upto6;
+  13: Upto6;
+  14: Upto6;
+  15: Upto2;
+  16: Upto6;
+  [field: number]: number;
+};
+
+type CTDFieldComps3 = {
+  1: Upto6;
+  2: Upto11;
+  3: Upto12;
+  4: Upto9;
+  5: Upto9;
+  6: Upto6;
+  7: Upto3;
+  [field: number]: number;
+};
+
+type DB1FieldComps2 = {
+  1: 1;
+  2: 1;
+  3: Upto8;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  [field: number]: number;
+};
+
+type DG1FieldComps5 = {
+  1: 1;
+  2: 1;
+  3: Upto6;
+  4: 1;
+  5: Upto2;
+  6: 1;
+  7: Upto6;
+  8: Upto6;
+  9: 1;
+  10: 1;
+  11: Upto6;
+  12: 1;
+  13: Upto6;
+  14: 1;
+  15: 1;
+  16: Upto18;
+  17: 1;
+  18: 1;
+  19: Upto2;
+  [field: number]: number;
+};
+
 type DRGFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+
+type DRGFieldComps2 = {
+  1: Upto6;
+  2: Upto2;
+  3: 1;
+  4: 1;
+  5: Upto6;
+  6: 1;
+  7: Upto6;
+  8: 1;
+  9: Upto6;
+  10: 1;
+  11: 1;
+  [field: number]: number;
+};
 
 type DRGTypes2 = [
   never,
@@ -12616,6 +17288,8 @@ interface DRGObject2<T extends HL7TypeMap> {
 
 type DSCFields2 = 1 | 2;
 
+type DSCFieldComps2 = { 1: 1; 2: 1; [field: number]: number };
+
 type DSCTypes2 = [never, 'ST', 'ID'];
 
 interface DSCObject2<T extends HL7TypeMap> {
@@ -12624,6 +17298,15 @@ interface DSCObject2<T extends HL7TypeMap> {
 }
 
 type ECDFields1 = 1 | 2 | 3 | 4 | 5;
+
+type ECDFieldComps1 = {
+  1: 1;
+  2: Upto6;
+  3: 1;
+  4: Upto12;
+  5: 1;
+  [field: number]: number;
+};
 
 type ECDTypes1 = [never, 'NM', 'CE', 'ID', 'TQ', 'ST'];
 
@@ -12637,6 +17320,8 @@ interface ECDObject1<T extends HL7TypeMap> {
 
 type ECRFields1 = 1 | 2 | 3;
 
+type ECRFieldComps1 = { 1: Upto6; 2: Upto2; 3: 1; [field: number]: number };
+
 type ECRTypes1 = [never, 'CE', 'TS', 'ST'];
 
 interface ECRObject1<T extends HL7TypeMap> {
@@ -12646,6 +17331,18 @@ interface ECRObject1<T extends HL7TypeMap> {
 }
 
 type EDUFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
+type EDUFieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto2;
+  4: Upto2;
+  5: 1;
+  6: Upto9;
+  7: Upto6;
+  8: Upto12;
+  [field: number]: number;
+};
 
 type EDUTypes1 = [never, 'SI', 'IS', 'DR', 'DR', 'DT', 'XON', 'CE', 'XAD'];
 
@@ -12662,6 +17359,15 @@ interface EDUObject1<T extends HL7TypeMap> {
 
 type EQPFields1 = 1 | 2 | 3 | 4 | 5;
 
+type EQPFieldComps1 = {
+  1: Upto6;
+  2: 1;
+  3: Upto2;
+  4: Upto2;
+  5: 1;
+  [field: number]: number;
+};
+
 type EQPTypes1 = [never, 'CE', 'ST', 'TS', 'TS', 'FT'];
 
 interface EQPObject1<T extends HL7TypeMap> {
@@ -12673,6 +17379,15 @@ interface EQPObject1<T extends HL7TypeMap> {
 }
 
 type EQUFields1 = 1 | 2 | 3 | 4 | 5;
+
+type EQUFieldComps1 = {
+  1: Upto4;
+  2: Upto2;
+  3: Upto6;
+  4: Upto6;
+  5: Upto6;
+  [field: number]: number;
+};
 
 type EQUTypes1 = [never, 'EI', 'TS', 'CE', 'CE', 'CE'];
 
@@ -12686,6 +17401,17 @@ interface EQUObject1<T extends HL7TypeMap> {
 
 type EVNFields4 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
+type EVNFieldComps5 = {
+  1: 1;
+  2: Upto2;
+  3: Upto2;
+  4: 1;
+  5: Upto18;
+  6: Upto2;
+  7: Upto3;
+  [field: number]: number;
+};
+
 type EVNTypes5 = [never, 'ID', 'TS', 'TS', 'IS', 'XCN', 'TS', 'HD'];
 
 interface EVNObject5<T extends HL7TypeMap> {
@@ -12698,7 +17424,87 @@ interface EVNObject5<T extends HL7TypeMap> {
   EventFacility?: T['HD'] | null;
 }
 
+type FACFieldComps3 = {
+  1: Upto4;
+  2: 1;
+  3: Upto12;
+  4: Upto9;
+  5: Upto18;
+  6: 1;
+  7: Upto12;
+  8: Upto9;
+  9: Upto18;
+  10: 1;
+  11: Upto12;
+  12: Upto9;
+  [field: number]: number;
+};
+
+type FT1FieldComps5 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: Upto2;
+  5: Upto2;
+  6: 1;
+  7: Upto6;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: Upto6;
+  12: Upto6;
+  13: Upto6;
+  14: Upto6;
+  15: Upto6;
+  16: Upto9;
+  17: 1;
+  18: 1;
+  19: Upto6;
+  20: Upto18;
+  21: Upto18;
+  22: Upto6;
+  23: Upto4;
+  24: Upto18;
+  25: Upto6;
+  26: Upto6;
+  [field: number]: number;
+};
+
+type GOLFieldComps3 = {
+  1: 1;
+  2: Upto2;
+  3: Upto6;
+  4: Upto4;
+  5: Upto4;
+  6: 1;
+  7: Upto2;
+  8: Upto2;
+  9: Upto6;
+  10: Upto6;
+  11: Upto6;
+  12: Upto2;
+  13: Upto2;
+  14: Upto2;
+  15: Upto12;
+  16: Upto6;
+  17: 1;
+  18: Upto6;
+  19: Upto2;
+  20: Upto6;
+  21: Upto11;
+  [field: number]: number;
+};
+
 type GP1Fields1 = 1 | 2 | 3 | 4 | 5;
+
+type GP1FieldComps1 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: Upto6;
+  [field: number]: number;
+};
 
 type GP1Types1 = [never, 'IS', 'IS', 'IS', 'IS', 'CP'];
 
@@ -12711,6 +17517,24 @@ interface GP1Object1<T extends HL7TypeMap> {
 }
 
 type GP2Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
+type GP2FieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto6;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: Upto6;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: Upto6;
+  12: 1;
+  13: Upto6;
+  14: 1;
+  [field: number]: number;
+};
 
 type GP2Types1 = [
   never,
@@ -12747,6 +17571,65 @@ interface GP2Object1<T extends HL7TypeMap> {
   PayRatePerServiceUnit?: number | string | null;
 }
 
+type GT1FieldComps5 = {
+  1: 1;
+  2: Upto8;
+  3: Upto11;
+  4: Upto11;
+  5: Upto12;
+  6: Upto9;
+  7: Upto9;
+  8: Upto2;
+  9: 1;
+  10: 1;
+  11: Upto6;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: Upto11;
+  17: Upto12;
+  18: Upto9;
+  19: Upto8;
+  20: 1;
+  21: Upto9;
+  22: 1;
+  23: Upto6;
+  24: Upto2;
+  25: 1;
+  26: Upto6;
+  27: Upto6;
+  28: 1;
+  29: Upto8;
+  30: Upto6;
+  31: 1;
+  32: 1;
+  33: 1;
+  34: 1;
+  35: Upto6;
+  36: Upto6;
+  37: 1;
+  38: Upto6;
+  39: 1;
+  40: 1;
+  41: Upto6;
+  42: Upto11;
+  43: Upto6;
+  44: Upto6;
+  45: Upto11;
+  46: Upto9;
+  47: Upto6;
+  48: 1;
+  49: 1;
+  50: Upto2;
+  51: Upto9;
+  52: 1;
+  53: 1;
+  54: Upto2;
+  55: Upto6;
+  [field: number]: number;
+};
+
 type IAMFields1 =
   | 1
   | 2
@@ -12768,6 +17651,30 @@ type IAMFields1 =
   | 18
   | 19
   | 20;
+
+type IAMFieldComps1 = {
+  1: 1;
+  2: Upto6;
+  3: Upto6;
+  4: Upto6;
+  5: 1;
+  6: Upto9;
+  7: Upto4;
+  8: 1;
+  9: Upto6;
+  10: Upto6;
+  11: 1;
+  12: 1;
+  13: Upto2;
+  14: Upto11;
+  15: Upto6;
+  16: Upto6;
+  17: Upto6;
+  18: Upto18;
+  19: Upto9;
+  20: Upto2;
+  [field: number]: number;
+};
 
 type IAMTypes1 = [
   never,
@@ -12816,6 +17723,164 @@ interface IAMObject1<T extends HL7TypeMap> {
   StatusedAtDateTime?: T['TS'] | null;
 }
 
+type IN1FieldComps5 = {
+  1: 1;
+  2: Upto6;
+  3: Upto8;
+  4: Upto9;
+  5: Upto12;
+  6: Upto11;
+  7: Upto9;
+  8: 1;
+  9: Upto9;
+  10: Upto8;
+  11: Upto9;
+  12: 1;
+  13: 1;
+  14: Upto3;
+  15: 1;
+  16: Upto11;
+  17: Upto6;
+  18: Upto2;
+  19: Upto12;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: 1;
+  29: Upto2;
+  30: Upto18;
+  31: 1;
+  32: 1;
+  33: 1;
+  34: 1;
+  35: 1;
+  36: 1;
+  37: Upto6;
+  38: Upto6;
+  39: 1;
+  40: Upto6;
+  41: Upto6;
+  42: Upto6;
+  43: 1;
+  44: Upto12;
+  45: 1;
+  46: 1;
+  47: 1;
+  48: 1;
+  49: Upto8;
+  [field: number]: number;
+};
+
+type IN2FieldComps4 = {
+  1: Upto8;
+  2: 1;
+  3: Upto18;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: Upto11;
+  8: 1;
+  9: Upto11;
+  10: 1;
+  11: Upto6;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: Upto11;
+  23: 1;
+  24: 1;
+  25: Upto8;
+  26: Upto8;
+  27: 1;
+  28: Upto3;
+  29: Upto3;
+  30: Upto3;
+  31: 1;
+  32: 1;
+  33: Upto6;
+  34: Upto6;
+  35: 1;
+  36: Upto6;
+  37: 1;
+  38: 1;
+  39: Upto6;
+  40: Upto11;
+  41: Upto6;
+  42: Upto6;
+  43: Upto6;
+  44: 1;
+  45: 1;
+  46: 1;
+  47: Upto2;
+  48: 1;
+  49: Upto11;
+  50: Upto9;
+  51: 1;
+  52: Upto11;
+  53: Upto9;
+  54: 1;
+  55: 1;
+  56: 1;
+  57: 1;
+  58: Upto9;
+  59: 1;
+  60: 1;
+  61: Upto8;
+  62: Upto6;
+  63: Upto9;
+  64: Upto9;
+  65: Upto6;
+  66: 1;
+  67: 1;
+  68: 1;
+  69: Upto9;
+  70: Upto9;
+  71: Upto6;
+  72: Upto6;
+  [field: number]: number;
+};
+
+type IN3FieldComps4 = {
+  1: 1;
+  2: Upto8;
+  3: Upto18;
+  4: 1;
+  5: Upto2;
+  6: Upto2;
+  7: Upto2;
+  8: Upto18;
+  9: 1;
+  10: 1;
+  11: Upto2;
+  12: Upto6;
+  13: Upto2;
+  14: Upto18;
+  15: 1;
+  16: Upto9;
+  17: Upto6;
+  18: Upto6;
+  19: Upto9;
+  20: Upto3;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: Upto18;
+  [field: number]: number;
+};
+
 type INVFields1 =
   | 1
   | 2
@@ -12835,6 +17900,28 @@ type INVFields1 =
   | 16
   | 17
   | 18;
+
+type INVFieldComps1 = {
+  1: Upto6;
+  2: Upto6;
+  3: Upto6;
+  4: Upto6;
+  5: Upto6;
+  6: Upto6;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: Upto6;
+  12: Upto2;
+  13: Upto2;
+  14: Upto12;
+  15: Upto6;
+  16: 1;
+  17: Upto6;
+  18: Upto6;
+  [field: number]: number;
+};
 
 type INVTypes1 = [
   never,
@@ -12881,6 +17968,8 @@ interface INVObject1<T extends HL7TypeMap> {
 
 type ISDFields1 = 1 | 2 | 3;
 
+type ISDFieldComps1 = { 1: 1; 2: Upto6; 3: Upto6; [field: number]: number };
+
 type ISDTypes1 = [never, 'NM', 'CE', 'CE'];
 
 interface ISDObject1<T extends HL7TypeMap> {
@@ -12891,6 +17980,14 @@ interface ISDObject1<T extends HL7TypeMap> {
 
 type LANFields1 = 1 | 2 | 3 | 4;
 
+type LANFieldComps1 = {
+  1: 1;
+  2: Upto6;
+  3: Upto6;
+  4: Upto6;
+  [field: number]: number;
+};
+
 type LANTypes1 = [never, 'SI', 'CE', 'CE', 'CE'];
 
 interface LANObject1<T extends HL7TypeMap> {
@@ -12899,6 +17996,14 @@ interface LANObject1<T extends HL7TypeMap> {
   LanguageAbilityCode?: T['CE'][] | null;
   LanguageProficiencyCode?: T['CE'] | null;
 }
+
+type LCCFieldComps2 = {
+  1: Upto9;
+  2: Upto6;
+  3: Upto6;
+  4: Upto6;
+  [field: number]: number;
+};
 
 type LCCTypes2 = [never, 'PL', 'CE', 'CE', 'CE'];
 
@@ -12910,6 +18015,22 @@ interface LCCObject2<T extends HL7TypeMap> {
 }
 
 type LDPFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type LDPFieldComps2 = {
+  1: Upto9;
+  2: Upto6;
+  3: 1;
+  4: Upto6;
+  5: 1;
+  6: 1;
+  7: Upto2;
+  8: Upto2;
+  9: 1;
+  10: Upto4;
+  11: Upto9;
+  12: Upto6;
+  [field: number]: number;
+};
 
 type LDPTypes3 = [
   never,
@@ -12944,6 +18065,19 @@ interface LDPObject2<T extends HL7TypeMap> {
 
 type LOCFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
+type LOCFieldComps3 = {
+  1: Upto9;
+  2: 1;
+  3: 1;
+  4: Upto9;
+  5: Upto12;
+  6: Upto9;
+  7: Upto6;
+  8: 1;
+  9: 1;
+  [field: number]: number;
+};
+
 type LOCTypes3 = [
   never,
   'PL',
@@ -12969,6 +18103,17 @@ interface LOCObject3<T extends HL7TypeMap> {
   LocationServiceCode?: string | null;
 }
 
+type MRGFieldComps5 = {
+  1: Upto8;
+  2: Upto8;
+  3: Upto8;
+  4: Upto8;
+  5: Upto8;
+  6: Upto8;
+  7: Upto11;
+  [field: number]: number;
+};
+
 type MSHFields5 =
   | 1
   | 2
@@ -12991,6 +18136,31 @@ type MSHFields5 =
   | 19
   | 20
   | 21;
+
+type MSHFieldComps5 = {
+  1: 1;
+  2: 1;
+  3: Upto3;
+  4: Upto3;
+  5: Upto3;
+  6: Upto3;
+  7: Upto2;
+  8: 1;
+  9: Upto3;
+  10: 1;
+  11: Upto2;
+  12: Upto3;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: Upto6;
+  20: 1;
+  21: 1;
+  [field: number]: number;
+};
 
 type MSHTypes5 = [
   never,
@@ -13043,6 +18213,14 @@ interface MSHObject5<T extends HL7TypeMap> {
 
 type NDSFields1 = 1 | 2 | 3 | 4;
 
+type NDSFieldComps1 = {
+  1: 1;
+  2: Upto2;
+  3: Upto6;
+  4: Upto6;
+  [field: number]: number;
+};
+
 type NDSTypes1 = [never, 'NM', 'TS', 'CE', 'CE'];
 
 interface NDSObject1<T extends HL7TypeMap> {
@@ -13051,6 +18229,60 @@ interface NDSObject1<T extends HL7TypeMap> {
   NotificationAlertSeverity?: T['CE'] | null;
   NotificationCode?: T['CE'] | null;
 }
+
+type NK1FieldComps5 = {
+  1: 1;
+  2: Upto11;
+  3: Upto6;
+  4: Upto12;
+  5: Upto9;
+  6: Upto9;
+  7: Upto6;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: Upto2;
+  12: Upto8;
+  13: Upto9;
+  14: Upto6;
+  15: 1;
+  16: Upto2;
+  17: 1;
+  18: 1;
+  19: Upto6;
+  20: Upto6;
+  21: 1;
+  22: Upto6;
+  23: 1;
+  24: 1;
+  25: Upto6;
+  26: Upto11;
+  27: Upto6;
+  28: Upto6;
+  29: Upto6;
+  30: Upto11;
+  31: Upto9;
+  32: Upto12;
+  33: Upto8;
+  34: 1;
+  35: Upto6;
+  36: 1;
+  37: 1;
+  [field: number]: number;
+};
+
+type NSCFieldComps3 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: Upto3;
+  5: Upto3;
+  6: 1;
+  7: 1;
+  8: Upto3;
+  9: Upto3;
+  [field: number]: number;
+};
 
 type NSCTypes4 = [never, 'IS', 'ST', 'ST', 'HD', 'HD', 'ST', 'ST', 'HD', 'HD'];
 
@@ -13114,6 +18346,57 @@ type OBRFields4 =
   | 45
   | 46
   | 47;
+
+type OBRFieldComps5 = {
+  1: 1;
+  2: Upto4;
+  3: Upto4;
+  4: Upto6;
+  5: 1;
+  6: Upto2;
+  7: Upto2;
+  8: Upto2;
+  9: Upto2;
+  10: Upto18;
+  11: 1;
+  12: Upto6;
+  13: 1;
+  14: Upto2;
+  15: Upto7;
+  16: Upto18;
+  17: Upto9;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: Upto2;
+  23: Upto2;
+  24: 1;
+  25: 1;
+  26: Upto3;
+  27: Upto12;
+  28: Upto18;
+  29: Upto2;
+  30: 1;
+  31: Upto6;
+  32: Upto11;
+  33: Upto11;
+  34: Upto11;
+  35: Upto11;
+  36: Upto2;
+  37: 1;
+  38: Upto6;
+  39: Upto6;
+  40: Upto6;
+  41: 1;
+  42: 1;
+  43: Upto6;
+  44: Upto6;
+  45: Upto6;
+  46: Upto6;
+  47: Upto6;
+  [field: number]: number;
+};
 
 type OBRTypes5 = [
   never,
@@ -13237,6 +18520,29 @@ type OBXFields4 =
   | 18
   | 19;
 
+type OBXFieldComps5 = {
+  1: 1;
+  2: 1;
+  3: Upto6;
+  4: 1;
+  5: number;
+  6: Upto6;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: Upto2;
+  13: 1;
+  14: Upto2;
+  15: Upto6;
+  16: Upto18;
+  17: Upto6;
+  18: Upto4;
+  19: Upto2;
+  [field: number]: number;
+};
+
 type OBXTypes4 = [
   never,
   'SI',
@@ -13282,6 +18588,57 @@ interface OBXObject5<T extends HL7TypeMap> {
   DateTimeOfTheAnalysis?: T['TS'] | null;
 }
 
+type OM1FieldComps4 = {
+  1: 1;
+  2: Upto6;
+  3: 1;
+  4: 1;
+  5: Upto6;
+  6: 1;
+  7: Upto6;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: Upto6;
+  14: Upto6;
+  15: 1;
+  16: Upto6;
+  17: Upto9;
+  18: 1;
+  19: Upto6;
+  20: 1;
+  21: Upto2;
+  22: Upto2;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: Upto6;
+  28: Upto12;
+  29: Upto9;
+  30: 1;
+  31: Upto6;
+  32: 1;
+  33: Upto6;
+  34: Upto6;
+  35: 1;
+  36: Upto6;
+  37: 1;
+  38: Upto6;
+  39: 1;
+  40: 1;
+  41: 1;
+  42: Upto6;
+  43: Upto6;
+  44: 1;
+  45: Upto6;
+  46: Upto6;
+  47: Upto6;
+  [field: number]: number;
+};
+
 type OM7Fields1 =
   | 1
   | 2
@@ -13307,6 +18664,34 @@ type OM7Fields1 =
   | 22
   | 23
   | 24;
+
+type OM7FieldComps1 = {
+  1: 1;
+  2: Upto6;
+  3: Upto6;
+  4: 1;
+  5: 1;
+  6: Upto2;
+  7: Upto2;
+  8: 1;
+  9: Upto6;
+  10: 1;
+  11: 1;
+  12: Upto6;
+  13: Upto2;
+  14: Upto2;
+  15: 1;
+  16: Upto6;
+  17: 1;
+  18: Upto6;
+  19: Upto2;
+  20: Upto18;
+  21: Upto9;
+  22: 1;
+  23: 1;
+  24: Upto6;
+  [field: number]: number;
+};
 
 type OM7Types1 = [
   never,
@@ -13390,6 +18775,35 @@ type ORCFields4 =
   | 24
   | 25;
 
+type ORCFieldComps5 = {
+  1: 1;
+  2: Upto4;
+  3: Upto4;
+  4: Upto4;
+  5: 1;
+  6: 1;
+  7: Upto12;
+  8: Upto2;
+  9: Upto2;
+  10: Upto18;
+  11: Upto18;
+  12: Upto18;
+  13: Upto9;
+  14: Upto9;
+  15: Upto2;
+  16: Upto6;
+  17: Upto6;
+  18: Upto6;
+  19: Upto18;
+  20: Upto6;
+  21: Upto9;
+  22: Upto12;
+  23: Upto9;
+  24: Upto12;
+  25: Upto9;
+  [field: number]: number;
+};
+
 type ORCTypes5 = [
   never,
   'ID',
@@ -13449,6 +18863,22 @@ interface ORCObject5<T extends HL7TypeMap> {
 
 type ORGFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
+type ORGFieldComps1 = {
+  1: 1;
+  2: Upto6;
+  3: Upto6;
+  4: 1;
+  5: Upto8;
+  6: Upto6;
+  7: Upto6;
+  8: Upto6;
+  9: Upto2;
+  10: Upto6;
+  11: 1;
+  12: 1;
+  [field: number]: number;
+};
+
 type ORGTypes1 = [
   never,
   'SI',
@@ -13503,6 +18933,31 @@ type PD1Fields2 =
   | 20
   | 21;
 
+type PD1FieldComps3 = {
+  1: 1;
+  2: 1;
+  3: Upto9;
+  4: Upto18;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto8;
+  11: Upto6;
+  12: 1;
+  13: 1;
+  14: Upto9;
+  15: Upto6;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  [field: number]: number;
+};
+
 type PD1Types2 = [
   never,
   'IS',
@@ -13554,6 +19009,19 @@ interface PD1Object3<T extends HL7TypeMap> {
 
 type PDAFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
+type PDAFieldComps1 = {
+  1: Upto6;
+  2: Upto9;
+  3: 1;
+  4: Upto2;
+  5: Upto18;
+  6: 1;
+  7: Upto2;
+  8: Upto18;
+  9: 1;
+  [field: number]: number;
+};
+
 type PDATypes1 = [
   never,
   'CE',
@@ -13578,6 +19046,52 @@ interface PDAObject1<T extends HL7TypeMap> {
   AutopsyPerformedBy?: T['XCN'] | null;
   CoronerIndicator?: string | null;
 }
+
+type PEOFieldComps3 = {
+  1: Upto6;
+  2: Upto6;
+  3: Upto2;
+  4: Upto2;
+  5: Upto2;
+  6: Upto2;
+  7: Upto12;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: Upto6;
+  19: Upto11;
+  20: Upto12;
+  21: Upto9;
+  22: 1;
+  23: 1;
+  24: Upto2;
+  25: 1;
+  [field: number]: number;
+};
+
+type PESFieldComps3 = {
+  1: Upto9;
+  2: Upto18;
+  3: Upto12;
+  4: Upto9;
+  5: Upto4;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto2;
+  10: Upto2;
+  11: 1;
+  12: 1;
+  13: 1;
+  [field: number]: number;
+};
 
 type PIDFields4 =
   | 1
@@ -13618,6 +19132,48 @@ type PIDFields4 =
   | 36
   | 37
   | 38;
+
+type PIDFieldComps5 = {
+  1: 1;
+  2: Upto8;
+  3: Upto8;
+  4: Upto8;
+  5: Upto11;
+  6: Upto11;
+  7: Upto2;
+  8: 1;
+  9: Upto11;
+  10: Upto6;
+  11: Upto12;
+  12: 1;
+  13: Upto9;
+  14: Upto9;
+  15: Upto6;
+  16: Upto6;
+  17: Upto6;
+  18: Upto8;
+  19: 1;
+  20: Upto3;
+  21: Upto8;
+  22: Upto6;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: Upto6;
+  27: Upto6;
+  28: Upto6;
+  29: Upto2;
+  30: 1;
+  31: 1;
+  32: 1;
+  33: Upto2;
+  34: Upto3;
+  35: Upto6;
+  36: Upto6;
+  37: 1;
+  38: Upto6;
+  [field: number]: number;
+};
 
 type PIDTypes5 = [
   never,
@@ -13722,6 +19278,28 @@ type PR1Fields5 =
   | 17
   | 18;
 
+type PR1FieldComps5 = {
+  1: 1;
+  2: 1;
+  3: Upto6;
+  4: 1;
+  5: Upto2;
+  6: 1;
+  7: 1;
+  8: Upto18;
+  9: 1;
+  10: 1;
+  11: Upto18;
+  12: Upto18;
+  13: Upto6;
+  14: 1;
+  15: Upto6;
+  16: Upto6;
+  17: 1;
+  18: Upto6;
+  [field: number]: number;
+};
+
 type PR1Types5 = [
   never,
   'SI',
@@ -13767,6 +19345,22 @@ interface PR1Object5<T extends HL7TypeMap> {
 
 type PRAFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
+type PRAFieldComps4 = {
+  1: Upto6;
+  2: Upto6;
+  3: 1;
+  4: 1;
+  5: Upto4;
+  6: Upto4;
+  7: Upto5;
+  8: 1;
+  9: Upto6;
+  10: 1;
+  11: Upto6;
+  12: 1;
+  [field: number]: number;
+};
+
 type PRATypes3 = [
   never,
   'CE',
@@ -13797,6 +19391,75 @@ interface PRAObject3<T extends HL7TypeMap> {
   GovernmentReimbursementBillingEligibility?: T['CE'][] | null;
   SetID?: number | string | null;
 }
+
+type PRDFieldComps3 = {
+  1: Upto6;
+  2: Upto11;
+  3: Upto12;
+  4: Upto9;
+  5: Upto9;
+  6: Upto6;
+  7: Upto3;
+  8: Upto2;
+  9: Upto2;
+  [field: number]: number;
+};
+
+type PV1FieldComps5 = {
+  1: 1;
+  2: 1;
+  3: Upto9;
+  4: 1;
+  5: Upto8;
+  6: Upto9;
+  7: Upto18;
+  8: Upto18;
+  9: Upto18;
+  10: 1;
+  11: Upto9;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: Upto18;
+  18: 1;
+  19: Upto8;
+  20: Upto2;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: 1;
+  29: 1;
+  30: 1;
+  31: 1;
+  32: 1;
+  33: 1;
+  34: 1;
+  35: 1;
+  36: 1;
+  37: Upto2;
+  38: Upto6;
+  39: 1;
+  40: 1;
+  41: 1;
+  42: Upto9;
+  43: Upto9;
+  44: Upto2;
+  45: Upto2;
+  46: 1;
+  47: 1;
+  48: 1;
+  49: 1;
+  50: Upto8;
+  51: 1;
+  52: Upto18;
+  [field: number]: number;
+};
 
 interface PV1Object5<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -13902,6 +19565,57 @@ type PV2Fields3 =
   | 46
   | 47;
 
+type PV2FieldComps4 = {
+  1: Upto9;
+  2: Upto6;
+  3: Upto6;
+  4: Upto6;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: Upto2;
+  9: Upto2;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: Upto18;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: Upto9;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: 1;
+  29: 1;
+  30: Upto6;
+  31: 1;
+  32: 1;
+  33: Upto2;
+  34: 1;
+  35: 1;
+  36: 1;
+  37: 1;
+  38: Upto6;
+  39: Upto6;
+  40: Upto6;
+  41: Upto6;
+  42: Upto6;
+  43: 1;
+  44: 1;
+  45: Upto6;
+  46: 1;
+  47: Upto2;
+  [field: number]: number;
+};
+
 type PV2Types4 = [
   never,
   'PL',
@@ -14005,6 +19719,16 @@ interface PV2Object4<T extends HL7TypeMap> {
 
 type QAKFields2 = 1 | 2 | 3 | 4 | 5 | 6;
 
+type QAKFieldComps2 = {
+  1: 1;
+  2: 1;
+  3: Upto6;
+  4: 1;
+  5: 1;
+  6: 1;
+  [field: number]: number;
+};
+
 type QAKTypes2 = [never, 'ST', 'ID', 'CE', 'NM', 'NM', 'NM'];
 
 interface QAKObject2<T extends HL7TypeMap> {
@@ -14018,6 +19742,8 @@ interface QAKObject2<T extends HL7TypeMap> {
 
 type QIDFields1 = 1 | 2;
 
+type QIDFieldComps1 = { 1: 1; 2: Upto6; [field: number]: number };
+
 type QIDTypes1 = [never, 'ST', 'CE'];
 
 interface QIDObject1<T extends HL7TypeMap> {
@@ -14027,6 +19753,8 @@ interface QIDObject1<T extends HL7TypeMap> {
 
 type QPDFields1 = 1 | 2 | 3;
 
+type QPDFieldComps1 = { 1: Upto6; 2: 1; 3: number; [field: number]: number };
+
 type QPDTypes1 = [never, 'CE', 'ST', 'VARIES'];
 
 interface QPDObject1<T extends HL7TypeMap> {
@@ -14035,7 +19763,37 @@ interface QPDObject1<T extends HL7TypeMap> {
   UserParameters?: string | null;
 }
 
+type QRDFieldComps5 = {
+  1: Upto2;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: Upto2;
+  7: Upto2;
+  8: Upto18;
+  9: Upto6;
+  10: Upto6;
+  11: Upto2;
+  12: 1;
+  [field: number]: number;
+};
+
 type QRFFields4 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+
+type QRFFieldComps5 = {
+  1: 1;
+  2: Upto2;
+  3: Upto2;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto12;
+  10: 1;
+  [field: number]: number;
+};
 
 type QRFTypes4 = [
   never,
@@ -14066,6 +19824,8 @@ interface QRFObject4<T extends HL7TypeMap> {
 
 type QRIFields1 = 1 | 2 | 3;
 
+type QRIFieldComps1 = { 1: 1; 2: 1; 3: Upto6; [field: number]: number };
+
 type QRITypes1 = [never, 'NM', 'IS', 'CE'];
 
 interface QRIObject1<T extends HL7TypeMap> {
@@ -14075,6 +19835,17 @@ interface QRIObject1<T extends HL7TypeMap> {
 }
 
 type RCPFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
+type RCPFieldComps1 = {
+  1: 1;
+  2: Upto2;
+  3: Upto6;
+  4: Upto2;
+  5: 1;
+  6: Upto2;
+  7: 1;
+  [field: number]: number;
+};
 
 type RCPTypes1 = [never, 'ID', 'CQ', 'CE', 'TS', 'ID', 'SRT', 'ID'];
 
@@ -14090,6 +19861,8 @@ interface RCPObject1<T extends HL7TypeMap> {
 
 type RMIFields1 = 1 | 2 | 3;
 
+type RMIFieldComps1 = { 1: Upto6; 2: Upto2; 3: Upto6; [field: number]: number };
+
 type RMITypes1 = [never, 'CE', 'TS', 'CE'];
 
 interface RMIObject1<T extends HL7TypeMap> {
@@ -14099,6 +19872,22 @@ interface RMIObject1<T extends HL7TypeMap> {
 }
 
 type ROLFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type ROLFieldComps3 = {
+  1: Upto4;
+  2: 1;
+  3: Upto6;
+  4: Upto18;
+  5: Upto2;
+  6: Upto2;
+  7: Upto6;
+  8: Upto6;
+  9: Upto6;
+  10: Upto6;
+  11: Upto12;
+  12: Upto9;
+  [field: number]: number;
+};
 
 type ROLTypes2 = [
   never,
@@ -14131,7 +19920,44 @@ interface ROLObject3<T extends HL7TypeMap> {
   Phone?: T['XTN'][] | null;
 }
 
+type RXAFieldComps4 = {
+  1: 1;
+  2: 1;
+  3: Upto2;
+  4: Upto2;
+  5: Upto6;
+  6: 1;
+  7: Upto6;
+  8: Upto6;
+  9: Upto6;
+  10: Upto18;
+  11: Upto16;
+  12: 1;
+  13: 1;
+  14: Upto6;
+  15: 1;
+  16: Upto2;
+  17: Upto6;
+  18: Upto6;
+  19: Upto6;
+  20: 1;
+  21: 1;
+  22: Upto2;
+  [field: number]: number;
+};
+
 type RXCFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
+type RXCFieldComps3 = {
+  1: 1;
+  2: Upto6;
+  3: 1;
+  4: Upto6;
+  5: 1;
+  6: Upto6;
+  7: Upto6;
+  [field: number]: number;
+};
 
 type RXCTypes3 = [never, 'ID', 'CE', 'NM', 'CE', 'NM', 'CE', 'CE'];
 
@@ -14173,6 +19999,37 @@ type RXDFields3 =
   | 25
   | 26
   | 27;
+
+type RXDFieldComps4 = {
+  1: 1;
+  2: Upto6;
+  3: Upto2;
+  4: 1;
+  5: Upto6;
+  6: Upto6;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto18;
+  11: 1;
+  12: Upto2;
+  13: Upto16;
+  14: 1;
+  15: Upto6;
+  16: 1;
+  17: Upto6;
+  18: 1;
+  19: Upto2;
+  20: Upto6;
+  21: Upto6;
+  22: 1;
+  23: Upto6;
+  24: 1;
+  25: Upto6;
+  26: Upto6;
+  27: Upto6;
+  [field: number]: number;
+};
 
 type RXDTypes4 = [
   never,
@@ -14268,6 +20125,41 @@ type RXEFields3 =
   | 30
   | 31;
 
+type RXEFieldComps4 = {
+  1: Upto12;
+  2: Upto6;
+  3: 1;
+  4: 1;
+  5: Upto6;
+  6: Upto6;
+  7: Upto6;
+  8: Upto9;
+  9: 1;
+  10: 1;
+  11: Upto6;
+  12: 1;
+  13: Upto18;
+  14: Upto18;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: Upto2;
+  19: Upto2;
+  20: 1;
+  21: Upto6;
+  22: 1;
+  23: 1;
+  24: Upto6;
+  25: 1;
+  26: Upto6;
+  27: Upto6;
+  28: 1;
+  29: Upto6;
+  30: 1;
+  31: Upto6;
+  [field: number]: number;
+};
+
 type RXETypes4 = [
   never,
   'TQ',
@@ -14362,6 +20254,34 @@ type RXOFields4 =
   | 22
   | 23
   | 24;
+
+type RXOFieldComps4 = {
+  1: Upto6;
+  2: 1;
+  3: 1;
+  4: Upto6;
+  5: Upto6;
+  6: Upto6;
+  7: Upto6;
+  8: Upto9;
+  9: 1;
+  10: Upto6;
+  11: 1;
+  12: Upto6;
+  13: 1;
+  14: Upto18;
+  15: Upto18;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: Upto6;
+  20: Upto6;
+  21: 1;
+  22: Upto6;
+  23: Upto2;
+  24: Upto6;
+  [field: number]: number;
+};
 
 type RXOTypes4 = [
   never,
@@ -14463,6 +20383,54 @@ type SACFields1 =
   | 42
   | 43
   | 44;
+
+type SACFieldComps1 = {
+  1: Upto4;
+  2: Upto4;
+  3: Upto4;
+  4: Upto4;
+  5: Upto4;
+  6: Upto7;
+  7: Upto2;
+  8: Upto6;
+  9: Upto6;
+  10: Upto4;
+  11: Upto4;
+  12: Upto6;
+  13: Upto4;
+  14: Upto4;
+  15: Upto6;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: Upto6;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: Upto6;
+  25: Upto6;
+  26: Upto6;
+  27: Upto6;
+  28: Upto6;
+  29: Upto4;
+  30: Upto6;
+  31: Upto4;
+  32: 1;
+  33: Upto6;
+  34: 1;
+  35: Upto6;
+  36: 1;
+  37: Upto6;
+  38: 1;
+  39: Upto6;
+  40: Upto6;
+  41: Upto6;
+  42: Upto6;
+  43: Upto6;
+  44: Upto6;
+  [field: number]: number;
+};
 
 type SACTypes1 = [
   never,
@@ -14588,6 +20556,37 @@ type SCHFields2 =
   | 26
   | 27;
 
+type SCHFieldComps3 = {
+  1: Upto4;
+  2: Upto4;
+  3: 1;
+  4: Upto4;
+  5: Upto6;
+  6: Upto6;
+  7: Upto6;
+  8: Upto6;
+  9: 1;
+  10: Upto6;
+  11: Upto12;
+  12: Upto18;
+  13: Upto9;
+  14: Upto12;
+  15: Upto9;
+  16: Upto18;
+  17: Upto9;
+  18: Upto12;
+  19: Upto9;
+  20: Upto18;
+  21: Upto9;
+  22: Upto9;
+  23: Upto4;
+  24: Upto4;
+  25: Upto6;
+  26: Upto4;
+  27: Upto4;
+  [field: number]: number;
+};
+
 type SCHTypes2 = [
   never,
   'EI',
@@ -14651,6 +20650,14 @@ interface SCHObject3<T extends HL7TypeMap> {
 
 type SIDFields1 = 1 | 2 | 3 | 4;
 
+type SIDFieldComps1 = {
+  1: Upto6;
+  2: 1;
+  3: 1;
+  4: Upto6;
+  [field: number]: number;
+};
+
 type SIDTypes1 = [never, 'CE', 'ST', 'ST', 'CE'];
 
 interface SIDObject1<T extends HL7TypeMap> {
@@ -14690,6 +20697,39 @@ type STFFields3 =
   | 27
   | 28
   | 29;
+
+type STFFieldComps4 = {
+  1: Upto6;
+  2: Upto8;
+  3: Upto11;
+  4: 1;
+  5: 1;
+  6: Upto2;
+  7: 1;
+  8: Upto6;
+  9: Upto6;
+  10: Upto9;
+  11: Upto12;
+  12: Upto2;
+  13: Upto2;
+  14: Upto6;
+  15: 1;
+  16: Upto6;
+  17: Upto6;
+  18: 1;
+  19: Upto2;
+  20: Upto6;
+  21: 1;
+  22: Upto3;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: Upto6;
+  28: Upto6;
+  29: 1;
+  [field: number]: number;
+};
 
 type STFTypes4 = [
   never,
@@ -14758,6 +20798,24 @@ interface STFObject4<T extends HL7TypeMap> {
 
 type TCCFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
 
+type TCCFieldComps1 = {
+  1: Upto6;
+  2: Upto4;
+  3: Upto7;
+  4: Upto4;
+  5: Upto4;
+  6: Upto4;
+  7: Upto4;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: Upto4;
+  13: Upto6;
+  14: Upto6;
+  [field: number]: number;
+};
+
 type TCCTypes1 = [
   never,
   'CE',
@@ -14795,6 +20853,18 @@ interface TCCObject1<T extends HL7TypeMap> {
 
 type TCDFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
+type TCDFieldComps1 = {
+  1: Upto6;
+  2: Upto4;
+  3: Upto4;
+  4: Upto4;
+  5: Upto4;
+  6: 1;
+  7: 1;
+  8: Upto6;
+  [field: number]: number;
+};
+
 type TCDTypes1 = [never, 'CE', 'SN', 'SN', 'SN', 'SN', 'ID', 'ID', 'CE'];
 
 interface TCDObject1<T extends HL7TypeMap> {
@@ -14807,6 +20877,54 @@ interface TCDObject1<T extends HL7TypeMap> {
   ReflexAllowed?: string | null;
   AnalyteRepeatStatus?: T['CE'] | null;
 }
+
+type TXAFieldComps3 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: Upto2;
+  5: Upto18;
+  6: Upto2;
+  7: Upto2;
+  8: Upto2;
+  9: Upto18;
+  10: Upto18;
+  11: Upto18;
+  12: Upto4;
+  13: Upto4;
+  14: Upto4;
+  15: Upto4;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: Upto19;
+  23: Upto18;
+  [field: number]: number;
+};
+
+type URDFieldComps5 = {
+  1: Upto2;
+  2: 1;
+  3: Upto18;
+  4: Upto6;
+  5: Upto6;
+  6: 1;
+  7: 1;
+  [field: number]: number;
+};
+
+type VARFieldComps3 = {
+  1: Upto4;
+  2: Upto2;
+  3: Upto2;
+  4: Upto18;
+  5: Upto6;
+  6: 1;
+  [field: number]: number;
+};
 
 type AUIComps2 = [never, 'ST', 'DT', 'ST'];
 
@@ -15299,7 +21417,40 @@ type HL7Types_2_5 = {
   XTN: XTNObject2;
 };
 
+type ABSFieldComps2 = {
+  1: Upto23;
+  2: Upto6;
+  3: Upto6;
+  4: Upto2;
+  5: Upto23;
+  6: Upto6;
+  7: Upto2;
+  8: Upto23;
+  9: Upto6;
+  10: 1;
+  11: Upto6;
+  12: 1;
+  13: Upto6;
+  14: 1;
+  [field: number]: number;
+};
+
 type ACCFields4 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+
+type ACCFieldComps5 = {
+  1: Upto2;
+  2: Upto6;
+  3: 1;
+  4: Upto6;
+  5: 1;
+  6: 1;
+  7: Upto23;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: Upto14;
+  [field: number]: number;
+};
 
 type ACCTypes4 = [
   never,
@@ -15330,6 +21481,31 @@ interface ACCObject5<T extends HL7TypeMap> {
   AccidentAddress?: T['XAD'] | null;
 }
 
+type AFFFieldComps2 = {
+  1: 1;
+  2: Upto10;
+  3: Upto14;
+  4: Upto2;
+  5: 1;
+  [field: number]: number;
+};
+
+type AILFieldComps2 = {
+  1: 1;
+  2: 1;
+  3: Upto11;
+  4: Upto6;
+  5: Upto6;
+  6: Upto2;
+  7: 1;
+  8: Upto6;
+  9: 1;
+  10: Upto6;
+  11: 1;
+  12: Upto6;
+  [field: number]: number;
+};
+
 interface AILObject2<T extends HL7TypeMap> {
   SetID?: number | string | null;
   SegmentActionCode?: string | null;
@@ -15345,6 +21521,32 @@ interface AILObject2<T extends HL7TypeMap> {
   FillerStatusCode?: T['CE'] | null;
 }
 
+type AIPFieldComps4 = {
+  1: 1;
+  2: 1;
+  3: Upto23;
+  4: Upto6;
+  5: Upto6;
+  6: Upto2;
+  7: 1;
+  8: Upto6;
+  9: 1;
+  10: Upto6;
+  11: 1;
+  12: Upto6;
+  [field: number]: number;
+};
+
+type AL1FieldComps3 = {
+  1: 1;
+  2: Upto6;
+  3: Upto6;
+  4: Upto6;
+  5: 1;
+  6: 1;
+  [field: number]: number;
+};
+
 type AL1Types4 = [never, 'SI', 'CE', 'CE', 'CE', 'ST', 'DT'];
 
 interface AL1Object4<T extends HL7TypeMap> {
@@ -15355,6 +21557,51 @@ interface AL1Object4<T extends HL7TypeMap> {
   AllergyReactionCode?: string[] | null;
   IdentificationDate?: string | null;
 }
+
+type ARQFieldComps4 = {
+  1: Upto4;
+  2: Upto4;
+  3: 1;
+  4: Upto4;
+  5: Upto6;
+  6: Upto6;
+  7: Upto6;
+  8: Upto6;
+  9: 1;
+  10: Upto6;
+  11: Upto2;
+  12: 1;
+  13: Upto2;
+  14: 1;
+  15: Upto23;
+  16: Upto12;
+  17: Upto14;
+  18: Upto11;
+  19: Upto23;
+  20: Upto12;
+  21: Upto11;
+  22: Upto4;
+  23: Upto4;
+  24: Upto4;
+  25: Upto4;
+  [field: number]: number;
+};
+
+type BHSFieldComps3 = {
+  1: 1;
+  2: 1;
+  3: Upto3;
+  4: Upto3;
+  5: Upto3;
+  6: Upto3;
+  7: Upto2;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  [field: number]: number;
+};
 
 type BHSTypes2 = [
   never,
@@ -15389,6 +21636,14 @@ interface BHSObject3<T extends HL7TypeMap> {
 
 type BLGFields2 = 1 | 2 | 3 | 4;
 
+type BLGFieldComps6 = {
+  1: Upto2;
+  2: 1;
+  3: Upto10;
+  4: Upto9;
+  [field: number]: number;
+};
+
 type BLGTypes4 = [never, 'CCD', 'ID', 'CX', 'CWE'];
 
 interface BLGObject5<T extends HL7TypeMap> {
@@ -15399,6 +21654,24 @@ interface BLGObject5<T extends HL7TypeMap> {
 }
 
 type BPOFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
+type BPOFieldComps1 = {
+  1: 1;
+  2: Upto9;
+  3: Upto9;
+  4: 1;
+  5: 1;
+  6: Upto6;
+  7: Upto2;
+  8: Upto11;
+  9: Upto14;
+  10: Upto2;
+  11: Upto11;
+  12: Upto14;
+  13: Upto9;
+  14: 1;
+  [field: number]: number;
+};
 
 type BPOTypes1 = [
   never,
@@ -15457,6 +21730,31 @@ type BPXFields1 =
   | 19
   | 20
   | 21;
+
+type BPXFieldComps1 = {
+  1: 1;
+  2: Upto9;
+  3: 1;
+  4: Upto2;
+  5: Upto4;
+  6: Upto9;
+  7: Upto9;
+  8: Upto9;
+  9: Upto10;
+  10: Upto4;
+  11: Upto9;
+  12: Upto9;
+  13: Upto2;
+  14: 1;
+  15: 1;
+  16: Upto6;
+  17: Upto4;
+  18: Upto11;
+  19: Upto14;
+  20: Upto23;
+  21: Upto23;
+  [field: number]: number;
+};
 
 type BPXTypes1 = [
   never,
@@ -15528,6 +21826,29 @@ type BTXFields1 =
   | 18
   | 19;
 
+type BTXFieldComps1 = {
+  1: 1;
+  2: Upto4;
+  3: Upto9;
+  4: Upto9;
+  5: Upto9;
+  6: Upto10;
+  7: Upto4;
+  8: 1;
+  9: 1;
+  10: Upto6;
+  11: Upto9;
+  12: 1;
+  13: Upto2;
+  14: Upto23;
+  15: Upto23;
+  16: Upto2;
+  17: Upto2;
+  18: Upto9;
+  19: Upto9;
+  [field: number]: number;
+};
+
 type BTXTypes1 = [
   never,
   'SI',
@@ -15572,6 +21893,23 @@ interface BTXObject1<T extends HL7TypeMap> {
   BPAdverseReactionType?: T['CWE'][] | null;
   BPTransfusionInterruptedReason?: T['CWE'] | null;
 }
+
+type CDMFieldComps3 = {
+  1: Upto6;
+  2: Upto6;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: Upto6;
+  7: Upto6;
+  8: 1;
+  9: Upto6;
+  10: 1;
+  11: Upto10;
+  12: Upto10;
+  13: 1;
+  [field: number]: number;
+};
 
 type CDMTypes3 = [
   never,
@@ -15638,6 +21976,41 @@ type CERFields1 =
   | 29
   | 30
   | 31;
+
+type CERFieldComps1 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: Upto10;
+  5: Upto23;
+  6: Upto5;
+  7: 1;
+  8: Upto9;
+  9: Upto9;
+  10: Upto9;
+  11: Upto9;
+  12: 1;
+  13: 1;
+  14: Upto9;
+  15: Upto9;
+  16: Upto9;
+  17: 1;
+  18: Upto9;
+  19: 1;
+  20: Upto9;
+  21: Upto9;
+  22: Upto9;
+  23: Upto2;
+  24: Upto2;
+  25: Upto2;
+  26: Upto2;
+  27: Upto2;
+  28: Upto2;
+  29: Upto2;
+  30: Upto6;
+  31: Upto9;
+  [field: number]: number;
+};
 
 type CERTypes1 = [
   never,
@@ -15708,6 +22081,21 @@ interface CERObject1<T extends HL7TypeMap> {
   CertificateStatusCode?: T['CWE'] | null;
 }
 
+type CM0FieldComps4 = {
+  1: 1;
+  2: Upto4;
+  3: Upto4;
+  4: 1;
+  5: Upto23;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto23;
+  10: Upto12;
+  11: Upto14;
+  [field: number]: number;
+};
+
 type CONFields1 =
   | 1
   | 2
@@ -15734,6 +22122,35 @@ type CONFields1 =
   | 23
   | 24
   | 25;
+
+type CONFieldComps1 = {
+  1: 1;
+  2: Upto9;
+  3: 1;
+  4: Upto4;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto9;
+  11: Upto9;
+  12: Upto2;
+  13: Upto2;
+  14: Upto2;
+  15: Upto2;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: Upto9;
+  21: 1;
+  22: Upto9;
+  23: Upto9;
+  24: Upto14;
+  25: 1;
+  [field: number]: number;
+};
 
 type CONTypes1 = [
   never,
@@ -15792,6 +22209,37 @@ interface CONObject1<T extends HL7TypeMap> {
   RelationshipToSubject?: string[] | null;
 }
 
+type CSRFieldComps4 = {
+  1: Upto4;
+  2: Upto4;
+  3: Upto6;
+  4: Upto10;
+  5: Upto10;
+  6: Upto2;
+  7: Upto23;
+  8: Upto23;
+  9: Upto2;
+  10: Upto6;
+  11: Upto2;
+  12: Upto6;
+  13: Upto6;
+  14: Upto6;
+  15: Upto2;
+  16: Upto6;
+  [field: number]: number;
+};
+
+type CTDFieldComps4 = {
+  1: Upto6;
+  2: Upto14;
+  3: Upto14;
+  4: Upto11;
+  5: Upto12;
+  6: Upto6;
+  7: Upto4;
+  [field: number]: number;
+};
+
 type CTDTypes3 = [never, 'CE', 'XPN', 'XAD', 'PL', 'XTN', 'CE', 'PLN'];
 
 interface CTDObject3<T extends HL7TypeMap> {
@@ -15803,6 +22251,18 @@ interface CTDObject3<T extends HL7TypeMap> {
   PreferredMethodOfContact?: T['CE'] | null;
   ContactIdentifiers?: T['PLN'][] | null;
 }
+
+type DB1FieldComps3 = {
+  1: 1;
+  2: 1;
+  3: Upto10;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  [field: number]: number;
+};
 
 type DG1Fields4 =
   | 1
@@ -15826,6 +22286,31 @@ type DG1Fields4 =
   | 19
   | 20
   | 21;
+
+type DG1FieldComps6 = {
+  1: 1;
+  2: 1;
+  3: Upto6;
+  4: 1;
+  5: Upto2;
+  6: 1;
+  7: Upto6;
+  8: Upto6;
+  9: 1;
+  10: 1;
+  11: Upto6;
+  12: 1;
+  13: Upto6;
+  14: 1;
+  15: 1;
+  16: Upto23;
+  17: 1;
+  18: 1;
+  19: Upto2;
+  20: Upto4;
+  21: 1;
+  [field: number]: number;
+};
 
 type DG1Types5 = [
   never,
@@ -15882,6 +22367,19 @@ type ECRTypes2 = [never, 'CE', 'TS', 'TX'];
 
 type EDUFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
+type EDUFieldComps2 = {
+  1: 1;
+  2: 1;
+  3: Upto2;
+  4: Upto2;
+  5: 1;
+  6: Upto10;
+  7: Upto6;
+  8: Upto14;
+  9: Upto9;
+  [field: number]: number;
+};
+
 type EDUTypes2 = [
   never,
   'SI',
@@ -15908,6 +22406,22 @@ interface EDUObject2<T extends HL7TypeMap> {
 }
 
 type ERRFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type ERRFieldComps3 = {
+  1: Upto4;
+  2: Upto6;
+  3: Upto9;
+  4: 1;
+  5: Upto9;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto9;
+  11: Upto9;
+  12: Upto12;
+  [field: number]: number;
+};
 
 type ERRTypes4 = [
   never,
@@ -15939,6 +22453,49 @@ interface ERRObject4<T extends HL7TypeMap> {
   OverrideReasonCode?: T['CWE'][] | null;
   HelpDeskContactPoint?: T['XTN'][] | null;
 }
+
+type EVNFieldComps6 = {
+  1: 1;
+  2: Upto2;
+  3: Upto2;
+  4: 1;
+  5: Upto23;
+  6: Upto2;
+  7: Upto3;
+  [field: number]: number;
+};
+
+type FACFieldComps4 = {
+  1: Upto4;
+  2: 1;
+  3: Upto14;
+  4: Upto12;
+  5: Upto23;
+  6: 1;
+  7: Upto14;
+  8: Upto12;
+  9: Upto23;
+  10: 1;
+  11: Upto14;
+  12: Upto12;
+  [field: number]: number;
+};
+
+type FHSFieldComps3 = {
+  1: 1;
+  2: 1;
+  3: Upto3;
+  4: Upto3;
+  5: Upto3;
+  6: Upto3;
+  7: Upto2;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  [field: number]: number;
+};
 
 type FHSTypes2 = [
   never,
@@ -16003,6 +22560,41 @@ type FT1Fields5 =
   | 29
   | 30
   | 31;
+
+type FT1FieldComps6 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: Upto2;
+  5: Upto2;
+  6: 1;
+  7: Upto6;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: Upto6;
+  12: Upto6;
+  13: Upto6;
+  14: Upto6;
+  15: Upto6;
+  16: Upto11;
+  17: 1;
+  18: 1;
+  19: Upto6;
+  20: Upto23;
+  21: Upto23;
+  22: Upto6;
+  23: Upto4;
+  24: Upto23;
+  25: Upto6;
+  26: Upto6;
+  27: Upto6;
+  28: Upto9;
+  29: Upto9;
+  30: Upto10;
+  31: 1;
+  [field: number]: number;
+};
 
 type FT1Types5 = [
   never,
@@ -16073,6 +22665,31 @@ interface FT1Object5<T extends HL7TypeMap> {
   TransactionReferenceKey?: (number | string)[] | null;
 }
 
+type GOLFieldComps4 = {
+  1: 1;
+  2: Upto2;
+  3: Upto6;
+  4: Upto4;
+  5: Upto4;
+  6: 1;
+  7: Upto2;
+  8: Upto2;
+  9: Upto6;
+  10: Upto6;
+  11: Upto6;
+  12: Upto2;
+  13: Upto2;
+  14: Upto2;
+  15: Upto12;
+  16: Upto6;
+  17: 1;
+  18: Upto6;
+  19: Upto2;
+  20: Upto6;
+  21: Upto14;
+  [field: number]: number;
+};
+
 type GT1Fields4 =
   | 1
   | 2
@@ -16131,6 +22748,67 @@ type GT1Fields4 =
   | 55
   | 56
   | 57;
+
+type GT1FieldComps6 = {
+  1: 1;
+  2: Upto10;
+  3: Upto14;
+  4: Upto14;
+  5: Upto14;
+  6: Upto12;
+  7: Upto12;
+  8: Upto2;
+  9: 1;
+  10: 1;
+  11: Upto6;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: Upto14;
+  17: Upto14;
+  18: Upto12;
+  19: Upto10;
+  20: 1;
+  21: Upto10;
+  22: 1;
+  23: Upto6;
+  24: Upto2;
+  25: 1;
+  26: Upto6;
+  27: Upto6;
+  28: 1;
+  29: Upto10;
+  30: Upto6;
+  31: 1;
+  32: 1;
+  33: 1;
+  34: 1;
+  35: Upto6;
+  36: Upto6;
+  37: 1;
+  38: Upto6;
+  39: 1;
+  40: 1;
+  41: Upto6;
+  42: Upto14;
+  43: Upto6;
+  44: Upto6;
+  45: Upto14;
+  46: Upto12;
+  47: Upto6;
+  48: 1;
+  49: 1;
+  50: Upto3;
+  51: Upto10;
+  52: 1;
+  53: 1;
+  54: Upto2;
+  55: Upto6;
+  56: 1;
+  57: 1;
+  [field: number]: number;
+};
 
 type GT1Types5 = [
   never,
@@ -16253,8 +22931,51 @@ interface GT1Object5<T extends HL7TypeMap> {
   VIPIndicator?: string | null;
 }
 
+type IAMFieldComps2 = {
+  1: 1;
+  2: Upto6;
+  3: Upto6;
+  4: Upto6;
+  5: 1;
+  6: Upto9;
+  7: Upto4;
+  8: 1;
+  9: Upto6;
+  10: Upto6;
+  11: 1;
+  12: 1;
+  13: Upto2;
+  14: Upto14;
+  15: Upto6;
+  16: Upto6;
+  17: Upto6;
+  18: Upto23;
+  19: Upto10;
+  20: Upto2;
+  [field: number]: number;
+};
+
 type IIMFields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
+
+type IIMFieldComps1 = {
+  1: Upto9;
+  2: Upto9;
+  3: 1;
+  4: Upto2;
+  5: Upto9;
+  6: Upto9;
+  7: Upto2;
+  8: 1;
+  9: Upto9;
+  10: Upto2;
+  11: Upto2;
+  12: 1;
+  13: Upto9;
+  14: Upto6;
+  15: Upto6;
+  [field: number]: number;
+};
 
 type IIMTypes1 = [
   never,
@@ -16347,6 +23068,63 @@ type IN1Fields4 =
   | 51
   | 52
   | 53;
+
+type IN1FieldComps6 = {
+  1: 1;
+  2: Upto6;
+  3: Upto10;
+  4: Upto10;
+  5: Upto14;
+  6: Upto14;
+  7: Upto12;
+  8: 1;
+  9: Upto10;
+  10: Upto10;
+  11: Upto10;
+  12: 1;
+  13: 1;
+  14: Upto3;
+  15: 1;
+  16: Upto14;
+  17: Upto6;
+  18: Upto2;
+  19: Upto14;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: 1;
+  29: Upto2;
+  30: Upto23;
+  31: 1;
+  32: 1;
+  33: 1;
+  34: 1;
+  35: 1;
+  36: 1;
+  37: Upto6;
+  38: Upto6;
+  39: 1;
+  40: Upto6;
+  41: Upto6;
+  42: Upto6;
+  43: 1;
+  44: Upto14;
+  45: 1;
+  46: 1;
+  47: 1;
+  48: 1;
+  49: Upto10;
+  50: 1;
+  51: 1;
+  52: 1;
+  53: 1;
+  [field: number]: number;
+};
 
 type IN1Types5 = [
   never,
@@ -16461,6 +23239,111 @@ interface IN1Object5<T extends HL7TypeMap> {
   VIPIndicator?: string | null;
 }
 
+type IN2FieldComps5 = {
+  1: Upto10;
+  2: 1;
+  3: Upto23;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: Upto14;
+  8: 1;
+  9: Upto14;
+  10: 1;
+  11: Upto6;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: Upto14;
+  23: 1;
+  24: 1;
+  25: Upto10;
+  26: Upto10;
+  27: 1;
+  28: Upto4;
+  29: Upto4;
+  30: Upto3;
+  31: 1;
+  32: 1;
+  33: Upto6;
+  34: Upto6;
+  35: 1;
+  36: Upto6;
+  37: 1;
+  38: 1;
+  39: Upto6;
+  40: Upto14;
+  41: Upto6;
+  42: Upto6;
+  43: Upto6;
+  44: 1;
+  45: 1;
+  46: 1;
+  47: Upto3;
+  48: 1;
+  49: Upto14;
+  50: Upto12;
+  51: 1;
+  52: Upto14;
+  53: Upto12;
+  54: 1;
+  55: 1;
+  56: 1;
+  57: 1;
+  58: Upto12;
+  59: 1;
+  60: 1;
+  61: Upto10;
+  62: Upto6;
+  63: Upto12;
+  64: Upto12;
+  65: Upto6;
+  66: 1;
+  67: 1;
+  68: 1;
+  69: Upto10;
+  70: Upto10;
+  71: Upto6;
+  72: Upto6;
+  [field: number]: number;
+};
+
+type IN3FieldComps5 = {
+  1: 1;
+  2: Upto10;
+  3: Upto23;
+  4: 1;
+  5: Upto3;
+  6: Upto2;
+  7: Upto2;
+  8: Upto23;
+  9: 1;
+  10: 1;
+  11: Upto2;
+  12: Upto6;
+  13: Upto2;
+  14: Upto23;
+  15: 1;
+  16: Upto12;
+  17: Upto6;
+  18: Upto6;
+  19: Upto12;
+  20: Upto3;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: Upto23;
+  [field: number]: number;
+};
+
 type IN3Types4 = [
   never,
   'SI',
@@ -16540,6 +23423,30 @@ type INVFields2 =
   | 19
   | 20;
 
+type INVFieldComps2 = {
+  1: Upto6;
+  2: Upto6;
+  3: Upto6;
+  4: Upto6;
+  5: Upto6;
+  6: Upto6;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: Upto6;
+  12: Upto2;
+  13: Upto2;
+  14: Upto12;
+  15: Upto6;
+  16: 1;
+  17: Upto6;
+  18: Upto6;
+  19: Upto2;
+  20: Upto2;
+  [field: number]: number;
+};
+
 type INVTypes2 = [
   never,
   'CE',
@@ -16589,6 +23496,19 @@ interface INVObject2<T extends HL7TypeMap> {
 
 type IPCFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
+type IPCFieldComps1 = {
+  1: Upto4;
+  2: Upto4;
+  3: Upto4;
+  4: Upto4;
+  5: Upto6;
+  6: Upto6;
+  7: Upto4;
+  8: Upto6;
+  9: 1;
+  [field: number]: number;
+};
+
 type IPCTypes1 = [never, 'EI', 'EI', 'EI', 'EI', 'CE', 'CE', 'EI', 'CE', 'ST'];
 
 interface IPCObject1<T extends HL7TypeMap> {
@@ -16603,6 +23523,72 @@ interface IPCObject1<T extends HL7TypeMap> {
   ScheduledStationAETitle?: string | null;
 }
 
+type LCCFieldComps3 = {
+  1: Upto11;
+  2: Upto6;
+  3: Upto6;
+  4: Upto6;
+  [field: number]: number;
+};
+
+type LCHFieldComps2 = {
+  1: Upto11;
+  2: 1;
+  3: Upto4;
+  4: Upto6;
+  5: Upto6;
+  [field: number]: number;
+};
+
+type LDPFieldComps3 = {
+  1: Upto11;
+  2: Upto6;
+  3: 1;
+  4: Upto6;
+  5: 1;
+  6: 1;
+  7: Upto2;
+  8: Upto2;
+  9: 1;
+  10: Upto4;
+  11: Upto12;
+  12: Upto6;
+  [field: number]: number;
+};
+
+type LOCFieldComps4 = {
+  1: Upto11;
+  2: 1;
+  3: 1;
+  4: Upto10;
+  5: Upto14;
+  6: Upto12;
+  7: Upto6;
+  8: 1;
+  9: 1;
+  [field: number]: number;
+};
+
+type LRLFieldComps3 = {
+  1: Upto11;
+  2: 1;
+  3: Upto4;
+  4: Upto6;
+  5: Upto10;
+  6: Upto11;
+  [field: number]: number;
+};
+
+type MFAFieldComps3 = {
+  1: 1;
+  2: 1;
+  3: Upto2;
+  4: Upto6;
+  5: number;
+  6: 1;
+  [field: number]: number;
+};
+
 type MFATypes3 = [never, 'ID', 'ST', 'TS', 'CE', 'VARIES', 'ID'];
 
 interface MFAObject3<T extends HL7TypeMap> {
@@ -16613,6 +23599,42 @@ interface MFAObject3<T extends HL7TypeMap> {
   PrimaryKeyValueMFA?: string[] | null;
   PrimaryKeyValueTypeMFA?: string[] | null;
 }
+
+type MRGFieldComps6 = {
+  1: Upto10;
+  2: Upto10;
+  3: Upto10;
+  4: Upto10;
+  5: Upto10;
+  6: Upto10;
+  7: Upto14;
+  [field: number]: number;
+};
+
+type MSHFieldComps6 = {
+  1: 1;
+  2: 1;
+  3: Upto3;
+  4: Upto3;
+  5: Upto3;
+  6: Upto3;
+  7: Upto2;
+  8: 1;
+  9: Upto3;
+  10: 1;
+  11: Upto2;
+  12: Upto3;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: Upto6;
+  20: 1;
+  21: Upto4;
+  [field: number]: number;
+};
 
 type MSHTypes6 = [
   never,
@@ -16704,6 +23726,49 @@ type NK1Fields4 =
   | 38
   | 39;
 
+type NK1FieldComps6 = {
+  1: 1;
+  2: Upto14;
+  3: Upto6;
+  4: Upto14;
+  5: Upto12;
+  6: Upto12;
+  7: Upto6;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: Upto3;
+  12: Upto10;
+  13: Upto10;
+  14: Upto6;
+  15: 1;
+  16: Upto2;
+  17: 1;
+  18: 1;
+  19: Upto6;
+  20: Upto6;
+  21: 1;
+  22: Upto6;
+  23: 1;
+  24: 1;
+  25: Upto6;
+  26: Upto14;
+  27: Upto6;
+  28: Upto6;
+  29: Upto6;
+  30: Upto14;
+  31: Upto12;
+  32: Upto14;
+  33: Upto10;
+  34: 1;
+  35: Upto6;
+  36: 1;
+  37: 1;
+  38: 1;
+  39: 1;
+  [field: number]: number;
+};
+
 type NK1Types5 = [
   never,
   'SI',
@@ -16789,6 +23854,8 @@ interface NK1Object5<T extends HL7TypeMap> {
   VIPIndicator?: string | null;
 }
 
+type NPUFieldComps4 = { 1: Upto11; 2: 1; [field: number]: number };
+
 type OBRFields5 =
   | 1
   | 2
@@ -16839,6 +23906,59 @@ type OBRFields5 =
   | 47
   | 48
   | 49;
+
+type OBRFieldComps6 = {
+  1: 1;
+  2: Upto4;
+  3: Upto4;
+  4: Upto6;
+  5: 1;
+  6: Upto2;
+  7: Upto2;
+  8: Upto2;
+  9: Upto2;
+  10: Upto23;
+  11: 1;
+  12: Upto6;
+  13: 1;
+  14: Upto2;
+  15: Upto7;
+  16: Upto23;
+  17: Upto12;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: Upto2;
+  23: Upto2;
+  24: 1;
+  25: 1;
+  26: Upto3;
+  27: Upto12;
+  28: Upto23;
+  29: Upto2;
+  30: 1;
+  31: Upto6;
+  32: Upto11;
+  33: Upto11;
+  34: Upto11;
+  35: Upto11;
+  36: Upto2;
+  37: 1;
+  38: Upto6;
+  39: Upto6;
+  40: Upto6;
+  41: 1;
+  42: 1;
+  43: Upto6;
+  44: Upto6;
+  45: Upto6;
+  46: Upto6;
+  47: Upto6;
+  48: Upto9;
+  49: 1;
+  [field: number]: number;
+};
 
 type OBRTypes6 = [
   never,
@@ -16945,6 +24065,29 @@ interface OBRObject6<T extends HL7TypeMap> {
   ResultHandling?: string | null;
 }
 
+type OBXFieldComps6 = {
+  1: 1;
+  2: 1;
+  3: Upto6;
+  4: 1;
+  5: number;
+  6: Upto6;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: Upto2;
+  13: 1;
+  14: Upto2;
+  15: Upto6;
+  16: Upto23;
+  17: Upto6;
+  18: Upto4;
+  19: Upto2;
+  [field: number]: number;
+};
+
 interface OBXObject6<T extends HL7TypeMap> {
   SetID?: number | string | null;
   ValueType?: string | null;
@@ -16966,6 +24109,57 @@ interface OBXObject6<T extends HL7TypeMap> {
   EquipmentInstanceIdentifier?: T['EI'][] | null;
   DateTimeOfTheAnalysis?: T['TS'] | null;
 }
+
+type OM1FieldComps5 = {
+  1: 1;
+  2: Upto6;
+  3: 1;
+  4: 1;
+  5: Upto6;
+  6: 1;
+  7: Upto6;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: Upto6;
+  14: Upto6;
+  15: 1;
+  16: Upto6;
+  17: Upto12;
+  18: 1;
+  19: Upto6;
+  20: 1;
+  21: Upto2;
+  22: Upto2;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: Upto6;
+  28: Upto14;
+  29: Upto12;
+  30: Upto9;
+  31: Upto6;
+  32: 1;
+  33: Upto6;
+  34: Upto6;
+  35: 1;
+  36: Upto6;
+  37: 1;
+  38: Upto6;
+  39: 1;
+  40: 1;
+  41: 1;
+  42: Upto6;
+  43: Upto6;
+  44: 1;
+  45: Upto6;
+  46: Upto6;
+  47: Upto6;
+  [field: number]: number;
+};
 
 type OM1Types4 = [
   never,
@@ -17068,6 +24262,20 @@ interface OM1Object4<T extends HL7TypeMap> {
   ModalityOfImagingMeasurement?: T['CE'] | null;
 }
 
+type OM2FieldComps4 = {
+  1: 1;
+  2: Upto6;
+  3: 1;
+  4: Upto6;
+  5: 1;
+  6: Upto7;
+  7: Upto7;
+  8: Upto7;
+  9: Upto4;
+  10: 1;
+  [field: number]: number;
+};
+
 type OM2Types4 = [
   never,
   'NM',
@@ -17105,6 +24313,24 @@ interface OM3Object3<T extends HL7TypeMap> {
   ValueType?: string | null;
 }
 
+type OM4FieldComps3 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: Upto6;
+  6: Upto6;
+  7: Upto9;
+  8: 1;
+  9: 1;
+  10: Upto2;
+  11: Upto2;
+  12: 1;
+  13: 1;
+  14: Upto2;
+  [field: number]: number;
+};
+
 type OM4Types3 = [
   never,
   'NM',
@@ -17140,6 +24366,34 @@ interface OM4Object4<T extends HL7TypeMap> {
   SpecimenRetentionTime?: T['CQ'] | null;
 }
 
+type OM7FieldComps2 = {
+  1: 1;
+  2: Upto6;
+  3: Upto6;
+  4: 1;
+  5: 1;
+  6: Upto2;
+  7: Upto2;
+  8: 1;
+  9: Upto6;
+  10: 1;
+  11: 1;
+  12: Upto6;
+  13: Upto2;
+  14: Upto2;
+  15: 1;
+  16: Upto6;
+  17: 1;
+  18: Upto6;
+  19: Upto2;
+  20: Upto23;
+  21: Upto11;
+  22: 1;
+  23: 1;
+  24: Upto6;
+  [field: number]: number;
+};
+
 type ORCFields5 =
   | 1
   | 2
@@ -17171,6 +24425,40 @@ type ORCFields5 =
   | 28
   | 29
   | 30;
+
+type ORCFieldComps6 = {
+  1: 1;
+  2: Upto4;
+  3: Upto4;
+  4: Upto4;
+  5: 1;
+  6: 1;
+  7: Upto12;
+  8: Upto2;
+  9: Upto2;
+  10: Upto23;
+  11: Upto23;
+  12: Upto23;
+  13: Upto11;
+  14: Upto12;
+  15: Upto2;
+  16: Upto6;
+  17: Upto6;
+  18: Upto6;
+  19: Upto23;
+  20: Upto6;
+  21: Upto10;
+  22: Upto14;
+  23: Upto12;
+  24: Upto14;
+  25: Upto9;
+  26: Upto9;
+  27: Upto2;
+  28: Upto9;
+  29: Upto9;
+  30: Upto9;
+  [field: number]: number;
+};
 
 type ORCTypes6 = [
   never,
@@ -17239,7 +24527,32 @@ interface ORCObject6<T extends HL7TypeMap> {
   EntererAuthorizationMode?: T['CNE'] | null;
 }
 
+type ORGFieldComps2 = {
+  1: 1;
+  2: Upto6;
+  3: Upto6;
+  4: 1;
+  5: Upto10;
+  6: Upto6;
+  7: Upto6;
+  8: Upto6;
+  9: Upto2;
+  10: Upto6;
+  11: 1;
+  12: 1;
+  [field: number]: number;
+};
+
 type OVRFields1 = 1 | 2 | 3 | 4 | 5;
+
+type OVRFieldComps1 = {
+  1: Upto9;
+  2: Upto9;
+  3: 1;
+  4: Upto23;
+  5: Upto23;
+  [field: number]: number;
+};
 
 type OVRTypes1 = [never, 'CWE', 'CWE', 'TX', 'XCN', 'XCN'];
 
@@ -17250,6 +24563,109 @@ interface OVRObject1<T extends HL7TypeMap> {
   OverrideEnteredBy?: T['XCN'] | null;
   OverrideAuthorizedBy?: T['XCN'] | null;
 }
+
+type PD1FieldComps4 = {
+  1: 1;
+  2: 1;
+  3: Upto10;
+  4: Upto23;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto10;
+  11: Upto6;
+  12: 1;
+  13: 1;
+  14: Upto10;
+  15: Upto6;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  [field: number]: number;
+};
+
+type PDAFieldComps2 = {
+  1: Upto6;
+  2: Upto11;
+  3: 1;
+  4: Upto2;
+  5: Upto23;
+  6: 1;
+  7: Upto2;
+  8: Upto23;
+  9: 1;
+  [field: number]: number;
+};
+
+type PDCFieldComps3 = {
+  1: Upto10;
+  2: Upto6;
+  3: 1;
+  4: 1;
+  5: Upto6;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto6;
+  10: 1;
+  11: 1;
+  12: Upto2;
+  13: Upto2;
+  14: Upto2;
+  15: Upto2;
+  [field: number]: number;
+};
+
+type PEOFieldComps4 = {
+  1: Upto6;
+  2: Upto6;
+  3: Upto2;
+  4: Upto2;
+  5: Upto2;
+  6: Upto2;
+  7: Upto14;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: Upto6;
+  19: Upto14;
+  20: Upto14;
+  21: Upto12;
+  22: 1;
+  23: 1;
+  24: Upto2;
+  25: 1;
+  [field: number]: number;
+};
+
+type PESFieldComps4 = {
+  1: Upto10;
+  2: Upto23;
+  3: Upto14;
+  4: Upto12;
+  5: Upto4;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto2;
+  10: Upto2;
+  11: 1;
+  12: 1;
+  13: 1;
+  [field: number]: number;
+};
 
 type PIDFields5 =
   | 1
@@ -17291,6 +24707,49 @@ type PIDFields5 =
   | 37
   | 38
   | 39;
+
+type PIDFieldComps6 = {
+  1: 1;
+  2: Upto10;
+  3: Upto10;
+  4: Upto10;
+  5: Upto14;
+  6: Upto14;
+  7: Upto2;
+  8: 1;
+  9: Upto14;
+  10: Upto6;
+  11: Upto14;
+  12: 1;
+  13: Upto12;
+  14: Upto12;
+  15: Upto6;
+  16: Upto6;
+  17: Upto6;
+  18: Upto10;
+  19: 1;
+  20: Upto3;
+  21: Upto10;
+  22: Upto6;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: Upto6;
+  27: Upto6;
+  28: Upto6;
+  29: Upto2;
+  30: 1;
+  31: 1;
+  32: 1;
+  33: Upto2;
+  34: Upto3;
+  35: Upto6;
+  36: Upto6;
+  37: 1;
+  38: Upto6;
+  39: Upto9;
+  [field: number]: number;
+};
 
 type PIDTypes6 = [
   never,
@@ -17399,6 +24858,30 @@ type PR1Fields6 =
   | 19
   | 20;
 
+type PR1FieldComps6 = {
+  1: 1;
+  2: 1;
+  3: Upto6;
+  4: 1;
+  5: Upto2;
+  6: 1;
+  7: 1;
+  8: Upto23;
+  9: 1;
+  10: 1;
+  11: Upto23;
+  12: Upto23;
+  13: Upto6;
+  14: 1;
+  15: Upto6;
+  16: Upto6;
+  17: 1;
+  18: Upto6;
+  19: Upto4;
+  20: 1;
+  [field: number]: number;
+};
+
 type PR1Types6 = [
   never,
   'SI',
@@ -17446,6 +24929,19 @@ interface PR1Object6<T extends HL7TypeMap> {
   ProcedureActionCode?: string | null;
 }
 
+type PRDFieldComps4 = {
+  1: Upto6;
+  2: Upto14;
+  3: Upto14;
+  4: Upto11;
+  5: Upto12;
+  6: Upto6;
+  7: Upto4;
+  8: Upto2;
+  9: Upto2;
+  [field: number]: number;
+};
+
 type PRDTypes3 = [
   never,
   'CE',
@@ -17470,6 +24966,62 @@ interface PRDObject3<T extends HL7TypeMap> {
   EffectiveStartDateOfProviderRole?: T['TS'] | null;
   EffectiveEndDateOfProviderRole?: T['TS'] | null;
 }
+
+type PV1FieldComps6 = {
+  1: 1;
+  2: 1;
+  3: Upto11;
+  4: 1;
+  5: Upto10;
+  6: Upto11;
+  7: Upto23;
+  8: Upto23;
+  9: Upto23;
+  10: 1;
+  11: Upto11;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: Upto23;
+  18: 1;
+  19: Upto10;
+  20: Upto2;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: 1;
+  29: 1;
+  30: 1;
+  31: 1;
+  32: 1;
+  33: 1;
+  34: 1;
+  35: 1;
+  36: 1;
+  37: Upto2;
+  38: Upto6;
+  39: 1;
+  40: 1;
+  41: 1;
+  42: Upto11;
+  43: Upto11;
+  44: Upto2;
+  45: Upto2;
+  46: 1;
+  47: 1;
+  48: 1;
+  49: 1;
+  50: Upto10;
+  51: 1;
+  52: Upto23;
+  [field: number]: number;
+};
 
 type PV2Fields4 =
   | 1
@@ -17521,6 +25073,59 @@ type PV2Fields4 =
   | 47
   | 48
   | 49;
+
+type PV2FieldComps5 = {
+  1: Upto11;
+  2: Upto6;
+  3: Upto6;
+  4: Upto6;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: Upto2;
+  9: Upto2;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: Upto23;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: Upto10;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: 1;
+  29: 1;
+  30: Upto6;
+  31: 1;
+  32: 1;
+  33: Upto2;
+  34: 1;
+  35: 1;
+  36: 1;
+  37: 1;
+  38: Upto6;
+  39: Upto6;
+  40: Upto6;
+  41: Upto6;
+  42: Upto6;
+  43: 1;
+  44: 1;
+  45: Upto6;
+  46: 1;
+  47: Upto2;
+  48: Upto2;
+  49: 1;
+  [field: number]: number;
+};
 
 type PV2Types5 = [
   never,
@@ -17627,6 +25232,38 @@ interface PV2Object5<T extends HL7TypeMap> {
   NotifyClergyCode?: string[] | null;
 }
 
+type QRDFieldComps6 = {
+  1: Upto2;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: Upto2;
+  7: Upto2;
+  8: Upto23;
+  9: Upto6;
+  10: Upto6;
+  11: Upto2;
+  12: 1;
+  [field: number]: number;
+};
+
+type ROLFieldComps4 = {
+  1: Upto4;
+  2: 1;
+  3: Upto6;
+  4: Upto23;
+  5: Upto2;
+  6: Upto2;
+  7: Upto6;
+  8: Upto6;
+  9: Upto6;
+  10: Upto6;
+  11: Upto14;
+  12: Upto12;
+  [field: number]: number;
+};
+
 type RXAFields3 =
   | 1
   | 2
@@ -17654,6 +25291,36 @@ type RXAFields3 =
   | 24
   | 25
   | 26;
+
+type RXAFieldComps5 = {
+  1: 1;
+  2: 1;
+  3: Upto2;
+  4: Upto2;
+  5: Upto6;
+  6: 1;
+  7: Upto6;
+  8: Upto6;
+  9: Upto6;
+  10: Upto23;
+  11: Upto16;
+  12: 1;
+  13: 1;
+  14: Upto6;
+  15: 1;
+  16: Upto2;
+  17: Upto6;
+  18: Upto6;
+  19: Upto6;
+  20: 1;
+  21: 1;
+  22: Upto2;
+  23: 1;
+  24: Upto9;
+  25: Upto9;
+  26: 1;
+  [field: number]: number;
+};
 
 type RXATypes4 = [
   never,
@@ -17716,6 +25383,19 @@ interface RXAObject4<T extends HL7TypeMap> {
 
 type RXCFields4 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
+type RXCFieldComps4 = {
+  1: 1;
+  2: Upto6;
+  3: 1;
+  4: Upto6;
+  5: 1;
+  6: Upto6;
+  7: Upto6;
+  8: 1;
+  9: Upto9;
+  [field: number]: number;
+};
+
 type RXCTypes4 = [never, 'ID', 'CE', 'NM', 'CE', 'NM', 'CE', 'CE', 'NM', 'CWE'];
 
 interface RXCObject4<T extends HL7TypeMap> {
@@ -17764,6 +25444,43 @@ type RXDFields4 =
   | 31
   | 32
   | 33;
+
+type RXDFieldComps5 = {
+  1: 1;
+  2: Upto6;
+  3: Upto2;
+  4: 1;
+  5: Upto6;
+  6: Upto6;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto23;
+  11: 1;
+  12: Upto2;
+  13: Upto16;
+  14: 1;
+  15: Upto6;
+  16: 1;
+  17: Upto6;
+  18: 1;
+  19: Upto2;
+  20: Upto6;
+  21: Upto6;
+  22: 1;
+  23: Upto6;
+  24: 1;
+  25: Upto6;
+  26: Upto6;
+  27: Upto6;
+  28: 1;
+  29: Upto9;
+  30: Upto9;
+  31: Upto14;
+  32: 1;
+  33: Upto9;
+  [field: number]: number;
+};
 
 type RXDTypes5 = [
   never,
@@ -17883,6 +25600,54 @@ type RXEFields4 =
   | 42
   | 43
   | 44;
+
+type RXEFieldComps5 = {
+  1: Upto12;
+  2: Upto6;
+  3: 1;
+  4: 1;
+  5: Upto6;
+  6: Upto6;
+  7: Upto6;
+  8: Upto9;
+  9: 1;
+  10: 1;
+  11: Upto6;
+  12: 1;
+  13: Upto23;
+  14: Upto23;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: Upto2;
+  19: Upto2;
+  20: 1;
+  21: Upto6;
+  22: 1;
+  23: 1;
+  24: Upto6;
+  25: 1;
+  26: Upto6;
+  27: Upto6;
+  28: 1;
+  29: Upto6;
+  30: 1;
+  31: Upto6;
+  32: Upto2;
+  33: 1;
+  34: Upto9;
+  35: Upto9;
+  36: 1;
+  37: Upto9;
+  38: Upto9;
+  39: 1;
+  40: Upto9;
+  41: Upto14;
+  42: Upto11;
+  43: Upto14;
+  44: 1;
+  [field: number]: number;
+};
 
 type RXETypes5 = [
   never,
@@ -18007,6 +25772,36 @@ type RXGFields3 =
   | 25
   | 26;
 
+type RXGFieldComps4 = {
+  1: 1;
+  2: 1;
+  3: Upto12;
+  4: Upto6;
+  5: 1;
+  6: 1;
+  7: Upto6;
+  8: Upto6;
+  9: Upto6;
+  10: 1;
+  11: Upto16;
+  12: 1;
+  13: Upto6;
+  14: 1;
+  15: 1;
+  16: Upto6;
+  17: 1;
+  18: Upto6;
+  19: 1;
+  20: Upto2;
+  21: Upto6;
+  22: Upto6;
+  23: 1;
+  24: Upto9;
+  25: Upto9;
+  26: 1;
+  [field: number]: number;
+};
+
 type RXGTypes4 = [
   never,
   'NM',
@@ -18097,6 +25892,38 @@ type RXOFields5 =
   | 27
   | 28;
 
+type RXOFieldComps5 = {
+  1: Upto6;
+  2: 1;
+  3: 1;
+  4: Upto6;
+  5: Upto6;
+  6: Upto6;
+  7: Upto6;
+  8: Upto9;
+  9: 1;
+  10: Upto6;
+  11: 1;
+  12: Upto6;
+  13: 1;
+  14: Upto23;
+  15: Upto23;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: Upto6;
+  20: Upto6;
+  21: 1;
+  22: Upto6;
+  23: Upto2;
+  24: Upto6;
+  25: 1;
+  26: Upto9;
+  27: 1;
+  28: 1;
+  [field: number]: number;
+};
+
 type RXOTypes5 = [
   never,
   'CE',
@@ -18162,6 +25989,16 @@ interface RXOObject5<T extends HL7TypeMap> {
 
 type RXRFields3 = 1 | 2 | 3 | 4 | 5 | 6;
 
+type RXRFieldComps3 = {
+  1: Upto6;
+  2: Upto9;
+  3: Upto6;
+  4: Upto9;
+  5: Upto6;
+  6: Upto9;
+  [field: number]: number;
+};
+
 type RXRTypes3 = [never, 'CE', 'CWE', 'CE', 'CWE', 'CE', 'CWE'];
 
 interface RXRObject3<T extends HL7TypeMap> {
@@ -18172,6 +26009,54 @@ interface RXRObject3<T extends HL7TypeMap> {
   RoutingInstruction?: T['CE'] | null;
   AdministrationSiteModifier?: T['CWE'] | null;
 }
+
+type SACFieldComps2 = {
+  1: Upto4;
+  2: Upto4;
+  3: Upto4;
+  4: Upto4;
+  5: Upto4;
+  6: Upto7;
+  7: Upto2;
+  8: Upto6;
+  9: Upto6;
+  10: Upto4;
+  11: Upto4;
+  12: Upto6;
+  13: Upto4;
+  14: Upto4;
+  15: Upto6;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: Upto6;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: Upto6;
+  25: Upto6;
+  26: Upto6;
+  27: Upto9;
+  28: Upto6;
+  29: Upto4;
+  30: Upto6;
+  31: Upto4;
+  32: 1;
+  33: Upto6;
+  34: 1;
+  35: Upto6;
+  36: 1;
+  37: Upto6;
+  38: 1;
+  39: Upto6;
+  40: Upto6;
+  41: Upto6;
+  42: Upto6;
+  43: Upto9;
+  44: Upto6;
+  [field: number]: number;
+};
 
 type SACTypes2 = [
   never,
@@ -18268,7 +26153,48 @@ interface SACObject2<T extends HL7TypeMap> {
   OtherEnvironmentalFactors?: T['CE'][] | null;
 }
 
+type SCHFieldComps4 = {
+  1: Upto4;
+  2: Upto4;
+  3: 1;
+  4: Upto4;
+  5: Upto6;
+  6: Upto6;
+  7: Upto6;
+  8: Upto6;
+  9: 1;
+  10: Upto6;
+  11: Upto12;
+  12: Upto23;
+  13: Upto12;
+  14: Upto14;
+  15: Upto11;
+  16: Upto23;
+  17: Upto12;
+  18: Upto14;
+  19: Upto11;
+  20: Upto23;
+  21: Upto12;
+  22: Upto11;
+  23: Upto4;
+  24: Upto4;
+  25: Upto6;
+  26: Upto4;
+  27: Upto4;
+  [field: number]: number;
+};
+
 type SFTFields1 = 1 | 2 | 3 | 4 | 5 | 6;
+
+type SFTFieldComps1 = {
+  1: Upto10;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: Upto2;
+  [field: number]: number;
+};
 
 type SFTTypes1 = [never, 'XON', 'ST', 'ST', 'ST', 'TX', 'TS'];
 
@@ -18311,6 +26237,39 @@ type SPMFields1 =
   | 27
   | 28
   | 29;
+
+type SPMFieldComps1 = {
+  1: 1;
+  2: Upto2;
+  3: Upto2;
+  4: Upto9;
+  5: Upto9;
+  6: Upto9;
+  7: Upto9;
+  8: Upto9;
+  9: Upto9;
+  10: Upto9;
+  11: Upto9;
+  12: Upto2;
+  13: 1;
+  14: 1;
+  15: Upto9;
+  16: Upto9;
+  17: Upto2;
+  18: Upto2;
+  19: Upto2;
+  20: 1;
+  21: Upto9;
+  22: Upto9;
+  23: Upto9;
+  24: Upto9;
+  25: Upto2;
+  26: 1;
+  27: Upto9;
+  28: Upto9;
+  29: Upto9;
+  [field: number]: number;
+};
 
 type SPMTypes1 = [
   never,
@@ -18417,6 +26376,48 @@ type STFFields4 =
   | 37
   | 38;
 
+type STFFieldComps5 = {
+  1: Upto6;
+  2: Upto10;
+  3: Upto14;
+  4: 1;
+  5: 1;
+  6: Upto2;
+  7: 1;
+  8: Upto6;
+  9: Upto6;
+  10: Upto12;
+  11: Upto14;
+  12: Upto2;
+  13: Upto2;
+  14: Upto6;
+  15: 1;
+  16: Upto6;
+  17: Upto6;
+  18: 1;
+  19: Upto3;
+  20: Upto6;
+  21: 1;
+  22: Upto3;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: Upto6;
+  28: Upto6;
+  29: 1;
+  30: Upto6;
+  31: Upto2;
+  32: 1;
+  33: Upto9;
+  34: Upto2;
+  35: 1;
+  36: Upto9;
+  37: 1;
+  38: Upto9;
+  [field: number]: number;
+};
+
 type STFTypes5 = [
   never,
   'CE',
@@ -18502,6 +26503,24 @@ interface STFObject5<T extends HL7TypeMap> {
 
 type TQ1Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
 
+type TQ1FieldComps1 = {
+  1: 1;
+  2: Upto2;
+  3: Upto11;
+  4: 1;
+  5: Upto2;
+  6: Upto2;
+  7: Upto2;
+  8: Upto2;
+  9: Upto9;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: Upto2;
+  14: 1;
+  [field: number]: number;
+};
+
 type TQ1Types1 = [
   never,
   'SI',
@@ -18539,6 +26558,20 @@ interface TQ1Object1<T extends HL7TypeMap> {
 
 type TQ2Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
+type TQ2FieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto4;
+  4: Upto4;
+  5: Upto4;
+  6: 1;
+  7: 1;
+  8: Upto2;
+  9: 1;
+  10: 1;
+  [field: number]: number;
+};
+
 type TQ2Types1 = [
   never,
   'SI',
@@ -18566,7 +26599,57 @@ interface TQ2Object1<T extends HL7TypeMap> {
   SpecialServiceRequestRelationship?: string | null;
 }
 
+type TXAFieldComps4 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: Upto2;
+  5: Upto23;
+  6: Upto2;
+  7: Upto2;
+  8: Upto2;
+  9: Upto23;
+  10: Upto23;
+  11: Upto23;
+  12: Upto4;
+  13: Upto4;
+  14: Upto4;
+  15: Upto4;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: Upto24;
+  23: Upto23;
+  [field: number]: number;
+};
+
+type URDFieldComps6 = {
+  1: Upto2;
+  2: 1;
+  3: Upto23;
+  4: Upto6;
+  5: Upto6;
+  6: 1;
+  7: 1;
+  [field: number]: number;
+};
+
+type VARFieldComps4 = {
+  1: Upto4;
+  2: Upto2;
+  3: Upto2;
+  4: Upto23;
+  5: Upto6;
+  6: 1;
+  [field: number]: number;
+};
+
 type EDFields1 = 1;
+
+type EDFieldComps2 = { 1: 1; [field: number]: number };
 
 type EDTypes1 = [never, 'ST'];
 
@@ -18602,7 +26685,7 @@ type DDIComps2 = [never, 'NM', 'MO', 'NM'];
 
 type DLTComps2 = [never, 'NR', 'NM', 'ID', 'NM'];
 
-type EDComps2 = [never, 'HD', 'ID', 'ID', 'ID', 'TX'];
+type EDComps3 = [never, 'HD', 'ID', 'ID', 'ID', 'TX'];
 
 type ERLComps1 = [never, 'ST', 'NM', 'NM', 'NM', 'NM', 'NM'];
 
@@ -18864,6 +26947,16 @@ type HL7Types_2_5_1 = {
   XTN: XTNObject2;
 };
 
+type MSAFieldComps3 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: number;
+  6: Upto6;
+  [field: number]: number;
+};
+
 type MSATypes3 = [never, 'ID', 'ST', 'ST', 'NM', 'NUL', 'CE'];
 
 type OBRFields6 =
@@ -18917,6 +27010,60 @@ type OBRFields6 =
   | 48
   | 49
   | 50;
+
+type OBRFieldComps7 = {
+  1: 1;
+  2: Upto4;
+  3: Upto4;
+  4: Upto6;
+  5: 1;
+  6: Upto2;
+  7: Upto2;
+  8: Upto2;
+  9: Upto2;
+  10: Upto23;
+  11: 1;
+  12: Upto6;
+  13: 1;
+  14: Upto2;
+  15: Upto7;
+  16: Upto23;
+  17: Upto12;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: Upto2;
+  23: Upto2;
+  24: 1;
+  25: 1;
+  26: Upto3;
+  27: Upto12;
+  28: Upto23;
+  29: Upto2;
+  30: 1;
+  31: Upto6;
+  32: Upto11;
+  33: Upto11;
+  34: Upto11;
+  35: Upto11;
+  36: Upto2;
+  37: 1;
+  38: Upto6;
+  39: Upto6;
+  40: Upto6;
+  41: 1;
+  42: 1;
+  43: Upto6;
+  44: Upto6;
+  45: Upto6;
+  46: Upto6;
+  47: Upto6;
+  48: Upto9;
+  49: 1;
+  50: Upto9;
+  [field: number]: number;
+};
 
 type OBRTypes7 = [
   never,
@@ -19049,6 +27196,32 @@ type OBXFields5 =
   | 21
   | 22;
 
+type OBXFieldComps7 = {
+  1: 1;
+  2: 1;
+  3: Upto6;
+  4: 1;
+  5: number;
+  6: Upto6;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: Upto2;
+  13: 1;
+  14: Upto2;
+  15: Upto6;
+  16: Upto23;
+  17: Upto6;
+  18: Upto4;
+  19: Upto2;
+  20: Upto10;
+  21: Upto14;
+  22: Upto23;
+  [field: number]: number;
+};
+
 type OBXTypes5 = [
   never,
   'SI',
@@ -19132,6 +27305,41 @@ type ORCFields6 =
   | 29
   | 30
   | 31;
+
+type ORCFieldComps7 = {
+  1: 1;
+  2: Upto4;
+  3: Upto4;
+  4: Upto4;
+  5: 1;
+  6: 1;
+  7: Upto12;
+  8: Upto2;
+  9: Upto2;
+  10: Upto23;
+  11: Upto23;
+  12: Upto23;
+  13: Upto11;
+  14: Upto12;
+  15: Upto2;
+  16: Upto6;
+  17: Upto6;
+  18: Upto6;
+  19: Upto23;
+  20: Upto6;
+  21: Upto10;
+  22: Upto14;
+  23: Upto12;
+  24: Upto14;
+  25: Upto9;
+  26: Upto9;
+  27: Upto2;
+  28: Upto9;
+  29: Upto9;
+  30: Upto9;
+  31: Upto9;
+  [field: number]: number;
+};
 
 type ORCTypes7 = [
   never,
@@ -19510,6 +27718,24 @@ type HL7Types_2_6 = {
   XTN: XTNObject3;
 };
 
+type ABSFieldComps3 = {
+  1: Upto23;
+  2: Upto9;
+  3: Upto9;
+  4: 1;
+  5: Upto23;
+  6: Upto9;
+  7: 1;
+  8: Upto23;
+  9: Upto9;
+  10: 1;
+  11: Upto9;
+  12: 1;
+  13: Upto9;
+  14: 1;
+  [field: number]: number;
+};
+
 type ABSTypes2 = [
   never,
   'XCN',
@@ -19545,6 +27771,21 @@ interface ABSObject2<T extends HL7TypeMap> {
   StillbornIndicator?: string | null;
 }
 
+type ACCFieldComps6 = {
+  1: 1;
+  2: Upto9;
+  3: 1;
+  4: Upto9;
+  5: 1;
+  6: 1;
+  7: Upto23;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: Upto23;
+  [field: number]: number;
+};
+
 type ACCTypes5 = [
   never,
   'DTM',
@@ -19576,6 +27817,25 @@ interface ACCObject6<T extends HL7TypeMap> {
 
 type ADJFields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
+
+type ADJFieldComps1 = {
+  1: Upto4;
+  2: Upto4;
+  3: 1;
+  4: 1;
+  5: Upto6;
+  6: Upto2;
+  7: Upto9;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: Upto4;
+  13: Upto4;
+  14: 1;
+  15: Upto10;
+  [field: number]: number;
+};
 
 type ADJTypes1 = [
   never,
@@ -19614,6 +27874,33 @@ interface ADJObject1<T extends HL7TypeMap> {
   ResponsibleOrganization?: T['XON'] | null;
 }
 
+type AFFFieldComps3 = {
+  1: 1;
+  2: Upto10;
+  3: Upto23;
+  4: Upto2;
+  5: 1;
+  [field: number]: number;
+};
+
+type AIGFieldComps2 = {
+  1: 1;
+  2: 1;
+  3: Upto9;
+  4: Upto9;
+  5: Upto9;
+  6: 1;
+  7: Upto9;
+  8: 1;
+  9: 1;
+  10: Upto9;
+  11: 1;
+  12: Upto9;
+  13: 1;
+  14: Upto9;
+  [field: number]: number;
+};
+
 type AIGTypes2 = [
   never,
   'SI',
@@ -19649,6 +27936,22 @@ interface AIGObject2<T extends HL7TypeMap> {
   FillerStatusCode?: T['CWE'] | null;
 }
 
+type AILFieldComps3 = {
+  1: 1;
+  2: 1;
+  3: Upto11;
+  4: Upto9;
+  5: Upto9;
+  6: 1;
+  7: 1;
+  8: Upto9;
+  9: 1;
+  10: Upto9;
+  11: 1;
+  12: Upto9;
+  [field: number]: number;
+};
+
 type AILTypes2 = [
   never,
   'SI',
@@ -19679,6 +27982,22 @@ interface AILObject3<T extends HL7TypeMap> {
   AllowSubstitutionCode?: string | null;
   FillerStatusCode?: T['CWE'] | null;
 }
+
+type AIPFieldComps5 = {
+  1: 1;
+  2: 1;
+  3: Upto23;
+  4: Upto9;
+  5: Upto9;
+  6: 1;
+  7: 1;
+  8: Upto9;
+  9: 1;
+  10: Upto9;
+  11: 1;
+  12: Upto9;
+  [field: number]: number;
+};
 
 type AIPTypes2 = [
   never,
@@ -19711,6 +28030,22 @@ interface AIPObject3<T extends HL7TypeMap> {
   FillerStatusCode?: T['CWE'] | null;
 }
 
+type AISFieldComps3 = {
+  1: 1;
+  2: 1;
+  3: Upto9;
+  4: 1;
+  5: 1;
+  6: Upto9;
+  7: 1;
+  8: Upto9;
+  9: 1;
+  10: Upto9;
+  11: Upto9;
+  12: Upto9;
+  [field: number]: number;
+};
+
 type AISTypes3 = [
   never,
   'SI',
@@ -19742,6 +28077,16 @@ interface AISObject3<T extends HL7TypeMap> {
   FillerSupplementalServiceInformation?: T['CWE'][] | null;
 }
 
+type AL1FieldComps4 = {
+  1: 1;
+  2: Upto9;
+  3: Upto9;
+  4: Upto9;
+  5: 1;
+  6: 1;
+  [field: number]: number;
+};
+
 type AL1Types5 = [never, 'SI', 'CWE', 'CWE', 'CWE', 'ST', 'DT'];
 
 interface AL1Object5<T extends HL7TypeMap> {
@@ -19752,6 +28097,37 @@ interface AL1Object5<T extends HL7TypeMap> {
   AllergyReactionCode?: string[] | null;
   IdentificationDate?: string | null;
 }
+
+type ARQFieldComps5 = {
+  1: Upto4;
+  2: Upto4;
+  3: 1;
+  4: Upto4;
+  5: Upto9;
+  6: Upto9;
+  7: Upto9;
+  8: Upto9;
+  9: 1;
+  10: Upto9;
+  11: Upto2;
+  12: 1;
+  13: Upto2;
+  14: 1;
+  15: Upto23;
+  16:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  17: Upto23;
+  18: Upto11;
+  19: Upto23;
+  20:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  21: Upto11;
+  22: Upto4;
+  23: Upto4;
+  24: Upto4;
+  25: Upto4;
+  [field: number]: number;
+};
 
 type ARQTypes3 = [
   never,
@@ -19812,6 +28188,16 @@ interface ARQObject4<T extends HL7TypeMap> {
 
 type ARVFields1 = 1 | 2 | 3 | 4 | 5 | 6;
 
+type ARVFieldComps1 = {
+  1: 1;
+  2: Upto9;
+  3: Upto9;
+  4: Upto9;
+  5: 1;
+  6: Upto2;
+  [field: number]: number;
+};
+
 type ARVTypes1 = [never, 'SI', 'CNE', 'CWE', 'CWE', 'ST', 'DR'];
 
 interface ARVObject1<T extends HL7TypeMap> {
@@ -19822,6 +28208,20 @@ interface ARVObject1<T extends HL7TypeMap> {
   SpecialAccessRestrictionInstructions?: string[] | null;
   AccessRestrictionDateRange?: T['DR'] | null;
 }
+
+type AUTFieldComps2 = {
+  1: Upto9;
+  2: Upto9;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: Upto4;
+  7: Upto6;
+  8: 1;
+  9: 1;
+  10: 1;
+  [field: number]: number;
+};
 
 type AUTTypes2 = [
   never,
@@ -19851,6 +28251,24 @@ interface AUTObject2<T extends HL7TypeMap> {
 }
 
 type BHSFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
+type BHSFieldComps4 = {
+  1: 1;
+  2: 1;
+  3: Upto3;
+  4: Upto3;
+  5: Upto3;
+  6: Upto3;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: Upto3;
+  14: Upto3;
+  [field: number]: number;
+};
 
 type BHSTypes3 = [
   never,
@@ -19887,12 +28305,32 @@ interface BHSObject4<T extends HL7TypeMap> {
   BatchReceivingNetworkAddress?: T['HD'] | null;
 }
 
+type BLCFieldComps2 = { 1: Upto9; 2: Upto2; [field: number]: number };
+
 type BLCTypes2 = [never, 'CWE', 'CQ'];
 
 interface BLCObject2<T extends HL7TypeMap> {
   BloodProductCode?: T['CWE'] | null;
   BloodAmount?: T['CQ'] | null;
 }
+
+type BPOFieldComps2 = {
+  1: 1;
+  2: Upto9;
+  3: Upto9;
+  4: 1;
+  5: 1;
+  6: Upto9;
+  7: 1;
+  8: Upto11;
+  9: Upto23;
+  10: 1;
+  11: Upto11;
+  12: Upto23;
+  13: Upto9;
+  14: 1;
+  [field: number]: number;
+};
 
 type BPOTypes2 = [
   never,
@@ -19928,6 +28366,31 @@ interface BPOObject2<T extends HL7TypeMap> {
   BPIndicationForUse?: T['CWE'][] | null;
   BPInformedConsentIndicator?: string | null;
 }
+
+type BPXFieldComps2 = {
+  1: 1;
+  2: Upto9;
+  3: 1;
+  4: 1;
+  5: Upto4;
+  6: Upto9;
+  7: Upto9;
+  8: Upto9;
+  9: Upto10;
+  10: Upto4;
+  11: Upto9;
+  12: Upto9;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: Upto9;
+  17: Upto4;
+  18: Upto11;
+  19: Upto23;
+  20: Upto23;
+  21: Upto23;
+  [field: number]: number;
+};
 
 type BPXTypes2 = [
   never,
@@ -19978,6 +28441,29 @@ interface BPXObject2<T extends HL7TypeMap> {
   BPDispensingIndividual?: T['XCN'] | null;
 }
 
+type BTXFieldComps2 = {
+  1: 1;
+  2: Upto4;
+  3: Upto9;
+  4: Upto9;
+  5: Upto9;
+  6: Upto10;
+  7: Upto4;
+  8: 1;
+  9: 1;
+  10: Upto9;
+  11: Upto9;
+  12: 1;
+  13: 1;
+  14: Upto23;
+  15: Upto23;
+  16: 1;
+  17: 1;
+  18: Upto9;
+  19: Upto9;
+  [field: number]: number;
+};
+
 type BTXTypes2 = [
   never,
   'SI',
@@ -20023,6 +28509,23 @@ interface BTXObject2<T extends HL7TypeMap> {
   BPTransfusionInterruptedReason?: T['CWE'] | null;
 }
 
+type CDMFieldComps4 = {
+  1: Upto9;
+  2: Upto9;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: Upto9;
+  7: Upto9;
+  8: 1;
+  9: Upto9;
+  10: 1;
+  11: Upto10;
+  12: Upto10;
+  13: 1;
+  [field: number]: number;
+};
+
 type CDMTypes4 = [
   never,
   'CWE',
@@ -20055,6 +28558,41 @@ interface CDMObject4<T extends HL7TypeMap> {
   ContractOrganization?: T['XON'][] | null;
   RoomFeeIndicator?: string | null;
 }
+
+type CERFieldComps2 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: Upto10;
+  5: Upto23;
+  6: Upto5;
+  7: 1;
+  8: Upto9;
+  9: Upto9;
+  10: Upto9;
+  11: Upto9;
+  12: 1;
+  13: 1;
+  14: Upto9;
+  15: Upto9;
+  16: Upto9;
+  17: 1;
+  18: Upto9;
+  19: 1;
+  20: Upto9;
+  21: Upto9;
+  22: Upto9;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: 1;
+  29: 1;
+  30: Upto9;
+  31: Upto9;
+  [field: number]: number;
+};
 
 type CERTypes2 = [
   never,
@@ -20125,6 +28663,24 @@ interface CERObject2<T extends HL7TypeMap> {
   CertificateStatusCode?: T['CWE'] | null;
 }
 
+type CM0FieldComps5 = {
+  1: 1;
+  2: Upto4;
+  3: Upto4;
+  4: 1;
+  5: Upto23;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto23;
+  10:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  11: Upto23;
+  [field: number]: number;
+};
+
+type CM1FieldComps2 = { 1: 1; 2: Upto9; 3: 1; [field: number]: number };
+
 type CM1Types2 = [never, 'SI', 'CWE', 'ST'];
 
 interface CM1Object2<T extends HL7TypeMap> {
@@ -20132,6 +28688,14 @@ interface CM1Object2<T extends HL7TypeMap> {
   StudyPhaseIdentifier?: T['CWE'] | null;
   DescriptionOfStudyPhase?: string | null;
 }
+
+type CM2FieldComps2 = {
+  1: 1;
+  2: Upto9;
+  3: 1;
+  4: Upto9;
+  [field: number]: number;
+};
 
 type CM2Types2 = [never, 'SI', 'CWE', 'ST', 'CWE'];
 
@@ -20141,6 +28705,16 @@ interface CM2Object2<T extends HL7TypeMap> {
   DescriptionOfTimePoint?: string | null;
   EventsScheduledThisTimePoint?: T['CWE'][] | null;
 }
+
+type CNSFieldComps3 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: Upto9;
+  6: Upto9;
+  [field: number]: number;
+};
 
 type CNSTypes2 = [never, 'NM', 'NM', 'DTM', 'DTM', 'CWE', 'CWE'];
 
@@ -20152,6 +28726,35 @@ interface CNSObject3<T extends HL7TypeMap> {
   StartingNotificationCode?: T['CWE'] | null;
   EndingNotificationCode?: T['CWE'] | null;
 }
+
+type CONFieldComps2 = {
+  1: 1;
+  2: Upto9;
+  3: 1;
+  4: Upto4;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto9;
+  11: Upto9;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: Upto9;
+  19: 1;
+  20: Upto9;
+  21: 1;
+  22: Upto9;
+  23: Upto9;
+  24: Upto14;
+  25: 1;
+  [field: number]: number;
+};
 
 type CONTypes2 = [
   never,
@@ -20210,6 +28813,14 @@ interface CONObject2<T extends HL7TypeMap> {
   RelationshipToSubject?: string[] | null;
 }
 
+type CSPFieldComps2 = {
+  1: Upto9;
+  2: 1;
+  3: 1;
+  4: Upto9;
+  [field: number]: number;
+};
+
 type CSPTypes2 = [never, 'CWE', 'DTM', 'DTM', 'CWE'];
 
 interface CSPObject2<T extends HL7TypeMap> {
@@ -20218,6 +28829,26 @@ interface CSPObject2<T extends HL7TypeMap> {
   DateTimeStudyPhaseEnded?: string | null;
   StudyPhaseEvaluability?: T['CWE'] | null;
 }
+
+type CSRFieldComps5 = {
+  1: Upto4;
+  2: Upto4;
+  3: Upto9;
+  4: Upto10;
+  5: Upto10;
+  6: 1;
+  7: Upto23;
+  8: Upto23;
+  9: 1;
+  10: Upto9;
+  11: 1;
+  12: Upto9;
+  13: Upto9;
+  14: Upto9;
+  15: 1;
+  16: Upto9;
+  [field: number]: number;
+};
 
 type CSRTypes2 = [
   never,
@@ -20258,6 +28889,8 @@ interface CSRObject3<T extends HL7TypeMap> {
   ReasonEndedStudy?: T['CWE'] | null;
 }
 
+type CSSFieldComps2 = { 1: Upto9; 2: 1; 3: Upto9; [field: number]: number };
+
 type CSSTypes2 = [never, 'CWE', 'DTM', 'CWE'];
 
 interface CSSObject2<T extends HL7TypeMap> {
@@ -20265,6 +28898,17 @@ interface CSSObject2<T extends HL7TypeMap> {
   StudyScheduledPatientTimePoint?: string | null;
   StudyQualityControlCodes?: T['CWE'][] | null;
 }
+
+type CTDFieldComps5 = {
+  1: Upto9;
+  2: Upto14;
+  3: Upto23;
+  4: Upto11;
+  5: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  6: Upto9;
+  7: Upto4;
+  [field: number]: number;
+};
 
 type CTDTypes4 = [never, 'CWE', 'XPN', 'XAD', 'PL', 'XTN', 'CWE', 'PLN'];
 
@@ -20278,6 +28922,8 @@ interface CTDObject4<T extends HL7TypeMap> {
   ContactIdentifiers?: T['PLN'][] | null;
 }
 
+type CTIFieldComps2 = { 1: Upto4; 2: Upto9; 3: Upto9; [field: number]: number };
+
 type CTITypes2 = [never, 'EI', 'CWE', 'CWE'];
 
 interface CTIObject2<T extends HL7TypeMap> {
@@ -20288,6 +28934,26 @@ interface CTIObject2<T extends HL7TypeMap> {
 
 type DG1Fields5 =
   1 | 3 | 5 | 6 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26;
+
+type DG1FieldComps7 = {
+  1: 1;
+  3: Upto9;
+  5: 1;
+  6: 1;
+  15: 1;
+  16: Upto23;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: Upto4;
+  21: 1;
+  22: Upto4;
+  23: Upto9;
+  24: 1;
+  25: 1;
+  26: 1;
+  [field: number]: number;
+};
 
 type DG1Types6 = [
   never,
@@ -20340,6 +29006,15 @@ interface DG1Object6<T extends HL7TypeMap> {
 
 type DMIFields1 = 1 | 2 | 3 | 4 | 5;
 
+type DMIFieldComps1 = {
+  1: Upto9;
+  2: Upto9;
+  3: Upto2;
+  4: 1;
+  5: 1;
+  [field: number]: number;
+};
+
 type DMITypes1 = [never, 'CNE', 'CNE', 'NR', 'NM', 'NM'];
 
 interface DMIObject1<T extends HL7TypeMap> {
@@ -20384,6 +29059,43 @@ type DRGFields3 =
   | 31
   | 32
   | 33;
+
+type DRGFieldComps3 = {
+  1: Upto9;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: Upto9;
+  6: 1;
+  7: Upto6;
+  8: 1;
+  9: Upto6;
+  10: 1;
+  11: 1;
+  12: Upto14;
+  13: Upto9;
+  14: Upto9;
+  15: 1;
+  16: Upto2;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: Upto2;
+  22: Upto2;
+  23: Upto2;
+  24: Upto2;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: 1;
+  29: 1;
+  30: 1;
+  31: 1;
+  32: 1;
+  33: 1;
+  [field: number]: number;
+};
 
 type DRGTypes3 = [
   never,
@@ -20458,6 +29170,15 @@ interface DRGObject3<T extends HL7TypeMap> {
   StatusAdmission?: string | null;
 }
 
+type ECDFieldComps2 = {
+  1: 1;
+  2: Upto9;
+  3: 1;
+  4: Upto12;
+  5: 1;
+  [field: number]: number;
+};
+
 type ECDTypes3 = [never, 'NM', 'CWE', 'ID', 'TQ', 'TX'];
 
 interface ECDObject2<T extends HL7TypeMap> {
@@ -20468,6 +29189,8 @@ interface ECDObject2<T extends HL7TypeMap> {
   Parameters?: string[] | null;
 }
 
+type ECRFieldComps2 = { 1: Upto9; 2: 1; 3: 1; [field: number]: number };
+
 type ECRTypes3 = [never, 'CWE', 'DTM', 'TX'];
 
 interface ECRObject2<T extends HL7TypeMap> {
@@ -20476,9 +29199,24 @@ interface ECRObject2<T extends HL7TypeMap> {
   CommandResponseParameters?: string[] | null;
 }
 
+type EDFieldComps4 = { [field: number]: number };
+
 type EDTypes2 = [never];
 
 interface EDObject3<T extends HL7TypeMap> {}
+
+type EDUFieldComps3 = {
+  1: 1;
+  2: 1;
+  3: Upto2;
+  4: Upto2;
+  5: 1;
+  6: Upto10;
+  7: Upto9;
+  8: Upto23;
+  9: Upto9;
+  [field: number]: number;
+};
 
 type EDUTypes3 = [
   never,
@@ -20505,6 +29243,15 @@ interface EDUObject3<T extends HL7TypeMap> {
   MajorFieldOfStudy?: T['CWE'][] | null;
 }
 
+type EQPFieldComps2 = {
+  1: Upto9;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  [field: number]: number;
+};
+
 type EQPTypes2 = [never, 'CWE', 'ST', 'DTM', 'DTM', 'FT'];
 
 interface EQPObject2<T extends HL7TypeMap> {
@@ -20515,6 +29262,15 @@ interface EQPObject2<T extends HL7TypeMap> {
   TransactionData?: string | null;
 }
 
+type EQUFieldComps2 = {
+  1: Upto4;
+  2: 1;
+  3: Upto9;
+  4: Upto9;
+  5: Upto9;
+  [field: number]: number;
+};
+
 type EQUTypes2 = [never, 'EI', 'DTM', 'CWE', 'CWE', 'CWE'];
 
 interface EQUObject2<T extends HL7TypeMap> {
@@ -20524,6 +29280,34 @@ interface EQUObject2<T extends HL7TypeMap> {
   LocalRemoteControlState?: T['CWE'] | null;
   AlertLevel?: T['CWE'] | null;
 }
+
+type ERRFieldComps4 = {
+  1: Upto4;
+  2: Upto6;
+  3: Upto9;
+  4: 1;
+  5: Upto9;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto9;
+  11: Upto9;
+  12:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  [field: number]: number;
+};
+
+type EVNFieldComps7 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: Upto23;
+  6: 1;
+  7: Upto3;
+  [field: number]: number;
+};
 
 type EVNTypes6 = [never, 'ID', 'DTM', 'DTM', 'IS', 'XCN', 'DTM', 'HD'];
 
@@ -20537,7 +29321,42 @@ interface EVNObject6<T extends HL7TypeMap> {
   EventFacility?: T['HD'] | null;
 }
 
+type FACFieldComps5 = {
+  1: Upto4;
+  2: 1;
+  3: Upto23;
+  4: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  5: Upto23;
+  6: 1;
+  7: Upto23;
+  8: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  9: Upto23;
+  10: 1;
+  11: Upto23;
+  12:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  [field: number]: number;
+};
+
 type FHSFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
+type FHSFieldComps4 = {
+  1: 1;
+  2: 1;
+  3: Upto3;
+  4: Upto3;
+  5: Upto3;
+  6: Upto3;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: Upto3;
+  14: Upto3;
+  [field: number]: number;
+};
 
 type FHSTypes3 = [
   never,
@@ -20604,6 +29423,39 @@ type FT1Fields6 =
   | 29
   | 30
   | 31;
+
+type FT1FieldComps7 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: Upto2;
+  5: 1;
+  6: 1;
+  7: Upto9;
+  10: 1;
+  11: Upto6;
+  12: Upto6;
+  13: Upto9;
+  14: Upto9;
+  15: Upto6;
+  16: Upto11;
+  17: 1;
+  18: 1;
+  19: Upto9;
+  20: Upto23;
+  21: Upto23;
+  22: Upto6;
+  23: Upto4;
+  24: Upto23;
+  25: Upto9;
+  26: Upto9;
+  27: Upto9;
+  28: Upto9;
+  29: Upto9;
+  30: Upto10;
+  31: 1;
+  [field: number]: number;
+};
 
 type FT1Types6 = [
   never,
@@ -20696,6 +29548,32 @@ type GOLFields2 =
   | 21
   | 22;
 
+type GOLFieldComps5 = {
+  1: 1;
+  2: 1;
+  3: Upto9;
+  4: Upto4;
+  5: Upto4;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto9;
+  10: Upto9;
+  11: Upto9;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: Upto12;
+  16: Upto9;
+  17: 1;
+  18: Upto9;
+  19: 1;
+  20: Upto9;
+  21: Upto14;
+  22: Upto9;
+  [field: number]: number;
+};
+
 type GOLTypes2 = [
   never,
   'ID',
@@ -20747,6 +29625,24 @@ interface GOLObject2<T extends HL7TypeMap> {
   MoodCode?: T['CNE'] | null;
 }
 
+type GP2FieldComps2 = {
+  1: 1;
+  2: 1;
+  3: Upto6;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: Upto9;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: Upto6;
+  12: 1;
+  13: Upto6;
+  14: 1;
+  [field: number]: number;
+};
+
 type GP2Types2 = [
   never,
   'IS',
@@ -20781,6 +29677,69 @@ interface GP2Object2<T extends HL7TypeMap> {
   CoPayAmount?: T['CP'] | null;
   PayRatePerServiceUnit?: number | string | null;
 }
+
+type GT1FieldComps7 = {
+  1: 1;
+  2: Upto10;
+  3: Upto14;
+  4: Upto14;
+  5: Upto23;
+  6: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  7: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: Upto9;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: Upto14;
+  17: Upto23;
+  18:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  19: Upto10;
+  20: 1;
+  21: Upto10;
+  22: 1;
+  23: Upto9;
+  24: 1;
+  25: 1;
+  26: Upto9;
+  27: Upto6;
+  28: 1;
+  29: Upto10;
+  30: Upto9;
+  31: 1;
+  32: 1;
+  33: 1;
+  34: 1;
+  35: Upto9;
+  36: Upto9;
+  37: 1;
+  38: Upto9;
+  39: 1;
+  40: 1;
+  41: Upto9;
+  42: Upto14;
+  43: Upto9;
+  44: Upto9;
+  45: Upto14;
+  46:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  47: Upto9;
+  48: 1;
+  49: 1;
+  50: Upto3;
+  51: Upto10;
+  52: 1;
+  53: 1;
+  54: Upto2;
+  55: Upto9;
+  56: 1;
+  57: 1;
+  [field: number]: number;
+};
 
 type GT1Types6 = [
   never,
@@ -20903,9 +29862,35 @@ interface GT1Object6<T extends HL7TypeMap> {
   VIPIndicator?: string | null;
 }
 
+type HxxFieldComps1 = { [field: number]: number };
+
 type HxxTypes1 = [never];
 
 interface HxxObject1<T extends HL7TypeMap> {}
+
+type IAMFieldComps3 = {
+  1: 1;
+  2: Upto9;
+  3: Upto9;
+  4: Upto9;
+  5: 1;
+  6: Upto9;
+  7: Upto4;
+  8: 1;
+  9: Upto9;
+  10: Upto9;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: Upto14;
+  15: Upto9;
+  16: Upto9;
+  17: Upto9;
+  18: Upto23;
+  19: Upto10;
+  20: 1;
+  [field: number]: number;
+};
 
 type IAMTypes2 = [
   never,
@@ -20954,6 +29939,25 @@ interface IAMObject2<T extends HL7TypeMap> {
   StatusedAtDateTime?: string | null;
 }
 
+type IIMFieldComps2 = {
+  1: Upto9;
+  2: Upto9;
+  3: 1;
+  4: 1;
+  5: Upto9;
+  6: Upto9;
+  7: 1;
+  8: 1;
+  9: Upto9;
+  10: Upto2;
+  11: 1;
+  12: 1;
+  13: Upto9;
+  14: Upto9;
+  15: Upto9;
+  [field: number]: number;
+};
+
 type IIMTypes2 = [
   never,
   'CWE',
@@ -20992,6 +29996,20 @@ interface IIMObject2<T extends HL7TypeMap> {
 }
 
 type ILTFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+
+type ILTFieldComps1 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: Upto9;
+  7: Upto2;
+  8: 1;
+  9: 1;
+  10: Upto9;
+  [field: number]: number;
+};
 
 type ILTTypes1 = [
   never,
@@ -21071,6 +30089,60 @@ type IN1Fields5 =
   | 51
   | 52
   | 53;
+
+type IN1FieldComps7 = {
+  1: 1;
+  2: Upto9;
+  3: Upto10;
+  4: Upto10;
+  5: Upto23;
+  6: Upto14;
+  7: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  8: 1;
+  9: Upto10;
+  10: Upto10;
+  11: Upto10;
+  12: 1;
+  13: 1;
+  14: Upto3;
+  15: 1;
+  16: Upto14;
+  17: Upto9;
+  18: 1;
+  19: Upto23;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: 1;
+  29: 1;
+  30: Upto23;
+  31: 1;
+  32: 1;
+  33: 1;
+  34: 1;
+  35: 1;
+  36: 1;
+  37: Upto6;
+  39: 1;
+  42: Upto9;
+  43: 1;
+  44: Upto23;
+  45: 1;
+  46: 1;
+  47: 1;
+  48: 1;
+  49: Upto10;
+  50: 1;
+  51: 1;
+  52: 1;
+  53: 1;
+  [field: number]: number;
+};
 
 type IN1Types6 = [
   never,
@@ -21181,6 +30253,87 @@ interface IN1Object6<T extends HL7TypeMap> {
   InsuredSBirthPlace?: string | null;
   VIPIndicator?: string | null;
 }
+
+type IN2FieldComps6 = {
+  1: Upto10;
+  2: 1;
+  3: Upto23;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: Upto14;
+  8: 1;
+  9: Upto14;
+  10: 1;
+  11: Upto9;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: Upto14;
+  23: 1;
+  24: 1;
+  25: Upto10;
+  26: Upto10;
+  27: 1;
+  28: Upto4;
+  29: Upto4;
+  30: Upto3;
+  31: 1;
+  32: 1;
+  33: Upto9;
+  34: Upto9;
+  35: 1;
+  36: Upto9;
+  37: 1;
+  38: 1;
+  39: Upto9;
+  40: Upto14;
+  41: Upto9;
+  42: Upto9;
+  43: Upto9;
+  44: 1;
+  45: 1;
+  46: 1;
+  47: Upto3;
+  48: 1;
+  49: Upto14;
+  50:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  51: 1;
+  52: Upto14;
+  53:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  54: 1;
+  55: 1;
+  56: 1;
+  57: 1;
+  58:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  59: 1;
+  60: 1;
+  61: Upto10;
+  62: Upto9;
+  63:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  64:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  65: Upto9;
+  66: 1;
+  67: 1;
+  68: 1;
+  69: Upto10;
+  70: Upto10;
+  71: Upto9;
+  72: Upto9;
+  [field: number]: number;
+};
 
 type IN2Types4 = [
   never,
@@ -21333,6 +30486,37 @@ interface IN2Object4<T extends HL7TypeMap> {
   PatientSRelationshipToInsured?: T['CWE'] | null;
 }
 
+type IN3FieldComps6 = {
+  1: 1;
+  2: Upto10;
+  3: Upto23;
+  4: 1;
+  5: Upto3;
+  6: 1;
+  7: 1;
+  8: Upto23;
+  9: 1;
+  10: 1;
+  11: Upto2;
+  12: Upto9;
+  13: 1;
+  14: Upto23;
+  15: 1;
+  16:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  17: Upto9;
+  18: Upto9;
+  19:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  20: Upto3;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: Upto23;
+  [field: number]: number;
+};
+
 type IN3Types5 = [
   never,
   'SI',
@@ -21390,6 +30574,30 @@ interface IN3Object5<T extends HL7TypeMap> {
   SecondOpinionPhysician?: T['XCN'][] | null;
 }
 
+type INVFieldComps3 = {
+  1: Upto9;
+  2: Upto9;
+  3: Upto9;
+  4: Upto9;
+  5: Upto9;
+  6: Upto9;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: Upto9;
+  12: 1;
+  13: 1;
+  14: Upto12;
+  15: Upto9;
+  16: 1;
+  17: Upto9;
+  18: Upto9;
+  19: Upto2;
+  20: Upto2;
+  [field: number]: number;
+};
+
 type INVTypes3 = [
   never,
   'CWE',
@@ -21437,6 +30645,19 @@ interface INVObject3<T extends HL7TypeMap> {
   TargetValue?: T['CQ'] | null;
 }
 
+type IPCFieldComps2 = {
+  1: Upto4;
+  2: Upto4;
+  3: Upto4;
+  4: Upto4;
+  5: Upto9;
+  6: Upto9;
+  7: Upto4;
+  8: Upto9;
+  9: 1;
+  [field: number]: number;
+};
+
 type IPCTypes2 = [
   never,
   'EI',
@@ -21464,6 +30685,18 @@ interface IPCObject2<T extends HL7TypeMap> {
 
 type IPRFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
+type IPRFieldComps1 = {
+  1: Upto4;
+  2: Upto4;
+  3: Upto4;
+  4: Upto9;
+  5: 1;
+  6: Upto6;
+  7: 1;
+  8: 1;
+  [field: number]: number;
+};
+
 type IPRTypes1 = [never, 'EI', 'EI', 'EI', 'CWE', 'DTM', 'CP', 'DTM', 'ST'];
 
 interface IPRObject1<T extends HL7TypeMap> {
@@ -21476,6 +30709,8 @@ interface IPRObject1<T extends HL7TypeMap> {
   ExpectedPaymentDateTime?: string | null;
   IPRChecksum?: string | null;
 }
+
+type ISDFieldComps2 = { 1: 1; 2: Upto9; 3: Upto9; [field: number]: number };
 
 type ISDTypes2 = [never, 'NM', 'CWE', 'CWE'];
 
@@ -21515,6 +30750,39 @@ type ITMFields1 =
   | 27
   | 28
   | 29;
+
+type ITMFieldComps1 = {
+  1: Upto4;
+  2: 1;
+  3: Upto9;
+  4: Upto9;
+  5: Upto9;
+  6: Upto9;
+  7: Upto4;
+  8: 1;
+  9: 1;
+  10: Upto9;
+  11: Upto9;
+  12: Upto9;
+  13: Upto6;
+  14: Upto9;
+  15: Upto9;
+  16: Upto10;
+  17: Upto9;
+  18: Upto9;
+  19: 1;
+  20: 1;
+  21: Upto2;
+  22: Upto9;
+  23: Upto9;
+  24: Upto9;
+  25: Upto4;
+  26: Upto9;
+  27: Upto9;
+  28: Upto9;
+  29: Upto9;
+  [field: number]: number;
+};
 
 type ITMTypes1 = [
   never,
@@ -21613,6 +30881,40 @@ type IVCFields1 =
   | 29
   | 30;
 
+type IVCFieldComps1 = {
+  1: Upto4;
+  2: Upto4;
+  3: Upto4;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: Upto6;
+  9: 1;
+  10: Upto10;
+  11: Upto10;
+  12: Upto23;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: Upto6;
+  17: Upto6;
+  18: Upto6;
+  19: Upto23;
+  20: Upto10;
+  21: Upto6;
+  22: Upto6;
+  23: Upto6;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: 1;
+  29: 1;
+  30: 1;
+  [field: number]: number;
+};
+
 type IVCTypes1 = [
   never,
   'EI',
@@ -21708,6 +31010,36 @@ type IVTFields1 =
   | 25
   | 26;
 
+type IVTFieldComps1 = {
+  1: 1;
+  2: Upto4;
+  3: 1;
+  4: Upto4;
+  5: 1;
+  6: Upto9;
+  7: Upto4;
+  8: Upto9;
+  9: Upto9;
+  10: Upto4;
+  11: Upto9;
+  12: Upto9;
+  13: Upto6;
+  14: Upto9;
+  15: Upto9;
+  16: Upto9;
+  17: Upto9;
+  18: Upto6;
+  19: Upto4;
+  20: Upto4;
+  21: Upto9;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: Upto9;
+  [field: number]: number;
+};
+
 type IVTTypes1 = [
   never,
   'SI',
@@ -21767,6 +31099,14 @@ interface IVTObject1<T extends HL7TypeMap> {
   OperatingRoomParLevelIndicator?: T['CNE'] | null;
 }
 
+type LANFieldComps2 = {
+  1: 1;
+  2: Upto9;
+  3: Upto9;
+  4: Upto9;
+  [field: number]: number;
+};
+
 type LANTypes2 = [never, 'SI', 'CWE', 'CWE', 'CWE'];
 
 interface LANObject2<T extends HL7TypeMap> {
@@ -21775,6 +31115,14 @@ interface LANObject2<T extends HL7TypeMap> {
   LanguageAbilityCode?: T['CWE'][] | null;
   LanguageProficiencyCode?: T['CWE'] | null;
 }
+
+type LCCFieldComps4 = {
+  1: Upto11;
+  2: Upto9;
+  3: Upto9;
+  4: Upto9;
+  [field: number]: number;
+};
 
 type LCCTypes3 = [never, 'PL', 'CWE', 'CWE', 'CWE'];
 
@@ -21785,6 +31133,15 @@ interface LCCObject3<T extends HL7TypeMap> {
   ChargeCode?: T['CWE'][] | null;
 }
 
+type LCHFieldComps3 = {
+  1: Upto11;
+  2: 1;
+  3: Upto4;
+  4: Upto9;
+  5: Upto9;
+  [field: number]: number;
+};
+
 type LCHTypes2 = [never, 'PL', 'ID', 'EI', 'CWE', 'CWE'];
 
 interface LCHObject2<T extends HL7TypeMap> {
@@ -21794,6 +31151,23 @@ interface LCHObject2<T extends HL7TypeMap> {
   LocationCharacteristicID?: T['CWE'] | null;
   LocationCharacteristicValueLCH?: T['CWE'] | null;
 }
+
+type LDPFieldComps4 = {
+  1: Upto11;
+  2: Upto9;
+  3: 1;
+  4: Upto9;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto4;
+  11:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  12: Upto9;
+  [field: number]: number;
+};
 
 type LDPTypes4 = [
   never,
@@ -21826,6 +31200,19 @@ interface LDPObject3<T extends HL7TypeMap> {
   LocationCostCenter?: T['CWE'] | null;
 }
 
+type LOCFieldComps5 = {
+  1: Upto11;
+  2: 1;
+  3: 1;
+  4: Upto10;
+  5: Upto23;
+  6: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  7: Upto9;
+  8: 1;
+  9: 1;
+  [field: number]: number;
+};
+
 type LOCTypes4 = [
   never,
   'PL',
@@ -21851,6 +31238,16 @@ interface LOCObject4<T extends HL7TypeMap> {
   LocationServiceCode?: string | null;
 }
 
+type LRLFieldComps4 = {
+  1: Upto11;
+  2: 1;
+  3: Upto4;
+  4: Upto9;
+  5: Upto10;
+  6: Upto11;
+  [field: number]: number;
+};
+
 type LRLTypes2 = [never, 'PL', 'ID', 'EI', 'CWE', 'XON', 'PL'];
 
 interface LRLObject3<T extends HL7TypeMap> {
@@ -21861,6 +31258,16 @@ interface LRLObject3<T extends HL7TypeMap> {
   OrganizationalLocationRelationshipValue?: T['XON'][] | null;
   PatientLocationRelationshipValue?: T['PL'] | null;
 }
+
+type MFAFieldComps4 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: Upto9;
+  5: number;
+  6: 1;
+  [field: number]: number;
+};
 
 type MFATypes4 = [never, 'ID', 'ST', 'DTM', 'CWE', 'VARIES', 'ID'];
 
@@ -21875,6 +31282,17 @@ interface MFAObject4<T extends HL7TypeMap> {
 
 type MFEFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
+type MFEFieldComps3 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: number;
+  5: 1;
+  6: 1;
+  7: Upto23;
+  [field: number]: number;
+};
+
 type MFETypes3 = [never, 'ID', 'ST', 'DTM', 'VARIES', 'ID', 'DTM', 'XCN'];
 
 interface MFEObject3<T extends HL7TypeMap> {
@@ -21886,6 +31304,16 @@ interface MFEObject3<T extends HL7TypeMap> {
   EnteredDateTime?: string | null;
   EnteredBy?: T['XCN'] | null;
 }
+
+type MFIFieldComps3 = {
+  1: Upto9;
+  2: Upto3;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  [field: number]: number;
+};
 
 type MFITypes3 = [never, 'CWE', 'HD', 'ID', 'DTM', 'DTM', 'ID'];
 
@@ -21899,6 +31327,17 @@ interface MFIObject3<T extends HL7TypeMap> {
 }
 
 type MSAFields3 = 1 | 2 | 3 | 4 | 6 | 7 | 8;
+
+type MSAFieldComps4 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  6: Upto9;
+  7: 1;
+  8: 1;
+  [field: number]: number;
+};
 
 type MSATypes4 = [never, 'ID', 'ST', 'ST', 'NM', never, 'CNE', 'NM', 'ID'];
 
@@ -21938,6 +31377,35 @@ type MSHFields6 =
   | 23
   | 24
   | 25;
+
+type MSHFieldComps7 = {
+  1: 1;
+  2: 1;
+  3: Upto3;
+  4: Upto3;
+  5: Upto3;
+  6: Upto3;
+  7: 1;
+  8: 1;
+  9: Upto3;
+  10: 1;
+  11: Upto2;
+  12: Upto3;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: Upto9;
+  20: 1;
+  21: Upto4;
+  22: Upto10;
+  23: Upto10;
+  24: Upto3;
+  25: Upto3;
+  [field: number]: number;
+};
 
 type MSHTypes7 = [
   never,
@@ -21996,7 +31464,17 @@ interface MSHObject7<T extends HL7TypeMap> {
   ReceivingNetworkAddress?: T['HD'] | null;
 }
 
+type NCKFieldComps3 = { 1: 1; [field: number]: number };
+
 type NCKTypes2 = [never, 'DTM'];
+
+type NDSFieldComps2 = {
+  1: 1;
+  2: 1;
+  3: Upto9;
+  4: Upto9;
+  [field: number]: number;
+};
 
 type NDSTypes2 = [never, 'NM', 'DTM', 'CWE', 'CWE'];
 
@@ -22006,6 +31484,50 @@ interface NDSObject2<T extends HL7TypeMap> {
   NotificationAlertSeverity?: T['CWE'] | null;
   NotificationCode?: T['CWE'] | null;
 }
+
+type NK1FieldComps7 = {
+  1: 1;
+  2: Upto14;
+  3: Upto9;
+  4: Upto23;
+  5: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  6: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  7: Upto9;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: Upto3;
+  12: Upto10;
+  13: Upto10;
+  14: Upto9;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: Upto9;
+  20: Upto9;
+  21: 1;
+  22: Upto9;
+  23: 1;
+  24: 1;
+  25: Upto9;
+  26: Upto14;
+  27: Upto9;
+  28: Upto9;
+  29: Upto9;
+  30: Upto14;
+  31:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  32: Upto23;
+  33: Upto10;
+  34: 1;
+  35: Upto9;
+  36: 1;
+  37: 1;
+  38: 1;
+  39: 1;
+  [field: number]: number;
+};
 
 type NK1Types6 = [
   never,
@@ -22092,6 +31614,25 @@ interface NK1Object6<T extends HL7TypeMap> {
   VIPIndicator?: string | null;
 }
 
+type NSTFieldComps3 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  [field: number]: number;
+};
+
 type NSTTypes2 = [
   never,
   'ID',
@@ -22113,6 +31654,18 @@ type NSTTypes2 = [
 
 type NTEFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
+type NTEFieldComps3 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: Upto9;
+  5: Upto23;
+  6: 1;
+  7: 1;
+  8: 1;
+  [field: number]: number;
+};
+
 type NTETypes4 = [never, 'SI', 'ID', 'FT', 'CWE', 'XCN', 'DTM', 'DTM', 'DTM'];
 
 interface NTEObject3<T extends HL7TypeMap> {
@@ -22125,6 +31678,61 @@ interface NTEObject3<T extends HL7TypeMap> {
   EffectiveStartDate?: string | null;
   ExpirationDate?: string | null;
 }
+
+type OBRFieldComps8 = {
+  1: 1;
+  2: Upto4;
+  3: Upto4;
+  4: Upto9;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto2;
+  10: Upto23;
+  11: 1;
+  12: Upto9;
+  13: 1;
+  14: 1;
+  15: Upto7;
+  16: Upto23;
+  17:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: Upto2;
+  24: 1;
+  25: 1;
+  26: Upto3;
+  27: Upto12;
+  28: Upto23;
+  29: Upto2;
+  30: 1;
+  31: Upto9;
+  32: Upto11;
+  33: Upto11;
+  34: Upto11;
+  35: Upto11;
+  36: 1;
+  37: 1;
+  38: Upto9;
+  39: Upto9;
+  40: Upto9;
+  41: 1;
+  42: 1;
+  43: Upto9;
+  44: Upto9;
+  45: Upto9;
+  46: Upto9;
+  47: Upto9;
+  48: Upto9;
+  49: 1;
+  50: Upto9;
+  [field: number]: number;
+};
 
 type OBRTypes8 = [
   never,
@@ -22260,6 +31868,35 @@ type OBXFields6 =
   | 24
   | 25;
 
+type OBXFieldComps8 = {
+  1: 1;
+  2: 1;
+  3: Upto9;
+  4: 1;
+  5: number;
+  6: Upto9;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: Upto9;
+  16: Upto23;
+  17: Upto9;
+  18: Upto4;
+  19: 1;
+  20: Upto9;
+  21: Upto4;
+  22: Upto9;
+  23: Upto10;
+  24: Upto23;
+  25: Upto23;
+  [field: number]: number;
+};
+
 type OBXTypes6 = [
   never,
   'SI',
@@ -22317,6 +31954,14 @@ interface OBXObject8<T extends HL7TypeMap> {
   PerformingOrganizationMedicalDirector?: T['XCN'] | null;
 }
 
+type ODSFieldComps2 = {
+  1: 1;
+  2: Upto9;
+  3: Upto9;
+  4: 1;
+  [field: number]: number;
+};
+
 type ODSTypes2 = [never, 'ID', 'CWE', 'CWE', 'ST'];
 
 interface ODSObject3<T extends HL7TypeMap> {
@@ -22326,6 +31971,8 @@ interface ODSObject3<T extends HL7TypeMap> {
   TextInstruction?: string[] | null;
 }
 
+type ODTFieldComps2 = { 1: Upto9; 2: Upto9; 3: 1; [field: number]: number };
+
 type ODTTypes2 = [never, 'CWE', 'CWE', 'ST'];
 
 interface ODTObject3<T extends HL7TypeMap> {
@@ -22333,6 +31980,59 @@ interface ODTObject3<T extends HL7TypeMap> {
   ServicePeriod?: T['CWE'][] | null;
   TextInstruction?: string | null;
 }
+
+type OM1FieldComps6 = {
+  1: 1;
+  2: Upto9;
+  3: 1;
+  4: 1;
+  5: Upto9;
+  6: 1;
+  7: Upto9;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: Upto9;
+  14: Upto9;
+  15: 1;
+  16: Upto9;
+  17:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  18: 1;
+  19: Upto9;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: Upto9;
+  28: Upto23;
+  29:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  30: Upto9;
+  31: Upto9;
+  32: 1;
+  33: Upto9;
+  34: Upto9;
+  35: 1;
+  36: Upto9;
+  37: 1;
+  38: Upto9;
+  39: 1;
+  40: 1;
+  41: 1;
+  42: Upto9;
+  43: Upto9;
+  44: 1;
+  45: Upto9;
+  46: Upto9;
+  47: Upto9;
+  [field: number]: number;
+};
 
 type OM1Types5 = [
   never,
@@ -22435,6 +32135,20 @@ interface OM1Object5<T extends HL7TypeMap> {
   ModalityOfImagingMeasurement?: T['CWE'] | null;
 }
 
+type OM2FieldComps5 = {
+  1: 1;
+  2: Upto9;
+  3: 1;
+  4: Upto9;
+  5: 1;
+  6: Upto7;
+  7: Upto7;
+  8: Upto7;
+  9: Upto4;
+  10: 1;
+  [field: number]: number;
+};
+
 type OM2Types5 = [
   never,
   'NM',
@@ -22462,6 +32176,17 @@ interface OM2Object5<T extends HL7TypeMap> {
   MinimumMeaningfulIncrements?: number | string | null;
 }
 
+type OM3FieldComps3 = {
+  1: 1;
+  2: Upto9;
+  3: Upto9;
+  4: Upto9;
+  5: Upto9;
+  6: Upto9;
+  7: 1;
+  [field: number]: number;
+};
+
 type OM3Types3 = [never, 'NM', 'CWE', 'CWE', 'CWE', 'CWE', 'CWE', 'ID'];
 
 interface OM3Object4<T extends HL7TypeMap> {
@@ -22473,6 +32198,24 @@ interface OM3Object4<T extends HL7TypeMap> {
   CriticalTextCodesForCategoricalObservations?: T['CWE'][] | null;
   ValueType?: string | null;
 }
+
+type OM4FieldComps4 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: Upto9;
+  6: Upto9;
+  7: Upto9;
+  8: 1;
+  9: 1;
+  10: Upto2;
+  11: Upto2;
+  12: 1;
+  13: 1;
+  14: Upto2;
+  [field: number]: number;
+};
 
 type OM4Types4 = [
   never,
@@ -22509,6 +32252,8 @@ interface OM4Object5<T extends HL7TypeMap> {
   SpecimenRetentionTime?: T['CQ'] | null;
 }
 
+type OM5FieldComps3 = { 1: 1; 2: Upto9; 3: 1; [field: number]: number };
+
 type OM5Types3 = [never, 'NM', 'CWE', 'ST'];
 
 interface OM5Object3<T extends HL7TypeMap> {
@@ -22516,6 +32261,34 @@ interface OM5Object3<T extends HL7TypeMap> {
   TestObservationsIncludedWithinAnOrderedTestBattery?: T['CWE'][] | null;
   ObservationIDSuffixes?: string | null;
 }
+
+type OM7FieldComps3 = {
+  1: 1;
+  2: Upto9;
+  3: Upto9;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto9;
+  10: 1;
+  11: 1;
+  12: Upto9;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: Upto9;
+  17: 1;
+  18: Upto9;
+  19: 1;
+  20: Upto23;
+  21: Upto11;
+  22: 1;
+  23: 1;
+  24: Upto9;
+  [field: number]: number;
+};
 
 type OM7Types2 = [
   never,
@@ -22571,6 +32344,43 @@ interface OM7Object2<T extends HL7TypeMap> {
   SpecialOrderIndicator?: string | null;
   PrimaryKeyValueCDM?: T['CWE'][] | null;
 }
+
+type ORCFieldComps8 = {
+  1: 1;
+  2: Upto4;
+  3: Upto4;
+  4: Upto4;
+  5: 1;
+  6: 1;
+  7: Upto12;
+  8: Upto2;
+  9: 1;
+  10: Upto23;
+  11: Upto23;
+  12: Upto23;
+  13: Upto11;
+  14:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  15: 1;
+  16: Upto9;
+  17: Upto9;
+  18: Upto9;
+  19: Upto23;
+  20: Upto9;
+  21: Upto10;
+  22: Upto23;
+  23:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  24: Upto23;
+  25: Upto9;
+  26: Upto9;
+  27: 1;
+  28: Upto9;
+  29: Upto9;
+  30: Upto9;
+  31: Upto9;
+  [field: number]: number;
+};
 
 type ORCTypes8 = [
   never,
@@ -22641,6 +32451,22 @@ interface ORCObject8<T extends HL7TypeMap> {
   ParentUniversalServiceIdentifier?: T['CWE'] | null;
 }
 
+type ORGFieldComps3 = {
+  1: 1;
+  2: Upto9;
+  3: Upto9;
+  4: 1;
+  5: Upto10;
+  6: Upto9;
+  7: Upto9;
+  8: Upto9;
+  9: Upto2;
+  10: Upto9;
+  11: 1;
+  12: 1;
+  [field: number]: number;
+};
+
 type ORGTypes2 = [
   never,
   'SI',
@@ -22674,6 +32500,14 @@ interface ORGObject2<T extends HL7TypeMap> {
 
 type PCEFields1 = 1 | 2 | 3 | 4;
 
+type PCEFieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto9;
+  4: Upto6;
+  [field: number]: number;
+};
+
 type PCETypes1 = [never, 'SI', 'IS', 'CWE', 'CP'];
 
 interface PCEObject1<T extends HL7TypeMap> {
@@ -22682,6 +32516,33 @@ interface PCEObject1<T extends HL7TypeMap> {
   TransactionCode?: T['CWE'] | null;
   TransactionAmountUnit?: T['CP'] | null;
 }
+
+type PCRFieldComps2 = {
+  1: Upto9;
+  2: 1;
+  3: Upto9;
+  4: Upto2;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto9;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: Upto9;
+  15: Upto9;
+  16: Upto9;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: 1;
+  [field: number]: number;
+};
 
 type PCRTypes2 = [
   never,
@@ -22760,6 +32621,32 @@ type PD1Fields3 =
   | 21
   | 22;
 
+type PD1FieldComps5 = {
+  1: 1;
+  2: 1;
+  3: Upto10;
+  4: Upto23;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto10;
+  11: Upto9;
+  12: 1;
+  13: 1;
+  14: Upto10;
+  15: Upto9;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: 1;
+  [field: number]: number;
+};
+
 type PD1Types3 = [
   never,
   'IS',
@@ -22811,6 +32698,19 @@ interface PD1Object4<T extends HL7TypeMap> {
   AdvanceDirectiveLastVerifiedDate?: string | null;
 }
 
+type PDAFieldComps3 = {
+  1: Upto9;
+  2: Upto11;
+  3: 1;
+  4: 1;
+  5: Upto23;
+  6: 1;
+  7: Upto2;
+  8: Upto23;
+  9: 1;
+  [field: number]: number;
+};
+
 type PDATypes2 = [
   never,
   'CWE',
@@ -22835,6 +32735,25 @@ interface PDAObject2<T extends HL7TypeMap> {
   AutopsyPerformedBy?: T['XCN'] | null;
   CoronerIndicator?: string | null;
 }
+
+type PDCFieldComps4 = {
+  1: Upto10;
+  2: Upto9;
+  3: 1;
+  4: 1;
+  5: Upto9;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto9;
+  10: 1;
+  11: 1;
+  12: Upto2;
+  13: Upto2;
+  14: 1;
+  15: 1;
+  [field: number]: number;
+};
 
 type PDCTypes2 = [
   never,
@@ -22872,6 +32791,36 @@ interface PDCObject3<T extends HL7TypeMap> {
   DateFirstMarketed?: string | null;
   DateLastMarketed?: string | null;
 }
+
+type PEOFieldComps5 = {
+  1: Upto9;
+  2: Upto9;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: Upto23;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: Upto9;
+  19: Upto14;
+  20: Upto23;
+  21:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: 1;
+  [field: number]: number;
+};
 
 type PEOTypes2 = [
   never,
@@ -22930,6 +32879,23 @@ interface PEOObject3<T extends HL7TypeMap> {
   PrimaryObserverSIdentityMayBeDivulged?: string | null;
 }
 
+type PESFieldComps5 = {
+  1: Upto10;
+  2: Upto23;
+  3: Upto23;
+  4: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  5: Upto4;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  [field: number]: number;
+};
+
 type PESTypes2 = [
   never,
   'XON',
@@ -22962,6 +32928,51 @@ interface PESObject3<T extends HL7TypeMap> {
   EventReportSource?: string | null;
   EventReportedTo?: string[] | null;
 }
+
+type PIDFieldComps7 = {
+  1: 1;
+  2: Upto10;
+  3: Upto10;
+  4: Upto10;
+  5: Upto14;
+  6: Upto14;
+  7: 1;
+  8: 1;
+  9: Upto14;
+  10: Upto9;
+  11: Upto23;
+  12: 1;
+  13:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  14:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  15: Upto9;
+  16: Upto9;
+  17: Upto9;
+  18: Upto10;
+  19: 1;
+  20: Upto3;
+  21: Upto10;
+  22: Upto9;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: Upto9;
+  27: Upto9;
+  28: Upto9;
+  29: 1;
+  30: 1;
+  31: 1;
+  32: 1;
+  33: 1;
+  34: Upto3;
+  35: Upto9;
+  36: Upto9;
+  37: 1;
+  38: Upto9;
+  39: Upto9;
+  [field: number]: number;
+};
 
 type PIDTypes7 = [
   never,
@@ -23050,6 +33061,17 @@ interface PIDObject7<T extends HL7TypeMap> {
 
 type PKGFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
+type PKGFieldComps1 = {
+  1: 1;
+  2: Upto9;
+  3: Upto9;
+  4: 1;
+  5: Upto6;
+  6: Upto6;
+  7: 1;
+  [field: number]: number;
+};
+
 type PKGTypes1 = [never, 'SI', 'CWE', 'CNE', 'NM', 'CP', 'CP', 'DTM'];
 
 interface PKGObject1<T extends HL7TypeMap> {
@@ -23063,6 +33085,22 @@ interface PKGObject1<T extends HL7TypeMap> {
 }
 
 type PMTFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type PMTFieldComps1 = {
+  1: Upto4;
+  2: 1;
+  3: 1;
+  4: Upto9;
+  5: 1;
+  6: Upto6;
+  7: Upto4;
+  8: Upto10;
+  9: 1;
+  10: Upto10;
+  11: Upto10;
+  12: 1;
+  [field: number]: number;
+};
 
 type PMTTypes1 = [
   never,
@@ -23097,6 +33135,27 @@ interface PMTObject1<T extends HL7TypeMap> {
 
 type PR1Fields7 =
   1 | 3 | 5 | 6 | 7 | 9 | 10 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22;
+
+type PR1FieldComps7 = {
+  1: 1;
+  3: Upto9;
+  5: 1;
+  6: 1;
+  7: 1;
+  9: 1;
+  10: 1;
+  13: Upto9;
+  14: 1;
+  15: Upto9;
+  16: Upto9;
+  17: 1;
+  18: Upto9;
+  19: Upto4;
+  20: 1;
+  21: 1;
+  22: 1;
+  [field: number]: number;
+};
 
 type PR1Types7 = [
   never,
@@ -23143,6 +33202,22 @@ interface PR1Object7<T extends HL7TypeMap> {
   DRGProcedureDeterminationStatus?: string | null;
   DRGProcedureRelevance?: string | null;
 }
+
+type PRAFieldComps5 = {
+  1: Upto9;
+  2: Upto9;
+  3: 1;
+  4: 1;
+  5: Upto4;
+  6: Upto4;
+  7: Upto5;
+  8: 1;
+  9: Upto9;
+  10: 1;
+  11: Upto9;
+  12: 1;
+  [field: number]: number;
+};
 
 type PRATypes4 = [
   never,
@@ -23204,6 +33279,38 @@ type PRBFields2 =
   | 26
   | 27
   | 28;
+
+type PRBFieldComps2 = {
+  1: 1;
+  2: 1;
+  3: Upto9;
+  4: Upto4;
+  5: Upto4;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto9;
+  11: Upto9;
+  12: Upto9;
+  13: Upto9;
+  14: Upto9;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: Upto9;
+  19: Upto9;
+  20: 1;
+  21: Upto9;
+  22: Upto9;
+  23: Upto9;
+  24: 1;
+  25: Upto9;
+  26: Upto9;
+  27: Upto9;
+  28: Upto9;
+  [field: number]: number;
+};
 
 type PRBTypes2 = [
   never,
@@ -23268,6 +33375,28 @@ interface PRBObject2<T extends HL7TypeMap> {
   MoodCode?: T['CNE'] | null;
 }
 
+type PRCFieldComps3 = {
+  1: Upto9;
+  2: Upto9;
+  3: Upto9;
+  4: 1;
+  5: Upto6;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto2;
+  10: Upto2;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: Upto9;
+  15: 1;
+  16: 1;
+  17: Upto2;
+  18: 1;
+  [field: number]: number;
+};
+
 type PRCTypes3 = [
   never,
   'CWE',
@@ -23313,6 +33442,25 @@ interface PRCObject3<T extends HL7TypeMap> {
 
 type PRDFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
 
+type PRDFieldComps5 = {
+  1: Upto9;
+  2: Upto14;
+  3: Upto23;
+  4: Upto11;
+  5: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  6: Upto9;
+  7: Upto4;
+  8: 1;
+  9: 1;
+  10: Upto10;
+  11: Upto23;
+  12: Upto11;
+  13:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  14: Upto9;
+  [field: number]: number;
+};
+
 type PRDTypes4 = [
   never,
   'CWE',
@@ -23350,6 +33498,16 @@ interface PRDObject4<T extends HL7TypeMap> {
 
 type PSGFields1 = 1 | 2 | 3 | 4 | 5 | 6;
 
+type PSGFieldComps1 = {
+  1: Upto4;
+  2: Upto4;
+  3: 1;
+  4: 1;
+  5: Upto6;
+  6: 1;
+  [field: number]: number;
+};
+
 type PSGTypes1 = [never, 'EI', 'EI', 'SI', 'ID', 'CP', 'ST'];
 
 interface PSGObject1<T extends HL7TypeMap> {
@@ -23360,6 +33518,24 @@ interface PSGObject1<T extends HL7TypeMap> {
   ProductServiceGroupBilledAmount?: T['CP'] | null;
   ProductServiceGroupDescription?: string | null;
 }
+
+type PSHFieldComps2 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: Upto2;
+  7: Upto2;
+  8: 1;
+  9: 1;
+  10: Upto2;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  [field: number]: number;
+};
 
 type PSHTypes2 = [
   never,
@@ -23446,6 +33622,58 @@ type PSLFields1 =
   | 46
   | 47
   | 48;
+
+type PSLFieldComps1 = {
+  1: Upto4;
+  2: Upto4;
+  3: 1;
+  4: Upto4;
+  5: Upto4;
+  6: Upto9;
+  7: Upto9;
+  8: Upto9;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: Upto2;
+  13: Upto6;
+  14: 1;
+  15: Upto6;
+  16: Upto6;
+  17: 1;
+  18: 1;
+  19: Upto4;
+  20: 1;
+  21: 1;
+  22: Upto9;
+  23: Upto6;
+  24: 1;
+  25: Upto10;
+  26: Upto2;
+  27: 1;
+  28: 1;
+  29: Upto23;
+  30: Upto23;
+  31: Upto9;
+  32: Upto9;
+  33: Upto9;
+  34: 1;
+  35: Upto6;
+  36: 1;
+  37: 1;
+  38: Upto6;
+  39: 1;
+  40: Upto6;
+  41: 1;
+  42: 1;
+  43: Upto6;
+  44: Upto6;
+  45: 1;
+  46: 1;
+  47: 1;
+  48: 1;
+  [field: number]: number;
+};
 
 type PSLTypes1 = [
   never,
@@ -23552,6 +33780,15 @@ interface PSLObject1<T extends HL7TypeMap> {
 
 type PSSFields1 = 1 | 2 | 3 | 4 | 5;
 
+type PSSFieldComps1 = {
+  1: Upto4;
+  2: Upto4;
+  3: 1;
+  4: Upto6;
+  5: 1;
+  [field: number]: number;
+};
+
 type PSSTypes1 = [never, 'EI', 'EI', 'SI', 'CP', 'ST'];
 
 interface PSSObject1<T extends HL7TypeMap> {
@@ -23564,6 +33801,17 @@ interface PSSObject1<T extends HL7TypeMap> {
 
 type PTHFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
+type PTHFieldComps2 = {
+  1: 1;
+  2: Upto9;
+  3: Upto4;
+  4: 1;
+  5: Upto9;
+  6: 1;
+  7: Upto9;
+  [field: number]: number;
+};
+
 type PTHTypes2 = [never, 'ID', 'CWE', 'EI', 'DTM', 'CWE', 'DTM', 'CNE'];
 
 interface PTHObject2<T extends HL7TypeMap> {
@@ -23575,6 +33823,62 @@ interface PTHObject2<T extends HL7TypeMap> {
   ChangePathwayLifeCycleStatusDateTime?: string | null;
   MoodCode?: T['CNE'] | null;
 }
+
+type PV1FieldComps7 = {
+  1: 1;
+  2: 1;
+  3: Upto11;
+  4: 1;
+  5: Upto10;
+  6: Upto11;
+  7: Upto23;
+  8: Upto23;
+  9: Upto23;
+  10: 1;
+  11: Upto11;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: Upto23;
+  18: 1;
+  19: Upto10;
+  20: Upto2;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: 1;
+  29: 1;
+  30: 1;
+  31: 1;
+  32: 1;
+  33: 1;
+  34: 1;
+  35: 1;
+  36: 1;
+  37: Upto2;
+  38: Upto9;
+  39: 1;
+  40: 1;
+  41: 1;
+  42: Upto11;
+  43: Upto11;
+  44: 1;
+  45: 1;
+  46: 1;
+  47: 1;
+  48: 1;
+  49: 1;
+  50: Upto10;
+  51: 1;
+  52: Upto23;
+  [field: number]: number;
+};
 
 type PV1Types5 = [
   never,
@@ -23739,6 +34043,60 @@ type PV2Fields5 =
   | 49
   | 50;
 
+type PV2FieldComps6 = {
+  1: Upto11;
+  2: Upto9;
+  3: Upto9;
+  4: Upto9;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: Upto23;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: Upto10;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: 1;
+  29: 1;
+  30: Upto9;
+  31: 1;
+  32: 1;
+  33: 1;
+  34: 1;
+  35: 1;
+  36: 1;
+  37: 1;
+  38: Upto9;
+  39: Upto9;
+  40: Upto9;
+  41: Upto9;
+  42: Upto9;
+  43: 1;
+  44: 1;
+  45: Upto9;
+  46: 1;
+  47: 1;
+  48: 1;
+  49: 1;
+  50: 1;
+  [field: number]: number;
+};
+
 type PV2Types6 = [
   never,
   'PL',
@@ -23848,6 +34206,17 @@ interface PV2Object6<T extends HL7TypeMap> {
 
 type PYEFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
+type PYEFieldComps1 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: Upto10;
+  5: Upto14;
+  6: Upto23;
+  7: 1;
+  [field: number]: number;
+};
+
 type PYETypes1 = [never, 'SI', 'IS', 'IS', 'XON', 'XPN', 'XAD', 'IS'];
 
 interface PYEObject1<T extends HL7TypeMap> {
@@ -23860,6 +34229,16 @@ interface PYEObject1<T extends HL7TypeMap> {
   PaymentMethod?: string | null;
 }
 
+type QAKFieldComps3 = {
+  1: 1;
+  2: 1;
+  3: Upto9;
+  4: 1;
+  5: 1;
+  6: 1;
+  [field: number]: number;
+};
+
 type QAKTypes3 = [never, 'ST', 'ID', 'CWE', 'NM', 'NM', 'NM'];
 
 interface QAKObject3<T extends HL7TypeMap> {
@@ -23871,12 +34250,16 @@ interface QAKObject3<T extends HL7TypeMap> {
   HitsRemaining?: number | string | null;
 }
 
+type QIDFieldComps2 = { 1: 1; 2: Upto9; [field: number]: number };
+
 type QIDTypes2 = [never, 'ST', 'CWE'];
 
 interface QIDObject2<T extends HL7TypeMap> {
   QueryTag?: string | null;
   MessageQueryName?: T['CWE'] | null;
 }
+
+type QPDFieldComps2 = { 1: Upto9; 2: 1; 3: number; [field: number]: number };
 
 type QPDTypes2 = [never, 'CWE', 'ST', 'VARIES'];
 
@@ -23885,6 +34268,22 @@ interface QPDObject2<T extends HL7TypeMap> {
   QueryTag?: string | null;
   UserParameters?: string | null;
 }
+
+type QRDFieldComps7 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: Upto2;
+  8: Upto23;
+  9: Upto9;
+  10: Upto9;
+  11: Upto2;
+  12: 1;
+  [field: number]: number;
+};
 
 type QRDTypes5 = [
   never,
@@ -23917,6 +34316,20 @@ interface QRDObject5<T extends HL7TypeMap> {
   QueryResultsLevel?: string | null;
 }
 
+type QRFFieldComps6 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto12;
+  10: 1;
+  [field: number]: number;
+};
+
 type QRFTypes5 = [
   never,
   'ST',
@@ -23944,6 +34357,8 @@ interface QRFObject5<T extends HL7TypeMap> {
   SearchConfidenceThreshold?: number | string | null;
 }
 
+type QRIFieldComps2 = { 1: 1; 2: 1; 3: Upto9; [field: number]: number };
+
 type QRITypes2 = [never, 'NM', 'IS', 'CWE'];
 
 interface QRIObject2<T extends HL7TypeMap> {
@@ -23951,6 +34366,17 @@ interface QRIObject2<T extends HL7TypeMap> {
   MatchReasonCode?: string[] | null;
   AlgorithmDescriptor?: T['CWE'] | null;
 }
+
+type RCPFieldComps2 = {
+  1: 1;
+  2: Upto2;
+  3: Upto9;
+  4: 1;
+  5: 1;
+  6: Upto2;
+  7: 1;
+  [field: number]: number;
+};
 
 type RCPTypes2 = [never, 'ID', 'CQ', 'CNE', 'DTM', 'ID', 'SRT', 'ID'];
 
@@ -23966,6 +34392,27 @@ interface RCPObject2<T extends HL7TypeMap> {
 
 type RELFields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
+
+type RELFieldComps1 = {
+  1: 1;
+  2: Upto9;
+  3: Upto4;
+  4: Upto4;
+  5: Upto4;
+  6: Upto4;
+  7: Upto23;
+  8: Upto10;
+  9: Upto23;
+  10:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  11: Upto2;
+  12: 1;
+  13: Upto9;
+  14: 1;
+  15: 1;
+  16: 1;
+  [field: number]: number;
+};
 
 type RELTypes1 = [
   never,
@@ -24008,6 +34455,22 @@ interface RELObject1<T extends HL7TypeMap> {
 
 type RF1Fields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
+type RF1FieldComps2 = {
+  1: Upto9;
+  2: Upto9;
+  3: Upto9;
+  4: Upto9;
+  5: Upto9;
+  6: Upto4;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto9;
+  11: Upto4;
+  12: Upto9;
+  [field: number]: number;
+};
+
 type RF1Types2 = [
   never,
   'CWE',
@@ -24041,6 +34504,8 @@ interface RF1Object2<T extends HL7TypeMap> {
 
 type RFIFields1 = 1 | 2 | 3 | 4;
 
+type RFIFieldComps1 = { 1: 1; 2: 1; 3: 1; 4: 1; [field: number]: number };
+
 type RFITypes1 = [never, 'DTM', 'DTM', 'ID', 'DTM'];
 
 interface RFIObject1<T extends HL7TypeMap> {
@@ -24050,6 +34515,8 @@ interface RFIObject1<T extends HL7TypeMap> {
   DateAdditionalInformationWasSubmitted?: string | null;
 }
 
+type RGSFieldComps2 = { 1: 1; 2: 1; 3: Upto9; [field: number]: number };
+
 type RGSTypes2 = [never, 'SI', 'ID', 'CWE'];
 
 interface RGSObject2<T extends HL7TypeMap> {
@@ -24057,6 +34524,8 @@ interface RGSObject2<T extends HL7TypeMap> {
   SegmentActionCode?: string | null;
   ResourceGroupID?: T['CWE'] | null;
 }
+
+type RMIFieldComps2 = { 1: Upto9; 2: 1; 3: Upto9; [field: number]: number };
 
 type RMITypes2 = [never, 'CWE', 'DTM', 'CWE'];
 
@@ -24067,6 +34536,24 @@ interface RMIObject2<T extends HL7TypeMap> {
 }
 
 type ROLFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
+
+type ROLFieldComps5 = {
+  1: Upto4;
+  2: 1;
+  3: Upto9;
+  4: Upto23;
+  5: 1;
+  6: 1;
+  7: Upto9;
+  8: Upto9;
+  9: Upto9;
+  10: Upto9;
+  11: Upto23;
+  12:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  13: Upto11;
+  [field: number]: number;
+};
 
 type ROLTypes3 = [
   never,
@@ -24101,6 +34588,17 @@ interface ROLObject4<T extends HL7TypeMap> {
   PersonSLocation?: T['PL'] | null;
 }
 
+type RQ1FieldComps2 = {
+  1: 1;
+  2: Upto9;
+  3: 1;
+  4: Upto9;
+  5: 1;
+  6: 1;
+  7: 1;
+  [field: number]: number;
+};
+
 type RQ1Types3 = [never, 'ST', 'CWE', 'ST', 'CWE', 'ST', 'ID', 'ID'];
 
 interface RQ1Object3<T extends HL7TypeMap> {
@@ -24112,6 +34610,20 @@ interface RQ1Object3<T extends HL7TypeMap> {
   Taxable?: string | null;
   SubstituteAllowed?: string | null;
 }
+
+type RQDFieldComps2 = {
+  1: 1;
+  2: Upto9;
+  3: Upto9;
+  4: Upto9;
+  5: 1;
+  6: Upto9;
+  7: 1;
+  8: 1;
+  9: Upto9;
+  10: 1;
+  [field: number]: number;
+};
 
 type RQDTypes3 = [
   never,
@@ -24169,6 +34681,38 @@ type RXAFields4 =
   | 26
   | 27
   | 28;
+
+type RXAFieldComps6 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: Upto9;
+  6: 1;
+  7: Upto9;
+  8: Upto9;
+  9: Upto9;
+  10: Upto23;
+  11: Upto16;
+  12: 1;
+  13: 1;
+  14: Upto9;
+  15: 1;
+  16: 1;
+  17: Upto9;
+  18: Upto9;
+  19: Upto9;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: Upto9;
+  25: Upto9;
+  26: 1;
+  27: Upto11;
+  28: Upto23;
+  [field: number]: number;
+};
 
 type RXATypes5 = [
   never,
@@ -24233,6 +34777,19 @@ interface RXAObject5<T extends HL7TypeMap> {
   AdministeredAtAddress?: T['XAD'] | null;
 }
 
+type RXCFieldComps5 = {
+  1: 1;
+  2: Upto9;
+  3: 1;
+  4: Upto9;
+  5: 1;
+  6: Upto9;
+  7: Upto9;
+  8: 1;
+  9: Upto9;
+  [field: number]: number;
+};
+
 type RXCTypes5 = [
   never,
   'ID',
@@ -24257,6 +34814,43 @@ interface RXCObject5<T extends HL7TypeMap> {
   ComponentDrugStrengthVolume?: number | string | null;
   ComponentDrugStrengthVolumeUnits?: T['CWE'] | null;
 }
+
+type RXDFieldComps6 = {
+  1: 1;
+  2: Upto9;
+  3: 1;
+  4: 1;
+  5: Upto9;
+  6: Upto9;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto23;
+  11: 1;
+  12: Upto2;
+  13: Upto16;
+  14: 1;
+  15: Upto9;
+  16: 1;
+  17: Upto9;
+  18: 1;
+  19: 1;
+  20: Upto9;
+  21: Upto9;
+  22: 1;
+  23: Upto9;
+  24: 1;
+  25: Upto9;
+  26: Upto9;
+  27: Upto9;
+  28: 1;
+  29: Upto9;
+  30: Upto9;
+  31: Upto23;
+  32: 1;
+  33: Upto9;
+  [field: number]: number;
+};
 
 type RXDTypes6 = [
   never,
@@ -24330,6 +34924,54 @@ interface RXDObject6<T extends HL7TypeMap> {
   PharmacyOrderType?: string | null;
   DispenseType?: T['CWE'] | null;
 }
+
+type RXEFieldComps6 = {
+  1: Upto12;
+  2: Upto9;
+  3: 1;
+  4: 1;
+  5: Upto9;
+  6: Upto9;
+  7: Upto9;
+  8: Upto9;
+  9: 1;
+  10: 1;
+  11: Upto9;
+  12: 1;
+  13: Upto23;
+  14: Upto23;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: Upto2;
+  20: 1;
+  21: Upto9;
+  22: 1;
+  23: 1;
+  24: Upto9;
+  25: 1;
+  26: Upto9;
+  27: Upto9;
+  28: 1;
+  29: Upto9;
+  30: 1;
+  31: Upto9;
+  32: 1;
+  33: 1;
+  34: Upto9;
+  35: Upto9;
+  36: 1;
+  37: Upto9;
+  38: Upto9;
+  39: 1;
+  40: Upto9;
+  41: Upto23;
+  42: Upto11;
+  43: Upto23;
+  44: 1;
+  [field: number]: number;
+};
 
 type RXETypes6 = [
   never,
@@ -24458,6 +35100,40 @@ type RXGFields4 =
   | 29
   | 30;
 
+type RXGFieldComps5 = {
+  1: 1;
+  2: 1;
+  3: Upto12;
+  4: Upto9;
+  5: 1;
+  6: 1;
+  7: Upto9;
+  8: Upto9;
+  9: Upto9;
+  10: 1;
+  11: Upto16;
+  12: 1;
+  13: Upto9;
+  14: 1;
+  15: 1;
+  16: Upto9;
+  17: 1;
+  18: Upto9;
+  19: 1;
+  20: 1;
+  21: Upto9;
+  22: Upto9;
+  23: 1;
+  24: Upto9;
+  25: Upto9;
+  26: 1;
+  27: Upto9;
+  28: Upto23;
+  29: Upto11;
+  30: Upto23;
+  [field: number]: number;
+};
+
 type RXGTypes5 = [
   never,
   'NM',
@@ -24563,6 +35239,45 @@ type RXOFields6 =
   | 34
   | 35;
 
+type RXOFieldComps6 = {
+  1: Upto9;
+  2: 1;
+  3: 1;
+  4: Upto9;
+  5: Upto9;
+  6: Upto9;
+  7: Upto9;
+  8: Upto9;
+  9: 1;
+  10: Upto9;
+  11: 1;
+  12: Upto9;
+  13: 1;
+  14: Upto23;
+  15: Upto23;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: Upto9;
+  20: Upto9;
+  21: 1;
+  22: Upto9;
+  23: Upto2;
+  24: Upto9;
+  25: 1;
+  26: Upto9;
+  27: 1;
+  28: 1;
+  29: Upto4;
+  30: Upto4;
+  31: Upto9;
+  32: Upto9;
+  33: Upto23;
+  34: Upto11;
+  35: Upto23;
+  [field: number]: number;
+};
+
 type RXOTypes6 = [
   never,
   'CWE',
@@ -24640,6 +35355,16 @@ interface RXOObject6<T extends HL7TypeMap> {
   DeliverToAddress?: T['XAD'] | null;
 }
 
+type RXRFieldComps4 = {
+  1: Upto9;
+  2: Upto9;
+  3: Upto9;
+  4: Upto9;
+  5: Upto9;
+  6: Upto9;
+  [field: number]: number;
+};
+
 type RXRTypes4 = [never, 'CWE', 'CWE', 'CWE', 'CWE', 'CWE', 'CWE'];
 
 interface RXRObject4<T extends HL7TypeMap> {
@@ -24650,6 +35375,54 @@ interface RXRObject4<T extends HL7TypeMap> {
   RoutingInstruction?: T['CWE'] | null;
   AdministrationSiteModifier?: T['CWE'] | null;
 }
+
+type SACFieldComps3 = {
+  1: Upto4;
+  2: Upto4;
+  3: Upto4;
+  4: Upto4;
+  5: Upto4;
+  6: Upto7;
+  7: 1;
+  8: Upto9;
+  9: Upto9;
+  10: Upto4;
+  11: Upto4;
+  12: Upto9;
+  13: Upto4;
+  14: Upto4;
+  15: Upto9;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: Upto9;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: Upto9;
+  25: Upto9;
+  26: Upto9;
+  27: Upto9;
+  28: Upto9;
+  29: Upto4;
+  30: Upto9;
+  31: Upto4;
+  32: 1;
+  33: Upto9;
+  34: 1;
+  35: Upto9;
+  36: 1;
+  37: Upto9;
+  38: 1;
+  39: Upto9;
+  40: Upto9;
+  41: Upto9;
+  42: Upto9;
+  43: Upto9;
+  44: Upto9;
+  [field: number]: number;
+};
 
 type SACTypes3 = [
   never,
@@ -24785,6 +35558,47 @@ type SCDFields1 =
   | 36
   | 37;
 
+type SCDFieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto2;
+  4: Upto2;
+  5: 1;
+  6: Upto2;
+  7: Upto2;
+  8: Upto2;
+  9: Upto2;
+  10: Upto9;
+  11: 1;
+  12: Upto2;
+  13: Upto2;
+  14: Upto2;
+  15: Upto2;
+  16: 1;
+  17: Upto2;
+  18: Upto2;
+  19: Upto9;
+  20: Upto9;
+  21: Upto9;
+  22: Upto9;
+  23: Upto9;
+  24: Upto9;
+  25: Upto23;
+  26: Upto9;
+  27: Upto9;
+  28: Upto9;
+  29: Upto2;
+  30: Upto2;
+  31: Upto2;
+  32: Upto9;
+  33: Upto10;
+  34: Upto23;
+  35: Upto4;
+  36: Upto2;
+  37: Upto2;
+  [field: number]: number;
+};
+
 type SCDTypes1 = [
   never,
   'TM',
@@ -24866,6 +35680,40 @@ interface SCDObject1<T extends HL7TypeMap> {
   InletTemperature?: T['CQ'] | null;
 }
 
+type SCHFieldComps5 = {
+  1: Upto4;
+  2: Upto4;
+  3: 1;
+  4: Upto4;
+  5: Upto9;
+  6: Upto9;
+  7: Upto9;
+  8: Upto9;
+  9: 1;
+  10: Upto9;
+  11: Upto12;
+  12: Upto23;
+  13:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  14: Upto23;
+  15: Upto11;
+  16: Upto23;
+  17:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  18: Upto23;
+  19: Upto11;
+  20: Upto23;
+  21:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  22: Upto11;
+  23: Upto4;
+  24: Upto4;
+  25: Upto9;
+  26: Upto4;
+  27: Upto4;
+  [field: number]: number;
+};
+
 type SCHTypes3 = [
   never,
   'EI',
@@ -24929,6 +35777,18 @@ interface SCHObject4<T extends HL7TypeMap> {
 
 type SCPFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
+type SCPFieldComps1 = {
+  1: 1;
+  2: Upto9;
+  3: Upto9;
+  4: Upto4;
+  5: 1;
+  6: 1;
+  7: Upto9;
+  8: Upto9;
+  [field: number]: number;
+};
+
 type SCPTypes1 = [never, 'NM', 'CWE', 'CWE', 'EI', 'ST', 'ST', 'CWE', 'CWE'];
 
 interface SCPObject1<T extends HL7TypeMap> {
@@ -24944,6 +35804,17 @@ interface SCPObject1<T extends HL7TypeMap> {
 
 type SDDFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
+type SDDFieldComps1 = {
+  1: Upto4;
+  2: Upto4;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  [field: number]: number;
+};
+
 type SDDTypes1 = [never, 'EI', 'EI', 'ST', 'IS', 'IS', 'NM', 'ST'];
 
 interface SDDObject1<T extends HL7TypeMap> {
@@ -24956,6 +35827,16 @@ interface SDDObject1<T extends HL7TypeMap> {
   OperatorName?: string | null;
 }
 
+type SFTFieldComps2 = {
+  1: Upto10;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  [field: number]: number;
+};
+
 type SFTTypes2 = [never, 'XON', 'ST', 'ST', 'ST', 'TX', 'DTM'];
 
 interface SFTObject2<T extends HL7TypeMap> {
@@ -24966,6 +35847,14 @@ interface SFTObject2<T extends HL7TypeMap> {
   SoftwareProductInformation?: string | null;
   SoftwareInstallDate?: string | null;
 }
+
+type SIDFieldComps2 = {
+  1: Upto9;
+  2: 1;
+  3: 1;
+  4: Upto9;
+  [field: number]: number;
+};
 
 type SIDTypes2 = [never, 'CWE', 'ST', 'ST', 'CWE'];
 
@@ -24978,6 +35867,15 @@ interface SIDObject2<T extends HL7TypeMap> {
 
 type SLTFields1 = 1 | 2 | 3 | 4 | 5;
 
+type SLTFieldComps1 = {
+  1: Upto4;
+  2: 1;
+  3: Upto4;
+  4: Upto4;
+  5: 1;
+  [field: number]: number;
+};
+
 type SLTTypes1 = [never, 'EI', 'ST', 'EI', 'EI', 'ST'];
 
 interface SLTObject1<T extends HL7TypeMap> {
@@ -24987,6 +35885,39 @@ interface SLTObject1<T extends HL7TypeMap> {
   ItemIdentifier?: T['EI'] | null;
   BarCode?: string | null;
 }
+
+type SPMFieldComps2 = {
+  1: 1;
+  2: Upto2;
+  3: Upto2;
+  4: Upto9;
+  5: Upto9;
+  6: Upto9;
+  7: Upto9;
+  8: Upto9;
+  9: Upto9;
+  10: Upto9;
+  11: Upto9;
+  12: Upto2;
+  13: 1;
+  14: 1;
+  15: Upto9;
+  16: Upto9;
+  17: Upto2;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: Upto9;
+  22: Upto9;
+  23: Upto9;
+  24: Upto9;
+  25: Upto2;
+  26: 1;
+  27: Upto9;
+  28: Upto9;
+  29: Upto9;
+  [field: number]: number;
+};
 
 type SPMTypes2 = [
   never,
@@ -25094,6 +36025,50 @@ type STFFields5 =
   | 38
   | 39;
 
+type STFFieldComps6 = {
+  1: Upto9;
+  2: Upto10;
+  3: Upto14;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: Upto9;
+  9: Upto9;
+  10:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  11: Upto23;
+  12: Upto2;
+  13: Upto2;
+  14: Upto9;
+  15: 1;
+  16: Upto9;
+  17: Upto9;
+  18: 1;
+  19: Upto3;
+  20: Upto9;
+  21: 1;
+  22: Upto3;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: Upto9;
+  28: Upto9;
+  29: 1;
+  30: Upto9;
+  31: 1;
+  32: 1;
+  33: Upto9;
+  34: Upto2;
+  35: 1;
+  36: Upto9;
+  37: 1;
+  38: Upto9;
+  39: Upto9;
+  [field: number]: number;
+};
+
 type STFTypes6 = [
   never,
   'CWE',
@@ -25181,6 +36156,14 @@ interface STFObject6<T extends HL7TypeMap> {
 
 type STZFields1 = 1 | 2 | 3 | 4;
 
+type STZFieldComps1 = {
+  1: Upto9;
+  2: Upto9;
+  3: Upto9;
+  4: Upto9;
+  [field: number]: number;
+};
+
 type STZTypes1 = [never, 'CWE', 'CWE', 'CWE', 'CWE'];
 
 interface STZObject1<T extends HL7TypeMap> {
@@ -25189,6 +36172,24 @@ interface STZObject1<T extends HL7TypeMap> {
   MaintenanceCycle?: T['CWE'] | null;
   MaintenanceType?: T['CWE'] | null;
 }
+
+type TCCFieldComps2 = {
+  1: Upto9;
+  2: Upto4;
+  3: Upto7;
+  4: Upto4;
+  5: Upto4;
+  6: Upto4;
+  7: Upto4;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: Upto4;
+  13: Upto9;
+  14: Upto9;
+  [field: number]: number;
+};
 
 type TCCTypes2 = [
   never,
@@ -25225,6 +36226,18 @@ interface TCCObject2<T extends HL7TypeMap> {
   ProcessingType?: T['CWE'] | null;
 }
 
+type TCDFieldComps2 = {
+  1: Upto9;
+  2: Upto4;
+  3: Upto4;
+  4: Upto4;
+  5: Upto4;
+  6: 1;
+  7: 1;
+  8: Upto9;
+  [field: number]: number;
+};
+
 type TCDTypes2 = [never, 'CWE', 'SN', 'SN', 'SN', 'SN', 'ID', 'ID', 'CWE'];
 
 interface TCDObject2<T extends HL7TypeMap> {
@@ -25237,6 +36250,24 @@ interface TCDObject2<T extends HL7TypeMap> {
   ReflexAllowed?: string | null;
   AnalyteRepeatStatus?: T['CWE'] | null;
 }
+
+type TQ1FieldComps2 = {
+  1: 1;
+  2: Upto2;
+  3: Upto11;
+  4: 1;
+  5: Upto2;
+  6: Upto2;
+  7: 1;
+  8: 1;
+  9: Upto9;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: Upto2;
+  14: 1;
+  [field: number]: number;
+};
 
 type TQ1Types2 = [
   never,
@@ -25272,6 +36303,33 @@ interface TQ1Object2<T extends HL7TypeMap> {
   OccurrenceDuration?: T['CQ'] | null;
   TotalOccurrences?: number | string | null;
 }
+
+type TXAFieldComps5 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: Upto23;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto23;
+  10: Upto23;
+  11: Upto23;
+  12: Upto4;
+  13: Upto4;
+  14: Upto4;
+  15: Upto4;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: Upto24;
+  23: Upto23;
+  [field: number]: number;
+};
 
 type TXATypes2 = [
   never,
@@ -25328,6 +36386,8 @@ interface TXAObject3<T extends HL7TypeMap> {
 
 type UACFields1 = 1 | 2;
 
+type UACFieldComps1 = { 1: Upto9; 2: Upto5; [field: number]: number };
+
 type UACTypes1 = [never, 'CWE', 'ED'];
 
 interface UACObject1<T extends HL7TypeMap> {
@@ -25358,6 +36418,32 @@ type UB1Fields2 =
   | 21
   | 22
   | 23;
+
+type UB1FieldComps5 = {
+  1: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto2;
+  11: 1;
+  12: Upto9;
+  13: Upto9;
+  14: 1;
+  15: 1;
+  16: Upto2;
+  17: Upto9;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: 1;
+  [field: number]: number;
+};
 
 type UB1Types5 = [
   never,
@@ -25411,6 +36497,17 @@ interface UB1Object5<T extends HL7TypeMap> {
   UB82Locator45?: string | null;
 }
 
+type URDFieldComps7 = {
+  1: 1;
+  2: 1;
+  3: Upto23;
+  4: Upto9;
+  5: Upto9;
+  6: 1;
+  7: 1;
+  [field: number]: number;
+};
+
 type URDTypes3 = [never, 'DTM', 'ID', 'XCN', 'CWE', 'CWE', 'ST', 'ID'];
 
 interface URDObject4<T extends HL7TypeMap> {
@@ -25422,6 +36519,19 @@ interface URDObject4<T extends HL7TypeMap> {
   RUDisplayPrintLocations?: string[] | null;
   RUResultsLevel?: string | null;
 }
+
+type URSFieldComps5 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto12;
+  [field: number]: number;
+};
 
 type URSTypes4 = [
   never,
@@ -25448,6 +36558,16 @@ interface URSObject4<T extends HL7TypeMap> {
   RUQuantityTimingQualifier?: T['TQ'] | null;
 }
 
+type VARFieldComps5 = {
+  1: Upto4;
+  2: 1;
+  3: 1;
+  4: Upto23;
+  5: Upto9;
+  6: 1;
+  [field: number]: number;
+};
+
 type VARTypes2 = [never, 'EI', 'DTM', 'DTM', 'XCN', 'CWE', 'ST'];
 
 interface VARObject3<T extends HL7TypeMap> {
@@ -25461,6 +36581,15 @@ interface VARObject3<T extends HL7TypeMap> {
 
 type VNDFields1 = 1 | 2 | 3 | 4 | 5;
 
+type VNDFieldComps1 = {
+  1: 1;
+  2: Upto4;
+  3: 1;
+  4: Upto4;
+  5: Upto9;
+  [field: number]: number;
+};
+
 type VNDTypes1 = [never, 'SI', 'EI', 'ST', 'EI', 'CNE'];
 
 interface VNDObject1<T extends HL7TypeMap> {
@@ -25471,9 +36600,13 @@ interface VNDObject1<T extends HL7TypeMap> {
   PrimaryVendorIndicator?: T['CNE'] | null;
 }
 
+type ZL7FieldComps1 = { [field: number]: number };
+
 type ZL7Types1 = [never];
 
 interface ZL7Object1<T extends HL7TypeMap> {}
+
+type ZxxFieldComps1 = { [field: number]: number };
 
 type ZxxTypes1 = [never];
 
@@ -26224,7 +37357,155 @@ type HL7Types_2_7 = {
   XTN: XTNObject4;
 };
 
+type ABSFieldComps4 = {
+  1:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  2: Upto22;
+  3: Upto22;
+  4: 1;
+  5:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  6: Upto22;
+  7: 1;
+  8:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  9: Upto22;
+  10: 1;
+  11: Upto22;
+  12: 1;
+  13: Upto22;
+  14: 1;
+  [field: number]: number;
+};
+
 type ACCFields5 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type ACCFieldComps7 = {
+  1: 1;
+  2: Upto22;
+  3: 1;
+  4: Upto22;
+  5: 1;
+  6: 1;
+  7:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  8: 1;
+  9: 1;
+  10: 1;
+  11:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  12: 1;
+  [field: number]: number;
+};
 
 type ACCTypes6 = [
   never,
@@ -26256,6 +37537,25 @@ interface ACCObject7<T extends HL7TypeMap> {
   AccidentAddress?: T['XAD'] | null;
   DegreeOfPatientLiability?: number | string | null;
 }
+
+type ADJFieldComps2 = {
+  1: Upto4;
+  2: Upto4;
+  3: 1;
+  4: Upto22;
+  5: Upto6;
+  6: Upto2;
+  7: Upto22;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: Upto22;
+  12: Upto4;
+  13: Upto4;
+  14: 1;
+  15: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  [field: number]: number;
+};
 
 type ADJTypes2 = [
   never,
@@ -26294,6 +37594,55 @@ interface ADJObject2<T extends HL7TypeMap> {
   ResponsibleOrganization?: T['XON'] | null;
 }
 
+type AFFFieldComps4 = {
+  1: 1;
+  2: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  3:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  4: Upto2;
+  5: 1;
+  [field: number]: number;
+};
+
+type AIGFieldComps3 = {
+  1: 1;
+  2: 1;
+  3: Upto22;
+  4: Upto22;
+  5: Upto22;
+  6: 1;
+  7: Upto22;
+  8: 1;
+  9: 1;
+  10: Upto22;
+  11: 1;
+  12: Upto22;
+  13: Upto22;
+  14: Upto22;
+  [field: number]: number;
+};
+
 type AIGTypes3 = [
   never,
   'SI',
@@ -26329,6 +37678,22 @@ interface AIGObject3<T extends HL7TypeMap> {
   FillerStatusCode?: T['CWE'] | null;
 }
 
+type AILFieldComps4 = {
+  1: 1;
+  2: 1;
+  3: Upto11;
+  4: Upto22;
+  5: Upto22;
+  6: 1;
+  7: 1;
+  8: Upto22;
+  9: 1;
+  10: Upto22;
+  11: Upto22;
+  12: Upto22;
+  [field: number]: number;
+};
+
 type AILTypes3 = [
   never,
   'SI',
@@ -26360,6 +37725,45 @@ interface AILObject4<T extends HL7TypeMap> {
   FillerStatusCode?: T['CWE'] | null;
 }
 
+type AIPFieldComps6 = {
+  1: 1;
+  2: 1;
+  3:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  4: Upto22;
+  5: Upto22;
+  6: 1;
+  7: 1;
+  8: Upto22;
+  9: 1;
+  10: Upto22;
+  11: Upto22;
+  12: Upto22;
+  [field: number]: number;
+};
+
 type AIPTypes3 = [
   never,
   'SI',
@@ -26390,6 +37794,22 @@ interface AIPObject4<T extends HL7TypeMap> {
   AllowSubstitutionCode?: T['CWE'] | null;
   FillerStatusCode?: T['CWE'] | null;
 }
+
+type AISFieldComps4 = {
+  1: 1;
+  2: 1;
+  3: Upto22;
+  4: 1;
+  5: 1;
+  6: Upto22;
+  7: 1;
+  8: Upto22;
+  9: Upto22;
+  10: Upto22;
+  11: Upto22;
+  12: Upto22;
+  [field: number]: number;
+};
 
 type AISTypes4 = [
   never,
@@ -26424,6 +37844,15 @@ interface AISObject4<T extends HL7TypeMap> {
 
 type AL1Fields2 = 1 | 2 | 3 | 4 | 5;
 
+type AL1FieldComps5 = {
+  1: 1;
+  2: Upto22;
+  3: Upto22;
+  4: Upto22;
+  5: 1;
+  [field: number]: number;
+};
+
 type AL1Types6 = [never, 'SI', 'CWE', 'CWE', 'CWE', 'ST'];
 
 interface AL1Object6<T extends HL7TypeMap> {
@@ -26434,7 +37863,132 @@ interface AL1Object6<T extends HL7TypeMap> {
   AllergyReactionCode?: string[] | null;
 }
 
+type ARQFieldComps6 = {
+  1: Upto4;
+  2: Upto4;
+  3: 1;
+  4: Upto4;
+  5: Upto22;
+  6: Upto22;
+  7: Upto22;
+  8: Upto22;
+  9: 1;
+  10: Upto22;
+  11: Upto2;
+  12: 1;
+  13: Upto2;
+  14: 1;
+  15:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  16:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  17:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  18: Upto11;
+  19:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  20:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  21: Upto11;
+  22: Upto4;
+  23: Upto4;
+  24: Upto4;
+  25: Upto4;
+  [field: number]: number;
+};
+
+type ARVFieldComps2 = {
+  1: 1;
+  2: Upto22;
+  3: Upto22;
+  4: Upto22;
+  5: 1;
+  6: Upto2;
+  [field: number]: number;
+};
+
 type AUTFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type AUTFieldComps3 = {
+  1: Upto22;
+  2: Upto22;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: Upto4;
+  7: Upto6;
+  8: Upto2;
+  9: Upto2;
+  10: 1;
+  11: Upto22;
+  12: Upto22;
+  [field: number]: number;
+};
 
 type AUTTypes3 = [
   never,
@@ -26466,6 +38020,257 @@ interface AUTObject3<T extends HL7TypeMap> {
   RequestedDiscipline?: T['CWE'][] | null;
   AuthorizedDiscipline?: T['CWE'][] | null;
 }
+
+type BLCFieldComps3 = { 1: Upto22; 2: Upto2; [field: number]: number };
+
+type BLGFieldComps7 = {
+  1: Upto2;
+  2: 1;
+  3: Upto12;
+  4: Upto22;
+  [field: number]: number;
+};
+
+type BPOFieldComps3 = {
+  1: 1;
+  2: Upto22;
+  3: Upto22;
+  4: 1;
+  5: 1;
+  6: Upto22;
+  7: 1;
+  8: Upto11;
+  9:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  10: 1;
+  11: Upto11;
+  12:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  13: Upto22;
+  14: 1;
+  [field: number]: number;
+};
+
+type BPXFieldComps3 = {
+  1: 1;
+  2: Upto22;
+  3: 1;
+  4: 1;
+  5: Upto4;
+  6: Upto22;
+  7: Upto22;
+  8: Upto22;
+  9: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  10: Upto4;
+  11: Upto22;
+  12: Upto22;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: Upto22;
+  17: Upto4;
+  18: Upto11;
+  19:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  20:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  21:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  [field: number]: number;
+};
+
+type BTXFieldComps3 = {
+  1: 1;
+  2: Upto4;
+  3: Upto22;
+  4: Upto22;
+  5: Upto22;
+  6: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  7: Upto4;
+  8: 1;
+  9: 1;
+  10: Upto22;
+  11: Upto22;
+  12: 1;
+  13: 1;
+  14:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  15:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  16: 1;
+  17: 1;
+  18: Upto22;
+  19: Upto22;
+  [field: number]: number;
+};
+
+type CDMFieldComps5 = {
+  1: Upto22;
+  2: Upto22;
+  3: 1;
+  4: 1;
+  5: Upto22;
+  6: Upto22;
+  7: Upto22;
+  8: 1;
+  9: Upto22;
+  10: 1;
+  11: Upto12;
+  12: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  13: 1;
+  [field: number]: number;
+};
 
 type CDMTypes5 = [
   never,
@@ -26499,6 +38304,64 @@ interface CDMObject5<T extends HL7TypeMap> {
   ContractOrganization?: T['XON'][] | null;
   RoomFeeIndicator?: string | null;
 }
+
+type CERFieldComps3 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  5:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  6: Upto5;
+  7: 1;
+  8: Upto22;
+  9: Upto22;
+  10: Upto22;
+  11: Upto22;
+  12: Upto4;
+  13: 1;
+  14: Upto22;
+  15: Upto22;
+  16: Upto22;
+  17: 1;
+  18: Upto22;
+  19: 1;
+  20: Upto22;
+  21: Upto22;
+  22: Upto22;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: 1;
+  29: 1;
+  30: Upto22;
+  31: Upto22;
+  [field: number]: number;
+};
 
 type CERTypes3 = [
   never,
@@ -26569,6 +38432,139 @@ interface CERObject3<T extends HL7TypeMap> {
   CertificateStatusCode?: T['CWE'] | null;
 }
 
+type CM0FieldComps6 = {
+  1: 1;
+  2: Upto4;
+  3: Upto4;
+  4: 1;
+  5:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  6: 1;
+  7: 1;
+  8: 1;
+  9:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  10:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  11:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  [field: number]: number;
+};
+
+type CM1FieldComps3 = { 1: 1; 2: Upto22; 3: 1; [field: number]: number };
+
+type CM2FieldComps3 = {
+  1: 1;
+  2: Upto22;
+  3: 1;
+  4: Upto22;
+  [field: number]: number;
+};
+
+type CNSFieldComps4 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: Upto22;
+  6: Upto22;
+  [field: number]: number;
+};
+
+type CONFieldComps3 = {
+  1: 1;
+  2: Upto22;
+  3: 1;
+  4: Upto4;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto22;
+  11: Upto22;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: Upto22;
+  19: 1;
+  20: Upto22;
+  21: 1;
+  22: Upto22;
+  23: Upto22;
+  24: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  25: Upto22;
+  [field: number]: number;
+};
+
 type CONTypes3 = [
   never,
   'SI',
@@ -26626,6 +38622,134 @@ interface CONObject3<T extends HL7TypeMap> {
   RelationshipToSubject?: T['CWE'][] | null;
 }
 
+type CSPFieldComps3 = {
+  1: Upto22;
+  2: 1;
+  3: 1;
+  4: Upto22;
+  [field: number]: number;
+};
+
+type CSRFieldComps6 = {
+  1: Upto4;
+  2: Upto4;
+  3: Upto22;
+  4: Upto12;
+  5: Upto12;
+  6: 1;
+  7:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  8:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  9: 1;
+  10: Upto22;
+  11: 1;
+  12: Upto22;
+  13: Upto22;
+  14: Upto22;
+  15: 1;
+  16: Upto22;
+  [field: number]: number;
+};
+
+type CSSFieldComps3 = { 1: Upto22; 2: 1; 3: Upto22; [field: number]: number };
+
+type CTDFieldComps6 = {
+  1: Upto22;
+  2: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  3:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  4: Upto11;
+  5: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  6: Upto22;
+  7: Upto4;
+  [field: number]: number;
+};
+
+type CTIFieldComps3 = {
+  1: Upto4;
+  2: Upto22;
+  3: Upto22;
+  [field: number]: number;
+};
+
+type DB1FieldComps4 = {
+  1: 1;
+  2: Upto22;
+  3: Upto12;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  [field: number]: number;
+};
+
 type DB1Types2 = [never, 'SI', 'CWE', 'CX', 'ID', 'DT', 'DT', 'DT', 'DT'];
 
 interface DB1Object2<T extends HL7TypeMap> {
@@ -26638,6 +38762,49 @@ interface DB1Object2<T extends HL7TypeMap> {
   DisabilityReturnToWorkDate?: string | null;
   DisabilityUnableToWorkDate?: string | null;
 }
+
+type DG1FieldComps8 = {
+  1: 1;
+  3: Upto22;
+  5: 1;
+  6: Upto22;
+  15: 1;
+  16:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  17: Upto22;
+  18: 1;
+  19: 1;
+  20: Upto4;
+  21: 1;
+  22: Upto4;
+  23: Upto22;
+  24: 1;
+  25: Upto22;
+  26: Upto22;
+  [field: number]: number;
+};
 
 type DG1Types7 = [
   never,
@@ -26687,6 +38854,52 @@ interface DG1Object7<T extends HL7TypeMap> {
   DRGDiagnosisDeterminationStatus?: T['CWE'] | null;
   PresentOnAdmissionPOAIndicator?: T['CWE'] | null;
 }
+
+type DMIFieldComps2 = {
+  1: Upto22;
+  2: Upto22;
+  3: Upto2;
+  4: 1;
+  5: 1;
+  [field: number]: number;
+};
+
+type DRGFieldComps4 = {
+  1: Upto22;
+  2: 1;
+  3: 1;
+  4: Upto22;
+  5: Upto22;
+  6: 1;
+  7: Upto6;
+  8: Upto22;
+  9: Upto6;
+  10: 1;
+  11: Upto22;
+  12: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  13: Upto22;
+  14: Upto22;
+  15: 1;
+  16: Upto2;
+  17: Upto22;
+  18: 1;
+  19: 1;
+  20: Upto22;
+  21: Upto2;
+  22: Upto2;
+  23: Upto2;
+  24: Upto2;
+  25: 1;
+  26: Upto22;
+  27: Upto22;
+  28: Upto22;
+  29: Upto22;
+  30: Upto22;
+  31: Upto22;
+  32: Upto22;
+  33: Upto22;
+  [field: number]: number;
+};
 
 type DRGTypes4 = [
   never,
@@ -26763,6 +38976,8 @@ interface DRGObject4<T extends HL7TypeMap> {
 
 type ECDFields2 = 1 | 2 | 3 | 5;
 
+type ECDFieldComps3 = { 1: 1; 2: Upto22; 3: 1; 5: 1; [field: number]: number };
+
 type ECDTypes4 = [never, 'NM', 'CWE', 'ID', never, 'TX'];
 
 interface ECDObject3<T extends HL7TypeMap> {
@@ -26771,6 +38986,43 @@ interface ECDObject3<T extends HL7TypeMap> {
   ResponseRequired?: string | null;
   Parameters?: string[] | null;
 }
+
+type ECRFieldComps3 = { 1: Upto22; 2: 1; 3: 1; [field: number]: number };
+
+type EDUFieldComps4 = {
+  1: 1;
+  2: Upto22;
+  3: Upto2;
+  4: Upto2;
+  5: 1;
+  6: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  7: Upto22;
+  8:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  9: Upto22;
+  [field: number]: number;
+};
 
 type EDUTypes4 = [
   never,
@@ -26797,7 +39049,41 @@ interface EDUObject4<T extends HL7TypeMap> {
   MajorFieldOfStudy?: T['CWE'][] | null;
 }
 
+type EQPFieldComps3 = {
+  1: Upto22;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  [field: number]: number;
+};
+
+type EQUFieldComps3 = {
+  1: Upto4;
+  2: 1;
+  3: Upto22;
+  4: Upto22;
+  5: Upto22;
+  [field: number]: number;
+};
+
 type ERRFields3 = 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type ERRFieldComps5 = {
+  2: Upto6;
+  3: Upto22;
+  4: 1;
+  5: Upto22;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto22;
+  10: Upto22;
+  11: Upto22;
+  12:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  [field: number]: number;
+};
 
 type ERRTypes5 = [
   never,
@@ -26831,6 +39117,39 @@ interface ERRObject5<T extends HL7TypeMap> {
 
 type EVNFields5 = 2 | 3 | 4 | 5 | 6 | 7;
 
+type EVNFieldComps8 = {
+  2: 1;
+  3: 1;
+  4: Upto22;
+  5:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  6: 1;
+  7: Upto3;
+  [field: number]: number;
+};
+
 type EVNTypes7 = [never, never, 'DTM', 'DTM', 'CWE', 'XCN', 'DTM', 'HD'];
 
 interface EVNObject7<T extends HL7TypeMap> {
@@ -26841,6 +39160,135 @@ interface EVNObject7<T extends HL7TypeMap> {
   EventOccurred?: string | null;
   EventFacility?: T['HD'] | null;
 }
+
+type FACFieldComps6 = {
+  1: Upto4;
+  2: 1;
+  3:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  4: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  5:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  6: 1;
+  7:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  8: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  9:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  10: 1;
+  11:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  12:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  [field: number]: number;
+};
 
 type FT1Fields7 =
   | 1
@@ -26884,6 +39332,120 @@ type FT1Fields7 =
   | 41
   | 42
   | 43;
+
+type FT1FieldComps8 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: Upto2;
+  5: 1;
+  6: Upto22;
+  7: Upto22;
+  10: 1;
+  11: Upto6;
+  12: Upto6;
+  13: Upto22;
+  14: Upto22;
+  15: Upto6;
+  16: Upto11;
+  17: Upto22;
+  18: Upto22;
+  19: Upto22;
+  20:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  21:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  22: Upto6;
+  23: Upto4;
+  24:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  25: Upto22;
+  26: Upto22;
+  27: Upto22;
+  28: Upto22;
+  29: Upto22;
+  30: Upto12;
+  31: 1;
+  32: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  33: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  34: Upto22;
+  35: 1;
+  36: Upto22;
+  37: Upto22;
+  38: Upto12;
+  39: Upto12;
+  40: Upto22;
+  41: Upto22;
+  42: 1;
+  43: Upto2;
+  [field: number]: number;
+};
 
 type FT1Types7 = [
   never,
@@ -26999,6 +39561,31 @@ type GOLFields3 =
   | 21
   | 22;
 
+type GOLFieldComps6 = {
+  1: 1;
+  2: 1;
+  3: Upto22;
+  4: Upto4;
+  5: Upto4;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto22;
+  10: Upto22;
+  11: Upto22;
+  12: 1;
+  13: 1;
+  14: 1;
+  16: Upto22;
+  17: 1;
+  18: Upto22;
+  19: 1;
+  20: Upto22;
+  21: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  22: Upto22;
+  [field: number]: number;
+};
+
 type GOLTypes3 = [
   never,
   'ID',
@@ -27049,6 +39636,15 @@ interface GOLObject3<T extends HL7TypeMap> {
   MoodCode?: T['CNE'] | null;
 }
 
+type GP1FieldComps2 = {
+  1: Upto22;
+  2: Upto22;
+  3: Upto22;
+  4: Upto22;
+  5: Upto6;
+  [field: number]: number;
+};
+
 type GP1Types2 = [never, 'CWE', 'CWE', 'CWE', 'CWE', 'CP'];
 
 interface GP1Object2<T extends HL7TypeMap> {
@@ -27058,6 +39654,24 @@ interface GP1Object2<T extends HL7TypeMap> {
   OCEEditsPerVisitCode?: T['CWE'][] | null;
   OutlierCost?: T['CP'] | null;
 }
+
+type GP2FieldComps3 = {
+  1: Upto22;
+  2: 1;
+  3: Upto6;
+  4: Upto22;
+  5: Upto22;
+  6: Upto22;
+  7: Upto22;
+  8: Upto22;
+  9: Upto22;
+  10: Upto22;
+  11: Upto6;
+  12: Upto22;
+  13: Upto6;
+  14: 1;
+  [field: number]: number;
+};
 
 type GP2Types3 = [
   never,
@@ -27093,6 +39707,113 @@ interface GP2Object3<T extends HL7TypeMap> {
   CoPayAmount?: T['CP'] | null;
   PayRatePerServiceUnit?: number | string | null;
 }
+
+type GT1FieldComps8 = {
+  1: 1;
+  2: Upto12;
+  3: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  4: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  5:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  6: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  7: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  8: 1;
+  9: Upto22;
+  10: Upto22;
+  11: Upto22;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  17:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  18:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  19: Upto12;
+  20: Upto22;
+  21: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  22: 1;
+  23: Upto22;
+  24: 1;
+  25: 1;
+  26: Upto22;
+  27: Upto6;
+  28: 1;
+  29: Upto12;
+  30: Upto22;
+  31: 1;
+  32: 1;
+  33: Upto22;
+  34: Upto22;
+  35: Upto22;
+  36: Upto22;
+  37: Upto22;
+  38: Upto22;
+  39: 1;
+  40: Upto22;
+  41: Upto22;
+  42: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  43: Upto22;
+  44: Upto22;
+  45: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  46:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  47: Upto22;
+  48: Upto22;
+  49: 1;
+  50: Upto3;
+  51: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  52: Upto22;
+  53: Upto22;
+  54: Upto2;
+  55: Upto22;
+  56: 1;
+  57: Upto22;
+  [field: number]: number;
+};
 
 type GT1Types7 = [
   never,
@@ -27247,6 +39968,132 @@ type IAMFields2 =
   | 29
   | 30;
 
+type IAMFieldComps4 = {
+  1: 1;
+  2: Upto22;
+  3: Upto22;
+  4: Upto22;
+  5: 1;
+  6: Upto22;
+  7: Upto4;
+  8: 1;
+  9: Upto22;
+  10: Upto22;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  15: Upto22;
+  16: Upto22;
+  17: Upto22;
+  18:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  19: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  20: 1;
+  21:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  22: 1;
+  23:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  24: 1;
+  25:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  26: 1;
+  27: Upto22;
+  28: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  29: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  30: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  [field: number]: number;
+};
+
 type IAMTypes3 = [
   never,
   'SI',
@@ -27316,6 +40163,14 @@ interface IAMObject3<T extends HL7TypeMap> {
 
 type IARFields1 = 1 | 2 | 3 | 4;
 
+type IARFieldComps1 = {
+  1: Upto22;
+  2: Upto22;
+  3: Upto22;
+  4: 1;
+  [field: number]: number;
+};
+
 type IARTypes1 = [never, 'CWE', 'CWE', 'CWE', 'ST'];
 
 interface IARObject1<T extends HL7TypeMap> {
@@ -27324,6 +40179,39 @@ interface IARObject1<T extends HL7TypeMap> {
   SensitivityToCausativeAgentCode?: T['CWE'] | null;
   Management?: string | null;
 }
+
+type IIMFieldComps3 = {
+  1: Upto22;
+  2: Upto22;
+  3: 1;
+  4: 1;
+  5: Upto22;
+  6: Upto22;
+  7: 1;
+  8: 1;
+  9: Upto22;
+  10: Upto2;
+  11: 1;
+  12: 1;
+  13: Upto22;
+  14: Upto22;
+  15: Upto22;
+  [field: number]: number;
+};
+
+type ILTFieldComps2 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: Upto22;
+  7: Upto2;
+  8: 1;
+  9: 1;
+  10: Upto22;
+  [field: number]: number;
+};
 
 type IN1Fields6 =
   | 1
@@ -27377,6 +40265,150 @@ type IN1Fields6 =
   | 52
   | 53
   | 54;
+
+type IN1FieldComps8 = {
+  1: 1;
+  2: Upto22;
+  3: Upto12;
+  4: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  5:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  6: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  7: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  8: 1;
+  9: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  10: Upto12;
+  11: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  12: 1;
+  13: 1;
+  14: Upto3;
+  15: Upto22;
+  16: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  17: Upto22;
+  18: 1;
+  19:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  20: Upto22;
+  21: Upto22;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: Upto22;
+  28: 1;
+  29: 1;
+  30:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  31: Upto22;
+  32: Upto22;
+  33: 1;
+  34: 1;
+  35: Upto22;
+  36: 1;
+  37: Upto6;
+  39: 1;
+  42: Upto22;
+  43: Upto22;
+  44:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  45: 1;
+  46: Upto22;
+  47: Upto22;
+  48: Upto22;
+  49: Upto12;
+  50: Upto22;
+  51: 1;
+  52: 1;
+  53: Upto22;
+  54: Upto12;
+  [field: number]: number;
+};
 
 type IN1Types7 = [
   never,
@@ -27489,6 +40521,110 @@ interface IN1Object7<T extends HL7TypeMap> {
   VIPIndicator?: T['CWE'] | null;
   ExternalHealthPlanIdentifiers?: T['CX'][] | null;
 }
+
+type IN2FieldComps7 = {
+  1: Upto12;
+  2: 1;
+  3:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  4: Upto22;
+  5: Upto22;
+  6: 1;
+  7: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  8: 1;
+  9: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  10: 1;
+  11: Upto22;
+  12: 1;
+  13: 1;
+  14: Upto22;
+  15: Upto22;
+  16: Upto22;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  23: 1;
+  24: Upto22;
+  25: Upto12;
+  26: Upto12;
+  27: Upto22;
+  28: 1 | 2 | 4;
+  29: 1 | 2 | 4;
+  30: Upto3;
+  31: Upto22;
+  32: Upto22;
+  33: Upto22;
+  34: Upto22;
+  35: Upto22;
+  36: Upto22;
+  37: 1;
+  38: Upto22;
+  39: Upto22;
+  40: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  41: Upto22;
+  42: Upto22;
+  43: Upto22;
+  44: 1;
+  45: 1;
+  46: 1;
+  47: Upto3;
+  48: Upto22;
+  49: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  50:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  51: Upto22;
+  52: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  53:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  54: Upto22;
+  55: 1;
+  56: 1;
+  57: Upto22;
+  58:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  59: Upto22;
+  60: Upto22;
+  61: Upto12;
+  62: Upto22;
+  63:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  64:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  65: Upto22;
+  66: 1;
+  67: 1;
+  68: 1;
+  69: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  70: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  71: Upto22;
+  72: Upto22;
+  [field: number]: number;
+};
 
 type IN2Types5 = [
   never,
@@ -27641,6 +40777,129 @@ interface IN2Object5<T extends HL7TypeMap> {
   PatientSRelationshipToInsured?: T['CWE'] | null;
 }
 
+type IN3FieldComps7 = {
+  1: 1;
+  2: Upto12;
+  3:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  4: 1;
+  5: Upto3;
+  6: 1;
+  7: 1;
+  8:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  9: 1;
+  10: 1;
+  11: Upto2;
+  12: Upto22;
+  13: 1;
+  14:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  15: 1;
+  16:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  17: Upto22;
+  18: Upto22;
+  19:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  20: Upto3;
+  21: 1;
+  22: 1;
+  23: Upto22;
+  24: Upto22;
+  25:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  [field: number]: number;
+};
+
 type IN3Types6 = [
   never,
   'SI',
@@ -27719,6 +40978,29 @@ type INVFields3 =
   | 19
   | 20;
 
+type INVFieldComps4 = {
+  1: Upto22;
+  2: Upto22;
+  3: Upto22;
+  4: Upto22;
+  5: Upto22;
+  6: Upto22;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: Upto22;
+  12: 1;
+  13: 1;
+  15: Upto22;
+  16: 1;
+  17: Upto22;
+  18: Upto22;
+  19: Upto2;
+  20: Upto2;
+  [field: number]: number;
+};
+
 type INVTypes4 = [
   never,
   'CWE',
@@ -27764,6 +41046,66 @@ interface INVObject4<T extends HL7TypeMap> {
   OnBoardStabilityTime?: T['CQ'] | null;
   TargetValue?: T['CQ'] | null;
 }
+
+type IPCFieldComps3 = {
+  1: Upto4;
+  2: Upto4;
+  3: Upto4;
+  4: Upto4;
+  5: Upto22;
+  6: Upto22;
+  7: Upto4;
+  8: Upto22;
+  9: 1;
+  [field: number]: number;
+};
+
+type IPRFieldComps2 = {
+  1: Upto4;
+  2: Upto4;
+  3: Upto4;
+  4: Upto22;
+  5: 1;
+  6: Upto6;
+  7: 1;
+  8: 1;
+  [field: number]: number;
+};
+
+type ISDFieldComps3 = { 1: 1; 2: Upto22; 3: Upto22; [field: number]: number };
+
+type ITMFieldComps2 = {
+  1: Upto4;
+  2: 1;
+  3: Upto22;
+  4: Upto22;
+  5: Upto22;
+  6: Upto22;
+  7: Upto4;
+  8: 1;
+  9: 1;
+  10: Upto22;
+  11: Upto22;
+  12: Upto22;
+  13: Upto6;
+  14: Upto22;
+  15: Upto22;
+  16: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  17: Upto22;
+  18: Upto22;
+  19: Upto22;
+  20: 1;
+  21: Upto2;
+  22: Upto22;
+  23: Upto22;
+  24: Upto22;
+  25: Upto4;
+  26: Upto22;
+  27: Upto22;
+  28: Upto22;
+  29: Upto22;
+  [field: number]: number;
+};
 
 type ITMTypes2 = [
   never,
@@ -27829,6 +41171,86 @@ interface ITMObject2<T extends HL7TypeMap> {
   ProcedureCodeModifier?: T['CNE'][] | null;
   SpecialHandlingCode?: T['CWE'] | null;
 }
+
+type IVCFieldComps2 = {
+  1: Upto4;
+  2: Upto4;
+  3: Upto4;
+  4: Upto22;
+  5: Upto22;
+  6: Upto22;
+  7: 1;
+  8: Upto6;
+  9: 1;
+  10: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  11: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  12:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: Upto6;
+  17: Upto6;
+  18: Upto6;
+  19:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  20: Upto12;
+  21: Upto6;
+  22: Upto6;
+  23: Upto6;
+  24: 1;
+  25: Upto22;
+  26: 1;
+  27: 1;
+  28: Upto22;
+  29: Upto22;
+  30: 1;
+  [field: number]: number;
+};
 
 type IVCTypes2 = [
   never,
@@ -27897,6 +41319,78 @@ interface IVCObject2<T extends HL7TypeMap> {
   SalesTaxID?: string | null;
 }
 
+type IVTFieldComps2 = {
+  1: 1;
+  2: Upto4;
+  3: 1;
+  4: Upto4;
+  5: 1;
+  6: Upto22;
+  7: Upto4;
+  8: Upto22;
+  9: Upto22;
+  10: Upto4;
+  11: Upto22;
+  12: Upto22;
+  13: Upto6;
+  14: Upto22;
+  15: Upto22;
+  16: Upto22;
+  17: Upto22;
+  18: Upto6;
+  19: Upto4;
+  20: Upto4;
+  21: Upto22;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: Upto22;
+  [field: number]: number;
+};
+
+type LANFieldComps3 = {
+  1: 1;
+  2: Upto22;
+  3: Upto22;
+  4: Upto22;
+  [field: number]: number;
+};
+
+type LCCFieldComps5 = {
+  1: Upto11;
+  2: Upto22;
+  3: Upto22;
+  4: Upto22;
+  [field: number]: number;
+};
+
+type LCHFieldComps4 = {
+  1: Upto11;
+  2: 1;
+  3: Upto4;
+  4: Upto22;
+  5: Upto22;
+  [field: number]: number;
+};
+
+type LDPFieldComps5 = {
+  1: Upto11;
+  2: Upto22;
+  3: Upto22;
+  4: Upto22;
+  5: Upto22;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto4;
+  11:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  12: Upto22;
+  [field: number]: number;
+};
+
 type LDPTypes5 = [
   never,
   'PL',
@@ -27928,6 +41422,41 @@ interface LDPObject4<T extends HL7TypeMap> {
   LocationCostCenter?: T['CWE'] | null;
 }
 
+type LOCFieldComps6 = {
+  1: Upto11;
+  2: 1;
+  3: Upto22;
+  4: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  5:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  6: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  7: Upto22;
+  8: Upto22;
+  9: Upto22;
+  [field: number]: number;
+};
+
 type LOCTypes5 = [
   never,
   'PL',
@@ -27953,7 +41482,80 @@ interface LOCObject5<T extends HL7TypeMap> {
   LocationServiceCode?: T['CWE'] | null;
 }
 
+type LRLFieldComps5 = {
+  1: Upto11;
+  2: 1;
+  3: Upto4;
+  4: Upto22;
+  5: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  6: Upto11;
+  [field: number]: number;
+};
+
+type MFAFieldComps5 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: Upto22;
+  5: number;
+  6: 1;
+  [field: number]: number;
+};
+
+type MFEFieldComps4 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: number;
+  5: 1;
+  6: 1;
+  7:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  [field: number]: number;
+};
+
+type MFIFieldComps4 = {
+  1: Upto22;
+  2: Upto3;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  [field: number]: number;
+};
+
 type MRGFields4 = 1 | 3 | 5 | 6 | 7;
+
+type MRGFieldComps7 = {
+  1: Upto12;
+  3: Upto12;
+  5: Upto12;
+  6: Upto12;
+  7: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  [field: number]: number;
+};
 
 type MRGTypes5 = [never, 'CX', never, 'CX', never, 'CX', 'CX', 'XPN'];
 
@@ -27967,6 +41569,8 @@ interface MRGObject5<T extends HL7TypeMap> {
 
 type MSAFields4 = 1 | 2 | 4 | 7 | 8;
 
+type MSAFieldComps5 = { 1: 1; 2: 1; 4: 1; 7: 1; 8: 1; [field: number]: number };
+
 type MSATypes5 = [never, 'ID', 'ST', never, 'NM', never, never, 'NM', 'ID'];
 
 interface MSAObject4<T extends HL7TypeMap> {
@@ -27976,6 +41580,43 @@ interface MSAObject4<T extends HL7TypeMap> {
   MessageWaitingNumber?: number | string | null;
   MessageWaitingPriority?: string | null;
 }
+
+type MSHFieldComps8 = {
+  1: 1;
+  2: 1;
+  3: Upto3;
+  4: Upto3;
+  5: Upto3;
+  6: Upto3;
+  7: 1;
+  8: 1;
+  9: Upto3;
+  10: 1;
+  11: Upto2;
+  12: Upto3;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: Upto22;
+  20: 1;
+  21: Upto4;
+  22: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  23: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  24: Upto3;
+  25: Upto3;
+  [field: number]: number;
+};
+
+type NDSFieldComps3 = {
+  1: 1;
+  2: 1;
+  3: Upto22;
+  4: Upto22;
+  [field: number]: number;
+};
 
 type NK1Fields5 =
   | 1
@@ -28019,6 +41660,98 @@ type NK1Fields5 =
   | 39
   | 40
   | 41;
+
+type NK1FieldComps8 = {
+  1: 1;
+  2: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  3: Upto22;
+  4:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  5: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  6: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  7: Upto22;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: Upto3;
+  12: Upto12;
+  13: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  14: Upto22;
+  15: Upto22;
+  16: 1;
+  17: Upto22;
+  18: Upto22;
+  19: Upto22;
+  20: Upto22;
+  21: Upto22;
+  22: Upto22;
+  23: 1;
+  24: Upto22;
+  25: Upto22;
+  26: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  27: Upto22;
+  28: Upto22;
+  29: Upto22;
+  30: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  31:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  32:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  33: Upto12;
+  34: Upto22;
+  35: Upto22;
+  36: Upto22;
+  37: 1;
+  38: 1;
+  39: Upto22;
+  40:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  41:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  [field: number]: number;
+};
 
 type NK1Types7 = [
   never,
@@ -28109,12 +41842,27 @@ interface NK1Object7<T extends HL7TypeMap> {
   ContactPersonSTelecommunicationInformation?: T['XTN'] | null;
 }
 
+type NPUFieldComps5 = { 1: Upto11; 2: Upto22; [field: number]: number };
+
 type NPUTypes4 = [never, 'PL', 'CWE'];
 
 interface NPUObject4<T extends HL7TypeMap> {
   BedLocation?: T['PL'] | null;
   BedStatus?: T['CWE'] | null;
 }
+
+type NSCFieldComps4 = {
+  1: Upto22;
+  2: 1;
+  3: 1;
+  4: Upto3;
+  5: Upto3;
+  6: 1;
+  7: 1;
+  8: Upto3;
+  9: Upto3;
+  [field: number]: number;
+};
 
 type NSCTypes5 = [never, 'CWE', 'ST', 'ST', 'HD', 'HD', 'ST', 'ST', 'HD', 'HD'];
 
@@ -28129,6 +41877,41 @@ interface NSCObject4<T extends HL7TypeMap> {
   NewApplication?: T['HD'] | null;
   NewFacility?: T['HD'] | null;
 }
+
+type NTEFieldComps4 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: Upto22;
+  5:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  6: 1;
+  7: 1;
+  8: 1;
+  [field: number]: number;
+};
 
 type OBRFields7 =
   | 1
@@ -28179,6 +41962,128 @@ type OBRFields7 =
   | 51
   | 52
   | 53;
+
+type OBRFieldComps9 = {
+  1: 1;
+  2: Upto4;
+  3: Upto4;
+  4: Upto22;
+  7: 1;
+  8: 1;
+  9: Upto2;
+  10:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  11: 1;
+  12: Upto22;
+  13: 1;
+  16:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  17:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: Upto2;
+  24: 1;
+  25: 1;
+  26: Upto3;
+  28:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  29: Upto2;
+  30: 1;
+  31: Upto22;
+  32: Upto11;
+  33: Upto11;
+  34: Upto11;
+  35: Upto11;
+  36: 1;
+  37: 1;
+  38: Upto22;
+  39: Upto22;
+  40: Upto22;
+  41: 1;
+  42: 1;
+  43: Upto22;
+  44: Upto22;
+  45: Upto22;
+  46: Upto22;
+  47: Upto22;
+  48: Upto22;
+  49: Upto22;
+  50: Upto22;
+  51: Upto4;
+  52: Upto4;
+  53: Upto12;
+  [field: number]: number;
+};
 
 type OBRTypes9 = [
   never,
@@ -28316,6 +42221,104 @@ type OBXFields7 =
   | 25
   | 26;
 
+type OBXFieldComps9 = {
+  1: 1;
+  2: 1;
+  3: Upto22;
+  4: 1;
+  5: number;
+  6: Upto22;
+  7: 1;
+  8: Upto22;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: Upto22;
+  16:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  17: Upto22;
+  18: Upto4;
+  19: 1;
+  20: Upto22;
+  21: Upto4;
+  22: Upto22;
+  23: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  24:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  25:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  26: 1;
+  [field: number]: number;
+};
+
 type OBXTypes7 = [
   never,
   'SI',
@@ -28374,6 +42377,91 @@ interface OBXObject9<T extends HL7TypeMap> {
   PerformingOrganizationMedicalDirector?: T['XCN'] | null;
   PatientResultsReleaseCategory?: string | null;
 }
+
+type ODSFieldComps3 = {
+  1: 1;
+  2: Upto22;
+  3: Upto22;
+  4: 1;
+  [field: number]: number;
+};
+
+type ODTFieldComps3 = { 1: Upto22; 2: Upto22; 3: 1; [field: number]: number };
+
+type OM1FieldComps7 = {
+  1: 1;
+  2: Upto22;
+  3: 1;
+  4: 1;
+  5: Upto22;
+  6: 1;
+  7: Upto22;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: Upto22;
+  14: Upto22;
+  15: 1;
+  16: Upto22;
+  17:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  18: Upto22;
+  19: Upto22;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: Upto22;
+  28:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  29:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  30: Upto22;
+  31: Upto22;
+  32: 1;
+  33: Upto22;
+  34: Upto22;
+  35: 1;
+  36: Upto22;
+  37: 1;
+  38: Upto22;
+  39: 1;
+  40: 1;
+  41: 1;
+  42: Upto22;
+  43: Upto22;
+  44: 1;
+  45: Upto22;
+  46: Upto22;
+  47: Upto22;
+  [field: number]: number;
+};
 
 type OM1Types6 = [
   never,
@@ -28476,6 +42564,102 @@ interface OM1Object6<T extends HL7TypeMap> {
   ModalityOfImagingMeasurement?: T['CWE'] | null;
 }
 
+type OM2FieldComps6 = {
+  1: 1;
+  2: Upto22;
+  3: 1;
+  4: Upto22;
+  5: 1;
+  6: Upto7;
+  7: Upto7;
+  8: Upto7;
+  9: Upto4;
+  10: 1;
+  [field: number]: number;
+};
+
+type OM3FieldComps4 = {
+  1: 1;
+  2: Upto22;
+  3: Upto22;
+  4: Upto22;
+  5: Upto22;
+  6: Upto22;
+  7: 1;
+  [field: number]: number;
+};
+
+type OM4FieldComps5 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: Upto22;
+  6: Upto22;
+  7: Upto22;
+  8: 1;
+  9: 1;
+  10: Upto2;
+  11: Upto2;
+  12: 1;
+  13: 1;
+  14: Upto2;
+  [field: number]: number;
+};
+
+type OM5FieldComps4 = { 1: 1; 2: Upto22; 3: 1; [field: number]: number };
+
+type OM7FieldComps4 = {
+  1: 1;
+  2: Upto22;
+  3: Upto22;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto22;
+  10: Upto22;
+  11: 1;
+  12: Upto22;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: Upto22;
+  17: 1;
+  18: Upto22;
+  19: 1;
+  20:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  21: Upto11;
+  22: Upto22;
+  23: 1;
+  24: Upto22;
+  [field: number]: number;
+};
+
 type OM7Types3 = [
   never,
   'NM',
@@ -28565,6 +42749,180 @@ type ORCFields7 =
   | 32
   | 33;
 
+type ORCFieldComps9 = {
+  1: 1;
+  2: Upto4;
+  3: Upto4;
+  4: Upto4;
+  5: 1;
+  6: 1;
+  8: Upto2;
+  9: 1;
+  10:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  11:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  12:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  13: Upto11;
+  14:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  15: 1;
+  16: Upto22;
+  17: Upto22;
+  18: Upto22;
+  19:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  20: Upto22;
+  21: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  22:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  23:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  24:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  25: Upto22;
+  26: Upto22;
+  27: 1;
+  28: Upto22;
+  29: Upto22;
+  30: Upto22;
+  31: Upto22;
+  32: 1;
+  33: Upto12;
+  [field: number]: number;
+};
+
 type ORCTypes9 = [
   never,
   'ID',
@@ -28639,6 +42997,23 @@ interface ORCObject9<T extends HL7TypeMap> {
 
 type ORGFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
 
+type ORGFieldComps4 = {
+  1: 1;
+  2: Upto22;
+  3: Upto22;
+  4: 1;
+  5: Upto12;
+  6: Upto22;
+  7: Upto22;
+  8: Upto22;
+  9: Upto2;
+  10: Upto22;
+  11: 1;
+  12: 1;
+  13: Upto22;
+  [field: number]: number;
+};
+
 type ORGTypes3 = [
   never,
   'SI',
@@ -28672,7 +43047,74 @@ interface ORGObject3<T extends HL7TypeMap> {
   CostCenterCode?: T['CWE'][] | null;
 }
 
+type OVRFieldComps2 = {
+  1: Upto22;
+  2: Upto22;
+  3: 1;
+  4:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  5:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  [field: number]: number;
+};
+
 type PACFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
+type PACFieldComps1 = {
+  1: 1;
+  2: Upto4;
+  3: Upto4;
+  4: Upto4;
+  5: Upto22;
+  6: Upto22;
+  7: Upto22;
+  8: Upto22;
+  [field: number]: number;
+};
 
 type PACTypes1 = [never, 'SI', 'EI', 'EI', 'NA', 'CWE', 'CWE', 'CWE', 'CWE'];
 
@@ -28687,6 +43129,14 @@ interface PACObject1<T extends HL7TypeMap> {
   PackageRiskCode?: T['CWE'][] | null;
 }
 
+type PCEFieldComps2 = {
+  1: 1;
+  2: Upto12;
+  3: Upto22;
+  4: Upto6;
+  [field: number]: number;
+};
+
 type PCETypes2 = [never, 'SI', 'CX', 'CWE', 'CP'];
 
 interface PCEObject2<T extends HL7TypeMap> {
@@ -28695,6 +43145,33 @@ interface PCEObject2<T extends HL7TypeMap> {
   TransactionCode?: T['CWE'] | null;
   TransactionAmountUnit?: T['CP'] | null;
 }
+
+type PCRFieldComps3 = {
+  1: Upto22;
+  2: 1;
+  3: Upto22;
+  4: Upto2;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto22;
+  10: Upto22;
+  11: Upto22;
+  12: 1;
+  13: Upto22;
+  14: Upto22;
+  15: Upto22;
+  16: Upto22;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: 1;
+  [field: number]: number;
+};
 
 type PCRTypes3 = [
   never,
@@ -28772,6 +43249,31 @@ type PD1Fields4 =
   | 21
   | 22;
 
+type PD1FieldComps6 = {
+  1: Upto22;
+  2: Upto22;
+  3: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  5: Upto22;
+  6: Upto22;
+  7: Upto22;
+  8: Upto22;
+  9: 1;
+  10: Upto12;
+  11: Upto22;
+  12: 1;
+  13: 1;
+  14: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  15: Upto22;
+  16: Upto22;
+  17: 1;
+  18: 1;
+  19: Upto22;
+  20: Upto22;
+  21: Upto22;
+  22: 1;
+  [field: number]: number;
+};
+
 type PD1Types4 = [
   never,
   'CWE',
@@ -28822,6 +43324,220 @@ interface PD1Object5<T extends HL7TypeMap> {
   AdvanceDirectiveLastVerifiedDate?: string | null;
 }
 
+type PDAFieldComps4 = {
+  1: Upto22;
+  2: Upto11;
+  3: 1;
+  4: 1;
+  5:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  6: 1;
+  7: Upto2;
+  8:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  9: 1;
+  [field: number]: number;
+};
+
+type PDCFieldComps5 = {
+  1: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  2: Upto22;
+  3: 1;
+  4: 1;
+  5: Upto22;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto22;
+  10: 1;
+  11: 1;
+  12: Upto2;
+  13: Upto2;
+  14: 1;
+  15: 1;
+  [field: number]: number;
+};
+
+type PEOFieldComps6 = {
+  1: Upto22;
+  2: Upto22;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  7:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: Upto22;
+  19: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  20:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  21:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: 1;
+  [field: number]: number;
+};
+
+type PESFieldComps6 = {
+  1: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  2:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  3:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  4: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  5: Upto4;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  [field: number]: number;
+};
+
 type PIDFields6 =
   | 1
   | 3
@@ -28856,6 +43572,68 @@ type PIDFields6 =
   | 38
   | 39
   | 40;
+
+type PIDFieldComps8 = {
+  1: 1;
+  3: Upto12;
+  5: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  6: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  7: 1;
+  8: Upto22;
+  10: Upto22;
+  11:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  13:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  14:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  15: Upto22;
+  16: Upto22;
+  17: Upto22;
+  18: Upto12;
+  21: Upto12;
+  22: Upto22;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: Upto22;
+  27: Upto22;
+  29: 1;
+  30: 1;
+  31: 1;
+  32: Upto22;
+  33: 1;
+  34: Upto3;
+  35: Upto22;
+  36: Upto22;
+  37: 1;
+  38: Upto22;
+  39: Upto22;
+  40:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  [field: number]: number;
+};
 
 type PIDTypes8 = [
   never,
@@ -28937,6 +43715,33 @@ interface PIDObject8<T extends HL7TypeMap> {
   PatientTelecommunicationInformation?: T['XTN'][] | null;
 }
 
+type PKGFieldComps2 = {
+  1: 1;
+  2: Upto22;
+  3: Upto22;
+  4: 1;
+  5: Upto6;
+  6: Upto6;
+  7: 1;
+  [field: number]: number;
+};
+
+type PMTFieldComps2 = {
+  1: Upto4;
+  2: 1;
+  3: 1;
+  4: Upto22;
+  5: 1;
+  6: Upto6;
+  7: Upto4;
+  8: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  9: 1;
+  10: Upto12;
+  11: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  12: 1;
+  [field: number]: number;
+};
+
 type PR1Fields8 =
   | 1
   | 3
@@ -28958,6 +43763,30 @@ type PR1Fields8 =
   | 23
   | 24
   | 25;
+
+type PR1FieldComps8 = {
+  1: 1;
+  3: Upto22;
+  5: 1;
+  6: Upto22;
+  7: 1;
+  9: Upto22;
+  10: 1;
+  13: Upto22;
+  14: 1;
+  15: Upto22;
+  16: Upto22;
+  17: Upto22;
+  18: Upto22;
+  19: Upto4;
+  20: 1;
+  21: Upto22;
+  22: Upto22;
+  23: Upto11;
+  24: 1;
+  25: Upto4;
+  [field: number]: number;
+};
 
 type PR1Types8 = [
   never,
@@ -29011,6 +43840,22 @@ interface PR1Object8<T extends HL7TypeMap> {
   ParentProcedureID?: T['EI'] | null;
 }
 
+type PRAFieldComps6 = {
+  1: Upto22;
+  2: Upto22;
+  3: Upto22;
+  4: 1;
+  5: Upto4;
+  6: Upto4;
+  7: Upto5;
+  8: 1;
+  9: Upto22;
+  10: 1;
+  11: Upto22;
+  12: 1;
+  [field: number]: number;
+};
+
 type PRATypes5 = [
   never,
   'CWE',
@@ -29041,6 +43886,60 @@ interface PRAObject5<T extends HL7TypeMap> {
   GovernmentReimbursementBillingEligibility?: T['CWE'][] | null;
   SetID?: number | string | null;
 }
+
+type PRBFieldComps3 = {
+  1: 1;
+  2: 1;
+  3: Upto22;
+  4: Upto4;
+  5: Upto4;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto22;
+  11: Upto22;
+  12: Upto22;
+  13: Upto22;
+  14: Upto22;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: Upto22;
+  19: Upto22;
+  20: 1;
+  21: Upto22;
+  22: Upto22;
+  23: Upto22;
+  24: 1;
+  25: Upto22;
+  26: Upto22;
+  27: Upto22;
+  28: Upto22;
+  [field: number]: number;
+};
+
+type PRCFieldComps4 = {
+  1: Upto22;
+  2: Upto22;
+  3: Upto22;
+  4: Upto22;
+  5: Upto6;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto2;
+  10: Upto2;
+  11: 1;
+  12: 1;
+  13: Upto22;
+  14: Upto22;
+  15: 1;
+  16: 1;
+  17: Upto2;
+  18: Upto22;
+  [field: number]: number;
+};
 
 type PRCTypes4 = [
   never,
@@ -29085,8 +43984,136 @@ interface PRCObject4<T extends HL7TypeMap> {
   ChargeOnIndicator?: T['CWE'] | null;
 }
 
+type PRDFieldComps6 = {
+  1: Upto22;
+  2: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  3:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  4: Upto11;
+  5: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  6: Upto22;
+  7: Upto4;
+  8: 1;
+  9: 1;
+  10: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  11:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  12: Upto11;
+  13:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  14: Upto22;
+  [field: number]: number;
+};
+
 type PRTFields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
+
+type PRTFieldComps1 = {
+  1: Upto4;
+  2: 1;
+  3: Upto22;
+  4: Upto22;
+  5:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  6: Upto22;
+  7: Upto22;
+  8: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  9: Upto11;
+  10: Upto4;
+  11: 1;
+  12: 1;
+  13: Upto22;
+  14:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  15:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  [field: number]: number;
+};
 
 type PRTTypes1 = [
   never,
@@ -29124,6 +44151,104 @@ interface PRTObject1<T extends HL7TypeMap> {
   ParticipationAddress?: T['XAD'][] | null;
   ParticipantTelecommunicationAddress?: T['XTN'][] | null;
 }
+
+type PSLFieldComps2 = {
+  1: Upto4;
+  2: Upto4;
+  3: 1;
+  4: Upto4;
+  5: Upto4;
+  6: Upto22;
+  7: Upto22;
+  8: Upto22;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: Upto2;
+  13: Upto6;
+  14: 1;
+  15: Upto6;
+  16: Upto6;
+  17: Upto22;
+  18: 1;
+  19: Upto4;
+  20: Upto22;
+  21: 1;
+  22: Upto22;
+  23: Upto6;
+  24: 1;
+  25: Upto12;
+  26: Upto2;
+  27: 1;
+  28: 1;
+  29:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  30:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  31: Upto22;
+  32: Upto22;
+  33: Upto22;
+  34: 1;
+  35: Upto6;
+  36: 1;
+  37: 1;
+  38: Upto6;
+  39: 1;
+  40: Upto6;
+  41: 1;
+  42: 1;
+  43: Upto6;
+  44: Upto6;
+  45: 1;
+  46: 1;
+  47: 1;
+  48: 1;
+  [field: number]: number;
+};
 
 type PSLTypes2 = [
   never,
@@ -29228,6 +44353,17 @@ interface PSLObject2<T extends HL7TypeMap> {
   Comment?: string | null;
 }
 
+type PTHFieldComps3 = {
+  1: 1;
+  2: Upto22;
+  3: Upto4;
+  4: 1;
+  5: Upto22;
+  6: 1;
+  7: Upto22;
+  [field: number]: number;
+};
+
 type PV1Fields4 =
   | 1
   | 2
@@ -29281,6 +44417,154 @@ type PV1Fields4 =
   | 51
   | 53
   | 54;
+
+type PV1FieldComps8 = {
+  1: 1;
+  2: Upto22;
+  3: Upto11;
+  4: Upto22;
+  5: Upto12;
+  6: Upto11;
+  7:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  8:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  9:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  10: Upto22;
+  11: Upto11;
+  12: Upto22;
+  13: Upto22;
+  14: Upto22;
+  15: Upto22;
+  16: Upto22;
+  17:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  18: Upto22;
+  19: Upto12;
+  20: Upto2;
+  21: Upto22;
+  22: Upto22;
+  23: Upto22;
+  24: Upto22;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: Upto22;
+  29: Upto22;
+  30: 1;
+  31: Upto22;
+  32: 1;
+  33: 1;
+  34: Upto22;
+  35: 1;
+  36: Upto22;
+  37: Upto2;
+  38: Upto22;
+  39: Upto22;
+  41: Upto22;
+  42: Upto11;
+  43: Upto11;
+  44: 1;
+  45: 1;
+  46: 1;
+  47: 1;
+  48: 1;
+  49: 1;
+  50: Upto12;
+  51: Upto22;
+  53: 1;
+  54: Upto12;
+  [field: number]: number;
+};
 
 type PV1Types6 = [
   never,
@@ -29395,6 +44679,83 @@ interface PV1Object7<T extends HL7TypeMap> {
   ServiceEpisodeIdentifier?: T['CX'] | null;
 }
 
+type PV2FieldComps7 = {
+  1: Upto11;
+  2: Upto22;
+  3: Upto22;
+  4: Upto22;
+  5: 1;
+  6: 1;
+  7: Upto22;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  14: 1;
+  15: 1;
+  16: Upto22;
+  17: 1;
+  18: Upto22;
+  19: 1;
+  20: 1;
+  21: Upto22;
+  22: 1;
+  23: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  24: Upto22;
+  25: Upto22;
+  26: 1;
+  27: Upto22;
+  28: 1;
+  29: 1;
+  30: Upto22;
+  31: Upto22;
+  32: 1;
+  33: 1;
+  34: 1;
+  35: 1;
+  36: 1;
+  37: 1;
+  38: Upto22;
+  39: Upto22;
+  40: Upto22;
+  41: Upto22;
+  42: Upto22;
+  43: Upto22;
+  44: Upto22;
+  45: Upto22;
+  46: 1;
+  47: 1;
+  48: 1;
+  49: Upto22;
+  50: 1;
+  [field: number]: number;
+};
+
 type PV2Types7 = [
   never,
   'PL',
@@ -29502,6 +44863,39 @@ interface PV2Object7<T extends HL7TypeMap> {
   AdvanceDirectiveLastVerifiedDate?: string | null;
 }
 
+type PYEFieldComps2 = {
+  1: 1;
+  2: Upto22;
+  3: Upto22;
+  4: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  5: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  6:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  7: Upto22;
+  [field: number]: number;
+};
+
 type PYETypes2 = [never, 'SI', 'CWE', 'CWE', 'XON', 'XPN', 'XAD', 'CWE'];
 
 interface PYEObject2<T extends HL7TypeMap> {
@@ -29514,13 +44908,33 @@ interface PYEObject2<T extends HL7TypeMap> {
   PaymentMethod?: T['CWE'] | null;
 }
 
+type QAKFieldComps4 = {
+  1: 1;
+  2: 1;
+  3: Upto22;
+  4: 1;
+  5: 1;
+  6: 1;
+  [field: number]: number;
+};
+
+type QIDFieldComps3 = { 1: 1; 2: Upto22; [field: number]: number };
+
+type QPDFieldComps3 = { 1: Upto22; 2: 1; 3: number; [field: number]: number };
+
+type QRDFieldComps8 = { [field: number]: number };
+
 type QRDTypes6 = [never];
 
 interface QRDObject6<T extends HL7TypeMap> {}
 
+type QRFFieldComps7 = { [field: number]: number };
+
 type QRFTypes6 = [never];
 
 interface QRFObject6<T extends HL7TypeMap> {}
+
+type QRIFieldComps3 = { 1: 1; 2: Upto22; 3: Upto22; [field: number]: number };
 
 type QRITypes3 = [never, 'NM', 'CWE', 'CWE'];
 
@@ -29530,7 +44944,168 @@ interface QRIObject3<T extends HL7TypeMap> {
   AlgorithmDescriptor?: T['CWE'] | null;
 }
 
+type RCPFieldComps3 = {
+  1: 1;
+  2: Upto2;
+  3: Upto22;
+  4: 1;
+  5: 1;
+  6: Upto2;
+  7: 1;
+  [field: number]: number;
+};
+
+type RELFieldComps2 = {
+  1: 1;
+  2: Upto22;
+  3: Upto4;
+  4: Upto4;
+  5: Upto4;
+  6: Upto4;
+  7:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  8: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  9:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  10:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  11: Upto2;
+  12: 1;
+  13: Upto22;
+  14: 1;
+  15: 1;
+  16: 1;
+  [field: number]: number;
+};
+
+type RF1FieldComps3 = {
+  1: Upto22;
+  2: Upto22;
+  3: Upto22;
+  4: Upto22;
+  5: Upto22;
+  6: Upto4;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto22;
+  11: Upto4;
+  12: Upto22;
+  [field: number]: number;
+};
+
+type RGSFieldComps3 = { 1: 1; 2: 1; 3: Upto22; [field: number]: number };
+
+type RMIFieldComps3 = { 1: Upto22; 2: 1; 3: Upto22; [field: number]: number };
+
 type ROLFields4 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
+type ROLFieldComps6 = {
+  1: Upto4;
+  2: 1;
+  3: Upto22;
+  4:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  5: 1;
+  6: 1;
+  7: Upto22;
+  8: Upto22;
+  9: Upto22;
+  10: Upto22;
+  11:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  12:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  13: Upto11;
+  14: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  [field: number]: number;
+};
 
 type ROLTypes4 = [
   never,
@@ -29567,6 +45142,31 @@ interface ROLObject5<T extends HL7TypeMap> {
   Organization?: T['XON'] | null;
 }
 
+type RQ1FieldComps3 = {
+  1: 1;
+  2: Upto22;
+  3: 1;
+  4: Upto22;
+  5: 1;
+  6: 1;
+  7: 1;
+  [field: number]: number;
+};
+
+type RQDFieldComps3 = {
+  1: 1;
+  2: Upto22;
+  3: Upto22;
+  4: Upto22;
+  5: 1;
+  6: Upto22;
+  7: Upto12;
+  8: Upto22;
+  9: Upto22;
+  10: 1;
+  [field: number]: number;
+};
+
 type RQDTypes4 = [
   never,
   'SI',
@@ -29593,6 +45193,96 @@ interface RQDObject3<T extends HL7TypeMap> {
   DeliverToID?: T['CWE'] | null;
   DateNeeded?: string | null;
 }
+
+type RXAFieldComps7 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: Upto22;
+  6: 1;
+  7: Upto22;
+  8: Upto22;
+  9: Upto22;
+  10:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  11: Upto16;
+  12: 1;
+  13: 1;
+  14: Upto22;
+  15: 1;
+  16: 1;
+  17: Upto22;
+  18: Upto22;
+  19: Upto22;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: Upto22;
+  25: Upto22;
+  26: 1;
+  27: Upto11;
+  28:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  [field: number]: number;
+};
+
+type RXCFieldComps6 = {
+  1: 1;
+  2: Upto22;
+  3: 1;
+  4: Upto22;
+  5: 1;
+  6: Upto22;
+  7: Upto22;
+  8: 1;
+  9: Upto22;
+  [field: number]: number;
+};
 
 type RXDFields5 =
   | 1
@@ -29629,6 +45319,90 @@ type RXDFields5 =
   | 32
   | 33
   | 34;
+
+type RXDFieldComps7 = {
+  1: 1;
+  2: Upto22;
+  3: 1;
+  4: 1;
+  5: Upto22;
+  6: Upto22;
+  7: 1;
+  8: 1;
+  9: 1;
+  10:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  11: 1;
+  12: Upto2;
+  13: Upto16;
+  14: 1;
+  15: Upto22;
+  16: 1;
+  17: Upto22;
+  18: 1;
+  19: 1;
+  20: Upto22;
+  21: Upto22;
+  22: 1;
+  23: Upto22;
+  24: 1;
+  25: Upto22;
+  26: Upto22;
+  27: Upto22;
+  28: 1;
+  29: Upto22;
+  30: Upto22;
+  31:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  32: 1;
+  33: Upto22;
+  34:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  [field: number]: number;
+};
 
 type RXDTypes7 = [
   never,
@@ -29749,6 +45523,144 @@ type RXEFields5 =
   | 43
   | 44
   | 45;
+
+type RXEFieldComps7 = {
+  2: Upto22;
+  3: 1;
+  4: 1;
+  5: Upto22;
+  6: Upto22;
+  7: Upto22;
+  9: 1;
+  10: 1;
+  11: Upto22;
+  12: 1;
+  13:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  14:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: Upto2;
+  20: 1;
+  21: Upto22;
+  22: 1;
+  23: 1;
+  24: Upto22;
+  25: 1;
+  26: Upto22;
+  27: Upto22;
+  28: 1;
+  29: Upto22;
+  30: 1;
+  31: Upto22;
+  32: 1;
+  33: 1;
+  34: Upto22;
+  35: Upto22;
+  36: 1;
+  37: Upto22;
+  38: Upto22;
+  39: 1;
+  40: Upto22;
+  41:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  42: Upto11;
+  43:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  44: 1;
+  45:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  [field: number]: number;
+};
 
 type RXETypes7 = [
   never,
@@ -29876,6 +45788,83 @@ type RXGFields5 =
   | 29
   | 30;
 
+type RXGFieldComps6 = {
+  1: 1;
+  2: 1;
+  4: Upto22;
+  5: 1;
+  6: 1;
+  7: Upto22;
+  8: Upto22;
+  9: Upto22;
+  10: 1;
+  11: Upto16;
+  12: 1;
+  13: Upto22;
+  14: 1;
+  15: 1;
+  16: Upto22;
+  17: 1;
+  18: Upto22;
+  19: 1;
+  20: 1;
+  21: Upto22;
+  22: Upto22;
+  23: 1;
+  24: Upto22;
+  25: Upto22;
+  26: 1;
+  27: Upto22;
+  28:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  29: Upto11;
+  30:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  [field: number]: number;
+};
+
 type RXGTypes6 = [
   never,
   'NM',
@@ -29981,6 +45970,137 @@ type RXOFields7 =
   | 35
   | 36;
 
+type RXOFieldComps7 = {
+  1: Upto22;
+  2: 1;
+  3: 1;
+  4: Upto22;
+  5: Upto22;
+  6: Upto22;
+  7: Upto22;
+  8: Upto9;
+  9: 1;
+  10: Upto22;
+  11: 1;
+  12: Upto22;
+  13: 1;
+  14:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  15:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: Upto22;
+  20: Upto22;
+  21: 1;
+  22: Upto22;
+  23: Upto2;
+  24: Upto22;
+  25: 1;
+  26: Upto22;
+  27: 1;
+  28: 1;
+  29: Upto4;
+  30: Upto4;
+  31: Upto22;
+  32: Upto22;
+  33:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  34: Upto11;
+  35:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  36:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  [field: number]: number;
+};
+
 type RXOTypes7 = [
   never,
   'CWE',
@@ -30060,6 +46180,16 @@ interface RXOObject7<T extends HL7TypeMap> {
   PharmacyPhoneNumber?: T['XTN'][] | null;
 }
 
+type RXRFieldComps5 = {
+  1: Upto22;
+  2: Upto22;
+  3: Upto22;
+  4: Upto22;
+  5: Upto22;
+  6: Upto22;
+  [field: number]: number;
+};
+
 type SACFields2 =
   | 1
   | 2
@@ -30104,6 +46234,53 @@ type SACFields2 =
   | 42
   | 43
   | 44;
+
+type SACFieldComps4 = {
+  1: Upto4;
+  2: Upto4;
+  3: Upto4;
+  4: Upto4;
+  5: Upto4;
+  7: 1;
+  8: Upto22;
+  9: Upto22;
+  10: Upto4;
+  11: Upto4;
+  12: Upto22;
+  13: Upto4;
+  14: Upto4;
+  15: Upto22;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: Upto22;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: Upto22;
+  25: Upto22;
+  26: Upto22;
+  27: Upto22;
+  28: Upto22;
+  29: Upto4;
+  30: Upto22;
+  31: Upto4;
+  32: 1;
+  33: Upto22;
+  34: 1;
+  35: Upto22;
+  36: 1;
+  37: Upto22;
+  38: 1;
+  39: Upto22;
+  40: Upto22;
+  41: Upto22;
+  42: Upto22;
+  43: Upto22;
+  44: Upto22;
+  [field: number]: number;
+};
 
 type SACTypes4 = [
   never,
@@ -30199,6 +46376,93 @@ interface SACObject4<T extends HL7TypeMap> {
   OtherEnvironmentalFactors?: T['CWE'][] | null;
 }
 
+type SCDFieldComps2 = {
+  1: 1;
+  2: 1;
+  3: Upto2;
+  4: Upto2;
+  5: 1;
+  6: Upto2;
+  7: Upto2;
+  8: Upto2;
+  9: Upto2;
+  10: Upto22;
+  11: 1;
+  12: Upto2;
+  13: Upto2;
+  14: Upto2;
+  15: Upto2;
+  16: 1;
+  17: Upto2;
+  18: Upto2;
+  19: Upto22;
+  20: Upto22;
+  21: Upto22;
+  22: Upto22;
+  23: Upto22;
+  24: Upto22;
+  25:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  26: Upto22;
+  27: Upto22;
+  28: Upto22;
+  29: Upto2;
+  30: Upto2;
+  31: Upto2;
+  32: Upto22;
+  33: Upto12;
+  34:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  35: Upto4;
+  36: Upto2;
+  37: Upto2;
+  [field: number]: number;
+};
+
 type SCHFields3 =
   | 1
   | 2
@@ -30225,6 +46489,151 @@ type SCHFields3 =
   | 25
   | 26
   | 27;
+
+type SCHFieldComps6 = {
+  1: Upto4;
+  2: Upto4;
+  3: 1;
+  4: Upto4;
+  5: Upto22;
+  6: Upto22;
+  7: Upto22;
+  8: Upto22;
+  10: Upto22;
+  12:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  13:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  14:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  15: Upto11;
+  16:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  17:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  18:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  19: Upto11;
+  20:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  21:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  22: Upto11;
+  23: Upto4;
+  24: Upto4;
+  25: Upto22;
+  26: Upto4;
+  27: Upto4;
+  [field: number]: number;
+};
 
 type SCHTypes4 = [
   never,
@@ -30285,6 +46694,29 @@ interface SCHObject5<T extends HL7TypeMap> {
   FillerOrderNumber?: T['EI'][] | null;
 }
 
+type SCPFieldComps2 = {
+  1: 1;
+  2: Upto22;
+  3: Upto22;
+  4: Upto4;
+  5: 1;
+  6: 1;
+  7: Upto22;
+  8: Upto22;
+  [field: number]: number;
+};
+
+type SDDFieldComps2 = {
+  1: Upto4;
+  2: Upto4;
+  3: 1;
+  4: Upto22;
+  5: Upto22;
+  6: 1;
+  7: 1;
+  [field: number]: number;
+};
+
 type SDDTypes2 = [never, 'EI', 'EI', 'ST', 'CWE', 'CWE', 'NM', 'ST'];
 
 interface SDDObject2<T extends HL7TypeMap> {
@@ -30297,7 +46729,32 @@ interface SDDObject2<T extends HL7TypeMap> {
   OperatorName?: string | null;
 }
 
+type SFTFieldComps3 = {
+  1: 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  [field: number]: number;
+};
+
 type SHPFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+
+type SHPFieldComps1 = {
+  1: Upto4;
+  2: Upto4;
+  3: Upto22;
+  4: 1;
+  5: 1;
+  6: Upto22;
+  7: Upto22;
+  8: 1;
+  9: Upto22;
+  10: Upto22;
+  11: Upto22;
+  [field: number]: number;
+};
 
 type SHPTypes1 = [
   never,
@@ -30327,6 +46784,14 @@ interface SHPObject1<T extends HL7TypeMap> {
   ShipmentHandlingCode?: T['CWE'][] | null;
   ShipmentRiskCode?: T['CWE'][] | null;
 }
+
+type SIDFieldComps3 = {
+  1: Upto22;
+  2: 1;
+  3: 1;
+  4: Upto22;
+  [field: number]: number;
+};
 
 type SPMFields2 =
   | 1
@@ -30361,6 +46826,42 @@ type SPMFields2 =
   | 30
   | 31
   | 32;
+
+type SPMFieldComps3 = {
+  1: 1;
+  2: Upto2;
+  3: Upto2;
+  4: Upto22;
+  5: Upto22;
+  6: Upto22;
+  7: Upto22;
+  8: Upto22;
+  9: Upto22;
+  10: Upto22;
+  11: Upto22;
+  12: Upto2;
+  13: 1;
+  14: 1;
+  15: Upto22;
+  16: Upto22;
+  17: Upto2;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: Upto22;
+  22: Upto22;
+  23: Upto22;
+  24: Upto22;
+  25: Upto2;
+  26: 1;
+  27: Upto22;
+  28: Upto22;
+  29: Upto22;
+  30: Upto12;
+  31: Upto12;
+  32: Upto4;
+  [field: number]: number;
+};
 
 type SPMTypes3 = [
   never,
@@ -30476,6 +46977,74 @@ type STFFields6 =
   | 40
   | 41;
 
+type STFFieldComps7 = {
+  1: Upto22;
+  2: Upto12;
+  3: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  4: Upto22;
+  5: Upto22;
+  6: 1;
+  7: 1;
+  8: Upto22;
+  9: Upto22;
+  10:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  11:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  12: Upto2;
+  13: Upto2;
+  14: Upto22;
+  15: 1;
+  16: Upto22;
+  17: Upto22;
+  18: 1;
+  19: Upto3;
+  20: Upto22;
+  21: 1;
+  22: Upto3;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: Upto22;
+  28: Upto22;
+  29: 1;
+  30: Upto22;
+  31: 1;
+  32: 1;
+  33: Upto22;
+  34: Upto2;
+  35: 1;
+  36: Upto22;
+  37: 1;
+  38: Upto22;
+  39: Upto22;
+  40: Upto22;
+  41: Upto5;
+  [field: number]: number;
+};
+
 type STFTypes7 = [
   never,
   'CWE',
@@ -30565,7 +47134,32 @@ interface STFObject7<T extends HL7TypeMap> {
   Signature?: T['ED'] | null;
 }
 
+type STZFieldComps2 = {
+  1: Upto22;
+  2: Upto22;
+  3: Upto22;
+  4: Upto22;
+  [field: number]: number;
+};
+
 type TCCFields2 = 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+
+type TCCFieldComps3 = {
+  1: Upto22;
+  2: Upto4;
+  4: Upto4;
+  5: Upto4;
+  6: Upto4;
+  7: Upto4;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: Upto4;
+  13: Upto22;
+  14: Upto22;
+  [field: number]: number;
+};
 
 type TCCTypes3 = [
   never,
@@ -30601,6 +47195,36 @@ interface TCCObject3<T extends HL7TypeMap> {
   ProcessingType?: T['CWE'] | null;
 }
 
+type TCDFieldComps3 = {
+  1: Upto22;
+  2: Upto4;
+  3: Upto4;
+  4: Upto4;
+  5: Upto4;
+  6: 1;
+  7: 1;
+  8: Upto22;
+  [field: number]: number;
+};
+
+type TQ1FieldComps3 = {
+  1: 1;
+  2: Upto2;
+  3: Upto11;
+  4: 1;
+  5: Upto2;
+  6: Upto2;
+  7: 1;
+  8: 1;
+  9: Upto22;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: Upto2;
+  14: 1;
+  [field: number]: number;
+};
+
 type TXAFields2 =
   | 1
   | 2
@@ -30628,6 +47252,175 @@ type TXAFields2 =
   | 24
   | 25
   | 26;
+
+type TXAFieldComps6 = {
+  1: 1;
+  2: Upto22;
+  3: 1;
+  4: 1;
+  5:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  6: 1;
+  7: 1;
+  8: 1;
+  9:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  10:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  11:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  12: Upto4;
+  13: Upto4;
+  14: Upto4;
+  15: Upto4;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25
+    | 26;
+  23:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  24: Upto22;
+  25: 1;
+  26: 1;
+  [field: number]: number;
+};
 
 type TXATypes3 = [
   never,
@@ -30688,9 +47481,34 @@ interface TXAObject4<T extends HL7TypeMap> {
   AgreedDueDateTime?: string | null;
 }
 
+type UACFieldComps2 = { 1: Upto22; 2: Upto5; [field: number]: number };
+
+type UB1FieldComps6 = { [field: number]: number };
+
 type UB1Types6 = [never];
 
 interface UB1Object6<T extends HL7TypeMap> {}
+
+type UB2FieldComps3 = {
+  1: 1;
+  2: 1;
+  3: Upto22;
+  4: 1;
+  5: 1;
+  6: Upto4;
+  7: Upto2;
+  8: Upto3;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  [field: number]: number;
+};
 
 type UB2Types4 = [
   never,
@@ -30733,13 +47551,59 @@ interface UB2Object4<T extends HL7TypeMap> {
   SpecialVisitCount?: number | string | null;
 }
 
+type URDFieldComps8 = { [field: number]: number };
+
 type URDTypes4 = [never];
 
 interface URDObject5<T extends HL7TypeMap> {}
 
+type URSFieldComps6 = { [field: number]: number };
+
 type URSTypes5 = [never];
 
 interface URSObject5<T extends HL7TypeMap> {}
+
+type VARFieldComps6 = {
+  1: Upto4;
+  2: 1;
+  3: 1;
+  4:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  5: Upto22;
+  6: 1;
+  [field: number]: number;
+};
+
+type VNDFieldComps2 = {
+  1: 1;
+  2: Upto4;
+  3: 1;
+  4: Upto4;
+  5: Upto22;
+  [field: number]: number;
+};
 
 type CFComps5 = [
   never,
@@ -31181,6 +48045,129 @@ type OBRFields8 =
   | 53
   | 54;
 
+type OBRFieldComps10 = {
+  1: 1;
+  2: Upto4;
+  3: Upto4;
+  4: Upto22;
+  7: 1;
+  8: 1;
+  9: Upto2;
+  10:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  11: 1;
+  12: Upto22;
+  13: Upto22;
+  16:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  17:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: Upto2;
+  24: 1;
+  25: 1;
+  26: Upto3;
+  28:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  29: Upto2;
+  30: 1;
+  31: Upto22;
+  32: Upto11;
+  33: Upto11;
+  34: Upto11;
+  35: Upto11;
+  36: 1;
+  37: 1;
+  38: Upto22;
+  39: Upto22;
+  40: Upto22;
+  41: 1;
+  42: 1;
+  43: Upto22;
+  44: Upto22;
+  45: Upto22;
+  46: Upto22;
+  47: Upto22;
+  48: Upto22;
+  49: Upto22;
+  50: Upto22;
+  51: Upto4;
+  52: Upto4;
+  53: Upto12;
+  54: Upto2;
+  [field: number]: number;
+};
+
 type OBRTypes10 = [
   never,
   'SI',
@@ -31376,6 +48363,68 @@ type HL7Types_2_8 = {
 
 type ACCFields6 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
 
+type ACCFieldComps8 = {
+  1: 1;
+  2: Upto22;
+  3: 1;
+  4: Upto22;
+  5: 1;
+  6: 1;
+  7:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  8: 1;
+  9: 1;
+  10: 1;
+  11:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  12: 1;
+  13: Upto4;
+  [field: number]: number;
+};
+
 type ACCTypes7 = [
   never,
   'DTM',
@@ -31408,6 +48457,155 @@ interface ACCObject8<T extends HL7TypeMap> {
   DegreeOfPatientLiability?: number | string | null;
   AccidentIdentifier?: T['EI'][] | null;
 }
+
+type ADJFieldComps3 = {
+  1: Upto4;
+  2: Upto4;
+  3: 1;
+  4: Upto22;
+  5: Upto6;
+  6: Upto2;
+  7: Upto22;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: Upto22;
+  12: Upto4;
+  13: Upto4;
+  14: 1;
+  15: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  [field: number]: number;
+};
+
+type AFFFieldComps5 = {
+  1: 1;
+  2: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  3:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  4: Upto2;
+  5: 1;
+  [field: number]: number;
+};
+
+type ARQFieldComps7 = {
+  1: Upto4;
+  2: Upto4;
+  3: 1;
+  4: Upto2;
+  5: Upto22;
+  6: Upto22;
+  7: Upto22;
+  8: Upto22;
+  9: 1;
+  10: Upto22;
+  11: Upto2;
+  12: 1;
+  13: Upto2;
+  14: 1;
+  15:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  16:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  17:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  18: Upto11;
+  19:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  20:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  21: Upto11;
+  22: Upto4;
+  23: Upto4;
+  24: Upto4;
+  25: Upto4;
+  [field: number]: number;
+};
 
 type ARQTypes4 = [
   never,
@@ -31497,6 +48695,63 @@ type AUTFields3 =
   | 28
   | 29;
 
+type AUTFieldComps4 = {
+  1: Upto22;
+  2: Upto22;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: Upto4;
+  7: Upto6;
+  8: Upto2;
+  9: Upto2;
+  10: 1;
+  11: Upto22;
+  12: Upto22;
+  13: Upto22;
+  14: Upto22;
+  15: 1;
+  16: Upto22;
+  17: 1;
+  18: Upto2;
+  19: Upto2;
+  20: Upto2;
+  21: Upto22;
+  22: Upto2;
+  23: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  24:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  25: 1;
+  26: 1;
+  27:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  28: 1;
+  29: 1;
+  [field: number]: number;
+};
+
 type AUTTypes4 = [
   never,
   'CWE',
@@ -31562,6 +48817,99 @@ interface AUTObject4<T extends HL7TypeMap> {
   ActionCode?: string | null;
 }
 
+type BPXFieldComps4 = {
+  1: 1;
+  2: Upto22;
+  3: 1;
+  4: 1;
+  5: Upto4;
+  6: Upto22;
+  7: Upto22;
+  8: Upto22;
+  9: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  10: Upto4;
+  11: Upto22;
+  12: Upto22;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: Upto22;
+  17: Upto4;
+  18: Upto11;
+  19:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  20:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  21:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  [field: number]: number;
+};
+
 type BTXFields2 =
   | 1
   | 2
@@ -31583,6 +48931,76 @@ type BTXFields2 =
   | 18
   | 19
   | 20;
+
+type BTXFieldComps4 = {
+  1: 1;
+  2: Upto4;
+  3: Upto22;
+  4: Upto22;
+  5: Upto22;
+  6: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  7: Upto4;
+  8: 1;
+  9: 1;
+  10: Upto22;
+  11: Upto22;
+  12: 1;
+  13: 1;
+  14:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  15:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  16: 1;
+  17: 1;
+  18: Upto22;
+  19: Upto22;
+  20: Upto4;
+  [field: number]: number;
+};
 
 type BTXTypes3 = [
   never,
@@ -31633,6 +49051,22 @@ interface BTXObject3<T extends HL7TypeMap> {
 
 type BUIFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
+type BUIFieldComps1 = {
+  1: 1;
+  2: Upto4;
+  3: Upto22;
+  4: 1;
+  5: Upto22;
+  6: 1;
+  7: Upto22;
+  8: 1;
+  9: 1;
+  10: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  11: Upto2;
+  12: Upto22;
+  [field: number]: number;
+};
+
 type BUITypes1 = [
   never,
   'SI',
@@ -31664,7 +49098,32 @@ interface BUIObject1<T extends HL7TypeMap> {
   TransportTemperatureUnits?: T['CNE'] | null;
 }
 
+type CDMFieldComps6 = {
+  1: Upto22;
+  2: Upto22;
+  3: 1;
+  4: 1;
+  5: Upto22;
+  6: Upto22;
+  7: Upto22;
+  8: 1;
+  9: Upto22;
+  10: 1;
+  11: Upto12;
+  12: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  13: 1;
+  [field: number]: number;
+};
+
 type CDOFields1 = 1 | 2 | 3 | 4;
+
+type CDOFieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto2;
+  4: Upto2;
+  [field: number]: number;
+};
 
 type CDOTypes1 = [never, 'SI', 'ID', 'CQ', 'CQ'];
 
@@ -31674,6 +49133,64 @@ interface CDOObject1<T extends HL7TypeMap> {
   CumulativeDosageLimit?: T['CQ'] | null;
   CumulativeDosageLimitTimeInterval?: T['CQ'] | null;
 }
+
+type CERFieldComps4 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  5:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  6: Upto5;
+  7: 1;
+  8: Upto22;
+  9: Upto22;
+  10: Upto22;
+  11: Upto22;
+  12: Upto4;
+  13: 1;
+  14: Upto22;
+  15: Upto22;
+  16: Upto22;
+  17: 1;
+  18: Upto22;
+  19: 1;
+  20: Upto22;
+  21: Upto22;
+  22: Upto22;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: 1;
+  29: 1;
+  30: Upto22;
+  31: Upto22;
+  [field: number]: number;
+};
 
 type DONFields1 =
   | 1
@@ -31709,6 +49226,89 @@ type DONFields1 =
   | 31
   | 32
   | 33;
+
+type DONFieldComps1 = {
+  1: Upto4;
+  2: Upto22;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: Upto22;
+  7: Upto22;
+  8: Upto22;
+  9: 1;
+  10: Upto22;
+  11: 1;
+  12: Upto22;
+  13: Upto22;
+  14: Upto22;
+  15: 1;
+  16: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  17: 1;
+  18: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  19: 1;
+  20: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  21: Upto22;
+  22: Upto22;
+  23: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  24: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  29: 1;
+  30: 1;
+  31: Upto4;
+  32:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  33:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  [field: number]: number;
+};
 
 type DONTypes1 = [
   never,
@@ -31783,6 +49383,41 @@ interface DONObject1<T extends HL7TypeMap> {
   DonationMaterialReviewStaff?: T['XCN'][] | null;
 }
 
+type EDUFieldComps5 = {
+  1: 1;
+  2: Upto22;
+  3: Upto2;
+  4: Upto2;
+  5: 1;
+  6: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  7: Upto22;
+  8:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  9: Upto22;
+  [field: number]: number;
+};
+
 interface EQUObject3<T extends HL7TypeMap> {
   EquipmentInstanceIdentifier?: T['EI'][] | null;
   EventDateTime?: string | null;
@@ -31790,6 +49425,353 @@ interface EQUObject3<T extends HL7TypeMap> {
   LocalRemoteControlState?: T['CWE'] | null;
   AlertLevel?: T['CWE'] | null;
 }
+
+type FT1FieldComps9 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: Upto2;
+  5: 1;
+  6: Upto22;
+  7: Upto22;
+  10: 1;
+  11: Upto6;
+  12: Upto6;
+  13: Upto22;
+  14: Upto22;
+  15: Upto6;
+  16: Upto11;
+  17: Upto22;
+  18: Upto22;
+  19: Upto22;
+  20:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  21:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  22: Upto6;
+  23: Upto4;
+  24:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  25: Upto22;
+  26: Upto22;
+  27: Upto22;
+  28: Upto22;
+  29: Upto22;
+  30: Upto12;
+  31: 1;
+  32: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  33: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  34: Upto22;
+  35: 1;
+  36: Upto22;
+  37: Upto22;
+  38: Upto12;
+  39: Upto12;
+  40: Upto22;
+  41: Upto22;
+  42: 1;
+  43: Upto2;
+  [field: number]: number;
+};
+
+type GT1FieldComps9 = {
+  1: 1;
+  2: Upto12;
+  3: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  4: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  5:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  6: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  7: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  8: 1;
+  9: Upto22;
+  10: Upto22;
+  11: Upto22;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  17:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  18:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  19: Upto12;
+  20: Upto22;
+  21: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  22: 1;
+  23: Upto22;
+  24: 1;
+  25: 1;
+  26: Upto22;
+  27: Upto6;
+  28: 1;
+  29: Upto12;
+  30: Upto22;
+  31: 1;
+  32: 1;
+  33: Upto22;
+  34: Upto22;
+  35: Upto22;
+  36: Upto22;
+  37: Upto22;
+  38: Upto22;
+  39: 1;
+  40: Upto22;
+  41: Upto22;
+  42: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  43: Upto22;
+  44: Upto22;
+  45: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  46:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  47: Upto22;
+  48: Upto22;
+  49: 1;
+  50: Upto3;
+  51: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  52: Upto22;
+  53: Upto22;
+  54: Upto2;
+  55: Upto22;
+  56: 1;
+  57: Upto22;
+  [field: number]: number;
+};
+
+type IAMFieldComps5 = {
+  1: 1;
+  2: Upto22;
+  3: Upto22;
+  4: Upto22;
+  5: 1;
+  6: Upto22;
+  7: Upto4;
+  8: 1;
+  9: Upto22;
+  10: Upto22;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  15: Upto22;
+  16: Upto22;
+  17: Upto22;
+  18:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  19: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  20: 1;
+  21:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  22: 1;
+  23:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  24: 1;
+  25:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  26: 1;
+  27: Upto22;
+  28: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  29: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  30: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  [field: number]: number;
+};
 
 type IN1Fields7 =
   | 1
@@ -31844,6 +49826,151 @@ type IN1Fields7 =
   | 53
   | 54
   | 55;
+
+type IN1FieldComps9 = {
+  1: 1;
+  2: Upto22;
+  3: Upto12;
+  4: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  5:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  6: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  7: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  8: 1;
+  9: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  10: Upto12;
+  11: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  12: 1;
+  13: 1;
+  14: Upto3;
+  15: Upto22;
+  16: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  17: Upto22;
+  18: 1;
+  19:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  20: Upto22;
+  21: Upto22;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: Upto22;
+  28: 1;
+  29: 1;
+  30:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  31: Upto22;
+  32: Upto22;
+  33: 1;
+  34: 1;
+  35: Upto22;
+  36: 1;
+  37: Upto6;
+  39: 1;
+  42: Upto22;
+  43: Upto22;
+  44:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  45: 1;
+  46: Upto22;
+  47: Upto22;
+  48: Upto22;
+  49: Upto12;
+  50: Upto22;
+  51: 1;
+  52: 1;
+  53: Upto22;
+  54: Upto12;
+  55: 1;
+  [field: number]: number;
+};
 
 type IN1Types8 = [
   never,
@@ -31959,6 +50086,110 @@ interface IN1Object8<T extends HL7TypeMap> {
   InsuranceActionCode?: string | null;
 }
 
+type IN2FieldComps8 = {
+  1: Upto12;
+  2: 1;
+  3:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  4: Upto22;
+  5: Upto22;
+  6: 1;
+  7: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  8: 1;
+  9: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  10: 1;
+  11: Upto22;
+  12: 1;
+  13: 1;
+  14: Upto22;
+  15: Upto22;
+  16: Upto22;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  23: 1;
+  24: Upto22;
+  25: Upto12;
+  26: Upto12;
+  27: Upto22;
+  28: 1 | 2 | 4;
+  29: 1 | 2 | 4;
+  30: Upto3;
+  31: Upto22;
+  32: Upto22;
+  33: Upto22;
+  34: Upto22;
+  35: Upto22;
+  36: Upto22;
+  37: 1;
+  38: Upto22;
+  39: Upto22;
+  40: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  41: Upto22;
+  42: Upto22;
+  43: Upto22;
+  44: 1;
+  45: 1;
+  46: 1;
+  47: Upto3;
+  48: Upto22;
+  49: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  50:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  51: Upto22;
+  52: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  53:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  54: Upto22;
+  55: 1;
+  56: 1;
+  57: Upto22;
+  58:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  59: Upto22;
+  60: Upto22;
+  61: Upto12;
+  62: Upto22;
+  63:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  64:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  65: Upto22;
+  66: 1;
+  67: 1;
+  68: 1;
+  69: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  70: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  71: Upto22;
+  72: Upto22;
+  [field: number]: number;
+};
+
 type IN3Fields2 =
   | 1
   | 2
@@ -31987,6 +50218,131 @@ type IN3Fields2 =
   | 25
   | 26
   | 27;
+
+type IN3FieldComps8 = {
+  1: 1;
+  2: Upto12;
+  3:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  4: 1;
+  5: Upto3;
+  6: 1;
+  7: 1;
+  8:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  9: 1;
+  10: 1;
+  11: Upto2;
+  12: Upto22;
+  13: 1;
+  14:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  15: 1;
+  16:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  17: Upto22;
+  18: Upto22;
+  19:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  20: Upto3;
+  21: 1;
+  22: 1;
+  23: Upto22;
+  24: Upto22;
+  25:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  26: Upto22;
+  27: Upto22;
+  [field: number]: number;
+};
 
 type IN3Types7 = [
   never,
@@ -32084,6 +50440,43 @@ type ITMFields2 =
   | 32
   | 33;
 
+type ITMFieldComps3 = {
+  1: Upto4;
+  2: 1;
+  3: Upto22;
+  4: Upto22;
+  5: Upto22;
+  6: Upto22;
+  7: Upto4;
+  8: 1;
+  9: 1;
+  10: Upto22;
+  11: Upto22;
+  12: Upto22;
+  13: Upto6;
+  14: Upto22;
+  15: Upto22;
+  16: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  17: Upto22;
+  18: Upto22;
+  19: Upto22;
+  20: 1;
+  21: Upto2;
+  22: Upto22;
+  23: Upto22;
+  24: Upto22;
+  25: Upto4;
+  26: Upto22;
+  27: Upto22;
+  28: Upto22;
+  29: Upto22;
+  30: Upto22;
+  31: Upto22;
+  32: Upto4;
+  33: Upto22;
+  [field: number]: number;
+};
+
 type ITMTypes3 = [
   never,
   'EI',
@@ -32157,6 +50550,131 @@ interface ITMObject3<T extends HL7TypeMap> {
   UnitedNationsStandardProductsAndServicesCodeUNSPSC?: T['CWE'] | null;
 }
 
+type IVCFieldComps3 = {
+  1: Upto4;
+  2: Upto4;
+  3: Upto4;
+  4: Upto22;
+  5: Upto22;
+  6: Upto22;
+  7: 1;
+  8: Upto6;
+  9: 1;
+  10: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  11: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  12:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: Upto6;
+  17: Upto6;
+  18: Upto6;
+  19:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  20: Upto12;
+  21: Upto6;
+  22: Upto6;
+  23: Upto6;
+  24: 1;
+  25: Upto22;
+  26: 1;
+  27: 1;
+  28: Upto22;
+  29: Upto22;
+  30: 1;
+  [field: number]: number;
+};
+
+type LOCFieldComps7 = {
+  1: Upto11;
+  2: 1;
+  3: Upto22;
+  4: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  5:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  6: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  7: Upto22;
+  8: Upto22;
+  9: Upto22;
+  [field: number]: number;
+};
+
+type LRLFieldComps6 = {
+  1: Upto11;
+  2: 1;
+  3: Upto4;
+  4: Upto22;
+  5: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  6: Upto11;
+  [field: number]: number;
+};
+
 interface MRGObject6<T extends HL7TypeMap> {
   PriorPatientIdentifierList?: T['CX'][] | null;
   PriorPatientAccountNumber?: T['CX'] | null;
@@ -32164,6 +50682,127 @@ interface MRGObject6<T extends HL7TypeMap> {
   PriorAlternateVisitID?: T['CX'][] | null;
   PriorPatientName?: T['XPN'][] | null;
 }
+
+type MSHFieldComps9 = {
+  1: 1;
+  2: 1;
+  3: Upto3;
+  4: Upto3;
+  5: Upto3;
+  6: Upto3;
+  7: 1;
+  8: 1;
+  9: Upto3;
+  10: 1;
+  11: Upto2;
+  12: Upto3;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: Upto22;
+  20: 1;
+  21: Upto4;
+  22: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  23: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  24: Upto3;
+  25: Upto3;
+  [field: number]: number;
+};
+
+type NK1FieldComps9 = {
+  1: 1;
+  2: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  3: Upto22;
+  4:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  5: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  6: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  7: Upto22;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: Upto3;
+  12: Upto12;
+  13: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  14: Upto22;
+  15: Upto22;
+  16: 1;
+  17: Upto22;
+  18: Upto22;
+  19: Upto22;
+  20: Upto22;
+  21: Upto22;
+  22: Upto22;
+  23: 1;
+  24: Upto22;
+  25: Upto22;
+  26: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  27: Upto22;
+  28: Upto22;
+  29: Upto22;
+  30: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  31:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  32:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  33: Upto12;
+  34: Upto22;
+  35: Upto22;
+  36: Upto22;
+  37: 1;
+  38: 1;
+  39: Upto22;
+  40:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  41:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  [field: number]: number;
+};
 
 type OBXFields8 =
   | 1
@@ -32194,6 +50833,106 @@ type OBXFields8 =
   | 26
   | 27
   | 28;
+
+type OBXFieldComps10 = {
+  1: 1;
+  2: 1;
+  3: Upto22;
+  4: 1;
+  5: number;
+  6: Upto22;
+  7: 1;
+  8: Upto22;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: Upto22;
+  16:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  17: Upto22;
+  18: Upto4;
+  19: 1;
+  20: Upto22;
+  21: Upto4;
+  22: Upto22;
+  23: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  24:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  25:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  26: 1;
+  27: Upto22;
+  28: Upto22;
+  [field: number]: number;
+};
 
 type OBXTypes8 = [
   never,
@@ -32310,6 +51049,85 @@ type OM1Fields3 =
   | 49
   | 50
   | 51;
+
+type OM1FieldComps8 = {
+  1: 1;
+  2: Upto22;
+  3: 1;
+  4: 1;
+  5: Upto22;
+  6: 1;
+  7: Upto22;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: Upto22;
+  14: Upto22;
+  15: 1;
+  16: Upto22;
+  17:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  18: Upto22;
+  19: Upto22;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: Upto22;
+  28:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  29:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  30: Upto22;
+  31: Upto22;
+  32: 1;
+  33: Upto22;
+  34: Upto22;
+  35: 1;
+  36: Upto22;
+  37: 1;
+  38: Upto22;
+  39: 1;
+  40: 1;
+  41: 1;
+  42: Upto22;
+  43: Upto22;
+  44: 1;
+  45: Upto22;
+  46: Upto22;
+  47: Upto22;
+  48: 1;
+  49: 1;
+  50: Upto22;
+  51: 1;
+  [field: number]: number;
+};
 
 type OM1Types7 = [
   never,
@@ -32440,6 +51258,28 @@ type OM4Fields3 =
   | 17
   | 18;
 
+type OM4FieldComps6 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: Upto22;
+  6: Upto22;
+  7: Upto22;
+  8: 1;
+  9: 1;
+  10: Upto2;
+  11: Upto2;
+  12: 1;
+  13: 1;
+  14: Upto2;
+  15: Upto22;
+  16: 1;
+  17: 1;
+  18: Upto22;
+  [field: number]: number;
+};
+
 type OM4Types5 = [
   never,
   'NM',
@@ -32518,6 +51358,181 @@ type ORCFields8 =
   | 33
   | 34;
 
+type ORCFieldComps10 = {
+  1: 1;
+  2: Upto4;
+  3: Upto4;
+  4: Upto2;
+  5: 1;
+  6: 1;
+  8: Upto2;
+  9: 1;
+  10:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  11:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  12:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  13: Upto11;
+  14:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  15: 1;
+  16: Upto22;
+  17: Upto22;
+  18: Upto22;
+  19:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  20: Upto22;
+  21: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  22:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  23:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  24:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  25: Upto22;
+  26: Upto22;
+  27: 1;
+  28: Upto22;
+  29: Upto22;
+  30: Upto22;
+  31: Upto22;
+  32: 1;
+  33: Upto12;
+  34: Upto22;
+  [field: number]: number;
+};
+
 type ORCTypes10 = [
   never,
   'ID',
@@ -32592,7 +51607,125 @@ interface ORCObject10<T extends HL7TypeMap> {
   OrderWorkflowProfile?: T['CWE'][] | null;
 }
 
+type PD1FieldComps7 = {
+  1: Upto22;
+  2: Upto22;
+  3: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  5: Upto22;
+  6: Upto22;
+  7: Upto22;
+  8: Upto22;
+  9: 1;
+  10: Upto12;
+  11: Upto22;
+  12: 1;
+  13: 1;
+  14: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  15: Upto22;
+  16: Upto22;
+  17: 1;
+  18: 1;
+  19: Upto22;
+  20: Upto22;
+  21: Upto22;
+  22: 1;
+  [field: number]: number;
+};
+
+type PDCFieldComps6 = {
+  1: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  2: Upto22;
+  3: 1;
+  4: 1;
+  5: Upto22;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto22;
+  10: 1;
+  11: 1;
+  12: Upto2;
+  13: Upto2;
+  14: 1;
+  15: 1;
+  [field: number]: number;
+};
+
+type PESFieldComps7 = {
+  1: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  2:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  3:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  4: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  5: Upto4;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  [field: number]: number;
+};
+
 type PKGFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
+type PKGFieldComps3 = {
+  1: 1;
+  2: Upto22;
+  3: Upto22;
+  4: 1;
+  5: Upto6;
+  6: Upto6;
+  7: 1;
+  8: Upto22;
+  [field: number]: number;
+};
 
 type PKGTypes2 = [never, 'SI', 'CWE', 'CNE', 'NM', 'CP', 'CP', 'DTM', 'CWE'];
 
@@ -32606,6 +51739,150 @@ interface PKGObject2<T extends HL7TypeMap> {
   FutureItemPriceEffectiveDate?: string | null;
   GlobalTradeItemNumber?: T['CWE'] | null;
 }
+
+type PMTFieldComps3 = {
+  1: Upto4;
+  2: 1;
+  3: 1;
+  4: Upto22;
+  5: 1;
+  6: Upto6;
+  7: Upto4;
+  8: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  9: 1;
+  10: Upto12;
+  11: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  12: 1;
+  [field: number]: number;
+};
+
+type PRDFieldComps7 = {
+  1: Upto22;
+  2: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  3:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  4: Upto11;
+  5: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  6: Upto22;
+  7: Upto4;
+  8: 1;
+  9: 1;
+  10: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  11:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  12: Upto11;
+  13:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  14: Upto22;
+  [field: number]: number;
+};
+
+type PRTFieldComps2 = {
+  1: Upto4;
+  2: 1;
+  3: Upto22;
+  4: Upto22;
+  5:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  6: Upto22;
+  7: Upto22;
+  8: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  9: Upto11;
+  10: Upto4;
+  11: 1;
+  12: 1;
+  13: Upto22;
+  14:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  15:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  [field: number]: number;
+};
 
 interface PV1Object8<T extends HL7TypeMap> {
   SetID?: number | string | null;
@@ -32662,6 +51939,182 @@ interface PV1Object8<T extends HL7TypeMap> {
   ServiceEpisodeIdentifier?: T['CX'] | null;
 }
 
+type PV2FieldComps8 = {
+  1: Upto11;
+  2: Upto22;
+  3: Upto22;
+  4: Upto22;
+  5: 1;
+  6: 1;
+  7: Upto22;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  14: 1;
+  15: 1;
+  16: Upto22;
+  17: 1;
+  18: Upto22;
+  19: 1;
+  20: 1;
+  21: Upto22;
+  22: 1;
+  23: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  24: Upto22;
+  25: Upto22;
+  26: 1;
+  27: Upto22;
+  28: 1;
+  29: 1;
+  30: Upto22;
+  31: Upto22;
+  32: 1;
+  33: 1;
+  34: 1;
+  35: 1;
+  36: 1;
+  37: 1;
+  38: Upto22;
+  39: Upto22;
+  40: Upto22;
+  41: Upto22;
+  42: Upto22;
+  43: Upto22;
+  44: Upto22;
+  45: Upto22;
+  46: 1;
+  47: 1;
+  48: 1;
+  49: Upto22;
+  50: 1;
+  [field: number]: number;
+};
+
+type PYEFieldComps3 = {
+  1: 1;
+  2: Upto22;
+  3: Upto22;
+  4: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  5: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  6:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  7: Upto22;
+  [field: number]: number;
+};
+
+type RELFieldComps3 = {
+  1: 1;
+  2: Upto22;
+  3: Upto4;
+  4: Upto4;
+  5: Upto4;
+  6: Upto4;
+  7:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  8: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  9:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  10:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  11: Upto2;
+  12: 1;
+  13: Upto22;
+  14: 1;
+  15: 1;
+  16: 1;
+  [field: number]: number;
+};
+
 type RF1Fields3 =
   | 1
   | 2
@@ -32688,6 +52141,59 @@ type RF1Fields3 =
   | 23
   | 24
   | 25;
+
+type RF1FieldComps4 = {
+  1: Upto22;
+  2: Upto22;
+  3: Upto22;
+  4: Upto22;
+  5: Upto22;
+  6: Upto4;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto22;
+  11: Upto4;
+  12: Upto22;
+  13: 1;
+  14: 1;
+  15: Upto2;
+  16: Upto2;
+  17: Upto2;
+  18: Upto2;
+  19: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  20:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  21: 1;
+  22: 1;
+  23:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  24: 1;
+  25: 1;
+  [field: number]: number;
+};
 
 type RF1Types3 = [
   never,
@@ -32746,6 +52252,70 @@ interface RF1Object3<T extends HL7TypeMap> {
   ActionCode?: string | null;
 }
 
+type ROLFieldComps7 = {
+  1: Upto4;
+  2: 1;
+  3: Upto22;
+  4:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  5: 1;
+  6: 1;
+  7: Upto22;
+  8: Upto22;
+  9: Upto22;
+  10: Upto22;
+  11:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  12:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  13: Upto11;
+  14: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  [field: number]: number;
+};
+
 type RXAFields5 =
   | 1
   | 2
@@ -32775,6 +52345,83 @@ type RXAFields5 =
   | 27
   | 28
   | 29;
+
+type RXAFieldComps8 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: Upto22;
+  6: 1;
+  7: Upto22;
+  8: Upto22;
+  9: Upto22;
+  10:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  12: 1;
+  13: 1;
+  14: Upto22;
+  15: 1;
+  16: 1;
+  17: Upto22;
+  18: Upto22;
+  19: Upto22;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: Upto22;
+  25: Upto22;
+  26: 1;
+  27: Upto11;
+  28:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  29: Upto4;
+  [field: number]: number;
+};
 
 type RXATypes6 = [
   never,
@@ -32842,6 +52489,21 @@ interface RXAObject6<T extends HL7TypeMap> {
 
 type RXCFields5 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
 
+type RXCFieldComps7 = {
+  1: 1;
+  2: Upto22;
+  3: 1;
+  4: Upto22;
+  5: 1;
+  6: Upto22;
+  7: Upto22;
+  8: 1;
+  9: Upto22;
+  10: 1;
+  11: Upto22;
+  [field: number]: number;
+};
+
 type RXCTypes6 = [
   never,
   'ID',
@@ -32906,6 +52568,90 @@ type RXDFields6 =
   | 33
   | 34
   | 35;
+
+type RXDFieldComps8 = {
+  1: 1;
+  2: Upto22;
+  3: 1;
+  4: 1;
+  5: Upto22;
+  6: Upto22;
+  7: 1;
+  8: 1;
+  9: 1;
+  10:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  11: 1;
+  12: Upto2;
+  14: 1;
+  15: Upto22;
+  16: 1;
+  17: Upto22;
+  18: 1;
+  19: 1;
+  20: Upto22;
+  21: Upto22;
+  22: 1;
+  23: Upto22;
+  24: 1;
+  25: Upto22;
+  26: Upto22;
+  27: Upto22;
+  28: 1;
+  29: Upto22;
+  30: Upto22;
+  31:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  32: 1;
+  33: Upto22;
+  34:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  35: Upto4;
+  [field: number]: number;
+};
 
 type RXDTypes8 = [
   never,
@@ -33016,6 +52762,85 @@ type RXGFields6 =
   | 32
   | 33;
 
+type RXGFieldComps7 = {
+  1: 1;
+  2: 1;
+  4: Upto22;
+  5: 1;
+  6: 1;
+  7: Upto22;
+  8: Upto22;
+  9: Upto22;
+  10: 1;
+  12: 1;
+  13: Upto22;
+  14: 1;
+  15: 1;
+  16: Upto22;
+  17: 1;
+  18: Upto22;
+  19: 1;
+  20: 1;
+  21: Upto22;
+  22: Upto22;
+  23: 1;
+  24: Upto22;
+  25: Upto22;
+  26: 1;
+  27: Upto22;
+  28:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  29: Upto11;
+  30:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  31: Upto4;
+  32: 1;
+  33: Upto22;
+  [field: number]: number;
+};
+
 type RXGTypes7 = [
   never,
   'NM',
@@ -33125,6 +52950,136 @@ type RXOFields8 =
   | 35
   | 36;
 
+type RXOFieldComps8 = {
+  1: Upto22;
+  2: 1;
+  3: 1;
+  4: Upto22;
+  5: Upto22;
+  6: Upto22;
+  7: Upto22;
+  9: 1;
+  10: Upto22;
+  11: 1;
+  12: Upto22;
+  13: 1;
+  14:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  15:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: Upto22;
+  20: Upto22;
+  21: 1;
+  22: Upto22;
+  23: Upto2;
+  24: Upto22;
+  25: 1;
+  26: Upto22;
+  27: 1;
+  28: 1;
+  29: Upto4;
+  30: Upto4;
+  31: Upto22;
+  32: Upto22;
+  33:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  34: Upto11;
+  35:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  36:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  [field: number]: number;
+};
+
 type RXOTypes8 = [
   never,
   'CWE',
@@ -33227,6 +53182,32 @@ type RXVFields1 =
   | 21
   | 22;
 
+type RXVFieldComps1 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: Upto22;
+  5: 1;
+  6: Upto22;
+  7: 1;
+  8: 1;
+  9: Upto22;
+  10: 1;
+  11: Upto22;
+  12: 1;
+  13: Upto22;
+  14: 1;
+  15: Upto22;
+  16: Upto2;
+  17: Upto2;
+  18: Upto22;
+  19: Upto22;
+  20: 1;
+  21: Upto22;
+  22: 1;
+  [field: number]: number;
+};
+
 type RXVTypes1 = [
   never,
   'SI',
@@ -33277,6 +53258,151 @@ interface RXVObject1<T extends HL7TypeMap> {
   SyringeSizeUnits?: T['CWE'] | null;
   ActionCode?: string | null;
 }
+
+type SCHFieldComps7 = {
+  1: Upto4;
+  2: Upto4;
+  3: 1;
+  4: Upto2;
+  5: Upto22;
+  6: Upto22;
+  7: Upto22;
+  8: Upto22;
+  10: Upto22;
+  12:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  13:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  14:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  15: Upto11;
+  16:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  17:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  18:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  19: Upto11;
+  20:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  21:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  22: Upto11;
+  23: Upto4;
+  24: Upto4;
+  25: Upto22;
+  26: Upto4;
+  27: Upto4;
+  [field: number]: number;
+};
 
 type SCHTypes5 = [
   never,
@@ -33337,7 +53463,19 @@ interface SCHObject6<T extends HL7TypeMap> {
   FillerOrderNumber?: T['EI'][] | null;
 }
 
+type SFTFieldComps4 = {
+  1: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: 1;
+  [field: number]: number;
+};
+
 type SGHFields1 = 1 | 2;
+
+type SGHFieldComps1 = { 1: 1; 2: 1; [field: number]: number };
 
 type SGHTypes1 = [never, 'SI', 'ST'];
 
@@ -33348,6 +53486,8 @@ interface SGHObject1<T extends HL7TypeMap> {
 
 type SGTFields1 = 1 | 2;
 
+type SGTFieldComps1 = { 1: 1; 2: 1; [field: number]: number };
+
 type SGTTypes1 = [never, 'SI', 'ST'];
 
 interface SGTObject1<T extends HL7TypeMap> {
@@ -33356,6 +53496,24 @@ interface SGTObject1<T extends HL7TypeMap> {
 }
 
 type TCCFields3 = 1 | 2 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
+
+type TCCFieldComps4 = {
+  1: Upto22;
+  2: Upto4;
+  4: Upto4;
+  5: Upto4;
+  6: Upto4;
+  7: Upto4;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: Upto4;
+  13: Upto22;
+  14: Upto22;
+  15: Upto22;
+  [field: number]: number;
+};
 
 type TCCTypes4 = [
   never,
@@ -33511,6 +53669,107 @@ type OBXFields9 =
   | 28
   | 29;
 
+type OBXFieldComps11 = {
+  1: 1;
+  2: 1;
+  3: Upto22;
+  4: 1;
+  5: number;
+  6: Upto22;
+  7: 1;
+  8: Upto22;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: Upto22;
+  16:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  17: Upto22;
+  18: Upto4;
+  19: 1;
+  20: Upto22;
+  21: Upto4;
+  22: Upto22;
+  23: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  24:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  25:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  26: 1;
+  27: Upto22;
+  28: Upto22;
+  29: 1;
+  [field: number]: number;
+};
+
 type OBXTypes9 = [
   never,
   'SI',
@@ -33632,6 +53891,89 @@ type OM1Fields4 =
   | 53
   | 54
   | 55;
+
+type OM1FieldComps9 = {
+  1: 1;
+  2: Upto22;
+  3: 1;
+  4: 1;
+  5: Upto22;
+  6: 1;
+  7: Upto22;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: Upto22;
+  14: Upto22;
+  15: 1;
+  16: Upto22;
+  17:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  18: Upto22;
+  19: Upto22;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: Upto22;
+  28:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  29:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  30: Upto22;
+  31: Upto22;
+  32: 1;
+  33: Upto22;
+  34: Upto22;
+  35: 1;
+  36: Upto22;
+  37: 1;
+  38: Upto22;
+  39: 1;
+  40: 1;
+  41: 1;
+  42: Upto22;
+  43: Upto22;
+  44: 1;
+  45: Upto22;
+  46: Upto22;
+  47: Upto22;
+  48: 1;
+  49: 1;
+  50: Upto22;
+  51: 1;
+  52: Upto22;
+  53: 1;
+  54: 1;
+  55: Upto22;
+  [field: number]: number;
+};
 
 type OM1Types8 = [
   never,
@@ -33775,6 +54117,58 @@ type RF1Fields4 =
   | 23
   | 24
   | 25;
+
+type RF1FieldComps5 = {
+  1: Upto22;
+  2: Upto22;
+  3: Upto22;
+  4: Upto22;
+  5: Upto22;
+  6: Upto4;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: Upto22;
+  11: Upto4;
+  12: Upto22;
+  13: 1;
+  14: 1;
+  15: Upto2;
+  16: Upto2;
+  17: Upto2;
+  19: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  20:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  21: 1;
+  22: 1;
+  23:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  24: 1;
+  25: 1;
+  [field: number]: number;
+};
 
 type RF1Types4 = [
   never,
@@ -33928,6 +54322,15 @@ type HL7Types_2_8_2 = {
 
 type DPSFields1 = 1 | 2 | 3 | 4 | 5;
 
+type DPSFieldComps1 = {
+  1: Upto22;
+  2: Upto22;
+  3: 1;
+  4: 1;
+  5: Upto22;
+  [field: number]: number;
+};
+
 type DPSTypes1 = [never, 'CWE', 'CWE', 'DTM', 'DTM', 'CNE'];
 
 interface DPSObject1<T extends HL7TypeMap> {
@@ -33939,6 +54342,15 @@ interface DPSObject1<T extends HL7TypeMap> {
 }
 
 type MCPFields1 = 1 | 2 | 3 | 4 | 5;
+
+type MCPFieldComps1 = {
+  1: 1;
+  2: Upto22;
+  3: Upto2;
+  4: Upto2;
+  5: 1;
+  [field: number]: number;
+};
 
 type MCPTypes1 = [never, 'SI', 'CWE', 'MO', 'MO', 'ST'];
 
@@ -33981,6 +54393,108 @@ type OBXFields10 =
   | 28
   | 29
   | 30;
+
+type OBXFieldComps12 = {
+  1: 1;
+  2: 1;
+  3: Upto22;
+  4: Upto4;
+  5: number;
+  6: Upto22;
+  7: 1;
+  8: Upto22;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: Upto22;
+  16:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  17: Upto22;
+  18: Upto4;
+  19: 1;
+  20: Upto22;
+  21: Upto4;
+  22: Upto22;
+  23: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  24:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  25:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  26: 1;
+  27: Upto22;
+  28: Upto22;
+  29: 1;
+  30: 1;
+  [field: number]: number;
+};
 
 type OBXTypes10 = [
   never,
@@ -34110,6 +54624,93 @@ type OM1Fields5 =
   | 58
   | 59;
 
+type OM1FieldComps10 = {
+  1: 1;
+  2: Upto22;
+  3: 1;
+  4: 1;
+  5: Upto22;
+  6: 1;
+  7: Upto22;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: Upto22;
+  14: Upto22;
+  15: 1;
+  16: Upto22;
+  17:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  18: Upto22;
+  19: Upto22;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: 1;
+  27: Upto22;
+  28:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  29:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  30: Upto22;
+  31: Upto22;
+  32: 1;
+  33: Upto22;
+  34: Upto22;
+  35: 1;
+  36: Upto22;
+  37: 1;
+  38: Upto22;
+  39: 1;
+  40: 1;
+  41: 1;
+  42: Upto22;
+  43: Upto22;
+  44: 1;
+  45: Upto22;
+  46: Upto22;
+  47: Upto22;
+  48: 1;
+  49: 1;
+  50: Upto22;
+  51: 1;
+  52: Upto22;
+  53: 1;
+  54: 1;
+  55: Upto22;
+  56: Upto22;
+  57: Upto2;
+  58: Upto22;
+  59: Upto2;
+  [field: number]: number;
+};
+
 type OM1Types9 = [
   never,
   'NM',
@@ -34238,6 +54839,23 @@ interface OM1Object9<T extends HL7TypeMap> {
 
 type OMCFields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
 
+type OMCFieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto4;
+  4: Upto22;
+  5: Upto22;
+  6: Upto22;
+  7: 1;
+  8: 1;
+  9: number;
+  10: 1;
+  11: Upto22;
+  12: 1;
+  13: 1;
+  [field: number]: number;
+};
+
 type OMCTypes1 = [
   never,
   'NM',
@@ -34296,6 +54914,56 @@ type PM1Fields1 =
   | 22
   | 23
   | 24;
+
+type PM1FieldComps1 = {
+  1: Upto22;
+  2: Upto12;
+  3: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  4:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  5: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  6: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  7: 1;
+  8: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: 1;
+  [field: number]: number;
+};
 
 type PM1Types1 = [
   never,
@@ -34375,6 +55043,78 @@ type PRTFields2 =
   | 20
   | 21
   | 22;
+
+type PRTFieldComps3 = {
+  1: Upto4;
+  2: 1;
+  3: Upto22;
+  4: Upto22;
+  5:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  6: Upto22;
+  7: Upto22;
+  8: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  9: Upto11;
+  10: Upto4;
+  11: 1;
+  12: 1;
+  13: Upto22;
+  14:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  15:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  16: Upto4;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: Upto4;
+  22: Upto22;
+  [field: number]: number;
+};
 
 type PRTTypes2 = [
   never,
@@ -34609,6 +55349,106 @@ type ARQFields3 =
   | 25
   | 26;
 
+type ARQFieldComps8 = {
+  1: Upto4;
+  2: Upto4;
+  3: 1;
+  4: Upto4;
+  5: Upto22;
+  6: Upto22;
+  7: Upto22;
+  8: Upto22;
+  9: 1;
+  10: Upto22;
+  11: Upto2;
+  12: 1;
+  13: Upto2;
+  14: 1;
+  15:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  16:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  17:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  18: Upto11;
+  19:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  20:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  21: Upto11;
+  22: Upto4;
+  23: Upto4;
+  24: Upto4;
+  25: Upto4;
+  26: Upto2;
+  [field: number]: number;
+};
+
 type ARQTypes5 = [
   never,
   'EI',
@@ -34670,6 +55510,20 @@ interface ARQObject6<T extends HL7TypeMap> {
 
 type ARVFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
+type ARVFieldComps3 = {
+  1: 1;
+  2: Upto22;
+  3: Upto22;
+  4: Upto22;
+  5: 1;
+  6: Upto2;
+  7: Upto22;
+  8: Upto22;
+  9: Upto6;
+  10: Upto4;
+  [field: number]: number;
+};
+
 type ARVTypes2 = [
   never,
   'SI',
@@ -34699,6 +55553,27 @@ interface ARVObject2<T extends HL7TypeMap> {
 
 type BHSFields3 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17;
+
+type BHSFieldComps5 = {
+  1: 1;
+  2: 1;
+  3: Upto3;
+  4: Upto3;
+  5: Upto3;
+  6: Upto3;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: Upto3;
+  14: Upto3;
+  15: Upto22;
+  16: Upto22;
+  17: 1;
+  [field: number]: number;
+};
 
 type BHSTypes4 = [
   never,
@@ -34764,6 +55639,100 @@ type BPXFields2 =
   | 20
   | 21
   | 22;
+
+type BPXFieldComps5 = {
+  1: 1;
+  2: Upto22;
+  3: 1;
+  4: 1;
+  5: Upto4;
+  6: Upto22;
+  7: Upto22;
+  8: Upto22;
+  9: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  10: Upto4;
+  11: Upto22;
+  12: Upto22;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: Upto22;
+  17: Upto4;
+  18: Upto11;
+  19:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  20:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  21:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  22: 1;
+  [field: number]: number;
+};
 
 type BPXTypes3 = [
   never,
@@ -34839,6 +55808,77 @@ type BTXFields3 =
   | 20
   | 21;
 
+type BTXFieldComps5 = {
+  1: 1;
+  2: Upto4;
+  3: Upto22;
+  4: Upto22;
+  5: Upto22;
+  6: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  7: Upto4;
+  8: 1;
+  9: 1;
+  10: Upto22;
+  11: Upto22;
+  12: 1;
+  13: 1;
+  14:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  15:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  16: 1;
+  17: 1;
+  18: Upto22;
+  19: Upto22;
+  20: Upto4;
+  21: 1;
+  [field: number]: number;
+};
+
 type BTXTypes4 = [
   never,
   'SI',
@@ -34890,6 +55930,23 @@ interface BTXObject4<T extends HL7TypeMap> {
 
 type BUIFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
 
+type BUIFieldComps2 = {
+  1: 1;
+  2: Upto4;
+  3: Upto22;
+  4: 1;
+  5: Upto22;
+  6: 1;
+  7: Upto22;
+  8: 1;
+  9: 1;
+  10: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  11: Upto2;
+  12: Upto22;
+  13: 1;
+  [field: number]: number;
+};
+
 type BUITypes2 = [
   never,
   'SI',
@@ -34925,6 +55982,73 @@ interface BUIObject2<T extends HL7TypeMap> {
 
 type CSRFields2 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17;
+
+type CSRFieldComps7 = {
+  1: Upto4;
+  2: Upto4;
+  3: Upto22;
+  4: Upto12;
+  5: Upto12;
+  6: 1;
+  7:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  8:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  9: 1;
+  10: Upto22;
+  11: 1;
+  12: Upto22;
+  13: Upto22;
+  14: Upto22;
+  15: 1;
+  16: Upto22;
+  17: 1;
+  [field: number]: number;
+};
 
 type CSRTypes3 = [
   never,
@@ -34969,6 +56093,14 @@ interface CSRObject4<T extends HL7TypeMap> {
 
 type CTIFields2 = 1 | 2 | 3 | 4;
 
+type CTIFieldComps4 = {
+  1: Upto4;
+  2: Upto22;
+  3: Upto22;
+  4: 1;
+  [field: number]: number;
+};
+
 type CTITypes3 = [never, 'EI', 'CWE', 'CWE', 'ID'];
 
 interface CTIObject3<T extends HL7TypeMap> {
@@ -35000,6 +56132,31 @@ type CTRFields1 =
   | 19
   | 20
   | 21;
+
+type CTRFieldComps1 = {
+  1: Upto4;
+  2: 1;
+  3: Upto22;
+  4: 1;
+  5: 1;
+  6: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  7: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  8: Upto22;
+  9: Upto22;
+  10: Upto22;
+  11: 1;
+  12: Upto22;
+  13: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  14: Upto3;
+  15: Upto3;
+  16: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  17: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  18: Upto22;
+  19: 1;
+  20: Upto22;
+  21: Upto4;
+  [field: number]: number;
+};
 
 type CTRTypes1 = [
   never,
@@ -35052,6 +56209,27 @@ interface CTRObject1<T extends HL7TypeMap> {
 
 type DEVFields1 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17;
+
+type DEVFieldComps1 = {
+  1: 1;
+  2: Upto4;
+  3: Upto22;
+  4: Upto22;
+  5: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto4;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: Upto22;
+  15: Upto4;
+  16: 1;
+  17: Upto22;
+  [field: number]: number;
+};
 
 type DEVTypes1 = [
   never,
@@ -35130,6 +56308,90 @@ type DONFields2 =
   | 33
   | 34;
 
+type DONFieldComps2 = {
+  1: Upto4;
+  2: Upto22;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: Upto22;
+  7: Upto22;
+  8: Upto22;
+  9: 1;
+  10: Upto22;
+  11: 1;
+  12: Upto22;
+  13: Upto22;
+  14: Upto22;
+  15: 1;
+  16: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  17: 1;
+  18: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  19: 1;
+  20: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  21: Upto22;
+  22: Upto22;
+  23: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  24: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  25: 1;
+  26: 1;
+  27: 1;
+  28: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  29: 1;
+  30: 1;
+  31: Upto4;
+  32:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  33:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  34: 1;
+  [field: number]: number;
+};
+
 type DONTypes2 = [
   never,
   'EI',
@@ -35207,6 +56469,8 @@ interface DONObject2<T extends HL7TypeMap> {
 
 type DSTFields1 = 1 | 2;
 
+type DSTFieldComps1 = { 1: Upto22; 2: Upto22; [field: number]: number };
+
 type DSTTypes1 = [never, 'CWE', 'CWE'];
 
 interface DSTObject1<T extends HL7TypeMap> {
@@ -35215,6 +56479,16 @@ interface DSTObject1<T extends HL7TypeMap> {
 }
 
 type EQUFields2 = 1 | 2 | 3 | 4 | 5 | 6;
+
+type EQUFieldComps4 = {
+  1: Upto4;
+  2: 1;
+  3: Upto22;
+  4: Upto22;
+  5: Upto22;
+  6: 1;
+  [field: number]: number;
+};
 
 type EQUTypes3 = [never, 'EI', 'DTM', 'CWE', 'CWE', 'CWE', 'DTM'];
 
@@ -35229,6 +56503,27 @@ interface EQUObject4<T extends HL7TypeMap> {
 
 type FHSFields3 =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17;
+
+type FHSFieldComps5 = {
+  1: 1;
+  2: 1;
+  3: Upto3;
+  4: Upto3;
+  5: Upto3;
+  6: Upto3;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: Upto3;
+  14: Upto3;
+  15: Upto22;
+  16: Upto22;
+  17: 1;
+  [field: number]: number;
+};
 
 type FHSTypes4 = [
   never,
@@ -35326,6 +56621,133 @@ type FT1Fields8 =
   | 54
   | 55
   | 56;
+
+type FT1FieldComps10 = {
+  1: 1;
+  2: Upto12;
+  3: 1;
+  4: Upto2;
+  5: 1;
+  6: Upto22;
+  7: Upto22;
+  10: 1;
+  11: Upto6;
+  12: Upto6;
+  13: Upto22;
+  14: Upto22;
+  15: Upto6;
+  16: Upto11;
+  17: Upto22;
+  18: Upto22;
+  19: Upto22;
+  20:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  21:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  22: Upto6;
+  23: Upto4;
+  24:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  25: Upto22;
+  26: Upto22;
+  27: Upto22;
+  28: Upto22;
+  29: Upto22;
+  30: Upto12;
+  31: 1;
+  32: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  33: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  34: Upto22;
+  35: 1;
+  36: Upto22;
+  37: Upto22;
+  38: Upto12;
+  39: Upto12;
+  40: Upto22;
+  41: Upto22;
+  42: 1;
+  43: Upto2;
+  44: Upto22;
+  45: Upto22;
+  46: 1;
+  47: 1;
+  48: 1;
+  49: 1;
+  50: 1;
+  51: Upto2;
+  52: Upto2;
+  53: Upto22;
+  54: 1;
+  55: Upto22;
+  56: Upto22;
+  [field: number]: number;
+};
 
 type FT1Types8 = [
   never,
@@ -35519,6 +56941,111 @@ type IN2Fields3 =
   | 72
   | 73;
 
+type IN2FieldComps9 = {
+  1: Upto12;
+  2: 1;
+  3:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  4: Upto22;
+  5: Upto22;
+  6: 1;
+  7: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  8: 1;
+  9: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  10: 1;
+  11: Upto22;
+  12: 1;
+  13: 1;
+  14: Upto22;
+  15: Upto22;
+  16: Upto22;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  23: 1;
+  24: Upto22;
+  25: Upto12;
+  26: Upto12;
+  27: Upto22;
+  28: 1 | 2 | 4;
+  29: 1 | 2 | 4;
+  30: Upto3;
+  31: Upto22;
+  32: Upto22;
+  33: Upto22;
+  34: Upto22;
+  35: Upto22;
+  36: Upto22;
+  37: 1;
+  38: Upto22;
+  39: Upto22;
+  40: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  41: Upto22;
+  42: Upto22;
+  43: Upto22;
+  44: 1;
+  45: 1;
+  46: 1;
+  47: Upto3;
+  48: Upto22;
+  49: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  50:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  51: Upto22;
+  52: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  53:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  54: Upto22;
+  55: 1;
+  56: 1;
+  57: Upto22;
+  58:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  59: Upto22;
+  60: Upto22;
+  61: Upto12;
+  62: Upto22;
+  63:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  64:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  65: Upto22;
+  66: 1;
+  67: 1;
+  68: 1;
+  69: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  70: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  71: Upto22;
+  72: Upto22;
+  73: Upto6;
+  [field: number]: number;
+};
+
 type IN2Types6 = [
   never,
   'CX',
@@ -35705,6 +57232,135 @@ type IN3Fields3 =
   | 30
   | 31;
 
+type IN3FieldComps9 = {
+  1: 1;
+  2: Upto12;
+  3:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  4: 1;
+  5: Upto3;
+  6: 1;
+  7: 1;
+  8:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  9: 1;
+  10: 1;
+  11: Upto2;
+  12: Upto22;
+  13: 1;
+  14:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  15: 1;
+  16:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  17: Upto22;
+  18: Upto22;
+  19:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  20: Upto3;
+  21: 1;
+  22: 1;
+  23: Upto22;
+  24: Upto22;
+  25:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  26: Upto22;
+  27: Upto22;
+  28: 1;
+  29: Upto22;
+  30: Upto22;
+  31: 1;
+  [field: number]: number;
+};
+
 type IN3Types8 = [
   never,
   'SI',
@@ -35797,6 +57453,31 @@ type INVFields4 =
   | 21
   | 22;
 
+type INVFieldComps5 = {
+  1: Upto22;
+  2: Upto22;
+  3: Upto22;
+  4: Upto22;
+  5: Upto22;
+  6: Upto22;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: Upto22;
+  12: 1;
+  13: 1;
+  15: Upto22;
+  16: 1;
+  17: Upto22;
+  18: Upto22;
+  19: Upto2;
+  20: Upto2;
+  21: Upto22;
+  22: Upto2;
+  [field: number]: number;
+};
+
 type INVTypes5 = [
   never,
   'CWE',
@@ -35848,6 +57529,20 @@ interface INVObject5<T extends HL7TypeMap> {
 }
 
 type IPCFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+
+type IPCFieldComps4 = {
+  1: Upto4;
+  2: Upto4;
+  3: Upto4;
+  4: Upto4;
+  5: Upto22;
+  6: Upto22;
+  7: Upto4;
+  8: Upto22;
+  9: 1;
+  10: 1;
+  [field: number]: number;
+};
 
 type IPCTypes3 = [
   never,
@@ -35915,6 +57610,49 @@ type ITMFields3 =
   | 36
   | 37
   | 38;
+
+type ITMFieldComps4 = {
+  1: Upto4;
+  2: 1;
+  3: Upto22;
+  4: Upto22;
+  5: Upto22;
+  6: Upto22;
+  7: Upto4;
+  8: 1;
+  9: 1;
+  10: Upto22;
+  11: Upto22;
+  12: Upto22;
+  13: Upto6;
+  14: Upto22;
+  15: Upto22;
+  16: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  17: Upto22;
+  18: Upto22;
+  19: Upto22;
+  20: 1;
+  21: Upto2;
+  22: Upto22;
+  23: Upto22;
+  24: Upto22;
+  25: Upto4;
+  26: Upto22;
+  27: Upto22;
+  28: Upto22;
+  29: Upto22;
+  30: Upto22;
+  31: Upto22;
+  32: Upto4;
+  33: Upto22;
+  34: Upto2;
+  35: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  36:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  37: 1;
+  38: 1;
+  [field: number]: number;
+};
 
 type ITMTypes4 = [
   never,
@@ -36029,6 +57767,38 @@ type MSHFields7 =
   | 27
   | 28;
 
+type MSHFieldComps10 = {
+  1: 1;
+  2: 1;
+  3: Upto3;
+  4: Upto3;
+  5: Upto3;
+  6: Upto3;
+  7: 1;
+  8: 1;
+  9: Upto3;
+  10: 1;
+  11: Upto2;
+  12: Upto3;
+  13: 1;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: Upto22;
+  20: 1;
+  21: Upto4;
+  22: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  23: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  24: Upto3;
+  25: Upto3;
+  26: Upto22;
+  27: Upto22;
+  28: 1;
+  [field: number]: number;
+};
+
 type MSHTypes8 = [
   never,
   'ST',
@@ -36132,6 +57902,94 @@ type NK1Fields6 =
   | 40
   | 41;
 
+type NK1FieldComps10 = {
+  1: 1;
+  2: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  3: Upto22;
+  4:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  7: Upto22;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: Upto3;
+  12: Upto12;
+  13: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  14: Upto22;
+  15: Upto22;
+  16: 1;
+  17: Upto22;
+  18: Upto22;
+  19: Upto22;
+  20: Upto22;
+  21: Upto22;
+  22: Upto22;
+  23: 1;
+  24: Upto22;
+  25: Upto22;
+  26: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  27: Upto22;
+  28: Upto22;
+  29: Upto22;
+  30: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  32:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  33: Upto12;
+  34: Upto22;
+  35: Upto22;
+  36: Upto22;
+  37: 1;
+  38: 1;
+  39: Upto22;
+  40:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  41:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  [field: number]: number;
+};
+
 type NK1Types8 = [
   never,
   'SI',
@@ -36220,6 +58078,42 @@ interface NK1Object8<T extends HL7TypeMap> {
 
 type NTEFields4 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
+type NTEFieldComps5 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: Upto22;
+  5:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  6: 1;
+  7: 1;
+  8: 1;
+  9: Upto22;
+  [field: number]: number;
+};
+
 type NTETypes5 = [
   never,
   'SI',
@@ -36289,6 +58183,77 @@ type OBRFields9 =
   | 53
   | 54
   | 55;
+
+type OBRFieldComps11 = {
+  1: 1;
+  2: Upto4;
+  3: Upto4;
+  4: Upto22;
+  7: 1;
+  8: 1;
+  9: Upto2;
+  10:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  11: 1;
+  12: Upto22;
+  13: Upto22;
+  17:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22: 1;
+  23: Upto2;
+  24: 1;
+  25: 1;
+  26: Upto3;
+  29: Upto2;
+  30: 1;
+  31: Upto22;
+  36: 1;
+  37: 1;
+  38: Upto22;
+  39: Upto22;
+  40: Upto22;
+  41: 1;
+  42: 1;
+  43: Upto22;
+  44: Upto22;
+  45: Upto22;
+  46: Upto22;
+  47: Upto22;
+  48: Upto22;
+  49: Upto22;
+  51: Upto4;
+  52: Upto4;
+  53: Upto12;
+  54: Upto2;
+  55: 1;
+  [field: number]: number;
+};
 
 type OBRTypes11 = [
   never,
@@ -36430,6 +58395,111 @@ type OBXFields11 =
   | 32
   | 33;
 
+type OBXFieldComps13 = {
+  1: 1;
+  2: 1;
+  3: Upto22;
+  4: Upto4;
+  5: number;
+  6: Upto22;
+  7: 1;
+  8: Upto22;
+  9: 1;
+  10: 1;
+  11: 1;
+  12: 1;
+  13: 1;
+  14: 1;
+  15: Upto22;
+  16:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  17: Upto22;
+  18: Upto4;
+  19: 1;
+  20: Upto22;
+  21: Upto4;
+  22: Upto22;
+  23: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  24:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  25:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  26: 1;
+  27: Upto22;
+  28: Upto22;
+  29: 1;
+  30: 1;
+  31: 1;
+  32: Upto22;
+  33: Upto2;
+  [field: number]: number;
+};
+
 type OBXTypes11 = [
   never,
   'SI',
@@ -36505,6 +58575,17 @@ interface OBXObject13<T extends HL7TypeMap> {
 
 type OH1Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
+type OH1FieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto22;
+  4: 1;
+  5: 1;
+  6: 1;
+  7: Upto4;
+  [field: number]: number;
+};
+
 type OH1Types1 = [never, 'SI', 'ID', 'CWE', 'DT', 'DT', 'DT', 'EI'];
 
 interface OH1Object1<T extends HL7TypeMap> {
@@ -36536,6 +58617,50 @@ type OH2Fields1 =
   | 16
   | 17
   | 18;
+
+type OH2FieldComps1 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: Upto22;
+  5: Upto22;
+  6: Upto22;
+  7: 1;
+  8: 1;
+  9: Upto22;
+  10: 1;
+  11: 1;
+  12: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  13:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  14: Upto22;
+  15: 1;
+  16: 1;
+  17: Upto4;
+  18: Upto22;
+  [field: number]: number;
+};
 
 type OH2Types1 = [
   never,
@@ -36582,6 +58707,18 @@ interface OH2Object1<T extends HL7TypeMap> {
 
 type OH3Fields1 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
+type OH3FieldComps1 = {
+  1: 1;
+  2: 1;
+  3: Upto22;
+  4: Upto22;
+  5: 1;
+  6: 1;
+  7: 1;
+  8: Upto4;
+  [field: number]: number;
+};
+
 type OH3Types1 = [never, 'SI', 'ID', 'CWE', 'CWE', 'NM', 'DT', 'DT', 'EI'];
 
 interface OH3Object1<T extends HL7TypeMap> {
@@ -36597,6 +58734,16 @@ interface OH3Object1<T extends HL7TypeMap> {
 
 type OH4Fields1 = 1 | 2 | 3 | 4 | 5 | 6;
 
+type OH4FieldComps1 = {
+  1: 1;
+  2: 1;
+  3: 1;
+  4: 1;
+  5: 1;
+  6: Upto4;
+  [field: number]: number;
+};
+
 type OH4Types1 = [never, 'SI', 'ID', 'DT', 'DT', 'DT', 'EI'];
 
 interface OH4Object1<T extends HL7TypeMap> {
@@ -36607,6 +58754,23 @@ interface OH4Object1<T extends HL7TypeMap> {
   EnteredDate?: string | null;
   CombatZoneUniqueIdentifier?: T['EI'] | null;
 }
+
+type OMCFieldComps2 = {
+  1: 1;
+  2: 1;
+  3: Upto4;
+  4: Upto22;
+  5: Upto22;
+  6: Upto22;
+  7: 1;
+  8: 1;
+  9: 1;
+  10: 1;
+  11: Upto22;
+  12: 1;
+  13: 1;
+  [field: number]: number;
+};
 
 type OMCTypes2 = [
   never,
@@ -36652,6 +58816,37 @@ type ORCFields9 =
   | 36
   | 37
   | 38;
+
+type ORCFieldComps11 = {
+  1: 1;
+  2: Upto4;
+  3: Upto4;
+  4: Upto4;
+  5: 1;
+  6: 1;
+  8: Upto2;
+  9: 1;
+  13: Upto11;
+  14:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  15: 1;
+  16: Upto22;
+  20: Upto22;
+  25: Upto22;
+  26: Upto22;
+  27: 1;
+  28: Upto22;
+  29: Upto22;
+  30: Upto22;
+  32: 1;
+  33: Upto12;
+  34: Upto22;
+  35: 1;
+  36: Upto2;
+  37: 1;
+  38: Upto4;
+  [field: number]: number;
+};
 
 type ORCTypes11 = [
   never,
@@ -36726,6 +58921,19 @@ interface ORCObject11<T extends HL7TypeMap> {
 
 type PACFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
+type PACFieldComps2 = {
+  1: 1;
+  2: Upto4;
+  3: Upto4;
+  4: Upto5;
+  5: Upto22;
+  6: Upto22;
+  7: Upto22;
+  8: Upto22;
+  9: 1;
+  [field: number]: number;
+};
+
 type PACTypes2 = [
   never,
   'SI',
@@ -36774,6 +58982,32 @@ type PD1Fields5 =
   | 21
   | 22
   | 23;
+
+type PD1FieldComps8 = {
+  1: Upto22;
+  2: Upto22;
+  3: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  5: Upto22;
+  6: Upto22;
+  7: Upto22;
+  8: Upto22;
+  9: 1;
+  10: Upto12;
+  11: Upto22;
+  12: 1;
+  13: 1;
+  14: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  15: Upto22;
+  16: Upto22;
+  17: 1;
+  18: 1;
+  19: Upto22;
+  20: Upto22;
+  21: Upto22;
+  22: 1;
+  23: 1;
+  [field: number]: number;
+};
 
 type PD1Types5 = [
   never,
@@ -36860,6 +59094,64 @@ type PIDFields7 =
   | 39
   | 40;
 
+type PIDFieldComps9 = {
+  1: 1;
+  3: Upto12;
+  5: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  6: 1 | 2 | 3 | 4 | 5 | 7 | 8 | 9 | 11 | 12 | 13 | 14 | 15;
+  7: 1;
+  8: Upto22;
+  10: Upto22;
+  11:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  15: Upto22;
+  16: Upto22;
+  17: Upto22;
+  18: Upto12;
+  21: Upto12;
+  22: Upto22;
+  23: 1;
+  24: 1;
+  25: 1;
+  26: Upto22;
+  27: Upto22;
+  29: 1;
+  30: 1;
+  31: 1;
+  32: Upto22;
+  33: 1;
+  34: Upto3;
+  35: Upto22;
+  36: Upto22;
+  37: 1;
+  38: Upto22;
+  39: Upto22;
+  40:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  [field: number]: number;
+};
+
 type PIDTypes9 = [
   never,
   'SI',
@@ -36940,6 +59232,21 @@ interface PIDObject9<T extends HL7TypeMap> {
 
 type PKGFields3 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
 
+type PKGFieldComps4 = {
+  1: 1;
+  2: Upto22;
+  3: Upto22;
+  4: 1;
+  5: Upto6;
+  6: Upto6;
+  7: 1;
+  8: Upto22;
+  9: Upto2;
+  10: 1;
+  11: Upto4;
+  [field: number]: number;
+};
+
 type PKGTypes3 = [
   never,
   'SI',
@@ -36994,6 +59301,80 @@ type PRTFields3 =
   | 22
   | 23
   | 24;
+
+type PRTFieldComps4 = {
+  1: Upto4;
+  2: 1;
+  3: Upto22;
+  4: Upto22;
+  5:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  6: Upto22;
+  7: Upto22;
+  8: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  9: Upto11;
+  10: Upto4;
+  11: 1;
+  12: 1;
+  13: Upto22;
+  14:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  15:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  16: Upto4;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: Upto4;
+  22: Upto22;
+  23: Upto22;
+  24: Upto4;
+  [field: number]: number;
+};
 
 type PRTTypes3 = [
   never,
@@ -37131,6 +59512,74 @@ type RELFields2 =
   | 17
   | 18;
 
+type RELFieldComps4 = {
+  1: 1;
+  2: Upto22;
+  3: Upto4;
+  4: Upto4;
+  5: Upto4;
+  6: Upto4;
+  7:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  8: 1 | 2 | 6 | 7 | 8 | 9 | 10;
+  9:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  10:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  11: Upto2;
+  12: 1;
+  13: Upto22;
+  14: 1;
+  15: 1;
+  16: 1;
+  17: 1;
+  18: 1;
+  [field: number]: number;
+};
+
 type RELTypes2 = [
   never,
   'SI',
@@ -37174,6 +59623,8 @@ interface RELObject2<T extends HL7TypeMap> {
   TargetInformationInstanceObjectType?: string | null;
 }
 
+type ROLFieldComps8 = { [field: number]: number };
+
 type ROLTypes5 = [never];
 
 interface ROLObject6<T extends HL7TypeMap> {}
@@ -37208,6 +59659,61 @@ type RXGFields7 =
   | 31
   | 32
   | 33;
+
+type RXGFieldComps8 = {
+  1: 1;
+  2: 1;
+  4: Upto22;
+  5: 1;
+  6: 1;
+  7: Upto22;
+  8: Upto22;
+  9: Upto22;
+  10: 1;
+  12: 1;
+  13: Upto22;
+  14: 1;
+  15: 1;
+  16: Upto22;
+  17: 1;
+  18: Upto22;
+  19: 1;
+  20: 1;
+  21: Upto22;
+  22: Upto22;
+  23: 1;
+  24: Upto22;
+  25: Upto22;
+  26: 1;
+  29: Upto11;
+  30:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  31: Upto4;
+  32: 1;
+  33: Upto22;
+  [field: number]: number;
+};
 
 type RXGTypes8 = [
   never,
@@ -37314,6 +59820,112 @@ type RXOFields9 =
   | 34
   | 35
   | 36;
+
+type RXOFieldComps9 = {
+  1: Upto22;
+  2: 1;
+  3: 1;
+  4: Upto22;
+  5: Upto22;
+  6: Upto22;
+  7: Upto22;
+  9: 1;
+  10: Upto22;
+  11: 1;
+  12: Upto22;
+  13: 1;
+  15:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: Upto22;
+  20: Upto22;
+  21: 1;
+  22: Upto22;
+  23: Upto2;
+  24: Upto22;
+  25: 1;
+  26: Upto22;
+  27: 1;
+  28: 1;
+  29: Upto4;
+  30: Upto4;
+  31: Upto22;
+  32: Upto22;
+  33:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  34: Upto11;
+  35:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  36:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  [field: number]: number;
+};
 
 type RXOTypes9 = [
   never,
@@ -37441,6 +60053,58 @@ type SACFields3 =
   | 47
   | 48
   | 49;
+
+type SACFieldComps5 = {
+  1: Upto4;
+  2: Upto4;
+  3: Upto4;
+  4: Upto4;
+  5: Upto4;
+  7: 1;
+  8: Upto22;
+  9: Upto22;
+  10: Upto4;
+  11: Upto5;
+  12: Upto22;
+  13: Upto4;
+  14: Upto5;
+  15: Upto22;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: Upto22;
+  21: 1;
+  22: 1;
+  23: 1;
+  24: Upto22;
+  25: Upto22;
+  26: Upto22;
+  27: Upto22;
+  28: Upto22;
+  29: Upto4;
+  30: Upto22;
+  31: Upto4;
+  32: 1;
+  33: Upto22;
+  34: 1;
+  35: Upto22;
+  36: 1;
+  37: Upto22;
+  38: 1;
+  39: Upto22;
+  40: Upto22;
+  41: Upto22;
+  42: Upto22;
+  43: Upto22;
+  44: Upto22;
+  45: Upto2;
+  46: Upto2;
+  47: Upto22;
+  48: Upto22;
+  49: Upto22;
+  [field: number]: number;
+};
 
 type SACTypes5 = [
   never,
@@ -37574,6 +60238,152 @@ type SCHFields4 =
   | 27
   | 28;
 
+type SCHFieldComps8 = {
+  1: Upto4;
+  2: Upto4;
+  3: 1;
+  4: Upto4;
+  5: Upto22;
+  6: Upto22;
+  7: Upto22;
+  8: Upto22;
+  10: Upto22;
+  12:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  13:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  14:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  15: Upto11;
+  16:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  17:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  18:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+  19: Upto11;
+  20:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  21:
+    2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  22: Upto11;
+  23: Upto4;
+  24: Upto4;
+  25: Upto22;
+  26: Upto4;
+  27: Upto4;
+  28: Upto2;
+  [field: number]: number;
+};
+
 type SCHTypes6 = [
   never,
   'EI',
@@ -37636,6 +60446,22 @@ interface SCHObject7<T extends HL7TypeMap> {
 }
 
 type SHPFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+type SHPFieldComps2 = {
+  1: Upto4;
+  2: Upto4;
+  3: Upto22;
+  4: 1;
+  5: 1;
+  6: Upto22;
+  7: Upto22;
+  8: 1;
+  9: Upto22;
+  10: Upto22;
+  11: Upto22;
+  12: 1;
+  [field: number]: number;
+};
 
 type SHPTypes2 = [
   never,
@@ -37704,6 +60530,45 @@ type SPMFields3 =
   | 33
   | 34
   | 35;
+
+type SPMFieldComps4 = {
+  1: 1;
+  2: Upto2;
+  3: Upto2;
+  4: Upto22;
+  5: Upto22;
+  6: Upto22;
+  7: Upto22;
+  8: Upto22;
+  9: Upto22;
+  10: Upto22;
+  11: Upto22;
+  12: Upto2;
+  13: 1;
+  14: 1;
+  15: Upto22;
+  16: Upto22;
+  17: Upto2;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: Upto22;
+  22: Upto22;
+  23: Upto22;
+  24: Upto22;
+  25: Upto2;
+  26: 1;
+  27: Upto22;
+  28: Upto22;
+  29: Upto22;
+  30: Upto12;
+  31: Upto12;
+  32: Upto4;
+  33: 1;
+  34: 1;
+  35: 1;
+  [field: number]: number;
+};
 
 type SPMTypes4 = [
   never,
@@ -37784,6 +60649,21 @@ interface SPMObject4<T extends HL7TypeMap> {
 
 type TCDFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
 
+type TCDFieldComps4 = {
+  1: Upto22;
+  2: Upto4;
+  3: Upto4;
+  4: Upto4;
+  5: Upto4;
+  6: 1;
+  7: 1;
+  8: Upto22;
+  9: Upto2;
+  10: 1;
+  11: Upto22;
+  [field: number]: number;
+};
+
 type TCDTypes3 = [
   never,
   'CWE',
@@ -37842,6 +60722,176 @@ type TXAFields3 =
   | 26
   | 27
   | 28;
+
+type TXAFieldComps7 = {
+  1: 1;
+  2: Upto22;
+  3: 1;
+  4: 1;
+  5:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  6: 1;
+  7: 1;
+  8: 1;
+  9:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  10:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  11:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  12: Upto4;
+  13: Upto4;
+  14: Upto4;
+  15: Upto4;
+  16: 1;
+  17: 1;
+  18: 1;
+  19: 1;
+  20: 1;
+  21: 1;
+  22:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25
+    | 26;
+  23:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  24: Upto22;
+  25: 1;
+  26: 1;
+  27: Upto3;
+  28: Upto22;
+  [field: number]: number;
+};
 
 type TXATypes4 = [
   never,
@@ -37908,6 +60958,44 @@ interface TXAObject5<T extends HL7TypeMap> {
 
 type VNDFields2 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
 
+type VNDFieldComps3 = {
+  1: 1;
+  2: Upto4;
+  3: 1;
+  4: Upto4;
+  5: Upto22;
+  6: Upto4;
+  7:
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25;
+  8: Upto3;
+  9: Upto4;
+  10: 1;
+  11: Upto22;
+  [field: number]: number;
+};
+
 type VNDTypes2 = [
   never,
   'SI',
@@ -37938,6 +61026,8 @@ interface VNDObject2<T extends HL7TypeMap> {
 }
 
 type ZL7Fields1 = 1 | 2;
+
+type ZL7FieldComps2 = { 1: 1; 2: 1; [field: number]: number };
 
 type ZL7Types2 = [never, 'NM', 'NM'];
 
@@ -40087,6 +63177,4314 @@ export type HL7DataTypeObject<
  * DG1Segment.DiagnosisCodingMethod (2) is not one of 2.6's DG1. A segment or
  * version with no definitions here takes any number.
  */
+/**
+ * Each version's segment objects as HL7Segment.toObject() and assign() take
+ * them; a segment or version with no definitions here, any object.
+ */
+/**
+ * The component positions of each version's segment fields, for
+ * HL7Field.comp(): HL7VersionFieldComponents['2.6']['PID'][5] is 1 to 14,
+ * XPN's. A primitive's only component is 1; a field of a type that takes
+ * anything (VARIES), and what is not defined here, takes any number.
+ */
+export interface HL7VersionFieldComponents {
+  '2.1': {
+    ACC: ACCFieldComps1;
+    ADD: ADDFieldComps1;
+    BHS: BHSFieldComps1;
+    BLG: BLGFieldComps1;
+    BTS: BTSFieldComps1;
+    DG1: DG1FieldComps1;
+    DSC: DSCFieldComps1;
+    DSP: DSPFieldComps1;
+    ERR: ERRFieldComps1;
+    EVN: EVNFieldComps1;
+    FHS: FHSFieldComps1;
+    FT1: FT1FieldComps1;
+    FTS: FTSFieldComps1;
+    GT1: GT1FieldComps1;
+    IN1: IN1FieldComps1;
+    MRG: MRGFieldComps1;
+    MSA: MSAFieldComps1;
+    MSH: MSHFieldComps1;
+    NCK: NCKFieldComps1;
+    NK1: NK1FieldComps1;
+    NPU: NPUFieldComps1;
+    NSC: NSCFieldComps1;
+    NST: NSTFieldComps1;
+    NTE: NTEFieldComps1;
+    OBR: OBRFieldComps1;
+    OBX: OBXFieldComps1;
+    ORC: ORCFieldComps1;
+    ORO: OROFieldComps1;
+    PID: PIDFieldComps1;
+    PR1: PR1FieldComps1;
+    PV1: PV1FieldComps1;
+    QRD: QRDFieldComps1;
+    QRF: QRFFieldComps1;
+    RX1: RX1FieldComps1;
+    UB1: UB1FieldComps1;
+    URD: URDFieldComps1;
+    URS: URSFieldComps1;
+    PD1: PD1FieldComps1;
+    [segment: string]: { [field: number]: number };
+  };
+  '2.2': {
+    ACC: ACCFieldComps2;
+    ADD: ADDFieldComps1;
+    AL1: AL1FieldComps1;
+    BHS: BHSFieldComps2;
+    BLG: BLGFieldComps2;
+    BTS: BTSFieldComps2;
+    DG1: DG1FieldComps2;
+    DSC: DSCFieldComps1;
+    DSP: DSPFieldComps1;
+    ERR: ERRFieldComps2;
+    EVN: EVNFieldComps2;
+    FHS: FHSFieldComps2;
+    FT1: FT1FieldComps2;
+    FTS: FTSFieldComps1;
+    GT1: GT1FieldComps2;
+    IN1: IN1FieldComps2;
+    IN2: IN2FieldComps1;
+    IN3: IN3FieldComps1;
+    MFA: MFAFieldComps1;
+    MFE: MFEFieldComps1;
+    MFI: MFIFieldComps1;
+    MRG: MRGFieldComps2;
+    MSA: MSAFieldComps2;
+    MSH: MSHFieldComps2;
+    NCK: NCKFieldComps2;
+    NK1: NK1FieldComps2;
+    NPU: NPUFieldComps2;
+    NSC: NSCFieldComps1;
+    NST: NSTFieldComps2;
+    NTE: NTEFieldComps1;
+    OBR: OBRFieldComps2;
+    OBX: OBXFieldComps2;
+    ODS: ODSFieldComps1;
+    ODT: ODTFieldComps1;
+    OM1: OM1FieldComps1;
+    OM2: OM2FieldComps1;
+    OM3: OM3FieldComps1;
+    OM4: OM4FieldComps1;
+    OM5: OM5FieldComps1;
+    OM6: OM6FieldComps1;
+    ORC: ORCFieldComps2;
+    PID: PIDFieldComps2;
+    PR1: PR1FieldComps2;
+    PRA: PRAFieldComps1;
+    PV1: PV1FieldComps2;
+    PV2: PV2FieldComps1;
+    QRD: QRDFieldComps2;
+    QRF: QRFFieldComps2;
+    RQ1: RQ1FieldComps1;
+    RQD: RQDFieldComps1;
+    RXA: RXAFieldComps1;
+    RXC: RXCFieldComps1;
+    RXD: RXDFieldComps1;
+    RXE: RXEFieldComps1;
+    RXG: RXGFieldComps1;
+    RXO: RXOFieldComps1;
+    RXR: RXRFieldComps1;
+    STF: STFFieldComps1;
+    UB1: UB1FieldComps2;
+    UB2: UB2FieldComps1;
+    URD: URDFieldComps2;
+    URS: URSFieldComps2;
+    [segment: string]: { [field: number]: number };
+  };
+  '2.3': {
+    ACC: ACCFieldComps3;
+    ADD: ADDFieldComps1;
+    AIG: AIGFieldComps1;
+    AIL: AILFieldComps1;
+    AIP: AIPFieldComps1;
+    AIS: AISFieldComps1;
+    AL1: AL1FieldComps1;
+    APR: APRFieldComps1;
+    ARQ: ARQFieldComps1;
+    AUT: AUTFieldComps1;
+    BHS: BHSFieldComps2;
+    BLG: BLGFieldComps3;
+    BTS: BTSFieldComps3;
+    CDM: CDMFieldComps1;
+    CM0: CM0FieldComps1;
+    CM1: CM1FieldComps1;
+    CM2: CM2FieldComps1;
+    CSP: CSPFieldComps1;
+    CSR: CSRFieldComps1;
+    CSS: CSSFieldComps1;
+    CTD: CTDFieldComps1;
+    CTI: CTIFieldComps1;
+    DB1: DB1FieldComps1;
+    DG1: DG1FieldComps3;
+    DRG: DRGFieldComps1;
+    DSC: DSCFieldComps1;
+    DSP: DSPFieldComps1;
+    EQL: EQLFieldComps1;
+    ERQ: ERQFieldComps1;
+    ERR: ERRFieldComps2;
+    EVN: EVNFieldComps3;
+    FAC: FACFieldComps1;
+    FHS: FHSFieldComps2;
+    FT1: FT1FieldComps3;
+    FTS: FTSFieldComps1;
+    GOL: GOLFieldComps1;
+    GT1: GT1FieldComps3;
+    IN1: IN1FieldComps3;
+    IN2: IN2FieldComps2;
+    IN3: IN3FieldComps2;
+    LCC: LCCFieldComps1;
+    LCH: LCHFieldComps1;
+    LDP: LDPFieldComps1;
+    LOC: LOCFieldComps1;
+    LRL: LRLFieldComps1;
+    MFA: MFAFieldComps1;
+    MFE: MFEFieldComps1;
+    MFI: MFIFieldComps2;
+    MRG: MRGFieldComps3;
+    MSA: MSAFieldComps2;
+    MSH: MSHFieldComps3;
+    NCK: NCKFieldComps2;
+    NK1: NK1FieldComps3;
+    NPU: NPUFieldComps3;
+    NSC: NSCFieldComps2;
+    NST: NSTFieldComps2;
+    NTE: NTEFieldComps1;
+    OBR: OBRFieldComps3;
+    OBX: OBXFieldComps3;
+    ODS: ODSFieldComps1;
+    ODT: ODTFieldComps1;
+    OM1: OM1FieldComps2;
+    OM2: OM2FieldComps2;
+    OM3: OM3FieldComps2;
+    OM4: OM4FieldComps2;
+    OM5: OM5FieldComps2;
+    OM6: OM6FieldComps2;
+    ORC: ORCFieldComps3;
+    PCR: PCRFieldComps1;
+    PD1: PD1FieldComps1;
+    PDC: PDCFieldComps1;
+    PEO: PEOFieldComps1;
+    PES: PESFieldComps1;
+    PID: PIDFieldComps3;
+    PR1: PR1FieldComps3;
+    PRA: PRAFieldComps2;
+    PRB: PRBFieldComps1;
+    PRC: PRCFieldComps1;
+    PRD: PRDFieldComps1;
+    PSH: PSHFieldComps1;
+    PTH: PTHFieldComps1;
+    PV1: PV1FieldComps3;
+    PV2: PV2FieldComps2;
+    QAK: QAKFieldComps1;
+    QRD: QRDFieldComps3;
+    QRF: QRFFieldComps3;
+    RDF: RDFFieldComps1;
+    RDT: RDTFieldComps1;
+    RF1: RF1FieldComps1;
+    RGS: RGSFieldComps1;
+    ROL: ROLFieldComps1;
+    RQ1: RQ1FieldComps1;
+    RQD: RQDFieldComps1;
+    RXA: RXAFieldComps2;
+    RXC: RXCFieldComps2;
+    RXD: RXDFieldComps2;
+    RXE: RXEFieldComps2;
+    RXG: RXGFieldComps2;
+    RXO: RXOFieldComps2;
+    RXR: RXRFieldComps1;
+    SCH: SCHFieldComps1;
+    SPR: SPRFieldComps1;
+    STF: STFFieldComps2;
+    TXA: TXAFieldComps1;
+    UB1: UB1FieldComps3;
+    UB2: UB2FieldComps2;
+    URD: URDFieldComps3;
+    URS: URSFieldComps3;
+    VAR: VARFieldComps1;
+    VTQ: VTQFieldComps1;
+    [segment: string]: { [field: number]: number };
+  };
+  '2.3.1': {
+    ACC: ACCFieldComps3;
+    ADD: ADDFieldComps1;
+    AIG: AIGFieldComps1;
+    AIL: AILFieldComps1;
+    AIP: AIPFieldComps2;
+    AIS: AISFieldComps1;
+    AL1: AL1FieldComps1;
+    APR: APRFieldComps1;
+    ARQ: ARQFieldComps2;
+    AUT: AUTFieldComps1;
+    BHS: BHSFieldComps2;
+    BLG: BLGFieldComps4;
+    BTS: BTSFieldComps3;
+    CDM: CDMFieldComps2;
+    CM0: CM0FieldComps2;
+    CM1: CM1FieldComps1;
+    CM2: CM2FieldComps1;
+    CSP: CSPFieldComps1;
+    CSR: CSRFieldComps2;
+    CSS: CSSFieldComps1;
+    CTD: CTDFieldComps2;
+    CTI: CTIFieldComps1;
+    DB1: DB1FieldComps1;
+    DG1: DG1FieldComps4;
+    DRG: DRGFieldComps1;
+    DSC: DSCFieldComps1;
+    DSP: DSPFieldComps1;
+    EQL: EQLFieldComps1;
+    ERQ: ERQFieldComps1;
+    ERR: ERRFieldComps2;
+    EVN: EVNFieldComps4;
+    FAC: FACFieldComps2;
+    FHS: FHSFieldComps2;
+    FT1: FT1FieldComps4;
+    FTS: FTSFieldComps1;
+    GOL: GOLFieldComps2;
+    GT1: GT1FieldComps4;
+    IN1: IN1FieldComps4;
+    IN2: IN2FieldComps3;
+    IN3: IN3FieldComps3;
+    LCC: LCCFieldComps1;
+    LCH: LCHFieldComps1;
+    LDP: LDPFieldComps1;
+    LOC: LOCFieldComps2;
+    LRL: LRLFieldComps2;
+    MFA: MFAFieldComps2;
+    MFE: MFEFieldComps2;
+    MFI: MFIFieldComps2;
+    MRG: MRGFieldComps4;
+    MSA: MSAFieldComps2;
+    MSH: MSHFieldComps4;
+    NCK: NCKFieldComps2;
+    NK1: NK1FieldComps4;
+    NPU: NPUFieldComps3;
+    NSC: NSCFieldComps1;
+    NST: NSTFieldComps2;
+    NTE: NTEFieldComps2;
+    OBR: OBRFieldComps4;
+    OBX: OBXFieldComps4;
+    ODS: ODSFieldComps1;
+    ODT: ODTFieldComps1;
+    OM1: OM1FieldComps3;
+    OM2: OM2FieldComps3;
+    OM3: OM3FieldComps2;
+    OM4: OM4FieldComps2;
+    OM5: OM5FieldComps2;
+    OM6: OM6FieldComps2;
+    ORC: ORCFieldComps4;
+    PCR: PCRFieldComps1;
+    PD1: PD1FieldComps2;
+    PDC: PDCFieldComps2;
+    PEO: PEOFieldComps2;
+    PES: PESFieldComps2;
+    PID: PIDFieldComps4;
+    PR1: PR1FieldComps4;
+    PRA: PRAFieldComps3;
+    PRB: PRBFieldComps1;
+    PRC: PRCFieldComps2;
+    PRD: PRDFieldComps2;
+    PSH: PSHFieldComps1;
+    PTH: PTHFieldComps1;
+    PV1: PV1FieldComps4;
+    PV2: PV2FieldComps3;
+    QAK: QAKFieldComps1;
+    QRD: QRDFieldComps4;
+    QRF: QRFFieldComps4;
+    RDF: RDFFieldComps1;
+    RDT: RDTFieldComps1;
+    RF1: RF1FieldComps1;
+    RGS: RGSFieldComps1;
+    ROL: ROLFieldComps2;
+    RQ1: RQ1FieldComps1;
+    RQD: RQDFieldComps1;
+    RXA: RXAFieldComps3;
+    RXC: RXCFieldComps2;
+    RXD: RXDFieldComps3;
+    RXE: RXEFieldComps3;
+    RXG: RXGFieldComps3;
+    RXO: RXOFieldComps3;
+    RXR: RXRFieldComps2;
+    SCH: SCHFieldComps2;
+    SPR: SPRFieldComps1;
+    STF: STFFieldComps3;
+    TXA: TXAFieldComps2;
+    UB1: UB1FieldComps4;
+    UB2: UB2FieldComps2;
+    URD: URDFieldComps4;
+    URS: URSFieldComps4;
+    VAR: VARFieldComps2;
+    VTQ: VTQFieldComps1;
+    [segment: string]: { [field: number]: number };
+  };
+  '2.4': {
+    ABS: ABSFieldComps1;
+    ACC: ACCFieldComps4;
+    ADD: ADDFieldComps1;
+    AFF: AFFFieldComps1;
+    AIG: AIGFieldComps1;
+    AIL: AILFieldComps1;
+    AIP: AIPFieldComps3;
+    AIS: AISFieldComps2;
+    AL1: AL1FieldComps2;
+    APR: APRFieldComps1;
+    ARQ: ARQFieldComps3;
+    AUT: AUTFieldComps1;
+    BHS: BHSFieldComps2;
+    BLC: BLCFieldComps1;
+    BLG: BLGFieldComps5;
+    BTS: BTSFieldComps3;
+    CDM: CDMFieldComps2;
+    CM0: CM0FieldComps3;
+    CM1: CM1FieldComps1;
+    CM2: CM2FieldComps1;
+    CNS: CNSFieldComps2;
+    CSP: CSPFieldComps1;
+    CSR: CSRFieldComps3;
+    CSS: CSSFieldComps1;
+    CTD: CTDFieldComps3;
+    CTI: CTIFieldComps1;
+    DB1: DB1FieldComps2;
+    DG1: DG1FieldComps5;
+    DRG: DRGFieldComps2;
+    DSC: DSCFieldComps2;
+    DSP: DSPFieldComps1;
+    ECD: ECDFieldComps1;
+    ECR: ECRFieldComps1;
+    EDU: EDUFieldComps1;
+    EQL: EQLFieldComps1;
+    EQP: EQPFieldComps1;
+    EQU: EQUFieldComps1;
+    ERQ: ERQFieldComps1;
+    ERR: ERRFieldComps2;
+    EVN: EVNFieldComps5;
+    FAC: FACFieldComps3;
+    FHS: FHSFieldComps2;
+    FT1: FT1FieldComps5;
+    FTS: FTSFieldComps1;
+    GOL: GOLFieldComps3;
+    GP1: GP1FieldComps1;
+    GP2: GP2FieldComps1;
+    GT1: GT1FieldComps5;
+    IAM: IAMFieldComps1;
+    IN1: IN1FieldComps5;
+    IN2: IN2FieldComps4;
+    IN3: IN3FieldComps4;
+    INV: INVFieldComps1;
+    ISD: ISDFieldComps1;
+    LAN: LANFieldComps1;
+    LCC: LCCFieldComps2;
+    LCH: LCHFieldComps1;
+    LDP: LDPFieldComps2;
+    LOC: LOCFieldComps3;
+    LRL: LRLFieldComps2;
+    MFA: MFAFieldComps2;
+    MFE: MFEFieldComps2;
+    MFI: MFIFieldComps2;
+    MRG: MRGFieldComps5;
+    MSA: MSAFieldComps2;
+    MSH: MSHFieldComps5;
+    NCK: NCKFieldComps2;
+    NDS: NDSFieldComps1;
+    NK1: NK1FieldComps5;
+    NPU: NPUFieldComps3;
+    NSC: NSCFieldComps3;
+    NST: NSTFieldComps2;
+    NTE: NTEFieldComps2;
+    OBR: OBRFieldComps5;
+    OBX: OBXFieldComps5;
+    ODS: ODSFieldComps1;
+    ODT: ODTFieldComps1;
+    OM1: OM1FieldComps4;
+    OM2: OM2FieldComps3;
+    OM3: OM3FieldComps2;
+    OM4: OM4FieldComps2;
+    OM5: OM5FieldComps2;
+    OM6: OM6FieldComps2;
+    OM7: OM7FieldComps1;
+    ORC: ORCFieldComps5;
+    ORG: ORGFieldComps1;
+    PCR: PCRFieldComps1;
+    PD1: PD1FieldComps3;
+    PDA: PDAFieldComps1;
+    PDC: PDCFieldComps2;
+    PEO: PEOFieldComps3;
+    PES: PESFieldComps3;
+    PID: PIDFieldComps5;
+    PR1: PR1FieldComps5;
+    PRA: PRAFieldComps4;
+    PRB: PRBFieldComps1;
+    PRC: PRCFieldComps2;
+    PRD: PRDFieldComps3;
+    PSH: PSHFieldComps1;
+    PTH: PTHFieldComps1;
+    PV1: PV1FieldComps5;
+    PV2: PV2FieldComps4;
+    QAK: QAKFieldComps2;
+    QID: QIDFieldComps1;
+    QPD: QPDFieldComps1;
+    QRD: QRDFieldComps5;
+    QRF: QRFFieldComps5;
+    QRI: QRIFieldComps1;
+    RCP: RCPFieldComps1;
+    RDF: RDFFieldComps1;
+    RDT: RDTFieldComps1;
+    RF1: RF1FieldComps1;
+    RGS: RGSFieldComps1;
+    RMI: RMIFieldComps1;
+    ROL: ROLFieldComps3;
+    RQ1: RQ1FieldComps1;
+    RQD: RQDFieldComps1;
+    RXA: RXAFieldComps4;
+    RXC: RXCFieldComps3;
+    RXD: RXDFieldComps4;
+    RXE: RXEFieldComps4;
+    RXG: RXGFieldComps3;
+    RXO: RXOFieldComps4;
+    RXR: RXRFieldComps2;
+    SAC: SACFieldComps1;
+    SCH: SCHFieldComps3;
+    SID: SIDFieldComps1;
+    SPR: SPRFieldComps1;
+    STF: STFFieldComps4;
+    TCC: TCCFieldComps1;
+    TCD: TCDFieldComps1;
+    TXA: TXAFieldComps3;
+    UB1: UB1FieldComps4;
+    UB2: UB2FieldComps2;
+    URD: URDFieldComps5;
+    URS: URSFieldComps4;
+    VAR: VARFieldComps3;
+    VTQ: VTQFieldComps1;
+    [segment: string]: { [field: number]: number };
+  };
+  '2.5': {
+    ABS: ABSFieldComps2;
+    ACC: ACCFieldComps5;
+    ADD: ADDFieldComps1;
+    AFF: AFFFieldComps2;
+    AIG: AIGFieldComps1;
+    AIL: AILFieldComps2;
+    AIP: AIPFieldComps4;
+    AIS: AISFieldComps2;
+    AL1: AL1FieldComps3;
+    APR: APRFieldComps1;
+    ARQ: ARQFieldComps4;
+    AUT: AUTFieldComps1;
+    BHS: BHSFieldComps3;
+    BLC: BLCFieldComps1;
+    BLG: BLGFieldComps6;
+    BPO: BPOFieldComps1;
+    BPX: BPXFieldComps1;
+    BTS: BTSFieldComps3;
+    BTX: BTXFieldComps1;
+    CDM: CDMFieldComps3;
+    CER: CERFieldComps1;
+    CM0: CM0FieldComps4;
+    CM1: CM1FieldComps1;
+    CM2: CM2FieldComps1;
+    CNS: CNSFieldComps2;
+    CON: CONFieldComps1;
+    CSP: CSPFieldComps1;
+    CSR: CSRFieldComps4;
+    CSS: CSSFieldComps1;
+    CTD: CTDFieldComps4;
+    CTI: CTIFieldComps1;
+    DB1: DB1FieldComps3;
+    DG1: DG1FieldComps6;
+    DRG: DRGFieldComps2;
+    DSC: DSCFieldComps2;
+    DSP: DSPFieldComps1;
+    ECD: ECDFieldComps1;
+    ECR: ECRFieldComps1;
+    EDU: EDUFieldComps2;
+    EQL: EQLFieldComps1;
+    EQP: EQPFieldComps1;
+    EQU: EQUFieldComps1;
+    ERQ: ERQFieldComps1;
+    ERR: ERRFieldComps3;
+    EVN: EVNFieldComps6;
+    FAC: FACFieldComps4;
+    FHS: FHSFieldComps3;
+    FT1: FT1FieldComps6;
+    FTS: FTSFieldComps1;
+    GOL: GOLFieldComps4;
+    GP1: GP1FieldComps1;
+    GP2: GP2FieldComps1;
+    GT1: GT1FieldComps6;
+    IAM: IAMFieldComps2;
+    IIM: IIMFieldComps1;
+    IN1: IN1FieldComps6;
+    IN2: IN2FieldComps5;
+    IN3: IN3FieldComps5;
+    INV: INVFieldComps2;
+    IPC: IPCFieldComps1;
+    ISD: ISDFieldComps1;
+    LAN: LANFieldComps1;
+    LCC: LCCFieldComps3;
+    LCH: LCHFieldComps2;
+    LDP: LDPFieldComps3;
+    LOC: LOCFieldComps4;
+    LRL: LRLFieldComps3;
+    MFA: MFAFieldComps3;
+    MFE: MFEFieldComps2;
+    MFI: MFIFieldComps2;
+    MRG: MRGFieldComps6;
+    MSA: MSAFieldComps2;
+    MSH: MSHFieldComps6;
+    NCK: NCKFieldComps2;
+    NDS: NDSFieldComps1;
+    NK1: NK1FieldComps6;
+    NPU: NPUFieldComps4;
+    NSC: NSCFieldComps3;
+    NST: NSTFieldComps2;
+    NTE: NTEFieldComps2;
+    OBR: OBRFieldComps6;
+    OBX: OBXFieldComps6;
+    ODS: ODSFieldComps1;
+    ODT: ODTFieldComps1;
+    OM1: OM1FieldComps5;
+    OM2: OM2FieldComps4;
+    OM3: OM3FieldComps2;
+    OM4: OM4FieldComps3;
+    OM5: OM5FieldComps2;
+    OM6: OM6FieldComps2;
+    OM7: OM7FieldComps2;
+    ORC: ORCFieldComps6;
+    ORG: ORGFieldComps2;
+    OVR: OVRFieldComps1;
+    PCR: PCRFieldComps1;
+    PD1: PD1FieldComps4;
+    PDA: PDAFieldComps2;
+    PDC: PDCFieldComps3;
+    PEO: PEOFieldComps4;
+    PES: PESFieldComps4;
+    PID: PIDFieldComps6;
+    PR1: PR1FieldComps6;
+    PRA: PRAFieldComps4;
+    PRB: PRBFieldComps1;
+    PRC: PRCFieldComps2;
+    PRD: PRDFieldComps4;
+    PSH: PSHFieldComps1;
+    PTH: PTHFieldComps1;
+    PV1: PV1FieldComps6;
+    PV2: PV2FieldComps5;
+    QAK: QAKFieldComps2;
+    QID: QIDFieldComps1;
+    QPD: QPDFieldComps1;
+    QRD: QRDFieldComps6;
+    QRF: QRFFieldComps5;
+    QRI: QRIFieldComps1;
+    RCP: RCPFieldComps1;
+    RDF: RDFFieldComps1;
+    RDT: RDTFieldComps1;
+    RF1: RF1FieldComps1;
+    RGS: RGSFieldComps1;
+    RMI: RMIFieldComps1;
+    ROL: ROLFieldComps4;
+    RQ1: RQ1FieldComps1;
+    RQD: RQDFieldComps1;
+    RXA: RXAFieldComps5;
+    RXC: RXCFieldComps4;
+    RXD: RXDFieldComps5;
+    RXE: RXEFieldComps5;
+    RXG: RXGFieldComps4;
+    RXO: RXOFieldComps5;
+    RXR: RXRFieldComps3;
+    SAC: SACFieldComps2;
+    SCH: SCHFieldComps4;
+    SFT: SFTFieldComps1;
+    SID: SIDFieldComps1;
+    SPM: SPMFieldComps1;
+    SPR: SPRFieldComps1;
+    STF: STFFieldComps5;
+    TCC: TCCFieldComps1;
+    TCD: TCDFieldComps1;
+    TQ1: TQ1FieldComps1;
+    TQ2: TQ2FieldComps1;
+    TXA: TXAFieldComps4;
+    UB1: UB1FieldComps4;
+    UB2: UB2FieldComps2;
+    URD: URDFieldComps6;
+    URS: URSFieldComps4;
+    VAR: VARFieldComps4;
+    VTQ: VTQFieldComps1;
+    ED: EDFieldComps2;
+    [segment: string]: { [field: number]: number };
+  };
+  '2.5.1': {
+    ABS: ABSFieldComps2;
+    ACC: ACCFieldComps5;
+    ADD: ADDFieldComps1;
+    AFF: AFFFieldComps2;
+    AIG: AIGFieldComps1;
+    AIL: AILFieldComps2;
+    AIP: AIPFieldComps4;
+    AIS: AISFieldComps2;
+    AL1: AL1FieldComps3;
+    APR: APRFieldComps1;
+    ARQ: ARQFieldComps4;
+    AUT: AUTFieldComps1;
+    BHS: BHSFieldComps3;
+    BLC: BLCFieldComps1;
+    BLG: BLGFieldComps6;
+    BPO: BPOFieldComps1;
+    BPX: BPXFieldComps1;
+    BTS: BTSFieldComps3;
+    BTX: BTXFieldComps1;
+    CDM: CDMFieldComps3;
+    CER: CERFieldComps1;
+    CM0: CM0FieldComps4;
+    CM1: CM1FieldComps1;
+    CM2: CM2FieldComps1;
+    CNS: CNSFieldComps2;
+    CON: CONFieldComps1;
+    CSP: CSPFieldComps1;
+    CSR: CSRFieldComps4;
+    CSS: CSSFieldComps1;
+    CTD: CTDFieldComps4;
+    CTI: CTIFieldComps1;
+    DB1: DB1FieldComps3;
+    DG1: DG1FieldComps6;
+    DRG: DRGFieldComps2;
+    DSC: DSCFieldComps2;
+    DSP: DSPFieldComps1;
+    ECD: ECDFieldComps1;
+    ECR: ECRFieldComps1;
+    EDU: EDUFieldComps2;
+    EQL: EQLFieldComps1;
+    EQP: EQPFieldComps1;
+    EQU: EQUFieldComps1;
+    ERQ: ERQFieldComps1;
+    ERR: ERRFieldComps3;
+    EVN: EVNFieldComps6;
+    FAC: FACFieldComps4;
+    FHS: FHSFieldComps3;
+    FT1: FT1FieldComps6;
+    FTS: FTSFieldComps1;
+    GOL: GOLFieldComps4;
+    GP1: GP1FieldComps1;
+    GP2: GP2FieldComps1;
+    GT1: GT1FieldComps6;
+    IAM: IAMFieldComps2;
+    IIM: IIMFieldComps1;
+    IN1: IN1FieldComps6;
+    IN2: IN2FieldComps5;
+    IN3: IN3FieldComps5;
+    INV: INVFieldComps2;
+    IPC: IPCFieldComps1;
+    ISD: ISDFieldComps1;
+    LAN: LANFieldComps1;
+    LCC: LCCFieldComps3;
+    LCH: LCHFieldComps2;
+    LDP: LDPFieldComps3;
+    LOC: LOCFieldComps4;
+    LRL: LRLFieldComps3;
+    MFA: MFAFieldComps3;
+    MFE: MFEFieldComps2;
+    MFI: MFIFieldComps2;
+    MRG: MRGFieldComps6;
+    MSA: MSAFieldComps3;
+    MSH: MSHFieldComps6;
+    NCK: NCKFieldComps2;
+    NDS: NDSFieldComps1;
+    NK1: NK1FieldComps6;
+    NPU: NPUFieldComps4;
+    NSC: NSCFieldComps3;
+    NST: NSTFieldComps2;
+    NTE: NTEFieldComps2;
+    OBR: OBRFieldComps7;
+    OBX: OBXFieldComps7;
+    ODS: ODSFieldComps1;
+    ODT: ODTFieldComps1;
+    OM1: OM1FieldComps5;
+    OM2: OM2FieldComps4;
+    OM3: OM3FieldComps2;
+    OM4: OM4FieldComps3;
+    OM5: OM5FieldComps2;
+    OM6: OM6FieldComps2;
+    OM7: OM7FieldComps2;
+    ORC: ORCFieldComps7;
+    ORG: ORGFieldComps2;
+    OVR: OVRFieldComps1;
+    PCR: PCRFieldComps1;
+    PD1: PD1FieldComps4;
+    PDA: PDAFieldComps2;
+    PDC: PDCFieldComps3;
+    PEO: PEOFieldComps4;
+    PES: PESFieldComps4;
+    PID: PIDFieldComps6;
+    PR1: PR1FieldComps6;
+    PRA: PRAFieldComps4;
+    PRB: PRBFieldComps1;
+    PRC: PRCFieldComps2;
+    PRD: PRDFieldComps4;
+    PSH: PSHFieldComps1;
+    PTH: PTHFieldComps1;
+    PV1: PV1FieldComps6;
+    PV2: PV2FieldComps5;
+    QAK: QAKFieldComps2;
+    QID: QIDFieldComps1;
+    QPD: QPDFieldComps1;
+    QRD: QRDFieldComps6;
+    QRF: QRFFieldComps5;
+    QRI: QRIFieldComps1;
+    RCP: RCPFieldComps1;
+    RDF: RDFFieldComps1;
+    RDT: RDTFieldComps1;
+    RF1: RF1FieldComps1;
+    RGS: RGSFieldComps1;
+    RMI: RMIFieldComps1;
+    ROL: ROLFieldComps4;
+    RQ1: RQ1FieldComps1;
+    RQD: RQDFieldComps1;
+    RXA: RXAFieldComps5;
+    RXC: RXCFieldComps4;
+    RXD: RXDFieldComps5;
+    RXE: RXEFieldComps5;
+    RXG: RXGFieldComps4;
+    RXO: RXOFieldComps5;
+    RXR: RXRFieldComps3;
+    SAC: SACFieldComps2;
+    SCH: SCHFieldComps4;
+    SFT: SFTFieldComps1;
+    SID: SIDFieldComps1;
+    SPM: SPMFieldComps1;
+    SPR: SPRFieldComps1;
+    STF: STFFieldComps5;
+    TCC: TCCFieldComps1;
+    TCD: TCDFieldComps1;
+    TQ1: TQ1FieldComps1;
+    TQ2: TQ2FieldComps1;
+    TXA: TXAFieldComps4;
+    UB1: UB1FieldComps4;
+    UB2: UB2FieldComps2;
+    URD: URDFieldComps6;
+    URS: URSFieldComps4;
+    VAR: VARFieldComps4;
+    VTQ: VTQFieldComps1;
+    ED: EDFieldComps2;
+    [segment: string]: { [field: number]: number };
+  };
+  '2.6': {
+    ABS: ABSFieldComps3;
+    ACC: ACCFieldComps6;
+    ADD: ADDFieldComps1;
+    ADJ: ADJFieldComps1;
+    AFF: AFFFieldComps3;
+    AIG: AIGFieldComps2;
+    AIL: AILFieldComps3;
+    AIP: AIPFieldComps5;
+    AIS: AISFieldComps3;
+    AL1: AL1FieldComps4;
+    APR: APRFieldComps1;
+    ARQ: ARQFieldComps5;
+    ARV: ARVFieldComps1;
+    AUT: AUTFieldComps2;
+    BHS: BHSFieldComps4;
+    BLC: BLCFieldComps2;
+    BLG: BLGFieldComps6;
+    BPO: BPOFieldComps2;
+    BPX: BPXFieldComps2;
+    BTS: BTSFieldComps3;
+    BTX: BTXFieldComps2;
+    CDM: CDMFieldComps4;
+    CER: CERFieldComps2;
+    CM0: CM0FieldComps5;
+    CM1: CM1FieldComps2;
+    CM2: CM2FieldComps2;
+    CNS: CNSFieldComps3;
+    CON: CONFieldComps2;
+    CSP: CSPFieldComps2;
+    CSR: CSRFieldComps5;
+    CSS: CSSFieldComps2;
+    CTD: CTDFieldComps5;
+    CTI: CTIFieldComps2;
+    DB1: DB1FieldComps3;
+    DG1: DG1FieldComps7;
+    DMI: DMIFieldComps1;
+    DRG: DRGFieldComps3;
+    DSC: DSCFieldComps2;
+    DSP: DSPFieldComps1;
+    ECD: ECDFieldComps2;
+    ECR: ECRFieldComps2;
+    ED: EDFieldComps4;
+    EDU: EDUFieldComps3;
+    EQP: EQPFieldComps2;
+    EQU: EQUFieldComps2;
+    ERR: ERRFieldComps4;
+    EVN: EVNFieldComps7;
+    FAC: FACFieldComps5;
+    FHS: FHSFieldComps4;
+    FT1: FT1FieldComps7;
+    FTS: FTSFieldComps1;
+    GOL: GOLFieldComps5;
+    GP1: GP1FieldComps1;
+    GP2: GP2FieldComps2;
+    GT1: GT1FieldComps7;
+    Hxx: HxxFieldComps1;
+    IAM: IAMFieldComps3;
+    IIM: IIMFieldComps2;
+    ILT: ILTFieldComps1;
+    IN1: IN1FieldComps7;
+    IN2: IN2FieldComps6;
+    IN3: IN3FieldComps6;
+    INV: INVFieldComps3;
+    IPC: IPCFieldComps2;
+    IPR: IPRFieldComps1;
+    ISD: ISDFieldComps2;
+    ITM: ITMFieldComps1;
+    IVC: IVCFieldComps1;
+    IVT: IVTFieldComps1;
+    LAN: LANFieldComps2;
+    LCC: LCCFieldComps4;
+    LCH: LCHFieldComps3;
+    LDP: LDPFieldComps4;
+    LOC: LOCFieldComps5;
+    LRL: LRLFieldComps4;
+    MFA: MFAFieldComps4;
+    MFE: MFEFieldComps3;
+    MFI: MFIFieldComps3;
+    MRG: MRGFieldComps6;
+    MSA: MSAFieldComps4;
+    MSH: MSHFieldComps7;
+    NCK: NCKFieldComps3;
+    NDS: NDSFieldComps2;
+    NK1: NK1FieldComps7;
+    NPU: NPUFieldComps4;
+    NSC: NSCFieldComps3;
+    NST: NSTFieldComps3;
+    NTE: NTEFieldComps3;
+    OBR: OBRFieldComps8;
+    OBX: OBXFieldComps8;
+    ODS: ODSFieldComps2;
+    ODT: ODTFieldComps2;
+    OM1: OM1FieldComps6;
+    OM2: OM2FieldComps5;
+    OM3: OM3FieldComps3;
+    OM4: OM4FieldComps4;
+    OM5: OM5FieldComps3;
+    OM6: OM6FieldComps2;
+    OM7: OM7FieldComps3;
+    ORC: ORCFieldComps8;
+    ORG: ORGFieldComps3;
+    OVR: OVRFieldComps1;
+    PCE: PCEFieldComps1;
+    PCR: PCRFieldComps2;
+    PD1: PD1FieldComps5;
+    PDA: PDAFieldComps3;
+    PDC: PDCFieldComps4;
+    PEO: PEOFieldComps5;
+    PES: PESFieldComps5;
+    PID: PIDFieldComps7;
+    PKG: PKGFieldComps1;
+    PMT: PMTFieldComps1;
+    PR1: PR1FieldComps7;
+    PRA: PRAFieldComps5;
+    PRB: PRBFieldComps2;
+    PRC: PRCFieldComps3;
+    PRD: PRDFieldComps5;
+    PSG: PSGFieldComps1;
+    PSH: PSHFieldComps2;
+    PSL: PSLFieldComps1;
+    PSS: PSSFieldComps1;
+    PTH: PTHFieldComps2;
+    PV1: PV1FieldComps7;
+    PV2: PV2FieldComps6;
+    PYE: PYEFieldComps1;
+    QAK: QAKFieldComps3;
+    QID: QIDFieldComps2;
+    QPD: QPDFieldComps2;
+    QRD: QRDFieldComps7;
+    QRF: QRFFieldComps6;
+    QRI: QRIFieldComps2;
+    RCP: RCPFieldComps2;
+    RDF: RDFFieldComps1;
+    RDT: RDTFieldComps1;
+    REL: RELFieldComps1;
+    RF1: RF1FieldComps2;
+    RFI: RFIFieldComps1;
+    RGS: RGSFieldComps2;
+    RMI: RMIFieldComps2;
+    ROL: ROLFieldComps5;
+    RQ1: RQ1FieldComps2;
+    RQD: RQDFieldComps2;
+    RXA: RXAFieldComps6;
+    RXC: RXCFieldComps5;
+    RXD: RXDFieldComps6;
+    RXE: RXEFieldComps6;
+    RXG: RXGFieldComps5;
+    RXO: RXOFieldComps6;
+    RXR: RXRFieldComps4;
+    SAC: SACFieldComps3;
+    SCD: SCDFieldComps1;
+    SCH: SCHFieldComps5;
+    SCP: SCPFieldComps1;
+    SDD: SDDFieldComps1;
+    SFT: SFTFieldComps2;
+    SID: SIDFieldComps2;
+    SLT: SLTFieldComps1;
+    SPM: SPMFieldComps2;
+    STF: STFFieldComps6;
+    STZ: STZFieldComps1;
+    TCC: TCCFieldComps2;
+    TCD: TCDFieldComps2;
+    TQ1: TQ1FieldComps2;
+    TQ2: TQ2FieldComps1;
+    TXA: TXAFieldComps5;
+    UAC: UACFieldComps1;
+    UB1: UB1FieldComps5;
+    UB2: UB2FieldComps2;
+    URD: URDFieldComps7;
+    URS: URSFieldComps5;
+    VAR: VARFieldComps5;
+    VND: VNDFieldComps1;
+    ZL7: ZL7FieldComps1;
+    Zxx: ZxxFieldComps1;
+    [segment: string]: { [field: number]: number };
+  };
+  '2.7': {
+    ABS: ABSFieldComps4;
+    ACC: ACCFieldComps7;
+    ADD: ADDFieldComps1;
+    ADJ: ADJFieldComps2;
+    AFF: AFFFieldComps4;
+    AIG: AIGFieldComps3;
+    AIL: AILFieldComps4;
+    AIP: AIPFieldComps6;
+    AIS: AISFieldComps4;
+    AL1: AL1FieldComps5;
+    APR: APRFieldComps1;
+    ARQ: ARQFieldComps6;
+    ARV: ARVFieldComps2;
+    AUT: AUTFieldComps3;
+    BHS: BHSFieldComps4;
+    BLC: BLCFieldComps3;
+    BLG: BLGFieldComps7;
+    BPO: BPOFieldComps3;
+    BPX: BPXFieldComps3;
+    BTS: BTSFieldComps3;
+    BTX: BTXFieldComps3;
+    CDM: CDMFieldComps5;
+    CER: CERFieldComps3;
+    CM0: CM0FieldComps6;
+    CM1: CM1FieldComps3;
+    CM2: CM2FieldComps3;
+    CNS: CNSFieldComps4;
+    CON: CONFieldComps3;
+    CSP: CSPFieldComps3;
+    CSR: CSRFieldComps6;
+    CSS: CSSFieldComps3;
+    CTD: CTDFieldComps6;
+    CTI: CTIFieldComps3;
+    DB1: DB1FieldComps4;
+    DG1: DG1FieldComps8;
+    DMI: DMIFieldComps2;
+    DRG: DRGFieldComps4;
+    DSC: DSCFieldComps2;
+    DSP: DSPFieldComps1;
+    ECD: ECDFieldComps3;
+    ECR: ECRFieldComps3;
+    EDU: EDUFieldComps4;
+    EQP: EQPFieldComps3;
+    EQU: EQUFieldComps3;
+    ERR: ERRFieldComps5;
+    EVN: EVNFieldComps8;
+    FAC: FACFieldComps6;
+    FHS: FHSFieldComps4;
+    FT1: FT1FieldComps8;
+    FTS: FTSFieldComps1;
+    GOL: GOLFieldComps6;
+    GP1: GP1FieldComps2;
+    GP2: GP2FieldComps3;
+    GT1: GT1FieldComps8;
+    Hxx: HxxFieldComps1;
+    IAM: IAMFieldComps4;
+    IAR: IARFieldComps1;
+    IIM: IIMFieldComps3;
+    ILT: ILTFieldComps2;
+    IN1: IN1FieldComps8;
+    IN2: IN2FieldComps7;
+    IN3: IN3FieldComps7;
+    INV: INVFieldComps4;
+    IPC: IPCFieldComps3;
+    IPR: IPRFieldComps2;
+    ISD: ISDFieldComps3;
+    ITM: ITMFieldComps2;
+    IVC: IVCFieldComps2;
+    IVT: IVTFieldComps2;
+    LAN: LANFieldComps3;
+    LCC: LCCFieldComps5;
+    LCH: LCHFieldComps4;
+    LDP: LDPFieldComps5;
+    LOC: LOCFieldComps6;
+    LRL: LRLFieldComps5;
+    MFA: MFAFieldComps5;
+    MFE: MFEFieldComps4;
+    MFI: MFIFieldComps4;
+    MRG: MRGFieldComps7;
+    MSA: MSAFieldComps5;
+    MSH: MSHFieldComps8;
+    NCK: NCKFieldComps3;
+    NDS: NDSFieldComps3;
+    NK1: NK1FieldComps8;
+    NPU: NPUFieldComps5;
+    NSC: NSCFieldComps4;
+    NST: NSTFieldComps3;
+    NTE: NTEFieldComps4;
+    OBR: OBRFieldComps9;
+    OBX: OBXFieldComps9;
+    ODS: ODSFieldComps3;
+    ODT: ODTFieldComps3;
+    OM1: OM1FieldComps7;
+    OM2: OM2FieldComps6;
+    OM3: OM3FieldComps4;
+    OM4: OM4FieldComps5;
+    OM5: OM5FieldComps4;
+    OM6: OM6FieldComps2;
+    OM7: OM7FieldComps4;
+    ORC: ORCFieldComps9;
+    ORG: ORGFieldComps4;
+    OVR: OVRFieldComps2;
+    PAC: PACFieldComps1;
+    PCE: PCEFieldComps2;
+    PCR: PCRFieldComps3;
+    PD1: PD1FieldComps6;
+    PDA: PDAFieldComps4;
+    PDC: PDCFieldComps5;
+    PEO: PEOFieldComps6;
+    PES: PESFieldComps6;
+    PID: PIDFieldComps8;
+    PKG: PKGFieldComps2;
+    PMT: PMTFieldComps2;
+    PR1: PR1FieldComps8;
+    PRA: PRAFieldComps6;
+    PRB: PRBFieldComps3;
+    PRC: PRCFieldComps4;
+    PRD: PRDFieldComps6;
+    PRT: PRTFieldComps1;
+    PSG: PSGFieldComps1;
+    PSH: PSHFieldComps2;
+    PSL: PSLFieldComps2;
+    PSS: PSSFieldComps1;
+    PTH: PTHFieldComps3;
+    PV1: PV1FieldComps8;
+    PV2: PV2FieldComps7;
+    PYE: PYEFieldComps2;
+    QAK: QAKFieldComps4;
+    QID: QIDFieldComps3;
+    QPD: QPDFieldComps3;
+    QRD: QRDFieldComps8;
+    QRF: QRFFieldComps7;
+    QRI: QRIFieldComps3;
+    RCP: RCPFieldComps3;
+    RDF: RDFFieldComps1;
+    RDT: RDTFieldComps1;
+    REL: RELFieldComps2;
+    RF1: RF1FieldComps3;
+    RFI: RFIFieldComps1;
+    RGS: RGSFieldComps3;
+    RMI: RMIFieldComps3;
+    ROL: ROLFieldComps6;
+    RQ1: RQ1FieldComps3;
+    RQD: RQDFieldComps3;
+    RXA: RXAFieldComps7;
+    RXC: RXCFieldComps6;
+    RXD: RXDFieldComps7;
+    RXE: RXEFieldComps7;
+    RXG: RXGFieldComps6;
+    RXO: RXOFieldComps7;
+    RXR: RXRFieldComps5;
+    SAC: SACFieldComps4;
+    SCD: SCDFieldComps2;
+    SCH: SCHFieldComps6;
+    SCP: SCPFieldComps2;
+    SDD: SDDFieldComps2;
+    SFT: SFTFieldComps3;
+    SHP: SHPFieldComps1;
+    SID: SIDFieldComps3;
+    SLT: SLTFieldComps1;
+    SPM: SPMFieldComps3;
+    STF: STFFieldComps7;
+    STZ: STZFieldComps2;
+    TCC: TCCFieldComps3;
+    TCD: TCDFieldComps3;
+    TQ1: TQ1FieldComps3;
+    TQ2: TQ2FieldComps1;
+    TXA: TXAFieldComps6;
+    UAC: UACFieldComps2;
+    UB1: UB1FieldComps6;
+    UB2: UB2FieldComps3;
+    URD: URDFieldComps8;
+    URS: URSFieldComps6;
+    VAR: VARFieldComps6;
+    VND: VNDFieldComps2;
+    ZL7: ZL7FieldComps1;
+    Zxx: ZxxFieldComps1;
+    [segment: string]: { [field: number]: number };
+  };
+  '2.7.1': {
+    ABS: ABSFieldComps4;
+    ACC: ACCFieldComps7;
+    ADD: ADDFieldComps1;
+    ADJ: ADJFieldComps2;
+    AFF: AFFFieldComps4;
+    AIG: AIGFieldComps3;
+    AIL: AILFieldComps4;
+    AIP: AIPFieldComps6;
+    AIS: AISFieldComps4;
+    AL1: AL1FieldComps5;
+    APR: APRFieldComps1;
+    ARQ: ARQFieldComps6;
+    ARV: ARVFieldComps2;
+    AUT: AUTFieldComps3;
+    BHS: BHSFieldComps4;
+    BLC: BLCFieldComps3;
+    BLG: BLGFieldComps7;
+    BPO: BPOFieldComps3;
+    BPX: BPXFieldComps3;
+    BTS: BTSFieldComps3;
+    BTX: BTXFieldComps3;
+    CDM: CDMFieldComps5;
+    CER: CERFieldComps3;
+    CM0: CM0FieldComps6;
+    CM1: CM1FieldComps3;
+    CM2: CM2FieldComps3;
+    CNS: CNSFieldComps4;
+    CON: CONFieldComps3;
+    CSP: CSPFieldComps3;
+    CSR: CSRFieldComps6;
+    CSS: CSSFieldComps3;
+    CTD: CTDFieldComps6;
+    CTI: CTIFieldComps3;
+    DB1: DB1FieldComps4;
+    DG1: DG1FieldComps8;
+    DMI: DMIFieldComps2;
+    DRG: DRGFieldComps4;
+    DSC: DSCFieldComps2;
+    DSP: DSPFieldComps1;
+    ECD: ECDFieldComps3;
+    ECR: ECRFieldComps3;
+    EDU: EDUFieldComps4;
+    EQP: EQPFieldComps3;
+    EQU: EQUFieldComps3;
+    ERR: ERRFieldComps5;
+    EVN: EVNFieldComps8;
+    FAC: FACFieldComps6;
+    FHS: FHSFieldComps4;
+    FT1: FT1FieldComps8;
+    FTS: FTSFieldComps1;
+    GOL: GOLFieldComps6;
+    GP1: GP1FieldComps2;
+    GP2: GP2FieldComps3;
+    GT1: GT1FieldComps8;
+    Hxx: HxxFieldComps1;
+    IAM: IAMFieldComps4;
+    IAR: IARFieldComps1;
+    IIM: IIMFieldComps3;
+    ILT: ILTFieldComps2;
+    IN1: IN1FieldComps8;
+    IN2: IN2FieldComps7;
+    IN3: IN3FieldComps7;
+    INV: INVFieldComps4;
+    IPC: IPCFieldComps3;
+    IPR: IPRFieldComps2;
+    ISD: ISDFieldComps3;
+    ITM: ITMFieldComps2;
+    IVC: IVCFieldComps2;
+    IVT: IVTFieldComps2;
+    LAN: LANFieldComps3;
+    LCC: LCCFieldComps5;
+    LCH: LCHFieldComps4;
+    LDP: LDPFieldComps5;
+    LOC: LOCFieldComps6;
+    LRL: LRLFieldComps5;
+    MFA: MFAFieldComps5;
+    MFE: MFEFieldComps4;
+    MFI: MFIFieldComps4;
+    MRG: MRGFieldComps7;
+    MSA: MSAFieldComps5;
+    MSH: MSHFieldComps8;
+    NCK: NCKFieldComps3;
+    NDS: NDSFieldComps3;
+    NK1: NK1FieldComps8;
+    NPU: NPUFieldComps5;
+    NSC: NSCFieldComps4;
+    NST: NSTFieldComps3;
+    NTE: NTEFieldComps4;
+    OBR: OBRFieldComps10;
+    OBX: OBXFieldComps9;
+    ODS: ODSFieldComps3;
+    ODT: ODTFieldComps3;
+    OM1: OM1FieldComps7;
+    OM2: OM2FieldComps6;
+    OM3: OM3FieldComps4;
+    OM4: OM4FieldComps5;
+    OM5: OM5FieldComps4;
+    OM6: OM6FieldComps2;
+    OM7: OM7FieldComps4;
+    ORC: ORCFieldComps9;
+    ORG: ORGFieldComps4;
+    OVR: OVRFieldComps2;
+    PAC: PACFieldComps1;
+    PCE: PCEFieldComps2;
+    PCR: PCRFieldComps3;
+    PD1: PD1FieldComps6;
+    PDA: PDAFieldComps4;
+    PDC: PDCFieldComps5;
+    PEO: PEOFieldComps6;
+    PES: PESFieldComps6;
+    PID: PIDFieldComps8;
+    PKG: PKGFieldComps2;
+    PMT: PMTFieldComps2;
+    PR1: PR1FieldComps8;
+    PRA: PRAFieldComps6;
+    PRB: PRBFieldComps3;
+    PRC: PRCFieldComps4;
+    PRD: PRDFieldComps6;
+    PRT: PRTFieldComps1;
+    PSG: PSGFieldComps1;
+    PSH: PSHFieldComps2;
+    PSL: PSLFieldComps2;
+    PSS: PSSFieldComps1;
+    PTH: PTHFieldComps3;
+    PV1: PV1FieldComps8;
+    PV2: PV2FieldComps7;
+    PYE: PYEFieldComps2;
+    QAK: QAKFieldComps4;
+    QID: QIDFieldComps3;
+    QPD: QPDFieldComps3;
+    QRD: QRDFieldComps8;
+    QRF: QRFFieldComps7;
+    QRI: QRIFieldComps3;
+    RCP: RCPFieldComps3;
+    RDF: RDFFieldComps1;
+    RDT: RDTFieldComps1;
+    REL: RELFieldComps2;
+    RF1: RF1FieldComps3;
+    RFI: RFIFieldComps1;
+    RGS: RGSFieldComps3;
+    RMI: RMIFieldComps3;
+    ROL: ROLFieldComps6;
+    RQ1: RQ1FieldComps3;
+    RQD: RQDFieldComps3;
+    RXA: RXAFieldComps7;
+    RXC: RXCFieldComps6;
+    RXD: RXDFieldComps7;
+    RXE: RXEFieldComps7;
+    RXG: RXGFieldComps6;
+    RXO: RXOFieldComps7;
+    RXR: RXRFieldComps5;
+    SAC: SACFieldComps4;
+    SCD: SCDFieldComps2;
+    SCH: SCHFieldComps6;
+    SCP: SCPFieldComps2;
+    SDD: SDDFieldComps2;
+    SFT: SFTFieldComps3;
+    SHP: SHPFieldComps1;
+    SID: SIDFieldComps3;
+    SLT: SLTFieldComps1;
+    SPM: SPMFieldComps3;
+    STF: STFFieldComps7;
+    STZ: STZFieldComps2;
+    TCC: TCCFieldComps3;
+    TCD: TCDFieldComps3;
+    TQ1: TQ1FieldComps3;
+    TQ2: TQ2FieldComps1;
+    TXA: TXAFieldComps6;
+    UAC: UACFieldComps2;
+    UB1: UB1FieldComps6;
+    UB2: UB2FieldComps3;
+    URD: URDFieldComps8;
+    URS: URSFieldComps6;
+    VAR: VARFieldComps6;
+    VND: VNDFieldComps2;
+    ZL7: ZL7FieldComps1;
+    Zxx: ZxxFieldComps1;
+    [segment: string]: { [field: number]: number };
+  };
+  '2.8': {
+    ABS: ABSFieldComps4;
+    ACC: ACCFieldComps8;
+    ADD: ADDFieldComps1;
+    ADJ: ADJFieldComps3;
+    AFF: AFFFieldComps5;
+    AIG: AIGFieldComps3;
+    AIL: AILFieldComps4;
+    AIP: AIPFieldComps6;
+    AIS: AISFieldComps4;
+    AL1: AL1FieldComps5;
+    APR: APRFieldComps1;
+    ARQ: ARQFieldComps7;
+    ARV: ARVFieldComps2;
+    AUT: AUTFieldComps4;
+    BHS: BHSFieldComps4;
+    BLC: BLCFieldComps3;
+    BLG: BLGFieldComps7;
+    BPO: BPOFieldComps3;
+    BPX: BPXFieldComps4;
+    BTS: BTSFieldComps3;
+    BTX: BTXFieldComps4;
+    BUI: BUIFieldComps1;
+    CDM: CDMFieldComps6;
+    CDO: CDOFieldComps1;
+    CER: CERFieldComps4;
+    CM0: CM0FieldComps6;
+    CM1: CM1FieldComps3;
+    CM2: CM2FieldComps3;
+    CNS: CNSFieldComps4;
+    CON: CONFieldComps3;
+    CSP: CSPFieldComps3;
+    CSR: CSRFieldComps6;
+    CSS: CSSFieldComps3;
+    CTD: CTDFieldComps6;
+    CTI: CTIFieldComps3;
+    DB1: DB1FieldComps4;
+    DG1: DG1FieldComps8;
+    DMI: DMIFieldComps2;
+    DON: DONFieldComps1;
+    DRG: DRGFieldComps4;
+    DSC: DSCFieldComps2;
+    DSP: DSPFieldComps1;
+    ECD: ECDFieldComps3;
+    ECR: ECRFieldComps3;
+    EDU: EDUFieldComps5;
+    EQP: EQPFieldComps3;
+    EQU: EQUFieldComps3;
+    ERR: ERRFieldComps5;
+    EVN: EVNFieldComps8;
+    FAC: FACFieldComps6;
+    FHS: FHSFieldComps4;
+    FT1: FT1FieldComps9;
+    FTS: FTSFieldComps1;
+    GOL: GOLFieldComps6;
+    GP1: GP1FieldComps2;
+    GP2: GP2FieldComps3;
+    GT1: GT1FieldComps9;
+    Hxx: HxxFieldComps1;
+    IAM: IAMFieldComps5;
+    IAR: IARFieldComps1;
+    IIM: IIMFieldComps3;
+    ILT: ILTFieldComps2;
+    IN1: IN1FieldComps9;
+    IN2: IN2FieldComps8;
+    IN3: IN3FieldComps8;
+    INV: INVFieldComps4;
+    IPC: IPCFieldComps3;
+    IPR: IPRFieldComps2;
+    ISD: ISDFieldComps3;
+    ITM: ITMFieldComps3;
+    IVC: IVCFieldComps3;
+    IVT: IVTFieldComps2;
+    LAN: LANFieldComps3;
+    LCC: LCCFieldComps5;
+    LCH: LCHFieldComps4;
+    LDP: LDPFieldComps5;
+    LOC: LOCFieldComps7;
+    LRL: LRLFieldComps6;
+    MFA: MFAFieldComps5;
+    MFE: MFEFieldComps4;
+    MFI: MFIFieldComps4;
+    MRG: MRGFieldComps7;
+    MSA: MSAFieldComps5;
+    MSH: MSHFieldComps9;
+    NCK: NCKFieldComps3;
+    NDS: NDSFieldComps3;
+    NK1: NK1FieldComps9;
+    NPU: NPUFieldComps5;
+    NSC: NSCFieldComps4;
+    NST: NSTFieldComps3;
+    NTE: NTEFieldComps4;
+    OBR: OBRFieldComps10;
+    OBX: OBXFieldComps10;
+    ODS: ODSFieldComps3;
+    ODT: ODTFieldComps3;
+    OM1: OM1FieldComps8;
+    OM2: OM2FieldComps6;
+    OM3: OM3FieldComps4;
+    OM4: OM4FieldComps6;
+    OM5: OM5FieldComps4;
+    OM6: OM6FieldComps2;
+    OM7: OM7FieldComps4;
+    ORC: ORCFieldComps10;
+    ORG: ORGFieldComps4;
+    OVR: OVRFieldComps2;
+    PAC: PACFieldComps1;
+    PCE: PCEFieldComps2;
+    PCR: PCRFieldComps3;
+    PD1: PD1FieldComps7;
+    PDA: PDAFieldComps4;
+    PDC: PDCFieldComps6;
+    PEO: PEOFieldComps6;
+    PES: PESFieldComps7;
+    PID: PIDFieldComps8;
+    PKG: PKGFieldComps3;
+    PMT: PMTFieldComps3;
+    PR1: PR1FieldComps8;
+    PRA: PRAFieldComps6;
+    PRB: PRBFieldComps3;
+    PRC: PRCFieldComps4;
+    PRD: PRDFieldComps7;
+    PRT: PRTFieldComps2;
+    PSG: PSGFieldComps1;
+    PSH: PSHFieldComps2;
+    PSL: PSLFieldComps2;
+    PSS: PSSFieldComps1;
+    PTH: PTHFieldComps3;
+    PV1: PV1FieldComps8;
+    PV2: PV2FieldComps8;
+    PYE: PYEFieldComps3;
+    QAK: QAKFieldComps4;
+    QID: QIDFieldComps3;
+    QPD: QPDFieldComps3;
+    QRD: QRDFieldComps8;
+    QRF: QRFFieldComps7;
+    QRI: QRIFieldComps3;
+    RCP: RCPFieldComps3;
+    RDF: RDFFieldComps1;
+    RDT: RDTFieldComps1;
+    REL: RELFieldComps3;
+    RF1: RF1FieldComps4;
+    RFI: RFIFieldComps1;
+    RGS: RGSFieldComps3;
+    RMI: RMIFieldComps3;
+    ROL: ROLFieldComps7;
+    RQ1: RQ1FieldComps3;
+    RQD: RQDFieldComps3;
+    RXA: RXAFieldComps8;
+    RXC: RXCFieldComps7;
+    RXD: RXDFieldComps8;
+    RXE: RXEFieldComps7;
+    RXG: RXGFieldComps7;
+    RXO: RXOFieldComps8;
+    RXR: RXRFieldComps5;
+    RXV: RXVFieldComps1;
+    SAC: SACFieldComps4;
+    SCD: SCDFieldComps2;
+    SCH: SCHFieldComps7;
+    SCP: SCPFieldComps2;
+    SDD: SDDFieldComps2;
+    SFT: SFTFieldComps4;
+    SGH: SGHFieldComps1;
+    SGT: SGTFieldComps1;
+    SHP: SHPFieldComps1;
+    SID: SIDFieldComps3;
+    SLT: SLTFieldComps1;
+    SPM: SPMFieldComps3;
+    STF: STFFieldComps7;
+    STZ: STZFieldComps2;
+    TCC: TCCFieldComps4;
+    TCD: TCDFieldComps3;
+    TQ1: TQ1FieldComps3;
+    TQ2: TQ2FieldComps1;
+    TXA: TXAFieldComps6;
+    UAC: UACFieldComps2;
+    UB1: UB1FieldComps6;
+    UB2: UB2FieldComps3;
+    URD: URDFieldComps8;
+    URS: URSFieldComps6;
+    VAR: VARFieldComps6;
+    VND: VNDFieldComps2;
+    ZL7: ZL7FieldComps1;
+    Zxx: ZxxFieldComps1;
+    [segment: string]: { [field: number]: number };
+  };
+  '2.8.1': {
+    ABS: ABSFieldComps4;
+    ACC: ACCFieldComps8;
+    ADD: ADDFieldComps1;
+    ADJ: ADJFieldComps3;
+    AFF: AFFFieldComps5;
+    AIG: AIGFieldComps3;
+    AIL: AILFieldComps4;
+    AIP: AIPFieldComps6;
+    AIS: AISFieldComps4;
+    AL1: AL1FieldComps5;
+    APR: APRFieldComps1;
+    ARQ: ARQFieldComps7;
+    ARV: ARVFieldComps2;
+    AUT: AUTFieldComps4;
+    BHS: BHSFieldComps4;
+    BLC: BLCFieldComps3;
+    BLG: BLGFieldComps7;
+    BPO: BPOFieldComps3;
+    BPX: BPXFieldComps4;
+    BTS: BTSFieldComps3;
+    BTX: BTXFieldComps4;
+    BUI: BUIFieldComps1;
+    CDM: CDMFieldComps6;
+    CDO: CDOFieldComps1;
+    CER: CERFieldComps4;
+    CM0: CM0FieldComps6;
+    CM1: CM1FieldComps3;
+    CM2: CM2FieldComps3;
+    CNS: CNSFieldComps4;
+    CON: CONFieldComps3;
+    CSP: CSPFieldComps3;
+    CSR: CSRFieldComps6;
+    CSS: CSSFieldComps3;
+    CTD: CTDFieldComps6;
+    CTI: CTIFieldComps3;
+    DB1: DB1FieldComps4;
+    DG1: DG1FieldComps8;
+    DMI: DMIFieldComps2;
+    DON: DONFieldComps1;
+    DRG: DRGFieldComps4;
+    DSC: DSCFieldComps2;
+    DSP: DSPFieldComps1;
+    ECD: ECDFieldComps3;
+    ECR: ECRFieldComps3;
+    EDU: EDUFieldComps5;
+    EQP: EQPFieldComps3;
+    EQU: EQUFieldComps3;
+    ERR: ERRFieldComps5;
+    EVN: EVNFieldComps8;
+    FAC: FACFieldComps6;
+    FHS: FHSFieldComps4;
+    FT1: FT1FieldComps9;
+    FTS: FTSFieldComps1;
+    GOL: GOLFieldComps6;
+    GP1: GP1FieldComps2;
+    GP2: GP2FieldComps3;
+    GT1: GT1FieldComps9;
+    Hxx: HxxFieldComps1;
+    IAM: IAMFieldComps5;
+    IAR: IARFieldComps1;
+    IIM: IIMFieldComps3;
+    ILT: ILTFieldComps2;
+    IN1: IN1FieldComps9;
+    IN2: IN2FieldComps8;
+    IN3: IN3FieldComps8;
+    INV: INVFieldComps4;
+    IPC: IPCFieldComps3;
+    IPR: IPRFieldComps2;
+    ISD: ISDFieldComps3;
+    ITM: ITMFieldComps3;
+    IVC: IVCFieldComps3;
+    IVT: IVTFieldComps2;
+    LAN: LANFieldComps3;
+    LCC: LCCFieldComps5;
+    LCH: LCHFieldComps4;
+    LDP: LDPFieldComps5;
+    LOC: LOCFieldComps7;
+    LRL: LRLFieldComps6;
+    MFA: MFAFieldComps5;
+    MFE: MFEFieldComps4;
+    MFI: MFIFieldComps4;
+    MRG: MRGFieldComps7;
+    MSA: MSAFieldComps5;
+    MSH: MSHFieldComps9;
+    NCK: NCKFieldComps3;
+    NDS: NDSFieldComps3;
+    NK1: NK1FieldComps9;
+    NPU: NPUFieldComps5;
+    NSC: NSCFieldComps4;
+    NST: NSTFieldComps3;
+    NTE: NTEFieldComps4;
+    OBR: OBRFieldComps10;
+    OBX: OBXFieldComps11;
+    ODS: ODSFieldComps3;
+    ODT: ODTFieldComps3;
+    OM1: OM1FieldComps9;
+    OM2: OM2FieldComps6;
+    OM3: OM3FieldComps4;
+    OM4: OM4FieldComps6;
+    OM5: OM5FieldComps4;
+    OM6: OM6FieldComps2;
+    OM7: OM7FieldComps4;
+    ORC: ORCFieldComps10;
+    ORG: ORGFieldComps4;
+    OVR: OVRFieldComps2;
+    PAC: PACFieldComps1;
+    PCE: PCEFieldComps2;
+    PCR: PCRFieldComps3;
+    PD1: PD1FieldComps7;
+    PDA: PDAFieldComps4;
+    PDC: PDCFieldComps6;
+    PEO: PEOFieldComps6;
+    PES: PESFieldComps7;
+    PID: PIDFieldComps8;
+    PKG: PKGFieldComps3;
+    PMT: PMTFieldComps3;
+    PR1: PR1FieldComps8;
+    PRA: PRAFieldComps6;
+    PRB: PRBFieldComps3;
+    PRC: PRCFieldComps4;
+    PRD: PRDFieldComps7;
+    PRT: PRTFieldComps2;
+    PSG: PSGFieldComps1;
+    PSH: PSHFieldComps2;
+    PSL: PSLFieldComps2;
+    PSS: PSSFieldComps1;
+    PTH: PTHFieldComps3;
+    PV1: PV1FieldComps8;
+    PV2: PV2FieldComps8;
+    PYE: PYEFieldComps3;
+    QAK: QAKFieldComps4;
+    QID: QIDFieldComps3;
+    QPD: QPDFieldComps3;
+    QRD: QRDFieldComps8;
+    QRF: QRFFieldComps7;
+    QRI: QRIFieldComps3;
+    RCP: RCPFieldComps3;
+    RDF: RDFFieldComps1;
+    RDT: RDTFieldComps1;
+    REL: RELFieldComps3;
+    RF1: RF1FieldComps5;
+    RFI: RFIFieldComps1;
+    RGS: RGSFieldComps3;
+    RMI: RMIFieldComps3;
+    ROL: ROLFieldComps7;
+    RQ1: RQ1FieldComps3;
+    RQD: RQDFieldComps3;
+    RXA: RXAFieldComps8;
+    RXC: RXCFieldComps7;
+    RXD: RXDFieldComps8;
+    RXE: RXEFieldComps7;
+    RXG: RXGFieldComps7;
+    RXO: RXOFieldComps8;
+    RXR: RXRFieldComps5;
+    RXV: RXVFieldComps1;
+    SAC: SACFieldComps4;
+    SCD: SCDFieldComps2;
+    SCH: SCHFieldComps7;
+    SCP: SCPFieldComps2;
+    SDD: SDDFieldComps2;
+    SFT: SFTFieldComps4;
+    SGH: SGHFieldComps1;
+    SGT: SGTFieldComps1;
+    SHP: SHPFieldComps1;
+    SID: SIDFieldComps3;
+    SLT: SLTFieldComps1;
+    SPM: SPMFieldComps3;
+    STF: STFFieldComps7;
+    STZ: STZFieldComps2;
+    TCC: TCCFieldComps4;
+    TCD: TCDFieldComps3;
+    TQ1: TQ1FieldComps3;
+    TQ2: TQ2FieldComps1;
+    TXA: TXAFieldComps6;
+    UAC: UACFieldComps2;
+    UB1: UB1FieldComps6;
+    UB2: UB2FieldComps3;
+    URD: URDFieldComps8;
+    URS: URSFieldComps6;
+    VAR: VARFieldComps6;
+    VND: VNDFieldComps2;
+    ZL7: ZL7FieldComps1;
+    Zxx: ZxxFieldComps1;
+    [segment: string]: { [field: number]: number };
+  };
+  '2.8.2': {
+    ABS: ABSFieldComps4;
+    ACC: ACCFieldComps8;
+    ADD: ADDFieldComps1;
+    ADJ: ADJFieldComps3;
+    AFF: AFFFieldComps5;
+    AIG: AIGFieldComps3;
+    AIL: AILFieldComps4;
+    AIP: AIPFieldComps6;
+    AIS: AISFieldComps4;
+    AL1: AL1FieldComps5;
+    APR: APRFieldComps1;
+    ARQ: ARQFieldComps7;
+    ARV: ARVFieldComps2;
+    AUT: AUTFieldComps4;
+    BHS: BHSFieldComps4;
+    BLC: BLCFieldComps3;
+    BLG: BLGFieldComps7;
+    BPO: BPOFieldComps3;
+    BPX: BPXFieldComps4;
+    BTS: BTSFieldComps3;
+    BTX: BTXFieldComps4;
+    BUI: BUIFieldComps1;
+    CDM: CDMFieldComps6;
+    CDO: CDOFieldComps1;
+    CER: CERFieldComps4;
+    CM0: CM0FieldComps6;
+    CM1: CM1FieldComps3;
+    CM2: CM2FieldComps3;
+    CNS: CNSFieldComps4;
+    CON: CONFieldComps3;
+    CSP: CSPFieldComps3;
+    CSR: CSRFieldComps6;
+    CSS: CSSFieldComps3;
+    CTD: CTDFieldComps6;
+    CTI: CTIFieldComps3;
+    DB1: DB1FieldComps4;
+    DG1: DG1FieldComps8;
+    DMI: DMIFieldComps2;
+    DON: DONFieldComps1;
+    DPS: DPSFieldComps1;
+    DRG: DRGFieldComps4;
+    DSC: DSCFieldComps2;
+    DSP: DSPFieldComps1;
+    ECD: ECDFieldComps3;
+    ECR: ECRFieldComps3;
+    EDU: EDUFieldComps5;
+    EQP: EQPFieldComps3;
+    EQU: EQUFieldComps3;
+    ERR: ERRFieldComps5;
+    EVN: EVNFieldComps8;
+    FAC: FACFieldComps6;
+    FHS: FHSFieldComps4;
+    FT1: FT1FieldComps9;
+    FTS: FTSFieldComps1;
+    GOL: GOLFieldComps6;
+    GP1: GP1FieldComps2;
+    GP2: GP2FieldComps3;
+    GT1: GT1FieldComps9;
+    Hxx: HxxFieldComps1;
+    IAM: IAMFieldComps5;
+    IAR: IARFieldComps1;
+    IIM: IIMFieldComps3;
+    ILT: ILTFieldComps2;
+    IN1: IN1FieldComps9;
+    IN2: IN2FieldComps8;
+    IN3: IN3FieldComps8;
+    INV: INVFieldComps4;
+    IPC: IPCFieldComps3;
+    IPR: IPRFieldComps2;
+    ISD: ISDFieldComps3;
+    ITM: ITMFieldComps3;
+    IVC: IVCFieldComps3;
+    IVT: IVTFieldComps2;
+    LAN: LANFieldComps3;
+    LCC: LCCFieldComps5;
+    LCH: LCHFieldComps4;
+    LDP: LDPFieldComps5;
+    LOC: LOCFieldComps7;
+    LRL: LRLFieldComps6;
+    MCP: MCPFieldComps1;
+    MFA: MFAFieldComps5;
+    MFE: MFEFieldComps4;
+    MFI: MFIFieldComps4;
+    MRG: MRGFieldComps7;
+    MSA: MSAFieldComps5;
+    MSH: MSHFieldComps9;
+    NCK: NCKFieldComps3;
+    NDS: NDSFieldComps3;
+    NK1: NK1FieldComps9;
+    NPU: NPUFieldComps5;
+    NSC: NSCFieldComps4;
+    NST: NSTFieldComps3;
+    NTE: NTEFieldComps4;
+    OBR: OBRFieldComps10;
+    OBX: OBXFieldComps12;
+    ODS: ODSFieldComps3;
+    ODT: ODTFieldComps3;
+    OM1: OM1FieldComps10;
+    OM2: OM2FieldComps6;
+    OM3: OM3FieldComps4;
+    OM4: OM4FieldComps6;
+    OM5: OM5FieldComps4;
+    OM6: OM6FieldComps2;
+    OM7: OM7FieldComps4;
+    OMC: OMCFieldComps1;
+    ORC: ORCFieldComps10;
+    ORG: ORGFieldComps4;
+    OVR: OVRFieldComps2;
+    PAC: PACFieldComps1;
+    PCE: PCEFieldComps2;
+    PCR: PCRFieldComps3;
+    PD1: PD1FieldComps7;
+    PDA: PDAFieldComps4;
+    PDC: PDCFieldComps6;
+    PEO: PEOFieldComps6;
+    PES: PESFieldComps7;
+    PID: PIDFieldComps8;
+    PKG: PKGFieldComps3;
+    PM1: PM1FieldComps1;
+    PMT: PMTFieldComps3;
+    PR1: PR1FieldComps8;
+    PRA: PRAFieldComps6;
+    PRB: PRBFieldComps3;
+    PRC: PRCFieldComps4;
+    PRD: PRDFieldComps7;
+    PRT: PRTFieldComps3;
+    PSG: PSGFieldComps1;
+    PSH: PSHFieldComps2;
+    PSL: PSLFieldComps2;
+    PSS: PSSFieldComps1;
+    PTH: PTHFieldComps3;
+    PV1: PV1FieldComps8;
+    PV2: PV2FieldComps8;
+    PYE: PYEFieldComps3;
+    QAK: QAKFieldComps4;
+    QID: QIDFieldComps3;
+    QPD: QPDFieldComps3;
+    QRD: QRDFieldComps8;
+    QRF: QRFFieldComps7;
+    QRI: QRIFieldComps3;
+    RCP: RCPFieldComps3;
+    RDF: RDFFieldComps1;
+    RDT: RDTFieldComps1;
+    REL: RELFieldComps3;
+    RF1: RF1FieldComps4;
+    RFI: RFIFieldComps1;
+    RGS: RGSFieldComps3;
+    RMI: RMIFieldComps3;
+    ROL: ROLFieldComps7;
+    RQ1: RQ1FieldComps3;
+    RQD: RQDFieldComps3;
+    RXA: RXAFieldComps8;
+    RXC: RXCFieldComps7;
+    RXD: RXDFieldComps8;
+    RXE: RXEFieldComps7;
+    RXG: RXGFieldComps7;
+    RXO: RXOFieldComps8;
+    RXR: RXRFieldComps5;
+    RXV: RXVFieldComps1;
+    SAC: SACFieldComps4;
+    SCD: SCDFieldComps2;
+    SCH: SCHFieldComps7;
+    SCP: SCPFieldComps2;
+    SDD: SDDFieldComps2;
+    SFT: SFTFieldComps4;
+    SGH: SGHFieldComps1;
+    SGT: SGTFieldComps1;
+    SHP: SHPFieldComps1;
+    SID: SIDFieldComps3;
+    SLT: SLTFieldComps1;
+    SPM: SPMFieldComps3;
+    STF: STFFieldComps7;
+    STZ: STZFieldComps2;
+    TCC: TCCFieldComps4;
+    TCD: TCDFieldComps3;
+    TQ1: TQ1FieldComps3;
+    TQ2: TQ2FieldComps1;
+    TXA: TXAFieldComps6;
+    UAC: UACFieldComps2;
+    UB1: UB1FieldComps6;
+    UB2: UB2FieldComps3;
+    URD: URDFieldComps8;
+    URS: URSFieldComps6;
+    VAR: VARFieldComps6;
+    VND: VNDFieldComps2;
+    ZL7: ZL7FieldComps1;
+    Zxx: ZxxFieldComps1;
+    [segment: string]: { [field: number]: number };
+  };
+  '2.9': {
+    ABS: ABSFieldComps4;
+    ACC: ACCFieldComps8;
+    ADD: ADDFieldComps1;
+    ADJ: ADJFieldComps3;
+    AFF: AFFFieldComps5;
+    AIG: AIGFieldComps3;
+    AIL: AILFieldComps4;
+    AIP: AIPFieldComps6;
+    AIS: AISFieldComps4;
+    AL1: AL1FieldComps5;
+    APR: APRFieldComps1;
+    ARQ: ARQFieldComps8;
+    ARV: ARVFieldComps3;
+    AUT: AUTFieldComps4;
+    BHS: BHSFieldComps5;
+    BLC: BLCFieldComps3;
+    BLG: BLGFieldComps7;
+    BPO: BPOFieldComps3;
+    BPX: BPXFieldComps5;
+    BTS: BTSFieldComps3;
+    BTX: BTXFieldComps5;
+    BUI: BUIFieldComps2;
+    CDM: CDMFieldComps6;
+    CDO: CDOFieldComps1;
+    CER: CERFieldComps4;
+    CM0: CM0FieldComps6;
+    CM1: CM1FieldComps3;
+    CM2: CM2FieldComps3;
+    CNS: CNSFieldComps4;
+    CON: CONFieldComps3;
+    CSP: CSPFieldComps3;
+    CSR: CSRFieldComps7;
+    CSS: CSSFieldComps3;
+    CTD: CTDFieldComps6;
+    CTI: CTIFieldComps4;
+    CTR: CTRFieldComps1;
+    DB1: DB1FieldComps4;
+    DEV: DEVFieldComps1;
+    DG1: DG1FieldComps8;
+    DMI: DMIFieldComps2;
+    DON: DONFieldComps2;
+    DPS: DPSFieldComps1;
+    DRG: DRGFieldComps4;
+    DSC: DSCFieldComps2;
+    DSP: DSPFieldComps1;
+    DST: DSTFieldComps1;
+    ECD: ECDFieldComps3;
+    ECR: ECRFieldComps3;
+    EDU: EDUFieldComps5;
+    EQP: EQPFieldComps3;
+    EQU: EQUFieldComps4;
+    ERR: ERRFieldComps5;
+    EVN: EVNFieldComps8;
+    FAC: FACFieldComps6;
+    FHS: FHSFieldComps5;
+    FT1: FT1FieldComps10;
+    FTS: FTSFieldComps1;
+    GOL: GOLFieldComps6;
+    GP1: GP1FieldComps2;
+    GP2: GP2FieldComps3;
+    GT1: GT1FieldComps9;
+    Hxx: HxxFieldComps1;
+    IAM: IAMFieldComps5;
+    IAR: IARFieldComps1;
+    IIM: IIMFieldComps3;
+    ILT: ILTFieldComps2;
+    IN1: IN1FieldComps9;
+    IN2: IN2FieldComps9;
+    IN3: IN3FieldComps9;
+    INV: INVFieldComps5;
+    IPC: IPCFieldComps4;
+    IPR: IPRFieldComps2;
+    ISD: ISDFieldComps3;
+    ITM: ITMFieldComps4;
+    IVC: IVCFieldComps3;
+    IVT: IVTFieldComps2;
+    LAN: LANFieldComps3;
+    LCC: LCCFieldComps5;
+    LCH: LCHFieldComps4;
+    LDP: LDPFieldComps5;
+    LOC: LOCFieldComps7;
+    LRL: LRLFieldComps6;
+    MCP: MCPFieldComps1;
+    MFA: MFAFieldComps5;
+    MFE: MFEFieldComps4;
+    MFI: MFIFieldComps4;
+    MRG: MRGFieldComps7;
+    MSA: MSAFieldComps5;
+    MSH: MSHFieldComps10;
+    NCK: NCKFieldComps3;
+    NDS: NDSFieldComps3;
+    NK1: NK1FieldComps10;
+    NPU: NPUFieldComps5;
+    NSC: NSCFieldComps4;
+    NST: NSTFieldComps3;
+    NTE: NTEFieldComps5;
+    OBR: OBRFieldComps11;
+    OBX: OBXFieldComps13;
+    ODS: ODSFieldComps3;
+    ODT: ODTFieldComps3;
+    OH1: OH1FieldComps1;
+    OH2: OH2FieldComps1;
+    OH3: OH3FieldComps1;
+    OH4: OH4FieldComps1;
+    OM1: OM1FieldComps10;
+    OM2: OM2FieldComps6;
+    OM3: OM3FieldComps4;
+    OM4: OM4FieldComps6;
+    OM5: OM5FieldComps4;
+    OM6: OM6FieldComps2;
+    OM7: OM7FieldComps4;
+    OMC: OMCFieldComps2;
+    ORC: ORCFieldComps11;
+    ORG: ORGFieldComps4;
+    OVR: OVRFieldComps2;
+    PAC: PACFieldComps2;
+    PCE: PCEFieldComps2;
+    PCR: PCRFieldComps3;
+    PD1: PD1FieldComps8;
+    PDA: PDAFieldComps4;
+    PDC: PDCFieldComps6;
+    PEO: PEOFieldComps6;
+    PES: PESFieldComps7;
+    PID: PIDFieldComps9;
+    PKG: PKGFieldComps4;
+    PM1: PM1FieldComps1;
+    PMT: PMTFieldComps3;
+    PR1: PR1FieldComps8;
+    PRA: PRAFieldComps6;
+    PRB: PRBFieldComps3;
+    PRC: PRCFieldComps4;
+    PRD: PRDFieldComps7;
+    PRT: PRTFieldComps4;
+    PSG: PSGFieldComps1;
+    PSH: PSHFieldComps2;
+    PSL: PSLFieldComps2;
+    PSS: PSSFieldComps1;
+    PTH: PTHFieldComps3;
+    PV1: PV1FieldComps8;
+    PV2: PV2FieldComps8;
+    PYE: PYEFieldComps3;
+    QAK: QAKFieldComps4;
+    QID: QIDFieldComps3;
+    QPD: QPDFieldComps3;
+    QRD: QRDFieldComps8;
+    QRF: QRFFieldComps7;
+    QRI: QRIFieldComps3;
+    RCP: RCPFieldComps3;
+    RDF: RDFFieldComps1;
+    RDT: RDTFieldComps1;
+    REL: RELFieldComps4;
+    RF1: RF1FieldComps4;
+    RFI: RFIFieldComps1;
+    RGS: RGSFieldComps3;
+    RMI: RMIFieldComps3;
+    ROL: ROLFieldComps8;
+    RQ1: RQ1FieldComps3;
+    RQD: RQDFieldComps3;
+    RXA: RXAFieldComps8;
+    RXC: RXCFieldComps7;
+    RXD: RXDFieldComps8;
+    RXE: RXEFieldComps7;
+    RXG: RXGFieldComps8;
+    RXO: RXOFieldComps9;
+    RXR: RXRFieldComps5;
+    RXV: RXVFieldComps1;
+    SAC: SACFieldComps5;
+    SCD: SCDFieldComps2;
+    SCH: SCHFieldComps8;
+    SCP: SCPFieldComps2;
+    SDD: SDDFieldComps2;
+    SFT: SFTFieldComps4;
+    SGH: SGHFieldComps1;
+    SGT: SGTFieldComps1;
+    SHP: SHPFieldComps2;
+    SID: SIDFieldComps3;
+    SLT: SLTFieldComps1;
+    SPM: SPMFieldComps4;
+    STF: STFFieldComps7;
+    STZ: STZFieldComps2;
+    TCC: TCCFieldComps4;
+    TCD: TCDFieldComps4;
+    TQ1: TQ1FieldComps3;
+    TQ2: TQ2FieldComps1;
+    TXA: TXAFieldComps7;
+    UAC: UACFieldComps2;
+    UB1: UB1FieldComps6;
+    UB2: UB2FieldComps3;
+    URD: URDFieldComps8;
+    URS: URSFieldComps6;
+    VAR: VARFieldComps6;
+    VND: VNDFieldComps3;
+    ZL7: ZL7FieldComps2;
+    Zxx: ZxxFieldComps1;
+    [segment: string]: { [field: number]: number };
+  };
+  [version: `${number}.${number}`]: {
+    [segment: string]: { [field: number]: number };
+  };
+  [version: `${number}.${number}.${number}`]: {
+    [segment: string]: { [field: number]: number };
+  };
+}
+
+type Upto2 = 1 | 2;
+type Upto3 = 1 | 2 | 3;
+type Upto4 = 1 | 2 | 3 | 4;
+type Upto5 = 1 | 2 | 3 | 4 | 5;
+type Upto6 = 1 | 2 | 3 | 4 | 5 | 6;
+type Upto7 = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+type Upto8 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+type Upto9 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+type Upto10 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+type Upto11 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+type Upto12 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+type Upto13 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
+type Upto14 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+type Upto15 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
+type Upto16 =
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
+type Upto18 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18;
+type Upto19 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19;
+type Upto22 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22;
+type Upto23 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23;
+type Upto24 =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24;
+
+export interface HL7VersionSegmentObjects {
+  '2.1': {
+    ACC: ACCObject1<HL7Types_2_1>;
+    ADD: ADDObject1<HL7Types_2_1>;
+    BHS: BHSObject1<HL7Types_2_1>;
+    BLG: BLGObject1<HL7Types_2_1>;
+    BTS: BTSObject1<HL7Types_2_1>;
+    DG1: DG1Object1<HL7Types_2_1>;
+    DSC: DSCObject1<HL7Types_2_1>;
+    DSP: DSPObject1<HL7Types_2_1>;
+    ERR: ERRObject1<HL7Types_2_1>;
+    EVN: EVNObject1<HL7Types_2_1>;
+    FHS: FHSObject1<HL7Types_2_1>;
+    FT1: FT1Object1<HL7Types_2_1>;
+    FTS: FTSObject1<HL7Types_2_1>;
+    GT1: GT1Object1<HL7Types_2_1>;
+    IN1: IN1Object1<HL7Types_2_1>;
+    MRG: MRGObject1<HL7Types_2_1>;
+    MSA: MSAObject1<HL7Types_2_1>;
+    MSH: MSHObject1<HL7Types_2_1>;
+    NCK: NCKObject1<HL7Types_2_1>;
+    NK1: NK1Object1<HL7Types_2_1>;
+    NPU: NPUObject1<HL7Types_2_1>;
+    NSC: NSCObject1<HL7Types_2_1>;
+    NST: NSTObject1<HL7Types_2_1>;
+    NTE: NTEObject1<HL7Types_2_1>;
+    OBR: OBRObject1<HL7Types_2_1>;
+    OBX: OBXObject1<HL7Types_2_1>;
+    ORC: ORCObject1<HL7Types_2_1>;
+    ORO: OROObject1<HL7Types_2_1>;
+    PID: PIDObject1<HL7Types_2_1>;
+    PR1: PR1Object1<HL7Types_2_1>;
+    PV1: PV1Object1<HL7Types_2_1>;
+    QRD: QRDObject1<HL7Types_2_1>;
+    QRF: QRFObject1<HL7Types_2_1>;
+    RX1: RX1Object1<HL7Types_2_1>;
+    UB1: UB1Object1<HL7Types_2_1>;
+    URD: URDObject1<HL7Types_2_1>;
+    URS: URSObject1<HL7Types_2_1>;
+    PD1: PD1Object1<HL7Types_2_1>;
+    [segment: string]: Record<string, any>;
+  };
+  '2.2': {
+    ACC: ACCObject2<HL7Types_2_2>;
+    ADD: ADDObject1<HL7Types_2_2>;
+    AL1: AL1Object1<HL7Types_2_2>;
+    BHS: BHSObject2<HL7Types_2_2>;
+    BLG: BLGObject2<HL7Types_2_2>;
+    BTS: BTSObject2<HL7Types_2_2>;
+    DG1: DG1Object2<HL7Types_2_2>;
+    DSC: DSCObject1<HL7Types_2_2>;
+    DSP: DSPObject1<HL7Types_2_2>;
+    ERR: ERRObject2<HL7Types_2_2>;
+    EVN: EVNObject2<HL7Types_2_2>;
+    FHS: FHSObject2<HL7Types_2_2>;
+    FT1: FT1Object2<HL7Types_2_2>;
+    FTS: FTSObject2<HL7Types_2_2>;
+    GT1: GT1Object2<HL7Types_2_2>;
+    IN1: IN1Object2<HL7Types_2_2>;
+    IN2: IN2Object1<HL7Types_2_2>;
+    IN3: IN3Object1<HL7Types_2_2>;
+    MFA: MFAObject1<HL7Types_2_2>;
+    MFE: MFEObject1<HL7Types_2_2>;
+    MFI: MFIObject1<HL7Types_2_2>;
+    MRG: MRGObject2<HL7Types_2_2>;
+    MSA: MSAObject2<HL7Types_2_2>;
+    MSH: MSHObject2<HL7Types_2_2>;
+    NCK: NCKObject2<HL7Types_2_2>;
+    NK1: NK1Object2<HL7Types_2_2>;
+    NPU: NPUObject2<HL7Types_2_2>;
+    NSC: NSCObject1<HL7Types_2_2>;
+    NST: NSTObject2<HL7Types_2_2>;
+    NTE: NTEObject1<HL7Types_2_2>;
+    OBR: OBRObject2<HL7Types_2_2>;
+    OBX: OBXObject2<HL7Types_2_2>;
+    ODS: ODSObject1<HL7Types_2_2>;
+    ODT: ODTObject1<HL7Types_2_2>;
+    OM1: OM1Object1<HL7Types_2_2>;
+    OM2: OM2Object1<HL7Types_2_2>;
+    OM3: OM3Object1<HL7Types_2_2>;
+    OM4: OM4Object1<HL7Types_2_2>;
+    OM5: OM5Object1<HL7Types_2_2>;
+    OM6: OM6Object1<HL7Types_2_2>;
+    ORC: ORCObject2<HL7Types_2_2>;
+    PID: PIDObject2<HL7Types_2_2>;
+    PR1: PR1Object2<HL7Types_2_2>;
+    PRA: PRAObject1<HL7Types_2_2>;
+    PV1: PV1Object2<HL7Types_2_2>;
+    PV2: PV2Object1<HL7Types_2_2>;
+    QRD: QRDObject2<HL7Types_2_2>;
+    QRF: QRFObject2<HL7Types_2_2>;
+    RQ1: RQ1Object1<HL7Types_2_2>;
+    RQD: RQDObject1<HL7Types_2_2>;
+    RXA: RXAObject1<HL7Types_2_2>;
+    RXC: RXCObject1<HL7Types_2_2>;
+    RXD: RXDObject1<HL7Types_2_2>;
+    RXE: RXEObject1<HL7Types_2_2>;
+    RXG: RXGObject1<HL7Types_2_2>;
+    RXO: RXOObject1<HL7Types_2_2>;
+    RXR: RXRObject1<HL7Types_2_2>;
+    STF: STFObject1<HL7Types_2_2>;
+    UB1: UB1Object2<HL7Types_2_2>;
+    UB2: UB2Object1<HL7Types_2_2>;
+    URD: URDObject2<HL7Types_2_2>;
+    URS: URSObject2<HL7Types_2_2>;
+    [segment: string]: Record<string, any>;
+  };
+  '2.3': {
+    ACC: ACCObject3<HL7Types_2_3>;
+    ADD: ADDObject1<HL7Types_2_3>;
+    AIG: AIGObject1<HL7Types_2_3>;
+    AIL: AILObject1<HL7Types_2_3>;
+    AIP: AIPObject1<HL7Types_2_3>;
+    AIS: AISObject1<HL7Types_2_3>;
+    AL1: AL1Object1<HL7Types_2_3>;
+    APR: APRObject1<HL7Types_2_3>;
+    ARQ: ARQObject1<HL7Types_2_3>;
+    AUT: AUTObject1<HL7Types_2_3>;
+    BHS: BHSObject2<HL7Types_2_3>;
+    BLG: BLGObject3<HL7Types_2_3>;
+    BTS: BTSObject3<HL7Types_2_3>;
+    CDM: CDMObject1<HL7Types_2_3>;
+    CM0: CM0Object1<HL7Types_2_3>;
+    CM1: CM1Object1<HL7Types_2_3>;
+    CM2: CM2Object1<HL7Types_2_3>;
+    CSP: CSPObject1<HL7Types_2_3>;
+    CSR: CSRObject1<HL7Types_2_3>;
+    CSS: CSSObject1<HL7Types_2_3>;
+    CTD: CTDObject1<HL7Types_2_3>;
+    CTI: CTIObject1<HL7Types_2_3>;
+    DB1: DB1Object1<HL7Types_2_3>;
+    DG1: DG1Object3<HL7Types_2_3>;
+    DRG: DRGObject1<HL7Types_2_3>;
+    DSC: DSCObject1<HL7Types_2_3>;
+    DSP: DSPObject1<HL7Types_2_3>;
+    EQL: EQLObject1<HL7Types_2_3>;
+    ERQ: ERQObject1<HL7Types_2_3>;
+    ERR: ERRObject2<HL7Types_2_3>;
+    EVN: EVNObject3<HL7Types_2_3>;
+    FAC: FACObject1<HL7Types_2_3>;
+    FHS: FHSObject2<HL7Types_2_3>;
+    FT1: FT1Object3<HL7Types_2_3>;
+    FTS: FTSObject2<HL7Types_2_3>;
+    GOL: GOLObject1<HL7Types_2_3>;
+    GT1: GT1Object3<HL7Types_2_3>;
+    IN1: IN1Object3<HL7Types_2_3>;
+    IN2: IN2Object2<HL7Types_2_3>;
+    IN3: IN3Object2<HL7Types_2_3>;
+    LCC: LCCObject1<HL7Types_2_3>;
+    LCH: LCHObject1<HL7Types_2_3>;
+    LDP: LDPObject1<HL7Types_2_3>;
+    LOC: LOCObject1<HL7Types_2_3>;
+    LRL: LRLObject1<HL7Types_2_3>;
+    MFA: MFAObject1<HL7Types_2_3>;
+    MFE: MFEObject1<HL7Types_2_3>;
+    MFI: MFIObject2<HL7Types_2_3>;
+    MRG: MRGObject3<HL7Types_2_3>;
+    MSA: MSAObject2<HL7Types_2_3>;
+    MSH: MSHObject3<HL7Types_2_3>;
+    NCK: NCKObject2<HL7Types_2_3>;
+    NK1: NK1Object3<HL7Types_2_3>;
+    NPU: NPUObject3<HL7Types_2_3>;
+    NSC: NSCObject2<HL7Types_2_3>;
+    NST: NSTObject2<HL7Types_2_3>;
+    NTE: NTEObject1<HL7Types_2_3>;
+    OBR: OBRObject3<HL7Types_2_3>;
+    OBX: OBXObject3<HL7Types_2_3>;
+    ODS: ODSObject2<HL7Types_2_3>;
+    ODT: ODTObject2<HL7Types_2_3>;
+    OM1: OM1Object2<HL7Types_2_3>;
+    OM2: OM2Object2<HL7Types_2_3>;
+    OM3: OM3Object2<HL7Types_2_3>;
+    OM4: OM4Object2<HL7Types_2_3>;
+    OM5: OM5Object2<HL7Types_2_3>;
+    OM6: OM6Object2<HL7Types_2_3>;
+    ORC: ORCObject3<HL7Types_2_3>;
+    PCR: PCRObject1<HL7Types_2_3>;
+    PD1: PD1Object1<HL7Types_2_3>;
+    PDC: PDCObject1<HL7Types_2_3>;
+    PEO: PEOObject1<HL7Types_2_3>;
+    PES: PESObject1<HL7Types_2_3>;
+    PID: PIDObject3<HL7Types_2_3>;
+    PR1: PR1Object3<HL7Types_2_3>;
+    PRA: PRAObject1<HL7Types_2_3>;
+    PRB: PRBObject1<HL7Types_2_3>;
+    PRC: PRCObject1<HL7Types_2_3>;
+    PRD: PRDObject1<HL7Types_2_3>;
+    PSH: PSHObject1<HL7Types_2_3>;
+    PTH: PTHObject1<HL7Types_2_3>;
+    PV1: PV1Object3<HL7Types_2_3>;
+    PV2: PV2Object2<HL7Types_2_3>;
+    QAK: QAKObject1<HL7Types_2_3>;
+    QRD: QRDObject3<HL7Types_2_3>;
+    QRF: QRFObject3<HL7Types_2_3>;
+    RDF: RDFObject1<HL7Types_2_3>;
+    RDT: RDTObject1<HL7Types_2_3>;
+    RF1: RF1Object1<HL7Types_2_3>;
+    RGS: RGSObject1<HL7Types_2_3>;
+    ROL: ROLObject1<HL7Types_2_3>;
+    RQ1: RQ1Object2<HL7Types_2_3>;
+    RQD: RQDObject1<HL7Types_2_3>;
+    RXA: RXAObject2<HL7Types_2_3>;
+    RXC: RXCObject2<HL7Types_2_3>;
+    RXD: RXDObject2<HL7Types_2_3>;
+    RXE: RXEObject2<HL7Types_2_3>;
+    RXG: RXGObject2<HL7Types_2_3>;
+    RXO: RXOObject2<HL7Types_2_3>;
+    RXR: RXRObject1<HL7Types_2_3>;
+    SCH: SCHObject1<HL7Types_2_3>;
+    SPR: SPRObject1<HL7Types_2_3>;
+    STF: STFObject2<HL7Types_2_3>;
+    TXA: TXAObject1<HL7Types_2_3>;
+    UB1: UB1Object3<HL7Types_2_3>;
+    UB2: UB2Object2<HL7Types_2_3>;
+    URD: URDObject3<HL7Types_2_3>;
+    URS: URSObject3<HL7Types_2_3>;
+    VAR: VARObject1<HL7Types_2_3>;
+    VTQ: VTQObject1<HL7Types_2_3>;
+    [segment: string]: Record<string, any>;
+  };
+  '2.3.1': {
+    ACC: ACCObject3<HL7Types_2_3_1>;
+    ADD: ADDObject1<HL7Types_2_3_1>;
+    AIG: AIGObject1<HL7Types_2_3_1>;
+    AIL: AILObject1<HL7Types_2_3_1>;
+    AIP: AIPObject2<HL7Types_2_3_1>;
+    AIS: AISObject1<HL7Types_2_3_1>;
+    AL1: AL1Object2<HL7Types_2_3_1>;
+    APR: APRObject1<HL7Types_2_3_1>;
+    ARQ: ARQObject2<HL7Types_2_3_1>;
+    AUT: AUTObject1<HL7Types_2_3_1>;
+    BHS: BHSObject2<HL7Types_2_3_1>;
+    BLG: BLGObject4<HL7Types_2_3_1>;
+    BTS: BTSObject3<HL7Types_2_3_1>;
+    CDM: CDMObject2<HL7Types_2_3_1>;
+    CM0: CM0Object2<HL7Types_2_3_1>;
+    CM1: CM1Object1<HL7Types_2_3_1>;
+    CM2: CM2Object1<HL7Types_2_3_1>;
+    CSP: CSPObject1<HL7Types_2_3_1>;
+    CSR: CSRObject2<HL7Types_2_3_1>;
+    CSS: CSSObject1<HL7Types_2_3_1>;
+    CTD: CTDObject2<HL7Types_2_3_1>;
+    CTI: CTIObject1<HL7Types_2_3_1>;
+    DB1: DB1Object1<HL7Types_2_3_1>;
+    DG1: DG1Object4<HL7Types_2_3_1>;
+    DRG: DRGObject1<HL7Types_2_3_1>;
+    DSC: DSCObject1<HL7Types_2_3_1>;
+    DSP: DSPObject1<HL7Types_2_3_1>;
+    EQL: EQLObject1<HL7Types_2_3_1>;
+    ERQ: ERQObject1<HL7Types_2_3_1>;
+    ERR: ERRObject3<HL7Types_2_3_1>;
+    EVN: EVNObject4<HL7Types_2_3_1>;
+    FAC: FACObject2<HL7Types_2_3_1>;
+    FHS: FHSObject2<HL7Types_2_3_1>;
+    FT1: FT1Object4<HL7Types_2_3_1>;
+    FTS: FTSObject2<HL7Types_2_3_1>;
+    GOL: GOLObject1<HL7Types_2_3_1>;
+    GT1: GT1Object4<HL7Types_2_3_1>;
+    IN1: IN1Object4<HL7Types_2_3_1>;
+    IN2: IN2Object3<HL7Types_2_3_1>;
+    IN3: IN3Object3<HL7Types_2_3_1>;
+    LCC: LCCObject1<HL7Types_2_3_1>;
+    LCH: LCHObject1<HL7Types_2_3_1>;
+    LDP: LDPObject1<HL7Types_2_3_1>;
+    LOC: LOCObject2<HL7Types_2_3_1>;
+    LRL: LRLObject2<HL7Types_2_3_1>;
+    MFA: MFAObject2<HL7Types_2_3_1>;
+    MFE: MFEObject2<HL7Types_2_3_1>;
+    MFI: MFIObject2<HL7Types_2_3_1>;
+    MRG: MRGObject4<HL7Types_2_3_1>;
+    MSA: MSAObject2<HL7Types_2_3_1>;
+    MSH: MSHObject4<HL7Types_2_3_1>;
+    NCK: NCKObject2<HL7Types_2_3_1>;
+    NK1: NK1Object4<HL7Types_2_3_1>;
+    NPU: NPUObject3<HL7Types_2_3_1>;
+    NSC: NSCObject1<HL7Types_2_3_1>;
+    NST: NSTObject2<HL7Types_2_3_1>;
+    NTE: NTEObject2<HL7Types_2_3_1>;
+    OBR: OBRObject4<HL7Types_2_3_1>;
+    OBX: OBXObject4<HL7Types_2_3_1>;
+    ODS: ODSObject1<HL7Types_2_3_1>;
+    ODT: ODTObject2<HL7Types_2_3_1>;
+    OM1: OM1Object3<HL7Types_2_3_1>;
+    OM2: OM2Object3<HL7Types_2_3_1>;
+    OM3: OM3Object2<HL7Types_2_3_1>;
+    OM4: OM4Object3<HL7Types_2_3_1>;
+    OM5: OM5Object2<HL7Types_2_3_1>;
+    OM6: OM6Object2<HL7Types_2_3_1>;
+    ORC: ORCObject4<HL7Types_2_3_1>;
+    PCR: PCRObject1<HL7Types_2_3_1>;
+    PD1: PD1Object2<HL7Types_2_3_1>;
+    PDC: PDCObject2<HL7Types_2_3_1>;
+    PEO: PEOObject2<HL7Types_2_3_1>;
+    PES: PESObject2<HL7Types_2_3_1>;
+    PID: PIDObject4<HL7Types_2_3_1>;
+    PR1: PR1Object4<HL7Types_2_3_1>;
+    PRA: PRAObject2<HL7Types_2_3_1>;
+    PRB: PRBObject1<HL7Types_2_3_1>;
+    PRC: PRCObject2<HL7Types_2_3_1>;
+    PRD: PRDObject2<HL7Types_2_3_1>;
+    PSH: PSHObject1<HL7Types_2_3_1>;
+    PTH: PTHObject1<HL7Types_2_3_1>;
+    PV1: PV1Object4<HL7Types_2_3_1>;
+    PV2: PV2Object3<HL7Types_2_3_1>;
+    QAK: QAKObject1<HL7Types_2_3_1>;
+    QRD: QRDObject4<HL7Types_2_3_1>;
+    QRF: QRFObject3<HL7Types_2_3_1>;
+    RDF: RDFObject1<HL7Types_2_3_1>;
+    RDT: RDTObject1<HL7Types_2_3_1>;
+    RF1: RF1Object1<HL7Types_2_3_1>;
+    RGS: RGSObject1<HL7Types_2_3_1>;
+    ROL: ROLObject2<HL7Types_2_3_1>;
+    RQ1: RQ1Object2<HL7Types_2_3_1>;
+    RQD: RQDObject1<HL7Types_2_3_1>;
+    RXA: RXAObject3<HL7Types_2_3_1>;
+    RXC: RXCObject2<HL7Types_2_3_1>;
+    RXD: RXDObject3<HL7Types_2_3_1>;
+    RXE: RXEObject3<HL7Types_2_3_1>;
+    RXG: RXGObject3<HL7Types_2_3_1>;
+    RXO: RXOObject3<HL7Types_2_3_1>;
+    RXR: RXRObject2<HL7Types_2_3_1>;
+    SCH: SCHObject2<HL7Types_2_3_1>;
+    SPR: SPRObject1<HL7Types_2_3_1>;
+    STF: STFObject3<HL7Types_2_3_1>;
+    TXA: TXAObject2<HL7Types_2_3_1>;
+    UB1: UB1Object4<HL7Types_2_3_1>;
+    UB2: UB2Object3<HL7Types_2_3_1>;
+    URD: URDObject3<HL7Types_2_3_1>;
+    URS: URSObject3<HL7Types_2_3_1>;
+    VAR: VARObject2<HL7Types_2_3_1>;
+    VTQ: VTQObject1<HL7Types_2_3_1>;
+    [segment: string]: Record<string, any>;
+  };
+  '2.4': {
+    ABS: ABSObject1<HL7Types_2_4>;
+    ACC: ACCObject4<HL7Types_2_4>;
+    ADD: ADDObject1<HL7Types_2_4>;
+    AFF: AFFObject1<HL7Types_2_4>;
+    AIG: AIGObject1<HL7Types_2_4>;
+    AIL: AILObject1<HL7Types_2_4>;
+    AIP: AIPObject2<HL7Types_2_4>;
+    AIS: AISObject2<HL7Types_2_4>;
+    AL1: AL1Object3<HL7Types_2_4>;
+    APR: APRObject1<HL7Types_2_4>;
+    ARQ: ARQObject3<HL7Types_2_4>;
+    AUT: AUTObject1<HL7Types_2_4>;
+    BHS: BHSObject2<HL7Types_2_4>;
+    BLC: BLCObject1<HL7Types_2_4>;
+    BLG: BLGObject4<HL7Types_2_4>;
+    BTS: BTSObject3<HL7Types_2_4>;
+    CDM: CDMObject2<HL7Types_2_4>;
+    CM0: CM0Object2<HL7Types_2_4>;
+    CM1: CM1Object1<HL7Types_2_4>;
+    CM2: CM2Object1<HL7Types_2_4>;
+    CNS: CNSObject2<HL7Types_2_4>;
+    CSP: CSPObject1<HL7Types_2_4>;
+    CSR: CSRObject2<HL7Types_2_4>;
+    CSS: CSSObject1<HL7Types_2_4>;
+    CTD: CTDObject2<HL7Types_2_4>;
+    CTI: CTIObject1<HL7Types_2_4>;
+    DB1: DB1Object1<HL7Types_2_4>;
+    DG1: DG1Object4<HL7Types_2_4>;
+    DRG: DRGObject2<HL7Types_2_4>;
+    DSC: DSCObject2<HL7Types_2_4>;
+    DSP: DSPObject1<HL7Types_2_4>;
+    ECD: ECDObject1<HL7Types_2_4>;
+    ECR: ECRObject1<HL7Types_2_4>;
+    EDU: EDUObject1<HL7Types_2_4>;
+    EQL: EQLObject1<HL7Types_2_4>;
+    EQP: EQPObject1<HL7Types_2_4>;
+    EQU: EQUObject1<HL7Types_2_4>;
+    ERQ: ERQObject1<HL7Types_2_4>;
+    ERR: ERRObject3<HL7Types_2_4>;
+    EVN: EVNObject5<HL7Types_2_4>;
+    FAC: FACObject2<HL7Types_2_4>;
+    FHS: FHSObject2<HL7Types_2_4>;
+    FT1: FT1Object4<HL7Types_2_4>;
+    FTS: FTSObject2<HL7Types_2_4>;
+    GOL: GOLObject1<HL7Types_2_4>;
+    GP1: GP1Object1<HL7Types_2_4>;
+    GP2: GP2Object1<HL7Types_2_4>;
+    GT1: GT1Object4<HL7Types_2_4>;
+    IAM: IAMObject1<HL7Types_2_4>;
+    IN1: IN1Object4<HL7Types_2_4>;
+    IN2: IN2Object3<HL7Types_2_4>;
+    IN3: IN3Object3<HL7Types_2_4>;
+    INV: INVObject1<HL7Types_2_4>;
+    ISD: ISDObject1<HL7Types_2_4>;
+    LAN: LANObject1<HL7Types_2_4>;
+    LCC: LCCObject2<HL7Types_2_4>;
+    LCH: LCHObject1<HL7Types_2_4>;
+    LDP: LDPObject2<HL7Types_2_4>;
+    LOC: LOCObject3<HL7Types_2_4>;
+    LRL: LRLObject2<HL7Types_2_4>;
+    MFA: MFAObject2<HL7Types_2_4>;
+    MFE: MFEObject2<HL7Types_2_4>;
+    MFI: MFIObject2<HL7Types_2_4>;
+    MRG: MRGObject4<HL7Types_2_4>;
+    MSA: MSAObject2<HL7Types_2_4>;
+    MSH: MSHObject5<HL7Types_2_4>;
+    NCK: NCKObject2<HL7Types_2_4>;
+    NDS: NDSObject1<HL7Types_2_4>;
+    NK1: NK1Object4<HL7Types_2_4>;
+    NPU: NPUObject3<HL7Types_2_4>;
+    NSC: NSCObject3<HL7Types_2_4>;
+    NST: NSTObject2<HL7Types_2_4>;
+    NTE: NTEObject2<HL7Types_2_4>;
+    OBR: OBRObject5<HL7Types_2_4>;
+    OBX: OBXObject5<HL7Types_2_4>;
+    ODS: ODSObject1<HL7Types_2_4>;
+    ODT: ODTObject2<HL7Types_2_4>;
+    OM1: OM1Object3<HL7Types_2_4>;
+    OM2: OM2Object3<HL7Types_2_4>;
+    OM3: OM3Object2<HL7Types_2_4>;
+    OM4: OM4Object3<HL7Types_2_4>;
+    OM5: OM5Object2<HL7Types_2_4>;
+    OM6: OM6Object2<HL7Types_2_4>;
+    OM7: OM7Object1<HL7Types_2_4>;
+    ORC: ORCObject5<HL7Types_2_4>;
+    ORG: ORGObject1<HL7Types_2_4>;
+    PCR: PCRObject1<HL7Types_2_4>;
+    PD1: PD1Object3<HL7Types_2_4>;
+    PDA: PDAObject1<HL7Types_2_4>;
+    PDC: PDCObject2<HL7Types_2_4>;
+    PEO: PEOObject2<HL7Types_2_4>;
+    PES: PESObject2<HL7Types_2_4>;
+    PID: PIDObject5<HL7Types_2_4>;
+    PR1: PR1Object5<HL7Types_2_4>;
+    PRA: PRAObject3<HL7Types_2_4>;
+    PRB: PRBObject1<HL7Types_2_4>;
+    PRC: PRCObject2<HL7Types_2_4>;
+    PRD: PRDObject2<HL7Types_2_4>;
+    PSH: PSHObject1<HL7Types_2_4>;
+    PTH: PTHObject1<HL7Types_2_4>;
+    PV1: PV1Object5<HL7Types_2_4>;
+    PV2: PV2Object4<HL7Types_2_4>;
+    QAK: QAKObject2<HL7Types_2_4>;
+    QID: QIDObject1<HL7Types_2_4>;
+    QPD: QPDObject1<HL7Types_2_4>;
+    QRD: QRDObject4<HL7Types_2_4>;
+    QRF: QRFObject4<HL7Types_2_4>;
+    QRI: QRIObject1<HL7Types_2_4>;
+    RCP: RCPObject1<HL7Types_2_4>;
+    RDF: RDFObject1<HL7Types_2_4>;
+    RDT: RDTObject1<HL7Types_2_4>;
+    RF1: RF1Object1<HL7Types_2_4>;
+    RGS: RGSObject1<HL7Types_2_4>;
+    RMI: RMIObject1<HL7Types_2_4>;
+    ROL: ROLObject3<HL7Types_2_4>;
+    RQ1: RQ1Object2<HL7Types_2_4>;
+    RQD: RQDObject1<HL7Types_2_4>;
+    RXA: RXAObject3<HL7Types_2_4>;
+    RXC: RXCObject3<HL7Types_2_4>;
+    RXD: RXDObject4<HL7Types_2_4>;
+    RXE: RXEObject4<HL7Types_2_4>;
+    RXG: RXGObject3<HL7Types_2_4>;
+    RXO: RXOObject4<HL7Types_2_4>;
+    RXR: RXRObject2<HL7Types_2_4>;
+    SAC: SACObject1<HL7Types_2_4>;
+    SCH: SCHObject3<HL7Types_2_4>;
+    SID: SIDObject1<HL7Types_2_4>;
+    SPR: SPRObject1<HL7Types_2_4>;
+    STF: STFObject4<HL7Types_2_4>;
+    TCC: TCCObject1<HL7Types_2_4>;
+    TCD: TCDObject1<HL7Types_2_4>;
+    TXA: TXAObject2<HL7Types_2_4>;
+    UB1: UB1Object4<HL7Types_2_4>;
+    UB2: UB2Object3<HL7Types_2_4>;
+    URD: URDObject3<HL7Types_2_4>;
+    URS: URSObject3<HL7Types_2_4>;
+    VAR: VARObject2<HL7Types_2_4>;
+    VTQ: VTQObject1<HL7Types_2_4>;
+    [segment: string]: Record<string, any>;
+  };
+  '2.5': {
+    ABS: ABSObject1<HL7Types_2_5>;
+    ACC: ACCObject5<HL7Types_2_5>;
+    ADD: ADDObject1<HL7Types_2_5>;
+    AFF: AFFObject1<HL7Types_2_5>;
+    AIG: AIGObject1<HL7Types_2_5>;
+    AIL: AILObject2<HL7Types_2_5>;
+    AIP: AIPObject2<HL7Types_2_5>;
+    AIS: AISObject2<HL7Types_2_5>;
+    AL1: AL1Object4<HL7Types_2_5>;
+    APR: APRObject1<HL7Types_2_5>;
+    ARQ: ARQObject3<HL7Types_2_5>;
+    AUT: AUTObject1<HL7Types_2_5>;
+    BHS: BHSObject3<HL7Types_2_5>;
+    BLC: BLCObject1<HL7Types_2_5>;
+    BLG: BLGObject5<HL7Types_2_5>;
+    BPO: BPOObject1<HL7Types_2_5>;
+    BPX: BPXObject1<HL7Types_2_5>;
+    BTS: BTSObject3<HL7Types_2_5>;
+    BTX: BTXObject1<HL7Types_2_5>;
+    CDM: CDMObject3<HL7Types_2_5>;
+    CER: CERObject1<HL7Types_2_5>;
+    CM0: CM0Object2<HL7Types_2_5>;
+    CM1: CM1Object1<HL7Types_2_5>;
+    CM2: CM2Object1<HL7Types_2_5>;
+    CNS: CNSObject2<HL7Types_2_5>;
+    CON: CONObject1<HL7Types_2_5>;
+    CSP: CSPObject1<HL7Types_2_5>;
+    CSR: CSRObject2<HL7Types_2_5>;
+    CSS: CSSObject1<HL7Types_2_5>;
+    CTD: CTDObject3<HL7Types_2_5>;
+    CTI: CTIObject1<HL7Types_2_5>;
+    DB1: DB1Object1<HL7Types_2_5>;
+    DG1: DG1Object5<HL7Types_2_5>;
+    DRG: DRGObject2<HL7Types_2_5>;
+    DSC: DSCObject2<HL7Types_2_5>;
+    DSP: DSPObject1<HL7Types_2_5>;
+    ECD: ECDObject1<HL7Types_2_5>;
+    ECR: ECRObject1<HL7Types_2_5>;
+    EDU: EDUObject2<HL7Types_2_5>;
+    EQL: EQLObject1<HL7Types_2_5>;
+    EQP: EQPObject1<HL7Types_2_5>;
+    EQU: EQUObject1<HL7Types_2_5>;
+    ERQ: ERQObject1<HL7Types_2_5>;
+    ERR: ERRObject4<HL7Types_2_5>;
+    EVN: EVNObject5<HL7Types_2_5>;
+    FAC: FACObject2<HL7Types_2_5>;
+    FHS: FHSObject3<HL7Types_2_5>;
+    FT1: FT1Object5<HL7Types_2_5>;
+    FTS: FTSObject2<HL7Types_2_5>;
+    GOL: GOLObject1<HL7Types_2_5>;
+    GP1: GP1Object1<HL7Types_2_5>;
+    GP2: GP2Object1<HL7Types_2_5>;
+    GT1: GT1Object5<HL7Types_2_5>;
+    IAM: IAMObject1<HL7Types_2_5>;
+    IIM: IIMObject1<HL7Types_2_5>;
+    IN1: IN1Object5<HL7Types_2_5>;
+    IN2: IN2Object3<HL7Types_2_5>;
+    IN3: IN3Object4<HL7Types_2_5>;
+    INV: INVObject2<HL7Types_2_5>;
+    IPC: IPCObject1<HL7Types_2_5>;
+    ISD: ISDObject1<HL7Types_2_5>;
+    LAN: LANObject1<HL7Types_2_5>;
+    LCC: LCCObject2<HL7Types_2_5>;
+    LCH: LCHObject1<HL7Types_2_5>;
+    LDP: LDPObject2<HL7Types_2_5>;
+    LOC: LOCObject3<HL7Types_2_5>;
+    LRL: LRLObject2<HL7Types_2_5>;
+    MFA: MFAObject3<HL7Types_2_5>;
+    MFE: MFEObject2<HL7Types_2_5>;
+    MFI: MFIObject2<HL7Types_2_5>;
+    MRG: MRGObject4<HL7Types_2_5>;
+    MSA: MSAObject2<HL7Types_2_5>;
+    MSH: MSHObject6<HL7Types_2_5>;
+    NCK: NCKObject2<HL7Types_2_5>;
+    NDS: NDSObject1<HL7Types_2_5>;
+    NK1: NK1Object5<HL7Types_2_5>;
+    NPU: NPUObject3<HL7Types_2_5>;
+    NSC: NSCObject3<HL7Types_2_5>;
+    NST: NSTObject2<HL7Types_2_5>;
+    NTE: NTEObject2<HL7Types_2_5>;
+    OBR: OBRObject6<HL7Types_2_5>;
+    OBX: OBXObject6<HL7Types_2_5>;
+    ODS: ODSObject1<HL7Types_2_5>;
+    ODT: ODTObject2<HL7Types_2_5>;
+    OM1: OM1Object4<HL7Types_2_5>;
+    OM2: OM2Object4<HL7Types_2_5>;
+    OM3: OM3Object3<HL7Types_2_5>;
+    OM4: OM4Object4<HL7Types_2_5>;
+    OM5: OM5Object2<HL7Types_2_5>;
+    OM6: OM6Object2<HL7Types_2_5>;
+    OM7: OM7Object1<HL7Types_2_5>;
+    ORC: ORCObject6<HL7Types_2_5>;
+    ORG: ORGObject1<HL7Types_2_5>;
+    OVR: OVRObject1<HL7Types_2_5>;
+    PCR: PCRObject1<HL7Types_2_5>;
+    PD1: PD1Object3<HL7Types_2_5>;
+    PDA: PDAObject1<HL7Types_2_5>;
+    PDC: PDCObject2<HL7Types_2_5>;
+    PEO: PEOObject2<HL7Types_2_5>;
+    PES: PESObject2<HL7Types_2_5>;
+    PID: PIDObject6<HL7Types_2_5>;
+    PR1: PR1Object6<HL7Types_2_5>;
+    PRA: PRAObject3<HL7Types_2_5>;
+    PRB: PRBObject1<HL7Types_2_5>;
+    PRC: PRCObject2<HL7Types_2_5>;
+    PRD: PRDObject3<HL7Types_2_5>;
+    PSH: PSHObject1<HL7Types_2_5>;
+    PTH: PTHObject1<HL7Types_2_5>;
+    PV1: PV1Object5<HL7Types_2_5>;
+    PV2: PV2Object5<HL7Types_2_5>;
+    QAK: QAKObject2<HL7Types_2_5>;
+    QID: QIDObject1<HL7Types_2_5>;
+    QPD: QPDObject1<HL7Types_2_5>;
+    QRD: QRDObject4<HL7Types_2_5>;
+    QRF: QRFObject4<HL7Types_2_5>;
+    QRI: QRIObject1<HL7Types_2_5>;
+    RCP: RCPObject1<HL7Types_2_5>;
+    RDF: RDFObject1<HL7Types_2_5>;
+    RDT: RDTObject1<HL7Types_2_5>;
+    RF1: RF1Object1<HL7Types_2_5>;
+    RGS: RGSObject1<HL7Types_2_5>;
+    RMI: RMIObject1<HL7Types_2_5>;
+    ROL: ROLObject3<HL7Types_2_5>;
+    RQ1: RQ1Object2<HL7Types_2_5>;
+    RQD: RQDObject1<HL7Types_2_5>;
+    RXA: RXAObject4<HL7Types_2_5>;
+    RXC: RXCObject4<HL7Types_2_5>;
+    RXD: RXDObject5<HL7Types_2_5>;
+    RXE: RXEObject5<HL7Types_2_5>;
+    RXG: RXGObject4<HL7Types_2_5>;
+    RXO: RXOObject5<HL7Types_2_5>;
+    RXR: RXRObject3<HL7Types_2_5>;
+    SAC: SACObject2<HL7Types_2_5>;
+    SCH: SCHObject3<HL7Types_2_5>;
+    SFT: SFTObject1<HL7Types_2_5>;
+    SID: SIDObject1<HL7Types_2_5>;
+    SPM: SPMObject1<HL7Types_2_5>;
+    SPR: SPRObject1<HL7Types_2_5>;
+    STF: STFObject5<HL7Types_2_5>;
+    TCC: TCCObject1<HL7Types_2_5>;
+    TCD: TCDObject1<HL7Types_2_5>;
+    TQ1: TQ1Object1<HL7Types_2_5>;
+    TQ2: TQ2Object1<HL7Types_2_5>;
+    TXA: TXAObject2<HL7Types_2_5>;
+    UB1: UB1Object4<HL7Types_2_5>;
+    UB2: UB2Object3<HL7Types_2_5>;
+    URD: URDObject3<HL7Types_2_5>;
+    URS: URSObject3<HL7Types_2_5>;
+    VAR: VARObject2<HL7Types_2_5>;
+    VTQ: VTQObject1<HL7Types_2_5>;
+    ED: EDObject2<HL7Types_2_5>;
+    [segment: string]: Record<string, any>;
+  };
+  '2.5.1': {
+    ABS: ABSObject1<HL7Types_2_5_1>;
+    ACC: ACCObject5<HL7Types_2_5_1>;
+    ADD: ADDObject1<HL7Types_2_5_1>;
+    AFF: AFFObject1<HL7Types_2_5_1>;
+    AIG: AIGObject1<HL7Types_2_5_1>;
+    AIL: AILObject2<HL7Types_2_5_1>;
+    AIP: AIPObject2<HL7Types_2_5_1>;
+    AIS: AISObject2<HL7Types_2_5_1>;
+    AL1: AL1Object4<HL7Types_2_5_1>;
+    APR: APRObject1<HL7Types_2_5_1>;
+    ARQ: ARQObject3<HL7Types_2_5_1>;
+    AUT: AUTObject1<HL7Types_2_5_1>;
+    BHS: BHSObject3<HL7Types_2_5_1>;
+    BLC: BLCObject1<HL7Types_2_5_1>;
+    BLG: BLGObject5<HL7Types_2_5_1>;
+    BPO: BPOObject1<HL7Types_2_5_1>;
+    BPX: BPXObject1<HL7Types_2_5_1>;
+    BTS: BTSObject3<HL7Types_2_5_1>;
+    BTX: BTXObject1<HL7Types_2_5_1>;
+    CDM: CDMObject3<HL7Types_2_5_1>;
+    CER: CERObject1<HL7Types_2_5_1>;
+    CM0: CM0Object2<HL7Types_2_5_1>;
+    CM1: CM1Object1<HL7Types_2_5_1>;
+    CM2: CM2Object1<HL7Types_2_5_1>;
+    CNS: CNSObject2<HL7Types_2_5_1>;
+    CON: CONObject1<HL7Types_2_5_1>;
+    CSP: CSPObject1<HL7Types_2_5_1>;
+    CSR: CSRObject2<HL7Types_2_5_1>;
+    CSS: CSSObject1<HL7Types_2_5_1>;
+    CTD: CTDObject3<HL7Types_2_5_1>;
+    CTI: CTIObject1<HL7Types_2_5_1>;
+    DB1: DB1Object1<HL7Types_2_5_1>;
+    DG1: DG1Object5<HL7Types_2_5_1>;
+    DRG: DRGObject2<HL7Types_2_5_1>;
+    DSC: DSCObject2<HL7Types_2_5_1>;
+    DSP: DSPObject1<HL7Types_2_5_1>;
+    ECD: ECDObject1<HL7Types_2_5_1>;
+    ECR: ECRObject1<HL7Types_2_5_1>;
+    EDU: EDUObject2<HL7Types_2_5_1>;
+    EQL: EQLObject1<HL7Types_2_5_1>;
+    EQP: EQPObject1<HL7Types_2_5_1>;
+    EQU: EQUObject1<HL7Types_2_5_1>;
+    ERQ: ERQObject1<HL7Types_2_5_1>;
+    ERR: ERRObject4<HL7Types_2_5_1>;
+    EVN: EVNObject5<HL7Types_2_5_1>;
+    FAC: FACObject2<HL7Types_2_5_1>;
+    FHS: FHSObject3<HL7Types_2_5_1>;
+    FT1: FT1Object5<HL7Types_2_5_1>;
+    FTS: FTSObject2<HL7Types_2_5_1>;
+    GOL: GOLObject1<HL7Types_2_5_1>;
+    GP1: GP1Object1<HL7Types_2_5_1>;
+    GP2: GP2Object1<HL7Types_2_5_1>;
+    GT1: GT1Object5<HL7Types_2_5_1>;
+    IAM: IAMObject1<HL7Types_2_5_1>;
+    IIM: IIMObject1<HL7Types_2_5_1>;
+    IN1: IN1Object5<HL7Types_2_5_1>;
+    IN2: IN2Object3<HL7Types_2_5_1>;
+    IN3: IN3Object4<HL7Types_2_5_1>;
+    INV: INVObject2<HL7Types_2_5_1>;
+    IPC: IPCObject1<HL7Types_2_5_1>;
+    ISD: ISDObject1<HL7Types_2_5_1>;
+    LAN: LANObject1<HL7Types_2_5_1>;
+    LCC: LCCObject2<HL7Types_2_5_1>;
+    LCH: LCHObject1<HL7Types_2_5_1>;
+    LDP: LDPObject2<HL7Types_2_5_1>;
+    LOC: LOCObject3<HL7Types_2_5_1>;
+    LRL: LRLObject2<HL7Types_2_5_1>;
+    MFA: MFAObject3<HL7Types_2_5_1>;
+    MFE: MFEObject2<HL7Types_2_5_1>;
+    MFI: MFIObject2<HL7Types_2_5_1>;
+    MRG: MRGObject4<HL7Types_2_5_1>;
+    MSA: MSAObject2<HL7Types_2_5_1>;
+    MSH: MSHObject6<HL7Types_2_5_1>;
+    NCK: NCKObject2<HL7Types_2_5_1>;
+    NDS: NDSObject1<HL7Types_2_5_1>;
+    NK1: NK1Object5<HL7Types_2_5_1>;
+    NPU: NPUObject3<HL7Types_2_5_1>;
+    NSC: NSCObject3<HL7Types_2_5_1>;
+    NST: NSTObject2<HL7Types_2_5_1>;
+    NTE: NTEObject2<HL7Types_2_5_1>;
+    OBR: OBRObject7<HL7Types_2_5_1>;
+    OBX: OBXObject7<HL7Types_2_5_1>;
+    ODS: ODSObject1<HL7Types_2_5_1>;
+    ODT: ODTObject2<HL7Types_2_5_1>;
+    OM1: OM1Object4<HL7Types_2_5_1>;
+    OM2: OM2Object4<HL7Types_2_5_1>;
+    OM3: OM3Object3<HL7Types_2_5_1>;
+    OM4: OM4Object4<HL7Types_2_5_1>;
+    OM5: OM5Object2<HL7Types_2_5_1>;
+    OM6: OM6Object2<HL7Types_2_5_1>;
+    OM7: OM7Object1<HL7Types_2_5_1>;
+    ORC: ORCObject7<HL7Types_2_5_1>;
+    ORG: ORGObject1<HL7Types_2_5_1>;
+    OVR: OVRObject1<HL7Types_2_5_1>;
+    PCR: PCRObject1<HL7Types_2_5_1>;
+    PD1: PD1Object3<HL7Types_2_5_1>;
+    PDA: PDAObject1<HL7Types_2_5_1>;
+    PDC: PDCObject2<HL7Types_2_5_1>;
+    PEO: PEOObject2<HL7Types_2_5_1>;
+    PES: PESObject2<HL7Types_2_5_1>;
+    PID: PIDObject6<HL7Types_2_5_1>;
+    PR1: PR1Object6<HL7Types_2_5_1>;
+    PRA: PRAObject3<HL7Types_2_5_1>;
+    PRB: PRBObject1<HL7Types_2_5_1>;
+    PRC: PRCObject2<HL7Types_2_5_1>;
+    PRD: PRDObject3<HL7Types_2_5_1>;
+    PSH: PSHObject1<HL7Types_2_5_1>;
+    PTH: PTHObject1<HL7Types_2_5_1>;
+    PV1: PV1Object5<HL7Types_2_5_1>;
+    PV2: PV2Object5<HL7Types_2_5_1>;
+    QAK: QAKObject2<HL7Types_2_5_1>;
+    QID: QIDObject1<HL7Types_2_5_1>;
+    QPD: QPDObject1<HL7Types_2_5_1>;
+    QRD: QRDObject4<HL7Types_2_5_1>;
+    QRF: QRFObject4<HL7Types_2_5_1>;
+    QRI: QRIObject1<HL7Types_2_5_1>;
+    RCP: RCPObject1<HL7Types_2_5_1>;
+    RDF: RDFObject1<HL7Types_2_5_1>;
+    RDT: RDTObject1<HL7Types_2_5_1>;
+    RF1: RF1Object1<HL7Types_2_5_1>;
+    RGS: RGSObject1<HL7Types_2_5_1>;
+    RMI: RMIObject1<HL7Types_2_5_1>;
+    ROL: ROLObject3<HL7Types_2_5_1>;
+    RQ1: RQ1Object2<HL7Types_2_5_1>;
+    RQD: RQDObject1<HL7Types_2_5_1>;
+    RXA: RXAObject4<HL7Types_2_5_1>;
+    RXC: RXCObject4<HL7Types_2_5_1>;
+    RXD: RXDObject5<HL7Types_2_5_1>;
+    RXE: RXEObject5<HL7Types_2_5_1>;
+    RXG: RXGObject4<HL7Types_2_5_1>;
+    RXO: RXOObject5<HL7Types_2_5_1>;
+    RXR: RXRObject3<HL7Types_2_5_1>;
+    SAC: SACObject2<HL7Types_2_5_1>;
+    SCH: SCHObject3<HL7Types_2_5_1>;
+    SFT: SFTObject1<HL7Types_2_5_1>;
+    SID: SIDObject1<HL7Types_2_5_1>;
+    SPM: SPMObject1<HL7Types_2_5_1>;
+    SPR: SPRObject1<HL7Types_2_5_1>;
+    STF: STFObject5<HL7Types_2_5_1>;
+    TCC: TCCObject1<HL7Types_2_5_1>;
+    TCD: TCDObject1<HL7Types_2_5_1>;
+    TQ1: TQ1Object1<HL7Types_2_5_1>;
+    TQ2: TQ2Object1<HL7Types_2_5_1>;
+    TXA: TXAObject2<HL7Types_2_5_1>;
+    UB1: UB1Object4<HL7Types_2_5_1>;
+    UB2: UB2Object3<HL7Types_2_5_1>;
+    URD: URDObject3<HL7Types_2_5_1>;
+    URS: URSObject3<HL7Types_2_5_1>;
+    VAR: VARObject2<HL7Types_2_5_1>;
+    VTQ: VTQObject1<HL7Types_2_5_1>;
+    ED: EDObject2<HL7Types_2_5_1>;
+    [segment: string]: Record<string, any>;
+  };
+  '2.6': {
+    ABS: ABSObject2<HL7Types_2_6>;
+    ACC: ACCObject6<HL7Types_2_6>;
+    ADD: ADDObject1<HL7Types_2_6>;
+    ADJ: ADJObject1<HL7Types_2_6>;
+    AFF: AFFObject1<HL7Types_2_6>;
+    AIG: AIGObject2<HL7Types_2_6>;
+    AIL: AILObject3<HL7Types_2_6>;
+    AIP: AIPObject3<HL7Types_2_6>;
+    AIS: AISObject3<HL7Types_2_6>;
+    AL1: AL1Object5<HL7Types_2_6>;
+    APR: APRObject1<HL7Types_2_6>;
+    ARQ: ARQObject4<HL7Types_2_6>;
+    ARV: ARVObject1<HL7Types_2_6>;
+    AUT: AUTObject2<HL7Types_2_6>;
+    BHS: BHSObject4<HL7Types_2_6>;
+    BLC: BLCObject2<HL7Types_2_6>;
+    BLG: BLGObject5<HL7Types_2_6>;
+    BPO: BPOObject2<HL7Types_2_6>;
+    BPX: BPXObject2<HL7Types_2_6>;
+    BTS: BTSObject3<HL7Types_2_6>;
+    BTX: BTXObject2<HL7Types_2_6>;
+    CDM: CDMObject4<HL7Types_2_6>;
+    CER: CERObject2<HL7Types_2_6>;
+    CM0: CM0Object2<HL7Types_2_6>;
+    CM1: CM1Object2<HL7Types_2_6>;
+    CM2: CM2Object2<HL7Types_2_6>;
+    CNS: CNSObject3<HL7Types_2_6>;
+    CON: CONObject2<HL7Types_2_6>;
+    CSP: CSPObject2<HL7Types_2_6>;
+    CSR: CSRObject3<HL7Types_2_6>;
+    CSS: CSSObject2<HL7Types_2_6>;
+    CTD: CTDObject4<HL7Types_2_6>;
+    CTI: CTIObject2<HL7Types_2_6>;
+    DB1: DB1Object1<HL7Types_2_6>;
+    DG1: DG1Object6<HL7Types_2_6>;
+    DMI: DMIObject1<HL7Types_2_6>;
+    DRG: DRGObject3<HL7Types_2_6>;
+    DSC: DSCObject2<HL7Types_2_6>;
+    DSP: DSPObject1<HL7Types_2_6>;
+    ECD: ECDObject2<HL7Types_2_6>;
+    ECR: ECRObject2<HL7Types_2_6>;
+    ED: EDObject3<HL7Types_2_6>;
+    EDU: EDUObject3<HL7Types_2_6>;
+    EQP: EQPObject2<HL7Types_2_6>;
+    EQU: EQUObject2<HL7Types_2_6>;
+    ERR: ERRObject4<HL7Types_2_6>;
+    EVN: EVNObject6<HL7Types_2_6>;
+    FAC: FACObject2<HL7Types_2_6>;
+    FHS: FHSObject4<HL7Types_2_6>;
+    FT1: FT1Object6<HL7Types_2_6>;
+    FTS: FTSObject2<HL7Types_2_6>;
+    GOL: GOLObject2<HL7Types_2_6>;
+    GP1: GP1Object1<HL7Types_2_6>;
+    GP2: GP2Object2<HL7Types_2_6>;
+    GT1: GT1Object6<HL7Types_2_6>;
+    Hxx: HxxObject1<HL7Types_2_6>;
+    IAM: IAMObject2<HL7Types_2_6>;
+    IIM: IIMObject2<HL7Types_2_6>;
+    ILT: ILTObject1<HL7Types_2_6>;
+    IN1: IN1Object6<HL7Types_2_6>;
+    IN2: IN2Object4<HL7Types_2_6>;
+    IN3: IN3Object5<HL7Types_2_6>;
+    INV: INVObject3<HL7Types_2_6>;
+    IPC: IPCObject2<HL7Types_2_6>;
+    IPR: IPRObject1<HL7Types_2_6>;
+    ISD: ISDObject2<HL7Types_2_6>;
+    ITM: ITMObject1<HL7Types_2_6>;
+    IVC: IVCObject1<HL7Types_2_6>;
+    IVT: IVTObject1<HL7Types_2_6>;
+    LAN: LANObject2<HL7Types_2_6>;
+    LCC: LCCObject3<HL7Types_2_6>;
+    LCH: LCHObject2<HL7Types_2_6>;
+    LDP: LDPObject3<HL7Types_2_6>;
+    LOC: LOCObject4<HL7Types_2_6>;
+    LRL: LRLObject3<HL7Types_2_6>;
+    MFA: MFAObject4<HL7Types_2_6>;
+    MFE: MFEObject3<HL7Types_2_6>;
+    MFI: MFIObject3<HL7Types_2_6>;
+    MRG: MRGObject4<HL7Types_2_6>;
+    MSA: MSAObject3<HL7Types_2_6>;
+    MSH: MSHObject7<HL7Types_2_6>;
+    NCK: NCKObject1<HL7Types_2_6>;
+    NDS: NDSObject2<HL7Types_2_6>;
+    NK1: NK1Object6<HL7Types_2_6>;
+    NPU: NPUObject3<HL7Types_2_6>;
+    NSC: NSCObject3<HL7Types_2_6>;
+    NST: NSTObject1<HL7Types_2_6>;
+    NTE: NTEObject3<HL7Types_2_6>;
+    OBR: OBRObject8<HL7Types_2_6>;
+    OBX: OBXObject8<HL7Types_2_6>;
+    ODS: ODSObject3<HL7Types_2_6>;
+    ODT: ODTObject3<HL7Types_2_6>;
+    OM1: OM1Object5<HL7Types_2_6>;
+    OM2: OM2Object5<HL7Types_2_6>;
+    OM3: OM3Object4<HL7Types_2_6>;
+    OM4: OM4Object5<HL7Types_2_6>;
+    OM5: OM5Object3<HL7Types_2_6>;
+    OM6: OM6Object2<HL7Types_2_6>;
+    OM7: OM7Object2<HL7Types_2_6>;
+    ORC: ORCObject8<HL7Types_2_6>;
+    ORG: ORGObject2<HL7Types_2_6>;
+    OVR: OVRObject1<HL7Types_2_6>;
+    PCE: PCEObject1<HL7Types_2_6>;
+    PCR: PCRObject2<HL7Types_2_6>;
+    PD1: PD1Object4<HL7Types_2_6>;
+    PDA: PDAObject2<HL7Types_2_6>;
+    PDC: PDCObject3<HL7Types_2_6>;
+    PEO: PEOObject3<HL7Types_2_6>;
+    PES: PESObject3<HL7Types_2_6>;
+    PID: PIDObject7<HL7Types_2_6>;
+    PKG: PKGObject1<HL7Types_2_6>;
+    PMT: PMTObject1<HL7Types_2_6>;
+    PR1: PR1Object7<HL7Types_2_6>;
+    PRA: PRAObject4<HL7Types_2_6>;
+    PRB: PRBObject2<HL7Types_2_6>;
+    PRC: PRCObject3<HL7Types_2_6>;
+    PRD: PRDObject4<HL7Types_2_6>;
+    PSG: PSGObject1<HL7Types_2_6>;
+    PSH: PSHObject2<HL7Types_2_6>;
+    PSL: PSLObject1<HL7Types_2_6>;
+    PSS: PSSObject1<HL7Types_2_6>;
+    PTH: PTHObject2<HL7Types_2_6>;
+    PV1: PV1Object6<HL7Types_2_6>;
+    PV2: PV2Object6<HL7Types_2_6>;
+    PYE: PYEObject1<HL7Types_2_6>;
+    QAK: QAKObject3<HL7Types_2_6>;
+    QID: QIDObject2<HL7Types_2_6>;
+    QPD: QPDObject2<HL7Types_2_6>;
+    QRD: QRDObject5<HL7Types_2_6>;
+    QRF: QRFObject5<HL7Types_2_6>;
+    QRI: QRIObject2<HL7Types_2_6>;
+    RCP: RCPObject2<HL7Types_2_6>;
+    RDF: RDFObject1<HL7Types_2_6>;
+    RDT: RDTObject1<HL7Types_2_6>;
+    REL: RELObject1<HL7Types_2_6>;
+    RF1: RF1Object2<HL7Types_2_6>;
+    RFI: RFIObject1<HL7Types_2_6>;
+    RGS: RGSObject2<HL7Types_2_6>;
+    RMI: RMIObject2<HL7Types_2_6>;
+    ROL: ROLObject4<HL7Types_2_6>;
+    RQ1: RQ1Object3<HL7Types_2_6>;
+    RQD: RQDObject2<HL7Types_2_6>;
+    RXA: RXAObject5<HL7Types_2_6>;
+    RXC: RXCObject5<HL7Types_2_6>;
+    RXD: RXDObject6<HL7Types_2_6>;
+    RXE: RXEObject6<HL7Types_2_6>;
+    RXG: RXGObject5<HL7Types_2_6>;
+    RXO: RXOObject6<HL7Types_2_6>;
+    RXR: RXRObject4<HL7Types_2_6>;
+    SAC: SACObject3<HL7Types_2_6>;
+    SCD: SCDObject1<HL7Types_2_6>;
+    SCH: SCHObject4<HL7Types_2_6>;
+    SCP: SCPObject1<HL7Types_2_6>;
+    SDD: SDDObject1<HL7Types_2_6>;
+    SFT: SFTObject2<HL7Types_2_6>;
+    SID: SIDObject2<HL7Types_2_6>;
+    SLT: SLTObject1<HL7Types_2_6>;
+    SPM: SPMObject2<HL7Types_2_6>;
+    STF: STFObject6<HL7Types_2_6>;
+    STZ: STZObject1<HL7Types_2_6>;
+    TCC: TCCObject2<HL7Types_2_6>;
+    TCD: TCDObject2<HL7Types_2_6>;
+    TQ1: TQ1Object2<HL7Types_2_6>;
+    TQ2: TQ2Object1<HL7Types_2_6>;
+    TXA: TXAObject3<HL7Types_2_6>;
+    UAC: UACObject1<HL7Types_2_6>;
+    UB1: UB1Object5<HL7Types_2_6>;
+    UB2: UB2Object3<HL7Types_2_6>;
+    URD: URDObject4<HL7Types_2_6>;
+    URS: URSObject4<HL7Types_2_6>;
+    VAR: VARObject3<HL7Types_2_6>;
+    VND: VNDObject1<HL7Types_2_6>;
+    ZL7: ZL7Object1<HL7Types_2_6>;
+    Zxx: ZxxObject1<HL7Types_2_6>;
+    [segment: string]: Record<string, any>;
+  };
+  '2.7': {
+    ABS: ABSObject2<HL7Types_2_7>;
+    ACC: ACCObject7<HL7Types_2_7>;
+    ADD: ADDObject1<HL7Types_2_7>;
+    ADJ: ADJObject2<HL7Types_2_7>;
+    AFF: AFFObject1<HL7Types_2_7>;
+    AIG: AIGObject3<HL7Types_2_7>;
+    AIL: AILObject4<HL7Types_2_7>;
+    AIP: AIPObject4<HL7Types_2_7>;
+    AIS: AISObject4<HL7Types_2_7>;
+    AL1: AL1Object6<HL7Types_2_7>;
+    APR: APRObject1<HL7Types_2_7>;
+    ARQ: ARQObject4<HL7Types_2_7>;
+    ARV: ARVObject1<HL7Types_2_7>;
+    AUT: AUTObject3<HL7Types_2_7>;
+    BHS: BHSObject4<HL7Types_2_7>;
+    BLC: BLCObject2<HL7Types_2_7>;
+    BLG: BLGObject5<HL7Types_2_7>;
+    BPO: BPOObject2<HL7Types_2_7>;
+    BPX: BPXObject2<HL7Types_2_7>;
+    BTS: BTSObject3<HL7Types_2_7>;
+    BTX: BTXObject2<HL7Types_2_7>;
+    CDM: CDMObject5<HL7Types_2_7>;
+    CER: CERObject3<HL7Types_2_7>;
+    CM0: CM0Object2<HL7Types_2_7>;
+    CM1: CM1Object2<HL7Types_2_7>;
+    CM2: CM2Object2<HL7Types_2_7>;
+    CNS: CNSObject3<HL7Types_2_7>;
+    CON: CONObject3<HL7Types_2_7>;
+    CSP: CSPObject2<HL7Types_2_7>;
+    CSR: CSRObject3<HL7Types_2_7>;
+    CSS: CSSObject2<HL7Types_2_7>;
+    CTD: CTDObject4<HL7Types_2_7>;
+    CTI: CTIObject2<HL7Types_2_7>;
+    DB1: DB1Object2<HL7Types_2_7>;
+    DG1: DG1Object7<HL7Types_2_7>;
+    DMI: DMIObject1<HL7Types_2_7>;
+    DRG: DRGObject4<HL7Types_2_7>;
+    DSC: DSCObject2<HL7Types_2_7>;
+    DSP: DSPObject1<HL7Types_2_7>;
+    ECD: ECDObject3<HL7Types_2_7>;
+    ECR: ECRObject2<HL7Types_2_7>;
+    EDU: EDUObject4<HL7Types_2_7>;
+    EQP: EQPObject2<HL7Types_2_7>;
+    EQU: EQUObject2<HL7Types_2_7>;
+    ERR: ERRObject5<HL7Types_2_7>;
+    EVN: EVNObject7<HL7Types_2_7>;
+    FAC: FACObject2<HL7Types_2_7>;
+    FHS: FHSObject4<HL7Types_2_7>;
+    FT1: FT1Object7<HL7Types_2_7>;
+    FTS: FTSObject2<HL7Types_2_7>;
+    GOL: GOLObject3<HL7Types_2_7>;
+    GP1: GP1Object2<HL7Types_2_7>;
+    GP2: GP2Object3<HL7Types_2_7>;
+    GT1: GT1Object7<HL7Types_2_7>;
+    Hxx: HxxObject1<HL7Types_2_7>;
+    IAM: IAMObject3<HL7Types_2_7>;
+    IAR: IARObject1<HL7Types_2_7>;
+    IIM: IIMObject2<HL7Types_2_7>;
+    ILT: ILTObject1<HL7Types_2_7>;
+    IN1: IN1Object7<HL7Types_2_7>;
+    IN2: IN2Object5<HL7Types_2_7>;
+    IN3: IN3Object6<HL7Types_2_7>;
+    INV: INVObject4<HL7Types_2_7>;
+    IPC: IPCObject2<HL7Types_2_7>;
+    IPR: IPRObject1<HL7Types_2_7>;
+    ISD: ISDObject2<HL7Types_2_7>;
+    ITM: ITMObject2<HL7Types_2_7>;
+    IVC: IVCObject2<HL7Types_2_7>;
+    IVT: IVTObject1<HL7Types_2_7>;
+    LAN: LANObject2<HL7Types_2_7>;
+    LCC: LCCObject3<HL7Types_2_7>;
+    LCH: LCHObject2<HL7Types_2_7>;
+    LDP: LDPObject4<HL7Types_2_7>;
+    LOC: LOCObject5<HL7Types_2_7>;
+    LRL: LRLObject3<HL7Types_2_7>;
+    MFA: MFAObject4<HL7Types_2_7>;
+    MFE: MFEObject3<HL7Types_2_7>;
+    MFI: MFIObject3<HL7Types_2_7>;
+    MRG: MRGObject5<HL7Types_2_7>;
+    MSA: MSAObject4<HL7Types_2_7>;
+    MSH: MSHObject7<HL7Types_2_7>;
+    NCK: NCKObject1<HL7Types_2_7>;
+    NDS: NDSObject2<HL7Types_2_7>;
+    NK1: NK1Object7<HL7Types_2_7>;
+    NPU: NPUObject4<HL7Types_2_7>;
+    NSC: NSCObject4<HL7Types_2_7>;
+    NST: NSTObject1<HL7Types_2_7>;
+    NTE: NTEObject3<HL7Types_2_7>;
+    OBR: OBRObject9<HL7Types_2_7>;
+    OBX: OBXObject9<HL7Types_2_7>;
+    ODS: ODSObject3<HL7Types_2_7>;
+    ODT: ODTObject3<HL7Types_2_7>;
+    OM1: OM1Object6<HL7Types_2_7>;
+    OM2: OM2Object5<HL7Types_2_7>;
+    OM3: OM3Object4<HL7Types_2_7>;
+    OM4: OM4Object5<HL7Types_2_7>;
+    OM5: OM5Object3<HL7Types_2_7>;
+    OM6: OM6Object2<HL7Types_2_7>;
+    OM7: OM7Object3<HL7Types_2_7>;
+    ORC: ORCObject9<HL7Types_2_7>;
+    ORG: ORGObject3<HL7Types_2_7>;
+    OVR: OVRObject1<HL7Types_2_7>;
+    PAC: PACObject1<HL7Types_2_7>;
+    PCE: PCEObject2<HL7Types_2_7>;
+    PCR: PCRObject3<HL7Types_2_7>;
+    PD1: PD1Object5<HL7Types_2_7>;
+    PDA: PDAObject2<HL7Types_2_7>;
+    PDC: PDCObject3<HL7Types_2_7>;
+    PEO: PEOObject3<HL7Types_2_7>;
+    PES: PESObject3<HL7Types_2_7>;
+    PID: PIDObject8<HL7Types_2_7>;
+    PKG: PKGObject1<HL7Types_2_7>;
+    PMT: PMTObject1<HL7Types_2_7>;
+    PR1: PR1Object8<HL7Types_2_7>;
+    PRA: PRAObject5<HL7Types_2_7>;
+    PRB: PRBObject2<HL7Types_2_7>;
+    PRC: PRCObject4<HL7Types_2_7>;
+    PRD: PRDObject4<HL7Types_2_7>;
+    PRT: PRTObject1<HL7Types_2_7>;
+    PSG: PSGObject1<HL7Types_2_7>;
+    PSH: PSHObject2<HL7Types_2_7>;
+    PSL: PSLObject2<HL7Types_2_7>;
+    PSS: PSSObject1<HL7Types_2_7>;
+    PTH: PTHObject2<HL7Types_2_7>;
+    PV1: PV1Object7<HL7Types_2_7>;
+    PV2: PV2Object7<HL7Types_2_7>;
+    PYE: PYEObject2<HL7Types_2_7>;
+    QAK: QAKObject3<HL7Types_2_7>;
+    QID: QIDObject2<HL7Types_2_7>;
+    QPD: QPDObject2<HL7Types_2_7>;
+    QRD: QRDObject6<HL7Types_2_7>;
+    QRF: QRFObject6<HL7Types_2_7>;
+    QRI: QRIObject3<HL7Types_2_7>;
+    RCP: RCPObject2<HL7Types_2_7>;
+    RDF: RDFObject1<HL7Types_2_7>;
+    RDT: RDTObject1<HL7Types_2_7>;
+    REL: RELObject1<HL7Types_2_7>;
+    RF1: RF1Object2<HL7Types_2_7>;
+    RFI: RFIObject1<HL7Types_2_7>;
+    RGS: RGSObject2<HL7Types_2_7>;
+    RMI: RMIObject2<HL7Types_2_7>;
+    ROL: ROLObject5<HL7Types_2_7>;
+    RQ1: RQ1Object3<HL7Types_2_7>;
+    RQD: RQDObject3<HL7Types_2_7>;
+    RXA: RXAObject5<HL7Types_2_7>;
+    RXC: RXCObject5<HL7Types_2_7>;
+    RXD: RXDObject7<HL7Types_2_7>;
+    RXE: RXEObject7<HL7Types_2_7>;
+    RXG: RXGObject6<HL7Types_2_7>;
+    RXO: RXOObject7<HL7Types_2_7>;
+    RXR: RXRObject4<HL7Types_2_7>;
+    SAC: SACObject4<HL7Types_2_7>;
+    SCD: SCDObject1<HL7Types_2_7>;
+    SCH: SCHObject5<HL7Types_2_7>;
+    SCP: SCPObject1<HL7Types_2_7>;
+    SDD: SDDObject2<HL7Types_2_7>;
+    SFT: SFTObject2<HL7Types_2_7>;
+    SHP: SHPObject1<HL7Types_2_7>;
+    SID: SIDObject2<HL7Types_2_7>;
+    SLT: SLTObject1<HL7Types_2_7>;
+    SPM: SPMObject3<HL7Types_2_7>;
+    STF: STFObject7<HL7Types_2_7>;
+    STZ: STZObject1<HL7Types_2_7>;
+    TCC: TCCObject3<HL7Types_2_7>;
+    TCD: TCDObject2<HL7Types_2_7>;
+    TQ1: TQ1Object2<HL7Types_2_7>;
+    TQ2: TQ2Object1<HL7Types_2_7>;
+    TXA: TXAObject4<HL7Types_2_7>;
+    UAC: UACObject1<HL7Types_2_7>;
+    UB1: UB1Object6<HL7Types_2_7>;
+    UB2: UB2Object4<HL7Types_2_7>;
+    URD: URDObject5<HL7Types_2_7>;
+    URS: URSObject5<HL7Types_2_7>;
+    VAR: VARObject3<HL7Types_2_7>;
+    VND: VNDObject1<HL7Types_2_7>;
+    ZL7: ZL7Object1<HL7Types_2_7>;
+    Zxx: ZxxObject1<HL7Types_2_7>;
+    [segment: string]: Record<string, any>;
+  };
+  '2.7.1': {
+    ABS: ABSObject2<HL7Types_2_7_1>;
+    ACC: ACCObject7<HL7Types_2_7_1>;
+    ADD: ADDObject1<HL7Types_2_7_1>;
+    ADJ: ADJObject2<HL7Types_2_7_1>;
+    AFF: AFFObject1<HL7Types_2_7_1>;
+    AIG: AIGObject3<HL7Types_2_7_1>;
+    AIL: AILObject4<HL7Types_2_7_1>;
+    AIP: AIPObject4<HL7Types_2_7_1>;
+    AIS: AISObject4<HL7Types_2_7_1>;
+    AL1: AL1Object6<HL7Types_2_7_1>;
+    APR: APRObject1<HL7Types_2_7_1>;
+    ARQ: ARQObject4<HL7Types_2_7_1>;
+    ARV: ARVObject1<HL7Types_2_7_1>;
+    AUT: AUTObject3<HL7Types_2_7_1>;
+    BHS: BHSObject4<HL7Types_2_7_1>;
+    BLC: BLCObject2<HL7Types_2_7_1>;
+    BLG: BLGObject5<HL7Types_2_7_1>;
+    BPO: BPOObject2<HL7Types_2_7_1>;
+    BPX: BPXObject2<HL7Types_2_7_1>;
+    BTS: BTSObject3<HL7Types_2_7_1>;
+    BTX: BTXObject2<HL7Types_2_7_1>;
+    CDM: CDMObject5<HL7Types_2_7_1>;
+    CER: CERObject3<HL7Types_2_7_1>;
+    CM0: CM0Object2<HL7Types_2_7_1>;
+    CM1: CM1Object2<HL7Types_2_7_1>;
+    CM2: CM2Object2<HL7Types_2_7_1>;
+    CNS: CNSObject3<HL7Types_2_7_1>;
+    CON: CONObject3<HL7Types_2_7_1>;
+    CSP: CSPObject2<HL7Types_2_7_1>;
+    CSR: CSRObject3<HL7Types_2_7_1>;
+    CSS: CSSObject2<HL7Types_2_7_1>;
+    CTD: CTDObject4<HL7Types_2_7_1>;
+    CTI: CTIObject2<HL7Types_2_7_1>;
+    DB1: DB1Object2<HL7Types_2_7_1>;
+    DG1: DG1Object7<HL7Types_2_7_1>;
+    DMI: DMIObject1<HL7Types_2_7_1>;
+    DRG: DRGObject4<HL7Types_2_7_1>;
+    DSC: DSCObject2<HL7Types_2_7_1>;
+    DSP: DSPObject1<HL7Types_2_7_1>;
+    ECD: ECDObject3<HL7Types_2_7_1>;
+    ECR: ECRObject2<HL7Types_2_7_1>;
+    EDU: EDUObject4<HL7Types_2_7_1>;
+    EQP: EQPObject2<HL7Types_2_7_1>;
+    EQU: EQUObject2<HL7Types_2_7_1>;
+    ERR: ERRObject5<HL7Types_2_7_1>;
+    EVN: EVNObject7<HL7Types_2_7_1>;
+    FAC: FACObject2<HL7Types_2_7_1>;
+    FHS: FHSObject4<HL7Types_2_7_1>;
+    FT1: FT1Object7<HL7Types_2_7_1>;
+    FTS: FTSObject2<HL7Types_2_7_1>;
+    GOL: GOLObject3<HL7Types_2_7_1>;
+    GP1: GP1Object2<HL7Types_2_7_1>;
+    GP2: GP2Object3<HL7Types_2_7_1>;
+    GT1: GT1Object7<HL7Types_2_7_1>;
+    Hxx: HxxObject1<HL7Types_2_7_1>;
+    IAM: IAMObject3<HL7Types_2_7_1>;
+    IAR: IARObject1<HL7Types_2_7_1>;
+    IIM: IIMObject2<HL7Types_2_7_1>;
+    ILT: ILTObject1<HL7Types_2_7_1>;
+    IN1: IN1Object7<HL7Types_2_7_1>;
+    IN2: IN2Object5<HL7Types_2_7_1>;
+    IN3: IN3Object6<HL7Types_2_7_1>;
+    INV: INVObject4<HL7Types_2_7_1>;
+    IPC: IPCObject2<HL7Types_2_7_1>;
+    IPR: IPRObject1<HL7Types_2_7_1>;
+    ISD: ISDObject2<HL7Types_2_7_1>;
+    ITM: ITMObject2<HL7Types_2_7_1>;
+    IVC: IVCObject2<HL7Types_2_7_1>;
+    IVT: IVTObject1<HL7Types_2_7_1>;
+    LAN: LANObject2<HL7Types_2_7_1>;
+    LCC: LCCObject3<HL7Types_2_7_1>;
+    LCH: LCHObject2<HL7Types_2_7_1>;
+    LDP: LDPObject4<HL7Types_2_7_1>;
+    LOC: LOCObject5<HL7Types_2_7_1>;
+    LRL: LRLObject3<HL7Types_2_7_1>;
+    MFA: MFAObject4<HL7Types_2_7_1>;
+    MFE: MFEObject3<HL7Types_2_7_1>;
+    MFI: MFIObject3<HL7Types_2_7_1>;
+    MRG: MRGObject5<HL7Types_2_7_1>;
+    MSA: MSAObject4<HL7Types_2_7_1>;
+    MSH: MSHObject7<HL7Types_2_7_1>;
+    NCK: NCKObject1<HL7Types_2_7_1>;
+    NDS: NDSObject2<HL7Types_2_7_1>;
+    NK1: NK1Object7<HL7Types_2_7_1>;
+    NPU: NPUObject4<HL7Types_2_7_1>;
+    NSC: NSCObject4<HL7Types_2_7_1>;
+    NST: NSTObject1<HL7Types_2_7_1>;
+    NTE: NTEObject3<HL7Types_2_7_1>;
+    OBR: OBRObject10<HL7Types_2_7_1>;
+    OBX: OBXObject9<HL7Types_2_7_1>;
+    ODS: ODSObject3<HL7Types_2_7_1>;
+    ODT: ODTObject3<HL7Types_2_7_1>;
+    OM1: OM1Object6<HL7Types_2_7_1>;
+    OM2: OM2Object5<HL7Types_2_7_1>;
+    OM3: OM3Object4<HL7Types_2_7_1>;
+    OM4: OM4Object5<HL7Types_2_7_1>;
+    OM5: OM5Object3<HL7Types_2_7_1>;
+    OM6: OM6Object2<HL7Types_2_7_1>;
+    OM7: OM7Object3<HL7Types_2_7_1>;
+    ORC: ORCObject9<HL7Types_2_7_1>;
+    ORG: ORGObject3<HL7Types_2_7_1>;
+    OVR: OVRObject1<HL7Types_2_7_1>;
+    PAC: PACObject1<HL7Types_2_7_1>;
+    PCE: PCEObject2<HL7Types_2_7_1>;
+    PCR: PCRObject3<HL7Types_2_7_1>;
+    PD1: PD1Object5<HL7Types_2_7_1>;
+    PDA: PDAObject2<HL7Types_2_7_1>;
+    PDC: PDCObject3<HL7Types_2_7_1>;
+    PEO: PEOObject3<HL7Types_2_7_1>;
+    PES: PESObject3<HL7Types_2_7_1>;
+    PID: PIDObject8<HL7Types_2_7_1>;
+    PKG: PKGObject1<HL7Types_2_7_1>;
+    PMT: PMTObject1<HL7Types_2_7_1>;
+    PR1: PR1Object8<HL7Types_2_7_1>;
+    PRA: PRAObject5<HL7Types_2_7_1>;
+    PRB: PRBObject2<HL7Types_2_7_1>;
+    PRC: PRCObject4<HL7Types_2_7_1>;
+    PRD: PRDObject4<HL7Types_2_7_1>;
+    PRT: PRTObject1<HL7Types_2_7_1>;
+    PSG: PSGObject1<HL7Types_2_7_1>;
+    PSH: PSHObject2<HL7Types_2_7_1>;
+    PSL: PSLObject2<HL7Types_2_7_1>;
+    PSS: PSSObject1<HL7Types_2_7_1>;
+    PTH: PTHObject2<HL7Types_2_7_1>;
+    PV1: PV1Object7<HL7Types_2_7_1>;
+    PV2: PV2Object7<HL7Types_2_7_1>;
+    PYE: PYEObject2<HL7Types_2_7_1>;
+    QAK: QAKObject3<HL7Types_2_7_1>;
+    QID: QIDObject2<HL7Types_2_7_1>;
+    QPD: QPDObject2<HL7Types_2_7_1>;
+    QRD: QRDObject6<HL7Types_2_7_1>;
+    QRF: QRFObject6<HL7Types_2_7_1>;
+    QRI: QRIObject3<HL7Types_2_7_1>;
+    RCP: RCPObject2<HL7Types_2_7_1>;
+    RDF: RDFObject1<HL7Types_2_7_1>;
+    RDT: RDTObject1<HL7Types_2_7_1>;
+    REL: RELObject1<HL7Types_2_7_1>;
+    RF1: RF1Object2<HL7Types_2_7_1>;
+    RFI: RFIObject1<HL7Types_2_7_1>;
+    RGS: RGSObject2<HL7Types_2_7_1>;
+    RMI: RMIObject2<HL7Types_2_7_1>;
+    ROL: ROLObject5<HL7Types_2_7_1>;
+    RQ1: RQ1Object3<HL7Types_2_7_1>;
+    RQD: RQDObject3<HL7Types_2_7_1>;
+    RXA: RXAObject5<HL7Types_2_7_1>;
+    RXC: RXCObject5<HL7Types_2_7_1>;
+    RXD: RXDObject7<HL7Types_2_7_1>;
+    RXE: RXEObject7<HL7Types_2_7_1>;
+    RXG: RXGObject6<HL7Types_2_7_1>;
+    RXO: RXOObject7<HL7Types_2_7_1>;
+    RXR: RXRObject4<HL7Types_2_7_1>;
+    SAC: SACObject4<HL7Types_2_7_1>;
+    SCD: SCDObject1<HL7Types_2_7_1>;
+    SCH: SCHObject5<HL7Types_2_7_1>;
+    SCP: SCPObject1<HL7Types_2_7_1>;
+    SDD: SDDObject2<HL7Types_2_7_1>;
+    SFT: SFTObject2<HL7Types_2_7_1>;
+    SHP: SHPObject1<HL7Types_2_7_1>;
+    SID: SIDObject2<HL7Types_2_7_1>;
+    SLT: SLTObject1<HL7Types_2_7_1>;
+    SPM: SPMObject3<HL7Types_2_7_1>;
+    STF: STFObject7<HL7Types_2_7_1>;
+    STZ: STZObject1<HL7Types_2_7_1>;
+    TCC: TCCObject3<HL7Types_2_7_1>;
+    TCD: TCDObject2<HL7Types_2_7_1>;
+    TQ1: TQ1Object2<HL7Types_2_7_1>;
+    TQ2: TQ2Object1<HL7Types_2_7_1>;
+    TXA: TXAObject4<HL7Types_2_7_1>;
+    UAC: UACObject1<HL7Types_2_7_1>;
+    UB1: UB1Object6<HL7Types_2_7_1>;
+    UB2: UB2Object4<HL7Types_2_7_1>;
+    URD: URDObject5<HL7Types_2_7_1>;
+    URS: URSObject5<HL7Types_2_7_1>;
+    VAR: VARObject3<HL7Types_2_7_1>;
+    VND: VNDObject1<HL7Types_2_7_1>;
+    ZL7: ZL7Object1<HL7Types_2_7_1>;
+    Zxx: ZxxObject1<HL7Types_2_7_1>;
+    [segment: string]: Record<string, any>;
+  };
+  '2.8': {
+    ABS: ABSObject2<HL7Types_2_8>;
+    ACC: ACCObject8<HL7Types_2_8>;
+    ADD: ADDObject1<HL7Types_2_8>;
+    ADJ: ADJObject2<HL7Types_2_8>;
+    AFF: AFFObject1<HL7Types_2_8>;
+    AIG: AIGObject3<HL7Types_2_8>;
+    AIL: AILObject4<HL7Types_2_8>;
+    AIP: AIPObject4<HL7Types_2_8>;
+    AIS: AISObject4<HL7Types_2_8>;
+    AL1: AL1Object6<HL7Types_2_8>;
+    APR: APRObject1<HL7Types_2_8>;
+    ARQ: ARQObject5<HL7Types_2_8>;
+    ARV: ARVObject1<HL7Types_2_8>;
+    AUT: AUTObject4<HL7Types_2_8>;
+    BHS: BHSObject4<HL7Types_2_8>;
+    BLC: BLCObject2<HL7Types_2_8>;
+    BLG: BLGObject5<HL7Types_2_8>;
+    BPO: BPOObject2<HL7Types_2_8>;
+    BPX: BPXObject2<HL7Types_2_8>;
+    BTS: BTSObject3<HL7Types_2_8>;
+    BTX: BTXObject3<HL7Types_2_8>;
+    BUI: BUIObject1<HL7Types_2_8>;
+    CDM: CDMObject5<HL7Types_2_8>;
+    CDO: CDOObject1<HL7Types_2_8>;
+    CER: CERObject3<HL7Types_2_8>;
+    CM0: CM0Object2<HL7Types_2_8>;
+    CM1: CM1Object2<HL7Types_2_8>;
+    CM2: CM2Object2<HL7Types_2_8>;
+    CNS: CNSObject3<HL7Types_2_8>;
+    CON: CONObject3<HL7Types_2_8>;
+    CSP: CSPObject2<HL7Types_2_8>;
+    CSR: CSRObject3<HL7Types_2_8>;
+    CSS: CSSObject2<HL7Types_2_8>;
+    CTD: CTDObject4<HL7Types_2_8>;
+    CTI: CTIObject2<HL7Types_2_8>;
+    DB1: DB1Object2<HL7Types_2_8>;
+    DG1: DG1Object7<HL7Types_2_8>;
+    DMI: DMIObject1<HL7Types_2_8>;
+    DON: DONObject1<HL7Types_2_8>;
+    DRG: DRGObject4<HL7Types_2_8>;
+    DSC: DSCObject2<HL7Types_2_8>;
+    DSP: DSPObject1<HL7Types_2_8>;
+    ECD: ECDObject3<HL7Types_2_8>;
+    ECR: ECRObject2<HL7Types_2_8>;
+    EDU: EDUObject4<HL7Types_2_8>;
+    EQP: EQPObject2<HL7Types_2_8>;
+    EQU: EQUObject3<HL7Types_2_8>;
+    ERR: ERRObject5<HL7Types_2_8>;
+    EVN: EVNObject7<HL7Types_2_8>;
+    FAC: FACObject2<HL7Types_2_8>;
+    FHS: FHSObject4<HL7Types_2_8>;
+    FT1: FT1Object7<HL7Types_2_8>;
+    FTS: FTSObject2<HL7Types_2_8>;
+    GOL: GOLObject3<HL7Types_2_8>;
+    GP1: GP1Object2<HL7Types_2_8>;
+    GP2: GP2Object3<HL7Types_2_8>;
+    GT1: GT1Object7<HL7Types_2_8>;
+    Hxx: HxxObject1<HL7Types_2_8>;
+    IAM: IAMObject3<HL7Types_2_8>;
+    IAR: IARObject1<HL7Types_2_8>;
+    IIM: IIMObject2<HL7Types_2_8>;
+    ILT: ILTObject1<HL7Types_2_8>;
+    IN1: IN1Object8<HL7Types_2_8>;
+    IN2: IN2Object5<HL7Types_2_8>;
+    IN3: IN3Object7<HL7Types_2_8>;
+    INV: INVObject4<HL7Types_2_8>;
+    IPC: IPCObject2<HL7Types_2_8>;
+    IPR: IPRObject1<HL7Types_2_8>;
+    ISD: ISDObject2<HL7Types_2_8>;
+    ITM: ITMObject3<HL7Types_2_8>;
+    IVC: IVCObject2<HL7Types_2_8>;
+    IVT: IVTObject1<HL7Types_2_8>;
+    LAN: LANObject2<HL7Types_2_8>;
+    LCC: LCCObject3<HL7Types_2_8>;
+    LCH: LCHObject2<HL7Types_2_8>;
+    LDP: LDPObject4<HL7Types_2_8>;
+    LOC: LOCObject5<HL7Types_2_8>;
+    LRL: LRLObject3<HL7Types_2_8>;
+    MFA: MFAObject4<HL7Types_2_8>;
+    MFE: MFEObject3<HL7Types_2_8>;
+    MFI: MFIObject3<HL7Types_2_8>;
+    MRG: MRGObject6<HL7Types_2_8>;
+    MSA: MSAObject4<HL7Types_2_8>;
+    MSH: MSHObject7<HL7Types_2_8>;
+    NCK: NCKObject1<HL7Types_2_8>;
+    NDS: NDSObject2<HL7Types_2_8>;
+    NK1: NK1Object7<HL7Types_2_8>;
+    NPU: NPUObject4<HL7Types_2_8>;
+    NSC: NSCObject4<HL7Types_2_8>;
+    NST: NSTObject1<HL7Types_2_8>;
+    NTE: NTEObject3<HL7Types_2_8>;
+    OBR: OBRObject10<HL7Types_2_8>;
+    OBX: OBXObject10<HL7Types_2_8>;
+    ODS: ODSObject3<HL7Types_2_8>;
+    ODT: ODTObject3<HL7Types_2_8>;
+    OM1: OM1Object7<HL7Types_2_8>;
+    OM2: OM2Object5<HL7Types_2_8>;
+    OM3: OM3Object4<HL7Types_2_8>;
+    OM4: OM4Object6<HL7Types_2_8>;
+    OM5: OM5Object3<HL7Types_2_8>;
+    OM6: OM6Object2<HL7Types_2_8>;
+    OM7: OM7Object3<HL7Types_2_8>;
+    ORC: ORCObject10<HL7Types_2_8>;
+    ORG: ORGObject3<HL7Types_2_8>;
+    OVR: OVRObject1<HL7Types_2_8>;
+    PAC: PACObject1<HL7Types_2_8>;
+    PCE: PCEObject2<HL7Types_2_8>;
+    PCR: PCRObject3<HL7Types_2_8>;
+    PD1: PD1Object5<HL7Types_2_8>;
+    PDA: PDAObject2<HL7Types_2_8>;
+    PDC: PDCObject3<HL7Types_2_8>;
+    PEO: PEOObject3<HL7Types_2_8>;
+    PES: PESObject3<HL7Types_2_8>;
+    PID: PIDObject8<HL7Types_2_8>;
+    PKG: PKGObject2<HL7Types_2_8>;
+    PMT: PMTObject1<HL7Types_2_8>;
+    PR1: PR1Object8<HL7Types_2_8>;
+    PRA: PRAObject5<HL7Types_2_8>;
+    PRB: PRBObject2<HL7Types_2_8>;
+    PRC: PRCObject4<HL7Types_2_8>;
+    PRD: PRDObject4<HL7Types_2_8>;
+    PRT: PRTObject1<HL7Types_2_8>;
+    PSG: PSGObject1<HL7Types_2_8>;
+    PSH: PSHObject2<HL7Types_2_8>;
+    PSL: PSLObject2<HL7Types_2_8>;
+    PSS: PSSObject1<HL7Types_2_8>;
+    PTH: PTHObject2<HL7Types_2_8>;
+    PV1: PV1Object8<HL7Types_2_8>;
+    PV2: PV2Object7<HL7Types_2_8>;
+    PYE: PYEObject2<HL7Types_2_8>;
+    QAK: QAKObject3<HL7Types_2_8>;
+    QID: QIDObject2<HL7Types_2_8>;
+    QPD: QPDObject2<HL7Types_2_8>;
+    QRD: QRDObject6<HL7Types_2_8>;
+    QRF: QRFObject6<HL7Types_2_8>;
+    QRI: QRIObject3<HL7Types_2_8>;
+    RCP: RCPObject2<HL7Types_2_8>;
+    RDF: RDFObject1<HL7Types_2_8>;
+    RDT: RDTObject1<HL7Types_2_8>;
+    REL: RELObject1<HL7Types_2_8>;
+    RF1: RF1Object3<HL7Types_2_8>;
+    RFI: RFIObject1<HL7Types_2_8>;
+    RGS: RGSObject2<HL7Types_2_8>;
+    RMI: RMIObject2<HL7Types_2_8>;
+    ROL: ROLObject5<HL7Types_2_8>;
+    RQ1: RQ1Object3<HL7Types_2_8>;
+    RQD: RQDObject3<HL7Types_2_8>;
+    RXA: RXAObject6<HL7Types_2_8>;
+    RXC: RXCObject6<HL7Types_2_8>;
+    RXD: RXDObject8<HL7Types_2_8>;
+    RXE: RXEObject7<HL7Types_2_8>;
+    RXG: RXGObject7<HL7Types_2_8>;
+    RXO: RXOObject8<HL7Types_2_8>;
+    RXR: RXRObject4<HL7Types_2_8>;
+    RXV: RXVObject1<HL7Types_2_8>;
+    SAC: SACObject4<HL7Types_2_8>;
+    SCD: SCDObject1<HL7Types_2_8>;
+    SCH: SCHObject6<HL7Types_2_8>;
+    SCP: SCPObject1<HL7Types_2_8>;
+    SDD: SDDObject2<HL7Types_2_8>;
+    SFT: SFTObject2<HL7Types_2_8>;
+    SGH: SGHObject1<HL7Types_2_8>;
+    SGT: SGTObject1<HL7Types_2_8>;
+    SHP: SHPObject1<HL7Types_2_8>;
+    SID: SIDObject2<HL7Types_2_8>;
+    SLT: SLTObject1<HL7Types_2_8>;
+    SPM: SPMObject3<HL7Types_2_8>;
+    STF: STFObject7<HL7Types_2_8>;
+    STZ: STZObject1<HL7Types_2_8>;
+    TCC: TCCObject4<HL7Types_2_8>;
+    TCD: TCDObject2<HL7Types_2_8>;
+    TQ1: TQ1Object2<HL7Types_2_8>;
+    TQ2: TQ2Object1<HL7Types_2_8>;
+    TXA: TXAObject4<HL7Types_2_8>;
+    UAC: UACObject1<HL7Types_2_8>;
+    UB1: UB1Object6<HL7Types_2_8>;
+    UB2: UB2Object4<HL7Types_2_8>;
+    URD: URDObject5<HL7Types_2_8>;
+    URS: URSObject5<HL7Types_2_8>;
+    VAR: VARObject3<HL7Types_2_8>;
+    VND: VNDObject1<HL7Types_2_8>;
+    ZL7: ZL7Object1<HL7Types_2_8>;
+    Zxx: ZxxObject1<HL7Types_2_8>;
+    [segment: string]: Record<string, any>;
+  };
+  '2.8.1': {
+    ABS: ABSObject2<HL7Types_2_8_1>;
+    ACC: ACCObject8<HL7Types_2_8_1>;
+    ADD: ADDObject1<HL7Types_2_8_1>;
+    ADJ: ADJObject2<HL7Types_2_8_1>;
+    AFF: AFFObject1<HL7Types_2_8_1>;
+    AIG: AIGObject3<HL7Types_2_8_1>;
+    AIL: AILObject4<HL7Types_2_8_1>;
+    AIP: AIPObject4<HL7Types_2_8_1>;
+    AIS: AISObject4<HL7Types_2_8_1>;
+    AL1: AL1Object6<HL7Types_2_8_1>;
+    APR: APRObject1<HL7Types_2_8_1>;
+    ARQ: ARQObject5<HL7Types_2_8_1>;
+    ARV: ARVObject1<HL7Types_2_8_1>;
+    AUT: AUTObject4<HL7Types_2_8_1>;
+    BHS: BHSObject4<HL7Types_2_8_1>;
+    BLC: BLCObject2<HL7Types_2_8_1>;
+    BLG: BLGObject5<HL7Types_2_8_1>;
+    BPO: BPOObject2<HL7Types_2_8_1>;
+    BPX: BPXObject2<HL7Types_2_8_1>;
+    BTS: BTSObject3<HL7Types_2_8_1>;
+    BTX: BTXObject3<HL7Types_2_8_1>;
+    BUI: BUIObject1<HL7Types_2_8_1>;
+    CDM: CDMObject5<HL7Types_2_8_1>;
+    CDO: CDOObject1<HL7Types_2_8_1>;
+    CER: CERObject3<HL7Types_2_8_1>;
+    CM0: CM0Object2<HL7Types_2_8_1>;
+    CM1: CM1Object2<HL7Types_2_8_1>;
+    CM2: CM2Object2<HL7Types_2_8_1>;
+    CNS: CNSObject3<HL7Types_2_8_1>;
+    CON: CONObject3<HL7Types_2_8_1>;
+    CSP: CSPObject2<HL7Types_2_8_1>;
+    CSR: CSRObject3<HL7Types_2_8_1>;
+    CSS: CSSObject2<HL7Types_2_8_1>;
+    CTD: CTDObject4<HL7Types_2_8_1>;
+    CTI: CTIObject2<HL7Types_2_8_1>;
+    DB1: DB1Object2<HL7Types_2_8_1>;
+    DG1: DG1Object7<HL7Types_2_8_1>;
+    DMI: DMIObject1<HL7Types_2_8_1>;
+    DON: DONObject1<HL7Types_2_8_1>;
+    DRG: DRGObject4<HL7Types_2_8_1>;
+    DSC: DSCObject2<HL7Types_2_8_1>;
+    DSP: DSPObject1<HL7Types_2_8_1>;
+    ECD: ECDObject3<HL7Types_2_8_1>;
+    ECR: ECRObject2<HL7Types_2_8_1>;
+    EDU: EDUObject4<HL7Types_2_8_1>;
+    EQP: EQPObject2<HL7Types_2_8_1>;
+    EQU: EQUObject3<HL7Types_2_8_1>;
+    ERR: ERRObject5<HL7Types_2_8_1>;
+    EVN: EVNObject7<HL7Types_2_8_1>;
+    FAC: FACObject2<HL7Types_2_8_1>;
+    FHS: FHSObject4<HL7Types_2_8_1>;
+    FT1: FT1Object7<HL7Types_2_8_1>;
+    FTS: FTSObject2<HL7Types_2_8_1>;
+    GOL: GOLObject3<HL7Types_2_8_1>;
+    GP1: GP1Object2<HL7Types_2_8_1>;
+    GP2: GP2Object3<HL7Types_2_8_1>;
+    GT1: GT1Object7<HL7Types_2_8_1>;
+    Hxx: HxxObject1<HL7Types_2_8_1>;
+    IAM: IAMObject3<HL7Types_2_8_1>;
+    IAR: IARObject1<HL7Types_2_8_1>;
+    IIM: IIMObject2<HL7Types_2_8_1>;
+    ILT: ILTObject1<HL7Types_2_8_1>;
+    IN1: IN1Object8<HL7Types_2_8_1>;
+    IN2: IN2Object5<HL7Types_2_8_1>;
+    IN3: IN3Object7<HL7Types_2_8_1>;
+    INV: INVObject4<HL7Types_2_8_1>;
+    IPC: IPCObject2<HL7Types_2_8_1>;
+    IPR: IPRObject1<HL7Types_2_8_1>;
+    ISD: ISDObject2<HL7Types_2_8_1>;
+    ITM: ITMObject3<HL7Types_2_8_1>;
+    IVC: IVCObject2<HL7Types_2_8_1>;
+    IVT: IVTObject1<HL7Types_2_8_1>;
+    LAN: LANObject2<HL7Types_2_8_1>;
+    LCC: LCCObject3<HL7Types_2_8_1>;
+    LCH: LCHObject2<HL7Types_2_8_1>;
+    LDP: LDPObject4<HL7Types_2_8_1>;
+    LOC: LOCObject5<HL7Types_2_8_1>;
+    LRL: LRLObject3<HL7Types_2_8_1>;
+    MFA: MFAObject4<HL7Types_2_8_1>;
+    MFE: MFEObject3<HL7Types_2_8_1>;
+    MFI: MFIObject3<HL7Types_2_8_1>;
+    MRG: MRGObject6<HL7Types_2_8_1>;
+    MSA: MSAObject4<HL7Types_2_8_1>;
+    MSH: MSHObject7<HL7Types_2_8_1>;
+    NCK: NCKObject1<HL7Types_2_8_1>;
+    NDS: NDSObject2<HL7Types_2_8_1>;
+    NK1: NK1Object7<HL7Types_2_8_1>;
+    NPU: NPUObject4<HL7Types_2_8_1>;
+    NSC: NSCObject4<HL7Types_2_8_1>;
+    NST: NSTObject1<HL7Types_2_8_1>;
+    NTE: NTEObject3<HL7Types_2_8_1>;
+    OBR: OBRObject10<HL7Types_2_8_1>;
+    OBX: OBXObject11<HL7Types_2_8_1>;
+    ODS: ODSObject3<HL7Types_2_8_1>;
+    ODT: ODTObject3<HL7Types_2_8_1>;
+    OM1: OM1Object8<HL7Types_2_8_1>;
+    OM2: OM2Object5<HL7Types_2_8_1>;
+    OM3: OM3Object4<HL7Types_2_8_1>;
+    OM4: OM4Object6<HL7Types_2_8_1>;
+    OM5: OM5Object3<HL7Types_2_8_1>;
+    OM6: OM6Object2<HL7Types_2_8_1>;
+    OM7: OM7Object3<HL7Types_2_8_1>;
+    ORC: ORCObject10<HL7Types_2_8_1>;
+    ORG: ORGObject3<HL7Types_2_8_1>;
+    OVR: OVRObject1<HL7Types_2_8_1>;
+    PAC: PACObject1<HL7Types_2_8_1>;
+    PCE: PCEObject2<HL7Types_2_8_1>;
+    PCR: PCRObject3<HL7Types_2_8_1>;
+    PD1: PD1Object5<HL7Types_2_8_1>;
+    PDA: PDAObject2<HL7Types_2_8_1>;
+    PDC: PDCObject3<HL7Types_2_8_1>;
+    PEO: PEOObject3<HL7Types_2_8_1>;
+    PES: PESObject3<HL7Types_2_8_1>;
+    PID: PIDObject8<HL7Types_2_8_1>;
+    PKG: PKGObject2<HL7Types_2_8_1>;
+    PMT: PMTObject1<HL7Types_2_8_1>;
+    PR1: PR1Object8<HL7Types_2_8_1>;
+    PRA: PRAObject5<HL7Types_2_8_1>;
+    PRB: PRBObject2<HL7Types_2_8_1>;
+    PRC: PRCObject4<HL7Types_2_8_1>;
+    PRD: PRDObject4<HL7Types_2_8_1>;
+    PRT: PRTObject1<HL7Types_2_8_1>;
+    PSG: PSGObject1<HL7Types_2_8_1>;
+    PSH: PSHObject2<HL7Types_2_8_1>;
+    PSL: PSLObject2<HL7Types_2_8_1>;
+    PSS: PSSObject1<HL7Types_2_8_1>;
+    PTH: PTHObject2<HL7Types_2_8_1>;
+    PV1: PV1Object8<HL7Types_2_8_1>;
+    PV2: PV2Object7<HL7Types_2_8_1>;
+    PYE: PYEObject2<HL7Types_2_8_1>;
+    QAK: QAKObject3<HL7Types_2_8_1>;
+    QID: QIDObject2<HL7Types_2_8_1>;
+    QPD: QPDObject2<HL7Types_2_8_1>;
+    QRD: QRDObject6<HL7Types_2_8_1>;
+    QRF: QRFObject6<HL7Types_2_8_1>;
+    QRI: QRIObject3<HL7Types_2_8_1>;
+    RCP: RCPObject2<HL7Types_2_8_1>;
+    RDF: RDFObject1<HL7Types_2_8_1>;
+    RDT: RDTObject1<HL7Types_2_8_1>;
+    REL: RELObject1<HL7Types_2_8_1>;
+    RF1: RF1Object4<HL7Types_2_8_1>;
+    RFI: RFIObject1<HL7Types_2_8_1>;
+    RGS: RGSObject2<HL7Types_2_8_1>;
+    RMI: RMIObject2<HL7Types_2_8_1>;
+    ROL: ROLObject5<HL7Types_2_8_1>;
+    RQ1: RQ1Object3<HL7Types_2_8_1>;
+    RQD: RQDObject3<HL7Types_2_8_1>;
+    RXA: RXAObject6<HL7Types_2_8_1>;
+    RXC: RXCObject6<HL7Types_2_8_1>;
+    RXD: RXDObject8<HL7Types_2_8_1>;
+    RXE: RXEObject7<HL7Types_2_8_1>;
+    RXG: RXGObject7<HL7Types_2_8_1>;
+    RXO: RXOObject8<HL7Types_2_8_1>;
+    RXR: RXRObject4<HL7Types_2_8_1>;
+    RXV: RXVObject1<HL7Types_2_8_1>;
+    SAC: SACObject4<HL7Types_2_8_1>;
+    SCD: SCDObject1<HL7Types_2_8_1>;
+    SCH: SCHObject6<HL7Types_2_8_1>;
+    SCP: SCPObject1<HL7Types_2_8_1>;
+    SDD: SDDObject2<HL7Types_2_8_1>;
+    SFT: SFTObject2<HL7Types_2_8_1>;
+    SGH: SGHObject1<HL7Types_2_8_1>;
+    SGT: SGTObject1<HL7Types_2_8_1>;
+    SHP: SHPObject1<HL7Types_2_8_1>;
+    SID: SIDObject2<HL7Types_2_8_1>;
+    SLT: SLTObject1<HL7Types_2_8_1>;
+    SPM: SPMObject3<HL7Types_2_8_1>;
+    STF: STFObject7<HL7Types_2_8_1>;
+    STZ: STZObject1<HL7Types_2_8_1>;
+    TCC: TCCObject4<HL7Types_2_8_1>;
+    TCD: TCDObject2<HL7Types_2_8_1>;
+    TQ1: TQ1Object2<HL7Types_2_8_1>;
+    TQ2: TQ2Object1<HL7Types_2_8_1>;
+    TXA: TXAObject4<HL7Types_2_8_1>;
+    UAC: UACObject1<HL7Types_2_8_1>;
+    UB1: UB1Object6<HL7Types_2_8_1>;
+    UB2: UB2Object4<HL7Types_2_8_1>;
+    URD: URDObject5<HL7Types_2_8_1>;
+    URS: URSObject5<HL7Types_2_8_1>;
+    VAR: VARObject3<HL7Types_2_8_1>;
+    VND: VNDObject1<HL7Types_2_8_1>;
+    ZL7: ZL7Object1<HL7Types_2_8_1>;
+    Zxx: ZxxObject1<HL7Types_2_8_1>;
+    [segment: string]: Record<string, any>;
+  };
+  '2.8.2': {
+    ABS: ABSObject2<HL7Types_2_8_2>;
+    ACC: ACCObject8<HL7Types_2_8_2>;
+    ADD: ADDObject1<HL7Types_2_8_2>;
+    ADJ: ADJObject2<HL7Types_2_8_2>;
+    AFF: AFFObject1<HL7Types_2_8_2>;
+    AIG: AIGObject3<HL7Types_2_8_2>;
+    AIL: AILObject4<HL7Types_2_8_2>;
+    AIP: AIPObject4<HL7Types_2_8_2>;
+    AIS: AISObject4<HL7Types_2_8_2>;
+    AL1: AL1Object6<HL7Types_2_8_2>;
+    APR: APRObject1<HL7Types_2_8_2>;
+    ARQ: ARQObject5<HL7Types_2_8_2>;
+    ARV: ARVObject1<HL7Types_2_8_2>;
+    AUT: AUTObject4<HL7Types_2_8_2>;
+    BHS: BHSObject4<HL7Types_2_8_2>;
+    BLC: BLCObject2<HL7Types_2_8_2>;
+    BLG: BLGObject5<HL7Types_2_8_2>;
+    BPO: BPOObject2<HL7Types_2_8_2>;
+    BPX: BPXObject2<HL7Types_2_8_2>;
+    BTS: BTSObject3<HL7Types_2_8_2>;
+    BTX: BTXObject3<HL7Types_2_8_2>;
+    BUI: BUIObject1<HL7Types_2_8_2>;
+    CDM: CDMObject5<HL7Types_2_8_2>;
+    CDO: CDOObject1<HL7Types_2_8_2>;
+    CER: CERObject3<HL7Types_2_8_2>;
+    CM0: CM0Object2<HL7Types_2_8_2>;
+    CM1: CM1Object2<HL7Types_2_8_2>;
+    CM2: CM2Object2<HL7Types_2_8_2>;
+    CNS: CNSObject3<HL7Types_2_8_2>;
+    CON: CONObject3<HL7Types_2_8_2>;
+    CSP: CSPObject2<HL7Types_2_8_2>;
+    CSR: CSRObject3<HL7Types_2_8_2>;
+    CSS: CSSObject2<HL7Types_2_8_2>;
+    CTD: CTDObject4<HL7Types_2_8_2>;
+    CTI: CTIObject2<HL7Types_2_8_2>;
+    DB1: DB1Object2<HL7Types_2_8_2>;
+    DG1: DG1Object7<HL7Types_2_8_2>;
+    DMI: DMIObject1<HL7Types_2_8_2>;
+    DON: DONObject1<HL7Types_2_8_2>;
+    DPS: DPSObject1<HL7Types_2_8_2>;
+    DRG: DRGObject4<HL7Types_2_8_2>;
+    DSC: DSCObject2<HL7Types_2_8_2>;
+    DSP: DSPObject1<HL7Types_2_8_2>;
+    ECD: ECDObject3<HL7Types_2_8_2>;
+    ECR: ECRObject2<HL7Types_2_8_2>;
+    EDU: EDUObject4<HL7Types_2_8_2>;
+    EQP: EQPObject2<HL7Types_2_8_2>;
+    EQU: EQUObject3<HL7Types_2_8_2>;
+    ERR: ERRObject5<HL7Types_2_8_2>;
+    EVN: EVNObject7<HL7Types_2_8_2>;
+    FAC: FACObject2<HL7Types_2_8_2>;
+    FHS: FHSObject4<HL7Types_2_8_2>;
+    FT1: FT1Object7<HL7Types_2_8_2>;
+    FTS: FTSObject2<HL7Types_2_8_2>;
+    GOL: GOLObject3<HL7Types_2_8_2>;
+    GP1: GP1Object2<HL7Types_2_8_2>;
+    GP2: GP2Object3<HL7Types_2_8_2>;
+    GT1: GT1Object7<HL7Types_2_8_2>;
+    Hxx: HxxObject1<HL7Types_2_8_2>;
+    IAM: IAMObject3<HL7Types_2_8_2>;
+    IAR: IARObject1<HL7Types_2_8_2>;
+    IIM: IIMObject2<HL7Types_2_8_2>;
+    ILT: ILTObject1<HL7Types_2_8_2>;
+    IN1: IN1Object8<HL7Types_2_8_2>;
+    IN2: IN2Object5<HL7Types_2_8_2>;
+    IN3: IN3Object7<HL7Types_2_8_2>;
+    INV: INVObject4<HL7Types_2_8_2>;
+    IPC: IPCObject2<HL7Types_2_8_2>;
+    IPR: IPRObject1<HL7Types_2_8_2>;
+    ISD: ISDObject2<HL7Types_2_8_2>;
+    ITM: ITMObject3<HL7Types_2_8_2>;
+    IVC: IVCObject2<HL7Types_2_8_2>;
+    IVT: IVTObject1<HL7Types_2_8_2>;
+    LAN: LANObject2<HL7Types_2_8_2>;
+    LCC: LCCObject3<HL7Types_2_8_2>;
+    LCH: LCHObject2<HL7Types_2_8_2>;
+    LDP: LDPObject4<HL7Types_2_8_2>;
+    LOC: LOCObject5<HL7Types_2_8_2>;
+    LRL: LRLObject3<HL7Types_2_8_2>;
+    MCP: MCPObject1<HL7Types_2_8_2>;
+    MFA: MFAObject4<HL7Types_2_8_2>;
+    MFE: MFEObject3<HL7Types_2_8_2>;
+    MFI: MFIObject3<HL7Types_2_8_2>;
+    MRG: MRGObject6<HL7Types_2_8_2>;
+    MSA: MSAObject4<HL7Types_2_8_2>;
+    MSH: MSHObject7<HL7Types_2_8_2>;
+    NCK: NCKObject1<HL7Types_2_8_2>;
+    NDS: NDSObject2<HL7Types_2_8_2>;
+    NK1: NK1Object7<HL7Types_2_8_2>;
+    NPU: NPUObject4<HL7Types_2_8_2>;
+    NSC: NSCObject4<HL7Types_2_8_2>;
+    NST: NSTObject1<HL7Types_2_8_2>;
+    NTE: NTEObject3<HL7Types_2_8_2>;
+    OBR: OBRObject10<HL7Types_2_8_2>;
+    OBX: OBXObject12<HL7Types_2_8_2>;
+    ODS: ODSObject3<HL7Types_2_8_2>;
+    ODT: ODTObject3<HL7Types_2_8_2>;
+    OM1: OM1Object9<HL7Types_2_8_2>;
+    OM2: OM2Object5<HL7Types_2_8_2>;
+    OM3: OM3Object4<HL7Types_2_8_2>;
+    OM4: OM4Object6<HL7Types_2_8_2>;
+    OM5: OM5Object3<HL7Types_2_8_2>;
+    OM6: OM6Object2<HL7Types_2_8_2>;
+    OM7: OM7Object3<HL7Types_2_8_2>;
+    OMC: OMCObject1<HL7Types_2_8_2>;
+    ORC: ORCObject10<HL7Types_2_8_2>;
+    ORG: ORGObject3<HL7Types_2_8_2>;
+    OVR: OVRObject1<HL7Types_2_8_2>;
+    PAC: PACObject1<HL7Types_2_8_2>;
+    PCE: PCEObject2<HL7Types_2_8_2>;
+    PCR: PCRObject3<HL7Types_2_8_2>;
+    PD1: PD1Object5<HL7Types_2_8_2>;
+    PDA: PDAObject2<HL7Types_2_8_2>;
+    PDC: PDCObject3<HL7Types_2_8_2>;
+    PEO: PEOObject3<HL7Types_2_8_2>;
+    PES: PESObject3<HL7Types_2_8_2>;
+    PID: PIDObject8<HL7Types_2_8_2>;
+    PKG: PKGObject2<HL7Types_2_8_2>;
+    PM1: PM1Object1<HL7Types_2_8_2>;
+    PMT: PMTObject1<HL7Types_2_8_2>;
+    PR1: PR1Object8<HL7Types_2_8_2>;
+    PRA: PRAObject5<HL7Types_2_8_2>;
+    PRB: PRBObject2<HL7Types_2_8_2>;
+    PRC: PRCObject4<HL7Types_2_8_2>;
+    PRD: PRDObject4<HL7Types_2_8_2>;
+    PRT: PRTObject2<HL7Types_2_8_2>;
+    PSG: PSGObject1<HL7Types_2_8_2>;
+    PSH: PSHObject2<HL7Types_2_8_2>;
+    PSL: PSLObject2<HL7Types_2_8_2>;
+    PSS: PSSObject1<HL7Types_2_8_2>;
+    PTH: PTHObject2<HL7Types_2_8_2>;
+    PV1: PV1Object8<HL7Types_2_8_2>;
+    PV2: PV2Object7<HL7Types_2_8_2>;
+    PYE: PYEObject2<HL7Types_2_8_2>;
+    QAK: QAKObject3<HL7Types_2_8_2>;
+    QID: QIDObject2<HL7Types_2_8_2>;
+    QPD: QPDObject2<HL7Types_2_8_2>;
+    QRD: QRDObject6<HL7Types_2_8_2>;
+    QRF: QRFObject6<HL7Types_2_8_2>;
+    QRI: QRIObject3<HL7Types_2_8_2>;
+    RCP: RCPObject2<HL7Types_2_8_2>;
+    RDF: RDFObject1<HL7Types_2_8_2>;
+    RDT: RDTObject1<HL7Types_2_8_2>;
+    REL: RELObject1<HL7Types_2_8_2>;
+    RF1: RF1Object3<HL7Types_2_8_2>;
+    RFI: RFIObject1<HL7Types_2_8_2>;
+    RGS: RGSObject2<HL7Types_2_8_2>;
+    RMI: RMIObject2<HL7Types_2_8_2>;
+    ROL: ROLObject5<HL7Types_2_8_2>;
+    RQ1: RQ1Object3<HL7Types_2_8_2>;
+    RQD: RQDObject3<HL7Types_2_8_2>;
+    RXA: RXAObject6<HL7Types_2_8_2>;
+    RXC: RXCObject6<HL7Types_2_8_2>;
+    RXD: RXDObject8<HL7Types_2_8_2>;
+    RXE: RXEObject7<HL7Types_2_8_2>;
+    RXG: RXGObject7<HL7Types_2_8_2>;
+    RXO: RXOObject8<HL7Types_2_8_2>;
+    RXR: RXRObject4<HL7Types_2_8_2>;
+    RXV: RXVObject1<HL7Types_2_8_2>;
+    SAC: SACObject4<HL7Types_2_8_2>;
+    SCD: SCDObject1<HL7Types_2_8_2>;
+    SCH: SCHObject6<HL7Types_2_8_2>;
+    SCP: SCPObject1<HL7Types_2_8_2>;
+    SDD: SDDObject2<HL7Types_2_8_2>;
+    SFT: SFTObject2<HL7Types_2_8_2>;
+    SGH: SGHObject1<HL7Types_2_8_2>;
+    SGT: SGTObject1<HL7Types_2_8_2>;
+    SHP: SHPObject1<HL7Types_2_8_2>;
+    SID: SIDObject2<HL7Types_2_8_2>;
+    SLT: SLTObject1<HL7Types_2_8_2>;
+    SPM: SPMObject3<HL7Types_2_8_2>;
+    STF: STFObject7<HL7Types_2_8_2>;
+    STZ: STZObject1<HL7Types_2_8_2>;
+    TCC: TCCObject4<HL7Types_2_8_2>;
+    TCD: TCDObject2<HL7Types_2_8_2>;
+    TQ1: TQ1Object2<HL7Types_2_8_2>;
+    TQ2: TQ2Object1<HL7Types_2_8_2>;
+    TXA: TXAObject4<HL7Types_2_8_2>;
+    UAC: UACObject1<HL7Types_2_8_2>;
+    UB1: UB1Object6<HL7Types_2_8_2>;
+    UB2: UB2Object4<HL7Types_2_8_2>;
+    URD: URDObject5<HL7Types_2_8_2>;
+    URS: URSObject5<HL7Types_2_8_2>;
+    VAR: VARObject3<HL7Types_2_8_2>;
+    VND: VNDObject1<HL7Types_2_8_2>;
+    ZL7: ZL7Object1<HL7Types_2_8_2>;
+    Zxx: ZxxObject1<HL7Types_2_8_2>;
+    [segment: string]: Record<string, any>;
+  };
+  '2.9': {
+    ABS: ABSObject2<HL7Types_2_9>;
+    ACC: ACCObject8<HL7Types_2_9>;
+    ADD: ADDObject1<HL7Types_2_9>;
+    ADJ: ADJObject3<HL7Types_2_9>;
+    AFF: AFFObject1<HL7Types_2_9>;
+    AIG: AIGObject3<HL7Types_2_9>;
+    AIL: AILObject4<HL7Types_2_9>;
+    AIP: AIPObject4<HL7Types_2_9>;
+    AIS: AISObject4<HL7Types_2_9>;
+    AL1: AL1Object6<HL7Types_2_9>;
+    APR: APRObject1<HL7Types_2_9>;
+    ARQ: ARQObject6<HL7Types_2_9>;
+    ARV: ARVObject2<HL7Types_2_9>;
+    AUT: AUTObject4<HL7Types_2_9>;
+    BHS: BHSObject5<HL7Types_2_9>;
+    BLC: BLCObject2<HL7Types_2_9>;
+    BLG: BLGObject5<HL7Types_2_9>;
+    BPO: BPOObject2<HL7Types_2_9>;
+    BPX: BPXObject3<HL7Types_2_9>;
+    BTS: BTSObject3<HL7Types_2_9>;
+    BTX: BTXObject4<HL7Types_2_9>;
+    BUI: BUIObject2<HL7Types_2_9>;
+    CDM: CDMObject5<HL7Types_2_9>;
+    CDO: CDOObject1<HL7Types_2_9>;
+    CER: CERObject3<HL7Types_2_9>;
+    CM0: CM0Object2<HL7Types_2_9>;
+    CM1: CM1Object2<HL7Types_2_9>;
+    CM2: CM2Object2<HL7Types_2_9>;
+    CNS: CNSObject3<HL7Types_2_9>;
+    CON: CONObject3<HL7Types_2_9>;
+    CSP: CSPObject2<HL7Types_2_9>;
+    CSR: CSRObject4<HL7Types_2_9>;
+    CSS: CSSObject2<HL7Types_2_9>;
+    CTD: CTDObject4<HL7Types_2_9>;
+    CTI: CTIObject3<HL7Types_2_9>;
+    CTR: CTRObject1<HL7Types_2_9>;
+    DB1: DB1Object2<HL7Types_2_9>;
+    DEV: DEVObject1<HL7Types_2_9>;
+    DG1: DG1Object7<HL7Types_2_9>;
+    DMI: DMIObject1<HL7Types_2_9>;
+    DON: DONObject2<HL7Types_2_9>;
+    DPS: DPSObject1<HL7Types_2_9>;
+    DRG: DRGObject4<HL7Types_2_9>;
+    DSC: DSCObject2<HL7Types_2_9>;
+    DSP: DSPObject1<HL7Types_2_9>;
+    DST: DSTObject1<HL7Types_2_9>;
+    ECD: ECDObject3<HL7Types_2_9>;
+    ECR: ECRObject2<HL7Types_2_9>;
+    EDU: EDUObject4<HL7Types_2_9>;
+    EQP: EQPObject2<HL7Types_2_9>;
+    EQU: EQUObject4<HL7Types_2_9>;
+    ERR: ERRObject5<HL7Types_2_9>;
+    EVN: EVNObject7<HL7Types_2_9>;
+    FAC: FACObject2<HL7Types_2_9>;
+    FHS: FHSObject5<HL7Types_2_9>;
+    FT1: FT1Object8<HL7Types_2_9>;
+    FTS: FTSObject2<HL7Types_2_9>;
+    GOL: GOLObject3<HL7Types_2_9>;
+    GP1: GP1Object2<HL7Types_2_9>;
+    GP2: GP2Object3<HL7Types_2_9>;
+    GT1: GT1Object7<HL7Types_2_9>;
+    Hxx: HxxObject1<HL7Types_2_9>;
+    IAM: IAMObject3<HL7Types_2_9>;
+    IAR: IARObject1<HL7Types_2_9>;
+    IIM: IIMObject2<HL7Types_2_9>;
+    ILT: ILTObject1<HL7Types_2_9>;
+    IN1: IN1Object8<HL7Types_2_9>;
+    IN2: IN2Object6<HL7Types_2_9>;
+    IN3: IN3Object8<HL7Types_2_9>;
+    INV: INVObject5<HL7Types_2_9>;
+    IPC: IPCObject3<HL7Types_2_9>;
+    IPR: IPRObject1<HL7Types_2_9>;
+    ISD: ISDObject2<HL7Types_2_9>;
+    ITM: ITMObject4<HL7Types_2_9>;
+    IVC: IVCObject2<HL7Types_2_9>;
+    IVT: IVTObject1<HL7Types_2_9>;
+    LAN: LANObject2<HL7Types_2_9>;
+    LCC: LCCObject3<HL7Types_2_9>;
+    LCH: LCHObject2<HL7Types_2_9>;
+    LDP: LDPObject4<HL7Types_2_9>;
+    LOC: LOCObject5<HL7Types_2_9>;
+    LRL: LRLObject3<HL7Types_2_9>;
+    MCP: MCPObject1<HL7Types_2_9>;
+    MFA: MFAObject4<HL7Types_2_9>;
+    MFE: MFEObject3<HL7Types_2_9>;
+    MFI: MFIObject3<HL7Types_2_9>;
+    MRG: MRGObject6<HL7Types_2_9>;
+    MSA: MSAObject4<HL7Types_2_9>;
+    MSH: MSHObject8<HL7Types_2_9>;
+    NCK: NCKObject1<HL7Types_2_9>;
+    NDS: NDSObject2<HL7Types_2_9>;
+    NK1: NK1Object8<HL7Types_2_9>;
+    NPU: NPUObject4<HL7Types_2_9>;
+    NSC: NSCObject4<HL7Types_2_9>;
+    NST: NSTObject1<HL7Types_2_9>;
+    NTE: NTEObject4<HL7Types_2_9>;
+    OBR: OBRObject11<HL7Types_2_9>;
+    OBX: OBXObject13<HL7Types_2_9>;
+    ODS: ODSObject3<HL7Types_2_9>;
+    ODT: ODTObject3<HL7Types_2_9>;
+    OH1: OH1Object1<HL7Types_2_9>;
+    OH2: OH2Object1<HL7Types_2_9>;
+    OH3: OH3Object1<HL7Types_2_9>;
+    OH4: OH4Object1<HL7Types_2_9>;
+    OM1: OM1Object9<HL7Types_2_9>;
+    OM2: OM2Object5<HL7Types_2_9>;
+    OM3: OM3Object4<HL7Types_2_9>;
+    OM4: OM4Object6<HL7Types_2_9>;
+    OM5: OM5Object3<HL7Types_2_9>;
+    OM6: OM6Object2<HL7Types_2_9>;
+    OM7: OM7Object3<HL7Types_2_9>;
+    OMC: OMCObject1<HL7Types_2_9>;
+    ORC: ORCObject11<HL7Types_2_9>;
+    ORG: ORGObject3<HL7Types_2_9>;
+    OVR: OVRObject1<HL7Types_2_9>;
+    PAC: PACObject2<HL7Types_2_9>;
+    PCE: PCEObject2<HL7Types_2_9>;
+    PCR: PCRObject3<HL7Types_2_9>;
+    PD1: PD1Object6<HL7Types_2_9>;
+    PDA: PDAObject2<HL7Types_2_9>;
+    PDC: PDCObject3<HL7Types_2_9>;
+    PEO: PEOObject3<HL7Types_2_9>;
+    PES: PESObject3<HL7Types_2_9>;
+    PID: PIDObject9<HL7Types_2_9>;
+    PKG: PKGObject3<HL7Types_2_9>;
+    PM1: PM1Object1<HL7Types_2_9>;
+    PMT: PMTObject1<HL7Types_2_9>;
+    PR1: PR1Object8<HL7Types_2_9>;
+    PRA: PRAObject5<HL7Types_2_9>;
+    PRB: PRBObject2<HL7Types_2_9>;
+    PRC: PRCObject4<HL7Types_2_9>;
+    PRD: PRDObject4<HL7Types_2_9>;
+    PRT: PRTObject3<HL7Types_2_9>;
+    PSG: PSGObject1<HL7Types_2_9>;
+    PSH: PSHObject2<HL7Types_2_9>;
+    PSL: PSLObject3<HL7Types_2_9>;
+    PSS: PSSObject1<HL7Types_2_9>;
+    PTH: PTHObject2<HL7Types_2_9>;
+    PV1: PV1Object8<HL7Types_2_9>;
+    PV2: PV2Object7<HL7Types_2_9>;
+    PYE: PYEObject3<HL7Types_2_9>;
+    QAK: QAKObject3<HL7Types_2_9>;
+    QID: QIDObject2<HL7Types_2_9>;
+    QPD: QPDObject2<HL7Types_2_9>;
+    QRD: QRDObject6<HL7Types_2_9>;
+    QRF: QRFObject6<HL7Types_2_9>;
+    QRI: QRIObject3<HL7Types_2_9>;
+    RCP: RCPObject2<HL7Types_2_9>;
+    RDF: RDFObject1<HL7Types_2_9>;
+    RDT: RDTObject1<HL7Types_2_9>;
+    REL: RELObject2<HL7Types_2_9>;
+    RF1: RF1Object3<HL7Types_2_9>;
+    RFI: RFIObject1<HL7Types_2_9>;
+    RGS: RGSObject2<HL7Types_2_9>;
+    RMI: RMIObject2<HL7Types_2_9>;
+    ROL: ROLObject6<HL7Types_2_9>;
+    RQ1: RQ1Object3<HL7Types_2_9>;
+    RQD: RQDObject3<HL7Types_2_9>;
+    RXA: RXAObject6<HL7Types_2_9>;
+    RXC: RXCObject6<HL7Types_2_9>;
+    RXD: RXDObject8<HL7Types_2_9>;
+    RXE: RXEObject7<HL7Types_2_9>;
+    RXG: RXGObject8<HL7Types_2_9>;
+    RXO: RXOObject9<HL7Types_2_9>;
+    RXR: RXRObject4<HL7Types_2_9>;
+    RXV: RXVObject1<HL7Types_2_9>;
+    SAC: SACObject5<HL7Types_2_9>;
+    SCD: SCDObject1<HL7Types_2_9>;
+    SCH: SCHObject7<HL7Types_2_9>;
+    SCP: SCPObject1<HL7Types_2_9>;
+    SDD: SDDObject2<HL7Types_2_9>;
+    SFT: SFTObject2<HL7Types_2_9>;
+    SGH: SGHObject1<HL7Types_2_9>;
+    SGT: SGTObject1<HL7Types_2_9>;
+    SHP: SHPObject2<HL7Types_2_9>;
+    SID: SIDObject2<HL7Types_2_9>;
+    SLT: SLTObject1<HL7Types_2_9>;
+    SPM: SPMObject4<HL7Types_2_9>;
+    STF: STFObject7<HL7Types_2_9>;
+    STZ: STZObject1<HL7Types_2_9>;
+    TCC: TCCObject4<HL7Types_2_9>;
+    TCD: TCDObject3<HL7Types_2_9>;
+    TQ1: TQ1Object2<HL7Types_2_9>;
+    TQ2: TQ2Object1<HL7Types_2_9>;
+    TXA: TXAObject5<HL7Types_2_9>;
+    UAC: UACObject1<HL7Types_2_9>;
+    UB1: UB1Object6<HL7Types_2_9>;
+    UB2: UB2Object4<HL7Types_2_9>;
+    URD: URDObject5<HL7Types_2_9>;
+    URS: URSObject5<HL7Types_2_9>;
+    VAR: VARObject3<HL7Types_2_9>;
+    VND: VNDObject2<HL7Types_2_9>;
+    ZL7: ZL7Object2<HL7Types_2_9>;
+    Zxx: ZxxObject1<HL7Types_2_9>;
+    [segment: string]: Record<string, any>;
+  };
+  [version: `${number}.${number}`]: { [segment: string]: Record<string, any> };
+  [version: `${number}.${number}.${number}`]: {
+    [segment: string]: Record<string, any>;
+  };
+}
+
 export interface HL7VersionSegmentFields {
   '2.1': {
     ACC: ACCFields1;
@@ -42979,7 +70377,7 @@ export interface HL7VersionPathTypes {
       DLT: DLTComps2;
       DR: DRComps1;
       DTN: DTNComps1;
-      ED: EDComps2;
+      ED: EDComps3;
       EI: EIComps1;
       EIP: EIPComps1;
       ELD: ELDComps1;
@@ -43225,7 +70623,7 @@ export interface HL7VersionPathTypes {
       DLT: DLTComps2;
       DR: DRComps1;
       DTN: DTNComps1;
-      ED: EDComps2;
+      ED: EDComps3;
       EI: EIComps1;
       EIP: EIPComps1;
       ELD: ELDComps1;
@@ -43470,7 +70868,7 @@ export interface HL7VersionPathTypes {
       DLT: DLTComps2;
       DR: DRComps2;
       DTN: DTNComps1;
-      ED: EDComps2;
+      ED: EDComps3;
       EI: EIComps1;
       EIP: EIPComps1;
       ELD: ELDComps2;
@@ -43737,7 +71135,7 @@ export interface HL7VersionPathTypes {
       DLT: DLTComps2;
       DR: DRComps2;
       DTN: DTNComps2;
-      ED: EDComps2;
+      ED: EDComps3;
       EI: EIComps1;
       EIP: EIPComps1;
       ERL: ERLComps1;
@@ -44004,7 +71402,7 @@ export interface HL7VersionPathTypes {
       DLT: DLTComps2;
       DR: DRComps2;
       DTN: DTNComps2;
-      ED: EDComps2;
+      ED: EDComps3;
       EI: EIComps1;
       EIP: EIPComps1;
       ERL: ERLComps1;
@@ -44271,7 +71669,7 @@ export interface HL7VersionPathTypes {
       DLT: DLTComps2;
       DR: DRComps2;
       DTN: DTNComps2;
-      ED: EDComps2;
+      ED: EDComps3;
       EI: EIComps1;
       EIP: EIPComps1;
       ERL: ERLComps1;
@@ -44542,7 +71940,7 @@ export interface HL7VersionPathTypes {
       DLT: DLTComps2;
       DR: DRComps2;
       DTN: DTNComps2;
-      ED: EDComps2;
+      ED: EDComps3;
       EI: EIComps1;
       EIP: EIPComps1;
       ERL: ERLComps1;
@@ -44813,7 +72211,7 @@ export interface HL7VersionPathTypes {
       DLT: DLTComps2;
       DR: DRComps2;
       DTN: DTNComps2;
-      ED: EDComps2;
+      ED: EDComps3;
       EI: EIComps1;
       EIP: EIPComps1;
       ERL: ERLComps1;
@@ -45089,7 +72487,7 @@ export interface HL7VersionPathTypes {
       DLT: DLTComps2;
       DR: DRComps2;
       DTN: DTNComps2;
-      ED: EDComps2;
+      ED: EDComps3;
       EI: EIComps1;
       EIP: EIPComps1;
       ERL: ERLComps2;

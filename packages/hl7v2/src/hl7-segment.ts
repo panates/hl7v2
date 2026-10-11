@@ -21,12 +21,17 @@ export function isHeaderSegment(segmentType: string): boolean {
 }
 
 /**
- * A segment. P is the field positions field() takes: any number, or for a
- * message whose version the compiler knows, the fields that version defines -
+ * A segment. P is the field positions field() takes and O the object
+ * toObject() gives and assign() takes: any number and any object, or for a
+ * message whose version the compiler knows, what that version defines -
  * getSegment('DG1') of a 2.6 message leaves out DG1-2, withdrawn in 2.6 (see
  * HL7MessageSegment).
  */
-export class HL7Segment<P extends number = number> {
+export class HL7Segment<
+  P extends number = number,
+  O extends object = Record<string, any>,
+  C extends { [field: number]: number } = { [field: number]: number },
+> {
   declare protected _fields: HL7Field[];
   declare protected _definition: HL7SegmentDefinition;
   message: HL7Message<any>;
@@ -71,7 +76,7 @@ export class HL7Segment<P extends number = number> {
     this._fields = [];
   }
 
-  field(fieldPos: P): HL7Field {
+  field<F extends P>(fieldPos: F): HL7Field<C[F] & number> {
     if (fieldPos < 1) throw new Error('Invalid field position');
     let field = this._fields[fieldPos - 1];
     if (!field) {
@@ -81,7 +86,7 @@ export class HL7Segment<P extends number = number> {
       field = new HL7Field(this, fieldPos, fDef || { type: 'ST' });
       this._fields[fieldPos - 1] = field;
     }
-    return field;
+    return field as HL7Field<C[F] & number>;
   }
 
   defineField(position: number, def: HL7FieldDefinition): HL7Field {
@@ -119,12 +124,12 @@ export class HL7Segment<P extends number = number> {
    * "PatientName" - typed by the segment's interface (PIDObject); see
    * hl7-object.ts
    */
-  toObject<T extends object = Record<string, any>>(): T {
+  toObject<T extends object = O>(): T {
     return segmentToObject(this) as T;
   }
 
   /** Sets fields from an object shaped as toObject() makes it */
-  assign<T extends object = Record<string, any>>(object: T): this {
+  assign<T extends object = O>(object: NoInfer<T>): this {
     assignSegment(this, object as Record<string, any>);
     return this;
   }

@@ -3,6 +3,7 @@ import {
   DG1Segment,
   type HL7DataTypeObject,
   HL7Error,
+  HL7Field,
   HL7Message,
   HL7Segment,
   type HL7SegmentObject,
@@ -164,5 +165,34 @@ describe('hl7v2:versioned objects', () => {
     // @ts-expect-error - "MSH-9: ID has no component 3 in 2.1"
     new HL7Message('2.1').get('MSH-9-3');
     expect(new HL7Message('2.5').get('MSH-9-3')).toBeUndefined();
+  });
+
+  it("should type a segment's object and its fields' components", () => {
+    const msg = new HL7Message('2.6');
+    const pid = msg.addSegment('PID');
+    pid.assign({
+      PatientName: [{ GivenName: 'Ayşe', FamilyName: { Surname: 'Yılmaz' } }],
+    });
+    // @ts-expect-error - PID has no such field
+    expect(() => pid.assign({ NoSuchField: 1 })).toThrow('Unknown field');
+    const object = pid.toObject();
+    assertType<Equal<typeof object, HL7SegmentObject<'2.6', 'PID'>>>();
+    expect(object.PatientName?.[0]?.GivenName).toEqual('Ayşe');
+
+    const name = pid.field(5);
+    expect(name.getValue(2)).toEqual('Ayşe');
+    name.setValue('Gül', 3);
+    // @ts-expect-error - XPN has 14 components in 2.6
+    name.getValue(15);
+    // @ts-expect-error - in a repetition too
+    name.rep(1).comp(15);
+    // @ts-expect-error - PID-8 (IS) is a primitive: its only component is 1
+    pid.field(8).getValue(2);
+    /* OBX-5 is VARIES; an untyped message's fields take any */
+    msg.addSegment('OBX').field(5).comp(7);
+    HL7Message.parse(ADT25).getSegment('PID')!.field(5).comp(99);
+    /* A typed field is still an HL7Field */
+    const field: HL7Field = name;
+    expect(field.position).toEqual(5);
   });
 });

@@ -2,7 +2,7 @@
  * Building an HL7 message from scratch, checking it against its version's
  * dictionary, and answering it with an acknowledgment.
  */
-import { HL7Message, type HL7SegmentObject, MSHSegment } from 'hl7v2';
+import { HL7Message, MSHSegment } from 'hl7v2';
 
 /*
  * A new message has an MSH with the date/time, a control ID, the processing
@@ -38,9 +38,9 @@ msg.set('NK1-1', 1).set('NK1-2-1', 'Yılmaz & Sons | Ltd.');
 
 /*
  * Or a whole segment from an object, keyed as getSegmentObject() gives it;
- * typed by the version, the compiler checks the names
+ * typed by the message's version, the compiler checks the names
  */
-msg.addSegment('PV1').assign<HL7SegmentObject<'2.5', 'PV1'>>({
+msg.addSegment('PV1').assign({
   SetID: 1,
   PatientClass: 'I',
   AssignedPatientLocation: { PointOfCare: '2000', Room: '2012', Bed: '01' },

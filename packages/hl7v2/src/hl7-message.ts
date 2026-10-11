@@ -5,6 +5,8 @@ import type {
   HL7SegmentField,
   HL7SegmentObjects,
   HL7TypedVersion,
+  HL7VersionFieldComponents,
+  HL7VersionSegmentObjects,
   HL7VersionSegments,
 } from 'hl7v2-dictionary';
 import {
@@ -70,7 +72,11 @@ export type HL7MessageSegmentObject<
 export type HL7MessageSegment<
   V extends HL7Version,
   S extends string,
-> = HL7Segment<HL7SegmentField<V, S> & number>;
+> = HL7Segment<
+  HL7SegmentField<V, S> & number,
+  HL7VersionSegmentObjects[V][S],
+  HL7VersionFieldComponents[V][S]
+>;
 
 /**
  * An HL7 v2 message. V is its version when known to the compiler -
