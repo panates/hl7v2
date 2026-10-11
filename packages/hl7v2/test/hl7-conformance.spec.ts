@@ -386,4 +386,48 @@ describe('hl7v2:conformance', () => {
       expect(msg.getSegment('BLG')!.toHL7String()).toEqual('BLG|D^NOTADATE&Y');
     });
   });
+
+  describe('negative acknowledgments', () => {
+    const request = (version: string) =>
+      HL7Message.parse(`MSH|^~\\&|A|B|C|D|||ADT^A01|CID|P|${version}`);
+    const located = new HL7Error('Required field missing', {
+      hl7ErrorCode: 101,
+      segmentType: 'PID',
+      segmentSequence: 1,
+      fieldPosition: 5,
+    });
+
+    it('Should lay ERR out as 2.5 and later define it', () => {
+      const err = request('2.5').createNak([located]).getSegment('ERR')!;
+      expect(err.toHL7String()).toEqual('ERR||PID^1^5|101|E');
+    });
+
+    it('Should put everything in ERR-1 before 2.5', () => {
+      for (const version of ['2.3', '2.4']) {
+        const err = request(version).createNak([located]).getSegment('ERR')!;
+        expect([version, err.toHL7String()]).toEqual([
+          version,
+          'ERR|PID^1^5^101&Required field missing&HL70357',
+        ]);
+      }
+      /* 2.1 and 2.2: ERR-1 is the code alone */
+      const err21 = request('2.1').createNak([located]).getSegment('ERR')!;
+      expect(err21.toHL7String()).toEqual('ERR|101');
+    });
+
+    it('Should reject (AR) what cannot be taken at all', () => {
+      const ack = (errors: (Error | string)[]) =>
+        request('2.5')
+          .createNak(errors)
+          .getSegment('MSA')!
+          .field(MSASegment.AcknowledgmentCode)
+          .toHL7String();
+      expect(
+        ack([new HL7Error('No such version', { hl7ErrorCode: 203 })]),
+      ).toEqual('AR');
+      expect(ack([new HL7Error('Busy', { ackCode: 'AR' })])).toEqual('AR');
+      expect(ack([located])).toEqual('AE');
+      expect(ack(['plain failure'])).toEqual('AE');
+    });
+  });
 });

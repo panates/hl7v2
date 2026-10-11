@@ -22,7 +22,7 @@ import {
   SUBCOMPONENT_SEPARATOR,
   VT,
 } from './constants.js';
-import { HL7Error } from './hl7-error.js';
+import { HL7_ERROR_CODES, HL7Error } from './hl7-error.js';
 import { HL7MessageNode } from './hl7-message-node.js';
 import type {
   Hl7SegmentParseOptions,
@@ -417,11 +417,28 @@ export class HL7Message {
     return out;
   }
 
+  /**
+   * Creates the negative acknowledgment of this message: AR (reject) when an
+   * error says the message cannot be taken at all - an unsupported message
+   * type, event, processing ID or version (HL7 errors 200-203) - otherwise
+   * AE (error). An HL7Error's `ackCode` decides it explicitly.
+   */
   createNak(errors: (Error | string)[]): HL7Message {
     const out = this._createResponse();
 
+    const rejected = errors.some(
+      e =>
+        e instanceof HL7Error &&
+        (e.ackCode === 'AR' ||
+          (!e.ackCode &&
+            e.hl7ErrorCode !== undefined &&
+            e.hl7ErrorCode >= 200 &&
+            e.hl7ErrorCode <= 203)),
+    );
     const msaSegment = out.addSegment('MSA');
-    msaSegment.field(MSASegment.AcknowledgmentCode).setValue('AE');
+    msaSegment
+      .field(MSASegment.AcknowledgmentCode)
+      .setValue(rejected ? 'AR' : 'AE');
     msaSegment
       .field(MSASegment.MessageControlID)
       .setValue(this.header.field(MSHSegment.MessageControlID).getValue());
@@ -431,48 +448,64 @@ export class HL7Message {
     return out;
   }
 
+  /**
+   * Adds an ERR segment for the error, laid out as the message's version
+   * defines ERR: from 2.5 the location, code and severity have fields of
+   * their own (ERR-2, -3, -4); before it ERR-1 holds them all - segment,
+   * sequence, field and the coded error (2.3, 2.4), or the error code alone
+   * (2.1, 2.2). The error's text goes to MSA-3.
+   */
   addError(error: Error | string) {
     let msaSegment = this.getSegment('MSA');
     if (!msaSegment) msaSegment = this.addSegment('MSA');
-    if (error instanceof Error) {
-      msaSegment.field(MSASegment.TextMessage).setValue(error.message);
-    } else msaSegment.field(MSASegment.TextMessage).setValue(String(error));
+    const text = error instanceof Error ? error.message : String(error);
+    msaSegment.field(MSASegment.TextMessage).setValue(text);
 
+    const e = error instanceof HL7Error ? error : undefined;
+    const code =
+      e?.hl7ErrorCode ||
+      (error instanceof Error && (error as any).hl7ErrorCode) ||
+      207;
     const errSegment = this.addSegment('ERR');
-    if (error instanceof HL7Error) {
-      errSegment
-        .field(ERRSegment.HL7ErrorCode)
-        .setValue(error.hl7ErrorCode || 207);
-      errSegment.field(ERRSegment.Severity).setValue(error.severity);
-      errSegment
-        .field(ERRSegment.ApplicationErrorCode)
-        .setValue(error.appErrorCode);
-      const errLocation = errSegment.field(ERRSegment.ErrorLocation);
-      errLocation.comp(ERLType.SegmentID).setValue(error.segmentType);
-      errLocation.comp(ERLType.SegmentSequence).setValue(error.segmentSequence);
-      errLocation.comp(ERLType.FieldPosition).setValue(error.fieldPosition);
-      errLocation
-        .comp(ERLType.ComponentNumber)
-        .setValue(error.componentPosition);
-      errLocation.comp(ERLType.FieldRepetition).setValue(error.repetitionIndex);
-      errLocation
-        .comp(ERLType.SubComponentNumber)
-        .setValue(error.subComponentPosition);
-      if ((process?.env.NODE_ENV || '').startsWith('dev')) {
-        errSegment
-          .field(ERRSegment.DiagnosticInformation)
-          .setValue(error.stack);
+    const fields = this.dictionary.segments.ERR?.fields || {};
+
+    if (fields['3']) {
+      errSegment.field(ERRSegment.HL7ErrorCode).setValue(code);
+      errSegment.field(ERRSegment.Severity).setValue(e?.severity || 'E');
+      const appCode = e?.appErrorCode ?? (error as any)?.code;
+      if (appCode != null) {
+        errSegment.field(ERRSegment.ApplicationErrorCode).setValue(appCode);
       }
-    } else {
-      errSegment.field(ERRSegment.HL7ErrorCode).setValue(207);
-      errSegment.field(ERRSegment.Severity).setValue('E');
-      if (error instanceof Error) {
-        if ((error as any).code)
-          errSegment
-            .field(ERRSegment.ApplicationErrorCode)
-            .setValue((error as any).code);
+      if (e) {
+        const errLocation = errSegment.field(ERRSegment.ErrorLocation);
+        errLocation.comp(ERLType.SegmentID).setValue(e.segmentType);
+        errLocation.comp(ERLType.SegmentSequence).setValue(e.segmentSequence);
+        errLocation.comp(ERLType.FieldPosition).setValue(e.fieldPosition);
+        errLocation.comp(ERLType.ComponentNumber).setValue(e.componentPosition);
+        errLocation.comp(ERLType.FieldRepetition).setValue(e.repetitionIndex);
+        errLocation
+          .comp(ERLType.SubComponentNumber)
+          .setValue(e.subComponentPosition);
+        if ((process?.env.NODE_ENV || '').startsWith('dev')) {
+          errSegment.field(ERRSegment.DiagnosticInformation).setValue(e.stack);
+        }
       }
+      return;
     }
+
+    /* Before 2.5: everything in ERR-1 */
+    const err1 = errSegment.field(1);
+    if (err1.isPrimitive) {
+      err1.setValue(code);
+      return;
+    }
+    if (e?.segmentType) err1.comp(1).setValue(e.segmentType);
+    if (e?.segmentSequence != null) err1.comp(2).setValue(e.segmentSequence);
+    if (e?.fieldPosition != null) err1.comp(3).setValue(e.fieldPosition);
+    const codeComponent = err1.comp(4);
+    codeComponent.setValue(code, 1);
+    codeComponent.setValue(HL7_ERROR_CODES[code] ?? text, 2);
+    codeComponent.setValue('HL70357', 3);
   }
 
   protected _clear(version?: HL7Version) {

@@ -37,8 +37,10 @@ export class HL7Response {
   failed(error: Error) {
     this.error = error;
     const msa = this.message.getSegment('MSA');
-    if (msa?.field(MSASegment.AcknowledgmentCode).getValue() !== 'AE')
+    const code = msa?.field(MSASegment.AcknowledgmentCode).getValue();
+    if (code !== 'AE' && code !== 'AR') {
       this.message = this.request.message.createNak([error]);
+    }
   }
 
   /** Stops watching the socket; called once the request is handled */
