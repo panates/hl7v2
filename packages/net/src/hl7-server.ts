@@ -26,6 +26,7 @@ import type {
   HL7ErrorMiddleware,
   HL7MessageFilter,
   HL7Middleware,
+  HL7ResponseHook,
 } from './types.js';
 
 export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
@@ -237,6 +238,15 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
   }
 
   /**
+   * See HL7Router.beforeResponse(): `server.beforeResponse(ack => ...)` sees
+   * every answer the server sends to a request. A hook that throws is
+   * reported as an `error` event, and the answer is sent without it.
+   */
+  beforeResponse(hook: HL7ResponseHook) {
+    this._router.beforeResponse(hook);
+  }
+
+  /**
    * Asynchronously get the number of concurrent connections on the server. Works
    * when sockets were sent to forks.
    */
@@ -362,25 +372,25 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
   ): Promise<void> {
     /** A response to our own request, or any acknowledgment, is not answered */
     if (!isRoutable(message, socket)) return Promise.resolve();
-    const send = (m: HL7Message) => {
-      this._identify(m);
-      if (batch) batch.send(m);
-      else socket.sendMessage(m);
-    };
     const when = this.acceptAcknowledgment ?? 'receipt';
-    if (!acceptMessage(message, send, this.validate, when)) {
-      return Promise.resolve();
-    }
+    /* Every answer goes through the request: the hooks, then out */
+    const req = new HL7Request(socket, message, batch, {
+      prepare: m => this._identify(m),
+      acceptPending: when === 'processed' && !!ackModeOf(message).accept,
+      beforeResponse: this._router.responseHooks,
+      onError: e => this.emit('error', e, socket),
+    });
+    const accepted = acceptMessage(
+      message,
+      (ack, error) => req.send(ack, error ? 'reject' : 'accept', error),
+      this.validate,
+      when,
+    );
+    if (!accepted) return req.flushed();
     return new Promise<void>(resolve => {
+      const done = () => req.flushed().then(resolve);
       if (!message.header.field(MSHSegment.MessageControlID).getValue())
         message.header.field(MSHSegment.MessageControlID).setValue(uid(8));
-      const req = new HL7Request(
-        socket,
-        message,
-        batch,
-        m => this._identify(m),
-        when === 'processed' && !!ackModeOf(message).accept,
-      );
       const res = new HL7Response(req);
       const timeoutTimer = setTimeout(() => {
         try {
@@ -388,19 +398,20 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
           if (res.finished) return;
           res.failed(new HL7ExchangeError('Response timeout'));
           req.sendAccept(res.error);
-          if (res.acknowledgmentWanted) req.send(res.message);
+          if (res.acknowledgmentWanted)
+            req.send(res.message, 'reject', res.error);
         } catch (e: any) {
           /** The socket may be gone - sendMessage reports that as an error event too */
           this.emit('error', e, socket);
         } finally {
-          resolve();
+          done();
         }
       }, this.responseTimeout || 30000).unref();
 
       this._router.handle(req, res, err => {
         clearTimeout(timeoutTimer);
         if (err) this.emit('error', err, socket);
-        resolve();
+        done();
       });
     });
   }

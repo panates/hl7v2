@@ -138,6 +138,18 @@ server.use((req, res, next) => {
 }, -10); // before the handlers of priority 0
 ```
 
+#### .beforeResponse()
+
+`beforeResponse(hook: HL7ResponseHook): void`
+
+Adds a hook called with every answer the server sends to a request, before it goes out - to change it, replace it or send nothing. A hook that throws is reported as an `error` event, and the answer is sent without it. See [`HL7Router.beforeResponse()`](#hl7router-beforeresponse).
+
+```typescript
+server.beforeResponse((ack, { kind }) => {
+  if (kind === 'accept' && ack.get('MSA-1') === 'CA') ack.set('MSA-1', 'AA');
+});
+```
+
 #### .onError()
 
 `onError(handler: HL7ErrorMiddleware | HL7Router, priority = 0): void`
@@ -369,6 +381,12 @@ Adds a handler for the messages the server sends to the client, as [`HL7Server.u
 ```typescript
 client.use('ADT^A08', req => updatePatient(req.message));
 ```
+
+#### .beforeResponse()
+
+`beforeResponse(hook: HL7ResponseHook): void`
+
+Adds a hook called with every answer the client sends to a request the other side made, as [`HL7Server.beforeResponse()`](#beforeresponse) does.
 
 #### .onError()
 
@@ -693,6 +711,29 @@ router.use(req => req.message.messageType.startsWith('Z'), zHandler);
 
 Adds an error handler, or another router's error handlers. They run in ascending `priority` when a handler throws or calls `next(error)`. One declared with fewer than four parameters is awaited and the next one runs; one declared with `next` continues with `next()`, or replaces the error with `next(otherError)`. After the last one, the request ends with the error: [`res.failed(error)`](#failed) makes the answer a NAK unless one was sent already, and the error goes to the caller of `handle()`.
 
+<a id="hl7router-beforeresponse"></a>
+
+#### .beforeResponse()
+
+`beforeResponse(hook: HL7ResponseHook): void`
+
+Adds a hook called with every answer to a request before it is sent: accept and application acknowledgments, NAKs for messages refused or not processed in time, and the replies handlers send with `req.send()` - in a batch, each message of the reply batch. Not messages sent with `sendMessage()` or `sendBatch()`, the envelope of a reply batch, or the NAK for a frame that could not be parsed.
+
+- The hook gets the answer and an [`HL7ResponseContext`](#hl7responsecontext). It returns nothing to send the answer, changed in place or not; another `HL7Message` to send instead; or `null` to send nothing.
+- Hooks run in the order added, each given what the one before returned; `null` ends the chain. The router's own hooks run first, then those of the routers added to it with `use()`, which run only for the messages those take (a filter given with the router applies).
+- A hook may return a promise; the answer waits for it, and the answers to a request go out in the order they were given.
+- A hook that throws is passed over, and the error reported: `HL7Server` and `Hl7Client` emit it as `error`. The answer is not lost to a broken hook.
+
+```typescript
+router.beforeResponse(async (ack, { kind, request }) => {
+  await audit(request.message.controlId, kind, ack.get('MSA-1'));
+});
+```
+
+#### .responseHooks
+
+`responseHooks: HL7ResponseHook[]` (read-only) - The hooks of the router and of the routers added to it, in the order they run. `HL7Server` and `Hl7Client` give them to each request.
+
 #### .handle()
 
 `handle(req: HL7Request, res: HL7Response, callback: (err?: Error) => void): void`
@@ -705,9 +746,14 @@ Runs the handlers for a request, then finishes it: when the chain ended with an 
 
 A received message, as the handlers see it.
 
-`new HL7Request(socket: HL7Socket, message: HL7Message, batch?: HL7BatchReplies, prepare?: (message: HL7Message) => void, acceptPending?: boolean)`
+`new HL7Request(socket: HL7Socket, message: HL7Message, batch?: HL7BatchReplies, options?: HL7Request.Options | ((message: HL7Message) => void))`
 
-`prepare`, when given, is called with every answer before `send()` sends it; `HL7Server` uses it to set MSH-3/MSH-4 of its acknowledgments (`applicationName`, `facilityName`). `acceptPending` holds the accept acknowledgment back until the request is processed (see `sendAccept()`); the server and the client set it with `acceptAcknowledgment: 'processed'` when MSH-15 is valued.
+`HL7Request.Options`, all optional - a function in their place is taken as `prepare`, as in 2.0:
+
+- `prepare: (message: HL7Message) => void` - Called with every answer before the hooks; `HL7Server` uses it to set MSH-3/MSH-4 of its acknowledgments (`applicationName`, `facilityName`).
+- `acceptPending: boolean` - Holds the accept acknowledgment back until the request is processed (see `sendAccept()`); the server and the client set it with `acceptAcknowledgment: 'processed'` when MSH-15 is valued.
+- `beforeResponse: HL7ResponseHook[]` - The hooks every answer passes before it is sent (see [`HL7Router.beforeResponse()`](#hl7router-beforeresponse)).
+- `onError: (error: Error) => void` - Called with an error a hook threw, or one sending an answer that went through the hooks.
 
 ### Properties
 
@@ -715,6 +761,7 @@ A received message, as the handlers see it.
 - `message: HL7Message` - The received message (read-only).
 - `batch?: HL7BatchReplies` - The replies of the batch the message came in, when it came in one (read-only). See [Batch helpers](#hl7batchreplies).
 - `acceptPending: boolean` - Whether the accept acknowledgment is still held back (read-only).
+- `answered: boolean` - Whether the request is answered for the application: an `AA`, `AE` or `AR` with its control ID in MSA-2 was given to `send()` - sent, or on its way through the hooks (read-only). `res.finished` counts it.
 
 ### Methods
 
@@ -737,9 +784,9 @@ server.use('ORU^R01', async (req, res, next) => {
 
 #### .send()
 
-`send(message: HL7Message): void`
+`send(message: HL7Message, kind: HL7ResponseKind = 'reply', error?: Error): void`
 
-Sends an answer to the request: on the socket, or - for a message that came in a batch - into the reply batch. An application acknowledgment of the request (`AA`, `AE`, `AR` with its control ID in MSA-2) is preceded by the accept acknowledgment still held back: `CA` for `AA`, `CE` or `CR` otherwise. On a server, an answer of type `ACK` gets the server's `applicationName` / `facilityName` in MSH-3/MSH-4 first. A handler answering a request itself, with something other than `res.message` (an `ADR^A19` for a `QRY^A19`, say), uses it rather than `req.socket.sendMessage()`, which would send the answer on its own, outside the batch. An answer whose MSA-2 is the request's control ID finishes the request: no acknowledgment follows it.
+Sends an answer to the request: on the socket, or - for a message that came in a batch - into the reply batch. It passes the `beforeResponse` hooks first, which are told `kind` and `error`; a handler's own answer is a `'reply'`. Answers go out in the order they were given; without hooks, at once. An application acknowledgment of the request (`AA`, `AE`, `AR` with its control ID in MSA-2) is preceded by the accept acknowledgment still held back: `CA` for `AA`, `CE` or `CR` otherwise. On a server, an answer of type `ACK` gets the server's `applicationName` / `facilityName` in MSH-3/MSH-4 first. A handler answering a request itself, with something other than `res.message` (an `ADR^A19` for a `QRY^A19`, say), uses it rather than `req.socket.sendMessage()`, which would send the answer on its own, outside the batch. An answer whose MSA-2 is the request's control ID finishes the request: no acknowledgment follows it.
 
 ```typescript
 server.use('QRY^A19', req => {
@@ -820,6 +867,39 @@ type NextFunction = (err?: Error) => void | Promise<void>;
 ```
 
 Continues with the next handler, or, given an error, with the error handlers.
+
+### HL7ResponseHook
+
+```typescript
+type HL7ResponseHook = (
+  response: HL7Message,
+  context: HL7ResponseContext,
+) => HL7Message | null | undefined | void | Promise<HL7Message | null | undefined | void>;
+```
+
+Called with an answer to a request before it is sent; see [`HL7Router.beforeResponse()`](#hl7router-beforeresponse). Returns nothing to send it, another message to send instead, or `null` to send nothing.
+
+### HL7ResponseContext
+
+```typescript
+interface HL7ResponseContext {
+  kind: HL7ResponseKind;
+  request: HL7Request; // the request answered: its message, socket, batch
+  socket: HL7Socket; // the connection the answer goes out on
+  error?: Error; // the error the answer reports, when it reports one
+}
+```
+
+### HL7ResponseKind
+
+```typescript
+type HL7ResponseKind = 'accept' | 'application' | 'reply' | 'reject';
+```
+
+- `'accept'` - an accept acknowledgment: `CA`, or `CE`/`CR` when processing failed (`acceptAcknowledgment: 'processed'`).
+- `'application'` - the application acknowledgment sent when the handlers are done: `res.message`, `AA` or a NAK.
+- `'reply'` - an answer a handler sends itself with `req.send()`.
+- `'reject'` - a message refused before processing (validation: `CE`/`CR`, or `AE`/`AR`), or the NAK sent when the handlers time out.
 
 ### HL7MessageFilter
 

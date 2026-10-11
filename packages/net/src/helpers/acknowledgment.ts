@@ -99,8 +99,11 @@ export function acknowledges(ack: HL7Message, message: HL7Message): boolean {
  */
 export function acceptMessage(
   message: HL7Message,
-  /** Where an acknowledgment goes: the socket, or a function sending it */
-  socket: HL7Socket | ((ack: HL7Message) => void),
+  /**
+   * Where an acknowledgment goes: the socket, or a function sending it - with
+   * the first error, for a message not accepted
+   */
+  socket: HL7Socket | ((ack: HL7Message, error?: Error) => void),
   validate: boolean | HL7ValidateOptions | undefined,
   when: HL7AcceptAcknowledgment = 'receipt',
 ): boolean {
@@ -119,12 +122,12 @@ export function acceptMessage(
     const ack = errors.length
       ? message.createNak(errors, 'accept')
       : message.createAck('CA');
-    if (ackWanted(mode.accept, ackCodeOf(ack))) send(ack);
+    if (ackWanted(mode.accept, ackCodeOf(ack))) send(ack, errors[0]);
     return !errors.length;
   }
   if (errors.length) {
     const nak = message.createNak(errors);
-    if (ackWanted(mode.application, ackCodeOf(nak))) send(nak);
+    if (ackWanted(mode.application, ackCodeOf(nak))) send(nak, errors[0]);
     return false;
   }
   return true;

@@ -5,6 +5,7 @@ import type {
   HL7ErrorMiddleware,
   HL7MessageFilter,
   HL7Middleware,
+  HL7ResponseHook,
   NextFunction,
 } from './types.js';
 
@@ -23,9 +24,11 @@ export class HL7Router {
     number,
     (HL7ErrorMiddleware | HL7Router)[]
   >();
+  protected _responseHooks: HL7ResponseHook[] = [];
   protected _needPrepare = true;
   declare protected _handlers: HL7Middleware[];
   declare protected _errorHandlers: HL7ErrorMiddleware[];
+  declare protected _hooks: HL7ResponseHook[];
 
   /**
    * Adds a handler, or another router, for every message - or, given a
@@ -80,6 +83,26 @@ export class HL7Router {
     }
     list.push(handler);
     this._needPrepare = true;
+  }
+
+  /**
+   * Adds a hook called with every answer to a request before it is sent -
+   * accept and application acknowledgments, NAKs, a handler's own replies -
+   * to change it in place, return another message to send instead, or
+   * return null to send nothing (see HL7ResponseHook). Hooks run in the
+   * order added, each given what the one before returned; a router's own
+   * before those of the routers added to it, which see only the messages
+   * those take. For senders that read acknowledgments their own way.
+   */
+  beforeResponse(hook: HL7ResponseHook) {
+    this._responseHooks.push(hook);
+    this._needPrepare = true;
+  }
+
+  /** The beforeResponse hooks of this router and the routers added to it, in order */
+  get responseHooks(): HL7ResponseHook[] {
+    this._prepareStack();
+    return this._hooks;
   }
 
   handle(req: HL7Request, res: HL7Response, callback: (err?: Error) => void) {
@@ -161,6 +184,7 @@ export class HL7Router {
     this._needPrepare = false;
     this._handlers = [];
     this._errorHandlers = [];
+    this._hooks = [...this._responseHooks];
     Array.from(this._handlerStack.keys())
       .sort((a, b) => a - b)
       .forEach(p => {
@@ -169,10 +193,20 @@ export class HL7Router {
           if (x instanceof HL7Router) {
             x._prepareStack();
             this._handlers.push(...x._handlers);
+            this._hooks.push(...x._hooks);
           } else if (typeof x === 'object') {
             x.router._prepareStack();
             this._handlers.push(
               ...x.router._handlers.map(h => filtered(h, x.test)),
+            );
+            this._hooks.push(
+              ...x.router._hooks.map(
+                (hook): HL7ResponseHook =>
+                  (response, context) =>
+                    x.test(context.request)
+                      ? hook(response, context)
+                      : undefined,
+              ),
             );
           } else {
             this._handlers.push(x);
@@ -197,7 +231,7 @@ export class HL7Router {
   protected _finalHandler(req: HL7Request, res: HL7Response) {
     /** Unless the request's MSH-16 asks for no such acknowledgment */
     if (!res.finished && res.acknowledgmentWanted) {
-      req.send(res.message);
+      req.send(res.message, 'application', res.error);
     }
   }
 }

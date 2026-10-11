@@ -5,6 +5,8 @@ import {
   Hl7Client,
   type HL7Request,
   type HL7Response,
+  type HL7ResponseHook,
+  type HL7ResponseKind,
   HL7Router,
   HL7Server,
 } from '../src/index.js';
@@ -508,6 +510,7 @@ describe('net:exchange', () => {
           sent: string[],
         ) => unknown;
         serverTimeout?: number;
+        hooks?: HL7ResponseHook[];
       } = {},
     ) {
       const s2 = HL7Server.createServer(undefined, {
@@ -515,6 +518,8 @@ describe('net:exchange', () => {
         acceptAcknowledgment: opts.processed ? 'processed' : undefined,
         responseTimeout: opts.serverTimeout,
       });
+      for (const hook of opts.hooks ?? []) s2.beforeResponse(hook);
+      s2.on('error', () => undefined);
       await s2.listen(0);
       const sent: string[] = [];
       s2.on('send', m =>
@@ -720,6 +725,182 @@ describe('net:exchange', () => {
         const ack = await socket.sendMessageWaitAck(msg);
         expect(ack.get('MSA-1')).toEqual('CA');
         expect(order).toEqual(['stored', 'CA']);
+      });
+    });
+
+    describe('beforeResponse', () => {
+      /** CA, CE as AA, AE - for senders that know only the application codes */
+      const asApplication: HL7ResponseHook = ack => {
+        const code = ack.get('MSA-1');
+        if (code === 'CA') ack.set('MSA-1', 'AA');
+        if (code === 'CE') ack.set('MSA-1', 'AE');
+      };
+
+      it('should let a hook change an acknowledgment in place', async () => {
+        expect(
+          await exchange('AL', 'NE', {
+            processed: true,
+            hooks: [asApplication],
+          }),
+        ).toEqual({ sent: ['AA'], got: 'AA' });
+        expect(
+          await exchange('AL', 'NE', {
+            processed: true,
+            fail: true,
+            hooks: [asApplication],
+          }),
+        ).toEqual({ sent: ['AE'], got: 'AE' });
+      });
+
+      it('should send what a hook returns, and nothing for null', async () => {
+        expect(
+          (
+            await exchange('', '', {
+              hooks: [(ack, ctx) => ctx.request.message.createNak(['refused'])],
+            })
+          ).sent,
+        ).toEqual(['AE']);
+        expect((await exchange('', '', { hooks: [() => null] })).sent).toEqual(
+          [],
+        );
+      });
+
+      it('should run the hooks in order, each on what the one before gave', async () => {
+        const seen: string[] = [];
+        const result = await exchange('', '', {
+          hooks: [
+            ack => {
+              seen.push('1:' + ack.get('MSA-1'));
+              ack.set('MSA-1', 'AE');
+            },
+            ack => {
+              seen.push('2:' + ack.get('MSA-1'));
+            },
+          ],
+        });
+        expect(seen).toEqual(['1:AA', '2:AE']);
+        expect(result.sent).toEqual(['AE']);
+        /* null stops the chain */
+        seen.length = 0;
+        await exchange('', '', {
+          hooks: [() => null, () => void seen.push('reached')],
+        });
+        expect(seen).toEqual([]);
+      });
+
+      it('should tell a hook what it answers', async () => {
+        const kinds = async (
+          msh15: string,
+          msh16: string,
+          opts: Parameters<typeof exchange>[2] = {},
+        ) => {
+          const seen: string[] = [];
+          await exchange(msh15, msh16, {
+            ...opts,
+            hooks: [
+              (ack, ctx) => {
+                expect(ctx.request.message.controlId).toEqual(ack.get('MSA-2'));
+                expect(ctx.socket).toBe(ctx.request.socket);
+                seen.push(
+                  `${ctx.kind}:${ack.get('MSA-1')}${ctx.error ? '!' : ''}`,
+                );
+              },
+            ],
+          });
+          return seen;
+        };
+        expect(await kinds('AL', 'AL')).toEqual([
+          'accept:CA',
+          'application:AA',
+        ]);
+        expect(
+          await kinds('AL', 'AL', { processed: true, fail: true }),
+        ).toEqual(['accept:CE!', 'application:AE!']);
+        expect(await kinds('AL', 'AL', { invalid: true })).toEqual([
+          'reject:CE!',
+        ]);
+        expect(await kinds('', '', { invalid: true })).toEqual(['reject:AE!']);
+        expect(
+          await kinds('AL', 'NE', {
+            processed: true,
+            serverTimeout: 100,
+            handler: () => sleep(200),
+          }),
+        ).toEqual(['accept:CE!']);
+        expect(
+          await kinds('', '', {
+            serverTimeout: 100,
+            handler: () => sleep(200),
+          }),
+        ).toEqual(['reject:AE!']);
+        expect(
+          await kinds('', '', {
+            handler: req => req.send(req.message.createAck()),
+          }),
+        ).toEqual(['reply:AA']);
+      });
+
+      it('should keep the order of answers through an async hook', async () => {
+        expect(
+          await exchange('AL', 'AL', {
+            wait: 'application',
+            hooks: [
+              async ack => {
+                if (ack.get('MSA-1') === 'CA') await sleep(50);
+              },
+            ],
+          }),
+        ).toEqual({ sent: ['CA', 'AA'], got: 'AA' });
+      });
+
+      it('should send the answer when a hook throws, and report it', async () => {
+        const errors: string[] = [];
+        const s3 = HL7Server.createServer();
+        s3.beforeResponse(() => {
+          throw new Error('broken hook');
+        });
+        s3.on('error', e => errors.push(e.message));
+        await s3.listen(0);
+        client = Hl7Client.createClient({
+          host: 'localhost',
+          port: (s3.address() as AddressInfo).port,
+        });
+        const ack = await client.sendMessageWaitAck(newMessage());
+        expect(ack.get('MSA-1')).toEqual('AA');
+        expect(errors).toEqual(['broken hook']);
+        await client.close();
+        client = undefined;
+        await s3.close();
+      });
+
+      it("should run a router's hooks for the messages it takes", async () => {
+        const seen: string[] = [];
+        const router = new HL7Router();
+        router.beforeResponse(ack => {
+          seen.push(ack.get('MSA-2'));
+        });
+        server.use('ADT', router);
+        client = Hl7Client.createClient({ host: 'localhost', port });
+        await client.sendMessageWaitAck(newMessage('ADT^A01', 'X1'));
+        await client.sendMessageWaitAck(newMessage('ORU^R01', 'X2'));
+        expect(seen).toEqual(['X1']);
+      });
+
+      it('should pass the answers of a client through its hooks', async () => {
+        const kinds: HL7ResponseKind[] = [];
+        client = Hl7Client.createClient({ host: 'localhost', port });
+        client.beforeResponse((ack, ctx) => {
+          kinds.push(ctx.kind);
+          ack.set('MSA-3', 'seen');
+        });
+        const connected = new Promise<any>(resolve =>
+          server.once('connection', resolve),
+        );
+        await client.connect();
+        const socket = await connected;
+        const ack = await socket.sendMessageWaitAck(newMessage());
+        expect(ack.get('MSA-3')).toEqual('seen');
+        expect(kinds).toEqual(['application']);
       });
     });
   });

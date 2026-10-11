@@ -189,6 +189,25 @@ An acknowledgment is never acknowledged, and never routed - two endpoints acknow
 
 The server's acknowledgments carry the received MSH-5/6 as their MSH-3/4; `applicationName` and `facilityName` (server options) set them instead.
 
+### Changing answers before they are sent
+
+Some senders read acknowledgments their own way - a device that knows `AA` and `AE` but not `CA` and `CE`, one that wants a field filled. `beforeResponse()` (server, client or router) sees every answer to a request just before it goes out, and may change it, replace it or drop it:
+
+```typescript
+/* A monitor sending MSH-15 AL that only knows AA (stored) and AE (resend) */
+server.beforeResponse(ack => {
+  const code = ack.get('MSA-1');
+  if (code === 'CA') ack.set('MSA-1', 'AA');
+  if (code === 'CE') ack.set('MSA-1', 'AE');
+});
+```
+
+- A hook returns nothing to send the answer (changed or not), another message to send instead, or `null` to send nothing. It may be `async`; answers still go out in order.
+- Its second argument says what the answer is: `kind` - `'accept'` (CA/CE/CR), `'application'` (the acknowledgment sent when the handlers are done), `'reply'` (a handler's own `req.send()`), `'reject'` (validation failures, the response timeout's NAK) - and the `request`, the `socket` and the `error` it reports.
+- It sees accept and application acknowledgments, NAKs and a handler's own replies, the messages of a reply batch one by one - not messages sent on their own with `sendMessage()`, the envelope of a reply batch, or the NAK for a frame that could not be parsed.
+- Hooks run in the order added, each given what the one before returned; `null` ends the chain. A router's hooks apply to the messages that router takes.
+- A hook that throws is reported as an `error` event and passed over: the answer is still sent.
+
 ## Validation
 
 With `validate: true` (server or client option), each received message is checked against its version (see [Validation](validation.md)). One that fails is answered with a NAK listing every error - one ERR each - and is not passed to the handlers. An options object chooses the checks: `validate: { structure: false }`.
