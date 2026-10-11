@@ -1,4 +1,5 @@
 import { Buffer } from 'node:buffer';
+import tls from 'node:tls';
 import type { HL7Version } from 'hl7v2';
 import {
   CR,
@@ -286,7 +287,14 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
     };
 
     socket.on('connect', hl7EventListeners.onConnect);
-    socket.on('ready', hl7EventListeners.onReady);
+    /**
+     * A TLS client is ready once the handshake is done and the server
+     * verified - before it, a certificate the client refuses would only
+     * surface as an error after a message was sent
+     */
+    hl7EventListeners.readyEvent =
+      socket instanceof tls.TLSSocket ? 'secureConnect' : 'ready';
+    socket.on(hl7EventListeners.readyEvent, hl7EventListeners.onReady);
     socket.on('lookup', hl7EventListeners.onLookup);
     socket.on('timeout', hl7EventListeners.onTimeout);
     socket.on('close', hl7EventListeners.onClose);
@@ -300,7 +308,10 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
     const hl7EventListeners = (this.socket as any).__hl7EventListeners;
     if (hl7EventListeners) {
       this.socket.removeListener('connect', hl7EventListeners.onConnect);
-      this.socket.removeListener('ready', hl7EventListeners.onReady);
+      this.socket.removeListener(
+        hl7EventListeners.readyEvent,
+        hl7EventListeners.onReady,
+      );
       this.socket.removeListener('lookup', hl7EventListeners.onLookup);
       this.socket.removeListener('timeout', hl7EventListeners.onTimeout);
       this.socket.removeListener('close', hl7EventListeners.onClose);

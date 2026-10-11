@@ -60,7 +60,18 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
     this.responseTimeout = options?.responseTimeout;
     this.parseStrict = options?.parseStrict;
     this._server = server;
-    this._server.on('connection', socket => this._connectionListener(socket));
+    /**
+     * A TLS server's 'connection' is the raw TCP socket, still encrypted; the
+     * decrypted one comes with 'secureConnection', after the handshake
+     */
+    if (server instanceof tls.Server) {
+      server.on('secureConnection', socket => this._connectionListener(socket));
+      server.on('tlsClientError', error =>
+        this.emit('error', error, undefined),
+      );
+    } else {
+      server.on('connection', socket => this._connectionListener(socket));
+    }
     this._server.on('listening', () => this.emit('listening'));
     this._server.on('close', () => this.emit('close'));
     this._server.on('drop', data => this.emit('drop', data));
