@@ -591,14 +591,16 @@ export class HL7Message<V extends HL7Version = HL7Version> {
    * defines ERR: from 2.5 the location, code and severity have fields of
    * their own (ERR-2, -3, -4); before it ERR-1 holds them all - segment,
    * sequence, field and the coded error (2.3, 2.4), or the error code alone
-   * (2.1, 2.2). The error's text goes to MSA-3.
+   * (2.1, 2.2). The first error's text goes to MSA-3.
    */
   addError(error: Error | string) {
     /* The layout is read from the dictionary, so fields go by any number */
     let msaSegment: HL7Segment | undefined = this.getSegment('MSA');
     if (!msaSegment) msaSegment = this.addSegment('MSA');
     const text = error instanceof Error ? error.message : String(error);
-    msaSegment.field(MSASegment.TextMessage).setValue(text);
+    /* MSA-3 holds one text: the first error's; each has its ERR */
+    const msaText = msaSegment.field(MSASegment.TextMessage);
+    if (msaText.isEmpty()) msaText.setValue(text);
 
     const e = error instanceof HL7Error ? error : undefined;
     const code =

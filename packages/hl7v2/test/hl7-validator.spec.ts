@@ -58,6 +58,19 @@ describe('hl7v2:validate', () => {
       );
     });
 
+    it("should put the first error's text in MSA-3, an ERR for each", () => {
+      const msg = HL7Message.parse(
+        [MSH, 'EVN||20250101', 'PID|1', 'PV1|1|I'].join('\r'),
+      );
+      const nak = msg.createNak(msg.validate());
+      expect(nak.get('MSA-3')).toEqual(
+        'PID-3 (Patient Identifier List) is required',
+      );
+      expect(nak.segments.filter(s => s.segmentType === 'ERR').length).toEqual(
+        2,
+      );
+    });
+
     it('should take a field set to an empty string as missing', () => {
       const msg = HL7Message.parse(VALID.join('\r'));
       msg.header.field(10).setValue('');
