@@ -1,11 +1,12 @@
 import net from 'node:net';
 import tls from 'node:tls';
 import type { Backoff } from 'backoff';
-import type { HL7Message } from 'hl7v2';
+import type { HL7Message, HL7ValidateOptions } from 'hl7v2';
 import { AsyncEventEmitter } from 'node-events-async';
 import reconnectCore from 'reconnect-core';
 import type { StrictOmit } from 'ts-gems';
 import { isRoutable } from './helpers/is-routable.js';
+import { rejectInvalid } from './helpers/reject-invalid.js';
 import { HL7Request } from './hl7-request.js';
 import { HL7Response } from './hl7-response.js';
 import { HL7Router } from './hl7-router.js';
@@ -222,6 +223,7 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
   protected _onMessage(message: HL7Message) {
     /** A response to our own request, or any acknowledgment, is not answered */
     if (!isRoutable(message, this._socket!)) return;
+    if (rejectInvalid(message, this._socket!, this._options.validate)) return;
     const req = new HL7Request(this._socket!, message);
     const res = new HL7Response(req);
     this._router.handle(req, res, () => {
@@ -245,6 +247,12 @@ export namespace Hl7Client {
     parseStrict?: boolean;
     /** See HL7Socket.Options.defaultCharset */
     defaultCharset?: string;
+    /**
+     * Validate received messages against their version's dictionary
+     * (HL7Message.validate()): one that fails is answered with a NAK listing
+     * its errors and is not passed to the handlers. Default false.
+     */
+    validate?: boolean | HL7ValidateOptions;
     reconnect?: ReconnectOptions;
   }
 

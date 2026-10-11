@@ -250,6 +250,53 @@ describe('net:exchange', () => {
     });
   });
 
+  describe('validation', () => {
+    it('should answer an invalid message with a NAK, not route it', async () => {
+      const s2 = HL7Server.createServer(undefined, { validate: true });
+      await s2.listen(0);
+      try {
+        const routed: string[] = [];
+        s2.use(req => {
+          routed.push(req.message.messageType);
+        });
+        client = Hl7Client.createClient({
+          host: 'localhost',
+          port: (s2.address() as AddressInfo).port,
+        });
+        /* ADT_A01 without PID-3, PID-5 and PV1 */
+        const invalid = newMessage('ADT^A01^ADT_A01');
+        invalid.addSegment('EVN').field(2).setValue('20250101');
+        invalid.addSegment('PID').field(1).setValue(1);
+        const nak = await client.sendMessageWaitAck(invalid);
+        const ackCode = (m: HL7Message) =>
+          m
+            .getSegment('MSA')!
+            .field(MSASegment.AcknowledgmentCode)
+            .toHL7String();
+        expect(ackCode(nak)).toEqual('AE');
+        expect(
+          nak.segments.filter(x => x.segmentType === 'ERR').length,
+        ).toEqual(3);
+        expect(routed).toEqual([]);
+
+        /* a valid one is routed */
+        const valid = newMessage('ADT^A01^ADT_A01');
+        valid.addSegment('EVN').field(2).setValue('20250101');
+        const pid = valid.addSegment('PID');
+        pid.field(3).fromHL7String('123^^^HOSP^MR');
+        pid.field(5).setValue('Doe');
+        valid.addSegment('PV1').field(2).setValue('I');
+        expect(valid.validate()).toEqual([]);
+        expect(ackCode(await client.sendMessageWaitAck(valid))).toEqual('AA');
+        expect(routed).toEqual(['ADT^A01']);
+      } finally {
+        await client?.close();
+        client = undefined;
+        await s2.close();
+      }
+    });
+  });
+
   describe('router', () => {
     it('should run handlers in numeric priority order', async () => {
       const router = new HL7Router();

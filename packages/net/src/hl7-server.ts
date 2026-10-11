@@ -1,13 +1,14 @@
 import type { Buffer } from 'node:buffer';
 import net from 'node:net';
 import tls from 'node:tls';
-import type { HL7Message } from 'hl7v2';
+import type { HL7Message, HL7ValidateOptions } from 'hl7v2';
 import { MSHSegment } from 'hl7v2';
 import type { AddressInfo, ListenOptions, Socket } from 'net';
 import { AsyncEventEmitter } from 'node-events-async';
 import { uid } from 'uid';
 import { HL7ExchangeError } from './helpers/hl7-exchange-error.js';
 import { isRoutable } from './helpers/is-routable.js';
+import { rejectInvalid } from './helpers/reject-invalid.js';
 import { HL7Request } from './hl7-request.js';
 import { HL7Response } from './hl7-response.js';
 import { HL7Router } from './hl7-router.js';
@@ -22,6 +23,7 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
   protected _closing?: boolean;
   parseStrict?: boolean;
   defaultCharset?: string;
+  validate?: boolean | HL7ValidateOptions;
   maxBufferPerSocket?: number;
   responseTimeout?: number;
 
@@ -61,6 +63,7 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
     this.responseTimeout = options?.responseTimeout;
     this.parseStrict = options?.parseStrict;
     this.defaultCharset = options?.defaultCharset;
+    this.validate = options?.validate;
     this._server = server;
     /**
      * A TLS server's 'connection' is the raw TCP socket, still encrypted; the
@@ -266,6 +269,7 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
   protected _onMessage(message: HL7Message, socket: HL7Socket) {
     /** A response to our own request, or any acknowledgment, is not answered */
     if (!isRoutable(message, socket)) return;
+    if (rejectInvalid(message, socket, this.validate)) return;
     const waitPromise = new Promise<void>(resolve => {
       if (!message.header.field(MSHSegment.MessageControlID).getValue())
         message.header.field(MSHSegment.MessageControlID).setValue(uid(8));
@@ -321,5 +325,11 @@ export namespace HL7Server {
     parseStrict?: boolean;
     /** See HL7Socket.Options.defaultCharset */
     defaultCharset?: string;
+    /**
+     * Validate received messages against their version's dictionary
+     * (HL7Message.validate()): one that fails is answered with a NAK listing
+     * its errors and is not passed to the handlers. Default false.
+     */
+    validate?: boolean | HL7ValidateOptions;
   }
 }

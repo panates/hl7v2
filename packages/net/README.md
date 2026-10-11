@@ -222,6 +222,7 @@ const ack = await client.sendMessageWaitAck(msg);
 - `keepAlive?: boolean`, `keepAliveInitialDelay?: number`: TCP keep-alive, applied to every connection.
 - `maxBufferSize?: number`: The largest frame accepted; a larger one closes the connection.
 - `reconnect?: ReconnectOptions`: How a lost connection is re-established.
+- `validate?: boolean | { structure?: boolean; fields?: boolean }`: Validate received messages (`HL7Message.validate()`); one that fails is answered with a NAK listing its errors (one ERR each) and is not passed to the handlers. `HL7Server` takes it too.
 - `defaultCharset?: string`: The character set used when MSH-18 is empty on a received message, or names one the library does not know (HL7 table 0211 value or iconv-lite encoding name). Default: UTF-8, which reads ASCII as well. `HL7Server` takes it too.
 
 #### Warnings

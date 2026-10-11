@@ -102,7 +102,7 @@ describe('hl7v2:serialize', () => {
       .setValue('2');
     const controlId = msg.header.field(10).getValue();
     expect(seg.toHL7String()).toStrictEqual(
-      `MSH|^~\\&|||||||1^2|${controlId}||2.5||||||UNICODE UTF-8`,
+      `MSH|^~\\&|||||||1^2|${controlId}|P|2.5||||||UNICODE UTF-8`,
     );
   });
 

@@ -122,6 +122,24 @@ message.header.field(MSHSegment.CharacterSet).setValue('ASCII');
 const buf = message.toBuffer();
 ```
 
+##### .validate()
+
+Checks the message against its version's dictionary, as HAPI HL7v2's validation does, and returns the problems as `HL7Error`s carrying the HL7 error code (table 0357) and the location - ready for a NAK. An empty list means none.
+`validate(options?: { structure?: boolean; fields?: boolean }): HL7Error[]`
+
+- `100` segment sequence error: a required segment or group missing, or a segment the structure has no place for. Z segments are let through.
+- `101` required field missing: a field, or a component of a field that is there, the version marks required.
+- `102` data type error: a value its type cannot read, or more repetitions than the field allows.
+- `104` value too long: longer than the field's maximum length.
+
+The structure is matched in order and greedily, without backtracking, as `buildStructureTree()` matches it.
+example
+
+```typescript
+const errors = message.validate();
+if (errors.length) socket.sendMessage(message.createNak(errors));
+```
+
 ##### .createAck()
 
 Creates an ACK message for the current message.
@@ -134,8 +152,8 @@ const ack = message.createAck('AA', 'Message accepted');
 
 ##### .createNak()
 
-Creates a NAK message for the current message.
-`createNak(errors: HL7Error[]): HL7Message`
+Creates a NAK message for the current message, with one ERR segment per error, laid out as the message's version defines ERR (ERR-2/3/4 from 2.5, ERR-1 before it). MSA-1 is `AR` (reject) when an error is HL7 code 200-203 (unsupported message type, event, processing ID or version) or an `HL7Error` with `ackCode: 'AR'`, otherwise `AE`.
+`createNak(errors: (Error | string)[]): HL7Message`
 example
 
 ```typescript

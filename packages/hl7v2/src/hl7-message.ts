@@ -29,6 +29,7 @@ import type {
   Hl7SegmentSerializeOptions,
 } from './hl7-segment.js';
 import { HL7Segment } from './hl7-segment.js';
+import { type HL7ValidateOptions, validateMessage } from './hl7-validator.js';
 import {
   charsetFromMSH18,
   DEFAULT_HL7_CHARSET,
@@ -104,6 +105,8 @@ export class HL7Message {
     const msh = this.addSegment('MSH');
     msh.field(MSHSegment.DateTimeOfMessage).setValue(new Date());
     msh.field(MSHSegment.MessageControlID).setValue(uid(8));
+    /** Required; production, as HAPI's initQuickstart fills it */
+    msh.field(MSHSegment.ProcessingID).setValue('P');
     msh.field(MSHSegment.VersionID).setValue(version);
     msh.field(MSHSegment.CharacterSet).setValue(DEFAULT_HL7_CHARSET);
   }
@@ -241,19 +244,33 @@ export class HL7Message {
     }
   }
 
-  buildStructureTree(): HL7MessageNode {
-    /**
-     * The structure MSH-9.3 names when the dictionary has it (ADT^A04^ADT_A01
-     * is an ADT_A01), as HAPI reads it; otherwise type and trigger event
-     */
+  /**
+   * The name of the message structure this message follows: the one MSH-9.3
+   * names when the dictionary has it (ADT^A04^ADT_A01 is an ADT_A01), as HAPI
+   * reads it; otherwise type and trigger event (ADT_A04), which the
+   * dictionary maps to its structure. Undefined when the dictionary has none.
+   */
+  get structureName(): string | undefined {
     const messages = this.dictionary.messages || {};
     const declared = this.header.field(MSHSegment.MessageType).getValue(3) as
       string | undefined;
+    if (declared && messages[declared]) return declared;
+    const name = this.messageType.replace('^', '_');
+    return messages[name] ? name : undefined;
+  }
+
+  /**
+   * Checks the message against its version's dictionary - see HL7Validator.
+   * Returns the problems found; an empty list when there are none.
+   */
+  validate(options?: HL7ValidateOptions): HL7Error[] {
+    return validateMessage(this, options);
+  }
+
+  buildStructureTree(): HL7MessageNode {
     const messageType =
-      declared && messages[declared]
-        ? declared
-        : this.messageType.replace('^', '_');
-    const messageDefinition = messages[messageType];
+      this.structureName ?? this.messageType.replace('^', '_');
+    const messageDefinition = this.dictionary.messages?.[messageType];
 
     if (!messageDefinition?.segments) {
       const result = new HL7MessageNode('MESSAGE');
