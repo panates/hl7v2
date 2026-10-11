@@ -129,4 +129,48 @@ describe('hl7v2:validate', () => {
     expect(nak.segments.filter(s => s.segmentType === 'ERR').length).toEqual(3);
     expect(nak.getSegment('ERR')!.toHL7String()).toEqual('ERR||PID^2^3|101|E');
   });
+
+  describe('tables', () => {
+    const adt = (pid: string) =>
+      HL7Message.parse(
+        [MSH, 'EVN||20250101', pid, 'PV1|1|I'].join('\r'),
+      ).validate({ tables: true });
+
+    it('should report a code not in its HL7 table (103), when asked', () => {
+      /* MSH-11.1 is an ID of table 0103 (Processing ID): D, P, T */
+      const errors = HL7Message.parse(
+        [MSH.replace('|P|2.5', '|X|2.5'), ...VALID.slice(1)].join('\r'),
+      ).validate({ tables: true });
+      /* MSH-11 is a PT; its first component the ID */
+      expect(summary(errors)).toEqual(['103 MSH-11.1']);
+      expect(errors[0].message).toContain('table 0103 (Processing ID)');
+      /* off by default */
+      expect(
+        HL7Message.parse(
+          [MSH.replace('|P|2.5', '|X|2.5'), ...VALID.slice(1)].join('\r'),
+        ).validate(),
+      ).toEqual([]);
+    });
+
+    it("should leave an IS field's site-defined table alone", () => {
+      /* PID-8 (Administrative Sex) is an IS of user-defined table 0001 */
+      expect(adt('PID|1||123||Doe|||Z')).toEqual([]);
+    });
+
+    it('should take codes a site adds to a table', () => {
+      const msg = HL7Message.parse(
+        [MSH.replace('|P|2.5', '|X|2.5'), ...VALID.slice(1)].join('\r'),
+      );
+      const dict = msg.dictionary.extend({
+        tables: { 103: { values: { X: 'Experimental' } } },
+      });
+      (msg as any)._dictionary = dict;
+      expect(msg.validate({ tables: true })).toEqual([]);
+      expect(dict.tableValue(103, 'X')).toEqual('Experimental');
+      /* the shared table is not touched */
+      expect(
+        HL7Message.parse(MSH).dictionary.tableValue(103, 'X'),
+      ).toBeUndefined();
+    });
+  });
 });

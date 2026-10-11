@@ -37,6 +37,8 @@ export interface HL7Data {
   types: HL7DataType[];
   messages: HL7MessageDefinition[];
   versions: Record<string, HL7DataVersion>;
+  /** Table number: [description, { code: text }] - one set for every version */
+  tables: Record<string, [desc: string | null, values: Record<string, string>]>;
 }
 
 declare const data: HL7Data;

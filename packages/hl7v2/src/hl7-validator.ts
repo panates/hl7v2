@@ -19,6 +19,13 @@ export interface HL7ValidateOptions {
    * types and maximum lengths. Default true.
    */
   fields?: boolean;
+  /**
+   * Check coded values against their HL7 table: an ID field's - an HL7
+   * table's - not an IS field's, whose table is the site's own. Default false:
+   * the tables are one set for every version, so a code a version added
+   * later is unknown to an earlier one.
+   */
+  tables?: boolean;
 }
 
 /**
@@ -44,7 +51,7 @@ export function validateMessage(
   const errors: HL7Error[] = [];
   if (options?.fields !== false) {
     message.segments.forEach((segment, i) =>
-      validateSegment(segment, i, errors),
+      validateSegment(segment, i, errors, options),
     );
   }
   if (options?.structure !== false) validateStructure(message, errors);
@@ -69,6 +76,7 @@ function validateSegment(
   segment: HL7Segment,
   index: number,
   errors: HL7Error[],
+  options?: HL7ValidateOptions,
 ) {
   const defs = segment.definition.fields || {};
   const at = (fieldPosition: number, more?: Partial<HL7Error.ErrorArgs>) => ({
@@ -116,6 +124,7 @@ function validateSegment(
       if (field.isPrimitive) {
         if (components[0]) {
           checkValue(
+            options,
             components[0],
             def,
             `${name}`,
@@ -145,7 +154,7 @@ function validateSegment(
           continue;
         }
         if (component.isPrimitive) {
-          checkValue(component, cdef, `${name}.${c}`, cat, errors);
+          checkValue(options, component, cdef, `${name}.${c}`, cat, errors);
         }
       }
     });
@@ -157,6 +166,7 @@ function validateSegment(
  * `strict`) - read again to report why
  */
 function checkValue(
+  options: HL7ValidateOptions | undefined,
   component: Hl7Component,
   def: HL7FieldDefinition,
   name: string,
@@ -164,6 +174,25 @@ function checkValue(
   errors: HL7Error[],
 ) {
   const value = component.getValue();
+  if (
+    options?.tables &&
+    def.type === 'ID' &&
+    def.table &&
+    value != null &&
+    value !== ''
+  ) {
+    const table = component.message.dictionary.tables[def.table];
+    if (table && !(String(value) in table.values)) {
+      errors.push(
+        error(
+          103,
+          `${name} "${value}" is not in table ${String(def.table).padStart(4, '0')}` +
+            (table.desc ? ` (${table.desc})` : ''),
+          location,
+        ),
+      );
+    }
+  }
   if (typeof value !== 'string') return;
   const decode = def.decode || component.typeDef.decode;
   if (!decode) return;

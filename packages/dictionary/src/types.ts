@@ -41,6 +41,13 @@ export interface HL7DataTypeDefinition {
   decode?: (v: any) => any;
 }
 
+/** An HL7 table: the values a coded field takes (table 0001: F, M, ...) */
+export interface HL7TableDefinition {
+  desc?: string;
+  /** Code: its text */
+  values: Record<string, string>;
+}
+
 export interface HL7MessageDefinition {
   desc?: string;
   segments?: Record<string, HL7MessageSegmentsDefinition>;

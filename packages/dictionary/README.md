@@ -101,6 +101,15 @@ const extendedDict = dict.extend({
 });
 ```
 
+##### .tables / .tableValue() / .overwriteTables()
+HL7 tables - the values a coded field takes - by number. One set for every version, from the [`hl7-dictionary`](https://www.npmjs.com/package/hl7-dictionary) package; a user-defined table (an `IS` field's, such as 0010) carries no values the standard gives. Tables are shared and frozen: add a site's codes with `overwriteTables()` or `extend({ tables })`.
+
+```typescript
+dict.tableValue(1, 'F'); // "Female"
+dict.tables[8].values; // { AA: ..., AE: ..., AR: ..., CA: ..., CE: ..., CR: ... }
+const site = dict.extend({ tables: { 1: { values: { X: 'Non-binary' } } } });
+```
+
 ##### .overwriteSegments()
 Merges new segment definitions into the current dictionary.
 `overwriteSegments(segmentsDefs: Record<string, DeeperPartial<HL7SegmentDefinition>>): void`

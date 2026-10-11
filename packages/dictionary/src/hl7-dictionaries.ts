@@ -9,6 +9,7 @@ import type {
   HL7FieldDefinition,
   HL7MessageDefinition,
   HL7SegmentDefinition,
+  HL7TableDefinition,
 } from './types.js';
 import { HL7Version } from './version.enum.js';
 
@@ -131,6 +132,21 @@ function mapOf<T>(
   return out;
 }
 
+let tableCache: Record<number, HL7TableDefinition> | undefined;
+
+/** The tables, frozen and shared by every version until one is overwritten */
+function tables(): Record<number, HL7TableDefinition> {
+  if (!tableCache) {
+    tableCache = {};
+    for (const [num, [desc, values]] of Object.entries(data.tables)) {
+      const t: HL7TableDefinition = { values: Object.freeze({ ...values }) };
+      if (desc != null) t.desc = desc;
+      tableCache[Number(num)] = Object.freeze(t);
+    }
+  }
+  return tableCache;
+}
+
 /** Builds a version's dictionary from the generated data */
 export function buildDictionary(version: HL7Version): HL7Dictionary {
   const entry = data.versions[version];
@@ -141,6 +157,7 @@ export function buildDictionary(version: HL7Version): HL7Dictionary {
     segments: mapOf(segments, (_, i) => segment(i)),
     types: mapOf(types, dataType),
     messages: mapOf(messages, (_, i) => message(i)),
+    tables: { ...tables() },
   });
 }
 

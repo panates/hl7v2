@@ -283,6 +283,30 @@ describe('dictionary:dictionaries', () => {
     });
   });
 
+  describe('tables', () => {
+    it('should give table values in every version', () => {
+      for (const version of ['2.1', '2.5', '2.9'] as HL7Version[]) {
+        const d = dictionaries[version];
+        expect(d.tableValue(1, 'F')).toEqual('Female');
+        expect(d.tables[8].values.AA).toBeDefined();
+        expect(d.tables[357].desc).toEqual('Message error condition codes');
+      }
+      expect(Object.keys(dictionaries['2.5'].tables).length).toBeGreaterThan(
+        300,
+      );
+    });
+
+    it('should share and freeze them, and copy what is overwritten', () => {
+      const a = dictionaries['2.5'];
+      expect(a.tables[1]).toBe(dictionaries['2.7'].tables[1]);
+      expect(Object.isFrozen(a.tables[1].values)).toBe(true);
+      const site = a.extend({ tables: { 1: { values: { X: 'Non-binary' } } } });
+      expect(site.tableValue(1, 'X')).toEqual('Non-binary');
+      expect(site.tableValue(1, 'F')).toEqual('Female');
+      expect(a.tableValue(1, 'X')).toBeUndefined();
+    });
+  });
+
   describe('sharing', () => {
     it('should share a definition that is identical in two versions', () => {
       expect(dictionaries['2.5.1'].segments.MSH).toBe(

@@ -372,6 +372,21 @@ function assignAliases(
   }
 }
 
+/*
+ * HL7 tables (the values a coded field takes), from hl7-dictionary: one set
+ * for every version - the source does not tell them apart. User-defined
+ * tables (an IS field's, such as 0010) carry no values the standard gives.
+ */
+function tableData(): Record<string, [string | null, Record<string, string>]> {
+  const out: Record<string, [string | null, Record<string, string>]> = {};
+  for (const [num, t] of Object.entries<any>(dictionary.tables || {})) {
+    if (t?.values && Object.keys(t.values).length) {
+      out[num] = [t.desc ?? null, t.values];
+    }
+  }
+  return out;
+}
+
 /* --------------------------------------------------------------- output */
 
 const versionList = versionsWithSchemas();
@@ -478,6 +493,7 @@ fs.writeFileSync(
       types: types.items,
       messages: messages.items,
       versions,
+      tables: tableData(),
     }) +
     ';\n',
   'utf-8',
