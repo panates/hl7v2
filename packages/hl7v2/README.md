@@ -13,6 +13,8 @@ HL7 v2 messages for Node.js: parse them, build them, read and write their values
 
 For the network - an MLLP server and client - see [`hl7v2-net`](https://www.npmjs.com/package/hl7v2-net).
 
+> **Upgrading from 1.x?** Version 2 changes how values are read and written and adds type checks for typed messages - see [Migrating from v1 to v2](https://github.com/panates/hl7v2/blob/main/doc/migration-v1-to-v2.md).
+
 ## Installation
 
 ```bash

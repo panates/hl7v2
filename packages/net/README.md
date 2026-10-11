@@ -13,6 +13,8 @@ An HL7 v2 **MLLP server and client** for Node.js, over TCP or TLS: receive messa
 
 Messages are [`hl7v2`](https://www.npmjs.com/package/hl7v2)'s `HL7Message`.
 
+> **Upgrading from 1.x?** Version 2 changes how values are read and written and adds type checks for typed messages - see [Migrating from v1 to v2](https://github.com/panates/hl7v2/blob/main/doc/migration-v1-to-v2.md).
+
 ## Installation
 
 ```bash
