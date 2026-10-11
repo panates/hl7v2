@@ -1,6 +1,18 @@
 # Changelog
 
-<!-- rman:documented-up-to 3594903aff4d8d101e24b2d3c97dbcb2e80981a3 -->
+<!-- rman:documented-up-to 0ffe30971d7675974f2477de67b81f472695abd9 -->
+
+## v2.1.0 (2026-10-11)
+
+### ✨ Features
+
+- **net:** send the accept acknowledgment after the handlers, when asked (be538c7)
+
+### 🧹 Chores
+
+- sync lockfile (d3b1fe8)
+
+---
 
 ## v2.0.1 (2026-10-11)
 
