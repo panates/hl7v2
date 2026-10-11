@@ -197,6 +197,24 @@ message.getSegment('PID')!.assign<PIDObject>({
 });
 ```
 
+#### By version
+
+A message whose version the compiler knows is typed by that version's own definitions - no union of versions, a field the version withdrew absent, one it brought present:
+
+```typescript
+const msg = HL7Message.parse(text, { version: '2.5' }); // HL7Error (203) if MSH-12 is not 2.5
+msg.getSegmentObject('PID')?.PatientName; // XPN, as 2.5 defines it
+
+const msg2 = new HL7Message('2.7'); // typed by 2.7
+const msg3 = HL7Message.parse(text).asVersion('2.5'); // checked, then typed
+msg.hasVersion('2.5'); // the check alone
+
+type PID25 = HL7SegmentObject<'2.5', 'PID'>;
+type XPN27 = HL7DataTypeObject<'2.7', 'XPN'>;
+```
+
+A version is matched as it is read: 2.5.2 is a 2.5.1 message. Without a version the types unite every version, as above. The version types are generated as flat interfaces, one per distinct shape and shared by the versions defining it the same; types only.
+
 ### HL7BatchFile / HL7Batch
 
 Batches of messages (HL7 batch protocol), in a file or one stream: `[FHS] { [BHS] { MSH ... } [BTS] } [FTS]`. A file with no FHS, no BHS, or neither - bare messages one after another - is read too. The whole is one character set: its BOM's, or the first message's MSH-18.

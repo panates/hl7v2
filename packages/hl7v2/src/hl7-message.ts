@@ -3,6 +3,8 @@ import type {
   AcknowledgmentCode,
   HL7Dictionary,
   HL7SegmentObjects,
+  HL7TypedVersion,
+  HL7VersionSegments,
 } from 'hl7v2-dictionary';
 import {
   dictionaries as defaultDictionaries,
@@ -45,7 +47,26 @@ import {
 } from './utils/hl7-charset.js';
 import { toDate } from './utils/to-date.js';
 
-export class HL7Message {
+/**
+ * A segment as an object for a message of version V: the version's own
+ * interface when V is a version with typed objects ('2.5'), otherwise the
+ * one uniting every version
+ */
+export type HL7MessageSegmentObject<
+  V extends HL7Version,
+  K extends keyof HL7SegmentObjects,
+> = V extends HL7TypedVersion
+  ? K extends keyof HL7VersionSegments[V]
+    ? HL7VersionSegments[V][K]
+    : never
+  : HL7SegmentObjects[K];
+
+/**
+ * An HL7 v2 message. V is its version when known to the compiler -
+ * new HL7Message('2.5'), HL7Message.parse(text, { version: '2.5' }) - which
+ * types getSegmentObject() by that version's definitions.
+ */
+export class HL7Message<V extends HL7Version = HL7Version> {
   private readonly _dictionaries: Record<string, HL7Dictionary>;
   declare protected _segments: HL7Segment[];
   declare protected _dictionary: HL7Dictionary;
@@ -59,7 +80,7 @@ export class HL7Message {
   truncationCharacter?: string;
 
   constructor(
-    version: HL7Version = HL7Version.v2_7_1,
+    version: V = HL7Version.v2_7_1 as V,
     dictionaries?: Record<string, HL7Dictionary>,
   ) {
     this._dictionaries = dictionaries || defaultDictionaries;
@@ -285,10 +306,34 @@ export class HL7Message {
   getSegmentObject<K extends keyof HL7SegmentObjects>(
     segmentType: K,
     index?: number,
-  ): HL7SegmentObjects[K] | undefined {
+  ): HL7MessageSegmentObject<V, K> | undefined {
     return this.getSegment(segmentType, index)?.toObject<
-      HL7SegmentObjects[K]
+      HL7MessageSegmentObject<V, K> & object
     >();
+  }
+
+  /**
+   * Whether the message is read with the given version's definitions - the
+   * dictionary of its MSH-12, or of the nearest version below it
+   */
+  hasVersion(version: HL7Version): boolean {
+    return (
+      findNearestHL7Version(this.version) === findNearestHL7Version(version)
+    );
+  }
+
+  /**
+   * The message typed as of the given version, so getSegmentObject() is
+   * typed by that version's definitions: msg.asVersion('2.5'). Throws an
+   * HL7Error (203) when the message is not of it (see hasVersion()).
+   */
+  asVersion<W extends HL7Version>(version: W): HL7Message<W> {
+    if (!this.hasVersion(version)) {
+      throw new HL7Error(`Message of version ${this.version}, not ${version}`, {
+        hl7ErrorCode: 203,
+      });
+    }
+    return this as unknown as HL7Message<W>;
   }
 
   /** Sets the value at a path (see get() and HL7Path) */
@@ -587,12 +632,17 @@ export class HL7Message {
    *
    * @static
    */
-  static parse(
+  /**
+   * Parses a message. Given `version`, the message must be of it (see
+   * hasVersion()) - an HL7Error (203) otherwise - and is typed by it.
+   */
+  static parse<W extends HL7Version = HL7Version>(
     input: string | Buffer,
-    options?: HL7MessageParseOptions,
-  ): HL7Message {
-    const message = new HL7Message(undefined, options?.dictionaries);
+    options?: HL7MessageParseOptions & { version?: W },
+  ): HL7Message<W> {
+    const message = new HL7Message<W>(undefined, options?.dictionaries);
     message.parse(input, options);
+    if (options?.version) message.asVersion(options.version);
     return message;
   }
 

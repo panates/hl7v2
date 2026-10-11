@@ -278,7 +278,7 @@ describe('dictionary:dictionaries', () => {
       expect(dictionary.PIDSegment.PatientName).toEqual(5);
       expect(dictionary.MSHSegment.CharacterSet).toEqual(18);
       expect(dictionary.CXType.IDNumber).toEqual(1);
-      /* added from 2.8 on */
+      /* added in 2.9 */
       expect(dictionary.MSHSegment.SecurityClassificationTag).toEqual(26);
     });
   });
