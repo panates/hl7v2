@@ -5,6 +5,7 @@ import {
   HL7Error,
   hl7Escape,
   HL7Message,
+  HL7MessageNode,
   hl7UnEscape,
 } from '../src/index.js';
 
@@ -300,6 +301,31 @@ describe('hl7v2:hapi', () => {
             patient: str(m.get('PID-3-1')),
           })),
           hapi.batch[c.name],
+        );
+      });
+    }
+  });
+
+  describe('structure', () => {
+    /* Each segment's path through the groups, as HAPI walks its message */
+    const paths = (node: HL7MessageNode, path: string, out: string[]) => {
+      const seen = new Map<string, number>();
+      for (const item of node.items) {
+        if (item instanceof HL7MessageNode) {
+          const i = seen.get(item.name) ?? 0;
+          seen.set(item.name, i + 1);
+          paths(item, `${path}${item.name}(${i})/`, out);
+        } else out.push(path + item.segmentType);
+      }
+      return out;
+    };
+    for (const c of cases.structure) {
+      it(c.name, () => {
+        const tree = HL7Message.parse(text(c)).buildStructureTree();
+        compare(
+          `structure/${c.name}`,
+          paths(tree, '', []),
+          hapi.structure[c.name],
         );
       });
     }

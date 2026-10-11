@@ -1042,5 +1042,114 @@
         "patient": "300"
       }
     ]
+  },
+  "structure": {
+    "oru 2.5.1: patients, orders, observations": [
+      "MSH",
+      "PATIENT_RESULT(0)/PATIENT(0)/PID",
+      "PATIENT_RESULT(0)/PATIENT(0)/VISIT(0)/PV1",
+      "PATIENT_RESULT(0)/ORDER_OBSERVATION(0)/OBR",
+      "PATIENT_RESULT(0)/ORDER_OBSERVATION(0)/OBSERVATION(0)/OBX",
+      "PATIENT_RESULT(0)/ORDER_OBSERVATION(0)/OBSERVATION(0)/NTE",
+      "PATIENT_RESULT(0)/ORDER_OBSERVATION(0)/OBSERVATION(1)/OBX",
+      "PATIENT_RESULT(0)/ORDER_OBSERVATION(1)/OBR",
+      "PATIENT_RESULT(0)/ORDER_OBSERVATION(1)/NTE",
+      "PATIENT_RESULT(0)/ORDER_OBSERVATION(1)/OBSERVATION(0)/OBX",
+      "PATIENT_RESULT(1)/PATIENT(0)/PID",
+      "PATIENT_RESULT(1)/ORDER_OBSERVATION(0)/OBR",
+      "PATIENT_RESULT(1)/ORDER_OBSERVATION(0)/OBSERVATION(0)/OBX"
+    ],
+    "adt 2.5: optional groups and repeats": [
+      "MSH",
+      "EVN",
+      "PID",
+      "NK1",
+      "NK1",
+      "PV1",
+      "PV2",
+      "OBX",
+      "AL1",
+      "DG1",
+      "PROCEDURE(0)/PR1",
+      "PROCEDURE(0)/ROL",
+      "GT1",
+      "INSURANCE(0)/IN1",
+      "INSURANCE(0)/IN2",
+      "INSURANCE(1)/IN1"
+    ],
+    "adt 2.5: segments out of order": [
+      "MSH",
+      "EVN",
+      "PV1",
+      "PID",
+      "NK1"
+    ],
+    "adt 2.5: z segments": [
+      "MSH",
+      "EVN",
+      "PID",
+      "ZPI",
+      "PV1",
+      "ZPV"
+    ],
+    "orm 2.5: orders with details": [
+      "MSH",
+      "PATIENT(0)/PID",
+      "PATIENT(0)/PATIENT_VISIT(0)/PV1",
+      "ORDER(0)/ORC",
+      "ORDER(0)/ORDER_DETAIL(0)/OBR",
+      "ORDER(0)/ORDER_DETAIL(0)/NTE",
+      "ORDER(0)/ORDER_DETAIL(0)/DG1",
+      "ORDER(0)/ORDER_DETAIL(0)/OBSERVATION(0)/OBX",
+      "ORDER(1)/ORC",
+      "ORDER(1)/ORDER_DETAIL(0)/OBR"
+    ],
+    "siu 2.5: resources": [
+      "MSH",
+      "SCH",
+      "PATIENT(0)/PID",
+      "RESOURCES(0)/RGS",
+      "RESOURCES(0)/SERVICE(0)/AIS",
+      "RESOURCES(0)/PERSONNEL_RESOURCE(0)/AIP",
+      "RESOURCES(1)/RGS",
+      "RESOURCES(1)/LOCATION_RESOURCE(0)/AIL"
+    ],
+    "rsp 2.5.1: query responses": [
+      "MSH",
+      "MSA",
+      "QAK",
+      "QPD",
+      "QUERY_RESPONSE(0)/PID",
+      "QUERY_RESPONSE(1)/PID",
+      "QUERY_RESPONSE(2)/PID"
+    ],
+    "vxu 2.5.1: orders": [
+      "MSH",
+      "PID",
+      "ORDER(0)/ORC",
+      "ORDER(0)/RXA",
+      "ORDER(0)/RXR",
+      "ORDER(0)/OBSERVATION(0)/OBX",
+      "ORDER(1)/ORC",
+      "ORDER(1)/RXA"
+    ],
+    "mdm 2.6": [
+      "MSH",
+      "EVN",
+      "PID",
+      "PV1",
+      "TXA",
+      "OBSERVATION(0)/OBX",
+      "OBSERVATION(1)/OBX"
+    ],
+    "oml 2.5.1": [
+      "MSH",
+      "PATIENT(0)/PID",
+      "ORDER(0)/ORC",
+      "ORDER(0)/OBSERVATION_REQUEST(0)/OBR",
+      "ORDER(0)/OBSERVATION_REQUEST(0)/SPECIMEN(0)/SPM",
+      "ORDER(0)/OBSERVATION_REQUEST(0)/PRIOR_RESULT(0)/ORDER_PRIOR(0)/ORC",
+      "ORDER(0)/OBSERVATION_REQUEST(0)/PRIOR_RESULT(0)/ORDER_PRIOR(0)/OBR"
+    ]
   }
 }

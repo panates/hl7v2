@@ -44,6 +44,8 @@ import java.util.List;
  *             read back from them
  *   validate  the errors HAPI's default validation finds
  *   batch     the messages a batch file holds (Hl7InputStreamMessageStringIterator)
+ *   structure where each segment is placed in the message structure: its
+ *             path through the groups, as HAPI's parser places it
  *
  * A path is the library's: one not starting with "/" is searched in the
  * whole message, which is Terser's "/.".
@@ -71,6 +73,7 @@ public class Oracle {
     out.add("charset", each(cases, "charset", Oracle::charset));
     out.add("validate", each(cases, "validate", Oracle::validate));
     out.add("batch", each(cases, "batch", Oracle::batch));
+    out.add("structure", each(cases, "structure", Oracle::structure));
     Files.writeString(Path.of(args[1]), gson.toJson(out) + "\n", StandardCharsets.UTF_8);
   }
 
@@ -295,5 +298,29 @@ public class Oracle {
       }
     }
     return messages;
+  }
+
+  static JsonArray structure(JsonObject c) throws Exception {
+    Message msg = parser.parse(text(c));
+    JsonArray out = new JsonArray();
+    walk(msg, "", out);
+    return out;
+  }
+
+  /* Every segment that holds something, in order, with its group path */
+  static void walk(ca.uhn.hl7v2.model.Group group, String path, JsonArray out)
+      throws Exception {
+    for (String name : group.getNames()) {
+      ca.uhn.hl7v2.model.Structure[] reps = group.getAll(name);
+      for (int i = 0; i < reps.length; i++) {
+        ca.uhn.hl7v2.model.Structure s = reps[i];
+        String step = path.isEmpty() ? "" : path + "/";
+        if (s instanceof ca.uhn.hl7v2.model.Group) {
+          walk((ca.uhn.hl7v2.model.Group) s, step + name + "(" + i + ")", out);
+        } else if (!s.isEmpty()) {
+          out.add(step + ((ca.uhn.hl7v2.model.Segment) s).getName());
+        }
+      }
+    }
   }
 }
