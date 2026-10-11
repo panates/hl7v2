@@ -90,6 +90,8 @@ export class HL7Router {
       callbackCalled = true;
       try {
         if (err) res.failed(err);
+        /* Held back until processed: the accept acknowledgment goes first */
+        req.sendAccept(res.error);
         this._finalHandler(req, res);
         callback(err);
       } catch (e: any) {

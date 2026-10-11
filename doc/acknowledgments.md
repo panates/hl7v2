@@ -109,4 +109,4 @@ new HL7Error('Not here', { hl7ErrorCode: 207, ackCode: 'AR' }); // AR explicitly
 
 ## On the network
 
-`hl7v2-net` answers every message it receives with one of these: `AA` when the handlers succeed, a NAK when one throws (from its error) or when validation fails, `AR` for errors 200-203. In enhanced acknowledgment mode (MSH-15, MSH-16) it sends the accept and application acknowledgments the message asks for. A handler can answer itself with `req.send()`. See [Network](network.md#acknowledgments).
+`hl7v2-net` answers every message it receives with one of these: `AA` when the handlers succeed, a NAK when one throws (from its error) or when validation fails, `AR` for errors 200-203. In enhanced acknowledgment mode (MSH-15, MSH-16) it sends the accept and application acknowledgments the message asks for. The accept acknowledgment goes on receipt, or - with `acceptAcknowledgment: 'processed'`, for handlers that store the message - once the handlers have succeeded. A handler can answer itself with `req.send()`. See [Network](network.md#acknowledgments).

@@ -51,6 +51,7 @@ await server.listen(2575);
 - `applicationName?: string` - See [Options](#hl7server-options). Read when an acknowledgment is sent.
 - `facilityName?: string` - See [Options](#hl7server-options). Read when an acknowledgment is sent.
 - `validate?: boolean | HL7ValidateOptions` - See [Options](#hl7server-options). Read when a message arrives, so a change applies to the next message.
+- `acceptAcknowledgment?: HL7AcceptAcknowledgment` - See [Options](#hl7server-options). Read when a message arrives.
 - `batchAcknowledgment?: HL7BatchAcknowledgment` - See [Options](#hl7server-options). Read when a batch has been processed.
 - `responseTimeout?: number` - See [Options](#hl7server-options). Read when a message arrives.
 - `parseStrict?: boolean` - See [Options](#hl7server-options). Applies to connections accepted after the change.
@@ -176,6 +177,7 @@ As `net.Server.ref()` / `unref()`: `unref()` lets the program exit when this ser
 | Option                | Type                              | Default    | Description                                                                                                                                                                                                                                                                |
 | --------------------- | --------------------------------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `validate`            | `boolean \| HL7ValidateOptions`   | `false`    | Validate each received message against its version's dictionary (`HL7Message.validate()`). A message with errors of severity `E` is answered with a NAK listing them (one ERR each) and is not passed to the handlers. An options object chooses the checks (`structure`, `fields`, `tables`). See [Validation](../validation.md). |
+| `acceptAcknowledgment` | `HL7AcceptAcknowledgment`        | `'receipt'` | When the accept acknowledgment MSH-15 asks for is sent: `'receipt'`, before the handlers run; `'processed'`, after them - `CA` when they succeed, `CE` (`CR` for a rejection) when one throws, fails the response or times out. See [`HL7AcceptAcknowledgment`](#hl7acceptacknowledgment). |
 | `batchAcknowledgment` | `HL7BatchAcknowledgment`          | `'all'`    | What the reply to a received batch carries: `'all'`, `'errors'` or `'none'`. See [Batch helpers](#hl7batchacknowledgment).                                                                                                                                                |
 | `responseTimeout`     | `number`                          | `30000`    | Milliseconds the handlers get for a message. When they have not finished by then and the message is not answered, it is answered with `AE` (an `HL7ExchangeError` "Response timeout"); a handler that already answered is not interrupted. This is not a timeout for `sendMessageWaitAck()` on the server's sockets. |
 | `maxBufferPerSocket`  | `number`                          | no limit   | The largest frame, in bytes, a connection accepts. A larger frame is dropped - not parsed or routed - and that connection is closed with an `error` ("Max buffer size exceeded").                                                                                                                                     |
@@ -426,6 +428,7 @@ The local address of the current connection (`socket.address()`), `undefined` wi
 | `parseStrict`           | `boolean`                       | `false`  | Parse received messages and batches in strict mode.                                                                                                                                                               |
 | `defaultCharset`        | `string`                        | UTF-8    | As the server option: the character set for a received message with an empty or unknown MSH-18, and for encoding a message whose MSH-18 is unknown. See [Character sets](../encoding.md).                         |
 | `validate`              | `boolean \| HL7ValidateOptions` | `false`  | As the server option: validate received messages, NAK and drop the invalid ones. See [Validation](../validation.md).                                                                                               |
+| `acceptAcknowledgment`  | `HL7AcceptAcknowledgment`       | `'receipt'` | As the server option: when the accept acknowledgment is sent. |
 | `batchAcknowledgment`   | `HL7BatchAcknowledgment`        | `'all'`  | As the server option: what the reply to a received batch carries.                                                                                                                                                 |
 | `reconnect`             | `Hl7Client.ReconnectOptions`    | see below | How a failed or lost connection is retried.                                                                                                                                                                       |
 
@@ -702,17 +705,33 @@ Runs the handlers for a request, then finishes it: when the chain ended with an 
 
 A received message, as the handlers see it.
 
-`new HL7Request(socket: HL7Socket, message: HL7Message, batch?: HL7BatchReplies, prepare?: (message: HL7Message) => void)`
+`new HL7Request(socket: HL7Socket, message: HL7Message, batch?: HL7BatchReplies, prepare?: (message: HL7Message) => void, acceptPending?: boolean)`
 
-`prepare`, when given, is called with every answer before `send()` sends it; `HL7Server` uses it to set MSH-3/MSH-4 of its acknowledgments (`applicationName`, `facilityName`).
+`prepare`, when given, is called with every answer before `send()` sends it; `HL7Server` uses it to set MSH-3/MSH-4 of its acknowledgments (`applicationName`, `facilityName`). `acceptPending` holds the accept acknowledgment back until the request is processed (see `sendAccept()`); the server and the client set it with `acceptAcknowledgment: 'processed'` when MSH-15 is valued.
 
 ### Properties
 
 - `socket: HL7Socket` - The connection the message came on (read-only).
 - `message: HL7Message` - The received message (read-only).
 - `batch?: HL7BatchReplies` - The replies of the batch the message came in, when it came in one (read-only). See [Batch helpers](#hl7batchreplies).
+- `acceptPending: boolean` - Whether the accept acknowledgment is still held back (read-only).
 
 ### Methods
+
+#### .sendAccept()
+
+`sendAccept(error?: Error): void`
+
+Sends the accept acknowledgment held back while the request is processed: `CA`, or - given the error processing failed with - a `CE` (`CR` for a rejection, as `createNak()` decides) listing it, if MSH-15 wants it. The router calls it when the handlers finish, before the application acknowledgment, and the server when they time out; a handler may call it earlier, once the message is stored. It sends once; nothing when no acknowledgment is held back.
+
+```typescript
+server.use('ORU^R01', async (req, res, next) => {
+  await store(req.message);
+  req.sendAccept(); // CA now; indexing may take longer
+  await index(req.message);
+  next();
+});
+```
 
 <a id="hl7request-send"></a>
 
@@ -720,7 +739,7 @@ A received message, as the handlers see it.
 
 `send(message: HL7Message): void`
 
-Sends an answer to the request: on the socket, or - for a message that came in a batch - into the reply batch. On a server, an answer of type `ACK` gets the server's `applicationName` / `facilityName` in MSH-3/MSH-4 first. A handler answering a request itself, with something other than `res.message` (an `ADR^A19` for a `QRY^A19`, say), uses it rather than `req.socket.sendMessage()`, which would send the answer on its own, outside the batch. An answer whose MSA-2 is the request's control ID finishes the request: no acknowledgment follows it.
+Sends an answer to the request: on the socket, or - for a message that came in a batch - into the reply batch. An application acknowledgment of the request (`AA`, `AE`, `AR` with its control ID in MSA-2) is preceded by the accept acknowledgment still held back: `CA` for `AA`, `CE` or `CR` otherwise. On a server, an answer of type `ACK` gets the server's `applicationName` / `facilityName` in MSH-3/MSH-4 first. A handler answering a request itself, with something other than `res.message` (an `ADR^A19` for a `QRY^A19`, say), uses it rather than `req.socket.sendMessage()`, which would send the answer on its own, outside the batch. An answer whose MSA-2 is the request's control ID finishes the request: no acknowledgment follows it.
 
 ```typescript
 server.use('QRY^A19', req => {
@@ -844,7 +863,7 @@ From `helpers/acknowledgment.ts`: reading MSH-15 and MSH-16, and deciding which 
 
 - **Original mode** - MSH-15 and MSH-16 both empty: the receiver answers every message with one application acknowledgment, `AA`, `AE` or `AR`.
 - **Enhanced mode** - either valued, each one of `AL` (always), `NE` (never), `ER` (on error or reject only), `SU` (on success only):
-  - MSH-15 asks for an accept (commit) acknowledgment, sent on receipt, before processing: `CA` when the message is accepted, `CE` when it is not (an error in it), `CR` when it is rejected (unsupported type, event, processing ID or version). Empty, none is sent.
+  - MSH-15 asks for an accept (commit) acknowledgment: `CA` when the message is accepted, `CE` when it is not (an error in it), `CR` when it is rejected (unsupported type, event, processing ID or version). Empty, none is sent. It is sent on receipt, before processing, or after processing (`HL7AcceptAcknowledgment`).
   - MSH-16 asks for the application acknowledgment, sent after processing. Empty, it is sent, as in original mode.
 
 ### HL7AckCondition
@@ -854,6 +873,17 @@ type HL7AckCondition = 'AL' | 'NE' | 'ER' | 'SU' | '';
 ```
 
 An MSH-15 or MSH-16 value; `''` when empty.
+
+### HL7AcceptAcknowledgment
+
+```typescript
+type HL7AcceptAcknowledgment = 'receipt' | 'processed';
+```
+
+When the accept acknowledgment is sent - the `acceptAcknowledgment` option of `HL7Server` and `Hl7Client`:
+
+- `'receipt'` (default): on receipt, before the handlers run.
+- `'processed'`: once the handlers finish - `CA` when they succeed, `CE` (`CR` for a rejection) when one throws, calls `res.failed()` or times out. For a receiver whose handlers are what commits the message to safe storage, so that `CA` means it is stored. See [`HL7Request.sendAccept()`](#hl7request).
 
 ### HL7AckMode
 
@@ -886,6 +916,12 @@ ackWanted('ER', 'AA'); // false
 ackWanted('ER', 'AE'); // true
 ```
 
+### acknowledges()
+
+`acknowledges(ack: HL7Message, message: HL7Message): boolean`
+
+Whether `ack` answers `message` for the application: its MSA-1 is `AA`, `AE` or `AR`, and its MSA-2 is the message's control ID.
+
 ### ackCodeOf()
 
 `ackCodeOf(message: HL7Message): string`
@@ -894,12 +930,12 @@ The MSA-1 of an acknowledgment, `''` when it has none.
 
 ### acceptMessage()
 
-`acceptMessage(message: HL7Message, socket: HL7Socket | ((ack: HL7Message) => void), validate: boolean | HL7ValidateOptions | undefined): boolean`
+`acceptMessage(message: HL7Message, socket: HL7Socket | ((ack: HL7Message) => void), validate: boolean | HL7ValidateOptions | undefined, when?: HL7AcceptAcknowledgment): boolean`
 
 Takes a received message in, before routing, and returns whether it is to be processed. `HL7Server` and `Hl7Client` call it for each routable message.
 
 1. When `validate` is set, validates the message and keeps the errors of severity `E`.
-2. When MSH-15 is valued, sends the accept acknowledgment if MSH-15 wants it - `CA`, or with errors a `CE` (or `CR`, see `createNak()`) listing them - and returns `true` only when there are no errors.
+2. When MSH-15 is valued, sends the accept acknowledgment if MSH-15 wants it - `CA`, or with errors a `CE` (or `CR`, see `createNak()`) listing them - and returns `true` only when there are no errors. With `when` `'processed'` (default `'receipt'`), the `CA` is not sent: it is left to the request, [`sendAccept()`](#hl7request).
 3. Otherwise, with errors, sends a NAK (`AE`, or `AR`) listing them if MSH-16 wants it, and returns `false`.
 4. Otherwise returns `true`.
 
@@ -970,7 +1006,7 @@ What `HL7Server` and `Hl7Client` do with each received MLLP frame, in order:
 1. **Framing.** Bytes are split into frames `<VT> ... <FS><CR>`. A frame over `maxBufferPerSocket` (server) or `maxBufferSize` (client) is dropped, not parsed or routed; the connection is closed with an `error`.
 2. **Parsing.** A frame starting with FHS or BHS is parsed as a batch file; any other as a message, in its MSH-18 character set or `defaultCharset` (an unknown MSH-18 emits `warning`). A message that cannot be parsed emits `error` and is answered with a NAK when its MSH can be read. The `message` (or `batch`) event is emitted.
 3. **Responses and acknowledgments are not routed.** A message that is the awaited response of a `sendMessageWaitAck()` call, and any message of type `ACK`, is not passed to the handlers and not acknowledged: acknowledging an acknowledgment would make both sides answer each other forever. A batch that is the awaited reply of `sendBatchWaitAck()` is not processed.
-4. **Acceptance.** [`acceptMessage()`](#acceptmessage): validation when `validate` is set, the accept acknowledgment MSH-15 asks for, and a NAK for an invalid message, which is then not routed.
+4. **Acceptance.** [`acceptMessage()`](#acceptmessage): validation when `validate` is set, the accept acknowledgment MSH-15 asks for, and a NAK for an invalid message, which is then not routed. With `acceptAcknowledgment: 'processed'`, the `CA` waits for step 6.
 5. **Routing.** A message with an empty MSH-10 is given a random control ID. The handlers run in priority order, with `res.message` set to an `AA` acknowledgment.
-6. **Answer.** Unless a handler answered the request (`res.finished`), `res.message` is sent if MSH-16 wants it: `AA` when no handler failed, `AE` when one threw or called `next(error)`, `AR` for an `HL7Error` with HL7 error code 200-203 (or `ackCode: 'AR'`). On the server, handlers that have not finished within `responseTimeout` (default 30 s) get an `AE` "Response timeout" answer, if the request is not answered yet. Handler errors are emitted as `error` events. Every acknowledgment the server sends (steps 4 and 6) carries `applicationName` / `facilityName` in MSH-3/MSH-4 when they are set.
+6. **Answer.** With `acceptAcknowledgment: 'processed'`, the accept acknowledgment held back is sent first: `CA` when no handler failed, `CE`/`CR` otherwise (also on a response timeout). Unless a handler answered the request (`res.finished`), `res.message` is sent if MSH-16 wants it: `AA` when no handler failed, `AE` when one threw or called `next(error)`, `AR` for an `HL7Error` with HL7 error code 200-203 (or `ackCode: 'AR'`). On the server, handlers that have not finished within `responseTimeout` (default 30 s) get an `AE` "Response timeout" answer, if the request is not answered yet. Handler errors are emitted as `error` events. Every acknowledgment the server sends (steps 4 and 6) carries `applicationName` / `facilityName` in MSH-3/MSH-4 when they are set.
 7. **Batches.** The messages of a received batch go through steps 3-6 one after another; their answers are gathered into a reply batch (`req.send()` and `res.message` go there) and sent in one block when all are done, as `batchAcknowledgment` keeps them.
