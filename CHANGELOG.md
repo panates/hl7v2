@@ -1,6 +1,18 @@
 # Changelog
 
-<!-- rman:documented-up-to 38f4f950eec1e6dd9b2917959eb03a49d237c591 -->
+<!-- rman:documented-up-to 2a6ed4df8d263ab5aaad4995977bb3a9878951f0 -->
+
+## v2.0.0 (2026-10-11)
+
+### 📚 Documentation
+
+- point 1.x users to the migration guide (a427a68)
+
+### 🧹 Chores
+
+- sync lockfile (78839bb)
+
+---
 
 ## v1.10.0 (2026-10-11)
 

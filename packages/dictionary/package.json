@@ -1,7 +1,7 @@
 {
   "name": "hl7v2-dictionary",
   "description": "HL7 v2.1 to v2.9 definitions - segments, data types, message structures, tables - for NodeJS",
-  "version": "1.10.0",
+  "version": "2.0.0",
   "author": "Panates",
   "license": "BSD-3-Clause",
   "private": true,
