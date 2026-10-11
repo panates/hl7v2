@@ -349,6 +349,24 @@ Represents an incoming HL7 request.
 
 - `socket: HL7Socket`: The socket the request was received on.
 - `message: HL7Message`: The received HL7 message.
+- `batch?: HL7BatchReplies`: The replies of the batch the message came in, when it came in one (see [Batches](#batches)).
+
+#### Methods
+
+##### .send()
+
+Sends an answer to the request: on the socket, or - for a message that came in a batch - into the reply batch. A handler answering a request itself, with something other than `res.message` (an `ADR^A19` for a `QRY^A19`, say), uses it rather than `socket.sendMessage()`, which would send the answer on its own, outside the batch.
+`send(message: HL7Message): void`
+example
+
+```typescript
+server.use('QRY^A19', (req, res) => {
+  const response = buildAdr(req.message); // an ADR^A19 whose MSA-2 is the query's MSH-10
+  req.send(response);
+});
+```
+
+A response sent this way, answering the request's control ID (MSA-2), finishes the request: no ACK follows it.
 
 ---
 
@@ -360,7 +378,7 @@ Represents the response to an HL7 request.
 
 - `request: HL7Request`: The corresponding request.
 - `message: HL7Message`: The HL7 message to be sent as a response (defaults to an ACK).
-- `finished: boolean`: Whether the response has been sent.
+- `finished: boolean`: Whether the request has been answered - by this response's message, or by any message whose MSA-2 is the request's control ID.
 
 #### Methods
 

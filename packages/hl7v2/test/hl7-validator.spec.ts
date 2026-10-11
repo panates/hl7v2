@@ -101,6 +101,16 @@ describe('hl7v2:validate', () => {
       expect(summary(si.validate())).toEqual(['102 PID-1']);
     });
 
+    it('should take a set ID given as a number only when it is one', () => {
+      const msg = new HL7Message('2.5');
+      const pid = msg.addSegment('PID');
+      pid.field(1).setValue(3);
+      expect(pid.field(1).getValue()).toEqual(3);
+      expect(() => pid.field(1).setValue(-1)).toThrow('sequence ID');
+      expect(() => pid.field(1).setValue(1.5)).toThrow('sequence ID');
+      expect(() => pid.field(1).setValue('2x')).toThrow('sequence ID');
+    });
+
     it('should check OBX-5 as the type OBX-2 names', () => {
       const oru = (obx: string) =>
         HL7Message.parse(

@@ -199,4 +199,30 @@ describe('net:batch', () => {
         .getValue(),
     ).toEqual('ACK');
   });
+
+  it("should take a handler's own answer, sent with req.send(), alone or in a batch", async () => {
+    await start();
+    server.use((req, res) => {
+      /* An answer of its own: an ACK carrying a text, MSA-2 the request's */
+      const answer = req.message.createAck(
+        'AA',
+        `Handled ${req.message.controlId}`,
+      );
+      req.send(answer);
+      expect(res.finished).toBe(true);
+    });
+    /* Alone: that answer, and no ACK after it */
+    let received = 0;
+    client!.on('message', () => received++);
+    const ack = await client!.sendMessageWaitAck(message('S1'));
+    expect(ack.get('MSA-3')).toEqual('Handled S1');
+    await sleep(100);
+    expect(received).toEqual(1);
+    /* In a batch: in the reply batch, once each */
+    const reply = await client!.sendBatchWaitAck(batchOf('B1', 'B2'));
+    expect(reply.batches[0].messages.map(m => m.get('MSA-3'))).toEqual([
+      'Handled B1',
+      'Handled B2',
+    ]);
+  });
 });

@@ -72,6 +72,33 @@ describe('hl7v2:message objects', () => {
     expect(copy.toHL7String()).toEqual(msg.toHL7String());
   });
 
+  it('should give a choice by the alternative the message has', () => {
+    /* ORM_O01's ORDER_DETAIL is one of OBR, RQD, RQ1, RXO, ODS, ODT */
+    const text = [
+      'MSH|^~\\&|A|B|C|D|20250101||ORM^O01^ORM_O01|1|P|2.5',
+      'PID|1||1||X',
+      'ORC|NW|ORD1',
+      'OBR|1|ORD1||CBC',
+      'NTE|1||Fasting',
+      'ORC|NW|ORD2',
+      'RXO|RX1^Paracetamol^L',
+    ].join('\r');
+    const msg = HL7Message.parse(text, { version: '2.5' });
+    const o = msg.toObject<'ORM_O01'>();
+    const details = o.ORDER!.map(order => order.ORDER_DETAIL);
+    expect(details[0]?.OBR?.UniversalServiceIdentifier?.Identifier).toEqual(
+      'CBC',
+    );
+    expect(details[0]?.NTE?.[0]?.Comment).toEqual(['Fasting']);
+    expect(details[0]?.RXO).toBeUndefined();
+    expect(details[1]?.RXO?.RequestedGiveCode?.Identifier).toEqual('RX1');
+    expect(details[1]?.OBR).toBeUndefined();
+    /* And back, the alternative in its place */
+    const copy = HL7Message.parse(text.split('\r')[0]);
+    copy.assign(o);
+    expect(copy.toHL7String()).toEqual(msg.toHL7String());
+  });
+
   it('should keep what the structure has no place for, by segment ID', () => {
     const msg = HL7Message.parse(
       [
