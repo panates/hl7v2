@@ -1,54 +1,33 @@
 /**
- * Compares the dictionaries with HL7's own v2 XML schemas, and shows beside
- * every difference what HAPI HL7v2 says - a second, independent reading of
- * the same HL7 v2 database.
+ * Compares the dictionaries with HL7's own v2 XML schemas - the source they
+ * are generated from (support/build-dictionary.mts) - and notes beside every
+ * difference what HAPI HL7v2 says, a second reading of the same HL7 database.
  *
  *   npm run build                      # the dictionaries are read from the build
  *   node support/compare-dictionary.mts [report.md]
  *
- * Sources, both references only - nothing from them is copied into the dictionary:
- * - HL7 v2 XML schemas, licensed by HL7 and not in the repository: put the
- *   downloaded zips in support/hl7-schemas/ (git-ignored). From
- *   https://www.hl7.org/implement/standards/product_brief.cfm?product_id=185:
- *   "HL7 Version 2.x Messaging Schemas" (HL7-xml v2.6.zip ... v2.9.zip) and
- *   "Version 2 v2.xml XML Schemas for HL7 Version 2.5 and earlier"
- *   (Sun_HL7v2xsd.zip). Sun's set is used up to 2.5.1: it was regenerated from
- *   the HL7 database because HL7's own early schemas had errors, and it is the
- *   only one with 2.1-2.3.
- * - HAPI HL7v2 structures (MPL 1.1 / GPL), downloaded from Maven Central;
- *   HAPI has no 2.7.1. Its event map (ADT_A04 -> ADT_A01) also matches our
- *   per-event message copies to the structure they use.
+ * See support/hl7-sources.mts for where the schemas go. Nothing from either
+ * reference is copied by this script.
  *
  * Compared: segments (field types, required, repetition, length, table), data
  * types (component types, tables) and message structures (segment order,
  * required, repeating). Group names are not: before 2.5 the standard leaves
  * groups unnamed, and generators name them as they like.
  */
-import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const root = path.resolve(__dirname, '..');
-const schemasDir = path.join(__dirname, 'hl7-schemas');
-const cacheDir = path.join(root, 'node_modules/.cache');
-const HAPI_VERSION = '2.6.0';
-
-/** version: [schema zip, directory inside it, HAPI package] */
-const VERSIONS: Record<string, [string, string, string | null]> = {
-  '2.1': ['Sun_HL7v2xsd.zip', 'hl7v2xsd/2.1', 'v21'],
-  '2.2': ['Sun_HL7v2xsd.zip', 'hl7v2xsd/2.2', 'v22'],
-  '2.3': ['Sun_HL7v2xsd.zip', 'hl7v2xsd/2.3', 'v23'],
-  '2.3.1': ['Sun_HL7v2xsd.zip', 'hl7v2xsd/2.3.1', 'v231'],
-  '2.4': ['Sun_HL7v2xsd.zip', 'hl7v2xsd/2.4', 'v24'],
-  '2.5': ['Sun_HL7v2xsd.zip', 'hl7v2xsd/2.5', 'v25'],
-  '2.5.1': ['Sun_HL7v2xsd.zip', 'hl7v2xsd/2.5.1', 'v251'],
-  '2.6': ['HL7-xml v2.6.zip', '', 'v26'],
-  '2.7': ['HL7-xml v2.7.zip', '', 'v27'],
-  '2.7.1': ['HL7-xml v2.7.1.zip', '', null],
-  '2.8': ['HL7-xml v2.8.zip', '', 'v28'],
-};
+import {
+  eventsFor,
+  HAPI_VERSION,
+  hapiSourceDir,
+  normalizeType,
+  readSchemas,
+  root,
+  type SchemaField,
+  type SchemaNode,
+  SOURCES,
+  versionsWithSchemas,
+} from './hl7-sources.mts';
 
 interface Field {
   type: string;
@@ -62,158 +41,57 @@ interface Field {
 interface StructureItem {
   segment?: string;
   group?: StructureItem[];
-  /** One of these segments */
+  /** One of these */
   choice?: string[];
   required: boolean;
   repeating: boolean;
 }
 
 interface Definitions {
-  segments: Record<string, Field[]>;
-  types: Record<string, Field[] | null>;
+  /** By field number; a withdrawn field is absent */
+  segments: Record<string, (Field | undefined)[]>;
+  types: Record<string, (Field | undefined)[] | null>;
   messages: Record<string, StructureItem[]>;
-  /** Trigger event to message structure (ADT_A04 -> ADT_A01) */
-  events?: Record<string, string>;
-}
-
-function unzipOnce(zip: string, into: string) {
-  if (!fs.existsSync(into)) {
-    fs.mkdirSync(into, { recursive: true });
-    execFileSync('unzip', ['-q', '-o', zip, '-d', into]);
-  }
 }
 
 /* ------------------------------------------------------- HL7 XML schemas */
 
-const ATTRIBUTE_GROUP =
-  /<xsd:attributeGroup name="([^"]+)\.ATTRIBUTES">([\s\S]*?)<\/xsd:attributeGroup>/g;
-const FIXED = /<xsd:attribute name="(\w+)"[^>]*fixed="([^"]*)"/g;
-const COMPLEX_TYPE =
-  /<xsd:complexType name="([^"]+)">([\s\S]*?)<\/xsd:complexType>/g;
-const ELEMENT_REF = /<xsd:element ref="([^"]+)"([^>]*)\/>/g;
-
-interface Ref {
-  name: string;
-  min: number;
-  /** 0: unbounded */
-  max: number;
-}
-
-function refsOf(body: string): Ref[] {
-  return [...body.matchAll(ELEMENT_REF)].map(m => {
-    const min = /minOccurs="(\d+)"/.exec(m[2])?.[1] ?? '1';
-    const max = /maxOccurs="(\w+)"/.exec(m[2])?.[1] ?? '1';
-    return {
-      name: m[1],
-      min: Number(min),
-      max: max === 'unbounded' ? 0 : Number(max),
-    };
-  });
-}
-
-/**
- * Fields by their own number (PID.3 -> index 2): the schemas leave a
- * withdrawn field out, so counting would shift every field after it
- */
-function byPosition(refs: Ref[], field: (r: Ref) => Field): Field[] {
-  const fields: Field[] = [];
-  for (const ref of refs) {
-    const pos = Number(/\.(\d+)$/.exec(ref.name)?.[1]);
-    if (pos) fields[pos - 1] = field(ref);
-  }
-  return fields;
-}
-
-function schemaDefinitions(version: string): Definitions | undefined {
-  const [zip, inner] = VERSIONS[version];
-  const zipPath = path.join(schemasDir, zip);
-  if (!fs.existsSync(zipPath)) return;
-  const into = path.join(cacheDir, 'hl7-schemas', zip.replace(/\W+/g, '_'));
-  unzipOnce(zipPath, into);
-  const dir = path.join(into, inner);
-  const read = (f: string) =>
-    fs.existsSync(path.join(dir, f))
-      ? fs.readFileSync(path.join(dir, f), 'utf8')
-      : '';
-
-  /* Field and component attributes: Type, Table (HL70001), maxLength */
-  const attributes: Record<string, Record<string, string>> = {};
-  for (const src of [read('fields.xsd'), read('datatypes.xsd')]) {
-    for (const m of src.matchAll(ATTRIBUTE_GROUP)) {
-      attributes[m[1]] = Object.fromEntries(
-        [...m[2].matchAll(FIXED)].map(a => [a[1], a[2]]),
-      );
-    }
-  }
-  const field = (ref: Ref): Field => {
-    const a = attributes[ref.name] || {};
-    /* HL79999 stands for "no table" */
-    const table = /^HL7(\d+)$/.exec(a.Table || '')?.[1];
-    return {
-      type: a.Type || '?',
-      required: ref.min >= 1,
-      rep: ref.max,
-      len: a.maxLength ? Number(a.maxLength) : undefined,
-      table:
-        table && Number(table) > 0 && Number(table) !== 9999
-          ? Number(table)
-          : undefined,
-    };
+function schemaDefinitions(version: string): Definitions {
+  const s = readSchemas(version);
+  const fields = (list: SchemaField[]) =>
+    Array.from(list, f =>
+      f
+        ? {
+            type: f.type,
+            required: f.min >= 1,
+            rep: f.max,
+            len: f.len,
+            table: f.table,
+          }
+        : undefined,
+    );
+  const items = (nodes: SchemaNode[]): StructureItem[] =>
+    nodes.map(n => {
+      const item: StructureItem = {
+        required: n.min >= 1,
+        repeating: n.max !== 1,
+      };
+      if (n.choice) item.choice = n.items!.map(i => i.name);
+      else if (n.items) item.group = items(n.items);
+      else item.segment = n.name;
+      return item;
+    });
+  return {
+    segments: Object.fromEntries(
+      Object.entries(s.segments).map(([k, v]) => [k, fields(v)]),
+    ),
+    types: Object.fromEntries(
+      Object.entries(s.types).map(([k, v]) => [k, v && fields(v)]),
+    ),
+    messages: Object.fromEntries(
+      Object.entries(s.structures).map(([k, v]) => [k, items(v)]),
+    ),
   };
-
-  const segments: Definitions['segments'] = {};
-  for (const m of read('segments.xsd').matchAll(COMPLEX_TYPE)) {
-    const seg = /^(\w+)\.CONTENT$/.exec(m[1])?.[1];
-    if (seg) segments[seg] = byPosition(refsOf(m[2]), field);
-  }
-
-  const types: Definitions['types'] = {};
-  const datatypes = read('datatypes.xsd');
-  for (const m of datatypes.matchAll(COMPLEX_TYPE)) {
-    if (m[1].includes('.')) continue;
-    types[m[1]] = byPosition(refsOf(m[2]), field);
-  }
-  for (const m of datatypes.matchAll(/<xsd:simpleType name="(\w+)"/g)) {
-    types[m[1]] ??= null;
-  }
-
-  const messages: Definitions['messages'] = {};
-  const skip = new Set([
-    'fields.xsd',
-    'segments.xsd',
-    'datatypes.xsd',
-    'messages.xsd',
-    'batch.xsd',
-  ]);
-  for (const f of fs.readdirSync(dir)) {
-    if (!f.endsWith('.xsd') || skip.has(f)) continue;
-    const contents: Record<string, { refs: Ref[]; choice: boolean }> = {};
-    for (const m of read(f).matchAll(COMPLEX_TYPE)) {
-      const name = /^(.+)\.CONTENT$/.exec(m[1])?.[1];
-      if (name) {
-        contents[name] = {
-          refs: refsOf(m[2]),
-          choice: m[2].includes('<xsd:choice'),
-        };
-      }
-    }
-    const structure = (name: string): StructureItem[] =>
-      (contents[name]?.refs || []).map(ref => {
-        const item: StructureItem = {
-          required: ref.min >= 1,
-          repeating: ref.max !== 1,
-        };
-        const sub = contents[ref.name];
-        if (sub?.choice) {
-          item.choice = sub.refs.map(r => r.name.split('.').pop()!);
-        } else if (sub) item.group = structure(ref.name);
-        else item.segment = ref.name;
-        return item;
-      });
-    const struct = f.slice(0, -4);
-    if (contents[struct]) messages[struct] = structure(struct);
-  }
-  return { segments, types, messages };
 }
 
 /* ---------------------------------------------------------------- HAPI */
@@ -238,24 +116,9 @@ function readJava(dir: string): Record<string, string> {
 }
 
 function hapiDefinitions(version: string): Definitions | undefined {
-  const v = VERSIONS[version][2];
-  if (!v) return;
-  const dir = path.join(cacheDir, 'hapi-structures', v);
-  if (!fs.existsSync(dir)) {
-    const jar = path.join(cacheDir, 'hapi-structures', `${v}.jar`);
-    fs.mkdirSync(path.dirname(jar), { recursive: true });
-    execFileSync('curl', [
-      '-sfL',
-      '--retry',
-      '3',
-      '-o',
-      jar,
-      `https://repo1.maven.org/maven2/ca/uhn/hapi/hapi-structures-${v}/` +
-        `${HAPI_VERSION}/hapi-structures-${v}-${HAPI_VERSION}-sources.jar`,
-    ]);
-    unzipOnce(jar, dir);
-  }
-  const base = path.join(dir, 'ca/uhn/hl7v2/model', v);
+  const dir = hapiSourceDir(version);
+  if (!dir) return;
+  const base = path.join(dir, 'ca/uhn/hl7v2/model', SOURCES[version][2]!);
   const segments: Definitions['segments'] = {};
   for (const [name, src] of Object.entries(
     readJava(path.join(base, 'segment')),
@@ -309,21 +172,7 @@ function hapiDefinitions(version: string): Definitions | undefined {
   )) {
     messages[name] = structure(src);
   }
-  const events: Record<string, string> = {};
-  const eventMap = path.join(
-    dir,
-    'ca/uhn/hl7v2/parser/eventmap',
-    `${version}.properties`,
-  );
-  if (fs.existsSync(eventMap)) {
-    for (const line of fs.readFileSync(eventMap, 'utf8').split('\n')) {
-      const [event, struct] = line.trim().split(/\s+/);
-      if (event && struct && struct !== '?' && !event.startsWith('#')) {
-        events[event] = struct;
-      }
-    }
-  }
-  return { segments, types, messages, events };
+  return { segments, types, messages };
 }
 
 /* ---------------------------------------------------------------- ours */
@@ -334,22 +183,20 @@ const { dictionaries } = await import(
 
 function ourDefinitions(version: string): Definitions {
   const d = dictionaries[version];
-  const field = (f: any): Field => ({
-    type: f.type,
-    required: f.opt === 'R',
-    rep: f.rep === 'infinite' ? 0 : (f.rep ?? 1),
-    len: f.len,
-    table: f.table,
-  });
-  const segments: Definitions['segments'] = {};
-  for (const [name, s] of Object.entries<any>(d.segments)) {
-    segments[name] = Object.values<any>(s.fields).map(field);
-  }
-  const types: Definitions['types'] = {};
-  for (const [name, t] of Object.entries<any>(d.types)) {
-    types[name] = t.fields ? Object.values<any>(t.fields).map(field) : null;
-  }
-  const structure = (node: any): StructureItem[] =>
+  const byNumber = (fields: Record<string, any>) => {
+    const out: (Field | undefined)[] = [];
+    for (const [pos, f] of Object.entries<any>(fields)) {
+      out[Number(pos) - 1] = {
+        type: f.type,
+        required: f.opt === 'R',
+        rep: f.rep === 'infinite' ? 0 : (f.rep ?? 1),
+        len: f.len,
+        table: f.table,
+      };
+    }
+    return out;
+  };
+  const items = (node: any): StructureItem[] =>
     Object.entries<any>(node.segments || {})
       .sort(([, a], [, b]) => a.idx - b.idx)
       .map(([key, n]) => {
@@ -357,18 +204,28 @@ function ourDefinitions(version: string): Definitions {
           required: (n.min ?? 0) >= 1,
           repeating: n.max !== 1,
         };
-        const name: string = n.segment || key;
-        if (n.segments) item.group = structure(n);
-        /* The source writes a choice as one comma-joined name */
-        else if (name.includes(',')) item.choice = name.split(',');
-        else item.segment = name;
+        if (n.choice) {
+          item.choice = Object.entries<any>(n.segments)
+            .sort(([, a], [, b]) => a.idx - b.idx)
+            .map(([k, c]) => c.segment || k);
+        } else if (n.segments) item.group = items(n);
+        else item.segment = n.segment || key;
         return item;
       });
-  const messages: Definitions['messages'] = {};
-  for (const [name, m] of Object.entries<any>(d.messages)) {
-    messages[name] = structure(m);
-  }
-  return { segments, types, messages };
+  return {
+    segments: Object.fromEntries(
+      Object.entries<any>(d.segments).map(([k, s]) => [k, byNumber(s.fields)]),
+    ),
+    types: Object.fromEntries(
+      Object.entries<any>(d.types).map(([k, t]) => [
+        k,
+        t.fields ? byNumber(t.fields) : null,
+      ]),
+    ),
+    messages: Object.fromEntries(
+      Object.entries<any>(d.messages).map(([k, m]) => [k, items(m)]),
+    ),
+  };
 }
 
 /* ---------------------------------------------------------------- diff */
@@ -379,104 +236,87 @@ function add(findings: Findings, category: string, detail: string) {
   (findings[category] ||= []).push(detail);
 }
 
-const rep = (x: number) => (x === 0 ? '*' : String(x));
-const req = (x: boolean) => (x ? 'R' : 'O');
+const repText = (x: number) => (x === 0 ? '*' : String(x));
+const reqText = (x: boolean) => (x ? 'R' : 'O');
 const show = (x: unknown) => (x === undefined ? '-' : String(x));
 
 /** What HAPI says about the same thing, and whether it sides with HL7's schema */
-function hapiSays(
-  official: unknown,
-  ours: unknown,
-  hapi: unknown,
-  available: boolean,
-): string {
-  if (!available) return '';
-  const tag =
-    show(hapi) === show(official)
-      ? ' (HAPI agrees with HL7)'
-      : show(hapi) === show(ours)
-        ? ' (HAPI agrees with ours)'
-        : ` (HAPI: ${show(hapi)})`;
-  return tag;
+function hapiSays(official: unknown, ours: unknown, hapi: unknown): string {
+  if (show(hapi) === show(official)) return ' (HAPI agrees with HL7)';
+  if (show(hapi) === show(ours)) return ' (HAPI agrees with ours)';
+  return ` (HAPI: ${show(hapi)})`;
 }
+
+const sameType = (ours: string, official: string) => {
+  const a = ours.toUpperCase();
+  const b = normalizeType(official).toUpperCase();
+  /* Sun's early schemas write every composite CM_* type as CM */
+  return a === b || (b === 'CM' && a.startsWith('CM_'));
+};
 
 function compareFields(
   findings: Findings,
   kind: 'segment' | 'type',
   name: string,
-  ours: Field[],
-  official: Field[],
-  hapi?: Field[],
+  ours: (Field | undefined)[],
+  official: (Field | undefined)[],
+  hapi?: (Field | undefined)[],
 ) {
-  if (ours.length !== official.length) {
-    add(
-      findings,
-      `${kind} field count`,
-      `${name}: ours ${ours.length}, HL7 ${official.length}` +
-        hapiSays(official.length, ours.length, hapi?.length, !!hapi),
-    );
-  }
-  for (let i = 0; i < Math.min(ours.length, official.length); i++) {
+  const n = Math.max(ours.length, official.length);
+  for (let i = 0; i < n; i++) {
     const o = ours[i];
     const s = official[i];
     const h = hapi?.[i];
     const at = `${name}.${i + 1}`;
-    if (!s) {
-      add(
-        findings,
-        `${kind} field withdrawn in HL7`,
-        `${at}: ours ${o.type}` + (h ? ` (HAPI: ${h.type})` : ''),
-      );
-      continue;
-    }
-    const check = (
-      category: string,
-      a: unknown,
-      b: unknown,
-      c: unknown,
-      cmp = (x: unknown, y: unknown) => show(x) === show(y),
-    ) => {
-      if (!cmp(a, b)) {
+    if (!o || !s) {
+      const only = o || s;
+      if (only) {
         add(
           findings,
-          category,
-          `${at}: ours ${show(a)} / HL7 ${show(b)}` + hapiSays(b, a, c, !!h),
+          `${kind} field only in ${o ? 'ours' : 'HL7'}`,
+          `${at}: ${only.type}`,
         );
       }
-    };
-    check(`${kind} field type`, o.type, s.type, h?.type, (x, y) => {
-      const a = String(x).toUpperCase();
-      const b = String(y).toUpperCase();
-      /* Sun's early schemas write every composite CM_* type as CM */
-      return (
-        a === b ||
-        (b === 'CM' && a.startsWith('CM_')) ||
-        (a === 'VARIES' && b === 'VAR')
+      continue;
+    }
+    const note = (a: unknown, b: unknown, c: unknown) =>
+      hapi ? hapiSays(b, a, c) : '';
+    if (!sameType(o.type, s.type)) {
+      add(
+        findings,
+        `${kind} field type`,
+        `${at}: ours ${o.type} / HL7 ${s.type}` + note(o.type, s.type, h?.type),
       );
-    });
-    /* HL7's schemas record a component's table only rarely */
-    if (kind === 'segment' || s.table !== undefined) {
-      check(`${kind} field table`, o.table, s.table, h?.table);
+    }
+    if (s.table !== undefined && o.table !== s.table) {
+      add(
+        findings,
+        `${kind} field table`,
+        `${at}: ours ${show(o.table)} / HL7 ${s.table}` +
+          note(o.table, s.table, h?.table),
+      );
     }
     if (kind === 'type') continue;
-    check(
-      'segment field required',
-      req(o.required),
-      req(s.required),
-      h && req(h.required),
-    );
-    const repeats = (x: number) => x !== 1;
-    check(
-      repeats(o.rep) !== repeats(s.rep)
-        ? 'segment field repeating'
-        : 'segment field repetition limit',
-      rep(o.rep),
-      rep(s.rep),
-      h && rep(h.rep),
-    );
-    /* Sun's schemas carry no lengths */
-    if (s.len !== undefined) {
-      check('segment field length', o.len, s.len, h?.len);
+    if (o.required !== s.required) {
+      add(
+        findings,
+        'segment field required',
+        `${at}: ours ${reqText(o.required)} / HL7 ${reqText(s.required)}`,
+      );
+    }
+    if (o.rep !== s.rep) {
+      add(
+        findings,
+        'segment field repetition',
+        `${at}: ours ${repText(o.rep)} / HL7 ${repText(s.rep)}`,
+      );
+    }
+    if (s.len !== undefined && o.len !== s.len) {
+      add(
+        findings,
+        'segment field length',
+        `${at}: ours ${show(o.len)} / HL7 ${s.len}`,
+      );
     }
   }
 }
@@ -502,14 +342,11 @@ function compare(
   events: Record<string, string>,
 ): Findings {
   const findings: Findings = {};
-
   for (const name of Object.keys(official.segments)) {
-    if (!(name in ours.segments)) add(findings, 'segment only in HL7', name);
+    if (!ours.segments[name]) add(findings, 'segment only in HL7', name);
   }
   for (const name of Object.keys(ours.segments)) {
-    if (!(name in official.segments)) {
-      add(findings, 'segment only in ours', name);
-    }
+    if (!official.segments[name]) add(findings, 'segment only in ours', name);
   }
   for (const [name, fields] of Object.entries(ours.segments)) {
     if (official.segments[name]) {
@@ -523,7 +360,6 @@ function compare(
       );
     }
   }
-
   for (const name of Object.keys(official.types)) {
     if (!(name in ours.types)) add(findings, 'type only in HL7', name);
   }
@@ -550,18 +386,13 @@ function compare(
       );
     }
   }
-
   /* Ours is keyed by trigger event too (ADT_A04); HL7's schemas by structure */
   const structureOf = (name: string) =>
     official.messages[name] ? name : events[name];
-  const covered = new Set(Object.keys(ours.messages).map(structureOf));
   for (const name of Object.keys(official.messages)) {
-    if (!covered.has(name)) add(findings, 'message only in HL7', name);
+    if (!ours.messages[name]) add(findings, 'message only in HL7', name);
   }
   for (const [name, items] of Object.entries(ours.messages)) {
-    if (JSON.stringify(items).includes('"choice"')) {
-      add(findings, 'choice written as one segment name', name);
-    }
     const struct = structureOf(name);
     if (!struct || !official.messages[struct]) {
       add(findings, 'message only in ours', name);
@@ -572,16 +403,12 @@ function compare(
     if (a === b) continue;
     const h = hapi?.messages[struct];
     const c = h && signature(h);
-    const loose = (x: string) => x.replace(/[?*]/g, '');
     add(
       findings,
-      (loose(a) === loose(b) ? 'message cardinality' : 'message structure') +
-        /* An event's own copy of a structure (ADT_A04) going stale */
-        (struct !== name ? ' (event copy)' : ''),
+      'message structure',
       `${name}${struct !== name ? ` (structure ${struct})` : ''}` +
-        hapiSays(b, a, c, !!h) +
-        `\n      ours: ${a}\n      HL7:  ${b}` +
-        (c && c !== a && c !== b ? `\n      HAPI: ${c}` : ''),
+        (c ? hapiSays(b, a, c) : '') +
+        `\n      ours: ${a}\n      HL7:  ${b}`,
     );
   }
   return findings;
@@ -592,53 +419,20 @@ function compare(
 const reportPath =
   process.argv[2] || path.join(root, 'dictionary-comparison.md');
 const EXAMPLES = 10;
+const versions = versionsWithSchemas();
 const summary: Record<string, Record<string, number>> = {};
-const agreement: Record<string, [number, number, number]> = {};
 let details = '';
 
-/**
- * HAPI's event map for a version, completed from the nearest versions: its
- * 2.3 map is nearly empty, and it has none for 2.7.1. An event keeps its
- * structure across versions far more often than not.
- */
-function eventsFor(version: string): Record<string, string> {
-  const all = Object.keys(VERSIONS);
-  const i = all.indexOf(version);
-  const nearestFirst = all
-    .map((v, j) => [v, Math.abs(j - i)] as const)
-    .sort((a, b) => a[1] - b[1])
-    .map(([v]) => v);
-  const events: Record<string, string> = {};
-  for (const v of nearestFirst.reverse()) {
-    Object.assign(events, hapiDefinitions(v)?.events);
-  }
-  return events;
-}
-
-const versions = Object.keys(VERSIONS).filter(v => {
-  const ok = fs.existsSync(path.join(schemasDir, VERSIONS[v][0]));
-  if (!ok)
-    console.warn(`${v}: no ${VERSIONS[v][0]} in ${schemasDir} - skipped`);
-  return ok;
-});
-
 for (const version of versions) {
-  const official = schemaDefinitions(version)!;
   const findings = compare(
     ourDefinitions(version),
-    official,
+    schemaDefinitions(version),
     hapiDefinitions(version),
     eventsFor(version),
   );
   summary[version] = Object.fromEntries(
     Object.entries(findings).map(([k, v]) => [k, v.length]),
   );
-  const all = Object.values(findings).flat();
-  agreement[version] = [
-    all.filter(x => x.includes('(HAPI agrees with HL7)')).length,
-    all.filter(x => x.includes('(HAPI agrees with ours)')).length,
-    all.filter(x => x.includes('(HAPI: ')).length,
-  ];
   details += `\n## ${version}\n`;
   for (const [category, items] of Object.entries(findings).sort()) {
     details += `\n### ${category} (${items.length})\n\n`;
@@ -655,20 +449,17 @@ const categories = [
 let report =
   '# Dictionary compared with the HL7 v2 XML schemas\n\n' +
   'Generated by `support/compare-dictionary.mts`. Each line reads "ours / HL7"; ' +
-  `HAPI HL7v2 ${HAPI_VERSION}'s reading is noted beside it (HAPI has no 2.7.1). ` +
-  '2.8 is our 2.7.1 data served as 2.8, so its column is what 2.8 changed.\n\n' +
-  `| category | ${versions.join(' | ')} |\n` +
-  `|---|${versions.map(() => '---:').join('|')}|\n`;
-for (const c of categories) {
-  report += `| ${c} | ${versions.map(v => summary[v][c] ?? '').join(' | ')} |\n`;
+  `HAPI HL7v2 ${HAPI_VERSION}'s reading is noted where it has the version.\n\n`;
+if (categories.length) {
+  report +=
+    `| category | ${versions.join(' | ')} |\n` +
+    `|---|${versions.map(() => '---:').join('|')}|\n`;
+  for (const c of categories) {
+    report += `| ${c} | ${versions.map(v => summary[v][c] ?? '').join(' | ')} |\n`;
+  }
+} else {
+  report += `No differences in ${versions.join(', ')}.\n`;
 }
-report +=
-  '\nWhere the two references meet - on the differences above:\n\n' +
-  `| HAPI | ${versions.join(' | ')} |\n` +
-  `|---|${versions.map(() => '---:').join('|')}|\n` +
-  `| agrees with HL7 | ${versions.map(v => agreement[v][0]).join(' | ')} |\n` +
-  `| agrees with ours | ${versions.map(v => agreement[v][1]).join(' | ')} |\n` +
-  `| differs from both | ${versions.map(v => agreement[v][2]).join(' | ')} |\n`;
 fs.writeFileSync(reportPath, report + details, 'utf-8');
 console.log(report);
 console.log('report:', reportPath);

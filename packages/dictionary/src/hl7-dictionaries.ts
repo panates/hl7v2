@@ -59,12 +59,14 @@ function field(index: number): HL7FieldDefinition {
   return def;
 }
 
+/** Fields by position; a field the version withdrew (null) is left out */
 function fieldMap(
-  indexes: number[],
+  indexes: (number | null)[],
   codecs?: Record<string, Pick<HL7FieldDefinition, 'decode' | 'encode'>>,
 ): Record<string, HL7FieldDefinition> {
   const fields: Record<string, HL7FieldDefinition> = {};
   indexes.forEach((fieldIndex, i) => {
+    if (fieldIndex === null) return;
     const pos = String(i + 1);
     const def = field(fieldIndex);
     fields[pos] = codecs?.[pos]
@@ -138,30 +140,11 @@ export function buildDictionary(version: HL7Version): HL7Dictionary {
 }
 
 /**
- * The versions the generated data holds, plus 2.8, which has no data of its
- * own yet and is served by 2.7.1's definitions under its own version number.
- */
-const ALIASES: Partial<Record<HL7Version, HL7Version>> = {
-  [HL7Version.v2_8]: HL7Version.v2_7_1,
-};
-
-function build(version: HL7Version): HL7Dictionary {
-  const source = ALIASES[version];
-  if (!source) return buildDictionary(version);
-  const dict = buildDictionary(source);
-  dict.version = version;
-  return dict;
-}
-
-/**
  * Each version's dictionary, built on first access. Assigning one replaces it
  * for every message parsed afterwards.
  */
 export const dictionaries = {} as Record<HL7Version, HL7Dictionary>;
-for (const version of [
-  ...Object.keys(data.versions),
-  ...Object.keys(ALIASES),
-] as HL7Version[]) {
+for (const version of Object.keys(data.versions) as HL7Version[]) {
   const define = (value: HL7Dictionary) =>
     Object.defineProperty(dictionaries, version, {
       value,
@@ -173,7 +156,7 @@ for (const version of [
     enumerable: true,
     configurable: true,
     get: () => {
-      const dict = build(version);
+      const dict = buildDictionary(version);
       define(dict);
       return dict;
     },
@@ -183,8 +166,14 @@ for (const version of [
 
 /** Compares two version numbers part by part: 2.5 < 2.5.1 < 2.10 */
 function compareVersions(a: string, b: string): number {
-  const pa = a.split('.').map(Number);
-  const pb = b.split('.').map(Number);
+  /* Leading digits only: a version read from a message may carry debris */
+  const parts = (v: string) =>
+    String(v)
+      .trim()
+      .split('.')
+      .map(p => parseInt(p, 10) || 0);
+  const pa = parts(a);
+  const pb = parts(b);
   for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
     const d = (pa[i] || 0) - (pb[i] || 0);
     if (d) return d;

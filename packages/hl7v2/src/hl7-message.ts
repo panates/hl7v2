@@ -259,6 +259,76 @@ export class HL7Message {
     }
 
     // Helper function to process a segment definition recursively
+    const byIdx = (defs: Record<string, any>) =>
+      Object.entries<any>(defs).sort(
+        ([, a], [, b]) => (a.idx || 0) - (b.idx || 0),
+      );
+
+    /** Matches one item of a structure - a segment, a group or a choice */
+    const matchItem = (
+      key: string,
+      def: any,
+      node: HL7MessageNode,
+      currentSegmentIndex: { value: number },
+    ) => {
+      const maxOccurrences = def.max || Number.MAX_SAFE_INTEGER;
+      if (def.choice) {
+        /** One of the alternatives, each time the choice occurs */
+        for (let n = 0; n < maxOccurrences; n++) {
+          const before = currentSegmentIndex.value;
+          for (const [altKey, alt] of byIdx(def.segments)) {
+            matchItem(altKey, alt, node, currentSegmentIndex);
+            if (currentSegmentIndex.value > before) break;
+          }
+          if (currentSegmentIndex.value === before) break;
+        }
+        return;
+      }
+      if (def.segments) {
+        /** A group, repeated while it matches */
+        let occurrenceCount = 0;
+        while (
+          occurrenceCount < maxOccurrences &&
+          currentSegmentIndex.value < this.segments.length
+        ) {
+          const groupStartIndex = currentSegmentIndex.value;
+          const groupNode = processSegmentDefinition(
+            def.segments,
+            key,
+            currentSegmentIndex,
+            def.aliases,
+          );
+          if (
+            currentSegmentIndex.value > groupStartIndex &&
+            groupNode.items.length > 0
+          ) {
+            node.items.push(groupNode);
+            occurrenceCount++;
+          } else break;
+        }
+        return;
+      }
+      /** A segment; a repeated one is keyed PID2, PID3 ... and names its type */
+      const segmentType = def.segment || key;
+      /** The standard's placeholders: any segment, any Z segment */
+      const matches = (type: string) =>
+        segmentType === 'anyHL7Segment'
+          ? true
+          : segmentType === 'anyZSegment'
+            ? type.startsWith('Z')
+            : type === segmentType;
+      let matchedCount = 0;
+      while (
+        matchedCount < maxOccurrences &&
+        currentSegmentIndex.value < this.segments.length &&
+        matches(this.segments[currentSegmentIndex.value].segmentType)
+      ) {
+        node.items.push(this.segments[currentSegmentIndex.value]);
+        currentSegmentIndex.value++;
+        matchedCount++;
+      }
+    };
+
     const processSegmentDefinition = (
       segmentDef: Record<string, any>,
       nodeName: string,
@@ -267,73 +337,10 @@ export class HL7Message {
     ): HL7MessageNode => {
       const node = new HL7MessageNode(nodeName, aliases);
 
-      // Sort segment definitions by their index
-      const sortedEntries = Object.entries(segmentDef).sort(
-        ([, a], [, b]) => (a.idx || 0) - (b.idx || 0),
-      );
+      const sortedEntries = byIdx(segmentDef);
 
       for (const [key, def] of sortedEntries) {
-        if (def.segments) {
-          // This is a group - process recursively
-          const maxOccurrences = def.max || Number.MAX_SAFE_INTEGER;
-
-          let occurrenceCount = 0;
-          const initialSegmentIndex = currentSegmentIndex.value;
-
-          // Try to match segments for this group
-          while (
-            occurrenceCount < maxOccurrences &&
-            currentSegmentIndex.value < this.segments.length
-          ) {
-            const groupStartIndex = currentSegmentIndex.value;
-            const groupNode = processSegmentDefinition(
-              def.segments,
-              key,
-              currentSegmentIndex,
-              def.aliases,
-            );
-
-            // Check if we actually consumed any segments
-            if (
-              currentSegmentIndex.value > groupStartIndex &&
-              groupNode.items.length > 0
-            ) {
-              node.items.push(groupNode);
-              occurrenceCount++;
-            } else {
-              // No segments matched, break the loop
-              break;
-            }
-          }
-
-          // If no occurrences found, reset to initial position
-          if (occurrenceCount === 0) {
-            currentSegmentIndex.value = initialSegmentIndex;
-          }
-        } else {
-          // This is a leaf segment
-          const maxOccurrences = def.max || Number.MAX_SAFE_INTEGER;
-          /** A repeated segment is keyed PID2, PID3 ... and names its type */
-          const segmentType = def.segment || key;
-
-          // Match segments of this type
-          let matchedCount = 0;
-          while (
-            matchedCount < maxOccurrences &&
-            currentSegmentIndex.value < this.segments.length
-          ) {
-            const currentSegment = this.segments[currentSegmentIndex.value];
-
-            if (currentSegment.segmentType === segmentType) {
-              node.items.push(currentSegment);
-              currentSegmentIndex.value++;
-              matchedCount++;
-            } else {
-              // Different segment type - stop matching
-              break;
-            }
-          }
-        }
+        matchItem(key, def, node, currentSegmentIndex);
       }
 
       return node;
@@ -580,9 +587,17 @@ export interface HL7MessageParseOptions extends Hl7SegmentParseOptions {
 
 export interface HL7MessageSerializeOptions extends Hl7SegmentSerializeOptions {}
 
-/** Where the MSH segment ends: at the first CR, or at the first LF in a message with no CR */
+/**
+ * Where the MSH segment ends: at the first CR, or at the first LF in a message
+ * with no CR - looking only inside the frame, since the MLLP end block (FS CR)
+ * carries a CR of its own
+ */
 function headerEnd(input: string | Buffer): number {
-  let end = input.indexOf(CR);
-  if (end < 0) end = input.indexOf(LF);
-  return end < 0 ? input.length : end;
+  let limit = input.indexOf(FS);
+  if (limit < 0) limit = input.length;
+  const cr = input.indexOf(CR);
+  if (cr >= 0 && cr < limit) return cr;
+  const lf = input.indexOf(LF);
+  if (lf >= 0 && lf < limit) return lf;
+  return limit;
 }

@@ -11,11 +11,14 @@ export type HL7DataField = [
   table: number | null,
 ];
 
-/** [desc, field indexes] */
-export type HL7DataSegment = [desc: string | null, fields: number[]];
+/** [desc, field indexes by position - null where the version withdrew the field] */
+export type HL7DataSegment = [desc: string | null, fields: (number | null)[]];
 
 /** [desc, field indexes, or null for a primitive type] */
-export type HL7DataType = [desc: string | null, fields: number[] | null];
+export type HL7DataType = [
+  desc: string | null,
+  fields: (number | null)[] | null,
+];
 
 /** Name to index in segments, types and messages */
 export type HL7DataVersion = [

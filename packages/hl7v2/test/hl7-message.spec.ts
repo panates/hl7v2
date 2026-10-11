@@ -38,11 +38,11 @@ NTE|1|L|ROUTINE RESPIRATORY FLORA
   });
 
   it('should create HL7Message with given nearest version when given version not found', () => {
-    const msg = new HL7Message('2.9');
+    const msg = new HL7Message('2.10');
     expect(msg.header).toBeDefined();
-    expect(msg.version).toEqual('2.9');
-    expect(msg.header.field(12).getValue()).toEqual('2.9');
-    expect(msg.dictionary.version).toEqual(HL7Version.v2_8);
+    expect(msg.version).toEqual('2.10');
+    expect(msg.header.field(12).getValue()).toEqual('2.10');
+    expect(msg.dictionary.version).toEqual(HL7Version.v2_9);
   });
 
   it('should add segment', () => {

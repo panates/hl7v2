@@ -1,74 +1,54 @@
-import { createRequire } from 'node:module';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { expect } from 'expect';
 import {
   dictionaries,
   findNearestHL7Version,
   type HL7Dictionary,
+  type HL7MessageSegmentsDefinition,
   type HL7Version,
 } from '../src/index.js';
 
-const require = createRequire(import.meta.url);
-/** The source the data is generated from (support/build-dictionary.mts) */
-const source: Record<string, any> = require('hl7-dictionary').definitions;
+const VERSIONS = [
+  '2.1',
+  '2.2',
+  '2.3',
+  '2.3.1',
+  '2.4',
+  '2.5',
+  '2.5.1',
+  '2.6',
+  '2.7',
+  '2.7.1',
+  '2.8',
+  '2.8.1',
+  '2.8.2',
+  '2.9',
+] as HL7Version[];
 
-const OPTIONALITY: Record<number, string> = { 1: 'O', 2: 'R', 3: 'C', 4: 'B' };
+const schemasDir = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  '../../../support/hl7-schemas',
+);
 
-function expectedField(f: any) {
-  const d: any = { type: f.datatype };
-  if (f.desc != null) d.desc = f.desc;
-  if (OPTIONALITY[f.opt]) d.opt = OPTIONALITY[f.opt];
-  if (f.rep != null) d.rep = f.rep === 0 ? 'infinite' : f.rep;
-  if (f.len != null) d.len = f.len;
-  if (f.table != null) d.table = f.table;
-  return d;
-}
+type Structure = Record<string, HL7MessageSegmentsDefinition>;
 
-/** A definition without the value conversions attached to it */
-function dataOf(fields: Record<string, any> = {}) {
-  return Object.values(fields).map(f => {
-    const d = { ...f };
-    delete d.decode;
-    delete d.encode;
-    return d;
-  });
+function walk(
+  structure: Structure,
+  fn: (key: string, node: HL7MessageSegmentsDefinition) => void,
+) {
+  for (const [key, node] of Object.entries(structure)) {
+    fn(key, node);
+    if (node.segments) walk(node.segments, fn);
+  }
 }
 
 describe('dictionary:dictionaries', () => {
-  describe('content', () => {
-    for (const version of Object.keys(source)) {
+  describe('consistency', () => {
+    for (const version of VERSIONS) {
       describe(version, () => {
-        const dict = () => dictionaries[version as HL7Version];
-        const src = source[version];
-
-        it('should hold exactly the segments of its version', () => {
-          expect(Object.keys(dict().segments).sort()).toEqual(
-            Object.keys(src.segments).sort(),
-          );
-          for (const [name, seg] of Object.entries<any>(src.segments)) {
-            expect([name, dataOf(dict().segments[name].fields)]).toEqual([
-              name,
-              seg.fields.map(expectedField),
-            ]);
-          }
-        });
-
-        it('should hold exactly the data types of its version', () => {
-          expect(Object.keys(dict().types).sort()).toEqual(
-            Object.keys(src.fields).sort(),
-          );
-          for (const [name, type] of Object.entries<any>(src.fields)) {
-            expect([name, dataOf(dict().types[name].fields)]).toEqual([
-              name,
-              (type.subfields || []).map(expectedField),
-            ]);
-          }
-        });
-
-        it('should hold exactly the message structures of its version', () => {
-          expect(Object.keys(dict().messages).sort()).toEqual(
-            Object.keys(src.messages || {}).sort(),
-          );
-        });
+        const dict = () => dictionaries[version];
 
         it('should define every data type a field refers to', () => {
           const { segments, types } = dict();
@@ -83,29 +63,85 @@ describe('dictionary:dictionaries', () => {
           }
           expect(missing).toEqual([]);
         });
+
+        it('should start every message structure with MSH', () => {
+          const wrong = Object.entries(dict().messages)
+            .filter(([, m]) => {
+              const [first] = Object.entries(m.segments || {}).sort(
+                ([, a], [, b]) => a.idx - b.idx,
+              );
+              return first?.[0] !== 'MSH';
+            })
+            .map(([name]) => name);
+          expect(wrong).toEqual([]);
+        });
+
+        it('should name only defined segments in message structures', () => {
+          const { segments, messages } = dict();
+          const unknown = new Set<string>();
+          for (const m of Object.values(messages)) {
+            walk(m.segments || {}, (key, node) => {
+              const seg = node.segment || key;
+              /* the standard's placeholders: any segment, any Z segment */
+              const placeholder = /^any(HL7|Z)Segment$/.test(seg);
+              if (!node.segments && !segments[seg] && !placeholder) {
+                unknown.add(seg);
+              }
+            });
+          }
+          expect([...unknown]).toEqual([]);
+        });
+
+        it('should serve a trigger event with its structure definition', () => {
+          const { messages } = dict();
+          const shared = Object.keys(messages).filter(name =>
+            Object.keys(messages).find(
+              other => other !== name && messages[other] === messages[name],
+            ),
+          );
+          /* every version maps at least some events to a shared structure */
+          expect(shared.length).toBeGreaterThan(0);
+        });
       });
     }
+  });
 
-    it('should keep every element of a message structure', () => {
-      /* Siblings sharing a name used to overwrite each other (320 in the source) */
-      const kids = (n: any): any[] => n.segments?.segments || n.children || [];
-      const count = (n: any): number =>
-        kids(n).reduce((sum: number, c: any) => sum + 1 + count(c), 0);
-      const countOurs = (n: any): number =>
-        Object.values<any>(n.segments || {}).reduce(
-          (sum: number, c: any) => sum + 1 + countOurs(c),
-          0,
-        );
-      for (const [version, def] of Object.entries<any>(source)) {
-        for (const [name, msg] of Object.entries<any>(def.messages || {})) {
-          const ours = dictionaries[version as HL7Version].messages[name];
-          expect([version, name, countOurs(ours)]).toEqual([
-            version,
-            name,
-            count(msg),
-          ]);
-        }
-      }
+  describe('content (from the HL7 v2 XML schemas)', () => {
+    it('should define fields as the standard does', () => {
+      const pid = dictionaries['2.5'].segments.PID.fields;
+      expect(pid['3']).toMatchObject({
+        type: 'CX',
+        desc: 'Patient Identifier List',
+        opt: 'R',
+        rep: 'infinite',
+        len: 250,
+      });
+      /* MSH-7 became a DTM in 2.6 */
+      expect(dictionaries['2.5'].segments.MSH.fields['7'].type).toEqual('TS');
+      expect(dictionaries['2.6'].segments.MSH.fields['7'].type).toEqual('DTM');
+    });
+
+    it('should leave out a field the version withdrew', () => {
+      /* DG1-2 (Diagnosis Coding Method) is withdrawn in 2.6 */
+      expect(dictionaries['2.5'].segments.DG1.fields['2']).toBeDefined();
+      expect(dictionaries['2.6'].segments.DG1.fields['2']).toBeUndefined();
+      /* and the fields after it keep their numbers */
+      expect(dictionaries['2.6'].segments.DG1.fields['3'].type).toEqual('CWE');
+    });
+
+    it('should hold a choice as one, of its alternatives', () => {
+      const choices: string[][] = [];
+      walk(dictionaries['2.5'].messages.ORM_O01.segments!, (key, node) => {
+        if (node.choice) choices.push(Object.keys(node.segments!));
+      });
+      expect(choices).toEqual([['OBR', 'RQD', 'RQ1', 'RXO', 'ODS', 'ODT']]);
+    });
+
+    it('should serve an event by the structure it uses', () => {
+      const d = dictionaries['2.5'];
+      expect(d.messages.ADT_A04).toBe(d.messages.ADT_A01);
+      expect(d.messages.ADT_A08).toBe(d.messages.ADT_A01);
+      expect(d.messages.ADT_A01.segments!.SFT).toBeDefined();
     });
 
     it('should key repeated segments as HAPI does, naming their type', () => {
@@ -121,18 +157,6 @@ describe('dictionary:dictionaries', () => {
       expect(oru23.RESPONSE.aliases).toEqual(['PATIENT_RESULT']);
       const oru25 = dictionaries['2.5'].messages.ORU_R01.segments!;
       expect(oru25.PATIENT_RESULT.aliases).toEqual(['RESPONSE']);
-      /* renamed in 2.4, renamed back in 2.6 */
-      expect(
-        dictionaries['2.4'].messages.ADT_A40.segments!.PATIENT_ID.aliases,
-      ).toEqual(['PATIENT']);
-      expect(
-        dictionaries['2.6'].messages.ADT_A40.segments!.PATIENT.aliases,
-      ).toEqual(['PATIENT_ID']);
-      /* a typo in one version still finds the group */
-      const oml26 = dictionaries['2.6'].messages.OML_O21;
-      const timing = JSON.stringify(oml26).includes('"TIIMING"');
-      expect(timing).toBe(true);
-      expect(JSON.stringify(oml26)).toContain('"aliases":["TIMING"]');
     });
 
     it('should attach value conversions to the types that have them', () => {
@@ -147,6 +171,57 @@ describe('dictionary:dictionaries', () => {
       expect(dictionaries['2.7'].types.TS).toBeUndefined();
       expect(dictionaries['2.7'].types.DTM.decode).toBeInstanceOf(Function);
     });
+  });
+
+  describe('against the HL7 v2 XML schemas', function () {
+    /* The schemas are licensed by HL7 and not in the repository; see
+       support/hl7-sources.mts. Without them these checks are skipped. */
+    let readSchemas: (version: string) => any;
+    let normalizeType: (type: string) => string;
+    before(async function () {
+      if (!fs.existsSync(schemasDir)) return this.skip();
+      ({ readSchemas, normalizeType } = await import(
+        '../../../support/hl7-sources.mts' as string
+      ));
+    });
+
+    for (const version of VERSIONS) {
+      it(`${version} should match the schemas`, () => {
+        const schemas = readSchemas(version);
+        const dict = dictionaries[version];
+        const diffs: string[] = [];
+        for (const [name, list] of Object.entries<any[]>(schemas.segments)) {
+          const ours = dict.segments[name]?.fields;
+          if (!ours) {
+            diffs.push(`segment ${name} missing`);
+            continue;
+          }
+          list.forEach((f, i) => {
+            if (!f) return;
+            const o = ours[String(i + 1)];
+            const at = `${name}.${i + 1}`;
+            /* Sun's early schemas write every composite CM_* type as CM */
+            const type =
+              f.type === 'CM' && o?.type.startsWith('CM') ? o.type : f.type;
+            if (o?.type !== normalizeType(type)) {
+              diffs.push(`${at} type ${o?.type} / ${type}`);
+            }
+            if ((o?.opt === 'R') !== f.min >= 1) {
+              diffs.push(`${at} opt ${o?.opt} / min ${f.min}`);
+            }
+            const rep = f.max === 0 ? 'infinite' : f.max;
+            if (o?.rep !== rep) diffs.push(`${at} rep ${o?.rep} / ${rep}`);
+            if (f.table !== undefined && o?.table !== f.table) {
+              diffs.push(`${at} table ${o?.table} / ${f.table}`);
+            }
+          });
+        }
+        for (const name of Object.keys(schemas.structures)) {
+          if (!dict.messages[name]) diffs.push(`message ${name} missing`);
+        }
+        expect(diffs).toEqual([]);
+      });
+    }
   });
 
   describe('sharing', () => {
@@ -218,26 +293,7 @@ describe('dictionary:dictionaries', () => {
     });
 
     it('should list every version in order', () => {
-      expect(Object.keys(dictionaries)).toEqual([
-        '2.1',
-        '2.2',
-        '2.3',
-        '2.3.1',
-        '2.4',
-        '2.5',
-        '2.5.1',
-        '2.6',
-        '2.7',
-        '2.7.1',
-        '2.8',
-      ]);
-    });
-
-    it('should serve 2.8 with the 2.7.1 definitions under its own number', () => {
-      expect(dictionaries['2.8'].version).toEqual('2.8');
-      expect(dictionaries['2.8'].segments.PID).toBe(
-        dictionaries['2.7.1'].segments.PID,
-      );
+      expect(Object.keys(dictionaries)).toEqual(VERSIONS);
     });
   });
 
@@ -246,9 +302,13 @@ describe('dictionary:dictionaries', () => {
       expect(findNearestHL7Version('2.5' as HL7Version)).toEqual('2.5');
       expect(findNearestHL7Version('2.5.2' as HL7Version)).toEqual('2.5.1');
       expect(findNearestHL7Version('2.3.2' as HL7Version)).toEqual('2.3.1');
-      expect(findNearestHL7Version('2.9' as HL7Version)).toEqual('2.8');
+      expect(findNearestHL7Version('2.8.3' as HL7Version)).toEqual('2.8.2');
       /* compared as numbers: 2.10 is newer than 2.9 */
-      expect(findNearestHL7Version('2.10' as HL7Version)).toEqual('2.8');
+      expect(findNearestHL7Version('2.10' as HL7Version)).toEqual('2.9');
+    });
+
+    it('should read a version with debris after it', () => {
+      expect(findNearestHL7Version('2.6\n' as HL7Version)).toEqual('2.6');
     });
 
     it('should fall back to the oldest version', () => {

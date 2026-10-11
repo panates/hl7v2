@@ -44,6 +44,8 @@ export interface HL7MessageSegmentsDefinition {
    * siblings is keyed as HAPI HL7v2 keys it (the second PID is "PID2")
    */
   segment?: string;
+  /** A choice: the message carries one of its items (`segments`) */
+  choice?: boolean;
   /** For a group, the names the same group has in other versions of the message */
   aliases?: string[];
   segments?: Record<string, HL7MessageSegmentsDefinition>;

@@ -13,4 +13,7 @@ export namespace HL7Version {
   export const v2_7 = '2.7';
   export const v2_7_1 = '2.7.1';
   export const v2_8 = '2.8';
+  export const v2_8_1 = '2.8.1';
+  export const v2_8_2 = '2.8.2';
+  export const v2_9 = '2.9';
 }

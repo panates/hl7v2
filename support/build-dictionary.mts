@@ -1,29 +1,36 @@
 /**
- * Generates packages/dictionary/data/hl7-data.js from the `hl7-dictionary`
- * package: every HL7 version complete, exactly as the source defines it.
+ * Generates packages/dictionary/data/hl7-data.js from HL7's own v2 XML
+ * schemas (see support/hl7-sources.mts for where to put them):
  *
  *   node support/build-dictionary.mts
  *
- * Definitions that are identical across versions are written once and
- * referenced by index, so the file stays small without the per-version deltas
- * it replaces - deltas could add and change but never remove, so a field,
- * segment or type withdrawn in a later version lived on in it.
+ * The schemas are the source of every segment, field, data type and message
+ * structure. What they do not carry comes from elsewhere:
+ * - trigger events (ADT_A04 is an ADT_A01): HAPI HL7v2's event map. An event
+ *   is the same definition object as its structure, so it cannot go stale;
+ * - descriptions of segments, data types, messages and groups, lengths before
+ *   2.6, the conditional/backward-compatible optionalities (C, B) and the
+ *   tables of data type components: the `hl7-dictionary` package, the
+ *   dictionary's previous source, for the same version, or for descriptions
+ *   the nearest one.
  *
- * Layout (see packages/dictionary/data/hl7-data.d.ts):
- *   fields:   [type, desc, opt, rep, len, table]        unique field definitions
- *   segments: [desc, [field index, ...]]                unique segment definitions
- *   types:    [desc, [field index, ...] | null]         unique data type definitions
- *   messages: [message definition]                      unique message structures
- *   versions: { version: [{ name: segment }, { name: type }, { name: message }] }
+ * Definitions identical across versions are written once and referenced by
+ * index (layout: packages/dictionary/data/hl7-data.d.ts).
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import dictionary from 'hl7-dictionary';
+import {
+  eventsFor,
+  readSchemas,
+  root,
+  type SchemaField,
+  type SchemaNode,
+  versionsWithSchemas,
+} from './hl7-sources.mts';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const outDir = path.resolve(__dirname, '../packages/dictionary/data');
-
+const outDir = path.join(root, 'packages/dictionary/data');
+const legacy: Record<string, any> = dictionary.definitions;
 const OPTIONALITY: Record<number, string> = { 1: 'O', 2: 'R', 3: 'C', 4: 'B' };
 
 class Pool<T> {
@@ -45,7 +52,93 @@ const segments = new Pool<unknown[]>();
 const types = new Pool<unknown[]>();
 const messages = new Pool<unknown>();
 
-function addField(f: any): number {
+/* ------------------------------------------------- the previous source */
+
+/** Versions to look a description up in: this one, then the nearest */
+function nearestLegacy(version: string): string[] {
+  const all = versionsWithSchemas();
+  const i = all.indexOf(version);
+  return Object.keys(legacy)
+    .map(v => [v, Math.abs(all.indexOf(v) - i)] as const)
+    .sort((a, b) => a[1] - b[1])
+    .map(([v]) => v);
+}
+
+function legacyDesc(
+  version: string,
+  kind: 'segments' | 'fields',
+  name: string,
+): string | undefined {
+  for (const v of nearestLegacy(version)) {
+    const desc = legacy[v][kind][name]?.desc;
+    if (desc) return desc;
+  }
+}
+
+function legacyField(
+  version: string,
+  kind: 'segments' | 'fields',
+  name: string,
+  pos: number,
+): any {
+  const def = legacy[version]?.[kind][name];
+  return (kind === 'segments' ? def?.fields : def?.subfields)?.[pos - 1];
+}
+
+/** Descriptions of messages and of their groups, by name */
+function legacyMessageDescs(version: string) {
+  const out = {
+    messages: {} as Record<string, string>,
+    groups: {} as Record<string, string>,
+  };
+  const kids = (n: any): any[] => n.segments?.segments || n.children || [];
+  const walk = (n: any) => {
+    for (const c of kids(n)) {
+      if (kids(c).length) {
+        if (c.desc) out.groups[c.name] = c.desc;
+        walk(c);
+      }
+    }
+  };
+  /* Farthest first, so the nearest version's descriptions win */
+  for (const v of nearestLegacy(version).reverse()) {
+    for (const [name, msg] of Object.entries<any>(legacy[v].messages || {})) {
+      if (msg.desc) out.messages[name] = msg.desc;
+      walk(msg);
+    }
+  }
+  return out;
+}
+
+/* ---------------------------------------------------------- definitions */
+
+function addField(
+  version: string,
+  kind: 'segments' | 'fields',
+  owner: string,
+  pos: number,
+  f: SchemaField,
+): number {
+  const old = legacyField(version, kind, owner, pos);
+  /* Sun's early schemas write every composite CM_* type as CM */
+  const type =
+    f.type === 'CM' && String(old?.datatype).startsWith('CM')
+      ? old.datatype
+      : f.type;
+  const sameType = old?.datatype === type;
+  const oldOpt = OPTIONALITY[old?.opt];
+  return fields.add([
+    type,
+    f.desc ?? old?.desc ?? null,
+    f.min >= 1 ? 'R' : oldOpt === 'C' || oldOpt === 'B' ? oldOpt : 'O',
+    f.max === 0 ? 'infinite' : f.max,
+    f.len ?? (sameType ? old.len : undefined) ?? null,
+    f.table ?? (sameType ? old.table : undefined) ?? null,
+  ]);
+}
+
+/** A field as the previous source writes it */
+function addLegacyField(f: any): number {
   return fields.add([
     f.datatype,
     f.desc ?? null,
@@ -57,11 +150,66 @@ function addField(f: any): number {
 }
 
 /**
- * A message structure: groups and segments keyed by name, in order (idx).
- *
- * Siblings sharing a name are numbered as HAPI HL7v2 numbers them - the
- * second PID of ADT_A17 is PID2 - so neither overwrites the other; a segment
- * whose key is not its type says which segment it is (`segment`).
+ * Data types a version's fields refer to but its schemas do not define - Sun's
+ * early sets leave out CN, CQ and the CM_* composites - taken from the previous
+ * source, the same version first. One found nowhere becomes a primitive, so a
+ * field of that type still parses.
+ */
+const undefinedTypes: string[] = [];
+const undefinedSegments: string[] = [];
+function completeTypes(version: string, typeMap: Record<string, number>) {
+  const typeOf = (i: number | null) =>
+    i === null ? null : (fields.items[i][0] as string);
+  for (;;) {
+    const referenced = new Set<string>();
+    for (const [, list] of Object.entries(typeMap)) {
+      for (const i of (types.items[list][1] as (number | null)[] | null) ||
+        []) {
+        const t = typeOf(i);
+        if (t) referenced.add(t);
+      }
+    }
+    for (const i of currentSegmentFields) {
+      const t = typeOf(i);
+      if (t) referenced.add(t);
+    }
+    const missing = [...referenced].filter(t => !(t in typeMap));
+    if (!missing.length) return;
+    for (const name of missing) {
+      const def = nearestLegacy(version)
+        .map(v => legacy[v].fields[name])
+        .find(Boolean);
+      if (!def) undefinedTypes.push(`${version} ${name}`);
+      const entry = [
+        def?.desc ?? null,
+        def?.subfields?.length ? def.subfields.map(addLegacyField) : null,
+      ];
+      typeMap[name] = types.add(entry, name + JSON.stringify(entry));
+    }
+  }
+}
+let currentSegmentFields: (number | null)[] = [];
+
+/** Field indexes by position; null where the version withdrew the field */
+function fieldIndexes(
+  version: string,
+  kind: 'segments' | 'fields',
+  owner: string,
+  list: SchemaField[],
+): (number | null)[] {
+  return Array.from(list, (f, i) =>
+    f ? addField(version, kind, owner, i + 1, f) : null,
+  );
+}
+
+/* ----------------------------------------------------- message structures */
+
+/**
+ * A message structure: groups, choices and segments keyed by name, in order
+ * (idx). Siblings sharing a name are numbered as HAPI HL7v2 numbers them -
+ * the second PID of ADT_A17 is PID2 - and a segment whose key is not its type
+ * says which segment it is (`segment`). A choice holds its alternatives, of
+ * which a message carries one.
  */
 interface StructureNode {
   idx?: number;
@@ -69,40 +217,42 @@ interface StructureNode {
   max?: number;
   desc?: string;
   segment?: string;
+  choice?: boolean;
   aliases?: string[];
   segments?: Record<string, StructureNode>;
 }
 
-function messageNode(node: any): StructureNode {
-  const target: StructureNode = {};
-  if (node.desc) target.desc = node.desc;
-  const children = node.segments?.segments || node.children;
-  if (children) {
-    target.segments = {};
-    const seen: Record<string, number> = {};
-    let i = 0;
-    for (const child of children) {
-      const n = (seen[child.name] = (seen[child.name] || 0) + 1);
-      const key = n > 1 ? child.name + n : child.name;
-      const t: StructureNode = { idx: i++ };
-      if (child.min) t.min = child.min;
-      if (child.max) t.max = child.max;
-      const sub = messageNode(child);
-      if (sub.desc) t.desc = sub.desc;
-      if (!sub.segments && key !== child.name) t.segment = child.name;
-      if (sub.segments) t.segments = sub.segments;
-      target.segments[key] = t;
+function structureNodes(
+  items: SchemaNode[],
+  segmentDescs: Record<string, string | undefined>,
+  groupDescs: Record<string, string>,
+): Record<string, StructureNode> {
+  const out: Record<string, StructureNode> = {};
+  const seen: Record<string, number> = {};
+  items.forEach((item, idx) => {
+    const n = (seen[item.name] = (seen[item.name] || 0) + 1);
+    const key = n > 1 ? item.name + n : item.name;
+    const node: StructureNode = { idx };
+    if (item.min >= 1) node.min = item.min;
+    if (item.max !== 0) node.max = item.max;
+    const desc = item.items ? groupDescs[item.name] : segmentDescs[item.name];
+    if (desc && !item.choice) node.desc = desc;
+    if (!item.items && key !== item.name) node.segment = item.name;
+    if (item.choice) node.choice = true;
+    if (item.items) {
+      node.segments = structureNodes(item.items, segmentDescs, groupDescs);
     }
-  }
-  return target;
+    out[key] = node;
+  });
+  return out;
 }
 
 /*
- * Group aliases. The standard renames groups between versions (ORU_R01's
- * PATIENT_RESULT is RESPONSE in 2.3; ADT_A40's PATIENT is PATIENT_ID in
- * 2.4-2.5.1), and the source has typos (TIIMING). Each version keeps its own
- * names; a group also lists, as aliases, the names the same group has in the
- * other versions of that message, so a lookup by either name finds it.
+ * Group aliases. The standard renames groups between versions (ADT_A40's
+ * PATIENT is PATIENT_ID in some), and early versions leave them unnamed.
+ * Each version keeps its own names; a group also lists, as aliases, the names
+ * the same group has in the other versions of that message, so a lookup by
+ * either name finds it.
  *
  * "The same group" across two consecutive versions: under matched parents,
  * the same name, or else the only unmatched group on each side that starts
@@ -115,7 +265,7 @@ interface GroupRef {
 
 function groupsOf(node: StructureNode): GroupRef[] {
   return Object.entries(node.segments || {})
-    .filter(([, n]) => n.segments)
+    .filter(([, n]) => n.segments && !n.choice)
     .map(([name, n]) => ({ node: n, name }));
 }
 
@@ -174,10 +324,8 @@ function assignAliases(
 ) {
   const identities = new Identities();
   const versionList = Object.keys(structures);
-  const messageNames = new Set(
-    versionList.flatMap(v => Object.keys(structures[v])),
-  );
-  for (const msg of messageNames) {
+  const names = new Set(versionList.flatMap(v => Object.keys(structures[v])));
+  for (const msg of names) {
     let previous: StructureNode | undefined;
     for (const v of versionList) {
       const current = structures[v][msg];
@@ -186,27 +334,26 @@ function assignAliases(
       previous = current;
     }
   }
-  /* The names of every group sharing an identity */
-  const names = new Map<StructureNode, Set<string>>();
   const visit = (node: StructureNode, fn: (g: GroupRef) => void) => {
     for (const g of groupsOf(node)) {
       fn(g);
       visit(g.node, fn);
     }
   };
+  const groupNames = new Map<StructureNode, Set<string>>();
   for (const v of versionList) {
     for (const s of Object.values(structures[v])) {
       visit(s, g => {
-        const root = identities.find(g.node);
-        if (!names.has(root)) names.set(root, new Set());
-        names.get(root)!.add(g.name);
+        const r = identities.find(g.node);
+        if (!groupNames.has(r)) groupNames.set(r, new Set());
+        groupNames.get(r)!.add(g.name);
       });
     }
   }
   for (const v of versionList) {
     for (const s of Object.values(structures[v])) {
       visit(s, g => {
-        const aliases = [...names.get(identities.find(g.node))!]
+        const aliases = [...groupNames.get(identities.find(g.node))!]
           .filter(n => n !== g.name)
           .sort();
         if (aliases.length) g.node.aliases = aliases;
@@ -215,60 +362,126 @@ function assignAliases(
   }
 }
 
-const sourceVersions = Object.entries<any>(dictionary.definitions);
+/* --------------------------------------------------------------- output */
+
+const versionList = versionsWithSchemas();
+if (!versionList.length) {
+  throw new Error(
+    'No HL7 v2 schemas in support/hl7-schemas - see support/hl7-sources.mts',
+  );
+}
+
 const structures: Record<string, Record<string, StructureNode>> = {};
-for (const [version, def] of sourceVersions) {
-  structures[version] = {};
-  for (const [name, msg] of Object.entries<any>(def.messages || {})) {
-    structures[version][name] = messageNode(msg);
+const eventsByVersion: Record<string, Record<string, string>> = {};
+for (const version of versionList) {
+  const schemas = readSchemas(version);
+  const descs = legacyMessageDescs(version);
+  const segmentDescs: Record<string, string | undefined> = {};
+  for (const name of Object.keys(schemas.segments)) {
+    segmentDescs[name] = legacyDesc(version, 'segments', name);
   }
+  structures[version] = {};
+  for (const [name, items] of Object.entries(schemas.structures)) {
+    const node: StructureNode = {};
+    if (descs.messages[name]) node.desc = descs.messages[name];
+    node.segments = structureNodes(items, segmentDescs, descs.groups);
+    structures[version][name] = node;
+  }
+  eventsByVersion[version] = Object.fromEntries(
+    Object.entries(eventsFor(version)).filter(
+      ([event, struct]) =>
+        structures[version][struct] && !structures[version][event],
+    ),
+  );
 }
 assignAliases(structures);
 
 const versions: Record<string, [object, object, object]> = {};
-for (const [version, def] of sourceVersions) {
+for (const version of versionList) {
+  const schemas = readSchemas(version);
   const segmentMap: Record<string, number> = {};
-  for (const [name, seg] of Object.entries<any>(def.segments)) {
+  for (const [name, list] of Object.entries(schemas.segments)) {
     segmentMap[name] = segments.add([
-      seg.desc ?? null,
-      seg.fields.map(addField),
+      legacyDesc(version, 'segments', name) ?? null,
+      fieldIndexes(version, 'segments', name, list),
     ]);
   }
+  /*
+   * Segments a structure names but the schemas do not define (PD1 in 2.1's
+   * ADT_A14, ED in 2.5's SUR_P09), from the previous source like missing
+   * types. anyHL7Segment and anyZSegment are the standard's placeholders.
+   */
+  const referenced = new Set<string>();
+  const collect = (nodes: Record<string, StructureNode>) => {
+    for (const [key, n] of Object.entries(nodes)) {
+      if (n.segments) collect(n.segments);
+      else referenced.add(n.segment || key);
+    }
+  };
+  for (const s of Object.values(structures[version])) collect(s.segments || {});
+  for (const name of referenced) {
+    if (segmentMap[name] || /^any(HL7|Z)Segment$/.test(name)) continue;
+    const def = nearestLegacy(version)
+      .map(v => legacy[v].segments[name])
+      .find(Boolean);
+    if (!def) {
+      undefinedSegments.push(`${version} ${name}`);
+      continue;
+    }
+    segmentMap[name] = segments.add([
+      def.desc ?? null,
+      def.fields.map(addLegacyField),
+    ]);
+  }
+  currentSegmentFields = Object.values(segmentMap).flatMap(
+    i => segments.items[i][1] as (number | null)[],
+  );
   const typeMap: Record<string, number> = {};
-  for (const [name, type] of Object.entries<any>(def.fields)) {
-    const subfields = type.subfields?.length
-      ? type.subfields.map(addField)
-      : null;
+  for (const [name, list] of Object.entries(schemas.types)) {
+    const entry = [
+      legacyDesc(version, 'fields', name) ?? null,
+      list ? fieldIndexes(version, 'fields', name, list) : null,
+    ];
     /** Keyed by name too: a codec is attached to a data type by its name */
-    const entry = [type.desc ?? null, subfields];
     typeMap[name] = types.add(entry, name + JSON.stringify(entry));
   }
+  completeTypes(version, typeMap);
   const messageMap: Record<string, number> = {};
-  for (const [name, structure] of Object.entries(structures[version])) {
-    messageMap[name] = messages.add(structure);
+  for (const [name, node] of Object.entries(structures[version])) {
+    messageMap[name] = messages.add(node);
+  }
+  /** An event is its structure's own definition */
+  for (const [event, struct] of Object.entries(eventsByVersion[version])) {
+    messageMap[event] = messageMap[struct];
   }
   versions[version] = [segmentMap, typeMap, messageMap];
 }
 
-const data = {
-  fields: fields.items,
-  segments: segments.items,
-  types: types.items,
-  messages: messages.items,
-  versions,
-};
-
 fs.mkdirSync(outDir, { recursive: true });
 fs.writeFileSync(
   path.join(outDir, 'hl7-data.js'),
-  '/* Generated by support/build-dictionary.mts from hl7-dictionary - do not edit */\n' +
+  '/* Generated by support/build-dictionary.mts from the HL7 v2 XML schemas - do not edit */\n' +
     'export default ' +
-    JSON.stringify(data) +
+    JSON.stringify({
+      fields: fields.items,
+      segments: segments.items,
+      types: types.items,
+      messages: messages.items,
+      versions,
+    }) +
     ';\n',
   'utf-8',
 );
+if (undefinedSegments.length) {
+  console.warn(`segments defined nowhere: ${undefinedSegments.join(', ')}`);
+}
+if (undefinedTypes.length) {
+  console.warn(
+    `types defined nowhere, made primitive: ${undefinedTypes.join(', ')}`,
+  );
+}
 console.log(
   `fields ${fields.items.length}, segments ${segments.items.length}, ` +
     `types ${types.items.length}, messages ${messages.items.length}, ` +
-    `versions ${Object.keys(versions).join(' ')}`,
+    `versions ${versionList.join(' ')}`,
 );
