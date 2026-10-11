@@ -1,0 +1,523 @@
+{
+  "hapi": "2.6.0",
+  "read": {
+    "adt 2.5: components, sub-components, repetitions": {
+      "values": {
+        "MSH-1": "|",
+        "MSH-2": "^~\\&",
+        "MSH-3": "REGADT",
+        "MSH-9": "ADT",
+        "MSH-9-1": "ADT",
+        "MSH-9-2": "A01",
+        "MSH-9-3": "ADT_A01",
+        "MSH-10": "MSG00001",
+        "MSH-12": "2.5",
+        "EVN-2": "20250301101500+0300",
+        "PID-1": "1",
+        "PID-3": "123456",
+        "PID-3-1": "123456",
+        "PID-3-4": "GHH",
+        "PID-3-4-1": "GHH",
+        "PID-3-4-2": "1.2.3",
+        "PID-3-4-3": "ISO",
+        "PID-3-5": "MR",
+        "PID-3(1)-1": "98765432100",
+        "PID-3(1)-5": "NNTUR",
+        "PID-3(2)-1": null,
+        "PID-5": "Yılmaz",
+        "PID-5-1": "Yılmaz",
+        "PID-5-1-1": "Yılmaz",
+        "PID-5-1-2": "Van",
+        "PID-5-1-3": "Der",
+        "PID-5-2": "Ayşe",
+        "PID-5-3": "Gül",
+        "PID-5-5": "Dr.",
+        "PID-7": "19800512",
+        "PID-7-1": "19800512",
+        "PID-8": "F",
+        "PID-11-1": "Atatürk Cad. 12",
+        "PID-11-3": "İstanbul",
+        "PID-13-2": "PRN",
+        "PID-13-6": "212",
+        "PID-13-7": "5551234",
+        "NK1-2-1": "Yılmaz",
+        "NK1(1)-2-1": "Yılmaz",
+        "NK1(1)-3-2": "Daughter",
+        "PV1-3": "2000",
+        "PV1-3-2": "2012",
+        "PV1-7-2": "Doğan",
+        "PV1-10": "SUR",
+        "PID-30": null,
+        "PID-5-9": null
+      },
+      "encoded": "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.5\rEVN|A01|20250301101500+0300\rPID|1||123456^^^GHH&1.2.3&ISO^MR~98765432100^^^TRNVI^NNTUR||Yılmaz&Van&Der^Ayşe^Gül^^Dr.||19800512|F|||Atatürk Cad. 12^^İstanbul^^34000^TUR||^PRN^PH^^90^212^5551234\rNK1|1|Yılmaz^Mehmet|SPO^Spouse^HL70063\rNK1|2|Yılmaz^Zeynep|DAU^Daughter^HL70063\rPV1|1|I|2000^2012^01||||004777^Doğan^Ali^^^Dr.|||SUR\r"
+    },
+    "escapes in values": {
+      "values": {
+        "NTE-3": "a|b^c&d~e\\f",
+        "NTE(1)-3": "hex \\X41\\ and \\X0D0A\\ end",
+        "NTE(2)-3": "line\\.br\\break",
+        "NTE(3)-3": "\\H\\bold\\N\\ text",
+        "NTE(4)-3": "unknown Q123 seq",
+        "NTE(5)-3": "trailing "
+      },
+      "encoded": "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.5\rEVN|A01\rPID|1||1||X\rNTE|1||a\\F\\b\\S\\c\\T\\d\\R\\e\\E\\f\rNTE|2||hex \\X41\\ and \\X0D0A\\ end\rNTE|3||line\\.br\\break\rNTE|4||\\H\\bold\\N\\ text\rNTE|5||unknown Q123 seq\rNTE|6||trailing \r"
+    },
+    "null and empty values": {
+      "values": {
+        "PID-3": "\"\"",
+        "PID-5": "\"\"",
+        "PID-5-1": "\"\"",
+        "PID-5-2": "Ayşe",
+        "PID-7": null,
+        "PID-13": "\"\"",
+        "PID-13(1)": null,
+        "PID-14": null
+      },
+      "encoded": "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.5\rEVN|A01\rPID|1||\"\"||\"\"^Ayşe||||||||\"\"\r"
+    },
+    "custom delimiters": {
+      "values": {
+        "MSH-1": "#",
+        "MSH-2": "$*@%",
+        "MSH-9-2": "A01",
+        "PID-3": "A|B^C",
+        "PID-3-1": "A|B^C",
+        "PID-3-2": "D",
+        "PID-3-2-2": null,
+        "PID-5-1": "N1",
+        "PID-5-2": "N2"
+      },
+      "encoded": "MSH#$*@%#APP#FAC#####ADT$A01$ADT_A01#C1#P#2.5\rEVN#A01\rPID#1##A|B^C$D*E%F##N1$N2\r"
+    },
+    "2.7 truncation character": {
+      "values": {
+        "MSH-2": "^~\\&#",
+        "PID-3-1": "12#34",
+        "PID-5-1": "Doe#",
+        "PID-5-2": "J"
+      },
+      "encoded": "MSH|^~\\&#|APP|FAC|||20250101||ADT^A01^ADT_A01|C1|P|2.7\rEVN|A01\rPID|1||12#34^^^H^MR||Doe#^J\r"
+    },
+    "segments split by LF": {
+      "error": "HL7Exception: The HL7 version 2.5\nEVN is not recognized"
+    },
+    "oru 2.5.1: groups and segment repetitions": {
+      "values": {
+        "OBX-5": "7.2",
+        "OBX(1)-5": "!error: Can't create repetition #1 of Structure OBX - this Structure is non-repeating so only rep 0 may be retrieved",
+        "OBX(2)-5": "!error: Can't return repetition #2 of OBX - there are currently only 1 repetitions so rep# must be between 0 and 1",
+        "OBR(1)-4-2": "!error: Can't create repetition #1 of Structure OBR - this Structure is non-repeating so only rep 0 may be retrieved",
+        "/PATIENT_RESULT/ORDER_OBSERVATION/OBSERVATION/OBX-5": "7.2",
+        "/PATIENT_RESULT/ORDER_OBSERVATION(0)/OBSERVATION(1)/OBX-3-2": "Hemoglobin",
+        "/PATIENT_RESULT/ORDER_OBSERVATION(1)/OBSERVATION(0)/OBX-5": "132",
+        "/PATIENT_RESULT/ORDER_OBSERVATION(1)/OBR-4-1": "24323-8",
+        "/PATIENT_RESULT/PATIENT/PID-5-1": "Yılmaz",
+        "/PATIENT_RESULT/ORDER_OBSERVATION(1)/OBSERVATION/NTE-3": "Fasting sample.",
+        "NTE-3": null
+      },
+      "encoded": "MSH|^~\\&|LIS|GHH|EHR|GHH|20250302083000+0300||ORU^R01^ORU_R01|LAB00042|P|2.5.1\rPID|1||123456^^^GHH^MR||Yılmaz^Ayşe\rPV1|1|I\rORC|RE|ORD1001\rOBR|1|ORD1001|LAB1001|58410-2^CBC panel^LN\rOBX|1|NM|6690-2^Leukocytes^LN||7.2|10*3/uL^^UCUM|4.0-10.0|N|||F\rOBX|2|NM|718-7^Hemoglobin^LN||11.1|g/dL^^UCUM|12.0-16.0|L|||F\rORC|RE|ORD1002\rOBR|2|ORD1002|LAB1002|24323-8^Metabolic panel^LN\rOBX|1|NM|2345-7^Glucose^LN||132|mg/dL^^UCUM|70-99|H|||F\rNTE|1||Fasting sample.\r"
+    },
+    "oru 2.3: RESPONSE group": {
+      "values": {
+        "OBX(2)-5": "!error: Can't return repetition #2 of OBX - there are currently only 1 repetitions so rep# must be between 0 and 1",
+        "/RESPONSE/ORDER_OBSERVATION(1)/OBSERVATION/OBX-5": "132",
+        "/RESPONSE/PATIENT/PID-5-1": "Yılmaz"
+      },
+      "encoded": "MSH|^~\\&|LIS|GHH|EHR|GHH|20250302083000+0300||ORU^R01|LAB00042|P|2.3\rPID|1||123456^^^GHH^MR||Yılmaz^Ayşe\rPV1|1|I\rORC|RE|ORD1001\rOBR|1|ORD1001|LAB1001|58410-2^CBC panel^LN\rOBX|1|NM|6690-2^Leukocytes^LN||7.2|10*3/uL^^UCUM|4.0-10.0|N|||F\rOBX|2|NM|718-7^Hemoglobin^LN||11.1|g/dL^^UCUM|12.0-16.0|L|||F\rORC|RE|ORD1002\rOBR|2|ORD1002|LAB1002|24323-8^Metabolic panel^LN\rOBX|1|NM|2345-7^Glucose^LN||132|mg/dL^^UCUM|70-99|H|||F\rNTE|1||Fasting sample.\r"
+    },
+    "2.1 adt": {
+      "values": {
+        "MSH-9": "ADT",
+        "MSH-9-1": "ADT",
+        "PID-3": "PATID1234",
+        "PID-3-1": "PATID1234",
+        "PID-3-2": "5",
+        "PID-5": "JONES",
+        "PID-5-1": "JONES",
+        "PID-5-2": "WILLIAM",
+        "PID-5-4": "III",
+        "PID-7": "19610615",
+        "PID-8": "M"
+      },
+      "encoded": "MSH|^~\\&|APP|FAC|||198808181126||ADT^A01|C1|P|2.1\rEVN|A01|198808181123\rPID|||PATID1234^5^M11||JONES^WILLIAM^A^III||19610615|M\r"
+    },
+    "2.4 adt": {
+      "values": {
+        "PID-3-4-2": "1.2",
+        "PID-5-1": "Doe",
+        "PID-5-1-1": "Doe",
+        "PID-5-7": "L",
+        "MSH-9-3": "ADT_A01"
+      },
+      "encoded": "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.4\rEVN|A01\rPID|1||123^^^H&1.2&ISO^MR||Doe^John^^^^^L|||M\r"
+    },
+    "2.8 adt": {
+      "values": {
+        "PID-3-1": "123",
+        "PID-5-1": "Doe",
+        "PID-5-2": "John",
+        "PID-7": "20000101",
+        "PID-8": "M",
+        "MSH-9-3": "ADT_A01"
+      },
+      "encoded": "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.8\rEVN||20250101\rPID|1||123^^^H^MR||Doe^John||20000101|M\r"
+    },
+    "primitive with extra components": {
+      "values": {
+        "PID-8": "F",
+        "PID-8-1": "F",
+        "PID-8-2": "extra",
+        "PID-8-3": "more"
+      },
+      "encoded": "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.5\rEVN|A01\rPID|1||1||X|||F^extra^more\r"
+    },
+    "z segment and fields beyond the definition": {
+      "values": {
+        "ZPI-1": "a",
+        "ZPI-2": "b",
+        "ZPI-2-1": "b",
+        "ZPI-2-2": "c",
+        "ZPI-2-2-2": "d",
+        "ZPI-3": "e",
+        "ZPI-3(1)": "f"
+      },
+      "encoded": "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.5\rEVN|A01\rPID|1||1||X\rPV1|1|I\rZPI|a|b^c&d|e~f\r"
+    }
+  },
+  "write": {
+    "set components": {
+      "encoded": "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.5\rEVN|A01\rPID|1||1||Yılmaz^Ayşe||19800512|F\r"
+    },
+    "set values holding delimiters": {
+      "encoded": "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.5\rEVN|A01\rPID|1||1||a\\F\\b\\S\\c\\T\\d\\R\\e\\E\\f^line1\\X000d\\line2\r"
+    },
+    "set repetitions and sub-components": {
+      "encoded": "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.5\rEVN|A01\rPID|1||1~222^^^&1.2.3~^^^^SS||X\r"
+    },
+    "set in a new repeating segment": {
+      "encoded": "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.5\rEVN|A01\rPID|1||1||X\rNK1||Yılmaz\rNK1||Kaya\rPV1|1|I\r"
+    },
+    "set empty and null": {
+      "encoded": "MSH|^~\\&|REGADT|GOOD HEALTH HOSPITAL|EHR|GOOD HEALTH HOSPITAL|20250301101500+0300||ADT^A01^ADT_A01|MSG00001|P|2.5\rEVN|A01\rPID|1||1||X|||\"\"\r"
+    },
+    "set through groups": {
+      "encoded": "MSH|^~\\&|LIS|GHH|EHR|GHH|20250302083000+0300||ORU^R01^ORU_R01|LAB00042|P|2.5.1\rPID|1||123456^^^GHH^MR||Yılmaz^Ayşe\rPV1|1|I\rORC|RE|ORD1001\rOBR|1|ORD1001|LAB1001|58410-2^CBC panel^LN\rOBX|1|NM|6690-2^Leukocytes^LN||7.2|10*3/uL^^UCUM|4.0-10.0|N|||F\rOBX|2|NM|718-7^Hemoglobin^LN||11.1|g/dL^^UCUM|12.0-16.0|L|||F\rORC|RE|ORD1002\rOBR|2|ORD1002|LAB1002|24323-8^Metabolic panel^LN\rOBX|1|NM|2345-7^Glucose^LN||140|mg/dL^^UCUM|70-99|H|||F\rNTE|1||Fasting sample.\rOBX|||||1.0\r"
+    }
+  },
+  "escape": {
+    "delimiters and text": {
+      "escaped": [
+        "a\\F\\b",
+        "a\\S\\b",
+        "a\\T\\b",
+        "a\\R\\b",
+        "a\\E\\b",
+        "a\\X000d\\b",
+        "a\nb",
+        "plain",
+        "Şahin Gül",
+        "\\E\\F\\E\\",
+        "x\\.br\\y",
+        "\\H\\bold\\N\\",
+        "\\X41\\",
+        "a\\E\\Q1\\E\\b",
+        "end\\E\\"
+      ],
+      "unescaped": [
+        "a|b",
+        "a^b",
+        "a&b",
+        "a~b",
+        "ab",
+        "a\rb",
+        "a\nb",
+        "plain",
+        "Şahin Gül",
+        "|",
+        "x\\.br\\y",
+        "\\H\\bold\\N\\",
+        "\\X41\\",
+        "aQ1b",
+        "end"
+      ]
+    },
+    "hex escapes": {
+      "escaped": [
+        "a\\X000d\\b",
+        "a\\X0D\\b",
+        "a\\X0A\\b",
+        "a\\X000a\\b",
+        "a\\X0D0A\\b",
+        "\\X0d\\"
+      ],
+      "unescaped": [
+        "a\rb",
+        "a\\X0D\\b",
+        "a\\X0A\\b",
+        "a\\X000a\\b",
+        "a\\X0D0A\\b",
+        "\\X0d\\"
+      ]
+    }
+  },
+  "ack": {
+    "original mode 2.5": {
+      "fields": {
+        "MSH-3": "EHR",
+        "MSH-4": "GOOD HEALTH HOSPITAL",
+        "MSH-5": "REGADT",
+        "MSH-6": "GOOD HEALTH HOSPITAL",
+        "MSH-9-1": "ACK",
+        "MSH-9-2": "A01",
+        "MSH-9-3": "ACK",
+        "MSH-11": "P",
+        "MSH-12": "2.5",
+        "MSH-15": null,
+        "MSH-16": null,
+        "MSH-18": null
+      },
+      "segments": [
+        "MSA|AA|MSG00001"
+      ]
+    },
+    "enhanced mode": {
+      "fields": {
+        "MSH-3": "EHR",
+        "MSH-4": "GOOD HEALTH HOSPITAL",
+        "MSH-5": "REGADT",
+        "MSH-6": "GOOD HEALTH HOSPITAL",
+        "MSH-9-1": "ACK",
+        "MSH-9-2": "A01",
+        "MSH-9-3": "ACK",
+        "MSH-11": "P",
+        "MSH-12": "2.5",
+        "MSH-15": null,
+        "MSH-16": null,
+        "MSH-18": null
+      },
+      "segments": [
+        "MSA|AA|MSG00001"
+      ]
+    },
+    "2.3": {
+      "fields": {
+        "MSH-3": "EHR",
+        "MSH-4": "GOOD HEALTH HOSPITAL",
+        "MSH-5": "REGADT",
+        "MSH-6": "GOOD HEALTH HOSPITAL",
+        "MSH-9-1": "ACK",
+        "MSH-9-2": "A01",
+        "MSH-9-3": null,
+        "MSH-11": "P",
+        "MSH-12": "2.3",
+        "MSH-15": null,
+        "MSH-16": null,
+        "MSH-18": null
+      },
+      "segments": [
+        "MSA|AA|MSG00001"
+      ]
+    },
+    "2.1": {
+      "fields": {
+        "MSH-3": "RAPP",
+        "MSH-4": "RFAC",
+        "MSH-5": "APP",
+        "MSH-6": "FAC",
+        "MSH-9-1": "ACK",
+        "MSH-9-2": "A01",
+        "MSH-9-3": null,
+        "MSH-11": "P",
+        "MSH-12": "2.1",
+        "MSH-15": null,
+        "MSH-16": null,
+        "MSH-18": null
+      },
+      "segments": [
+        "MSA|AA|C1"
+      ]
+    },
+    "2.7 with charset and HD": {
+      "fields": {
+        "MSH-3": "RAPP",
+        "MSH-4": "RFAC",
+        "MSH-5": "APP",
+        "MSH-6": "FAC",
+        "MSH-9-1": "ACK",
+        "MSH-9-2": "R01",
+        "MSH-9-3": "ACK",
+        "MSH-11": "P",
+        "MSH-12": "2.7",
+        "MSH-15": null,
+        "MSH-16": null,
+        "MSH-18": null
+      },
+      "segments": [
+        "MSA|AA|C1"
+      ]
+    }
+  },
+  "nak": {
+    "2.5 required field": {
+      "fields": {
+        "MSH-3": "EHR",
+        "MSH-4": "GOOD HEALTH HOSPITAL",
+        "MSH-5": "REGADT",
+        "MSH-6": "GOOD HEALTH HOSPITAL",
+        "MSH-9-1": "ACK",
+        "MSH-9-2": "A01",
+        "MSH-9-3": "ACK",
+        "MSH-11": "P",
+        "MSH-12": "2.5",
+        "MSH-15": null,
+        "MSH-16": null,
+        "MSH-18": null
+      },
+      "segments": [
+        "MSA|AE|MSG00001",
+        "ERR||PID^1^3|101^Required field missing^HL70357^^^^^^PID-3 is required at PID(1)-3(0)|E"
+      ]
+    },
+    "2.5 with repetition and component": {
+      "fields": {
+        "MSH-3": "EHR",
+        "MSH-4": "GOOD HEALTH HOSPITAL",
+        "MSH-5": "REGADT",
+        "MSH-6": "GOOD HEALTH HOSPITAL",
+        "MSH-9-1": "ACK",
+        "MSH-9-2": "A01",
+        "MSH-9-3": "ACK",
+        "MSH-11": "P",
+        "MSH-12": "2.5",
+        "MSH-15": null,
+        "MSH-16": null,
+        "MSH-18": null
+      },
+      "segments": [
+        "MSA|AE|MSG00001",
+        "ERR||PID^1^3^2^4|102^Data type error^HL70357^^^^^^Bad data at PID(1)-3(2)-4|E"
+      ]
+    },
+    "2.5 application error, no location": {
+      "fields": {
+        "MSH-3": "EHR",
+        "MSH-4": "GOOD HEALTH HOSPITAL",
+        "MSH-5": "REGADT",
+        "MSH-6": "GOOD HEALTH HOSPITAL",
+        "MSH-9-1": "ACK",
+        "MSH-9-2": "A01",
+        "MSH-9-3": "ACK",
+        "MSH-11": "P",
+        "MSH-12": "2.5",
+        "MSH-15": null,
+        "MSH-16": null,
+        "MSH-18": null
+      },
+      "segments": [
+        "MSA|AE|MSG00001",
+        "ERR|||207^Application internal error^HL70357^^^^^^Database down at unknown location|E"
+      ]
+    },
+    "2.5 rejected": {
+      "fields": {
+        "MSH-3": "EHR",
+        "MSH-4": "GOOD HEALTH HOSPITAL",
+        "MSH-5": "REGADT",
+        "MSH-6": "GOOD HEALTH HOSPITAL",
+        "MSH-9-1": "ACK",
+        "MSH-9-2": "A01",
+        "MSH-9-3": "ACK",
+        "MSH-11": "P",
+        "MSH-12": "2.5",
+        "MSH-15": null,
+        "MSH-16": null,
+        "MSH-18": null
+      },
+      "segments": [
+        "MSA|AR|MSG00001",
+        "ERR|||200^Unsupported message type^HL70357^^^^^^Unsupported message type at unknown location|E"
+      ]
+    },
+    "2.4 required field": {
+      "fields": {
+        "MSH-3": "EHR",
+        "MSH-4": "GOOD HEALTH HOSPITAL",
+        "MSH-5": "REGADT",
+        "MSH-6": "GOOD HEALTH HOSPITAL",
+        "MSH-9-1": "ACK",
+        "MSH-9-2": "A01",
+        "MSH-9-3": null,
+        "MSH-11": "P",
+        "MSH-12": "2.4",
+        "MSH-15": null,
+        "MSH-16": null,
+        "MSH-18": null
+      },
+      "segments": [
+        "MSA|AE|MSG00001|Required field missing",
+        "ERR|PID^^3^101&Required field missing&HL70357&&PID-3 is required at PID(1)-3(0)"
+      ]
+    },
+    "2.3 required field": {
+      "fields": {
+        "MSH-3": "EHR",
+        "MSH-4": "GOOD HEALTH HOSPITAL",
+        "MSH-5": "REGADT",
+        "MSH-6": "GOOD HEALTH HOSPITAL",
+        "MSH-9-1": "ACK",
+        "MSH-9-2": "A01",
+        "MSH-9-3": null,
+        "MSH-11": "P",
+        "MSH-12": "2.3",
+        "MSH-15": null,
+        "MSH-16": null,
+        "MSH-18": null
+      },
+      "segments": [
+        "MSA|AE|MSG00001|Required field missing",
+        "ERR|PID^^3^101&Required field missing&HL70357&&PID-3 is required at PID(1)-3(0)"
+      ]
+    },
+    "2.2 error": {
+      "fields": {
+        "MSH-3": "RAPP",
+        "MSH-4": "RFAC",
+        "MSH-5": "APP",
+        "MSH-6": "FAC",
+        "MSH-9-1": "ACK",
+        "MSH-9-2": "A01",
+        "MSH-9-3": null,
+        "MSH-11": "P",
+        "MSH-12": "2.2",
+        "MSH-15": null,
+        "MSH-16": null,
+        "MSH-18": null
+      },
+      "segments": [
+        "MSA|AE|C1|Application internal error",
+        "ERR|PID^^3^207&Application internal error&HL70357&&Failed at PID(1)-3(0)"
+      ]
+    },
+    "2.7 required field": {
+      "fields": {
+        "MSH-3": "RAPP",
+        "MSH-4": "RFAC",
+        "MSH-5": "APP",
+        "MSH-6": "FAC",
+        "MSH-9-1": "ACK",
+        "MSH-9-2": "A01",
+        "MSH-9-3": "ACK",
+        "MSH-11": "P",
+        "MSH-12": "2.7",
+        "MSH-15": null,
+        "MSH-16": null,
+        "MSH-18": null
+      },
+      "segments": [
+        "MSA|AE|C1",
+        "ERR||PID^1^3|101^Required field missing^HL70357^^^^^^PID-3 is required at PID(1)-3(0)|E"
+      ]
+    }
+  }
+}

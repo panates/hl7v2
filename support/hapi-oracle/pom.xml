@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  HAPI HL7v2 as the reference the library's behaviour is checked against:
+  runs packages/hl7v2/test/hapi/cases.json through HAPI and writes what it
+  gives to expected.json, which the tests compare with (hapi.spec.ts).
+
+    npm run hapi:expected
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.panates.hl7v2</groupId>
+  <artifactId>hapi-oracle</artifactId>
+  <version>1.0.0</version>
+
+  <properties>
+    <maven.compiler.release>17</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <hapi.version>2.6.0</hapi.version>
+  </properties>
+
+  <dependencies>
+    <dependency><groupId>ca.uhn.hapi</groupId><artifactId>hapi-base</artifactId><version>${hapi.version}</version></dependency>
+    <dependency><groupId>ca.uhn.hapi</groupId><artifactId>hapi-structures-v21</artifactId><version>${hapi.version}</version></dependency>
+    <dependency><groupId>ca.uhn.hapi</groupId><artifactId>hapi-structures-v22</artifactId><version>${hapi.version}</version></dependency>
+    <dependency><groupId>ca.uhn.hapi</groupId><artifactId>hapi-structures-v23</artifactId><version>${hapi.version}</version></dependency>
+    <dependency><groupId>ca.uhn.hapi</groupId><artifactId>hapi-structures-v231</artifactId><version>${hapi.version}</version></dependency>
+    <dependency><groupId>ca.uhn.hapi</groupId><artifactId>hapi-structures-v24</artifactId><version>${hapi.version}</version></dependency>
+    <dependency><groupId>ca.uhn.hapi</groupId><artifactId>hapi-structures-v25</artifactId><version>${hapi.version}</version></dependency>
+    <dependency><groupId>ca.uhn.hapi</groupId><artifactId>hapi-structures-v251</artifactId><version>${hapi.version}</version></dependency>
+    <dependency><groupId>ca.uhn.hapi</groupId><artifactId>hapi-structures-v26</artifactId><version>${hapi.version}</version></dependency>
+    <dependency><groupId>ca.uhn.hapi</groupId><artifactId>hapi-structures-v27</artifactId><version>${hapi.version}</version></dependency>
+    <dependency><groupId>ca.uhn.hapi</groupId><artifactId>hapi-structures-v28</artifactId><version>${hapi.version}</version></dependency>
+    <dependency><groupId>com.google.code.gson</groupId><artifactId>gson</artifactId><version>2.11.0</version></dependency>
+    <dependency><groupId>org.slf4j</groupId><artifactId>slf4j-nop</artifactId><version>2.0.16</version></dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.5.0</version>
+        <configuration>
+          <mainClass>Oracle</mainClass>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

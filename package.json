@@ -23,7 +23,8 @@
     "precover": "rman clean",
     "precitest": "rman clean",
     "citest": "c8 mocha",
-    "examples": "tsc -p examples/tsconfig.json && node examples/run-all.mjs"
+    "examples": "tsc -p examples/tsconfig.json && node examples/run-all.mjs",
+    "hapi:expected": "mvn -q -f support/hapi-oracle/pom.xml compile exec:java -Dexec.args='packages/hl7v2/test/hapi/cases.json packages/hl7v2/test/hapi/expected.json'"
   },
   "devDependencies": {
     "@panates/eslint-config-ts": "^2.3.2",
