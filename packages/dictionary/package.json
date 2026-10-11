@@ -8,8 +8,7 @@
   "dependencies": {
     "@jsopen/objects": "^2.3.4",
     "ts-gems": "^3.11.6",
-    "tslib": "^2.8.1",
-    "valgen": "^7.0.4"
+    "tslib": "^2.8.1"
   },
   "devDependencies": {
     "expect": "^30.5.2",

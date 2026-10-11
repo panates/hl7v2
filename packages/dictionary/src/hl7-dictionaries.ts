@@ -1,7 +1,7 @@
-import { toInteger, toNumber } from 'valgen';
 import data from '../data/hl7-data.js';
 import { toHL7Date, toHL7DateTime, toHL7Time } from './hl7-date.util.js';
 import { HL7Dictionary } from './hl7-dictionary.js';
+import { toHL7Number, toHL7SequenceId } from './hl7-number.util.js';
 import type {
   HL7DataTypeDefinition,
   HL7DatatypeOptional,
@@ -28,9 +28,8 @@ const TYPE_CODECS: Record<
   DT: { decode: toHL7Date, encode: toHL7Date },
   DTM: { decode: toHL7DateTime, encode: toHL7DateTime },
   TM: { decode: toHL7Time, encode: toHL7Time },
-  /* Wrapped: valgen's second argument is its options, not decode's `read` */
-  NM: { decode: v => toNumber(v) },
-  SI: { decode: v => toInteger(v) },
+  NM: { decode: toHL7Number },
+  SI: { decode: toHL7SequenceId },
 };
 
 /** Conversions on a component of a composite type: the time of a TS */

@@ -71,6 +71,56 @@ describe('hl7v2:validate', () => {
       );
     });
 
+    it('should keep a number not in NM form as written, and report it', () => {
+      const pv1 = (charges: string) =>
+        HL7Message.parse(
+          [
+            MSH,
+            'EVN||20250101',
+            'PID|1||123||Doe',
+            `PV1|1|I${'|'.repeat(45)}${charges}`,
+          ].join('\r'),
+        );
+      /* A decimal comma is not twelve */
+      const comma = pv1('12,5');
+      expect(comma.get('PV1-47')).toEqual('12,5');
+      expect(comma.toHL7String()).toContain('|12,5');
+      expect(summary(comma.validate())).toEqual(['102 PV1-47']);
+      for (const bad of ['12a', '1e3', '0x10']) {
+        expect(summary(pv1(bad).validate())).toEqual(['102 PV1-47']);
+      }
+      expect(pv1('-007.50').get('PV1-47')).toEqual(-7.5);
+      /* Beyond what a JavaScript number holds exactly: the text */
+      expect(pv1('12345678901234567890').get('PV1-47')).toEqual(
+        '12345678901234567890',
+      );
+      /* SI: a non-negative integer */
+      const si = HL7Message.parse(
+        [MSH, 'EVN||20250101', 'PID|-1||123||Doe', 'PV1|1|I'].join('\r'),
+      );
+      expect(summary(si.validate())).toEqual(['102 PID-1']);
+    });
+
+    it('should check OBX-5 as the type OBX-2 names', () => {
+      const oru = (obx: string) =>
+        HL7Message.parse(
+          [
+            'MSH|^~\\&|A|B|C|D|20250101||ORU^R01^ORU_R01|1|P|2.5',
+            'PID|1||1||X',
+            'OBR|1|||CBC',
+            obx,
+          ].join('\r'),
+        ).validate();
+      expect(summary(oru('OBX|1|NM|X||12,5||||||F'))).toEqual(['102 OBX-5']);
+      expect(summary(oru('OBX|1|TM|X||25:61||||||F'))).toEqual(['102 OBX-5']);
+      expect(summary(oru('OBX|1|DT|X||2025-01-01||||||F'))).toEqual([
+        '102 OBX-5',
+      ]);
+      expect(summary(oru('OBX|1|TS|X||2025x||||||F'))).toEqual(['102 OBX-5.1']);
+      expect(oru('OBX|1|NM|X||-12.50||||||F')).toEqual([]);
+      expect(oru('OBX|1|ST|X||any text||||||F')).toEqual([]);
+    });
+
     it('should take a field set to an empty string as missing', () => {
       const msg = HL7Message.parse(VALID.join('\r'));
       msg.header.field(10).setValue('');

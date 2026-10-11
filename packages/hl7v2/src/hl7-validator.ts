@@ -6,7 +6,9 @@ import type { Hl7Component } from './hl7-component.js';
 import { HL7Error } from './hl7-error.js';
 import type { HL7Field } from './hl7-field.js';
 import type { HL7Message } from './hl7-message.js';
+import type { HL7Repetition } from './hl7-repetition.js';
 import { type HL7Segment, isHeaderSegment } from './hl7-segment.js';
+import { hl7UnEscape } from './utils/hl7-escape.js';
 
 export interface HL7ValidateOptions {
   /**
@@ -120,6 +122,17 @@ function validateSegment(
           ),
         );
       }
+      /* OBX-5 is VARIES: read as the type OBX-2 names */
+      if (segment.segmentType === 'OBX' && pos === 5) {
+        checkVaries(
+          segment,
+          rep,
+          `${name}`,
+          at(pos, { repetitionIndex: r }),
+          errors,
+        );
+        return;
+      }
       const components = rep.components || [];
       if (field.isPrimitive) {
         if (components[0]) {
@@ -159,6 +172,57 @@ function validateSegment(
       }
     });
   }
+}
+
+/**
+ * OBX-5 (VARIES) checked as the data type OBX-2 names, as HAPI reads it: a
+ * primitive's value, a composite's primitive components. A type the
+ * version does not define is left alone.
+ */
+function checkVaries(
+  segment: HL7Segment,
+  rep: HL7Repetition,
+  name: string,
+  location: Partial<HL7Error.ErrorArgs>,
+  errors: HL7Error[],
+) {
+  const typeName = String(segment.field(2).getValue() ?? '');
+  const typeDef = segment.message.dictionary.types[typeName];
+  if (!typeDef) return;
+  /* Read from the text: the field itself is VARIES, kept as written */
+  const text = rep.toHL7String();
+  const { componentSeparator } = segment.message;
+  const check = (
+    value: string,
+    decode: ((v: any, read?: boolean) => any) | undefined,
+    what: string,
+    more?: Partial<HL7Error.ErrorArgs>,
+  ) => {
+    if (!value || !decode) return;
+    try {
+      decode(hl7UnEscape(value, segment.message), true);
+    } catch (e: any) {
+      errors.push(
+        error(102, `${what} is not a valid ${typeName} (OBX-2): ${e.message}`, {
+          ...location,
+          ...more,
+        }),
+      );
+    }
+  };
+  if (!typeDef.fields) {
+    check(text.split(componentSeparator)[0], typeDef.decode, name);
+    return;
+  }
+  text.split(componentSeparator).forEach((value, i) => {
+    const cdef = typeDef.fields?.[String(i + 1)];
+    if (!cdef) return;
+    const ctype = segment.message.dictionary.types[cdef.type];
+    if (ctype?.fields) return;
+    check(value, cdef.decode || ctype?.decode, `${name}.${i + 1}`, {
+      componentPosition: i + 1,
+    });
+  });
 }
 
 /**

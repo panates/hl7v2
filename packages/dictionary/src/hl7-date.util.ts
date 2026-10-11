@@ -146,11 +146,11 @@ export function toHL7Date(value: Date | string, read?: boolean): string {
 }
 
 /** TM: a value read is kept as written once checked; a Date's time is formatted */
-export function toHL7Time(value: Date | string): string {
+export function toHL7Time(value: Date | string, read?: boolean): string {
   if (value instanceof Date) return formatHL7Time(value);
   const v = String(value).trim();
-  /* 06:04:05 written with colons */
-  const compact = /^\d{2}:\d{2}/.test(v) ? v.replace(/:/g, '') : v;
+  /* 06:04:05 written with colons, given in code; HL7 text read has none */
+  const compact = !read && /^\d{2}:\d{2}/.test(v) ? v.replace(/:/g, '') : v;
   const m = TM.exec(compact);
   if (!m) throw new TypeError(`Value "${value}" is not a valid HL7 time`);
   checkParts(compact, undefined, undefined, m[1], m[2], m[3], m[5]);
