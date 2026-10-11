@@ -4,6 +4,7 @@ export * from './hl7-error.js';
 export * from './hl7-field.js';
 export * from './hl7-message.js';
 export * from './hl7-message-node.js';
+export * from './hl7-path.js';
 export * from './hl7-repetition.js';
 export * from './hl7-segment.js';
 export * from './hl7-sub-component.js';

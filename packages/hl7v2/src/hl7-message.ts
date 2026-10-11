@@ -24,6 +24,7 @@ import {
 } from './constants.js';
 import { HL7_ERROR_CODES, HL7Error } from './hl7-error.js';
 import { HL7MessageNode } from './hl7-message-node.js';
+import { getPathValue, setPathValue } from './hl7-path.js';
 import type {
   Hl7SegmentParseOptions,
   Hl7SegmentSerializeOptions,
@@ -257,6 +258,20 @@ export class HL7Message {
     if (declared && messages[declared]) return declared;
     const name = this.messageType.replace('^', '_');
     return messages[name] ? name : undefined;
+  }
+
+  /**
+   * The value at a path written as HAPI's Terser writes it - "PID-5-1",
+   * "OBX(2)-5", "/PATIENT_RESULT/ORDER_OBSERVATION(1)/OBX(0)-5" (see HL7Path)
+   */
+  get(path: string): any {
+    return getPathValue(this, path);
+  }
+
+  /** Sets the value at a path (see get() and HL7Path) */
+  set(path: string, value: any): this {
+    setPathValue(this, path, value);
+    return this;
   }
 
   /**

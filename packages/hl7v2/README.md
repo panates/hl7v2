@@ -122,6 +122,22 @@ message.header.field(MSHSegment.CharacterSet).setValue('ASCII');
 const buf = message.toBuffer();
 ```
 
+##### .get() / .set()
+
+Reads and writes a value by path, written as HAPI HL7v2's Terser writes it. Numbers in parentheses (group, segment and field repetitions) count from 0; field, component and sub-component numbers from 1. Without groups, a segment is searched in the whole message; a path with groups starts with `/`, and a group is found by its name in any version.
+`get(path: string): any` - `set(path: string, value: any): this`
+example
+
+```typescript
+message.get('PID-5-1'); // family name of the first PID
+message.get('PID-3(1)-1'); // ID of PID-3's second repetition
+message.get('OBX(2)-5'); // value of the third OBX
+message.get('/PATIENT_RESULT/ORDER_OBSERVATION(1)/OBSERVATION/OBX-5');
+message.set('PID-5-2', 'Jane').set('NTE-3', 'note'); // NTE is added if missing
+```
+
+Ending at a field it reads the first component, at a component the first sub-component, as Terser does. `set()` adds a missing segment at the end of the message when the path has no groups and names its next occurrence.
+
 ##### .validate()
 
 Checks the message against its version's dictionary, as HAPI HL7v2's validation does, and returns the problems as `HL7Error`s carrying the HL7 error code (table 0357) and the location - ready for a NAK. An empty list means none.
