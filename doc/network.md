@@ -155,6 +155,24 @@ The server and the client answer as each message's MSH-15 and MSH-16 ask:
   - MSH-15 asks for an **accept acknowledgment**, sent on receipt, before processing: `CA`, or `CE`/`CR` for a message not accepted (with `validate` on) - which is then not processed. Empty, none is sent.
   - MSH-16 asks for the **application acknowledgment**, sent after processing. Empty, it is sent.
 
+### Accepting after processing
+
+An accept acknowledgment tells the sender the message is in safe storage: a sender getting `CA` does not send it again. When it is your handlers that store the message - writing it to a database, passing it to another system - send the `CA` once they have, with `acceptAcknowledgment: 'processed'` (server or client option):
+
+```typescript
+const server = HL7Server.createServer(undefined, { acceptAcknowledgment: 'processed' });
+server.use('ORU^R01', async req => {
+  await store(req.message); // throws when it cannot
+});
+```
+
+- The handlers run first. `CA` follows when they succeed; `CE` (`CR` for a rejection) when one throws, calls `res.failed()`, or does not finish within `responseTimeout` - so the sender sends the message again.
+- The application acknowledgment MSH-16 asks for, if any, follows the accept one, as before.
+- A handler may send the `CA` earlier, once the message is stored, with `req.sendAccept()`.
+- MSH-15 still decides whether it is sent (`ER`: only `CE`/`CR`; `SU`: only `CA`). A message without MSH-15 is answered as before.
+
+The default, `'receipt'`, sends the accept acknowledgment before the handlers run.
+
 Sending in enhanced mode, choose which acknowledgment to wait for:
 
 ```typescript

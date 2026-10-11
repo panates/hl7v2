@@ -14,15 +14,27 @@ import type { HL7Socket } from '../hl7-socket.js';
  *
  * Enhanced mode - either valued, each one of AL (always), NE (never), ER
  * (on error or reject only), SU (on success only):
- * - MSH-15 asks for an accept (commit) acknowledgment, sent on receipt,
- *   before processing: CA when the message is accepted, CE when it is not
- *   (an error in it), CR when it is rejected (unsupported type, event,
- *   processing ID or version). Empty, none is sent.
+ * - MSH-15 asks for an accept (commit) acknowledgment: CA when the message is
+ *   accepted, CE when it is not (an error in it), CR when it is rejected
+ *   (unsupported type, event, processing ID or version). Empty, none is sent.
+ *   It is sent on receipt, before processing - or, for a receiver whose
+ *   handlers commit the message to safe storage, once they have
+ *   (HL7AcceptAcknowledgment).
  * - MSH-16 asks for the application acknowledgment, sent after processing.
  *   Empty, it is sent, as in original mode.
  */
 
 export type HL7AckCondition = 'AL' | 'NE' | 'ER' | 'SU' | '';
+
+/**
+ * When the accept acknowledgment (MSH-15) is sent:
+ * - 'receipt': on receipt, before the handlers run - the default.
+ * - 'processed': once the handlers finish: CA when they succeed, CE (CR for
+ *   a rejection) when one throws, fails the response or times out. For a
+ *   receiver whose handlers are what commits the message, so that CA means
+ *   it is stored.
+ */
+export type HL7AcceptAcknowledgment = 'receipt' | 'processed';
 
 export interface HL7AckMode {
   enhanced: boolean;
@@ -67,16 +79,30 @@ export function ackCodeOf(message: HL7Message): string {
   );
 }
 
+/** Whether an acknowledgment answers this message for the application (AA, AE, AR) */
+export function acknowledges(ack: HL7Message, message: HL7Message): boolean {
+  const controlId = message.controlId;
+  const msa = ack.getSegment('MSA');
+  return (
+    !!controlId &&
+    /^A[AER]$/.test(ackCodeOf(ack)) &&
+    msa?.field(MSASegment.MessageControlID).toHL7String() === controlId
+  );
+}
+
 /**
  * Takes a received message in: validates it when asked, sends the accept
  * acknowledgment its MSH-15 asks for, and answers a message that is not
  * acceptable. Returns whether the message is to be processed (routed).
+ * With `when` 'processed', the accept acknowledgment of a message to be
+ * processed is left to the request (HL7Request.sendAccept()).
  */
 export function acceptMessage(
   message: HL7Message,
   /** Where an acknowledgment goes: the socket, or a function sending it */
   socket: HL7Socket | ((ack: HL7Message) => void),
   validate: boolean | HL7ValidateOptions | undefined,
+  when: HL7AcceptAcknowledgment = 'receipt',
 ): boolean {
   const send =
     typeof socket === 'function'
@@ -89,6 +115,7 @@ export function acceptMessage(
     : [];
   const mode = ackModeOf(message);
   if (mode.accept) {
+    if (!errors.length && when === 'processed') return true;
     const ack = errors.length
       ? message.createNak(errors, 'accept')
       : message.createAck('CA');

@@ -12,7 +12,11 @@ import { AsyncEventEmitter } from 'node-events-async';
 import reconnectCore from 'reconnect-core';
 import type { StrictOmit } from 'ts-gems';
 import { uid } from 'uid';
-import { acceptMessage } from './helpers/acknowledgment.js';
+import {
+  acceptMessage,
+  ackModeOf,
+  type HL7AcceptAcknowledgment,
+} from './helpers/acknowledgment.js';
 import {
   type HL7BatchAcknowledgment,
   HL7BatchReplies,
@@ -304,12 +308,20 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
     if (!isRoutable(message, socket)) return Promise.resolve();
     const send = (m: HL7Message) =>
       batch ? batch.send(m) : socket.sendMessage(m);
-    if (!acceptMessage(message, send, this._options.validate))
+    const when = this._options.acceptAcknowledgment ?? 'receipt';
+    if (!acceptMessage(message, send, this._options.validate, when)) {
       return Promise.resolve();
+    }
     /* Answered by its control ID: one it lacks is given, as the server does */
     if (!message.header.field(MSHSegment.MessageControlID).getValue())
       message.header.field(MSHSegment.MessageControlID).setValue(uid(8));
-    const req = new HL7Request(socket, message, batch);
+    const req = new HL7Request(
+      socket,
+      message,
+      batch,
+      undefined,
+      when === 'processed' && !!ackModeOf(message).accept,
+    );
     const res = new HL7Response(req);
     return new Promise<void>(resolve => {
       this._router.handle(req, res, () => {
@@ -343,6 +355,8 @@ export namespace Hl7Client {
      * its errors and is not passed to the handlers. Default false.
      */
     validate?: boolean | HL7ValidateOptions;
+    /** See HL7Server.Options.acceptAcknowledgment */
+    acceptAcknowledgment?: HL7AcceptAcknowledgment;
     /** Which acknowledgments a received batch is answered with; default 'all' */
     batchAcknowledgment?: HL7BatchAcknowledgment;
     reconnect?: ReconnectOptions;

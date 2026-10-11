@@ -1,7 +1,13 @@
 import net, { type AddressInfo } from 'node:net';
 import { expect } from 'expect';
 import { CR, FS, HL7Message, MSASegment, MSHSegment, VT } from 'hl7v2';
-import { Hl7Client, HL7Router, HL7Server } from '../src/index.js';
+import {
+  Hl7Client,
+  type HL7Request,
+  type HL7Response,
+  HL7Router,
+  HL7Server,
+} from '../src/index.js';
 
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -494,9 +500,21 @@ describe('net:exchange', () => {
         fail?: boolean;
         invalid?: boolean;
         wait?: 'accept' | 'application';
+        processed?: boolean;
+        /** A handler of its own; what it pushes goes in among the codes sent */
+        handler?: (
+          req: HL7Request,
+          res: HL7Response,
+          sent: string[],
+        ) => unknown;
+        serverTimeout?: number;
       } = {},
     ) {
-      const s2 = HL7Server.createServer(undefined, { validate: opts.invalid });
+      const s2 = HL7Server.createServer(undefined, {
+        validate: opts.invalid,
+        acceptAcknowledgment: opts.processed ? 'processed' : undefined,
+        responseTimeout: opts.serverTimeout,
+      });
       await s2.listen(0);
       const sent: string[] = [];
       s2.on('send', m =>
@@ -507,6 +525,10 @@ describe('net:exchange', () => {
             .toHL7String(),
         ),
       );
+      if (opts.handler) {
+        const handler = opts.handler;
+        s2.use((req, res) => handler(req, res, sent));
+      }
       if (opts.fail) {
         s2.use(() => {
           throw new Error('cannot process');
@@ -579,6 +601,126 @@ describe('net:exchange', () => {
 
     it('should refuse to wait when no acknowledgment is asked for', async () => {
       expect((await exchange('NE', 'NE')).got).toContain('MSH-15 and MSH-16');
+    });
+
+    describe("acceptAcknowledgment 'processed'", () => {
+      const stored = (req: HL7Request, res: HL7Response, sent: string[]) => {
+        sent.push('stored');
+      };
+
+      it('should send CA on receipt by default, before the handlers', async () => {
+        expect(await exchange('AL', 'NE', { handler: stored })).toEqual({
+          sent: ['CA', 'stored'],
+          got: 'CA',
+        });
+      });
+
+      it('should send CA once the handlers succeed', async () => {
+        expect(
+          await exchange('AL', 'NE', { processed: true, handler: stored }),
+        ).toEqual({ sent: ['stored', 'CA'], got: 'CA' });
+      });
+
+      it('should send CE when a handler throws or fails the response', async () => {
+        expect(
+          await exchange('AL', 'NE', { processed: true, fail: true }),
+        ).toEqual({ sent: ['CE'], got: 'CE' });
+        expect(
+          await exchange('AL', 'NE', {
+            processed: true,
+            handler: (req, res) => res.failed(new Error('HIS refused it')),
+          }),
+        ).toEqual({ sent: ['CE'], got: 'CE' });
+      });
+
+      it('should send CE when the handlers time out', async () => {
+        expect(
+          await exchange('AL', 'NE', {
+            processed: true,
+            serverTimeout: 100,
+            handler: () => sleep(200),
+          }),
+        ).toEqual({ sent: ['CE'], got: 'CE' });
+      });
+
+      it('should send the application acknowledgment after it', async () => {
+        expect(
+          await exchange('AL', 'AL', { processed: true, wait: 'application' }),
+        ).toEqual({ sent: ['CA', 'AA'], got: 'AA' });
+        /* A sender waiting for the application one stops at CE */
+        expect(
+          await exchange('AL', 'AL', {
+            processed: true,
+            fail: true,
+            wait: 'application',
+          }),
+        ).toEqual({ sent: ['CE', 'AE'], got: 'CE' });
+        /* A handler answering itself: the accept acknowledgment still goes first */
+        expect(
+          await exchange('AL', 'AL', {
+            processed: true,
+            wait: 'application',
+            handler: (req, res) => req.send(res.message),
+          }),
+        ).toEqual({ sent: ['CA', 'AA'], got: 'AA' });
+      });
+
+      it('should follow MSH-15 ER and SU', async () => {
+        expect((await exchange('ER', 'NE', { processed: true })).sent).toEqual(
+          [],
+        );
+        expect(
+          (await exchange('ER', 'NE', { processed: true, fail: true })).sent,
+        ).toEqual(['CE']);
+        expect(
+          (await exchange('SU', 'NE', { processed: true, fail: true })).sent,
+        ).toEqual([]);
+      });
+
+      it('should let a handler send it earlier, once', async () => {
+        expect(
+          await exchange('AL', 'NE', {
+            processed: true,
+            handler: (req, res, sent) => {
+              req.sendAccept();
+              sent.push('after');
+              req.sendAccept();
+            },
+          }),
+        ).toEqual({ sent: ['CA', 'after'], got: 'CA' });
+      });
+
+      it('should not hold back an acknowledgment in original mode', async () => {
+        expect(
+          await exchange('', '', { processed: true, handler: stored }),
+        ).toEqual({ sent: ['stored', 'AA'], got: 'AA' });
+      });
+
+      it('should send CA after the handlers of a client too', async () => {
+        const order: string[] = [];
+        client = Hl7Client.createClient({
+          host: 'localhost',
+          port,
+          acceptAcknowledgment: 'processed',
+        });
+        client.use(() => {
+          order.push('stored');
+        });
+        client.on('send', m => order.push(m.get('MSA-1')));
+        const connected = new Promise<any>(resolve =>
+          server.once('connection', resolve),
+        );
+        await client.connect();
+        const socket = await connected;
+        const msg = newMessage();
+        msg.header.field(MSHSegment.AcceptAcknowledgmentType).setValue('AL');
+        msg.header
+          .field(MSHSegment.ApplicationAcknowledgmentType)
+          .setValue('NE');
+        const ack = await socket.sendMessageWaitAck(msg);
+        expect(ack.get('MSA-1')).toEqual('CA');
+        expect(order).toEqual(['stored', 'CA']);
+      });
     });
   });
 });

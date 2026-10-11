@@ -45,6 +45,7 @@ Go through these if your code does what the left column says.
 | parses NAKs, or reads `ERR` / `HL7Error` locations                                                | [Acknowledgments and errors](#acknowledgments-and-errors)               |
 | reads definitions from the dictionary, or changes them                                            | [The dictionary](#the-dictionary)                                       |
 | sends messages with `MSH-15` / `MSH-16` valued                                                    | [Enhanced acknowledgment mode](#enhanced-acknowledgment-mode)           |
+| receives messages with `MSH-15` valued, and stores them in its handlers                          | [Enhanced acknowledgment mode](#enhanced-acknowledgment-mode)           |
 | answers requests from a handler with a message of its own                                         | [Answering from a handler](#answering-from-a-handler)                   |
 | creates messages with `new HL7Message('2.5')`, or parses with `{ version }`, in TypeScript        | [TypeScript](#typescript)                                               |
 
@@ -233,6 +234,15 @@ An `ACK` - or any response to a request this side sent - is no longer routed to 
 ```typescript
 await client.sendMessageWaitAck(msg, { acknowledgment: 'application' });
 ```
+
+**Receiving, when your handlers store the message:** by default the `CA` goes out on receipt, before the handlers run. A sender asking for `MSH-15` = `AL` and `MSH-16` = `NE` - as some patient monitors do - then gets `CA` even when a handler fails, and does not send the message again: it is lost. v1 answered such a sender with the handler's `AA`/`AE`. To keep that guarantee, send the accept acknowledgment after the handlers:
+
+```typescript
+HL7Server.createServer(undefined, { acceptAcknowledgment: 'processed' });
+Hl7Client.createClient({ host, port, acceptAcknowledgment: 'processed' });
+```
+
+`CA` then follows when the handlers succeed, `CE` when one throws, calls `res.failed()` or times out. See [Accepting after processing](network.md#accepting-after-processing).
 
 ### Answering from a handler
 

@@ -6,7 +6,11 @@ import { MSHSegment } from 'hl7v2';
 import type { AddressInfo, ListenOptions, Socket } from 'net';
 import { AsyncEventEmitter } from 'node-events-async';
 import { uid } from 'uid';
-import { acceptMessage } from './helpers/acknowledgment.js';
+import {
+  acceptMessage,
+  ackModeOf,
+  type HL7AcceptAcknowledgment,
+} from './helpers/acknowledgment.js';
 import {
   type HL7BatchAcknowledgment,
   HL7BatchReplies,
@@ -33,6 +37,7 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
   parseStrict?: boolean;
   defaultCharset?: string;
   validate?: boolean | HL7ValidateOptions;
+  acceptAcknowledgment?: HL7AcceptAcknowledgment;
   batchAcknowledgment?: HL7BatchAcknowledgment;
   applicationName?: string;
   facilityName?: string;
@@ -76,6 +81,7 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
     this.parseStrict = options?.parseStrict;
     this.defaultCharset = options?.defaultCharset;
     this.validate = options?.validate;
+    this.acceptAcknowledgment = options?.acceptAcknowledgment;
     this.batchAcknowledgment = options?.batchAcknowledgment;
     this.applicationName = options?.applicationName;
     this.facilityName = options?.facilityName;
@@ -361,12 +367,19 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
       if (batch) batch.send(m);
       else socket.sendMessage(m);
     };
-    if (!acceptMessage(message, send, this.validate)) return Promise.resolve();
+    const when = this.acceptAcknowledgment ?? 'receipt';
+    if (!acceptMessage(message, send, this.validate, when)) {
+      return Promise.resolve();
+    }
     return new Promise<void>(resolve => {
       if (!message.header.field(MSHSegment.MessageControlID).getValue())
         message.header.field(MSHSegment.MessageControlID).setValue(uid(8));
-      const req = new HL7Request(socket, message, batch, m =>
-        this._identify(m),
+      const req = new HL7Request(
+        socket,
+        message,
+        batch,
+        m => this._identify(m),
+        when === 'processed' && !!ackModeOf(message).accept,
       );
       const res = new HL7Response(req);
       const timeoutTimer = setTimeout(() => {
@@ -374,6 +387,7 @@ export class HL7Server extends AsyncEventEmitter<HL7Server.Events> {
           /** A handler that answered and is still running is not interrupted */
           if (res.finished) return;
           res.failed(new HL7ExchangeError('Response timeout'));
+          req.sendAccept(res.error);
           if (res.acknowledgmentWanted) req.send(res.message);
         } catch (e: any) {
           /** The socket may be gone - sendMessage reports that as an error event too */
@@ -425,6 +439,12 @@ export namespace HL7Server {
      * its errors and is not passed to the handlers. Default false.
      */
     validate?: boolean | HL7ValidateOptions;
+    /**
+     * When the accept acknowledgment MSH-15 asks for is sent: 'receipt'
+     * (default), or 'processed' - after the handlers, CA when they succeed,
+     * CE when they fail or time out. See HL7AcceptAcknowledgment.
+     */
+    acceptAcknowledgment?: HL7AcceptAcknowledgment;
     /** Which acknowledgments a received batch is answered with; default 'all' */
     batchAcknowledgment?: HL7BatchAcknowledgment;
   }
