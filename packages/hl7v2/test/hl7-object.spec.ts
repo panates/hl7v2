@@ -93,4 +93,66 @@ describe('hl7v2:objects', () => {
       'Unknown field or component "NoSuchField"',
     );
   });
+
+  describe('VARIES fields', () => {
+    const QBP = [
+      'MSH|^~\\&|AiViewVS||||20230711182226||QBP^Q22^QBP_Q22|f3|T|2.7',
+      'QPD|PatientInfo_Query|20230711182226|@PID.3.1^{2232}',
+    ].join('\r');
+    const ORU = [
+      'MSH|^~\\&|LAB|HOSP|EHR|HOSP|20250101||ORU^R01^ORU_R01|1|P|2.5',
+      'OBX|1|CWE|1^a||A^Alpha^L~B^Beta^L||||||F',
+      'OBX|2|NM|2^b||7.5||||||F',
+      'OBX|3|ST|3^c||5 mg \\S\\ 2||||||F',
+      'OBX|4|XXX|4^d||x^y&z||||||F',
+    ].join('\r');
+
+    it('should give components by position when the type is not known', () => {
+      const qpd = HL7Message.parse(QBP).getSegment('QPD')!;
+      expect(qpd.toObject().UserParameters).toEqual({
+        1: '@PID.3.1',
+        2: '{2232}',
+      });
+      const out = new HL7Message('2.7');
+      out.addSegment('QPD').assign(qpd.toObject());
+      expect(out.getSegment('QPD')!.toHL7String()).toEqual(
+        'QPD|PatientInfo_Query|20230711182226|@PID.3.1^{2232}',
+      );
+    });
+
+    it("should name an OBX-5's components by OBX-2's type", () => {
+      const [cwe, nm, st, unknown] = HL7Message.parse(ORU)
+        .segments.filter(s => s.segmentType === 'OBX')
+        .map(s => s.toObject());
+      expect(cwe.ObservationValue).toEqual([
+        { Identifier: 'A', Text: 'Alpha', NameOfCodingSystem: 'L' },
+        { Identifier: 'B', Text: 'Beta', NameOfCodingSystem: 'L' },
+      ]);
+      /* One value: text, unescaped */
+      expect(nm.ObservationValue).toEqual(['7.5']);
+      expect(st.ObservationValue).toEqual(['5 mg ^ 2']);
+      /* A type the version does not define: by position */
+      expect(unknown.ObservationValue).toEqual([
+        { 1: 'x', 2: { 1: 'y', 2: 'z' } },
+      ]);
+    });
+
+    it('should round-trip VARIES fields through objects', () => {
+      const msg = HL7Message.parse(ORU);
+      for (const obx of msg.segments.filter(s => s.segmentType === 'OBX')) {
+        const copy = new HL7Message('2.5').addSegment('OBX');
+        copy.assign(obx.toObject());
+        expect(copy.toHL7String()).toEqual(obx.toHL7String());
+      }
+    });
+
+    it('should read OBX-2 before OBX-5, whatever the order given', () => {
+      const obx = new HL7Message('2.5').addSegment('OBX');
+      obx.assign({
+        ObservationValue: [{ Identifier: 'A', Text: 'Alpha' }],
+        ValueType: 'CWE',
+      });
+      expect(obx.toHL7String()).toEqual('OBX||CWE|||A^Alpha');
+    });
+  });
 });
