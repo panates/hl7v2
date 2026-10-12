@@ -1,6 +1,18 @@
 # Changelog
 
-<!-- rman:documented-up-to 37ce95c094d0dcfe7bb7815f636b78423b19fe3c -->
+<!-- rman:documented-up-to 9932e69252f29129857c0959f2ffc5020fc50d4b -->
+
+## v2.2.2 (2026-10-12)
+
+### 🐛 Bug Fixes
+
+- **hl7v2:** keep the components of VARIES fields in segment objects (40c7b1a)
+
+### 🧹 Chores
+
+- sync lockfile (5520ac4)
+
+---
 
 ## v2.2.1 (2026-10-12)
 
