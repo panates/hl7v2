@@ -1,6 +1,20 @@
 # Changelog
 
-<!-- rman:documented-up-to 415264bd6592a49562664e139d06d2cbb758f43d -->
+<!-- rman:documented-up-to 37ce95c094d0dcfe7bb7815f636b78423b19fe3c -->
+
+## v2.2.1 (2026-10-12)
+
+### 🧹 Chores
+
+- sync lockfile (d0e1117)
+- **deps:** update dependencies to latest versions (b6bf157)
+- **deps:** mocha 12, bringing serialize-javascript 7.1 (8330afd)
+
+### 💬 General Changes
+
+- Merge remote-tracking branch 'origin/dev' into dev (d097877)
+
+---
 
 ## v2.2.0 (2026-10-11)
 
