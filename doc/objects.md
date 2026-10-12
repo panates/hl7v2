@@ -28,8 +28,16 @@ pid?.AdministrativeSex; // 'F'
 - Empty values are left out. HL7's null (`""`) is `null`.
 - Values are as `getValue()` gives them: text, numbers for `NM`/`SI`, dates as written.
 - A position no enum names - a Z segment's field - is keyed by its number (`{ "1": "a", "2": "b" }`).
+- A field of a type that takes anything (`VARIES`: OBX-5, QPD-3, MFE-4 ...) is text when it holds one value. With components, it is an object keyed by the names of the data type it holds - an OBX-5 by the one OBX-2 gives - or by position where that is not known:
 
-`segment.toObject()` gives the same for any segment.
+```typescript
+// OBX|1|CWE|...||A^Alpha^L
+obx.toObject().ObservationValue; // [{ Identifier: 'A', Text: 'Alpha', NameOfCodingSystem: 'L' }]
+// QPD|PatientInfo_Query|20230711182226|@PID.3.1^{2232}
+qpd.toObject().UserParameters; // { 1: '@PID.3.1', 2: '{2232}' }
+```
+
+`segment.toObject()` gives the same for any segment, and `assign()` takes it back: `assign(toObject())` writes the segment as it was.
 
 ### Writing a segment
 
@@ -43,7 +51,7 @@ msg.getSegment('PID')!.assign({
 msg.addSegment('NTE').assign({ SetID: 1, Comment: ['Fasting sample.'] });
 ```
 
-A field given is replaced; one not given is kept. `null` writes HL7's null, `undefined` clears. An unknown name throws. MSH-1 and MSH-2 are skipped.
+A field given is replaced; one not given is kept. `null` writes HL7's null, `undefined` clears. An unknown name throws. MSH-1 and MSH-2 are skipped. An OBX-5 given as an object is written as the type OBX-2 names, wherever OBX-2 comes in the object.
 
 ## Whole messages
 
