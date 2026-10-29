@@ -22,6 +22,13 @@ import {
   HL7BatchReplies,
   replyBatchFile,
 } from './helpers/batch.js';
+import {
+  type HL7ConnectionFactory,
+  HL7PendingConnection,
+  type HL7ProxyOptions,
+  openThrough,
+  socksConnection,
+} from './helpers/connection.js';
 import { isRoutable } from './helpers/is-routable.js';
 import { HL7Request } from './hl7-request.js';
 import { HL7Response } from './hl7-response.js';
@@ -70,6 +77,9 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
     options: Hl7Client.NetConnectOptions | Hl7Client.TlsConnectOptions,
   ) {
     super();
+    if (options.proxy && options.createConnection) {
+      throw new TypeError('Give either proxy or createConnection, not both');
+    }
     this._options = options;
     let reconnecting = false;
     const connectionManager = (this._connectionManager = socketReconnect({
@@ -80,7 +90,10 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
         if (!connectionManager.reconnect) return;
         this.emit('error', err);
       })
-      .on('connect', (tcpSocket: net.Socket) => {
+      .on('connect', (connection: net.Socket | HL7PendingConnection) => {
+        /* Through a proxy or a factory: the socket, connected and ready already */
+        const pending = connection instanceof HL7PendingConnection;
+        const tcpSocket = pending ? connection.socket! : connection;
         if (!this._socket) {
           const socket = (this._socket = new HL7Socket(
             tcpSocket,
@@ -113,6 +126,7 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
         if (reconnecting) this.emit('reconnect', tcpSocket);
         reconnecting = false;
         this.emit('connect');
+        if (pending) this.emit('ready');
       })
       .on('reconnect', (n, delay) => {
         if (n === 0 && delay === 0) return;
@@ -367,6 +381,18 @@ export namespace Hl7Client {
     /** Which acknowledgments a received batch is answered with; default 'all' */
     batchAcknowledgment?: HL7BatchAcknowledgment;
     reconnect?: ReconnectOptions;
+    /**
+     * Connect through a SOCKS proxy (v4 or v5). Every connection goes
+     * through it, reconnects included; a TLS client starts TLS over the
+     * tunnel, with the server's name for SNI and the certificate check.
+     */
+    proxy?: HL7ProxyOptions;
+    /**
+     * Opens each connection itself: resolves with a connected socket to
+     * `host`:`port`, over which a TLS client starts TLS. For a transport the
+     * client does not know; `proxy` is one built in. Not both.
+     */
+    createConnection?: HL7ConnectionFactory;
   }
 
   export type NetConnectOptions = StrictOmit<
@@ -393,6 +419,35 @@ const socketReconnect = reconnectCore(
     tls?: boolean;
     options: Hl7Client.NetConnectOptions | Hl7Client.TlsConnectOptions;
   }) => {
+    const { connectTimeout, keepAlive, keepAliveInitialDelay } = args.options;
+    const factory =
+      args.options.createConnection ??
+      (args.options.proxy ? socksConnection(args.options.proxy) : undefined);
+    if (factory) {
+      const connection = openThrough(
+        factory,
+        args.options as any,
+        !!args.tls,
+        connectTimeout,
+      );
+      if (keepAlive) {
+        connection.once('connect', () =>
+          connection.socket!.setKeepAlive(true, keepAliveInitialDelay),
+        );
+      }
+      if (connectTimeout) {
+        const timer = setTimeout(() => {
+          connection.destroy(
+            new Error(`Connection timed out after ${connectTimeout} ms`),
+          );
+        }, connectTimeout).unref();
+        const clear = () => clearTimeout(timer);
+        connection.once('connect', clear);
+        connection.once('error', clear);
+        connection.once('close', clear);
+      }
+      return connection as unknown as net.Socket;
+    }
     const tcpSocket = args.tls
       ? tls.connect({
           ...(args.options as Hl7Client.TlsConnectOptions),
@@ -402,7 +457,6 @@ const socketReconnect = reconnectCore(
           ...(args.options as Hl7Client.NetConnectOptions),
           timeout: undefined,
         });
-    const { connectTimeout, keepAlive, keepAliveInitialDelay } = args.options;
     /** Applied on every connection, with or without a connect timeout */
     if (keepAlive) {
       tcpSocket.once('connect', () =>

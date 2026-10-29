@@ -448,6 +448,8 @@ The local address of the current connection (`socket.address()`), `undefined` wi
 | `validate`              | `boolean \| HL7ValidateOptions` | `false`  | As the server option: validate received messages, NAK and drop the invalid ones. See [Validation](../validation.md).                                                                                               |
 | `acceptAcknowledgment`  | `HL7AcceptAcknowledgment`       | `'receipt'` | As the server option: when the accept acknowledgment is sent. |
 | `batchAcknowledgment`   | `HL7BatchAcknowledgment`        | `'all'`  | As the server option: what the reply to a received batch carries.                                                                                                                                                 |
+| `proxy`                 | `HL7ProxyOptions`               | none     | Connect through a SOCKS proxy, v4 or v5 - every connection, reconnects included. A TLS client starts TLS over the tunnel, with the server's name for SNI and the certificate check. See [`HL7ProxyOptions`](#hl7proxyoptions). |
+| `createConnection`      | `HL7ConnectionFactory`          | none     | Open each connection with this function: it resolves with a connected socket to the server, over which a TLS client starts TLS. Not together with `proxy`, which throws a `TypeError`. See [`HL7ConnectionFactory`](#hl7connectionfactory). |
 | `reconnect`             | `Hl7Client.ReconnectOptions`    | see below | How a failed or lost connection is retried.                                                                                                                                                                       |
 
 #### ReconnectOptions
@@ -1022,6 +1024,46 @@ Takes a received message in, before routing, and returns whether it is to be pro
 `socket` is where an acknowledgment goes: an `HL7Socket`, or a function sending it (the server passes the reply batch for a message in a batch).
 
 ---
+
+## Connection helpers
+
+From `helpers/connection.ts`: connecting a client some other way than straight over TCP.
+
+<a id="hl7proxyoptions"></a>
+
+### HL7ProxyOptions
+
+```typescript
+interface HL7ProxyOptions {
+  host: string;
+  port: number;
+  type: 4 | 5;
+  userId?: string; // v4: the user ID; v5: the user name
+  password?: string; // v5: the password, with userId
+}
+```
+
+A SOCKS proxy: v4 (v4a when the server is given by name: the proxy resolves it) or v5. The shape of the `socks` package's `SocksProxy`; the package is loaded the first time a proxy is used.
+
+<a id="hl7connectionfactory"></a>
+
+### HL7ConnectionFactory
+
+```typescript
+type HL7ConnectionFactory = (options: { host: string; port: number; timeout?: number }) => Promise<net.Socket>;
+```
+
+Opens a connection to `host`:`port` and resolves with the connected socket - plain TCP: a TLS client starts TLS over it. Called for every connection attempt, reconnects included. `timeout` is the client's `connectTimeout`; the client also gives up on the attempt after it.
+
+### socksConnection()
+
+`socksConnection(proxy: HL7ProxyOptions): HL7ConnectionFactory`
+
+The factory the `proxy` option uses: a SOCKS `CONNECT` through `proxy` to the server.
+
+### HL7PendingConnection
+
+A connection being opened by a factory, standing for its socket until the socket is ready (over TLS, until the handshake is done) - what the reconnect logic sees. `socket` is the socket once open; `end()` ends it, or drops an attempt still under way; `destroy(error?)` destroys it. Used inside `Hl7Client`.
 
 ## Batch helpers
 
