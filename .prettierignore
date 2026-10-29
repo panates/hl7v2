@@ -10,6 +10,7 @@
 /.github
 **/*.md
 /packages/dictionary/data/hl7-data.js
+pnpm-lock.yaml
 
 # IDEs and editors
 .project

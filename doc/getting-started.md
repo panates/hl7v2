@@ -12,7 +12,7 @@ npm install hl7v2 hl7v2-dictionary
 npm install hl7v2-net
 ```
 
-Node.js 20 or later. The packages are ES modules, with TypeScript types included.
+Node.js 22 or later. The packages are ES modules, with TypeScript types included.
 
 ## Read a message
 
@@ -114,5 +114,5 @@ See [TypeScript](typescript.md).
 
 ## Next
 
-- The [examples](../examples) - fourteen programs that run with `npm start`.
+- The [examples](../examples) - fourteen programs that run with `pnpm start`.
 - Coming from 1.x: [Migrating from v1 to v2](migration-v1-to-v2.md).

@@ -6,7 +6,7 @@
   "license": "BSD-3-Clause",
   "type": "module",
   "scripts": {
-    "start": "node --no-experimental-strip-types --import ../register.mjs src/index.ts"
+    "start": "node --no-experimental-strip-types --disable-warning=DEP0205 --import ../register.mjs src/index.ts"
   },
   "dependencies": {
     "hl7v2": "*",

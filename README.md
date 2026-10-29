@@ -76,7 +76,7 @@ The [documentation](./doc/README.md) covers all three packages:
 
 ## Examples
 
-Fourteen runnable programs in [examples](./examples/README.md) - reading and building messages, typed access, validation, lab results, mapping to JSON, character sets, batch files, an MLLP server and client, TLS, enhanced acknowledgments, a routing gateway, batches over MLLP. Each runs with `npm start`; CI checks their output.
+Fourteen runnable programs in [examples](./examples/README.md) - reading and building messages, typed access, validation, lab results, mapping to JSON, character sets, batch files, an MLLP server and client, TLS, enhanced acknowledgments, a routing gateway, batches over MLLP. Each runs with `pnpm start`; CI checks their output.
 
 ## HL7 versions
 
@@ -98,18 +98,20 @@ A message of a version in between - 2.5.2, say - is read by the nearest one belo
 
 ## Requirements
 
-Node.js 20 or later.
+Node.js 22 or later.
 
 The packages are plain JavaScript (ES modules) and need nothing else. They ship their type declarations: TypeScript projects use them as they are, with TypeScript 5.4 or later.
 
 ## Development
 
 ```bash
-npm install
-npm run build          # build every package
-npm test               # the tests
-npm run examples       # type-check and run the examples, comparing their output
+pnpm install
+pnpm build             # build every package
+pnpm test              # the tests
+pnpm examples          # type-check and run the examples, comparing their output
 ```
+
+The repository uses [pnpm](https://pnpm.io) (the version in `package.json`'s `packageManager`; `corepack enable` provides it).
 
 - The dictionaries are generated from HL7's v2 XML schemas by `support/build-dictionary.mts`; the schemas are licensed by HL7 and not in the repository - see [Dictionary](./doc/dictionary.md#how-the-dictionaries-are-built).
 

@@ -142,6 +142,33 @@ client.on('disconnect', error => log.warn('connection lost', error));
 
 A failed `connect()` rejects, and the client keeps trying in the background until `close()` - or until `failAfter` attempts.
 
+### Through a proxy
+
+A client reaches a server through a SOCKS proxy, v4 or v5, with `proxy`:
+
+```typescript
+const client = Hl7Client.createTlsClient({
+  host: 'lab.example.org',
+  port: 2575,
+  ca,
+  proxy: { host: 'proxy.example.org', port: 1080, type: 5, userId: 'hl7', password: 'secret' },
+});
+```
+
+- Every connection goes through the proxy, reconnects included.
+- A TLS client starts TLS over the tunnel, to the server: the server's name goes in SNI and its certificate is checked as without a proxy.
+- `type: 4` is SOCKS4, which takes a user ID only; given a host name rather than an address, the proxy resolves it (SOCKS4a). With `type: 5`, `userId` and `password` are the user name and password the proxy may ask for.
+- `connectTimeout` covers the whole attempt: reaching the proxy, the tunnel and, over TLS, the handshake.
+
+For any other way to the server, `createConnection` opens each connection itself and resolves with a connected socket; a TLS client starts TLS over it:
+
+```typescript
+const client = Hl7Client.createClient({
+  host, port,
+  createConnection: ({ host, port }) => openTunnel(host, port), // a Promise<net.Socket>
+});
+```
+
 ### Receiving on a client
 
 A client takes messages the other side sends on the same connection, as a server does: `client.use()`, `client.onError()`, and the same acknowledgments. Acknowledgments and responses to its own requests are not routed.

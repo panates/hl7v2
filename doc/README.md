@@ -46,7 +46,7 @@ Reference
 
 ## Examples
 
-Fourteen runnable programs in [examples](../examples): reading and building messages, typed access, validation, lab results, mapping to JSON, character sets, batch files, an MLLP server and client, TLS, enhanced acknowledgments, a routing gateway and batches over MLLP. Each runs with `npm start`, and CI checks their output.
+Fourteen runnable programs in [examples](../examples): reading and building messages, typed access, validation, lab results, mapping to JSON, character sets, batch files, an MLLP server and client, TLS, enhanced acknowledgments, a routing gateway and batches over MLLP. Each runs with `pnpm start`, and CI checks their output.
 
 ## HL7 versions
 
@@ -68,6 +68,6 @@ A message of a version in between - 2.5.2, say - is read by the nearest one belo
 
 ## Requirements
 
-Node.js 20 or later.
+Node.js 22 or later.
 
 The packages are plain JavaScript (ES modules) and need nothing else. They ship their type declarations: TypeScript projects use them as they are, with TypeScript 5.4 or later.

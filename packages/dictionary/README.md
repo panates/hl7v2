@@ -21,7 +21,7 @@ The definitions of **HL7 v2.1 to v2.9**, generated from HL7's own v2 XML schemas
 npm install hl7v2-dictionary
 ```
 
-Node.js 20 or later; ES modules, TypeScript types included.
+Node.js 22 or later; ES modules, TypeScript types included.
 
 ## Usage
 
@@ -70,7 +70,7 @@ Built the first time a version is used; definitions shared between versions and 
 
 ## Node Compatibility
 
-- node >= 20.x
+- node >= 22.x
 
 ## License
 

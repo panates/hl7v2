@@ -21,7 +21,7 @@ Messages are [`hl7v2`](https://www.npmjs.com/package/hl7v2)'s `HL7Message`.
 npm install hl7v2-net hl7v2 hl7v2-dictionary
 ```
 
-Node.js 20 or later; ES modules, TypeScript types included.
+Node.js 22 or later; ES modules, TypeScript types included.
 
 ## Usage
 
@@ -79,6 +79,7 @@ const client = Hl7Client.createTlsClient({ host: 'localhost', port: 2575, ca: ce
 - **Requests and responses** - `sendMessageWaitAck()` resolves with the answer whatever its type (an `ADR^A19` for a `QRY^A19`), matched by MSA-2.
 - **Batches over MLLP** - a batch in one block, each message processed, answered with a batch.
 - **TLS**, reconnection, connect and response timeouts, frame size limits.
+- **SOCKS proxies** - a client connects through a SOCKS4 or SOCKS5 proxy, TLS over the tunnel, or through a connection factory of its own.
 - **Character sets** - messages sent and read in the character set MSH-18 names; unknown ones reported.
 
 ## Documentation
@@ -93,7 +94,7 @@ const client = Hl7Client.createTlsClient({ host: 'localhost', port: 2575, ca: ce
 
 ## Node Compatibility
 
-- node >= 20.x
+- node >= 22.x
 
 ## License
 
