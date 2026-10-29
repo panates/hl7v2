@@ -25,6 +25,8 @@ function start(name, env = {}) {
     process.execPath,
     [
       '--no-experimental-strip-types',
+      /* Node 26 deprecates module.register(), which the TypeScript loader still calls */
+      '--disable-warning=DEP0205',
       '--import',
       '../deterministic.mjs',
       '--import',
