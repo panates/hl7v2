@@ -24,7 +24,7 @@ Version 2 brings the library in line with the HL7 v2 standard, and with what oth
 
 ## Before you upgrade
 
-- **Node.js 20** or later.
+- **Node.js 22** or later.
 - For TypeScript projects only: the type declarations need TypeScript 5.4 or later (`NoInfer` is used). JavaScript projects are not affected.
 - Upgrade the three packages together, to the same version:
 

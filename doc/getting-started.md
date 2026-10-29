@@ -12,7 +12,7 @@ npm install hl7v2 hl7v2-dictionary
 npm install hl7v2-net
 ```
 
-Node.js 20 or later. The packages are ES modules, with TypeScript types included.
+Node.js 22 or later. The packages are ES modules, with TypeScript types included.
 
 ## Read a message
 

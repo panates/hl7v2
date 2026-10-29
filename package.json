@@ -3,6 +3,9 @@
   "private": true,
   "version": "2.2.2",
   "license": "BSD-3-Clause",
+  "engines": {
+    "node": ">=22.0"
+  },
   "contributors": [
     "Eray Hanoglu <e.hanoglu@panates.com>",
     "Ilker Gurelli <i.gurelli@panates.com>",

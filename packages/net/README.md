@@ -21,7 +21,7 @@ Messages are [`hl7v2`](https://www.npmjs.com/package/hl7v2)'s `HL7Message`.
 npm install hl7v2-net hl7v2 hl7v2-dictionary
 ```
 
-Node.js 20 or later; ES modules, TypeScript types included.
+Node.js 22 or later; ES modules, TypeScript types included.
 
 ## Usage
 
@@ -94,7 +94,7 @@ const client = Hl7Client.createTlsClient({ host: 'localhost', port: 2575, ca: ce
 
 ## Node Compatibility
 
-- node >= 20.x
+- node >= 22.x
 
 ## License
 

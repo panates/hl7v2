@@ -21,7 +21,7 @@ For the network - an MLLP server and client - see [`hl7v2-net`](https://www.npmj
 npm install hl7v2 hl7v2-dictionary
 ```
 
-`hl7v2-dictionary` holds the definitions messages are read by. Node.js 20 or later; ES modules, TypeScript types included.
+`hl7v2-dictionary` holds the definitions messages are read by. Node.js 22 or later; ES modules, TypeScript types included.
 
 ## Usage
 
@@ -104,7 +104,7 @@ for (const result of oru.PATIENT_RESULT ?? [])
 
 ## Node Compatibility
 
-- node >= 20.x
+- node >= 22.x
 
 ## License
 
