@@ -1,6 +1,25 @@
 # Changelog
 
-<!-- rman:documented-up-to 9932e69252f29129857c0959f2ffc5020fc50d4b -->
+<!-- rman:documented-up-to 083c0696cb01bdef45465af44dcbdbfcf52ba64d -->
+
+## v2.3.0 (2026-10-29)
+
+### ✨ Features
+
+- **net:** connect a client through a SOCKS proxy, or a connection factory (18cb68a)
+
+### 📚 Documentation
+
+- the steps before every push - deps, clean install, checks, tests (5faa74a)
+
+### 🧹 Chores
+
+- sync lockfile (f1f7165)
+- require Node.js 22 (c06a08a)
+- use pnpm (b35c1e3)
+- **examples:** silence Node 26's module.register() deprecation warning (4d0827d)
+
+---
 
 ## v2.2.2 (2026-10-12)
 
