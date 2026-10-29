@@ -17,9 +17,7 @@
     "type": "git",
     "url": "https://github.com/panates/hl7v2.git"
   },
-  "workspaces": [
-    "packages/*"
-  ],
+  "packageManager": "pnpm@12.10.1",
   "scripts": {
     "build": "rman build",
     "test": "mocha",
@@ -29,18 +27,21 @@
     "examples": "tsc -p examples/tsconfig.json && node examples/run-all.mjs"
   },
   "devDependencies": {
-    "@panates/eslint-config-ts": "^2.3.2",
-    "@panates/rman-preset": "^1.12.0",
+    "@panates/eslint-config-ts": "^2.3.4",
+    "@panates/rman-preset": "^2.2.1",
     "@panates/tsconfig": "^2.1.8",
     "@swc-node/register": "^1.12.1",
-    "@swc/core": "^1.16.18",
+    "@swc/core": "^1.16.20",
     "@swc/helpers": "^0.5.23",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^26.6.5",
+    "@types/node": "^26.6.6",
     "c8": "^12.0.0",
     "esbuild": "^0.28.2",
     "globals": "^17.13.0",
     "hl7-dictionary": "^1.0.1",
+    "hl7v2": "workspace:*",
+    "hl7v2-dictionary": "workspace:*",
+    "hl7v2-net": "workspace:*",
     "mocha": "^12.0.3",
     "prettier": "^3.9.10",
     "rimraf": "^6.1.3",

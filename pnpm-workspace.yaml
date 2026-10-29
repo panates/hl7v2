@@ -1,0 +1,16 @@
+packages:
+  - 'packages/*'
+
+# A dependency or peer naming a workspace package by version (hl7v2-net's
+# peer "hl7v2": "^2.2.2") is the workspace package, not the published one.
+linkWorkspacePackages: true
+
+# Install a version as soon as it is published, without pnpm's default
+# 24-hour wait: our own packages are released and consumed the same day.
+minimumReleaseAge: 0
+
+# Install scripts pnpm may run: native binaries for the build and the tests.
+allowBuilds:
+  '@swc/core': true
+  esbuild: true
+  unrs-resolver: true

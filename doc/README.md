@@ -46,7 +46,7 @@ Reference
 
 ## Examples
 
-Fourteen runnable programs in [examples](../examples): reading and building messages, typed access, validation, lab results, mapping to JSON, character sets, batch files, an MLLP server and client, TLS, enhanced acknowledgments, a routing gateway and batches over MLLP. Each runs with `npm start`, and CI checks their output.
+Fourteen runnable programs in [examples](../examples): reading and building messages, typed access, validation, lab results, mapping to JSON, character sets, batch files, an MLLP server and client, TLS, enhanced acknowledgments, a routing gateway and batches over MLLP. Each runs with `pnpm start`, and CI checks their output.
 
 ## HL7 versions
 

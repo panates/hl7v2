@@ -2,7 +2,7 @@
  * Compares the dictionaries with HL7's own v2 XML schemas - the source they
  * are generated from (support/build-dictionary.mts).
  *
- *   npm run build                      # the dictionaries are read from the build
+ *   pnpm build                         # the dictionaries are read from the build
  *   node support/compare-dictionary.mts [report.md]
  *
  * See support/hl7-sources.mts for where the schemas go. Nothing from them is

@@ -20,7 +20,8 @@ on:
       - '.mocharc.cjs'
       - '.c8rc.json'
       - 'package.json'
-      - 'package-lock.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
       - 'tsconfig*.json'
       - '.github/workflows/test.yml'
 
@@ -66,16 +67,16 @@ jobs:
           rman lint
           rman format --check
           # The tests are type-checked too: they use the generated object types
-          for p in hl7v2 net dictionary; do npx tsc -p packages/$p/test/tsconfig.json --noEmit; done
+          for p in hl7v2 net dictionary; do pnpm exec tsc -p packages/$p/test/tsconfig.json --noEmit; done
 
       - name: Run unit tests
-        run: npm run citest
+        run: pnpm citest
         env:
           NODE_OPTIONS: "--max_old_space_size=4096 --no-experimental-strip-types"
 
       # The examples type-check (typed-access expects compile errors) and run cleanly
       - name: Run examples
-        run: npm run examples
+        run: pnpm examples
 
       - name: Send coverage to Coveralls
         uses: coverallsapp/github-action@v2

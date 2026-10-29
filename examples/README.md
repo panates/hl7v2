@@ -1,6 +1,6 @@
 # Examples
 
-Small programs showing how `hl7v2` and `hl7v2-net` are used. Each is one commented file, `src/index.ts`, and runs with `npm start` in its folder.
+Small programs showing how `hl7v2` and `hl7v2-net` are used. Each is one commented file, `src/index.ts`, and runs with `pnpm start` in its folder.
 
 | Example                                 | What it shows                                                                                                        |
 | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
@@ -23,11 +23,11 @@ The sample messages are in [messages](messages).
 
 ## Running
 
-From the repository, after `npm install`:
+From the repository, after `pnpm install`:
 
 ```bash
 cd examples/parse-and-read
-npm start
+pnpm start
 ```
 
 The examples import `hl7v2` and `hl7v2-net` as an application does; here those names resolve to the packages' sources (see `tsconfig.json` and `register.mjs`), so nothing needs building first. Node.js 22.6 or later.
@@ -35,14 +35,14 @@ The examples import `hl7v2` and `hl7v2-net` as an application does; here those n
 `tls`, `enhanced-ack`, `router-gateway` and `mllp-batch` run their servers and clients in one process. For `mllp-server` and `mllp-client`, start the server first, then the client in another terminal:
 
 ```bash
-cd examples/mllp-server && npm start
+cd examples/mllp-server && pnpm start
 ```
 
 ```bash
-cd examples/mllp-client && npm start
+cd examples/mllp-client && pnpm start
 ```
 
-`npm run examples` (from the repository root) checks the examples' types - including the compile errors `typed-access` expects - and runs them all, the client against the server, as CI does. Each must print what its `expected.txt` holds: the examples run with a standing clock, a seeded `Math.random()` and a fixed time zone ([deterministic.mjs](deterministic.mjs)), so their dates and control IDs repeat, and ports, addresses and temporary paths are replaced before comparing. The examples are tests too: a change in what the library reads, writes or answers shows as a difference.
+`pnpm examples` (from the repository root) checks the examples' types - including the compile errors `typed-access` expects - and runs them all, the client against the server, as CI does. Each must print what its `expected.txt` holds: the examples run with a standing clock, a seeded `Math.random()` and a fixed time zone ([deterministic.mjs](deterministic.mjs)), so their dates and control IDs repeat, and ports, addresses and temporary paths are replaced before comparing. The examples are tests too: a change in what the library reads, writes or answers shows as a difference.
 
 After a deliberate change, look at the differences, then write the expected outputs anew:
 

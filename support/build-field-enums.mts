@@ -3,7 +3,7 @@
  * and type-fields (PIDSegment.PatientName = 5, CXType.IDNumber = 1) from the
  * dictionaries, every version together:
  *
- *   npm run build                      # the dictionaries are read from the build
+ *   pnpm build                         # the dictionaries are read from the build
  *   node support/build-field-enums.mts
  *
  * HL7 never reuses a field number, so one enum serves every version. A member
