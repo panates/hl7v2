@@ -1,6 +1,23 @@
 # Changelog
 
-<!-- rman:documented-up-to 083c0696cb01bdef45465af44dcbdbfcf52ba64d -->
+<!-- rman:documented-up-to 49e2ce84f36b42409643ca917c787a9d2f686b9f -->
+
+## v2.3.1 (2026-10-30)
+
+### 🐛 Bug Fixes
+
+- **net:** keep backoff's and reconnect-core's types out of the declarations (a078ec9)
+
+### 📚 Documentation
+
+- the type declarations need TypeScript 5.7 or later (665ec7a)
+
+### 🧹 Chores
+
+- sync lockfile [skip ci] (7fb0e02)
+- **deps:** refresh the lockfile - rman 2.40.3, eslint-plugin-security 4.2.1 (d574906)
+
+---
 
 ## v2.3.0 (2026-10-29)
 
