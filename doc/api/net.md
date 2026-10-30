@@ -458,7 +458,7 @@ The local address of the current connection (`socket.address()`), `undefined` wi
 
 | Option                | Type                                       | Description                                                                                       |
 | --------------------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------- |
-| `strategy`            | `'fibonacci' \| 'exponential' \| Backoff`  | The delay sequence between attempts, or a `backoff` instance of your own. Default `'fibonacci'`. |
+| `strategy`            | `'fibonacci' \| 'exponential' \| Hl7Client.BackoffStrategy` | The delay sequence between attempts, or a strategy of your own: a `backoff` package instance (`backoff.exponential({ ... })`), or any object with its `backoff()`, `reset()`, `failAfter()` and `on()`. Default `'fibonacci'`. |
 | `initialDelay`        | `number`                                   | The first delay, in milliseconds (`backoff` default: 100).                                        |
 | `maxDelay`            | `number`                                   | The largest delay, in milliseconds (`backoff` default: 10000).                                    |
 | `randomisationFactor` | `number`                                   | Between 0 and 1: how much each delay is randomised (`backoff` default: 0).                        |
