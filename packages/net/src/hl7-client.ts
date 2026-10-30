@@ -1,6 +1,5 @@
 import net from 'node:net';
 import tls from 'node:tls';
-import type { Backoff } from 'backoff';
 import type {
   HL7Batch,
   HL7BatchFile,
@@ -42,7 +41,7 @@ import type {
 } from './types.js';
 
 export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
-  protected _connectionManager: ReturnType<typeof socketReconnect>;
+  protected _connectionManager: Hl7Client.ConnectionManager;
   protected _router = new HL7Router();
   protected _socket?: HL7Socket;
   protected _tls?: boolean;
@@ -82,7 +81,7 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
     }
     this._options = options;
     let reconnecting = false;
-    const connectionManager = (this._connectionManager = socketReconnect({
+    const connectionManager = socketReconnect({
       ...this._options.reconnect,
       timeout: this._options.connectTimeout,
     } as any)
@@ -140,7 +139,10 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
           else err = new Error('TCP socket connection lost');
           this.emit('disconnect', err);
         } else this.emit('disconnect');
-      }));
+      });
+    /* Typed by an interface of our own: reconnect-core's types are not a dependency */
+    this._connectionManager =
+      connectionManager as unknown as Hl7Client.ConnectionManager;
   }
 
   get connected(): boolean {
@@ -404,8 +406,31 @@ export namespace Hl7Client {
   export type TlsConnectOptions = StrictOmit<tls.ConnectionOptions, 'socket'> &
     CommonConnectOptions;
 
+  /**
+   * A backoff strategy - a `backoff` package instance, or anything shaped
+   * like one: decides how long to wait between reconnection attempts
+   */
+  export interface BackoffStrategy {
+    backoff(error?: any): void;
+    reset(): void;
+    failAfter(maxNumberOfRetry: number): void;
+    on(event: string, listener: (...args: any[]) => void): this;
+  }
+
+  /** The reconnect logic behind a client: reconnect-core's emitter */
+  export interface ConnectionManager {
+    reconnect: boolean;
+    connect(args: {
+      tls?: boolean;
+      options: NetConnectOptions | TlsConnectOptions;
+    }): this;
+    disconnect(): this;
+    reset(): void;
+    on(event: string, listener: (...args: any[]) => void): this;
+  }
+
   export interface ReconnectOptions {
-    strategy?: 'fibonacci' | 'exponential' | Backoff;
+    strategy?: 'fibonacci' | 'exponential' | BackoffStrategy;
     immediate?: boolean | undefined;
     failAfter?: number | undefined;
     randomisationFactor?: number | undefined;

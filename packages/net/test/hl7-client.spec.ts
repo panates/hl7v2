@@ -1,3 +1,4 @@
+import backoff from 'backoff';
 import { expect } from 'expect';
 import { HL7Message } from 'hl7v2';
 import { Hl7Client, HL7Server } from '../src/index.js';
@@ -55,6 +56,25 @@ describe('net:client', () => {
     });
     expect(events).toStrictEqual(['reconnecting', 'reconnect', 'connect']);
     expect(client.connected).toBeTruthy();
+  });
+
+  it('should reconnect with a backoff strategy given as an instance', async () => {
+    server = HL7Server.createServer();
+    await server.listen(12345);
+    let delays = 0;
+    const strategy = backoff.exponential({ initialDelay: 10, maxDelay: 50 });
+    strategy.on('backoff', () => delays++);
+    client = Hl7Client.createClient({
+      host: 'localhost',
+      port: 12345,
+      reconnect: { strategy },
+    });
+    await client.connect();
+    const reconnected = new Promise(resolve => client.once('connect', resolve));
+    (client as any)._socket.socket.destroy();
+    await reconnected;
+    expect(client.connected).toBeTruthy();
+    expect(delays).toBeGreaterThan(0);
   });
 
   it('Should receive messages from server', done => {
