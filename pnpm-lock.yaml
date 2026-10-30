@@ -168,10 +168,10 @@ importers:
     devDependencies:
       '@panates/eslint-config-ts':
         specifier: ^2.3.4
-        version: 2.3.4(@eslint/js@10.0.1(eslint@10.13.0(supports-color@8.1.1)))(eslint-config-prettier@10.1.8(eslint@10.13.0(supports-color@8.1.1)))(eslint-plugin-import-x@4.17.1(@typescript-eslint/utils@8.72.1(eslint@10.13.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))(eslint@10.13.0(supports-color@8.1.1))(supports-color@8.1.1))(eslint-plugin-prettier@5.5.7(eslint-config-prettier@10.1.8(eslint@10.13.0(supports-color@8.1.1)))(eslint@10.13.0(supports-color@8.1.1))(prettier@3.9.10))(eslint-plugin-security@4.2.0)(eslint-plugin-simple-import-sort@14.0.0(eslint@10.13.0(supports-color@8.1.1)))(eslint@10.13.0(supports-color@8.1.1))(globals@17.13.0)(typescript-eslint@8.72.1(eslint@10.13.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))(typescript@6.0.3)
+        version: 2.3.4(@eslint/js@10.0.1(eslint@10.13.0(supports-color@8.1.1)))(eslint-config-prettier@10.1.8(eslint@10.13.0(supports-color@8.1.1)))(eslint-plugin-import-x@4.17.1(@typescript-eslint/utils@8.72.1(eslint@10.13.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))(eslint@10.13.0(supports-color@8.1.1))(supports-color@8.1.1))(eslint-plugin-prettier@5.5.7(eslint-config-prettier@10.1.8(eslint@10.13.0(supports-color@8.1.1)))(eslint@10.13.0(supports-color@8.1.1))(prettier@3.9.10))(eslint-plugin-security@4.2.1)(eslint-plugin-simple-import-sort@14.0.0(eslint@10.13.0(supports-color@8.1.1)))(eslint@10.13.0(supports-color@8.1.1))(globals@17.13.0)(typescript-eslint@8.72.1(eslint@10.13.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))(typescript@6.0.3)
       '@panates/rman-preset':
         specifier: ^2.2.1
-        version: 2.2.1(dpdm@4.3.0)(eslint@10.13.0(supports-color@8.1.1))(prettier@3.9.10)(rman@2.40.1)
+        version: 2.2.1(dpdm@4.3.0)(eslint@10.13.0(supports-color@8.1.1))(prettier@3.9.10)(rman@2.40.3)
       '@panates/tsconfig':
         specifier: ^2.1.8
         version: 2.1.8
@@ -1241,8 +1241,8 @@ packages:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
     engines: {node: '>=8'}
 
-  ansi-regex@6.4.0:
-    resolution: {integrity: sha512-KzTVk2tCWAHtYrvvvaP8bJKJq2pVinhLcGEQdtLIYPbmNGNyYe8QwNaTUYQp2J7/vIsUKt5QCqAfUkYyG9DkOw==}
+  ansi-regex@6.5.0:
+    resolution: {integrity: sha512-zhvbbbdt1kbw7EJ9OQoxmQcuaNR9P5kTj7e/YdmOSU10aHWbycofJxA6jKfoEy3vlLdctOF9ZHaxLtmSm998wQ==}
     engines: {node: '>=12'}
 
   ansi-styles@4.3.0:
@@ -1458,8 +1458,8 @@ packages:
       eslint-config-prettier:
         optional: true
 
-  eslint-plugin-security@4.2.0:
-    resolution: {integrity: sha512-LL5jbxRzlNv0vkSyBtbO7qAPofqd3xlseAFTDevyDTMmScjBrLv2/VkQ7ZFQxBaFYsa3dhpE7NcV+JkwJ9l6RQ==}
+  eslint-plugin-security@4.2.1:
+    resolution: {integrity: sha512-iF95SSqdSUVTvB7srNXoNeTQIqwfALTn9nmoqJyixSIKqEydlW01Cqb7xNveqE4Zd6YWBoQICQ4FH9NkR1byDg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   eslint-plugin-simple-import-sort@14.0.0:
@@ -1958,8 +1958,8 @@ packages:
     engines: {node: 20 || >=22}
     hasBin: true
 
-  rman@2.40.1:
-    resolution: {integrity: sha512-HhU5JvQ3h6MbiK7rW0spQBBH8qNHjYPlUqP63uP8wH+7v6OlIO2qKdN45DqnkB3oK32lr1hoBnZG0wQWnwrF4g==}
+  rman@2.40.3:
+    resolution: {integrity: sha512-RKnkPoiZmQhmUMjCHVA6eipEzd+7ZONoKHT+cXGRx6IjUKQylCRvZjg/wOaT7jxOpZOhVs/VuZuOXUfHLhtllA==}
     engines: {node: '>=20.0'}
     hasBin: true
 
@@ -2595,9 +2595,9 @@ snapshots:
   '@oxc-resolver/binding-win32-x64-msvc@11.24.2':
     optional: true
 
-  '@panates/eslint-config-ts@2.3.4(@eslint/js@10.0.1(eslint@10.13.0(supports-color@8.1.1)))(eslint-config-prettier@10.1.8(eslint@10.13.0(supports-color@8.1.1)))(eslint-plugin-import-x@4.17.1(@typescript-eslint/utils@8.72.1(eslint@10.13.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))(eslint@10.13.0(supports-color@8.1.1))(supports-color@8.1.1))(eslint-plugin-prettier@5.5.7(eslint-config-prettier@10.1.8(eslint@10.13.0(supports-color@8.1.1)))(eslint@10.13.0(supports-color@8.1.1))(prettier@3.9.10))(eslint-plugin-security@4.2.0)(eslint-plugin-simple-import-sort@14.0.0(eslint@10.13.0(supports-color@8.1.1)))(eslint@10.13.0(supports-color@8.1.1))(globals@17.13.0)(typescript-eslint@8.72.1(eslint@10.13.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))(typescript@6.0.3)':
+  '@panates/eslint-config-ts@2.3.4(@eslint/js@10.0.1(eslint@10.13.0(supports-color@8.1.1)))(eslint-config-prettier@10.1.8(eslint@10.13.0(supports-color@8.1.1)))(eslint-plugin-import-x@4.17.1(@typescript-eslint/utils@8.72.1(eslint@10.13.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))(eslint@10.13.0(supports-color@8.1.1))(supports-color@8.1.1))(eslint-plugin-prettier@5.5.7(eslint-config-prettier@10.1.8(eslint@10.13.0(supports-color@8.1.1)))(eslint@10.13.0(supports-color@8.1.1))(prettier@3.9.10))(eslint-plugin-security@4.2.1)(eslint-plugin-simple-import-sort@14.0.0(eslint@10.13.0(supports-color@8.1.1)))(eslint@10.13.0(supports-color@8.1.1))(globals@17.13.0)(typescript-eslint@8.72.1(eslint@10.13.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))(typescript@6.0.3)':
     dependencies:
-      '@panates/eslint-config': 2.3.4(@eslint/js@10.0.1(eslint@10.13.0(supports-color@8.1.1)))(eslint-config-prettier@10.1.8(eslint@10.13.0(supports-color@8.1.1)))(eslint-plugin-import-x@4.17.1(@typescript-eslint/utils@8.72.1(eslint@10.13.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))(eslint@10.13.0(supports-color@8.1.1))(supports-color@8.1.1))(eslint-plugin-prettier@5.5.7(eslint-config-prettier@10.1.8(eslint@10.13.0(supports-color@8.1.1)))(eslint@10.13.0(supports-color@8.1.1))(prettier@3.9.10))(eslint-plugin-security@4.2.0)(eslint-plugin-simple-import-sort@14.0.0(eslint@10.13.0(supports-color@8.1.1)))(eslint@10.13.0(supports-color@8.1.1))(globals@17.13.0)
+      '@panates/eslint-config': 2.3.4(@eslint/js@10.0.1(eslint@10.13.0(supports-color@8.1.1)))(eslint-config-prettier@10.1.8(eslint@10.13.0(supports-color@8.1.1)))(eslint-plugin-import-x@4.17.1(@typescript-eslint/utils@8.72.1(eslint@10.13.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))(eslint@10.13.0(supports-color@8.1.1))(supports-color@8.1.1))(eslint-plugin-prettier@5.5.7(eslint-config-prettier@10.1.8(eslint@10.13.0(supports-color@8.1.1)))(eslint@10.13.0(supports-color@8.1.1))(prettier@3.9.10))(eslint-plugin-security@4.2.1)(eslint-plugin-simple-import-sort@14.0.0(eslint@10.13.0(supports-color@8.1.1)))(eslint@10.13.0(supports-color@8.1.1))(globals@17.13.0)
       typescript: 6.0.3
       typescript-eslint: 8.72.1(eslint@10.13.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
     transitivePeerDependencies:
@@ -2610,24 +2610,24 @@ snapshots:
       - eslint-plugin-simple-import-sort
       - globals
 
-  '@panates/eslint-config@2.3.4(@eslint/js@10.0.1(eslint@10.13.0(supports-color@8.1.1)))(eslint-config-prettier@10.1.8(eslint@10.13.0(supports-color@8.1.1)))(eslint-plugin-import-x@4.17.1(@typescript-eslint/utils@8.72.1(eslint@10.13.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))(eslint@10.13.0(supports-color@8.1.1))(supports-color@8.1.1))(eslint-plugin-prettier@5.5.7(eslint-config-prettier@10.1.8(eslint@10.13.0(supports-color@8.1.1)))(eslint@10.13.0(supports-color@8.1.1))(prettier@3.9.10))(eslint-plugin-security@4.2.0)(eslint-plugin-simple-import-sort@14.0.0(eslint@10.13.0(supports-color@8.1.1)))(eslint@10.13.0(supports-color@8.1.1))(globals@17.13.0)':
+  '@panates/eslint-config@2.3.4(@eslint/js@10.0.1(eslint@10.13.0(supports-color@8.1.1)))(eslint-config-prettier@10.1.8(eslint@10.13.0(supports-color@8.1.1)))(eslint-plugin-import-x@4.17.1(@typescript-eslint/utils@8.72.1(eslint@10.13.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))(eslint@10.13.0(supports-color@8.1.1))(supports-color@8.1.1))(eslint-plugin-prettier@5.5.7(eslint-config-prettier@10.1.8(eslint@10.13.0(supports-color@8.1.1)))(eslint@10.13.0(supports-color@8.1.1))(prettier@3.9.10))(eslint-plugin-security@4.2.1)(eslint-plugin-simple-import-sort@14.0.0(eslint@10.13.0(supports-color@8.1.1)))(eslint@10.13.0(supports-color@8.1.1))(globals@17.13.0)':
     dependencies:
       '@eslint/js': 10.0.1(eslint@10.13.0(supports-color@8.1.1))
       eslint: 10.13.0(supports-color@8.1.1)
       eslint-config-prettier: 10.1.8(eslint@10.13.0(supports-color@8.1.1))
       eslint-plugin-import-x: 4.17.1(@typescript-eslint/utils@8.72.1(eslint@10.13.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))(eslint@10.13.0(supports-color@8.1.1))(supports-color@8.1.1)
       eslint-plugin-prettier: 5.5.7(eslint-config-prettier@10.1.8(eslint@10.13.0(supports-color@8.1.1)))(eslint@10.13.0(supports-color@8.1.1))(prettier@3.9.10)
-      eslint-plugin-security: 4.2.0
+      eslint-plugin-security: 4.2.1
       eslint-plugin-simple-import-sort: 14.0.0(eslint@10.13.0(supports-color@8.1.1))
       globals: 17.13.0
 
-  '@panates/rman-preset@2.2.1(dpdm@4.3.0)(eslint@10.13.0(supports-color@8.1.1))(prettier@3.9.10)(rman@2.40.1)':
+  '@panates/rman-preset@2.2.1(dpdm@4.3.0)(eslint@10.13.0(supports-color@8.1.1))(prettier@3.9.10)(rman@2.40.3)':
     dependencies:
       '@npmcli/package-json': 8.0.0
       dpdm: 4.3.0
       eslint: 10.13.0(supports-color@8.1.1)
       prettier: 3.9.10
-      rman: 2.40.1
+      rman: 2.40.3
       tinyglobby: 0.2.17
 
   '@panates/tsconfig@2.1.8': {}
@@ -2951,7 +2951,7 @@ snapshots:
 
   ansi-regex@5.0.1: {}
 
-  ansi-regex@6.4.0: {}
+  ansi-regex@6.5.0: {}
 
   ansi-styles@4.3.0:
     dependencies:
@@ -3169,7 +3169,7 @@ snapshots:
     optionalDependencies:
       eslint-config-prettier: 10.1.8(eslint@10.13.0(supports-color@8.1.1))
 
-  eslint-plugin-security@4.2.0:
+  eslint-plugin-security@4.2.1:
     dependencies:
       safe-regex: 2.1.1
 
@@ -3695,7 +3695,7 @@ snapshots:
       glob: 13.0.6
       package-json-from-dist: 1.0.1
 
-  rman@2.40.1:
+  rman@2.40.3:
     dependencies:
       '@jsopen/objects': 2.3.4
       '@netlify/parse-npm-script': 0.1.2
@@ -3783,7 +3783,7 @@ snapshots:
 
   strip-ansi@7.2.0:
     dependencies:
-      ansi-regex: 6.4.0
+      ansi-regex: 6.5.0
 
   strip-json-comments@5.0.3: {}
 
