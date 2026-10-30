@@ -1,6 +1,6 @@
 # TypeScript
 
-The packages ship their types. Beyond the usual, the compiler can know a message's **version**, and then checks the message against that version's definitions: its segments' fields, its fields' components, its paths and its objects. TypeScript 5.4 or later.
+The packages ship their types. Beyond the usual, the compiler can know a message's **version**, and then checks the message against that version's definitions: its segments' fields, its fields' components, its paths and its objects. TypeScript 5.7 or later.
 
 ## A typed message
 
