@@ -249,7 +249,7 @@ importers:
         specifier: ^0.3.3
         version: 0.3.3
       hl7v2-dictionary:
-        specifier: ^2.3.0
+        specifier: ^2.3.1
         version: link:../dictionary
       iconv-lite:
         specifier: ^0.7.3
@@ -274,10 +274,10 @@ importers:
         specifier: ^2.5.0
         version: 2.5.0
       hl7v2:
-        specifier: ^2.3.0
+        specifier: ^2.3.1
         version: link:../hl7v2
       hl7v2-dictionary:
-        specifier: ^2.3.0
+        specifier: ^2.3.1
         version: link:../dictionary
       node-events-async:
         specifier: ^1.5.2
