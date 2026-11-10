@@ -1,6 +1,20 @@
 # Changelog
 
-<!-- rman:documented-up-to 49e2ce84f36b42409643ca917c787a9d2f686b9f -->
+<!-- rman:documented-up-to 2635532a85bce55640d4b616097d8cb7b189359f -->
+
+## v2.3.2 (2026-11-10)
+
+### 🐛 Bug Fixes
+
+- **net:** one send listener per socket, however many requests are in flight (a3d9a7e)
+- **net:** share the connection between calls made while connecting, and stop adding socket listeners per wait (a6ed242)
+
+### 🧹 Chores
+
+- sync lockfile [skip ci] (cbd91c5)
+- **deps:** tslib 2.9.1, @panates/eslint-config-ts 2.3.5, rman-preset 2.2.2, swc, globals, rimraf (07ed0d3)
+
+---
 
 ## v2.3.1 (2026-10-30)
 
