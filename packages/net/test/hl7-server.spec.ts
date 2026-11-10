@@ -1,7 +1,7 @@
 import net, { type AddressInfo } from 'node:net';
 import { expect } from 'expect';
 import { CR, FS, HL7Message, MSASegment, MSHSegment, VT } from 'hl7v2';
-import { Hl7Client, HL7Server } from '../src/index.js';
+import { Hl7Client, HL7Server, type HL7Socket } from '../src/index.js';
 
 describe('net:server', () => {
   let server: HL7Server | undefined;
@@ -47,6 +47,41 @@ describe('net:server', () => {
     expect(msg.controlId).toEqual(
       res!.getSegment('MSA')?.field(MSASegment.MessageControlID).toHL7String(),
     );
+  });
+
+  it('should keep one send listener per socket however many requests are in flight', async () => {
+    server = HL7Server.createServer();
+    await server.listen(12345);
+    const count = 15;
+    let release!: () => void;
+    const gate = new Promise<void>(resolve => (release = resolve));
+    const listenerCounts: number[] = [];
+    let arrived = 0;
+    let socket: HL7Socket | undefined;
+    server.use(async req => {
+      socket = req.socket;
+      if (++arrived === count) {
+        listenerCounts.push(req.socket.listenerCount('send'));
+        release();
+      }
+      await gate;
+    });
+    client = Hl7Client.createClient({ host: 'localhost', port: 12345 });
+    await client.connect();
+    const acks = await Promise.all(
+      Array.from({ length: count }, (_, i) => {
+        const msg = new HL7Message();
+        msg.header.field(MSHSegment.MessageType).fromHL7String('ORU^R01');
+        msg.header.field(MSHSegment.MessageControlID).setValue('C' + i);
+        msg.addSegment('PID');
+        return client.sendMessageWaitAck(msg);
+      }),
+    );
+    expect(acks.map(a => a.messageType)).toEqual(Array(count).fill('ACK^R01'));
+    /* The server's forwarding listener plus the one the responses share */
+    expect(listenerCounts).toEqual([2]);
+    /* Answered: only the server's own listener is left */
+    expect(socket!.listenerCount('send')).toBe(1);
   });
 
   it('should send ack if no middle-ware handles the message', async () => {
