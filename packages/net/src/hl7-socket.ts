@@ -32,6 +32,13 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
   protected _responses = new WeakSet<HL7Message>();
   protected _frameStream: FrameStream;
   protected _waitPromises = new Set<Promise<any>>();
+  /**
+   * The rejections of the waits in flight (sendMessageWaitAck,
+   * sendBatchWaitAck), called on a socket error or close. One listener per
+   * socket event tells them all, so many waits do not pile up listeners on
+   * the TCP socket (and Node's MaxListenersExceededWarning).
+   */
+  protected _waitAborts = new Set<(error: Error) => void>();
   protected _options: HL7Socket.Options;
   responseTimeout?: number;
   /**
@@ -227,16 +234,13 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
         cleanup();
         reject(error);
       };
-      const onClose = () => onError(new Error('Socket closed before response'));
       const cleanup = () => {
         clearTimeout(responseTimer);
         this._batchHooks.delete(hook);
-        this.socket.removeListener('error', onError);
-        this.socket.removeListener('close', onClose);
+        this._waitAborts.delete(onError);
       };
       this._batchHooks.add(hook);
-      this.socket.once('error', onError);
-      this.socket.once('close', onClose);
+      this._waitAborts.add(onError);
       if (responseTimeout) {
         responseTimer = setTimeout(() => {
           onError(new Error('Response timeout'));
@@ -311,19 +315,15 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
         reject(error);
       };
 
-      const onClose = () => onError(new Error('Socket closed before response'));
-
       const cleanup = () => {
         clearTimeout(responseTimer);
         this._messageHooks.delete(messageHook);
-        this.socket.removeListener('error', onError);
-        this.socket.removeListener('close', onClose);
+        this._waitAborts.delete(onError);
       };
 
       /** Listening before sending, so no response can arrive unseen */
       this._messageHooks.add(messageHook);
-      this.socket.once('error', onError);
-      this.socket.once('close', onClose);
+      this._waitAborts.add(onError);
       if (responseTimeout) {
         responseTimer = setTimeout(() => {
           onError(new Error('Response timeout'));
@@ -458,12 +458,16 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
     hl7EventListeners.onLookup = (err, address, family, host) =>
       this.emit('lookup', err, address, family, host);
     hl7EventListeners.onTimeout = () => socket.destroy();
-    hl7EventListeners.onClose = () => this.emit('close');
+    hl7EventListeners.onClose = () => {
+      this.emit('close');
+      this._abortWaits(new Error('Socket closed before response'));
+    };
     hl7EventListeners.onError = (err: any) => {
       if (err.code === 'ECONNRESET') {
         err.message = `Connection reset by peer`;
       }
       this.emit('error', err);
+      this._abortWaits(err);
     };
 
     socket.on('connect', hl7EventListeners.onConnect);
@@ -480,6 +484,10 @@ export class HL7Socket extends AsyncEventEmitter<HL7Socket.Events> {
     socket.on('close', hl7EventListeners.onClose);
     socket.on('error', hl7EventListeners.onError);
     socket.pipe(this._frameStream);
+  }
+
+  protected _abortWaits(error: Error) {
+    for (const abort of [...this._waitAborts]) abort(error);
   }
 
   protected _unBindSocket() {

@@ -44,6 +44,8 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
   protected _connectionManager: Hl7Client.ConnectionManager;
   protected _router = new HL7Router();
   protected _socket?: HL7Socket;
+  /** The connect() in progress, shared by the calls made meanwhile */
+  protected _connecting?: Promise<void>;
   protected _tls?: boolean;
   protected _options: Hl7Client.NetConnectOptions | Hl7Client.TlsConnectOptions;
 
@@ -203,6 +205,19 @@ export class Hl7Client extends AsyncEventEmitter<Hl7Client.Events> {
 
   async connect(): Promise<void> {
     if (this.connected) return;
+    /*
+     * Calls made while connecting wait for the same connection; each opening
+     * its own left the earlier ones unread and their waits unanswered
+     */
+    if (!this._connecting) {
+      this._connecting = this._connect().finally(() => {
+        this._connecting = undefined;
+      });
+    }
+    return this._connecting;
+  }
+
+  protected _connect(): Promise<void> {
     return new Promise((resolve, reject) => {
       const onReady = () => {
         this.removeListener('error', onError);

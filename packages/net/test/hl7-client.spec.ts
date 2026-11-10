@@ -1,6 +1,6 @@
 import backoff from 'backoff';
 import { expect } from 'expect';
-import { HL7Message } from 'hl7v2';
+import { HL7Message, MSHSegment } from 'hl7v2';
 import { Hl7Client, HL7Server } from '../src/index.js';
 
 describe('net:client', () => {
@@ -75,6 +75,73 @@ describe('net:client', () => {
     await reconnected;
     expect(client.connected).toBeTruthy();
     expect(delays).toBeGreaterThan(0);
+  });
+
+  it('should share one connection between calls made while connecting', async () => {
+    server = HL7Server.createServer();
+    await server.listen(12345);
+    let connections = 0;
+    server.on('connection', () => connections++);
+    client = Hl7Client.createClient({ host: 'localhost', port: 12345 });
+    const acks = await Promise.all(
+      Array.from({ length: 5 }, (_, i) => {
+        const msg = new HL7Message();
+        msg.header.field(MSHSegment.MessageType).fromHL7String('ORU^R01');
+        msg.header.field(MSHSegment.MessageControlID).setValue('C' + i);
+        msg.addSegment('PID');
+        return client.sendMessageWaitAck(msg);
+      }),
+    );
+    expect(acks.map(a => a.messageType)).toEqual(Array(5).fill('ACK^R01'));
+    expect(connections).toBe(1);
+  });
+
+  it('should not add socket listeners per wait in flight', async () => {
+    server = HL7Server.createServer();
+    await server.listen(12345);
+    const count = 15;
+    let release!: () => void;
+    const gate = new Promise<void>(resolve => (release = resolve));
+    let arrived = 0;
+    server.use(async () => {
+      if (++arrived === count) release();
+      await gate;
+    });
+    client = Hl7Client.createClient({ host: 'localhost', port: 12345 });
+    await client.connect();
+    const tcpSocket = (client as any)._socket.socket;
+    const before = {
+      error: tcpSocket.listenerCount('error'),
+      close: tcpSocket.listenerCount('close'),
+    };
+    const waits = Array.from({ length: count }, (_, i) => {
+      const msg = new HL7Message();
+      msg.header.field(MSHSegment.MessageType).fromHL7String('ORU^R01');
+      msg.header.field(MSHSegment.MessageControlID).setValue('C' + i);
+      msg.addSegment('PID');
+      return client.sendMessageWaitAck(msg);
+    });
+    await gate;
+    expect({
+      error: tcpSocket.listenerCount('error'),
+      close: tcpSocket.listenerCount('close'),
+    }).toEqual(before);
+    await Promise.all(waits);
+  });
+
+  it('should reject the waits in flight when the connection closes', async () => {
+    server = HL7Server.createServer();
+    await server.listen(12345);
+    server.use(() => new Promise(() => undefined));
+    client = Hl7Client.createClient({ host: 'localhost', port: 12345 });
+    await client.connect();
+    const msg = new HL7Message();
+    msg.header.field(MSHSegment.MessageType).fromHL7String('ORU^R01');
+    msg.addSegment('PID');
+    const wait = client.sendMessageWaitAck(msg);
+    await new Promise(resolve => setTimeout(resolve, 50));
+    (client as any)._socket.socket.destroy();
+    await expect(wait).rejects.toThrow('Socket closed before response');
   });
 
   it('Should receive messages from server', done => {
