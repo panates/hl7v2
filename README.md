@@ -1,4 +1,4 @@
-# [📖 DOCUMENTATION](./doc/README.md)
+# [📖 DOCUMENTATION](./docs/README.md)
 
 ---
 
@@ -67,12 +67,12 @@ ack.get('MSA-1'); // 'AA'
 
 ## Documentation
 
-The [documentation](./doc/README.md) covers all three packages:
+The [documentation](./docs/README.md) covers all three packages:
 
-- [Getting started](./doc/getting-started.md)
-- Guide: [Messages](./doc/messages.md) · [Paths](./doc/paths.md) · [Objects](./doc/objects.md) · [TypeScript](./doc/typescript.md) · [Message structures](./doc/structure.md) · [Validation](./doc/validation.md) · [Acknowledgments](./doc/acknowledgments.md) · [Character sets and escaping](./doc/encoding.md) · [Dates and numbers](./doc/dates-and-numbers.md) · [Batches](./doc/batches.md) · [Network](./doc/network.md) · [Dictionary](./doc/dictionary.md)
-- API reference: [hl7v2](./doc/api/hl7v2.md) · [hl7v2-net](./doc/api/net.md) · [hl7v2-dictionary](./doc/api/dictionary.md)
-- [Migrating from v1 to v2](./doc/migration-v1-to-v2.md)
+- [Getting started](./docs/getting-started.md)
+- Guide: [Messages](./docs/messages.md) · [Paths](./docs/paths.md) · [Objects](./docs/objects.md) · [TypeScript](./docs/typescript.md) · [Message structures](./docs/structure.md) · [Validation](./docs/validation.md) · [Acknowledgments](./docs/acknowledgments.md) · [Character sets and escaping](./docs/encoding.md) · [Dates and numbers](./docs/dates-and-numbers.md) · [Batches](./docs/batches.md) · [Network](./docs/network.md) · [Dictionary](./docs/dictionary.md)
+- API reference: [hl7v2](./docs/api/hl7v2.md) · [hl7v2-net](./docs/api/net.md) · [hl7v2-dictionary](./docs/api/dictionary.md)
+- [Migrating from v1 to v2](./docs/migration-v1-to-v2.md)
 
 ## Examples
 
@@ -113,7 +113,7 @@ pnpm examples          # type-check and run the examples, comparing their output
 
 The repository uses [pnpm](https://pnpm.io) (the version in `package.json`'s `packageManager`; `corepack enable` provides it).
 
-- The dictionaries are generated from HL7's v2 XML schemas by `support/build-dictionary.mts`; the schemas are licensed by HL7 and not in the repository - see [Dictionary](./doc/dictionary.md#how-the-dictionaries-are-built).
+- The dictionaries are generated from HL7's v2 XML schemas by `support/build-dictionary.mts`; the schemas are licensed by HL7 and not in the repository - see [Dictionary](./docs/dictionary.md#how-the-dictionaries-are-built).
 
 ## Support
 

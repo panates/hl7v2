@@ -1,4 +1,4 @@
-# [📖 DOCUMENTATION](https://github.com/panates/hl7v2/blob/main/doc/README.md)
+# [📖 DOCUMENTATION](https://github.com/panates/hl7v2/blob/main/docs/README.md)
 
 ---
 
@@ -13,7 +13,7 @@ HL7 v2 messages for Node.js: parse them, build them, read and write their values
 
 For the network - an MLLP server and client - see [`hl7v2-net`](https://www.npmjs.com/package/hl7v2-net).
 
-> **Upgrading from 1.x?** Version 2 changes how values are read and written and adds type checks for typed messages - see [Migrating from v1 to v2](https://github.com/panates/hl7v2/blob/main/doc/migration-v1-to-v2.md).
+> **Upgrading from 1.x?** Version 2 changes how values are read and written and adds type checks for typed messages - see [Migrating from v1 to v2](https://github.com/panates/hl7v2/blob/main/docs/migration-v1-to-v2.md).
 
 ## Installation
 
@@ -87,19 +87,19 @@ for (const result of oru.PATIENT_RESULT ?? [])
 
 ## Documentation
 
-- [Getting started](https://github.com/panates/hl7v2/blob/main/doc/getting-started.md)
-- [Messages](https://github.com/panates/hl7v2/blob/main/doc/messages.md) - the model, parsing, building, values
-- [Paths](https://github.com/panates/hl7v2/blob/main/doc/paths.md)
-- [Objects](https://github.com/panates/hl7v2/blob/main/doc/objects.md)
-- [TypeScript](https://github.com/panates/hl7v2/blob/main/doc/typescript.md) - types by version
-- [Message structures](https://github.com/panates/hl7v2/blob/main/doc/structure.md)
-- [Validation](https://github.com/panates/hl7v2/blob/main/doc/validation.md)
-- [Acknowledgments](https://github.com/panates/hl7v2/blob/main/doc/acknowledgments.md)
-- [Character sets and escaping](https://github.com/panates/hl7v2/blob/main/doc/encoding.md)
-- [Dates and numbers](https://github.com/panates/hl7v2/blob/main/doc/dates-and-numbers.md)
-- [Batches](https://github.com/panates/hl7v2/blob/main/doc/batches.md)
-- [API reference](https://github.com/panates/hl7v2/blob/main/doc/api/hl7v2.md)
-- [Migrating from v1 to v2](https://github.com/panates/hl7v2/blob/main/doc/migration-v1-to-v2.md)
+- [Getting started](https://github.com/panates/hl7v2/blob/main/docs/getting-started.md)
+- [Messages](https://github.com/panates/hl7v2/blob/main/docs/messages.md) - the model, parsing, building, values
+- [Paths](https://github.com/panates/hl7v2/blob/main/docs/paths.md)
+- [Objects](https://github.com/panates/hl7v2/blob/main/docs/objects.md)
+- [TypeScript](https://github.com/panates/hl7v2/blob/main/docs/typescript.md) - types by version
+- [Message structures](https://github.com/panates/hl7v2/blob/main/docs/structure.md)
+- [Validation](https://github.com/panates/hl7v2/blob/main/docs/validation.md)
+- [Acknowledgments](https://github.com/panates/hl7v2/blob/main/docs/acknowledgments.md)
+- [Character sets and escaping](https://github.com/panates/hl7v2/blob/main/docs/encoding.md)
+- [Dates and numbers](https://github.com/panates/hl7v2/blob/main/docs/dates-and-numbers.md)
+- [Batches](https://github.com/panates/hl7v2/blob/main/docs/batches.md)
+- [API reference](https://github.com/panates/hl7v2/blob/main/docs/api/hl7v2.md)
+- [Migrating from v1 to v2](https://github.com/panates/hl7v2/blob/main/docs/migration-v1-to-v2.md)
 - [Examples](https://github.com/panates/hl7v2/tree/main/examples)
 
 ## Node Compatibility
