@@ -1,6 +1,19 @@
 # Changelog
 
-<!-- rman:documented-up-to 2635532a85bce55640d4b616097d8cb7b189359f -->
+<!-- rman:documented-up-to 51706e8b50fce2e28a56c2663303b5d322501efd -->
+
+## v2.3.3 (2026-11-15)
+
+### 🐛 Bug Fixes
+
+- **hl7v2:** escape backslashes that start no well-formed sequence (b1bc939)
+
+### 🧹 Chores
+
+- sync lockfile [skip ci] (c3f474d)
+- **deps:** @panates/eslint-config-ts 2.4.0, prettier 3.10.1 (8ad17bb)
+
+---
 
 ## v2.3.2 (2026-11-10)
 
