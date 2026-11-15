@@ -1,19 +1,15 @@
-# [📖 DOCUMENTATION](https://github.com/panates/hl7v2/blob/main/docs/README.md)
-
----
-
 # hl7v2-dictionary
+
+The definitions of **HL7 v2.1 to v2.9**, generated from HL7's own v2 XML schemas: every segment and its fields, every data type and its components, every message structure and its groups, and HL7's tables - with named positions for every field, and TypeScript types for every version.
 
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
 [![CI Tests][ci-test-image]][ci-test-url]
 [![Test Coverage][coveralls-image]][coveralls-url]
 
-The definitions of **HL7 v2.1 to v2.9**, generated from HL7's own v2 XML schemas: every segment and its fields, every data type and its components, every message structure and its groups, and HL7's tables - with named positions for every field, and TypeScript types for every version.
-
 [`hl7v2`](https://www.npmjs.com/package/hl7v2) reads, writes and validates messages by them.
 
-> **Upgrading from 1.x?** Version 2 changes how values are read and written and adds type checks for typed messages - see [Migrating from v1 to v2](https://github.com/panates/hl7v2/blob/main/docs/migration-v1-to-v2.md).
+> **Upgrading from 1.x?** Version 2 changes how values are read and written and adds type checks for typed messages - see [Migrating from v1 to v2](https://github.com/panates/hl7v2/blob/main/docs/MIGRATION-v1-to-v2.md).
 
 ## Installation
 

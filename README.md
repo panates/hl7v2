@@ -1,15 +1,13 @@
-# [📖 DOCUMENTATION](./docs/README.md)
-
----
-
 # HL7 v2 for Node.js
+
+Parse, build, validate and exchange **HL7 v2** messages in Node.js and TypeScript - every version from 2.1 to 2.9, as the HL7 v2 standard defines them.
 
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
 [![CI Tests][ci-test-image]][ci-test-url]
 [![Test Coverage][coveralls-image]][coveralls-url]
 
-Parse, build, validate and exchange **HL7 v2** messages in Node.js and TypeScript - every version from 2.1 to 2.9, as the HL7 v2 standard defines them. Designed from the ground up for Node.js, with types for every version.
+Designed from the ground up for Node.js, with types for every version.
 
 ## Packages
 
@@ -72,7 +70,7 @@ The [documentation](./docs/README.md) covers all three packages:
 - [Getting started](./docs/getting-started.md)
 - Guide: [Messages](./docs/messages.md) · [Paths](./docs/paths.md) · [Objects](./docs/objects.md) · [TypeScript](./docs/typescript.md) · [Message structures](./docs/structure.md) · [Validation](./docs/validation.md) · [Acknowledgments](./docs/acknowledgments.md) · [Character sets and escaping](./docs/encoding.md) · [Dates and numbers](./docs/dates-and-numbers.md) · [Batches](./docs/batches.md) · [Network](./docs/network.md) · [Dictionary](./docs/dictionary.md)
 - API reference: [hl7v2](./docs/api/hl7v2.md) · [hl7v2-net](./docs/api/net.md) · [hl7v2-dictionary](./docs/api/dictionary.md)
-- [Migrating from v1 to v2](./docs/migration-v1-to-v2.md)
+- [Migrating from v1 to v2](./docs/MIGRATION-v1-to-v2.md)
 
 ## Examples
 

@@ -1,19 +1,15 @@
-# [📖 DOCUMENTATION](https://github.com/panates/hl7v2/blob/main/docs/README.md)
-
----
-
 # hl7v2
+
+HL7 v2 messages for Node.js: parse them, build them, read and write their values, validate them, answer them - for every version from 2.1 to 2.9, as the HL7 v2 standard defines them.
 
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
 [![CI Tests][ci-test-image]][ci-test-url]
 [![Test Coverage][coveralls-image]][coveralls-url]
 
-HL7 v2 messages for Node.js: parse them, build them, read and write their values, validate them, answer them - for every version from 2.1 to 2.9, as the HL7 v2 standard defines them.
-
 For the network - an MLLP server and client - see [`hl7v2-net`](https://www.npmjs.com/package/hl7v2-net).
 
-> **Upgrading from 1.x?** Version 2 changes how values are read and written and adds type checks for typed messages - see [Migrating from v1 to v2](https://github.com/panates/hl7v2/blob/main/docs/migration-v1-to-v2.md).
+> **Upgrading from 1.x?** Version 2 changes how values are read and written and adds type checks for typed messages - see [Migrating from v1 to v2](https://github.com/panates/hl7v2/blob/main/docs/MIGRATION-v1-to-v2.md).
 
 ## Installation
 
@@ -99,7 +95,7 @@ for (const result of oru.PATIENT_RESULT ?? [])
 - [Dates and numbers](https://github.com/panates/hl7v2/blob/main/docs/dates-and-numbers.md)
 - [Batches](https://github.com/panates/hl7v2/blob/main/docs/batches.md)
 - [API reference](https://github.com/panates/hl7v2/blob/main/docs/api/hl7v2.md)
-- [Migrating from v1 to v2](https://github.com/panates/hl7v2/blob/main/docs/migration-v1-to-v2.md)
+- [Migrating from v1 to v2](https://github.com/panates/hl7v2/blob/main/docs/MIGRATION-v1-to-v2.md)
 - [Examples](https://github.com/panates/hl7v2/tree/main/examples)
 
 ## Node Compatibility

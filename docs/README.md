@@ -13,7 +13,7 @@ The library is designed from the ground up for Node.js and TypeScript, and follo
 ## Start here
 
 - [Getting started](getting-started.md) - install, read a message, build one, send it and answer it.
-- [Migrating from v1 to v2](migration-v1-to-v2.md) - what changed in 2.0.0, and what to do.
+- [Migrating from v1 to v2](MIGRATION-v1-to-v2.md) - what changed in 2.0.0, and what to do.
 
 ## Guide
 
