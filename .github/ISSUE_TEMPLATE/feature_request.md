@@ -1,20 +1,19 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
+about: Something the packages do not do yet
 title: ''
 labels: ''
 assignees: ''
-
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+**What you need**
+What you want to do, and which package it belongs to: `hl7v2` (messages), `hl7v2-net` (MLLP server and client) or `hl7v2-dictionary` (definitions).
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+**Why**
+The use case, and what you do today instead.
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+**Example**
+How you would like to write it, and the message it is about, if there is one. Replace patient data with made-up values.
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+**The standard**
+The HL7 v2 version and the chapter and section it is defined in, if it is part of the standard.

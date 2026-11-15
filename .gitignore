@@ -7,13 +7,14 @@
 junit.xml
 /reports
 packages/*/dist
+build/
 packages/*/build
 /support/docker/data
-.claude
-graphify-out
 
 # environment variables
 .env
+.env.*
+!.env.example
 env-dev.ts
 
 # Debug
@@ -34,6 +35,11 @@ lerna-debug.log*
 # Tests
 /coverage
 /.nyc_output
+
+# Claude Code: .claude/settings.json is shared and committed, these are local
+.claude/settings.local.json
+.claude/worktrees/
+graphify-out
 
 # IDEs and editors
 /.idea

@@ -1,19 +1,15 @@
-# [📖 DOCUMENTATION](https://github.com/panates/hl7v2/blob/main/doc/README.md)
-
----
-
 # hl7v2-dictionary
+
+The definitions of **HL7 v2.1 to v2.9**, generated from HL7's own v2 XML schemas: every segment and its fields, every data type and its components, every message structure and its groups, and HL7's tables - with named positions for every field, and TypeScript types for every version.
 
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
 [![CI Tests][ci-test-image]][ci-test-url]
 [![Test Coverage][coveralls-image]][coveralls-url]
 
-The definitions of **HL7 v2.1 to v2.9**, generated from HL7's own v2 XML schemas: every segment and its fields, every data type and its components, every message structure and its groups, and HL7's tables - with named positions for every field, and TypeScript types for every version.
-
 [`hl7v2`](https://www.npmjs.com/package/hl7v2) reads, writes and validates messages by them.
 
-> **Upgrading from 1.x?** Version 2 changes how values are read and written and adds type checks for typed messages - see [Migrating from v1 to v2](https://github.com/panates/hl7v2/blob/main/doc/migration-v1-to-v2.md).
+> **Upgrading from 1.x?** Version 2 changes how values are read and written and adds type checks for typed messages - see [Migrating from v1 to v2](https://github.com/panates/hl7v2/blob/main/docs/MIGRATION-v1-to-v2.md).
 
 ## Installation
 
@@ -62,11 +58,11 @@ Built the first time a version is used; definitions shared between versions and 
 
 ## Documentation
 
-- [Dictionary](https://github.com/panates/hl7v2/blob/main/doc/dictionary.md) - versions, definitions, enums, tables, extending, how it is built
-- [Dates and numbers](https://github.com/panates/hl7v2/blob/main/doc/dates-and-numbers.md)
-- [Message structures](https://github.com/panates/hl7v2/blob/main/doc/structure.md)
-- [TypeScript](https://github.com/panates/hl7v2/blob/main/doc/typescript.md)
-- [API reference](https://github.com/panates/hl7v2/blob/main/doc/api/dictionary.md)
+- [Dictionary](https://github.com/panates/hl7v2/blob/main/docs/dictionary.md) - versions, definitions, enums, tables, extending, how it is built
+- [Dates and numbers](https://github.com/panates/hl7v2/blob/main/docs/dates-and-numbers.md)
+- [Message structures](https://github.com/panates/hl7v2/blob/main/docs/structure.md)
+- [TypeScript](https://github.com/panates/hl7v2/blob/main/docs/typescript.md)
+- [API reference](https://github.com/panates/hl7v2/blob/main/docs/api/dictionary.md)
 
 ## Node Compatibility
 

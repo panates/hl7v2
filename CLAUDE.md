@@ -16,5 +16,5 @@ Run these in order, and push only when every step passes:
 2. `rman deps -u` - when step 1 lists any, upgrade them.
 3. `rman ci` - delete node_modules and lockfiles and install from scratch.
 4. Check: `rman check`, `rman lint`, `rman format --check`, and type-check the tests (`tsc -p packages/<pkg>/test/tsconfig.json --noEmit` for hl7v2, net and dictionary).
-5. Test: the unit tests and the examples.
+5. Test: the unit tests, the examples, and the declarations with TypeScript 5.7 (`pnpm build && node support/check-declarations.mjs`).
 6. Push.
