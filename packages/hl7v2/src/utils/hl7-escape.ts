@@ -70,7 +70,7 @@ export function hl7Escape(value: string | null, message?: HL7Message): string {
   };
   const e = d.escape;
   const pattern = new RegExp(
-    `(${preservedSequence(e, true)})|([${Object.keys(codes).map(escapeRegExp).join('')}])|([\\x00-\\x1F\\x7F-\\x9F]+)`,
+    `(${preservedSequence(d, true)})|([${Object.keys(codes).map(escapeRegExp).join('')}])|([\\x00-\\x1F\\x7F-\\x9F]+)`,
     'g',
   );
   return String(value).replace(pattern, (x, preserved, delimiter) => {
@@ -109,7 +109,7 @@ export function hl7UnEscape(value: string, message?: HL7Message) {
   const m = value.match(new RegExp(`^${e}x([a-f0-9]*)${e}$`, 'i'));
   if (m) return Buffer.from(m[1], 'hex');
 
-  const preserved = new RegExp(`^${preservedSequence(d.escape)}$`);
+  const preserved = new RegExp(`^${preservedSequence(d)}$`);
   return String(value).replace(
     new RegExp(`${e}([^${e}\\r\\n]*)${e}`, 'g'),
     (item, s: string) => {
@@ -133,14 +133,19 @@ export function hl7UnEscape(value: string, message?: HL7Message) {
 
 /**
  * Escape sequences kept as they are: \H\, \N\, and \.xx\, \Cxx\, \Mxx\,
- * \Zxx\ up to the next escape character.
+ * \Zxx\ up to the next escape character. A sequence never holds one of the
+ * message's delimiters: a backslash before one is text, and is escaped.
  * \Xdddd\ is not among them on reading, since it is data; written, a value
- * that already holds one passes through like the others.
+ * that already holds one - an even number of hex digits - passes through like
+ * the others.
  */
-function preservedSequence(escapeCharacter: string, withHex = false): string {
-  const e = escapeRegExp(escapeCharacter);
-  const leads = withHex ? '.CMXZ' : '.CMZ';
-  return `${e}(?:H|N|[${escapeRegExp(leads)}][^${e}\\r\\n]*)${e}`;
+function preservedSequence(d: Delimiters, withHex = false): string {
+  const e = escapeRegExp(d.escape);
+  const stops = escapeRegExp(
+    d.escape + d.field + d.component + d.subComponent + d.repetition,
+  );
+  const hex = withHex ? '|X(?:[0-9A-Fa-f]{2})+' : '';
+  return `${e}(?:H|N|[.CMZ][^${stops}\\r\\n]*${hex})${e}`;
 }
 
 function escapeRegExp(s: string): string {
