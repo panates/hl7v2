@@ -78,6 +78,13 @@ jobs:
       - name: Run examples
         run: pnpm examples
 
+      # The published declarations, in a project of their own, with the oldest TypeScript the docs name
+      - name: Check the declarations with TypeScript 5.7
+        if: ${{ matrix.node == '22' }}
+        run: |
+          pnpm build
+          node support/check-declarations.mjs
+
       - name: Send coverage to Coveralls
         uses: coverallsapp/github-action@v2
         # Run only once
