@@ -8,6 +8,8 @@
 /.DS_Store
 /.nyc_output
 /.github
+/.claude
+/graphify-out
 **/*.md
 /packages/dictionary/data/hl7-data.js
 pnpm-lock.yaml

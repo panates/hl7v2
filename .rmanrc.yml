@@ -1,5 +1,9 @@
 extends: '@panates/rman-preset'
 
+# Install, sync the lockfile and publish with pnpm.
+packageManager:
+  node: pnpm
+
 # All packages release together, under one version and one `v*` tag.
 group: true
 

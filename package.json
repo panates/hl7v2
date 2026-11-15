@@ -24,7 +24,10 @@
     "precover": "rman clean",
     "precitest": "rman clean",
     "citest": "c8 mocha",
-    "examples": "tsc -p examples/tsconfig.json && node examples/run-all.mjs"
+    "examples": "tsc -p examples/tsconfig.json && node examples/run-all.mjs",
+    "lint": "rman lint",
+    "check": "rman check",
+    "format": "rman format"
   },
   "devDependencies": {
     "@panates/eslint-config-ts": "^2.4.0",
