@@ -70,7 +70,7 @@ jobs:
           for p in hl7v2 net dictionary; do pnpm exec tsc -p packages/$p/test/tsconfig.json --noEmit; done
 
       - name: Run unit tests
-        run: pnpm citest
+        run: pnpm run citest
         env:
           NODE_OPTIONS: "--max_old_space_size=4096 --no-experimental-strip-types"
 
