@@ -843,24 +843,18 @@ Stops watching the socket (or reply batch) for an answer to the request. `HL7Rou
 ### HL7Middleware
 
 ```typescript
-type HL7Middleware =
-  | ((req: HL7Request, res: HL7Response) => void)
-  | ((req: HL7Request, res: HL7Response) => Promise<void>)
-  | ((req: HL7Request, res: HL7Response, next: NextFunction) => void);
+type HL7Middleware = (req: HL7Request, res: HL7Response, next: NextFunction) => void;
 ```
 
-A message handler. The router tells the forms apart by the function's declared parameter count (`Function.length`): with fewer than three, it awaits the handler and continues; with three, the handler continues by calling `next()`. A thrown error, or a rejected promise, goes to the error handlers. Note that a default or rest parameter is not counted in `length`.
+A message handler, in one of three forms: `(req, res) => void`, `async (req, res) => {...}` or `(req, res, next) => void`. The type is one signature, so the compiler types an inline handler's parameters, and a handler declaring fewer parameters is still one. The router tells the forms apart by the function's declared parameter count (`Function.length`): with fewer than three, it awaits the handler and continues; with three, the handler continues by calling `next()`. A thrown error, or a rejected promise, goes to the error handlers. Note that a default or rest parameter is not counted in `length`.
 
 ### HL7ErrorMiddleware
 
 ```typescript
-type HL7ErrorMiddleware =
-  | ((error: Error, req: HL7Request, res: HL7Response) => void)
-  | ((error: Error, req: HL7Request, res: HL7Response) => Promise<void>)
-  | ((error: Error, req: HL7Request, res: HL7Response, next: NextFunction) => void);
+type HL7ErrorMiddleware = (error: Error, req: HL7Request, res: HL7Response, next: NextFunction) => void;
 ```
 
-An error handler; with fewer than four declared parameters it is awaited and the next one runs, with four it continues by calling `next()`.
+An error handler, in the same three forms as `HL7Middleware`; with fewer than four declared parameters it is awaited and the next one runs, with four it continues by calling `next()`.
 
 ### NextFunction
 

@@ -5,20 +5,25 @@ import type { HL7Socket } from './hl7-socket.js';
 
 export type NextFunction = (err?: Error) => void | Promise<void>;
 
-export type HL7Middleware =
-  | ((req: HL7Request, res: HL7Response) => void)
-  | ((req: HL7Request, res: HL7Response) => Promise<void>)
-  | ((req: HL7Request, res: HL7Response, next: NextFunction) => void);
+/**
+ * A message handler. One signature rather than a union of the three forms, so
+ * the compiler can type an inline handler's parameters: a handler declaring
+ * fewer parameters is still one. The router tells the forms apart by
+ * `Function.length` (see docs/api/net.md).
+ */
+export type HL7Middleware = (
+  req: HL7Request,
+  res: HL7Response,
+  next: NextFunction,
+) => void;
 
-export type HL7ErrorMiddleware =
-  | ((error: Error, req: HL7Request, res: HL7Response) => void)
-  | ((error: Error, req: HL7Request, res: HL7Response) => Promise<void>)
-  | ((
-      error: Error,
-      req: HL7Request,
-      res: HL7Response,
-      next: NextFunction,
-    ) => void);
+/** An error handler; one signature, as HL7Middleware. */
+export type HL7ErrorMiddleware = (
+  error: Error,
+  req: HL7Request,
+  res: HL7Response,
+  next: NextFunction,
+) => void;
 
 /**
  * Which messages a handler takes:
