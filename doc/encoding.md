@@ -81,6 +81,8 @@ Sequences that are instructions to the receiver, not data, are **kept as written
 | `\Cxxyy\`, `\Mxxyyzz\`       | character set switches (ISO 2022)             |
 | `\Zxx\`                      | locally defined                               |
 
+A sequence never holds one of the message's delimiters, and `\X...\` is hexadecimal data only with an even number of hex digits. A backslash that starts no such sequence is text, written as `\E\`: `C:\Xray\film` and `C:\Med | D:\Lab` are read back as set.
+
 A value that is hexadecimal data as a whole (`\X0A0B\`) is binary data: `getValue()` gives a `Buffer`, and a `Buffer` set is written so.
 
 ## Line breaks in values

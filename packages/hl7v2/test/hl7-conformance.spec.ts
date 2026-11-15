@@ -172,6 +172,42 @@ describe('hl7v2:conformance', () => {
       );
     });
 
+    it('Should keep hex data and character set switches already in a value', () => {
+      for (const text of ['a\\X0D0A\\b', 'x\\C2842\\y', 'x\\M2442\\y']) {
+        expect(hl7Escape(text)).toEqual(text);
+      }
+    });
+
+    it('Should escape a backslash that does not start a well-formed sequence', () => {
+      /* \X with no even-length hex digits is text, not hexadecimal data */
+      expect(hl7Escape('C:\\Xray\\film')).toEqual('C:\\E\\Xray\\E\\film');
+      expect(hl7Escape('a\\X0\\b')).toEqual('a\\E\\X0\\E\\b');
+      /* a sequence never spans a delimiter */
+      expect(hl7Escape('C:\\Med | D:\\Lab')).toEqual(
+        'C:\\E\\Med \\F\\ D:\\E\\Lab',
+      );
+      expect(hl7Escape('a\\Zx^y\\b')).toEqual('a\\E\\Zx\\S\\y\\E\\b');
+      expect(hl7Escape('a\\.b&c\\d')).toEqual('a\\E\\.b\\T\\c\\E\\d');
+      expect(hl7Escape('a\\Cx~y\\b')).toEqual('a\\E\\Cx\\R\\y\\E\\b');
+    });
+
+    it('Should read back text with backslashes as set (#96)', () => {
+      for (const text of [
+        'C:\\Xray\\film^1',
+        'C:\\Med | D:\\Lab',
+        'a\\Xzz^q\\b',
+        'C:\\Hosp\\notes',
+      ]) {
+        const msg = new HL7Message('2.5');
+        msg.set('MSH-9', 'ADT').set('MSH-9-2', 'A01');
+        msg.set('NTE-3', text);
+        const back = HL7Message.parse(msg.toHL7String());
+        expect(back.get('NTE-3')).toEqual(text);
+        expect(back.get('NTE-4')).toBeUndefined();
+        expect(back.get('NTE-3-2')).toBeUndefined();
+      }
+    });
+
     it('Should decode hex data inside text as character codes', () => {
       expect(hl7UnEscape('a\\X0D\\b')).toEqual('a\rb');
       expect(hl7UnEscape(hl7Escape('a\r\nb\x85c') as string)).toEqual(
