@@ -115,4 +115,4 @@ See [TypeScript](typescript.md).
 ## Next
 
 - The [examples](../examples) - fourteen programs that run with `pnpm start`.
-- Coming from 1.x: [Migrating from v1 to v2](migration-v1-to-v2.md).
+- Coming from 1.x: [Migrating from v1 to v2](MIGRATION-v1-to-v2.md).

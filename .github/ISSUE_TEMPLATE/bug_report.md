@@ -1,27 +1,36 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: A message read, written, validated or exchanged wrongly, or an error you did not expect
 title: ''
 labels: ''
 assignees: ''
-
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**Packages and versions**
+Which of `hl7v2`, `hl7v2-net`, `hl7v2-dictionary`, and their versions. The Node.js version (`node -v`), and the TypeScript version for a typing problem.
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+**The message**
+The HL7 v2 message, or the smallest part of it that shows the problem, and its HL7 version (MSH-12).
+Replace patient names, identifiers, dates of birth and addresses with made-up values first: do not post real patient data.
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+```
+MSH|^~\&|...
+```
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**Code**
+The smallest code that shows the problem.
 
-**Additional context**
-Add any other context about the problem here.
+```typescript
+
+```
+
+**What happens**
+The output, the error and its stack, or the wrong value.
+
+**What you expected**
+The value or behaviour you expected, and where the HL7 v2 standard says so (chapter and section), if you know.
+
+**Other HL7 systems**
+For a network problem: what the other side is (product and version), and what it sends or expects.
+
+Security problems are not reported here: see SECURITY.md.

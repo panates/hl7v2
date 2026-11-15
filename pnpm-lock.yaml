@@ -1524,9 +1524,9 @@ packages:
   fast-levenshtein@2.0.6:
     resolution: {integrity: sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==}
 
-  fast-tokenizer@1.10.1:
-    resolution: {integrity: sha512-M/Zfg3DncTJ1E0ZFkUpvXKONpajgDo6uKaFAarq9yStZqXGCAoZSpLaDdoyWg6KX3U1UnAMQGLpghqQIcSv41w==}
-    engines: {node: '>=20.0'}
+  fast-tokenizer@1.10.2:
+    resolution: {integrity: sha512-P6agn+k/atA8P1UYtpOb+GCV2NvMzaSp+zL+/dz7wcIFSAWGgdJ54CxoJamKTZANFCitvUyT6Bx3sVfUqwbrfQ==}
+    engines: {node: '>=22'}
 
   fastq@1.20.3:
     resolution: {integrity: sha512-XKv5nnLs6nLF71NgiKJLIZFLkPyIEuOselLG7ujZnGrRfQK8HpvY+WqKhAJUAdLomwVHErVS4LfxFlPq0/FTAw==}
@@ -3249,7 +3249,7 @@ snapshots:
 
   fast-levenshtein@2.0.6: {}
 
-  fast-tokenizer@1.10.1:
+  fast-tokenizer@1.10.2:
     dependencies:
       tslib: 2.9.1
 
@@ -3703,7 +3703,7 @@ snapshots:
       easy-table: 1.2.0
       envinfo: 7.21.0
       fast-glob: 3.3.3
-      fast-tokenizer: 1.10.1
+      fast-tokenizer: 1.10.2
       ini: 7.0.0
       js-yaml: 5.5.0
       micromatch: 4.0.8

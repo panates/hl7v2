@@ -1,19 +1,15 @@
-# [📖 DOCUMENTATION](https://github.com/panates/hl7v2/blob/main/doc/README.md)
-
----
-
 # hl7v2-net
+
+An HL7 v2 **MLLP server and client** for Node.js, over TCP or TLS: receive messages and route them to handlers by type, answer them with the acknowledgments the HL7 v2 standard defines, send messages and wait for their answers - one at a time, or in batches.
 
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
 [![CI Tests][ci-test-image]][ci-test-url]
 [![Test Coverage][coveralls-image]][coveralls-url]
 
-An HL7 v2 **MLLP server and client** for Node.js, over TCP or TLS: receive messages and route them to handlers by type, answer them with the acknowledgments the HL7 v2 standard defines, send messages and wait for their answers - one at a time, or in batches.
-
 Messages are [`hl7v2`](https://www.npmjs.com/package/hl7v2)'s `HL7Message`.
 
-> **Upgrading from 1.x?** Version 2 changes how values are read and written and adds type checks for typed messages - see [Migrating from v1 to v2](https://github.com/panates/hl7v2/blob/main/doc/migration-v1-to-v2.md).
+> **Upgrading from 1.x?** Version 2 changes how values are read and written and adds type checks for typed messages - see [Migrating from v1 to v2](https://github.com/panates/hl7v2/blob/main/docs/MIGRATION-v1-to-v2.md).
 
 ## Installation
 
@@ -84,12 +80,12 @@ const client = Hl7Client.createTlsClient({ host: 'localhost', port: 2575, ca: ce
 
 ## Documentation
 
-- [Getting started](https://github.com/panates/hl7v2/blob/main/doc/getting-started.md)
-- [Network](https://github.com/panates/hl7v2/blob/main/doc/network.md) - servers, clients, routing, acknowledgment modes, TLS, events
-- [Acknowledgments](https://github.com/panates/hl7v2/blob/main/doc/acknowledgments.md)
-- [Batches](https://github.com/panates/hl7v2/blob/main/doc/batches.md)
-- [API reference](https://github.com/panates/hl7v2/blob/main/doc/api/net.md)
-- [Migrating from v1 to v2](https://github.com/panates/hl7v2/blob/main/doc/migration-v1-to-v2.md)
+- [Getting started](https://github.com/panates/hl7v2/blob/main/docs/getting-started.md)
+- [Network](https://github.com/panates/hl7v2/blob/main/docs/network.md) - servers, clients, routing, acknowledgment modes, TLS, events
+- [Acknowledgments](https://github.com/panates/hl7v2/blob/main/docs/acknowledgments.md)
+- [Batches](https://github.com/panates/hl7v2/blob/main/docs/batches.md)
+- [API reference](https://github.com/panates/hl7v2/blob/main/docs/api/net.md)
+- [Migrating from v1 to v2](https://github.com/panates/hl7v2/blob/main/docs/MIGRATION-v1-to-v2.md)
 - [Examples](https://github.com/panates/hl7v2/tree/main/examples) - a server and client, TLS, enhanced acknowledgments, a routing gateway, batches
 
 ## Node Compatibility
