@@ -1,6 +1,32 @@
 # Changelog
 
-<!-- rman:documented-up-to 51706e8b50fce2e28a56c2663303b5d322501efd -->
+<!-- rman:documented-up-to 38336341a72698ee0f14b67bbc9f8ac1cd357073 -->
+
+## v2.3.4 (2026-11-15)
+
+### 🐛 Bug Fixes
+
+- **net:** type inline handlers' parameters under noImplicitAny (6375fb7)
+
+### 📚 Documentation
+
+- move doc/ to docs/, the Panates layout (57517d5)
+- order the README tops by the Panates standard, MIGRATION-v1-to-v2.md (a3306bd)
+
+### 🤖 Continuous Integration
+
+- check that pull requests into main come from dev, drop Renovate (5cf00c3)
+- type-check the published declarations with TypeScript 5.7 (4eabd5c)
+
+### 🧹 Chores
+
+- sync lockfile [skip ci] (a2a24fa)
+- align root config files with the Panates templates (24048e9)
+- add SECURITY.md, shared Claude settings, fix the conduct contact (abe6cec)
+- sync lockfile (58f6d3d)
+- issue templates for HL7 v2 messages, packages and versions (5ca6e41)
+
+---
 
 ## v2.3.3 (2026-11-15)
 
