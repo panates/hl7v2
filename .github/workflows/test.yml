@@ -85,9 +85,11 @@ jobs:
           pnpm build
           node support/check-declarations.mjs
 
-      - name: Send coverage to Coveralls
-        uses: coverallsapp/github-action@v2
-        # Run only once
+      # release.yml sends this report to Coveralls under the release commit on main.
+      # Once, from one Node version: the matrix jobs would upload the same artifact name.
+      - name: Keep the coverage report for the release
         if: ${{ matrix.node == '22' }}
+        uses: actions/upload-artifact@v7
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          name: coverage
+          path: coverage/lcov.info
