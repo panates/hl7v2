@@ -1,6 +1,23 @@
 # Changelog
 
-<!-- rman:documented-up-to 38336341a72698ee0f14b67bbc9f8ac1cd357073 -->
+<!-- rman:documented-up-to 7b2c02fec6f2e08c414bdebc999cd54b906f3c1f -->
+
+## v2.3.5 (2026-11-27)
+
+### 🤖 Continuous Integration
+
+- publish to npm with Trusted Publishing only, without NPM_TOKEN (dc47194)
+- send coverage to Coveralls from the release, not from the test run (ca5ad36)
+
+### 🧹 Chores
+
+- sync lockfile [skip ci] (6616698)
+- sync lockfile (8e64ec9)
+- **deps:** socks 2.8.11 (e7a1db5)
+- keep the session handoff note in .claude/local/, git-ignored (1718c38)
+- **deps:** @types/node 26.6.11, lockfile refresh (rman 2.46.2, typescript-eslint 8.74.0) (58765c9)
+
+---
 
 ## v2.3.4 (2026-11-15)
 
